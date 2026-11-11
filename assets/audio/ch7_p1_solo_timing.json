@@ -1,0 +1,261 @@
+{
+  "duration": 639.42,
+  "sentences": [
+    {
+      "slideIndex": 0,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 7.1 of Dataset Fundamentals: Introduction to Dataset Bias and Algorithmic Fairness. Observational data is not an objective mirror of physical reality; it is an artifact produced by institutional measurement processes, sampling methodologies, historical resource allocations, and socio-economic inequities.",
+      "start": 0.0,
+      "end": 21.624
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "When machine learning models train on uncorrected observational data, they do not merely reflect historical disparities—they systematically codify, accelerate, and institutionalize them through self-reinforcing feedback loops. Today, we establish the mathematical foundations of socio-technical dynamical systems, dissect legal frameworks from disparate treatment to disparate impact, and algebraically prove Kleinberg's Impossibility Theorem.",
+      "start": 21.924,
+      "end": 48.948
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us trace the closed-loop architecture of automated decision-making. Historical disparities shape the initial training dataset D sub zero. An empirical risk minimizer learns an estimator f of x, which allocates resources such as loan approvals, bail recommendations, or police patrols.",
+      "start": 49.448,
+      "end": 68.744
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "These allocative decisions directly alter the observation process. If police are dispatched primarily to District A, they discover infractions primarily in District A, creating a skewed observation vector that feeds right back into tomorrow's training set. The model ends up predicting its own past decisions rather than latent reality.",
+      "start": 69.044,
+      "end": 89.66
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us formalize this dynamical system mathematically. Consider two districts, A and B, with identical true latent crime rates lambda. Suppose historical dispatch records contain an initial measurement distortion delta in District A, such that lambda hat A of zero equals one plus delta times lambda.",
+      "start": 90.16,
+      "end": 109.696
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Patrol resources are allocated via a softmax power-law response with feedback exponent gamma. Let alpha denote the baseline citizen reporting rate independent of patrols. The detected crime rate at round t scales as lambda times alpha plus one minus alpha times pi A of t. Substituting this back yields a one-dimensional discrete dynamical map, x sub t plus one equals T of x sub t.",
+      "start": 109.996,
+      "end": 135.052
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "To determine whether the system recovers to fair parity or diverges into a runaway policing trap, we evaluate the derivative of the dynamical map T of x at the symmetric fixed point x star equals one-half.",
+      "start": 135.552,
+      "end": 148.008
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Applying the quotient rule, the derivative at one half evaluates to gamma times one minus alpha divided by one plus alpha. If this derivative is strictly less than one, the parity fixed point is locally asymptotically stable, and any initial bias decays exponentially. But if it exceeds one, the parity fixed point undergoes a supercritical pitchfork bifurcation and destabilizes!",
+      "start": 148.308,
+      "end": 172.692
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Under US civil rights law, including Title VII, the Equal Credit Opportunity Act, and Article 10 of the European Union AI Act, algorithmic discrimination is partitioned into two distinct legal doctrines: Disparate Treatment and Disparate Impact.",
+      "start": 173.192,
+      "end": 189.392
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Disparate treatment is intentional differential treatment conditioned directly on protected attributes like race or gender. Disparate impact, by contrast, arises when a facially neutral policy or feature set produces disproportionately adverse outcomes for a protected class, such as through ZIP codes acting as high-capacity geographic proxies.",
+      "start": 189.692,
+      "end": 210.572
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 1: The Runaway Feedback Loop Simulator. In the live canvas below, you can manipulate initial measurement distortion delta, feedback concentration exponent gamma, and citizen reporting baseline alpha.",
+      "start": 211.072,
+      "end": 225.904
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Watch the derivative indicator T prime of one-half. When gamma is set such that T prime exceeds 1.0, observe how an initial five percent reporting bias triggers an irreversible supercritical pitchfork divergence across 35 operational rounds, driving patrol allocations to one hundred percent in District A!",
+      "start": 226.204,
+      "end": 245.98
+    },
+    {
+      "slideIndex": 6,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "It is time for Active Recall Checkpoint 1. Consider a predictive policing algorithm where citizen baseline reporting alpha is 0.333, and the feedback exponent gamma is set to 2.4. District A starts with a 2% initial reporting overcount.",
+      "start": 246.48,
+      "end": 263.784
+    },
+    {
+      "slideIndex": 6,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Calculate the derivative T prime of one-half and determine whether the system stabilizes at parity or undergoes runaway divergence. Select Option A, B, or C above me to verify your mastery.",
+      "start": 264.084,
+      "end": 276.78
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us turn to formal fairness metrics. The most famous benchmark in legal compliance is the Disparate Impact Ratio, codified in the Equal Employment Opportunity Commission's Four-Fifths Rule.",
+      "start": 277.28,
+      "end": 289.28
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "The Disparate Impact Ratio is the selection rate of the unprivileged group divided by the selection rate of the privileged group. If this ratio falls below 0.80, courts establish a prima facie evidentiary presumption of illegal discrimination. Closely related is Demographic Parity Difference, which requires the absolute selection rate gap to be zero.",
+      "start": 289.58,
+      "end": 312.476
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "To respect qualifications while safeguarding fairness, Hardt, Price, and Srebro introduced Equal Opportunity in 2016. Equal Opportunity requires that qualified individuals, meaning those where true label Y equals 1, have equal probability of being selected regardless of demographic group.",
+      "start": 312.976,
+      "end": 332.488
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Mathematically, this means True Positive Rates must match across groups: TPR sub zero equals TPR sub one. Equalized Odds takes this one step further by demanding parity in both True Positive Rates and False Positive Rates simultaneously. In probabilistic notation, the prediction Y hat is conditionally independent of protected attribute A given true outcome Y.",
+      "start": 332.788,
+      "end": 356.932
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Our third foundational fairness paradigm is Group Calibration, also known as Predictive Parity. A risk-scoring tool or classifier is well-calibrated if a predicted probability corresponds to the exact same empirical probability of success regardless of demographic group.",
+      "start": 357.432,
+      "end": 374.112
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "For a binary decision, this requires Positive Predictive Value, or PPV, to be equal across cohorts: PPV sub zero equals PPV sub one. If a lender assigns a risk score of seven, that score must mean a sixty percent default rate whether the borrower is Black, White, male, or female. This was the exact mathematical defense mounted by Northpointe in the famous COMPAS audit.",
+      "start": 374.412,
+      "end": 400.02
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Here is the formal proof of Kleinberg and Chouldechova's Impossibility Theorem. Let p sub g denote the base prevalence rate of group g. By Bayes' theorem, the probability of positive prediction relates to true positive rate and positive predictive value as TPR times p sub g divided by PPV.",
+      "start": 400.52,
+      "end": 419.408
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Solving directly for False Positive Rate yields FPR sub g equals p sub g over 1 minus p sub g, times 1 minus PPV over PPV, times TPR. If we enforce equal calibration and equal opportunity across groups, the PPV and TPR terms cancel out completely, leaving the ratio of False Positive Rates equal to the ratio of base rate odds! Therefore, if base rates differ, equal false positive rates cannot hold.",
+      "start": 419.708,
+      "end": 448.82
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 2: The Fairness Trilemma and COMPAS Calibration Workbench. In this environment, Group 0 has an underlying base rate of 32%, while Group 1 has an underlying base rate of 55%.",
+      "start": 449.32,
+      "end": 464.224
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Click the preset buttons to witness the trilemma firsthand. When you click 'Equalize PPV', the calibration gap drops to zero, but the False Positive Rate disparity leaps to 18 points. When you click 'Equalize FPR', the error gap vanishes, but the Disparate Impact Ratio plunges into severe violation!",
+      "start": 464.524,
+      "end": 484.708
+    },
+    {
+      "slideIndex": 12,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Recall Checkpoint 2. Group 0 has base rate p sub zero equals 0.20, and Group 1 has base rate p sub one equals 0.50. An algorithm achieves equal positive predictive value and equal true positive rates.",
+      "start": 485.208,
+      "end": 502.872
+    },
+    {
+      "slideIndex": 12,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Calculate the theoretical ratio of False Positive Rates, FPR sub zero over FPR sub one. Select Option A, B, or C above me to confirm your computation.",
+      "start": 503.172,
+      "end": 515.244
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Beyond mathematical trade-offs, algorithmic fairness failures fall into two fundamental epistemological classes: Allocative Harms and Representational Harms, as categorized by Barocas, Crawford, and Selbst.",
+      "start": 515.744,
+      "end": 529.52
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Allocative harms occur when an algorithm withholds or differentially distributes immediate, measurable economic goods, liberties, or opportunities, such as mortgage underwriting, bail recommendations, or medical triage. Representational harms occur when systems degrade social dignity, perpetuate cultural stereotypes, or erase demographic visibility, such as facial recognition failures and gendered foundation model embeddings.",
+      "start": 529.82,
+      "end": 556.244
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us examine two landmark empirical case studies that permanently reshaped modern machine learning governance: the COMPAS judicial risk assessment audit and Amazon's automated resume screening tool.",
+      "start": 556.744,
+      "end": 568.744
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "In 2018, Amazon formally scrapped its experimental AI hiring tool after discovering that training on historical engineering resumes caused the model to actively penalize resumes containing the word 'women's' or graduates of all-women colleges. Even when explicit gender markers were dropped, high-dimensional latent vectors reconstructed the proxy, proving the failure of fairness through unawareness.",
+      "start": 569.044,
+      "end": 593.332
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "We conclude Lesson 7.1 with our production implementation verified under Pydantic V2. Our test suite rigorously audits feedback dynamical stability, algebraically proves Kleinberg's odds ratio invariant, and validates hiring selection compliance against the EEOC 80% rule.",
+      "start": 593.832,
+      "end": 612.528
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Remember the four cardinal rules of algorithmic fairness in dataset engineering: First, never trust fairness through blindness. Second, audit the dynamical derivative T prime of one-half before deploying allocative systems. Third, acknowledge the fairness trilemma and align with legal counsel on calibration versus error parity. And fourth, audit both allocative and representational harms continuously in production.",
+      "start": 612.828,
+      "end": 639.42
+    }
+  ]
+}

@@ -756,290 +756,698 @@ window.CURRICULUM_CH5 = {
     ]
   },
   "ch5_p2": {
-    "chapter": 5,
-    "part": 2,
-    "key": "ch5_p2",
-    "badge": "\u25c6 TRACK 5 \u2022 LESSON 5.2: MISSING DATA: RUBIN'S TAXONOMY, STATISTICAL TESTS & MULTIVARIATE IMPUTATION (MICE)",
     "index": "Lesson 2 of 12",
     "lessonTitle": "Missing Data: Rubin's Taxonomy, Statistical Tests & Multivariate Imputation (MICE)",
+    "title": "Missing Data: Rubin's Taxonomy, Statistical Tests & Multivariate Imputation (MICE)",
+    "audioPath": "./audio/ch5_p2_solo.mp3",
     "slides": [
       {
         "id": "s1",
         "title": "Missing Data: Rubin's Taxonomy, Statistical Tests & Multivariate Imputation (MICE)",
-        "type": "title",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Missing Data: Rubin's Taxonomy, Statistical Tests & Multivariate Imputation (MICE)",
+          "title": "Beyond Ad-Hoc Deletion: The Modern Science of Missingness",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 5.2. Today we examine missing data: rubin's taxonomy, statistical tests & multivariate imputation (mice), establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>\u25c6 Track 5: Foundations</span>\n    <span>\u2022</span>\n    <span>Lesson 5.2</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Missing Data: Rubin&#x27;s Taxonomy, Statistical Tests &amp; Multivariate Imputation (MICE)\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into missing data: rubin&#x27;s taxonomy, statistical tests &amp; multivariate imputation (mice) with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udcd0 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">\u26a0\ufe0f Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udee1\ufe0f Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Missing Data: Rubin's Taxonomy, Statistical Tests & Multivariate Imputation (MICE)",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 5.2?"
+              "text": "Welcome to Chapter 5, Lesson 2: Missing Data Engineering, Rubin's Taxonomy, and Multivariate Imputation by Chained Equations. Missing values are ubiquitous across industrial data pipelines, medical registries, and sensor telemetry. Naive shortcuts like zero-filling, mean substitution, or complete-case listwise deletion destroy feature variance, attenuate correlations, and inject fatal selection bias. Today, we formalize how to diagnose the stochastic mechanism behind missingness and restore true population distributions.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 5.2. Today we examine missing data: rubin's taxonomy, statistical tests & multivariate imputation (mice), establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "We organize missing data engineering around three core tenets: First, fidelity: missingness is not just missing values, but a stochastic process governed by a binary mask matrix. Second, identifiability: understanding whether missingness is ignorable or non-ignorable dictates whether likelihood-based imputation can recover unbiased parameters. And third, valid uncertainty propagation: single imputation produces overconfident p-values, requiring Donald Rubin's Multiple Imputation pooling rules to quantify the Fraction of Missing Information.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>\u25c6 Track 5: Foundations</span>\n    <span>\u2022</span>\n    <span>Lesson 5.2</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Missing Data: Rubin&#x27;s Taxonomy, Statistical Tests &amp; Multivariate Imputation (MICE)\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into missing data: rubin&#x27;s taxonomy, statistical tests &amp; multivariate imputation (mice) with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udcd0 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">\u26a0\ufe0f Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udee1\ufe0f Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-4\">\n                <div class=\"p-4 rounded-xl bg-gradient-to-r from-[#c9f3f4]/40 to-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#0e7490]\">\n                  <div class=\"flex items-center gap-2 text-xs font-mono font-black uppercase text-[#0e7490] mb-1\">\n                    <span>\ud83d\udd2c</span> Foundational Statistical Rigor\n                  </div>\n                  <h3 class=\"text-sm md:text-base font-black text-[#151b20]\">\n                    From Heuristic Dropouts to Principled Missingness Mechanics\n                  </h3>\n                  <p class=\"text-xs text-[#151b20]/80 mt-1 leading-relaxed\">\n                    Industrial pipelines ingest missing cells from sensor dropouts, customer privacy refusals, and routing dropouts. Treating missingness as a trivial syntax error blinds ML systems to selective attrition.\n                  </p>\n                </div>\n\n                <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs\">\n                  <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#2563eb] text-xs uppercase mb-1\">1. Stochastic Mask $\\mathbf{M}$</div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      Every empirical matrix $\\mathbf{Y}$ has a paired indicator $\\mathbf{M} \\in \\{0, 1\\}^{N \times D}$. The joint distribution $P(\\mathbf{Y}, \\mathbf{M})$ determines model estimability.\n                    </p>\n                  </div>\n                  <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#d97706] text-xs uppercase mb-1\">2. Ignorability Bounds</div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      MCAR and MAR permit ignorable likelihood inference; MNAR is non-ignorable, requiring joint sensitivity bounds or Heckman selection modeling.\n                    </p>\n                  </div>\n                  <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#16a34a] text-xs uppercase mb-1\">3. Rubin Variance Pooling</div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      Single imputation treats guesses as observed facts. Multiple Imputation ($M \\ge 5$) quantifies between-imputation variance and the Fraction of Missing Information.\n                    </p>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Debating Naive Deletion vs. Multivariate Restoration",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Chapter 5, Lesson 2: Missing Data Engineering. In industrial data science, the single most dangerous line of code in Python is pandas dot dropna. It silently deletes rows, mutilates sample power, and injects severe selection bias.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait, Dr. Nova! In every Kaggle competition or beginner tutorial, people run dropna or fillna with the column mean on day one! If a feature only has five percent missing values, what is the harm in imputing the mean?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Mean imputation creates artificial spikes at the center of the distribution! It deflates true sample variance, squashes standard errors, and shrinks correlation coefficients toward zero! By the end of this lesson, Kaito, you will see how mean imputation can cut statistical test power in half and cause production classifiers to fail catastrophically.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Then let's break down Donald Rubin's classic taxonomy\u2014MCAR, MAR, and MNAR\u2014and see when dropping rows is safe and when we must deploy MICE!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-4\">\n                <div class=\"p-4 rounded-xl bg-gradient-to-r from-[#c9f3f4]/40 to-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#0e7490]\">\n                  <div class=\"flex items-center gap-2 text-xs font-mono font-black uppercase text-[#0e7490] mb-1\">\n                    <span>\ud83c\udf99\ufe0f</span> Socratic Architectural Exploration\n                  </div>\n                  <h3 class=\"text-sm md:text-base font-black text-[#151b20]\">\n                    The Illusion of Cleanliness: Why <code>df.dropna()</code> Incurs Hidden Debt\n                  </h3>\n                  <p class=\"text-xs text-[#151b20]/80 mt-1 leading-relaxed\">\n                    Dropping missing rows does not remove bias\u2014it actively creates it whenever missingness correlates with patient severity, customer churn, or sensor failure.\n                  </p>\n                </div>\n\n                <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n                  <div class=\"p-3 rounded-lg bg-[#fff5f2] border-2 border-[#f38469] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#dc2626] text-xs uppercase mb-1\">\u274c The Naive Developer Habit</div>\n                    <ul class=\"list-disc list-inside text-[11px] text-[#151b20]/80 space-y-1 font-sans\">\n                      <li><code>df.dropna()</code>: discards 30%\u201370% of multivariable clinical cohorts.</li>\n                      <li><code>df.fillna(df.mean())</code>: spikes the center, collapsing variance by $(1 - p)$.</li>\n                      <li>Zero-filling: distorts log-scale distributions and creates false zero modes.</li>\n                    </ul>\n                  </div>\n                  <div class=\"p-3 rounded-lg bg-[#f0fdf4] border-2 border-[#16a34a] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#166534] text-xs uppercase mb-1\">\u2705 The Masterclass Protocol</div>\n                    <ul class=\"list-disc list-inside text-[11px] text-[#151b20]/80 space-y-1 font-sans\">\n                      <li>Partition $\\mathbf{Y}$ into $\\mathbf{Y}_{\text{obs}}$ and $\\mathbf{Y}_{\text{mis}}$ under explicit mask $\\mathbf{M}$.</li>\n                      <li>Conduct Little's $\\chi^2$ test to verify MCAR vs. MAR ignorability.</li>\n                      <li>Deploy MICE with Predictive Mean Matching (PMM) and Rubin variance pooling.</li>\n                    </ul>\n                  </div>\n                </div>\n              </div>\n            "
         }
       },
       {
         "id": "s2",
-        "title": "Conceptual Overview: Mathematical Taxonomy of Missingness Mechanisms",
-        "type": "equation",
+        "title": "Mathematical Anatomy: The Missingness Mask Matrix M & Partitioning",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview: Mathematical Taxonomy of Missingness Mechanisms",
+          "title": "Formalizing the Complete-Data State Space",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview: Mathematical Taxonomy of Missingness Mechanisms. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{P}\\left(\\mathbf{M} \\;\\middle|\\; \\mathbf{Y}_{\\text{obs}}, \\mathbf{Y}_{\\text{mis}}, \\vec{\\psi}\\right) = \\mathbb{P}\\left(\\mathbf{M} \\;\\middle|\\; \\vec{\\psi}\\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{P}\\left(\\mathbf{M} \\;\\middle|\\; \\mathbf{Y}_{\\text{obs}}, \\mathbf{Y}_{\\text{mis}}, \\vec{\\psi}\\right) = \\mathbb{P}\\left(\\mathbf{M} \\;\\middle|\\; \\mathbf{Y}_{\\text{obs}}, \\vec{\\psi}\\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{P}\\left(\\mathbf{M} \\;\\middle|\\; \\mathbf{Y}_{\\text{obs}}, \\mathbf{Y}_{\\text{mis}}, \\vec{\\psi}\\right) \\ne \\mathbb{P}\\left(\\mathbf{M} \\;\\middle|\\; \\mathbf{Y}_{\\text{obs}}, \\vec{\\psi}\\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Missing values</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">are ubiquitous across industrial data stores.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Rigorous data cleaning</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">requires diagnosing the underlying probabilistic mechanism generating the missingness pattern, validating imputation invariants ( Schelter et al., 2018 ) through automated edit rules ( Fellegi &amp; Holt, 1976 ) and iterative cleaning passes ( Krishnan et al., 2016 ).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Missingness is strictly</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">independent of both observed and unobserved data values: Under MCAR, the observed cases represent a true random subsample of the universe.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\ud83d\udca1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Listwise deletion produces</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">unbiased parameter estimates (though statistical power is sacrificed).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview: Mathematical Taxonomy of Missingness Mechanisms",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does conceptual overview: mathematical taxonomy of missingness mechanisms protect our system against silent distribution shift in production?"
+              "text": "Let our target population data matrix be denoted Y, containing N rows and D features. In reality, we do not observe Y directly; instead, we observe an empirical realization defined by the binary missingness indicator matrix M, where entry M sub ij equals 1 if cell Y sub ij is unobserved, and 0 if observed. Thus, Y is cleanly partitioned into observed components Y obs and missing components Y mis.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
+              "text": "The entire statistical challenge centers on the conditional distribution of M given Y, parameterized by psi. In classical inference, if we wish to estimate parameters theta of the data model without modeling psi, we must know whether the missingness mechanism is ignorable. The likelihood function factorizes cleanly only when the missing data mechanism satisfies specific independence conditions.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{P}\\left(\\mathbf{M} \\;\\middle|\\; \\mathbf{Y}_{\\text{obs}}, \\mathbf{Y}_{\\text{mis}}, \\vec{\\psi}\\right) = \\mathbb{P}\\left(\\mathbf{M} \\;\\middle|\\; \\vec{\\psi}\\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{P}\\left(\\mathbf{M} \\;\\middle|\\; \\mathbf{Y}_{\\text{obs}}, \\mathbf{Y}_{\\text{mis}}, \\vec{\\psi}\\right) = \\mathbb{P}\\left(\\mathbf{M} \\;\\middle|\\; \\mathbf{Y}_{\\text{obs}}, \\vec{\\psi}\\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{P}\\left(\\mathbf{M} \\;\\middle|\\; \\mathbf{Y}_{\\text{obs}}, \\mathbf{Y}_{\\text{mis}}, \\vec{\\psi}\\right) \\ne \\mathbb{P}\\left(\\mathbf{M} \\;\\middle|\\; \\mathbf{Y}_{\\text{obs}}, \\vec{\\psi}\\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Missing values</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">are ubiquitous across industrial data stores.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Rigorous data cleaning</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">requires diagnosing the underlying probabilistic mechanism generating the missingness pattern, validating imputation invariants ( Schelter et al., 2018 ) through automated edit rules ( Fellegi &amp; Holt, 1976 ) and iterative cleaning passes ( Krishnan et al., 2016 ).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Missingness is strictly</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">independent of both observed and unobserved data values: Under MCAR, the observed cases represent a true random subsample of the universe.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\ud83d\udca1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Listwise deletion produces</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">unbiased parameter estimates (though statistical power is sacrificed).</span>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-4 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-sm text-[#0e7490] uppercase mb-2\">Matrix Partitioning & Indicator Formulation</h4>\n                  <div class=\"bg-white p-3 rounded-lg border border-[#151b20] space-y-2 text-center text-xs\">\n                    <div>$$\\mathbf{Y} \\in \\mathbb{R}^{N \times D} = \\left( \\mathbf{Y}_{\text{obs}}, \\mathbf{Y}_{\text{mis}} \right)$$</div>\n                    <div>$$M_{ij} = \\begin{cases} 1 & \\text{if } Y_{ij} \\text{ is missing} \\\\ 0 & \\text{if } Y_{ij} \\text{ is observed} \\end{cases}$$</div>\n                  </div>\n                  <p class=\"text-[11px] text-[#151b20]/80 font-sans mt-2 leading-relaxed\">\n                    The observed data likelihood integrates over all feasible real-world states of the missing subspace:\n                  </p>\n                  <div class=\"bg-[#f8fafc] p-2 rounded border border-[#151b20] text-center text-xs mt-1\">\n                    $$L(\boldsymbol{\theta}, \boldsymbol{\\psi} \\mid \\mathbf{Y}_{\text{obs}}, \\mathbf{M}) = \\int P(\\mathbf{Y}_{\text{obs}}, \\mathbf{Y}_{\text{mis}} \\mid \boldsymbol{\theta}) P(\\mathbf{M} \\mid \\mathbf{Y}_{\text{obs}}, \\mathbf{Y}_{\text{mis}}, \boldsymbol{\\psi}) \\, d\\mathbf{Y}_{\text{mis}}$$\n                  </div>\n                </div>\n\n                <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n                  <div class=\"p-3 rounded-lg bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#2563eb] text-xs uppercase mb-1\">Parameter Orthogonality</div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      Ignorability requires that parameters $\boldsymbol{\theta}$ of the substantive model and parameters $\boldsymbol{\\psi}$ of the missingness mechanism are distinct and functionally independent in their parameter space.\n                    </p>\n                  </div>\n                  <div class=\"p-3 rounded-lg bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#16a34a] text-xs uppercase mb-1\">Integration Feasibility</div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      If $P(\\mathbf{M} \\mid \\mathbf{Y})$ does not depend on $\\mathbf{Y}_{\text{mis}}$, $P(\\mathbf{M} \\mid \\dots)$ factors outside the integral over $\\mathbf{Y}_{\text{mis}}$, allowing unbiased estimation of $\boldsymbol{\theta}$ directly from observed data!\n                    </p>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Unpacking the Missingness Matrix M",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Look closely at the joint likelihood equation, Kaito. The binary matrix M contains a 1 wherever an attribute is missing. To compute likelihood, we must integrate out all possible values of the missing data Y mis.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So if the probability of a missing value occurring in M depends on what the missing value actually was, we can't factor M out of the integral! That means we are stuck modeling how human behavior or sensor physics caused the deletion!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly right! When M depends on unobserved values, the missingness mechanism is non-ignorable. But when M only depends on values we already recorded, or is completely random, M factors out cleanly, making life much simpler for data architects.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-4 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-sm text-[#0e7490] uppercase mb-2\">The Ignorability Factorization</h4>\n                  <div class=\"bg-white p-3 rounded-lg border border-[#151b20] space-y-2 text-center text-xs\">\n                    <div>$$\\mathbf{Y} = (\\mathbf{Y}_{\text{obs}}, \\mathbf{Y}_{\text{mis}}), \\quad \\mathbf{M} \\in \\{0, 1\\}^{N \times D}$$</div>\n                    <div class=\"text-[#16a34a] font-bold\">\n                      $$L_{\text{ignorable}}(\boldsymbol{\theta}) \\propto \\int P(\\mathbf{Y}_{\text{obs}}, \\mathbf{Y}_{\text{mis}} \\mid \boldsymbol{\theta}) \\, d\\mathbf{Y}_{\text{mis}}$$\n                    </div>\n                  </div>\n                  <p class=\"text-[11px] text-[#151b20]/80 font-sans mt-2 leading-relaxed\">\n                    Factorization allows Maximum Likelihood Estimation (MLE) or Gibbs-sampled MICE to operate purely on the data model without parameterizing the missingness mechanism!\n                  </p>\n                </div>\n              </div>\n            "
         }
       },
       {
         "id": "s3",
-        "title": "Conceptual Overview: Architecture Flowchart",
-        "type": "figure",
+        "title": "Donald Rubin's Missingness Taxonomy: MCAR, MAR, and MNAR",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview: Architecture Flowchart",
+          "title": "The Three Regimes of Data Attrition",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>\ud83d\udcca Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">\u2022</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  %% Standard 5-Color Semantic Palette\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  Dataset[\"Dataset Y = (Y_obs, Y_mis) with Missing Matrix M\"]:::purple\n\n  Test{\"Little's MCAR Test<br/>d_MCAR^2 ~ \u03c7^2\"}:::blue\n\n  MCAR[\"Missing Completely at Random (MCAR)<br/>P(M | Y_obs, Y_mis) = P(M)<br/>Ignorable, Listwise Deletion Unbiased\"]:::green\n  MAR[\"Missing at Random (MAR)<br/>P(M | Y_obs, Y_mis) = P(M | Y_obs)<br/>MICE Chained Equations Imputation\"]:::amber\n  MNAR[\"Missing Not at Random (MNAR)<br/>P(M | Y_obs, Y_mis) \u2260 P(M | Y_obs)<br/>Non-Ignorable: Heckman Selection / Pattern-Mixture\"]:::red\n\n  Test -- \"p > 0.05 (Fail to Reject)\" --> MCAR\n  Test -- \"p \u2264 0.05 & Dependent on X\" --> MAR\n  Test -- \"Missingness Depends on Y itself\" --> MNAR</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Missing values</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">are ubiquitous across industrial data stores.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Rigorous data cleaning</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">requires diagnosing the underlying probabilistic mechanism generating the missingness pattern, validating imputation invariants ( Schelter et al., 2018 ) through automated edit rules ( Fellegi &amp; Holt, 1976 ) and iterative cleaning passes ( Krishnan et al., 2016 ).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for conceptual overview: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "In 1976, Donald Rubin published the definitive taxonomy dividing all missingness into three distinct regimes: Missing Completely at Random (MCAR), Missing at Random (MAR), and Missing Not at Random (MNAR).",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Under MCAR, the probability of missingness is strictly independent of both observed and unobserved data. Think of a laboratory technician dropping a random blood test tube on the floor. Complete-case analysis is statistically unbiased under MCAR, though sample power is wasted. Under MAR, missingness depends on observed features\u2014for instance, older patients are less likely to upload smartwatch heart rate data. And under MNAR, missingness depends directly on the unobserved value itself, such as high-income earners refusing to disclose wealth.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>\ud83d\udcca Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">\u2022</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  %% Standard 5-Color Semantic Palette\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  Dataset[\"Dataset Y = (Y_obs, Y_mis) with Missing Matrix M\"]:::purple\n\n  Test{\"Little's MCAR Test<br/>d_MCAR^2 ~ \u03c7^2\"}:::blue\n\n  MCAR[\"Missing Completely at Random (MCAR)<br/>P(M | Y_obs, Y_mis) = P(M)<br/>Ignorable, Listwise Deletion Unbiased\"]:::green\n  MAR[\"Missing at Random (MAR)<br/>P(M | Y_obs, Y_mis) = P(M | Y_obs)<br/>MICE Chained Equations Imputation\"]:::amber\n  MNAR[\"Missing Not at Random (MNAR)<br/>P(M | Y_obs, Y_mis) \u2260 P(M | Y_obs)<br/>Non-Ignorable: Heckman Selection / Pattern-Mixture\"]:::red\n\n  Test -- \"p > 0.05 (Fail to Reject)\" --> MCAR\n  Test -- \"p \u2264 0.05 & Dependent on X\" --> MAR\n  Test -- \"Missingness Depends on Y itself\" --> MNAR</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Missing values</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">are ubiquitous across industrial data stores.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Rigorous data cleaning</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">requires diagnosing the underlying probabilistic mechanism generating the missingness pattern, validating imputation invariants ( Schelter et al., 2018 ) through automated edit rules ( Fellegi &amp; Holt, 1976 ) and iterative cleaning passes ( Krishnan et al., 2016 ).</span>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3\">\n                  <!-- MCAR -->\n                  <div class=\"p-3 rounded-xl bg-[#f0fdf4] border-2 border-[#16a34a] shadow-[3px_3px_0px_#151b20]\">\n                    <div class=\"flex justify-between items-center mb-1\">\n                      <span class=\"font-black text-xs text-[#166534] uppercase\">1. MCAR</span>\n                      <span class=\"text-[9px] bg-white px-1.5 py-0.5 rounded border border-[#16a34a] font-bold\">Unbiased Drop</span>\n                    </div>\n                    <div class=\"bg-white p-2 rounded border border-[#151b20] text-center my-2 text-[11px]\">\n                      $$\\mathbb{P}(\\mathbf{M} \\mid \\mathbf{Y}_{\text{obs}}, \\mathbf{Y}_{\text{mis}}) = \\mathbb{P}(\\mathbf{M})$$\n                    </div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      Completely random attrition. Dropping missing cases retains unbiased sample means, but drastically reduces effective sample size $N_{\text{eff}}$.\n                    </p>\n                  </div>\n\n                  <!-- MAR -->\n                  <div class=\"p-3 rounded-xl bg-[#fffbeb] border-2 border-[#d97706] shadow-[3px_3px_0px_#151b20]\">\n                    <div class=\"flex justify-between items-center mb-1\">\n                      <span class=\"font-black text-xs text-[#b45309] uppercase\">2. MAR</span>\n                      <span class=\"text-[9px] bg-white px-1.5 py-0.5 rounded border border-[#d97706] font-bold\">Ignorable / MICE</span>\n                    </div>\n                    <div class=\"bg-white p-2 rounded border border-[#151b20] text-center my-2 text-[11px]\">\n                      $$\\mathbb{P}(\\mathbf{M} \\mid \\mathbf{Y}_{\text{obs}}, \\mathbf{Y}_{\text{mis}}) = \\mathbb{P}(\\mathbf{M} \\mid \\mathbf{Y}_{\text{obs}})$$\n                    </div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      Missingness is explained by observed covariates. Complete-case analysis is <b>biased</b>, but conditional MICE imputation fully restores unbiasedness!\n                    </p>\n                  </div>\n\n                  <!-- MNAR -->\n                  <div class=\"p-3 rounded-xl bg-[#fff5f2] border-2 border-[#dc2626] shadow-[3px_3px_0px_#151b20]\">\n                    <div class=\"flex justify-between items-center mb-1\">\n                      <span class=\"font-black text-xs text-[#991b1b] uppercase\">3. MNAR</span>\n                      <span class=\"text-[9px] bg-white px-1.5 py-0.5 rounded border border-[#dc2626] font-bold\">Non-Ignorable</span>\n                    </div>\n                    <div class=\"bg-white p-2 rounded border border-[#151b20] text-center my-2 text-[11px]\">\n                      $$\\mathbb{P}(\\mathbf{M} \\mid \\mathbf{Y}_{\text{obs}}, \\mathbf{Y}_{\text{mis}}) \ne \\mathbb{P}(\\mathbf{M} \\mid \\mathbf{Y}_{\text{obs}})$$\n                    </div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      Missingness depends on the unobserved entry itself. Requires Heckman selection correction or Pattern-Mixture $\\delta$-sensitivity adjustments.\n                    </p>\n                  </div>\n                </div>\n\n                <div class=\"p-2.5 rounded-lg bg-white border border-[#151b20] text-[11px] text-[#151b20]/80 font-sans\">\n                  <b>Core takeaway:</b> In real-world enterprise databases, pure MCAR is exceedingly rare (&lt;5% of cases). Most industrial tabular pipelines operate under MAR or MNAR.\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Debating MCAR vs MAR in Production Systems",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, the name Missing at Random always confuses software engineers! It sounds like it means completely random, but you're saying MAR is actually systematically correlated with observed columns?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "You've hit on the most infamous misnomer in statistics! Rubin's choice of 'Missing at Random' means missingness is random conditional on observed covariates. For example, if male patients are less likely to report depression symptoms than female patients, but within the male group missingness is random, that is MAR!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And if we drop missing rows under MAR, we drop disproportionately more men, warping our sample demographics! But if we impute using observed features, we recover the true conditional mean!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! That is why recognizing MAR is the mathematical foundation of modern imputation.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">MAR: The Conditional Independence Principle</h4>\n                  <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                    Under MAR, missingness is <em>conditionally</em> random within homogeneous strata defined by observed variables $\\mathbf{Y}_{\text{obs}}$.\n                  </p>\n                  <div class=\"grid grid-cols-2 gap-2 mt-2\">\n                    <div class=\"bg-white p-2 rounded border border-[#151b20]\">\n                      <span class=\"text-[#dc2626] font-black\">Marginal Distribution:</span>\n                      <p class=\"text-[10px] text-slate-600 font-sans mt-0.5\">Biased across raw columns.</p>\n                    </div>\n                    <div class=\"bg-white p-2 rounded border border-[#151b20]\">\n                      <span class=\"text-[#16a34a] font-black\">Conditional Distribution:</span>\n                      <p class=\"text-[10px] text-slate-600 font-sans mt-0.5\">Unbiased given $\\mathbf{Y}_{\text{obs}}$.</p>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            "
         }
       },
       {
         "id": "s4",
-        "title": "Statistical Testing: Little's MCAR Chi-Squared Test",
-        "type": "equation",
+        "title": "Systematic Architecture: Missing Data Diagnostic & Routing Pipeline",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Statistical Testing: Little's MCAR Chi-Squared Test",
+          "title": "End-to-End Pipeline Engineering for Missingness",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Statistical Testing: Little's MCAR Chi-Squared Test. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$d_{\\text{MCAR}}^2 = \\sum_{j=1}^J n_j \\left( \\bar{y}_{\\text{obs}, j} - \\tilde{\\mu}_j \\right)^T \\widetilde{\\mathbf{\\Sigma}}_j^{-1} \\left( \\bar{y}_{\\text{obs}, j} - \\tilde{\\mu}_j \\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">If $p \\le</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">0.05$, $H_0$ is rejected, confirming the data is not MCAR.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Statistical Testing: Little's MCAR Chi-Squared Test",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does statistical testing: little's mcar chi-squared test protect our system against silent distribution shift in production?"
+              "text": "A production-grade data cleaning architecture does not apply blind imputation. It implements a multi-stage diagnostic gate: first calculating the missingness fraction, visualizing missingness co-occurrence patterns, and executing statistical tests like Little's MCAR chi-squared test. If Little's test rejects MCAR with p less than 0.05, the pipeline routes the data to chained multivariate imputation.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
+              "text": "Notice the specialized pathways in our architecture. When MAR is confirmed, we deploy MICE with Predictive Mean Matching. If domain audits indicate MNAR, the pipeline forks to sensitivity models or joint Heckman selection stages, while preserving audit logs through versioned feature flags.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$d_{\\text{MCAR}}^2 = \\sum_{j=1}^J n_j \\left( \\bar{y}_{\\text{obs}, j} - \\tilde{\\mu}_j \\right)^T \\widetilde{\\mathbf{\\Sigma}}_j^{-1} \\left( \\bar{y}_{\\text{obs}, j} - \\tilde{\\mu}_j \\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">If $p \\le</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">0.05$, $H_0$ is rejected, confirming the data is not MCAR.</span>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-2\">Production Missingness Routing Architecture</h4>\n                  <div class=\"bg-white p-2 rounded-lg border border-[#151b20] overflow-x-auto text-[10px]\">\n                    <pre class=\"mermaid\">\nflowchart LR\n  Raw[\"Raw Batch Matrix Y\"]:::blue --> Profiler[\"Missingness Profiler<br/>Mask Matrix M\"]:::blue\n  Profiler --> Test{\"Little's MCAR \u03c7\u00b2 Test<br/>& Logistic Checks\"}:::amber\n\n  Test -- \"p > 0.05 (MCAR)\" --> CC[\"Listwise Safe<br/>or Univariate Mean\"]:::green\n  Test -- \"p \u2264 0.05 (MAR)\" --> MICE[\"Iterative MICE (FCS)<br/>with PMM k=5 Donors\"]:::blue\n  Test -- \"Suspected MNAR\" --> Heckman[\"Pattern-Mixture /<br/>Heckman Selection\"]:::red\n\n  MICE --> Pool[\"Rubin Variance Pooling<br/>(M=5 to 20 Imputations)\"]:::blue\n  Pool --> Valid[\"Validation Contracts<br/>(Pydantic V2 & FMI < 0.20)\"]:::green\n\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#fee2e2,stroke:#151b20,stroke-width:2px,color:#151b20;\n                    </pre>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Architecting Automated Routing Gates",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look at the decision tree in the flowchart, Dr. Nova! In an automated ETL pipeline, how do we programmatically choose between MICE and Heckman selection without a human statistician reviewing every table?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "We automate the statistical diagnostic! We run Little's MCAR test across all pattern strata. We also train auxiliary logistic regressors predicting M sub j from all observed covariates. If the pseudo-R-squared is high, we know observed features explain the missingness\u2014confirming MAR!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And if the logistic model has zero predictive power yet domain experts know dropout is non-random, that flags potential MNAR!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Automated Diagnostic Checkpoints</h4>\n                  <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                    Pipelines execute Little's MCAR $\\chi^2$ plus auxiliary logistic classification on missingness flags $\\mathbf{M}_j$ to decide the imputation engine automatically.\n                  </p>\n                </div>\n              </div>\n            "
         }
       },
       {
         "id": "s5",
-        "title": "Multivariate Imputation by Chained Equations (MICE)",
-        "type": "equation",
+        "title": "Mathematical Derivation: Why Mean Imputation Deflates Variance by (1 - p)",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Multivariate Imputation by Chained Equations (MICE)",
+          "title": "The Analytical Proof of Variance Compression",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Multivariate Imputation by Chained Equations (MICE). Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$Y_j^{(t)} \\sim P\\left( Y_j \\;\\middle|\\; Y_{-j}^{(t-1)}, \\vec{\\theta}_j^{(t)} \\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\vec{\\theta}_j^{(t)} \\sim P\\left( \\vec{\\theta}_j \\;\\middle|\\; Y_{j, \\text{obs}}, Y_{-j, \\text{obs}}^{(t-1)} \\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\bar{Q} = \\frac{1}{M} \\sum_{m=1}^M \\hat{Q}_m$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">MICE (Fully Conditional</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Specification) models missing values on a variable-by-variable basis via iterative Gibbs sampling ( van Buuren, 2018 ): To account for imputation uncertainty, MICE generates $M$ independent imputed datasets ($M \\approx 5 - 20$).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Multivariate Imputation by Chained Equations (MICE)",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does multivariate imputation by chained equations (mice) protect our system against silent distribution shift in production?"
+              "text": "Let us mathematically prove why naive mean imputation destroys statistical distributions. Suppose feature X has true population variance sigma squared. A fraction p of the records are missing and replaced by the sample mean x bar.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
+              "text": "Look at the sample variance definition: the sum of squared deviations divided by N. For every imputed row, x i equals x bar, so the deviation x i minus x bar is identically zero! These rows contribute exactly zero to the numerator, while N remains in the denominator. Consequently, the imputed sample variance equals 1 minus p times the true variance. If thirty percent of values are missing, sample variance instantly collapses by thirty percent, artificially shrinking standard errors and triggering severe Type I and Type II inference errors!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$Y_j^{(t)} \\sim P\\left( Y_j \\;\\middle|\\; Y_{-j}^{(t-1)}, \\vec{\\theta}_j^{(t)} \\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\vec{\\theta}_j^{(t)} \\sim P\\left( \\vec{\\theta}_j \\;\\middle|\\; Y_{j, \\text{obs}}, Y_{-j, \\text{obs}}^{(t-1)} \\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\bar{Q} = \\frac{1}{M} \\sum_{m=1}^M \\hat{Q}_m$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">MICE (Fully Conditional</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Specification) models missing values on a variable-by-variable basis via iterative Gibbs sampling ( van Buuren, 2018 ): To account for imputation uncertainty, MICE generates $M$ independent imputed datasets ($M \\approx 5 - 20$).</span>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-4 rounded-xl bg-white border-2 border-[#151b20] shadow-[4px_4px_0px_#dc2626]\">\n                  <h4 class=\"font-black text-sm text-[#dc2626] uppercase mb-2\">Formal Proof: Variance Deflation</h4>\n                  <div class=\"bg-[#fff5f2] p-3 rounded-lg border border-[#f38469] space-y-2 text-[11px]\">\n                    <div>$$\\hat{\\sigma}_{\text{mean\\_imp}}^2 = \frac{1}{N} \\sum_{i=1}^N \\left( x_i^* - \bar{x} \right)^2$$</div>\n                    <div>$$= \frac{1}{N} \\left[ \\sum_{i \\in \text{obs}} (x_i - \bar{x})^2 + \\sum_{i \\in \text{mis}} (\bar{x} - \bar{x})^2 \right]$$</div>\n                    <div>$$= \frac{1}{N} \\left[ N_{\text{obs}} \\hat{\\sigma}_{\text{obs}}^2 + N_{\text{mis}} \\cdot 0 \right] = \frac{N_{\text{obs}}}{N} \\hat{\\sigma}_{\text{obs}}^2 = (1 - p_{\text{miss}}) \\sigma_{\text{true}}^2$$</div>\n                  </div>\n                  <div class=\"mt-3 p-2 bg-[#fee2e2] rounded border border-[#dc2626] text-[11px] font-sans text-[#991b1b]\">\n                    <b>Direct Corollary:</b> When $p_{\text{miss}} = 0.30$, $\\hat{\\sigma}^2$ deflates to $0.70 \\sigma_{\text{true}}^2$. Furthermore, bivariate covariance $\text{Cov}(X, Y)$ collapses proportionally, attenuating Pearson's $r_{xy} \to 0$!\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Analyzing the Variance Deflation Proof",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait, Dr. Nova! In the equation, because every imputed point equals x bar, its distance to the mean is zero! So thirty percent of our dataset is literally contributing zero variance!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! And what happens to hypothesis tests? Standard error is sigma divided by square root of N. When sigma drops by thirty percent, confidence intervals shrink artificially, making noisy random fluctuations look statistically significant!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And in machine learning, decision trees and gradient boosters place unnatural splits directly on that artificial mean peak! Mean imputation is actively toxic to feature geometry!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Impact on Downstream Models</h4>\n                  <div class=\"grid grid-cols-2 gap-2 mt-2\">\n                    <div class=\"p-2 bg-white rounded border border-[#151b20]\">\n                      <span class=\"text-[#dc2626] font-bold\">Standard Errors:</span>\n                      <p class=\"text-[10px] text-slate-600 font-sans mt-0.5\">Artificially shrunk, generating false positives.</p>\n                    </div>\n                    <div class=\"p-2 bg-white rounded border border-[#151b20]\">\n                      <span class=\"text-[#d97706] font-bold\">Feature Covariance:</span>\n                      <p class=\"text-[10px] text-slate-600 font-sans mt-0.5\">Attenuated toward zero, blinding model to interactions.</p>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            "
         }
       },
       {
         "id": "s6",
-        "title": "Production Implementation: Imputation Benchmark Suite",
-        "type": "code",
+        "title": "Interactive Lab: Rubin Missingness & MICE Imputation Studio",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Production Implementation: Imputation Benchmark Suite",
+          "title": "Hands-On Exploration: Mechanisms and Imputation Geometries",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Production Implementation: Imputation Benchmark Suite. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># Production Missing Data Imputation &amp; Variance Benchmark\nfrom typing import Dict, Any, Tuple\nimport numpy as np\nimport pandas as pd\nfrom sklearn.experimental import enable_iterative_imputer\nfrom sklearn.impute import IterativeImputer, SimpleImputer\n\ndef evaluate_imputation_quality(\n    X_clean: np.ndarray,\n    X_missing: np.ndarray\n) -&gt; Dict[str, float]:\n    # True properties of clean dataset\n    true_mean = float(np.mean(X_clean[:, 0]))\n    true_var = float(np.var(X_clean[:, 0]))\n    true_corr = float(np.corrcoef(X_clean[:, 0], X_clean[:, 1])[0, 1])\n\n    # Method 1: Mean Imputation\n    mean_imp = SimpleImputer(strategy=&quot;mean&quot;)\n    X_mean_imp = mean_imp.fit_transform(X_missing)\n    mean_imp_var = float(np.var(X_mean_imp[:, 0]))\n    mean_imp_corr = float(np.corrcoef(X_mean_imp[:, 0], X_mean_imp[:, 1])[0, 1])\n\n    # Method 2: MICE (Iterati</code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Production Implementation: Imputation Benchmark Suite",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "We have arrived at our first interactive laboratory: the Rubin Missingness and MICE Imputation Studio. Directly below me is a live canvas showing 120 bivariate data points with true correlation 0.85 and true mean 50.0.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Try switching the Missingness Mechanism from MCAR to MAR and MNAR. Under MAR, high values of X trigger missingness in Y. Notice what happens when you toggle Remediation between Listwise Deletion, Mean Imputation, and Stochastic MICE! Watch how Mean Imputation squashes the points into a horizontal line, cutting variance retention down to sixty percent, while MICE preserves the full bivariate cloud!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># Production Missing Data Imputation &amp; Variance Benchmark\nfrom typing import Dict, Any, Tuple\nimport numpy as np\nimport pandas as pd\nfrom sklearn.experimental import enable_iterative_imputer\nfrom sklearn.impute import IterativeImputer, SimpleImputer\n\ndef evaluate_imputation_quality(\n    X_clean: np.ndarray,\n    X_missing: np.ndarray\n) -&gt; Dict[str, float]:\n    # True properties of clean dataset\n    true_mean = float(np.mean(X_clean[:, 0]))\n    true_var = float(np.var(X_clean[:, 0]))\n    true_corr = float(np.corrcoef(X_clean[:, 0], X_clean[:, 1])[0, 1])\n\n    # Method 1: Mean Imputation\n    mean_imp = SimpleImputer(strategy=&quot;mean&quot;)\n    X_mean_imp = mean_imp.fit_transform(X_missing)\n    mean_imp_var = float(np.var(X_mean_imp[:, 0]))\n    mean_imp_corr = float(np.corrcoef(X_mean_imp[:, 0], X_mean_imp[:, 1])[0, 1])\n\n    # Method 2: MICE (Iterati</code></pre>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-2 font-mono text-xs\">\n                <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n                  Simulate MCAR, MAR, and MNAR missingness masks over a correlated bivariate population ($r \u0007pprox 0.85$) and evaluate how Listwise Deletion, Mean Imputation, and MICE preserve or destroy variance.\n                </p>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Live Exploration of Imputation Geometry",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, explore the simulator below! Switch the remediation strategy from Stochastic MICE to Univariate Mean Imputation and look at the canvas.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Look at the orange dots, Dr. Nova! They form a flat horizontal strip across the center! Our correlation dropped from 0.85 down to 0.65, and variance retention collapsed to sixty-eight percent!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-2 font-mono text-xs\">\n                <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n                  Evaluate real-time statistical attenuation across MCAR, MAR, and MNAR regimes with the interactive studio controls below.\n                </p>\n              </div>\n            "
         }
       },
       {
         "id": "s7",
-        "title": "Empirical Case Study: Critical Care Clinical Trial Imputation",
-        "type": "bullets",
+        "title": "Active Checkpoint 1: Variance Deflation & Statistical Power Diagnostic",
+        "type": "presentation",
+        "hasCheckpoint": true,
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Empirical Case Study: Critical Care Clinical Trial Imputation",
+          "title": "Verifying Theoretical Variance Retention",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Empirical Case Study: Critical Care Clinical Trial Imputation. Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
+              "text": "Let us solidify our theoretical foundation with Active Checkpoint 1. A clinical feature X has true variance sigma squared of 100, and thirty percent of values are missing completely at random. If a junior data engineer performs univariate mean imputation, what is the resulting sample variance and downstream operational consequence? Select Option A, B, C, or D above me!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Missing Data Dilemma</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Arterial blood gas lactate measurements were missing in $62\\%$ of general ward admissions, but only $8\\%$ of septic shock ICU patients.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Listwise Deletion Failure</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Complete-case analysis discarded $68\\%$ of patients, artificially inflating hospital mortality from $11.4\\%$ to $34.2\\%$ (severe MAR selection bias).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The MICE Imputation Solution</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Researchers deployed MICE ($M = 10$ imputed copies) conditioning lactate missingness on vital signs (MAP, heart rate, Glasgow Coma Scale) (). Imputation preserved full sample power and eliminated mortality overestimation, yielding validated clinical prognostic predictions ().</span>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n                  Answer the diagnostic challenge below to verify your mastery of variance compression mechanics under univariate imputation.\n                </p>\n              </div>\n            "
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Empirical Case Study: Critical Care Clinical Trial Imputation",
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Checkpoint 1: The Variance Collapse Trap",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, what is the critical industrial lesson from this case study?"
-            },
-            {
-              "speaker": "Dr. Nova",
-              "text": "Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
+              "text": "Active Checkpoint 1! Feature X has variance 100 with thirty percent missing cells. If we mean-impute, does variance stay at 100, drop to 70, or jump to 130? Think carefully about the mathematical proof from Slide 5 and select your choice below!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Missing Data Dilemma</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Arterial blood gas lactate measurements were missing in $62\\%$ of general ward admissions, but only $8\\%$ of septic shock ICU patients.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Listwise Deletion Failure</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Complete-case analysis discarded $68\\%$ of patients, artificially inflating hospital mortality from $11.4\\%$ to $34.2\\%$ (severe MAR selection bias).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The MICE Imputation Solution</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Researchers deployed MICE ($M = 10$ imputed copies) conditioning lactate missingness on vital signs (MAP, heart rate, Glasgow Coma Scale) (). Imputation preserved full sample power and eliminated mortality overestimation, yielding validated clinical prognostic predictions ().</span>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n                  Select your choice on the checkpoint card below to test your understanding of variance deflation.\n                </p>\n              </div>\n            "
         }
       },
       {
         "id": "s8",
-        "title": "Interactive Lab: Rubin Missingness & MICE Imputation Workbench",
-        "type": "tool",
+        "title": "Statistical Testing: Roderick Little's MCAR Chi-Squared Test",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Rubin Missingness & MICE Imputation Workbench",
+          "title": "Testing the Null Hypothesis of Completely Random Missingness",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Rubin Missingness & MICE Imputation Workbench. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">\ud83d\udd2c Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Rubin Missingness &amp; MICE Imputation Workbench</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page \u2193</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate MCAR, MAR, and MNAR mechanisms and test MICE iterative chaining live.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">\u26a1 Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Imputation Workbench \u2192&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Rubin Missingness & MICE Imputation Workbench",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the rubin missingness & mice imputation workbench located below this player?"
+              "text": "How do we statistically prove whether a dataset is MCAR? In 1988, Roderick Little derived a global multivariate test based on Expectation-Maximization maximum likelihood. The test partitions the dataset into J distinct missing-data patterns.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "For each pattern j, Little computes the Mahalanobis distance between the observed pattern mean vector and the global maximum-likelihood mean vector, weighted by the inverted global covariance matrix. Under the null hypothesis that missingness is MCAR, this statistic follows a chi-squared distribution. If the resulting p-value is below 0.05, we reject MCAR, proving that missingness is MAR or MNAR!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">\ud83d\udd2c Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Rubin Missingness &amp; MICE Imputation Workbench</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page \u2193</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate MCAR, MAR, and MNAR mechanisms and test MICE iterative chaining live.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">\u26a1 Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Imputation Workbench \u2192&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-4 rounded-xl bg-white border-2 border-[#151b20] shadow-[4px_4px_0px_#0e7490]\">\n                  <h4 class=\"font-black text-sm text-[#0e7490] uppercase mb-2\">Little's Multivariate Wald-Type $\\chi^2$ Test</h4>\n                  <div class=\"bg-[#f0fbfd] p-3 rounded-lg border border-[#151b20] text-center text-xs\">\n                    $$d_{\text{MCAR}}^2 = \\sum_{j=1}^J n_j \\left( \bar{\\mathbf{y}}_{\text{obs}, j} - \tilde{\boldsymbol{\\mu}}_j \right)^T \\widetilde{\\mathbf{\\Sigma}}_j^{-1} \\left( \bar{\\mathbf{y}}_{\text{obs}, j} - \tilde{\boldsymbol{\\mu}}_j \right)$$\n                  </div>\n                  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mt-3 text-[11px] font-sans\">\n                    <div class=\"p-2 rounded bg-slate-50 border border-[#151b20]\">\n                      <b class=\"text-[#0e7490] font-mono\">Degrees of Freedom:</b>\n                      <div class=\"font-mono mt-1\">$$df = \\sum_{j=1}^J d_j - D$$</div>\n                      <p class=\"text-slate-600 mt-1\">Sum of observed dimensions across patterns minus total features $D$.</p>\n                    </div>\n                    <div class=\"p-2 rounded bg-slate-50 border border-[#151b20]\">\n                      <b class=\"text-[#dc2626] font-mono\">Decision Threshold:</b>\n                      <p class=\"text-slate-700 mt-1\">If $p \\le 0.05$, reject $H_0$. Missingness depends on covariates; complete-case analysis will induce significant bias!</p>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Interpreting Little's MCAR Statistic",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, Little's test formula looks like a sum of Mahalanobis distances! We are literally measuring how far each pattern's sub-vector deviates from the global Expectation-Maximization mean!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! If the missingness were truly completely random, every subset of rows with the same missing pattern would have approximately the same mean as the entire population. When those pattern means diverge significantly, Little's test flags that missingness is driven by underlying variables.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Pattern-Specific Deviation Detection</h4>\n                  <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                    Little's statistic detects whether rows with missing column $Y_k$ have systematically different values in columns $Y_1, \\dots, Y_{k-1}$ compared to complete rows.\n                  </p>\n                </div>\n              </div>\n            "
         }
       },
       {
         "id": "s9",
-        "title": "Interactive Lab: Interactive CodeLab: Implementing Variance-Preserving Imputation",
-        "type": "tool",
+        "title": "Multivariate Imputation by Chained Equations (MICE / FCS) & Gibbs Sampling",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Interactive CodeLab: Implementing Variance-Preserving Imputation",
+          "title": "Fully Conditional Specification: Iterative Stochastic Convergence",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Interactive CodeLab: Implementing Variance-Preserving Imputation. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">\ud83d\udd2c Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Interactive CodeLab: Implementing Variance-Preserving Imputation</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page \u2193</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Test your understanding of missing data imputation and statistical attenuation right in your browser.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">\u26a1 Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Configure parameters&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Interactive CodeLab: Implementing Variance-Preserving Imputation",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the interactive codelab: implementing variance-preserving imputation located below this player?"
+              "text": "When missingness spans multiple correlated variables across heterogeneous data types, joint modeling often breaks down because specifying a single multivariate probability distribution for mixed continuous, categorical, and count features is analytically intractable. Fully Conditional Specification, implemented via Multivariate Imputation by Chained Equations or MICE, circumvents this bottleneck by decomposing the joint distribution into a sequence of univariate conditional models.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "MICE operates as a Gibbs sampler. After initializing missing values with simple median or random draws, the algorithm cycles iteratively through each incomplete variable Y_j, fitting a regression model on the currently imputed values of all other variables Y_minus_j, and drawing a replacement value from the posterior predictive distribution. Repeating this cycle for ten to twenty iterations allows the sequence to converge to the true underlying multivariate joint distribution.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">\ud83d\udd2c Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Interactive CodeLab: Implementing Variance-Preserving Imputation</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page \u2193</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Test your understanding of missing data imputation and statistical attenuation right in your browser.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">\u26a1 Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Configure parameters&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-4 my-2\">\n                <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n                  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n                    <div class=\"font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide\">\n                      \ud83d\udd04 The MICE / FCS Gibbs Sampling Cycle\n                    </div>\n                    <span class=\"px-2 py-0.5 bg-[#c9f3f4] border border-[#151b20] rounded font-mono text-[10px] font-black text-[#0e7490]\">FCS ALGORITHM</span>\n                  </div>\n\n                  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs\">\n                    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <strong class=\"text-[#2563eb] block mb-1\">Step 1: Simple Initialization</strong>\n                      <p class=\"text-[11px] text-[#151b20] leading-relaxed\">\n                        Impute missing cells $\\mathbf{Y}_{\\text{mis}}$ with stochastic draws or univariate medians to construct an initial complete matrix $\\mathbf{Y}^{(0)}$.\n                      </p>\n                      <div class=\"mt-2 text-[10px] bg-white p-1.5 rounded border border-dashed border-slate-400\">\n                        $$\\mathbf{Y}_j^{(0)} \\sim \\text{Univariate}(\\mathbf{Y}_j^{\\text{obs}})$$\n                      </div>\n                    </div>\n\n                    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <strong class=\"text-[#0e7490] block mb-1\">Step 2: Chained Regression Loop</strong>\n                      <p class=\"text-[11px] text-[#151b20] leading-relaxed\">\n                        For variable $j \\in \\{1, \\dots, D\\}$, reset missing entries to null, fit model on observed cases, and draw posterior parameters $\\theta_j^{(t)}$.\n                      </p>\n                      <div class=\"mt-2 text-[10px] bg-white p-1.5 rounded border border-dashed border-slate-400\">\n                        $$\\mathbf{Y}_j^{(t)} \\sim P(\\mathbf{Y}_j \\mid \\mathbf{Y}_{-j}^{(t)}, \\hat{\\theta}_j^{(t)})$$\n                      </div>\n                    </div>\n\n                    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <strong class=\"text-[#166534] block mb-1\">Step 3: Stationary Convergence</strong>\n                      <p class=\"text-[11px] text-[#151b20] leading-relaxed\">\n                        Cycle through all $D$ variables over $T \\in [10, 20]$ outer iterations. The Markov chain converges to a stationary draw from $P(\\mathbf{Y}_{\\text{mis}} \\mid \\mathbf{Y}_{\\text{obs}})$.\n                      </p>\n                      <div class=\"mt-2 text-[10px] bg-white p-1.5 rounded border border-dashed border-slate-400\">\n                        $$\\lim_{t \\to \\infty} \\mathbf{Y}^{(t)} \\sim P(\\mathbf{Y}_{\\text{obs}}, \\mathbf{Y}_{\\text{mis}})$$\n                      </div>\n                    </div>\n                  </div>\n\n                  <div class=\"mt-3 p-3 rounded-lg bg-[#fff1f2] border border-[#151b20] font-sans text-xs\">\n                    <strong class=\"text-[#be123c] font-mono block mb-1\">Theoretical Nuance: Incompatible Conditionals</strong>\n                    <p class=\"text-[#151b20] text-[11px] leading-relaxed\">\n                      Unlike a formal joint Gibbs sampler, the individual conditional models in MICE are not mathematically guaranteed to integrate to a single coherent joint probability distribution (known as incompatible conditionals). In extensive empirical benchmarks, however, MICE consistently outperforms joint modeling when feature spaces combine skewed continuous variables, ordinal Likert scales, and categorical indicators.\n                    </p>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Socratic Dialogue: Why Cycle Through Separate Equations?",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, why do we need to loop through separate chained models? Why can't we just fit a single big deep learning autoencoder or multivariate Gaussian copula across all columns at once?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In real-world data, columns are fundamentally heterogeneous. Column A might be a patient's age which is positive and continuous; Column B might be a binary smoking flag; Column C might be an ordinal disease stage; and Column D might be an overdispersed emergency room visit count. A multivariate Gaussian assumes all variables are continuous and normal.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And MICE lets us pick the exact correct model family for each specific column! Logistic regression for binary, Poisson or negative binomial for counts, and predictive mean matching for skewed metrics!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Spot on, Kaito. By allowing each column to have its own tailored conditional model while conditioning on the latest imputations of all other columns, MICE handles real-world tabular data with exceptional statistical fidelity.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Heterogeneous Model Matching in MICE</h4>\n                  <div class=\"grid grid-cols-2 gap-2 text-[11px] mt-2\">\n                    <div class=\"p-2 bg-blue-50 rounded border border-blue-200\">\n                      <b class=\"text-blue-800\">Binary Variables:</b> Logistic Regression (log-odds)\n                    </div>\n                    <div class=\"p-2 bg-emerald-50 rounded border border-emerald-200\">\n                      <b class=\"text-emerald-800\">Ordinal Features:</b> Proportional Odds Logistic\n                    </div>\n                    <div class=\"p-2 bg-purple-50 rounded border border-purple-200\">\n                      <b class=\"text-purple-800\">Count Outcomes:</b> Quasi-Poisson or Negative Binomial\n                    </div>\n                    <div class=\"p-2 bg-amber-50 rounded border border-amber-200\">\n                      <b class=\"text-amber-800\">Continuous / Skewed:</b> Predictive Mean Matching (PMM)\n                    </div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s10",
+        "title": "Predictive Mean Matching (PMM) Safeguard & k-Donor Distance Metrics",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Preserving Empirical Domains: The Nearest-Neighbor Imputation Guardrail",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Standard linear regression imputation suffers from a fatal flaw: it frequently generates impossible, out-of-domain synthetic values. For example, it might predict a negative systolic blood pressure, an impossible fractional number of household children like 2.37, or values outside the permissible physical bounds of an instrument.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Predictive Mean Matching, or PMM, solves this completely. Rather than taking the regression prediction directly, PMM calculates the linear prediction for the missing case, computes the metric distance to the predicted values of all completely observed records, selects a donor pool of the k closest neighbors, and randomly borrows an actual observed value from one of those donors. This guarantees that all imputed values are authentic, physically plausible, and bounded.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-4 my-2\">\n                <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n                  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n                    <div class=\"font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide\">\n                      \ud83c\udfaf Predictive Mean Matching (PMM): 4-Stage Algorithm\n                    </div>\n                    <span class=\"px-2 py-0.5 bg-[#c9f3f4] border border-[#151b20] rounded font-mono text-[10px] font-black text-[#0e7490]\">PMM PIPELINE</span>\n                  </div>\n\n                  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n                    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <strong class=\"text-[#2563eb] block mb-1\">1. Posterior Parameter Draw</strong>\n                      <p class=\"text-[11px] text-[#151b20] leading-relaxed\">\n                        Fit linear regression on observed cases: $\\mathbf{Y}^{\\text{obs}} = \\mathbf{X}^{\\text{obs}}\\beta + \\epsilon$. Draw stochastic posterior parameters:\n                      </p>\n                      <div class=\"mt-2 text-[10px] bg-white p-1.5 rounded border border-dashed border-slate-400\">\n                        $$\\beta^* \\sim \\mathcal{N}\\left( \\hat{\\beta}, \\sigma^{*2} (\\mathbf{X}^T\\mathbf{X})^{-1} \\right)$$\n                      </div>\n                    </div>\n\n                    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <strong class=\"text-[#0e7490] block mb-1\">2. Metric Space Prediction</strong>\n                      <p class=\"text-[11px] text-[#151b20] leading-relaxed\">\n                        Compute expected predictions for complete donors $\\hat{y}_i = \\mathbf{x}_i^T \\beta^*$ and missing target rows $\\hat{y}_j^* = \\mathbf{x}_j^T \\beta^*$.\n                      </p>\n                      <div class=\"mt-2 text-[10px] bg-white p-1.5 rounded border border-dashed border-slate-400\">\n                        $$d(i, j) = \\left| \\hat{y}_i - \\hat{y}_j^* \\right|$$\n                      </div>\n                    </div>\n\n                    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <strong class=\"text-[#b45309] block mb-1\">3. Candidate Donor Pool</strong>\n                      <p class=\"text-[11px] text-[#151b20] leading-relaxed\">\n                        Isolate the set of $k$ observed donor units possessing minimum predictive distance $d(i, j)$ (standard practice sets $k=5$ or $k=10$):\n                      </p>\n                      <div class=\"mt-2 text-[10px] bg-white p-1.5 rounded border border-dashed border-slate-400\">\n                        $$\\mathcal{D}_j = \\operatorname{arg\\,min}^{(k)}_{i \\in \\text{Obs}} \\left| \\hat{y}_i - \\hat{y}_j^* \\right|$$\n                      </div>\n                    </div>\n\n                    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <strong class=\"text-[#166534] block mb-1\">4. Observed Value Borrowing</strong>\n                      <p class=\"text-[11px] text-[#151b20] leading-relaxed\">\n                        Sample donor $d \\sim \\text{Uniform}(\\mathcal{D}_j)$ and borrow its authentic, unperturbed observed target value $y_d^{\\text{obs}}$.\n                      </p>\n                      <div class=\"mt-2 text-[10px] bg-white p-1.5 rounded border border-dashed border-slate-400\">\n                        $$y_j^{\\text{imputed}} = y_d^{\\text{obs}} \\in \\text{Domain}(\\mathbf{Y}^{\\text{obs}})$$\n                      </div>\n                    </div>\n                  </div>\n\n                  <div class=\"mt-3 p-3 rounded-lg bg-[#f0fdf4] border border-[#151b20] font-sans text-xs flex items-center justify-between flex-wrap gap-2\">\n                    <span class=\"text-[#166534] font-bold\">\u2728 Key Mathematical Advantage:</span>\n                    <span class=\"text-slate-700\">Preserves non-linear manifolds, exact integer constraints, and multimodality without parametric distribution assumptions!</span>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Socratic Dialogue: Why PMM Beats Raw Regression Imputation",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, this donor borrowing concept is brilliant! In linear regression imputation, if the target variable is 'number of ICU hospitalizations', the model might impute 1.73 or negative 0.4. But with PMM, it only borrows actual integers that real patients experienced!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Furthermore, PMM preserves discrete spikes and bounds. If a variable is bounded strictly between 0 and 100, or has a bimodal distribution with peaks at 10 and 90, PMM will never impute an impossible value of 115 or an unobserved value in the valley at 50.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "How do we choose the donor pool size k? If k is 1, doesn't it cause donor duplication where the exact same record is borrowed repeatedly?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yes, k=1 exhibits donor starvation and artificially deflates between-imputation variance. Setting k=5 or k=10 introduces sufficient stochastic diversity across multiple imputation passes while keeping the donor candidates tightly matched in predictive space.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">PMM vs Linear Regression Imputation</h4>\n                  <table class=\"w-full text-left text-[11px] mt-2 border-collapse\">\n                    <thead>\n                      <tr class=\"border-b border-slate-300 text-slate-700\">\n                        <th class=\"py-1\">Property</th>\n                        <th class=\"py-1 text-red-600\">Linear Regression</th>\n                        <th class=\"py-1 text-emerald-600\">Predictive Mean Matching</th>\n                      </tr>\n                    </thead>\n                    <tbody class=\"divide-y divide-slate-200\">\n                      <tr>\n                        <td class=\"py-1 font-semibold\">Value Validity</td>\n                        <td class=\"py-1 text-red-700\">May violate bounds / negatives</td>\n                        <td class=\"py-1 text-emerald-700\">100% Guaranteed authentic</td>\n                      </tr>\n                      <tr>\n                        <td class=\"py-1 font-semibold\">Type Constraints</td>\n                        <td class=\"py-1 text-red-700\">Outputs arbitrary floats</td>\n                        <td class=\"py-1 text-emerald-700\">Preserves discrete & integer types</td>\n                      </tr>\n                      <tr>\n                        <td class=\"py-1 font-semibold\">Distribution Shape</td>\n                        <td class=\"py-1 text-red-700\">Forces normal linearity</td>\n                        <td class=\"py-1 text-emerald-700\">Preserves multimodality & skewness</td>\n                      </tr>\n                    </tbody>\n                  </table>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s11",
+        "title": "Landmark Case Study: MIMIC-IV Sepsis Cohort Mortality Inflation (11.4% to 34.2%)",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "The Lethal Cost of Naive Deletion: Clinical Selection Bias",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To understand why missing data handling is a safety-critical engineering discipline rather than a minor cleanup chore, examine the landmark clinical study on the MIMIC-IV electronic health records database. In a cohort of twenty-four thousand suspected sepsis patients in the intensive care unit, researchers evaluated clinical mortality predictors including arterial blood lactate and arterial oxygen saturation.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Arterial lactate was missing in 68% of patient encounters because ICU physicians only order painful, invasive arterial blood gas draws when a patient presents with severe hemodynamic decompensation. When naive data scientists applied complete-case listwise deletion, dropping every patient with missing lactate, they discarded nearly all stable, recovering patients. The measured in-hospital cohort mortality rate jumped from the true population baseline of 11.4% to an artificial 34.2%, distorting all downstream AI triage models.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-4 my-2\">\n                <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n                  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n                    <div class=\"font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide\">\n                      \ud83c\udfe5 MIMIC-IV Sepsis Telemetry: Complete-Case Disaster\n                    </div>\n                    <span class=\"px-2 py-0.5 bg-[#fecdd3] border border-[#151b20] rounded font-mono text-[10px] font-black text-[#be123c]\">CLINICAL FAILURE</span>\n                  </div>\n\n                  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs\">\n                    <div class=\"p-3 rounded-lg bg-emerald-50 border border-emerald-300\">\n                      <div class=\"font-black text-emerald-800 text-xs uppercase mb-1\">True Hospital Population ($N = 24,180$)</div>\n                      <div class=\"text-2xl font-black text-emerald-700 font-mono my-2\">11.4% Mortality</div>\n                      <p class=\"text-[11px] text-slate-700 font-sans leading-relaxed\">\n                        Cohort represents the full spectrum of ICU admissions. Mildly septic patients recover rapidly without requiring invasive arterial blood gas draws; their lactate missingness is driven by stable clinical signs.\n                      </p>\n                    </div>\n\n                    <div class=\"p-3 rounded-lg bg-rose-50 border border-rose-300\">\n                      <div class=\"font-black text-rose-800 text-xs uppercase mb-1\">After Listwise Deletion ($N = 7,738$)</div>\n                      <div class=\"text-2xl font-black text-rose-700 font-mono my-2\">34.2% Mortality (3.0\u00d7 Overestimate)</div>\n                      <p class=\"text-[11px] text-slate-700 font-sans leading-relaxed\">\n                        Dropping records with missing lactate filtered out 68% of the cohort\u2014specifically the healthiest surviving patients. Downstream risk scores triaged low-risk patients incorrectly and inflated drug trial failure rates!\n                      </p>\n                    </div>\n                  </div>\n\n                  <div class=\"mt-3 p-3 rounded-lg bg-[#fffdf7] border border-[#151b20] font-sans text-xs\">\n                    <strong class=\"text-[#0e7490] font-mono block mb-1\">Engineering Takeaway: Missingness is Information</strong>\n                    <p class=\"text-[#151b20] text-[11px] leading-relaxed\">\n                      In clinical and operational logs, the <em>absence</em> of a test is often a direct proxy for clinical stability. Deleting missing rows under MAR or MNAR violates the random missingness assumption and induces catastrophic conditioning on a collider or survival outcome.\n                    </p>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Socratic Dialogue: The Physician's Missingness Protocol",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, that 3.0x jump in mortality is staggering. Just by running df.dropna(), researchers accidentally filtered out all the patients who were healthy enough not to need an arterial blood gas needle!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. This is why EHR data is classic Missing At Random or Missing Not At Random. A patient's vital signs and nurse chart notes explain why the lab was not ordered. Imputing those values using MICE with clinical covariates preserves the full 24,000-patient cohort.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So if an AI model was trained on the complete cases only, it would have learned an artificially severe prior probability of death for anyone admitted to the ICU!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. It would trigger false alarms and over-prescribe aggressive vasopressors to mildly ill patients. Proper imputation isn't just a statistical luxury; in production healthcare systems, it is life or death.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#be123c] uppercase mb-1\">Mortality Distortion Mechanism</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1 mt-2\">\n                    <div><b>1. Clinical Protocol:</b> Severe Shock $\\to$ Order Arterial Lactate $\\to$ Record Present</div>\n                    <div><b>2. Clinical Protocol:</b> Mild Sepsis $\\to$ Skip Arterial Puncture $\\to$ Record Missing</div>\n                    <div><b>3. Complete-Case Filter:</b> Drops Mild Sepsis $\\to$ Enriches Death Probability to 34.2%</div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Interactive Lab: Rubin Multiple Imputation Pooling & FMI Workbench",
+        "type": "interactive",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Rubin's Rules in Action: Combining Within- and Between-Imputation Variance",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Slide 12, our second interactive workbench. Donald Rubin's 1987 multiple imputation formulation provides the formal mathematical machinery for combining estimates across M imputed datasets. When we analyze M imputed copies, we obtain M separate parameter estimates Q-hat-m and M variance estimates U-m.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Rubin's rules state that the Total Variance T is not merely the average within-imputation variance U-bar; it incorporates the between-imputation variance B multiplied by the finite-sample correction factor 1 plus 1 over M. In this workbench, adjust the number of imputations M, within-imputation variance, and between-imputation variance to observe how Total Variance, Relative Increase in Variance, and the Fraction of Missing Information behave in real time.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-4 my-2\">\n                <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n                  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n                    <div class=\"font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide\">\n                      \ud83d\udcca Rubin (1987) Multiple Imputation Pooling Formulation\n                    </div>\n                    <span class=\"px-2 py-0.5 bg-[#c9f3f4] border border-[#151b20] rounded font-mono text-[10px] font-black text-[#0e7490]\">INTERACTIVE LAB</span>\n                  </div>\n\n                  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs\">\n                    <div class=\"p-2.5 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <b class=\"text-[#2563eb] block mb-1\">Pooled Point Estimate $\\bar{Q}$</b>\n                      <div class=\"text-[11px] bg-white p-1 rounded border border-slate-300\">\n                        $$\\bar{Q} = \\frac{1}{M} \\sum_{m=1}^M \\hat{Q}_m$$\n                      </div>\n                      <span class=\"text-[10px] text-slate-600 mt-1 block\">Unbiased expectation across $M$ copies.</span>\n                    </div>\n\n                    <div class=\"p-2.5 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <b class=\"text-[#0e7490] block mb-1\">Within & Between Variance</b>\n                      <div class=\"text-[11px] bg-white p-1 rounded border border-slate-300\">\n                        $$\\bar{U} = \\frac{1}{M}\\sum U_m, \\; B = \\frac{\\sum (\\hat{Q}_m - \\bar{Q})^2}{M-1}$$\n                      </div>\n                      <span class=\"text-[10px] text-slate-600 mt-1 block\">Within-sample uncertainty vs imputation variation.</span>\n                    </div>\n\n                    <div class=\"p-2.5 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <b class=\"text-[#166534] block mb-1\">Total Variance & FMI</b>\n                      <div class=\"text-[11px] bg-white p-1 rounded border border-slate-300\">\n                        $$T = \\bar{U} + \\left(1 + \\frac{1}{M}\\right) B, \\; \\gamma \\approx \\frac{(1+1/M)B}{T}$$\n                      </div>\n                      <span class=\"text-[10px] text-slate-600 mt-1 block\">Includes finite-sample penalty $(1 + 1/M)B$.</span>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Interactive Exploration: The Geometry of Rubin's Pooling",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at the finite-sample penalty in Rubin's total variance equation: one plus one over M times B! If M is small, like M equals 2, that penalty is 1.5 times B. But as M grows to 20, one over M becomes 0.05, so the penalty drops to just 1.05 times B!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly, Kaito. That penalty accounts for the fact that M imputations are only a finite sample from the infinite predictive distribution of missing values. Furthermore, the Fraction of Missing Information gamma reveals how much parameter uncertainty stems directly from unobserved records versus sample size.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Key Diagnostic Metrics</h4>\n                  <div class=\"grid grid-cols-2 gap-2 text-[11px] mt-2\">\n                    <div class=\"p-2 bg-slate-50 rounded border border-slate-200\">\n                      <b>Relative Increase in Variance (RIV):</b>\n                      <div class=\"font-mono text-slate-700 mt-0.5\">$$r = \\frac{(1 + 1/M)B}{\\bar{U}}$$</div>\n                    </div>\n                    <div class=\"p-2 bg-slate-50 rounded border border-slate-200\">\n                      <b>Fraction of Missing Info (FMI):</b>\n                      <div class=\"font-mono text-slate-700 mt-0.5\">$$\\gamma = \\frac{r + 2/(\\nu+3)}{1 + r} \\approx \\frac{(1+1/M)B}{T}$$</div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: Rubin Variance Pooling Diagnostic",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Diagnostic Evaluation: Calculating Total Variance & FMI",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Time for our second active checkpoint. A biostatistician runs M = 5 multiple imputations for a clinical trial endpoint. The average within-imputation variance across the 5 models is U-bar = 4.00, and the sample variance between the 5 point estimates is B = 1.50. Using Donald Rubin's pooling formulation, calculate the exact Total Variance T and the approximate Fraction of Missing Information gamma. Select your answer below.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-4 my-2\">\n                <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n                  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n                    <div class=\"font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide\">\n                      \u26a1 Checkpoint 2: Rubin's Rules Diagnostic\n                    </div>\n                    <span class=\"px-2 py-0.5 bg-[#fef08a] border border-[#151b20] rounded font-mono text-[10px] font-black text-[#854d0e]\">CALCULATION</span>\n                  </div>\n\n                  <p class=\"font-sans text-xs text-[#151b20] leading-relaxed mb-3\">\n                    A clinical trial evaluates treatment effect using $M = 5$ multiple imputations. The analysis yields:\n                    $$\\bar{U} = 4.00, \\quad B = 1.50, \\quad M = 5$$\n                    What is the exact Total Variance $T = \\bar{U} + \\left(1 + \\frac{1}{M}\\right) B$ and the approximate Fraction of Missing Information $\\text{FMI} \\approx \\frac{(1+1/M)B}{T}$?\n                  </p>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Socratic Checkpoint: Applying Rubin's Formulation",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Let's work through this step by step! With M equals 5, the finite-sample multiplier is 1 plus 1 over 5, which is 1.20. So we multiply between-imputation variance B of 1.50 by 1.20, giving 1.80. Then add within-imputation variance of 4.00, which gives Total Variance T of 5.800!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Step-by-Step Calculation Formula</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1 mt-1\">\n                    <div>1. Finite-sample factor: $1 + \\frac{1}{M} = 1 + \\frac{1}{5} = 1.20$</div>\n                    <div>2. Inflated between-variance: $(1.20) \\times 1.50 = 1.800$</div>\n                    <div>3. Total Variance: $T = 4.00 + 1.800 = 5.800$</div>\n                    <div>4. Approx FMI: $\\gamma \\approx \\frac{1.800}{5.800} \\approx 31.03\\%$</div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Non-Ignorable Missingness (MNAR): Heckman Selection & Pattern-Mixture Delta-Shift Calibration",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Breaking the Ignorability Barrier: Econometric & Sensitivity Formulations",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "When missingness is Missing Not At Random, or MNAR, missingness depends directly on the unobserved value itself, even after conditioning on all available covariates. Under MNAR, the missingness mechanism is non-ignorable: standard MICE, regression imputation, and machine learning models remain systematically biased because the observed data distribution does not match the missing data distribution.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "To address MNAR, engineers deploy two complementary paradigms: James Heckman's Nobel Prize-winning two-stage selection model, and pattern-mixture delta-shift sensitivity analysis. Heckman models the selection probability explicitly with a probit equation and injects the Inverse Mills Ratio as a corrective omitted variable in the primary regression. Meanwhile, delta-shift analysis systematically perturbs MAR imputations across an adversarial range of shift parameters to establish the tipping point where statistical conclusions overturn.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-4 my-2\">\n                <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n                  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n                    <div class=\"font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide\">\n                      \u2696\ufe0f Addressing MNAR: Heckman Selection & Delta-Shift Calibration\n                    </div>\n                    <span class=\"px-2 py-0.5 bg-[#fef08a] border border-[#151b20] rounded font-mono text-[10px] font-black text-[#854d0e]\">MNAR FRAMEWORK</span>\n                  </div>\n\n                  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n                    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <strong class=\"text-[#2563eb] block mb-1\">1. Heckman Two-Stage Selection Model</strong>\n                      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n                        <b>Stage 1:</b> Probit selection equation models whether row is observed:\n                      </p>\n                      <div class=\"text-[10px] bg-white p-1 rounded border border-slate-300 my-1\">\n                        $$z_i^* = \\mathbf{w}_i^T \\gamma + u_i, \\quad M_i = \\mathbb{I}(z_i^* > 0)$$\n                      </div>\n                      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n                        <b>Stage 2:</b> Compute Inverse Mills Ratio $\\lambda_i = \\frac{\\phi(\\mathbf{w}_i^T \\gamma)}{\\Phi(\\mathbf{w}_i^T \\gamma)}$ and include as covariate in outcome equation:\n                      </p>\n                      <div class=\"text-[10px] bg-white p-1 rounded border border-slate-300 my-1\">\n                        $$y_i = \\mathbf{x}_i^T \\beta + \\beta_\\lambda \\lambda_i + \\epsilon_i$$\n                      </div>\n                      <span class=\"text-[10px] text-emerald-700 font-sans block mt-1\">If $\\beta_\\lambda \\ne 0$, selection bias is statistically confirmed and purged!</span>\n                    </div>\n\n                    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <strong class=\"text-[#0e7490] block mb-1\">2. Pattern-Mixture $\\delta$-Shift Calibration</strong>\n                      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n                        Impute under MAR via standard MICE, then systematically shift unobserved values by sensitivity parameter $\\delta$:\n                      </p>\n                      <div class=\"text-[10px] bg-white p-1 rounded border border-slate-300 my-1\">\n                        $$y_{ij}^{\\text{MNAR}} = y_{ij}^{\\text{MAR}} + \\delta \\cdot \\sigma_j$$\n                      </div>\n                      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n                        Sweep $\\delta \\in [-2.0, +2.0]$ standard deviations to generate tipping-point curves:\n                      </p>\n                      <div class=\"text-[10px] bg-white p-1 rounded border border-slate-300 my-1\">\n                        $$\\delta^* = \\inf \\left\\{ |\\delta| : p_{\\text{treatment}}(\\delta) > 0.05 \\right\\}$$\n                      </div>\n                      <span class=\"text-[10px] text-amber-700 font-sans block mt-1\">Quantifies exactly how extreme unobserved deviation must be to invalidate conclusions.</span>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Socratic Dialogue: How the Inverse Mills Ratio Fixes Selection Bias",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, Heckman's Inverse Mills Ratio is pure mathematical magic! In labor economics, we only observe wages for people who choose to work. People with high reservation wages stay home, so observed wages are upwardly biased. The Mills Ratio acts as an omitted variable proxy that soaks up that unobserved motivation!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly, Kaito. By including lambda as an explicit regressor, the remaining error term becomes orthogonal to the explanatory variables, restoring unbiased Ordinary Least Squares coefficients. And when we lack an instrument for Heckman's model, the delta-shift sensitivity analysis lets us perform stress-testing across adversarial assumptions.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Heckman vs Delta-Shift Tipping Point</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>Heckman Selection:</b> Requires an exclusion restriction (instrumental variable $\\mathbf{w}$ that predicts participation but not outcome $y$).</div>\n                    <div><b>$\\delta$-Shift Sensitivity:</b> Requires no instrument; explores worst-case scenario boundaries across plausible MNAR shifts.</div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Python Engine: Type-Safe Pydantic V2 Models & IterativeImputer Benchmark",
+        "type": "code",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Engineering Architecture: Schema Gates & Imputation Pipelines",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "In production machine learning systems, data cleaning pipelines must be robust, type-safe, and resilient against silent data corruption. We implement a two-tier architecture: first, Pydantic V2 schema models validate ingested payloads, detect sentinel values like negative 999 or empty strings, and enforce hard missingness thresholds per batch.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Second, downstream numeric matrices are processed through Scikit-Learn's IterativeImputer with Bayesian Ridge estimators, paired with MissingIndicator flags so neural networks and tree models retain explicit awareness of which values were reconstructed. Let's inspect the production code implementation.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-4 my-2\">\n                <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n                  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n                    <div class=\"font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide\">\n                      \ud83d\udcbb Production Python Engine: Pydantic V2 + Scikit-Learn MICE\n                    </div>\n                    <span class=\"px-2 py-0.5 bg-[#c9f3f4] border border-[#151b20] rounded font-mono text-[10px] font-black text-[#0e7490]\">PRODUCTION CODE</span>\n                  </div>\n\n                  <pre class=\"bg-[#151b20] text-slate-100 p-3.5 rounded-xl font-mono text-[11px] overflow-x-auto leading-relaxed border border-slate-700\"><code><span class=\"text-emerald-400\">from</span> pydantic <span class=\"text-emerald-400\">import</span> BaseModel, Field, field_validator, model_validator\n<span class=\"text-emerald-400\">from</span> sklearn.experimental <span class=\"text-emerald-400\">import</span> enable_iterative_imputer\n<span class=\"text-emerald-400\">from</span> sklearn.impute <span class=\"text-emerald-400\">import</span> IterativeImputer, MissingIndicator\n<span class=\"text-emerald-400\">from</span> sklearn.linear_model <span class=\"text-emerald-400\">import</span> BayesianRidge\n<span class=\"text-emerald-400\">import</span> numpy <span class=\"text-emerald-400\">as</span> np\n\n<span class=\"text-slate-400\"># 1. Pydantic V2 Type-Safe Admission Schema</span>\n<span class=\"text-emerald-400\">class</span> <span class=\"text-cyan-300\">PatientVitalsRecord</span>(BaseModel):\n    patient_id: <span class=\"text-amber-300\">str</span> = Field(..., pattern=<span class=\"text-yellow-200\">r\"^PT-\\d{6}$\"</span>)\n    systolic_bp: <span class=\"text-amber-300\">float</span> | <span class=\"text-amber-300\">None</span> = Field(<span class=\"text-amber-300\">None</span>, ge=40.0, le=280.0)\n    heart_rate: <span class=\"text-amber-300\">float</span> | <span class=\"text-amber-300\">None</span> = Field(<span class=\"text-amber-300\">None</span>, ge=20.0, le=240.0)\n    lactate: <span class=\"text-amber-300\">float</span> | <span class=\"text-amber-300\">None</span> = Field(<span class=\"text-amber-300\">None</span>, ge=0.1, le=30.0)\n\n    <span class=\"text-cyan-300\">@field_validator</span>(<span class=\"text-yellow-200\">\"systolic_bp\"</span>, <span class=\"text-yellow-200\">\"heart_rate\"</span>, <span class=\"text-yellow-200\">\"lactate\"</span>, mode=<span class=\"text-yellow-200\">\"before\"</span>)\n    <span class=\"text-emerald-400\">def</span> <span class=\"text-blue-300\">filter_sentinels</span>(cls, v):\n        <span class=\"text-emerald-400\">if</span> v <span class=\"text-emerald-400\">in</span> (-999, -9999, <span class=\"text-yellow-200\">\"NA\"</span>, <span class=\"text-yellow-200\">\"NULL\"</span>, <span class=\"text-yellow-200\">\"\"</span>):\n            <span class=\"text-emerald-400\">return</span> <span class=\"text-amber-300\">None</span>\n        <span class=\"text-emerald-400\">return</span> v\n\n<span class=\"text-slate-400\"># 2. Production MICE Imputation Engine with Missingness Indicator</span>\n<span class=\"text-emerald-400\">class</span> <span class=\"text-cyan-300\">ProductionMICEPipeline</span>:\n    <span class=\"text-emerald-400\">def</span> <span class=\"text-blue-300\">__init__</span>(self, max_iter: <span class=\"text-amber-300\">int</span> = 10, random_state: <span class=\"text-amber-300\">int</span> = 42):\n        self.imputer = IterativeImputer(\n            estimator=BayesianRidge(),\n            max_iter=max_iter,\n            random_state=random_state,\n            add_indicator=<span class=\"text-amber-300\">True</span>  <span class=\"text-slate-400\"># Appends M_j missingness mask features!</span>\n        )\n\n    <span class=\"text-emerald-400\">def</span> <span class=\"text-blue-300\">fit_transform</span>(self, X: np.ndarray) -> np.ndarray:\n        <span class=\"text-slate-400\"># Validates non-degeneracy & performs chained Gibbs sampling</span>\n        <span class=\"text-emerald-400\">return</span> self.imputer.fit_transform(X)</code></pre>\n\n                  <div class=\"p-2.5 rounded-lg bg-emerald-50 border border-emerald-300 text-xs font-mono\">\n                    <b class=\"text-emerald-800\">\u2705 add_indicator=True Architecture Benefit:</b>\n                    <span class=\"text-slate-700 font-sans block mt-0.5\">Retains Donald Rubin's stochastic mask matrix $\\mathbf{M}$ as auxiliary features! Downstream gradient boosted trees can bifurcate explicitly on whether lactate was measured, preventing information loss under MAR.</span>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Socratic Dialogue: Why add_indicator=True is Critical",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at line 25: add_indicator=True in Scikit-Learn's IterativeImputer! That automatically appends binary boolean columns indicating which specific cells were originally missing before imputation!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yes! That gives our downstream machine learning models the best of both worlds: they receive continuous, uncorrupted, imputed feature vectors without missing NaNs, while retaining explicit feature flags for whether the test was ordered, capturing clinical intent.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Dual-Channel Imputation Architecture</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>Channel 1 (Imputed Values $\\hat{Y}$):</b> Enables full matrix multiplication in linear and deep neural networks without NaN errors.</div>\n                    <div><b>Channel 2 (Binary Mask $\\mathbf{M}$):</b> Provides decision trees and classifiers with explicit indicator of informative missingness.</div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Capstone Synthesis: The Four Golden Rules & Path to Lesson 5.3",
+        "type": "summary",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Synthesis & Graduation: The Four Golden Rules of Missing Data",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Congratulations on completing Chapter 5, Lesson 2: Missing Data Engineering. We have journeyed through Donald Rubin's foundational taxonomy of MCAR, MAR, and MNAR; proved mathematically why single mean imputation deflates variance by 1 minus p; examined Roderick Little's multivariate chi-squared test; mastered MICE Gibbs sampling and Predictive Mean Matching; and applied Rubin's variance pooling rules.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Commit these Four Golden Rules to memory: First, complete-case deletion is only legitimate under MCAR with negligible missingness; under MAR or MNAR, it induces lethal selection bias. Second, never replace missing cells with simple column means when training statistical models. Third, default to MICE with Predictive Mean Matching for complex tabular records. And fourth, pool multiple imputations using Rubin's rules to propagate parameter uncertainty.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In Lesson 5.3, we confront the next major quality challenge in data engineering: Duplicate Detection, String Metrics, Blocking, and Record Linkage across dirty enterprise databases. I look forward to seeing you there.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-4 my-2\">\n                <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n                  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n                    <div class=\"font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide\">\n                      \ud83c\udf93 The 4 Golden Rules of Missing Data Engineering\n                    </div>\n                    <span class=\"px-2 py-0.5 bg-[#c9f3f4] border border-[#151b20] rounded font-mono text-[10px] font-black text-[#0e7490]\">CAPSTONE</span>\n                  </div>\n\n                  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n                    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <strong class=\"text-[#2563eb] block mb-1\">Rule 1: Verify MCAR Before Deletion</strong>\n                      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n                        Complete-case listwise deletion is only theoretically valid if Little's MCAR test yields $p > 0.05$ and missingness rate is $< 5\\%$. Otherwise, complete cases induce selection bias.\n                      </p>\n                    </div>\n\n                    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <strong class=\"text-[#dc2626] block mb-1\">Rule 2: Never Mean-Impute Feature Vectors</strong>\n                      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n                        Mean imputation crushes variance by $(1 - p)$, distorts feature correlations by $\\sqrt{1 - p}$, and creates severe false-positive Type I errors in regression hypothesis testing.\n                      </p>\n                    </div>\n\n                    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <strong class=\"text-[#166534] block mb-1\">Rule 3: Deploy MICE with PMM for Tabular Data</strong>\n                      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n                        Fully Conditional Specification cycles through chained univariate models, while Predictive Mean Matching ($k$-donor borrowing) guarantees valid, bounded, discrete, and multimodal values.\n                      </p>\n                    </div>\n\n                    <div class=\"p-3 rounded-lg bg-[#f8fafc] border border-[#151b20]\">\n                      <strong class=\"text-[#9333ea] block mb-1\">Rule 4: Pool with Rubin's Rules & Track Mask</strong>\n                      <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n                        Pool across $M \\ge 5$ datasets calculating $T = \\bar{U} + (1 + 1/M)B$. Retain binary missingness indicator $\\mathbf{M}$ as auxiliary features to capture informative intent.\n                      </p>\n                    </div>\n                  </div>\n\n                  <div class=\"mt-3 p-3 rounded-lg bg-[#f0fdf4] border border-[#151b20] font-sans text-xs flex items-center justify-between flex-wrap gap-2\">\n                    <div>\n                      <span class=\"font-bold text-emerald-800\">Next Module: Lesson 5.3</span>\n                      <p class=\"text-slate-600 text-[11px] mt-0.5\">Duplicate Detection, Jaro-Winkler Metrics, Canopy Blocking, and Probabilistic Fellegi-Sunter Record Linkage.</p>\n                    </div>\n                    <span class=\"px-2.5 py-1 bg-[#151b20] text-amber-300 font-mono text-[11px] font-bold rounded\">LESSON 5.3 &rarr;</span>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Socratic Graduation: Reflections on Missing Data Engineering",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, this chapter completely transformed how I see data engineering. Before this, I thought missing data was just an annoying inconvenience that you fix with df.dropna() or SimpleImputer. Now I see that missingness patterns contain profound signals about clinical workflows, economic behavior, and survey psychology!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the mark of a true data architect, Kaito. Once you appreciate the mathematical boundaries between MCAR, MAR, and MNAR, and treat imputation as posterior predictive sampling with Rubin's variance pooling, your models become resilient, trustworthy, and mathematically sound.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "I'm ready for Lesson 5.3! Duplicate detection and record linkage across messy enterprise data warehouses!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Excellent work, Kaito. See you in Lesson 5.3!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Architectural Milestones Mastered</h4>\n                  <ul class=\"text-[11px] text-slate-700 font-sans space-y-1 list-disc list-inside mt-2\">\n                    <li>Donald Rubin's 3 Mechanisms (MCAR, MAR, MNAR)</li>\n                    <li>Mathematical Proof of $(1-p)$ Variance Deflation</li>\n                    <li>Roderick Little's Multivariate MCAR Chi-Squared Test</li>\n                    <li>MICE Gibbs Sampling & Predictive Mean Matching</li>\n                    <li>Rubin's Variance Pooling & Fraction of Missing Information</li>\n                  </ul>\n                </div>\n              </div>\n            "
         }
       }
     ]

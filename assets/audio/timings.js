@@ -167010,5 +167010,34469 @@ window.LESSON_TIMINGS = {
         "end": 675.66
       }
     ]
-  }
+  },
+  "ch5_p1_solo": {
+    "duration": 528.984,
+    "slides": [
+      {
+        "id": "s1",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Welcome to Chapter 5, Lesson 1. Data cleaning is not an ad-hoc collection of regex substitutions, heuristic scripts, or manual spreadsheet edits; it is the formal engineering discipline of restoring statistical fidelity to corrupted state spaces. Rooted in Fellegi and Holt's edit theory and total survey error modeling, clean data pipelines establish the mathematical boundaries between noise and true generative signal.",
+            "dock": "main",
+            "start": 0.0,
+            "end": 26.76
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "In this masterclass, we formalize the four foundational pillars of data cleaning: the ISO/IEC 25012 multidimensional quality framework, the mathematics of attenuation bias in machine learning models, Thomas Redman's error propagation in relational joins, and the 1-10-100 economic cost cascade rule.",
+            "dock": "main",
+            "start": 26.76,
+            "end": 48.672
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Modern enterprise data architectures formalize quality through the international standard ISO/IEC 25012, defining quality across six orthogonal dimensions: Completeness, Syntactic Validity, Plausibility, Relational Consistency, Uniqueness, and Currency.",
+            "dock": "main",
+            "start": 48.672,
+            "end": 67.416
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "The composite Data Quality Index, or DQI, is formulated as a normalized weighted convex combination of dimensional scores Q sub j, where weights sum to one and each metric is evaluated against strict production acceptance thresholds.",
+            "dock": "main",
+            "start": 67.416,
+            "end": 82.416
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "To operationalize ISO/IEC 25012, enterprise data architectures implement a sequential multi-stage quality gate pipeline. Raw ingested records must survive each orthogonal verification barrier before entering the production gold corpus.",
+            "dock": "main",
+            "start": 82.416,
+            "end": 99.576
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Records failing any barrier are immediately diverted into an automated quarantine stream with full provenance lineage, preventing dirty batches from poisoning analytical feature stores or downstream retraining pipelines.",
+            "dock": "main",
+            "start": 99.576,
+            "end": 112.56
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "A widespread misconception in machine learning is that random measurement noise in input features cancels out during model training. In reality, classical additive noise induces systematic attenuation bias, permanently flattening learned regression slopes toward zero.",
+            "dock": "main",
+            "start": 112.56,
+            "end": 128.832
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "When continuous feature X is contaminated with zero-mean noise U with variance sigma-u squared, the ordinary least squares slope estimator converges to the true slope multiplied by the reliability ratio lambda, equal to sigma-x squared divided by sigma-x squared plus sigma-u squared.",
+            "dock": "main",
+            "start": 128.832,
+            "end": 145.656
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Thomas Redman formalized how data defects compound non-linearly across enterprise relational architectures. When multiple tables are joined on primary and foreign keys, the defect probability of the joined tuple escalates rapidly.",
+            "dock": "main",
+            "start": 145.656,
+            "end": 160.464
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "The probability that a joined tuple is clean equals the joint product of each individual table's clean rate. Consequently, joining three tables with minor three, four, and five percent defect rates produces a joined table with an eleven point five percent corruption rate.",
+            "dock": "main",
+            "start": 160.464,
+            "end": 177.384
+          }
+        ]
+      },
+      {
+        "id": "s6",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Welcome to the ISO/IEC 25012 Quality Gate Studio. Before you is a contaminated batch of enterprise transaction records displaying missing amounts, negative currency values, invalid country ISO codes, and duplicated primary keys.",
+            "dock": "sim",
+            "start": 177.384,
+            "end": 194.712
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Use the remediation controls to impute missing fields, enforce range constraints, and deduplicate entities. Observe how each remediation action dynamically recalculates dimensional scores and drives the composite DQI toward production certification.",
+            "dock": "sim",
+            "start": 194.712,
+            "end": 210.72
+          }
+        ]
+      },
+      {
+        "id": "s7",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Time for our first active checkpoint. Consider an algorithmic trading firm forecasting default risk Y from volatility feature X with true slope beta-one equal to 4.0. Due to network latency, measurement noise variance is twice the variance of the true signal.",
+            "dock": "checkpoint",
+            "start": 210.72,
+            "end": 228.048
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Calculate the exact attenuated slope beta-hat that the production model will learn, and evaluate how this affects margin capital allocation.",
+            "dock": "checkpoint",
+            "start": 228.048,
+            "end": 236.808
+          }
+        ]
+      },
+      {
+        "id": "s8",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "The economic impact of data defects follows an exponential cost cascade governed by the 1-10-100 rule. Every dollar invested in schema validation at ingestion prevents ten dollars of warehouse ETL batch rework and over one hundred dollars of production failure.",
+            "dock": "main",
+            "start": 236.808,
+            "end": 254.352
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "When data defects escape into production, the costs multiply into model mispredictions, regulatory compliance penalties, customer churn, and emergency engineering war rooms.",
+            "dock": "main",
+            "start": 254.352,
+            "end": 266.088
+          }
+        ]
+      },
+      {
+        "id": "s9",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "On September 23, 1999, NASA lost the 327.6 million dollar Mars Climate Orbiter spacecraft as it attempted orbital insertion. The root cause was a fundamental data quality failure: unit metadata inconsistency.",
+            "dock": "main",
+            "start": 266.088,
+            "end": 282.792
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Ground station software computed thruster impulse in Imperial pound-force-seconds, while spacecraft navigation algorithms expected Metric Newton-seconds. Without serialization unit validation, the unflagged 4.45-times discrepancy caused the probe to plunge fatally into Mars's upper atmosphere.",
+            "dock": "main",
+            "start": 282.792,
+            "end": 302.496
+          }
+        ]
+      },
+      {
+        "id": "s10",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "In 2022, credit reporting giant Equifax suffered a major technology malfunction where stale cached code and timestamp currency failure caused credit score inaccuracies for hundreds of thousands of consumers over a three-week window.",
+            "dock": "main",
+            "start": 302.496,
+            "end": 316.608
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "In contrast, Amazon addressed large-scale data lake defects by developing Deequ, an open-source verification framework that computes unit test assertions over distributed Apache Spark datasets, preventing thousands of silent daily pipeline breakages.",
+            "dock": "main",
+            "start": 316.608,
+            "end": 332.376
+          }
+        ]
+      },
+      {
+        "id": "s11",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "In modern streaming AI architectures, data value is not static; it decays exponentially over time. We formalize this temporal degradation using the exponential currency model, where timeliness Q sub t equals e to the negative lambda delta t.",
+            "dock": "main",
+            "start": 332.376,
+            "end": 348.744
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "In fraud detection systems, customer geolocation has a high decay parameter. A network batch propagation delay of just forty-five seconds destroys nearly ninety percent of the location signal, requiring high-throughput streaming engines like Kafka or Flink.",
+            "dock": "main",
+            "start": 348.744,
+            "end": 364.872
+          }
+        ]
+      },
+      {
+        "id": "s12",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Welcome to the Attenuation Bias and Cost Cascade Workbench. In this interactive simulation, you can dynamically manipulate true feature variance, measurement noise variance, and the true population slope.",
+            "dock": "sim",
+            "start": 364.872,
+            "end": 378.264
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Notice how increasing noise variance immediately depresses the reliability ratio lambda, visibly flattening the red attenuated regression line away from the green true generative slope. Toggle to the Cost Cascade tab to simulate economic defect escape scenarios.",
+            "dock": "sim",
+            "start": 378.264,
+            "end": 394.512
+          }
+        ]
+      },
+      {
+        "id": "s13",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Time for our second active checkpoint. An enterprise data analytics team joins four tables in an e-commerce star schema: Fact Orders with two percent defect rate, Customers with three percent, Products with two percent, and Promotions with four percent defect rate.",
+            "dock": "checkpoint",
+            "start": 394.512,
+            "end": 411.288
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Calculate the exact probability that an analyst query returns a corrupted join tuple, and evaluate whether isolated table cleanliness guarantees warehouse accuracy.",
+            "dock": "checkpoint",
+            "start": 411.288,
+            "end": 421.608
+          }
+        ]
+      },
+      {
+        "id": "s14",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Engineering teams navigate three distinct cleaning paradigms: upstream schema validation gates, batch warehouse ETL cleaning, and active model-in-the-loop cleaning such as ActiveClean.",
+            "dock": "main",
+            "start": 421.608,
+            "end": 433.224
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "ActiveClean, formulated by Krishnan and colleagues, prioritizes cleaning records that exert the highest gradient contribution on model loss. Balancing upstream prevention with selective iterative cleaning achieves the Pareto optimum of accuracy and compute cost.",
+            "dock": "main",
+            "start": 433.224,
+            "end": 449.568
+          }
+        ]
+      },
+      {
+        "id": "s15",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "To bridge theoretical mathematical formalisms into production software, we implement our data cleaning foundation engine in Python using Pydantic V2. This module validates dimensional weights, evaluates OLS attenuation bias, calculates compound join corruption, and computes 1-10-100 economic impact.",
+            "dock": "main",
+            "start": 449.568,
+            "end": 470.616
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Notice how field validators strictly enforce normalized convex combination weights summing to one, and unit tests verify mathematical bounds with tight tolerance assertions.",
+            "dock": "main",
+            "start": 470.616,
+            "end": 481.416
+          }
+        ]
+      },
+      {
+        "id": "s16",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "To conclude Lesson 5.1, internalize the Four Golden Rules of Systematic Data Cleaning: First, measurement noise does not average out—it attenuates learned feature weights. Second, Redman's law compounds defect rates across relational joins. Third, upstream schema prevention provides a hundred-fold return over downstream fixing. Fourth, quality requires multidimensional ISO/IEC 25012 verification.",
+            "dock": "main",
+            "start": 481.416,
+            "end": 510.528
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "In Lesson 5.2, we dive deep into Missing Data: exploring Donald Rubin's foundational taxonomy of MCAR, MAR, and MNAR missingness mechanisms, Little's statistical test, and Multivariate Imputation by Chained Equations. See you in Lesson 5.2!",
+            "dock": "main",
+            "start": 510.528,
+            "end": 528.984
+          }
+        ]
+      }
+    ]
+  },
+  "ch5_p1_duo": {
+    "duration": 620.64,
+    "slides": [
+      {
+        "id": "s1",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, in everyday data science, practitioners often just drop missing rows with dropna and run a few ad-hoc regex substitutions. Why do we need formal mathematical theory for data cleaning?",
+            "dock": "main",
+            "start": 0.0,
+            "end": 12.168
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Because naive fixes often destroy statistical signal, Kaito! Dropping rows can introduce catastrophic survival bias, while uncleaned measurement noise systematically attenuates regression coefficients and model weights toward zero.",
+            "dock": "main",
+            "start": 12.168,
+            "end": 27.072
+          },
+          {
+            "speaker": "Kaito",
+            "text": "So dirty data doesn't just reduce accuracy—it actively distorts the model's understanding of feature importance?",
+            "dock": "main",
+            "start": 27.072,
+            "end": 34.128
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Precisely. And across multi-table relational joins, even minor defect rates compound exponentially into double-digit warehouse corruption. Formal pipelines are essential.",
+            "dock": "main",
+            "start": 34.128,
+            "end": 46.68
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Looking at these six dimensions, engineering teams frequently obsess over completeness—making sure there are zero nulls—while completely ignoring consistency or timeliness.",
+            "dock": "main",
+            "start": 46.68,
+            "end": 56.496
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "That is a classic anti-pattern, Kaito. A dataset can be 100% complete and valid syntactically, yet contain fatal semantic contradictions—like a three-year-old customer marked as married, or stale credit scores from six months ago.",
+            "dock": "main",
+            "start": 56.496,
+            "end": 72.072
+          },
+          {
+            "speaker": "Kaito",
+            "text": "And the composite DQI combines them all with convex weights, establishing an automated production deployment gate!",
+            "dock": "main",
+            "start": 72.072,
+            "end": 79.224
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly. A pipeline that only checks nulls is blind to ninety percent of real-world operational failure modes.",
+            "dock": "main",
+            "start": 79.224,
+            "end": 87.096
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, why order the gates sequentially? Does the order of checks really matter from an engineering standpoint?",
+            "dock": "main",
+            "start": 87.096,
+            "end": 95.136
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Computational efficiency dictates the order, Kaito! Inexpensive syntactic checks—null checks, regexes, and type validations—execute first at sub-millisecond cost. Expensive relational joins, cross-column constraint evaluations, and fuzzy deduplication run only on records that pass the syntactic filters.",
+            "dock": "main",
+            "start": 95.136,
+            "end": 117.24
+          },
+          {
+            "speaker": "Kaito",
+            "text": "That saves massive compute on invalid payloads and isolates defect root causes cleanly in the quarantine stream!",
+            "dock": "main",
+            "start": 117.24,
+            "end": 124.008
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly. Filtering dirty records early preserves GPU cluster budgets and prevents corrupt batches from triggering downstream ETL cascading crashes.",
+            "dock": "main",
+            "start": 124.008,
+            "end": 134.472
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Wait, Dr. Nova! In linear regression, doesn't zero-mean noise average out in expectation across large training datasets?",
+            "dock": "main",
+            "start": 134.472,
+            "end": 143.328
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Noise in the target variable Y averages out into the residual variance without biasing the slope, Kaito. But noise in the feature X appears in the denominator—the feature variance—inflating it and systematically compressing the learned slope toward zero!",
+            "dock": "main",
+            "start": 143.328,
+            "end": 158.88
+          },
+          {
+            "speaker": "Kaito",
+            "text": "And in a multivariate model with correlated features, that noise covariance matrix can even flip the mathematical sign of a feature's coefficient entirely!",
+            "dock": "main",
+            "start": 158.88,
+            "end": 167.928
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Precisely. If your sensor noise is twice the true signal variance, your algorithmic trading engine perceives only one-third of the true market risk. That is why denoising is mandatory before training.",
+            "dock": "main",
+            "start": 167.928,
+            "end": 181.296
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Every database team I talk to claims their individual tables are 96% accurate or better. They assume their corporate data warehouse must be in fantastic shape!",
+            "dock": "main",
+            "start": 181.296,
+            "end": 191.832
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "That is the relational illusion, Kaito! When an analyst runs a star-schema query joining four or five tables, those tiny defect probabilities compound exponentially. More than one in every ten rows delivered to dashboards is corrupted.",
+            "dock": "main",
+            "start": 191.832,
+            "end": 207.768
+          },
+          {
+            "speaker": "Kaito",
+            "text": "Which proves why data cleaning must occur before relational joins at the ingestion tier, not after joining!",
+            "dock": "main",
+            "start": 207.768,
+            "end": 213.96
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly. Cleaning dirty tables after an inner join is like trying to un-bake a cake. You must clean the ingredients before they combine.",
+            "dock": "main",
+            "start": 213.96,
+            "end": 223.872
+          }
+        ]
+      },
+      {
+        "id": "s6",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, look at Record 104—the customer age is 4, but marital status is 'Married'! And Record 102 has an amount of negative 45 dollars.",
+            "dock": "sim",
+            "start": 223.872,
+            "end": 234.768
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Those are direct violations of syntactic validity and relational consistency, Kaito. Right now, the composite DQI is failing at 0.79. Let's trigger the remediation pipelines and watch the quality gate clear the batch.",
+            "dock": "sim",
+            "start": 234.768,
+            "end": 251.184
+          },
+          {
+            "speaker": "Kaito",
+            "text": "When we impute nulls, fix negative amounts, and drop the duplicate record, the composite DQI climbs past 0.95 into PASSED status!",
+            "dock": "sim",
+            "start": 251.184,
+            "end": 260.064
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "And that single gate prevented four corrupted records from poisoning our downstream feature store.",
+            "dock": "sim",
+            "start": 260.064,
+            "end": 266.088
+          }
+        ]
+      },
+      {
+        "id": "s7",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, if measurement noise variance is twice the feature variance, how does that alter the model's perception of risk?",
+            "dock": "checkpoint",
+            "start": 266.088,
+            "end": 273.312
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Let's test our learners, Kaito. True slope is 4.0, but sigma-u squared equals 2 sigma-x squared. What slope will the model learn, and what catastrophe might result?",
+            "dock": "checkpoint",
+            "start": 273.312,
+            "end": 285.984
+          }
+        ]
+      },
+      {
+        "id": "s8",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Executives often push back against spending engineering cycles on upstream data validation, asking why we can't just store everything in a raw data lake and fix it later.",
+            "dock": "main",
+            "start": 285.984,
+            "end": 295.728
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Because 'fixing it later' is a financial disaster, Kaito! Catching a defective record at the API gateway costs one dollar. Letting that record corrupt a credit underwriting decision in production costs one hundred dollars or more in regulatory fines and chargebacks.",
+            "dock": "main",
+            "start": 295.728,
+            "end": 313.056
+          },
+          {
+            "speaker": "Kaito",
+            "text": "The 1-10-100 rule provides the exact economic justification data teams need to enforce strict gateway validation!",
+            "dock": "main",
+            "start": 313.056,
+            "end": 321.024
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly. Upstream data quality engineering is not an administrative burden—it is one of the highest-ROI investments in the entire software engineering stack.",
+            "dock": "main",
+            "start": 321.024,
+            "end": 331.656
+          }
+        ]
+      },
+      {
+        "id": "s9",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "A three-hundred-million-dollar spacecraft was lost because of a simple unit mismatch between pound-seconds and Newton-seconds?",
+            "dock": "main",
+            "start": 331.656,
+            "end": 338.904
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly, Kaito. The numbers themselves looked completely plausible on both ends—they were just standard floating-point numbers. But because the serialization contract lacked explicit unit typing, the error propagated silently through navigation equations.",
+            "dock": "main",
+            "start": 338.904,
+            "end": 356.088
+          },
+          {
+            "speaker": "Kaito",
+            "text": "Strong typing with Pydantic or schema registries like Protobuf would have caught that error at compile time or ingestion!",
+            "dock": "main",
+            "start": 356.088,
+            "end": 363.024
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Indeed. A single schema validation check costing virtually nothing would have saved one of the most ambitious space exploration missions of that decade.",
+            "dock": "main",
+            "start": 363.024,
+            "end": 372.768
+          }
+        ]
+      },
+      {
+        "id": "s10",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "The Equifax incident proves that even if all your records are formatted cleanly, a breakdown in cache currency or timestamps can instantly produce dirty output.",
+            "dock": "main",
+            "start": 372.768,
+            "end": 381.744
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Indeed, Kaito. Timeliness is an active quality dimension. And Amazon Deequ proved that unit testing belongs in production data pipelines just as much as in application code.",
+            "dock": "main",
+            "start": 381.744,
+            "end": 394.224
+          },
+          {
+            "speaker": "Kaito",
+            "text": "Automated verification gates prevent silent schema and distribution drift before downstream consumers ever see the data!",
+            "dock": "main",
+            "start": 394.224,
+            "end": 401.592
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly. Declarative constraints like hasCompleteness and isNonNegative catch anomalies before they reach production inference models.",
+            "dock": "main",
+            "start": 401.592,
+            "end": 410.64
+          }
+        ]
+      },
+      {
+        "id": "s11",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "So if our fraud pipeline takes 45 seconds to buffer and ingest transactions, our geolocation feature is essentially useless?",
+            "dock": "main",
+            "start": 410.64,
+            "end": 418.584
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly, Kaito. By the time the model evaluates the location ping, the fraudster has already moved or completed the next transaction. Timeliness decay turns clean data into useless noise.",
+            "dock": "main",
+            "start": 418.584,
+            "end": 432.456
+          },
+          {
+            "speaker": "Kaito",
+            "text": "To keep timeliness above 80%, our end-to-end ingestion latency must remain under 4.5 seconds!",
+            "dock": "main",
+            "start": 432.456,
+            "end": 439.368
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Which is why real-time streaming infrastructure with low micro-second latency is non-negotiable for high-velocity fraud engines.",
+            "dock": "main",
+            "start": 439.368,
+            "end": 446.904
+          }
+        ]
+      },
+      {
+        "id": "s12",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, look at the canvas! When I dial noise variance up to 80, the green true slope stays at 2.5, but the red dashed line collapses to 1.25—a 50% loss in feature sensitivity!",
+            "dock": "sim",
+            "start": 446.904,
+            "end": 460.032
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "That is the visual proof of attenuation bias, Kaito. And on Tab B, notice how allowing just 10% of defects to reach production multiplies total cleanup costs by more than twelve times!",
+            "dock": "sim",
+            "start": 460.032,
+            "end": 472.584
+          },
+          {
+            "speaker": "Kaito",
+            "text": "This lab visually demonstrates both the statistical danger and the financial peril of uncleaned data.",
+            "dock": "sim",
+            "start": 472.584,
+            "end": 478.776
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Precisely. Math and economics point to the exact same conclusion: enforce quality at the earliest ingestion boundary.",
+            "dock": "sim",
+            "start": 478.776,
+            "end": 487.704
+          }
+        ]
+      },
+      {
+        "id": "s13",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, four tables with defect rates of two, three, two, and four percent. Does the join error equal the maximum rate of four percent, or does it compound?",
+            "dock": "checkpoint",
+            "start": 487.704,
+            "end": 498.552
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Let's put the question to our learners, Kaito. Apply Thomas Redman's compound join formula to calculate the exact joined defect probability.",
+            "dock": "checkpoint",
+            "start": 498.552,
+            "end": 508.392
+          }
+        ]
+      },
+      {
+        "id": "s14",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "ActiveClean is fascinating—it actually inspects the machine learning model's loss gradients to tell human annotators which specific rows need cleaning first!",
+            "dock": "main",
+            "start": 508.392,
+            "end": 517.176
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Yes, Kaito! Instead of blindly paying engineers to clean a hundred million rows, ActiveClean cleans the five percent that actually move the model's decision boundary, reducing cleaning costs by up to eighty percent.",
+            "dock": "main",
+            "start": 517.176,
+            "end": 531.624
+          },
+          {
+            "speaker": "Kaito",
+            "text": "Combined with strict ingestion schema validation, that forms a complete end-to-end data quality strategy!",
+            "dock": "main",
+            "start": 531.624,
+            "end": 538.2
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Precisely. Schema validation stops obvious corruption at the front door, while gradient-aware cleaning polishes the nuanced boundary cases during model training.",
+            "dock": "main",
+            "start": 538.2,
+            "end": 548.976
+          }
+        ]
+      },
+      {
+        "id": "s15",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Having Pydantic V2 validate that the composite quality weights sum to exactly 1.0 prevents silent configuration drift in CI/CD pipelines.",
+            "dock": "main",
+            "start": 548.976,
+            "end": 558.528
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "And our automated test suite asserts that the reliability ratio and Redman join calculations match theoretical values to five decimal places before any ETL code merges to main!",
+            "dock": "main",
+            "start": 558.528,
+            "end": 569.856
+          },
+          {
+            "speaker": "Kaito",
+            "text": "Mathematical rigor combined with type safety turns data cleaning from guesswork into solid software engineering.",
+            "dock": "main",
+            "start": 569.856,
+            "end": 576.672
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Precisely. That is the hallmark of modern data engineering.",
+            "dock": "main",
+            "start": 576.672,
+            "end": 581.712
+          }
+        ]
+      },
+      {
+        "id": "s16",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "This was a masterclass in data quality, Dr. Nova. Treating data cleaning as a rigorous mathematical discipline completely changes how we design AI ingestion pipelines.",
+            "dock": "main",
+            "start": 581.712,
+            "end": 592.92
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "It does, Kaito. And now that we have established quality dimensions, attenuation bias, and error propagation, we are ready to tackle one of the most pervasive real-world corruptions: missing data in Lesson 5.2!",
+            "dock": "main",
+            "start": 592.92,
+            "end": 607.632
+          },
+          {
+            "speaker": "Kaito",
+            "text": "Donald Rubin's taxonomy of MCAR, MAR, and MNAR mechanisms, plus Little's test and MICE imputation algorithms!",
+            "dock": "main",
+            "start": 607.632,
+            "end": 615.504
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly. Let's move forward into Lesson 5.2!",
+            "dock": "main",
+            "start": 615.504,
+            "end": 620.64
+          }
+        ]
+      }
+    ]
+  },
+  "ch5_p2_solo": {
+    "duration": 806.664,
+    "slides": [
+      {
+        "id": "s1",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Welcome to Chapter 5, Lesson 2: Missing Data Engineering, Rubin's Taxonomy, and Multivariate Imputation by Chained Equations. Missing values are ubiquitous across industrial data pipelines, medical registries, and sensor telemetry. Naive shortcuts like zero-filling, mean substitution, or complete-case listwise deletion destroy feature variance, attenuate correlations, and inject fatal selection bias. Today, we formalize how to diagnose the stochastic mechanism behind missingness and restore true population distributions.",
+            "dock": "main",
+            "start": 0.0,
+            "end": 35.52
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "We organize missing data engineering around three core tenets: First, fidelity: missingness is not just missing values, but a stochastic process governed by a binary mask matrix. Second, identifiability: understanding whether missingness is ignorable or non-ignorable dictates whether likelihood-based imputation can recover unbiased parameters. And third, valid uncertainty propagation: single imputation produces overconfident p-values, requiring Donald Rubin's Multiple Imputation pooling rules to quantify the Fraction of Missing Information.",
+            "dock": "main",
+            "start": 35.52,
+            "end": 70.344
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Let our target population data matrix be denoted Y, containing N rows and D features. In reality, we do not observe Y directly; instead, we observe an empirical realization defined by the binary missingness indicator matrix M, where entry M sub ij equals 1 if cell Y sub ij is unobserved, and 0 if observed. Thus, Y is cleanly partitioned into observed components Y obs and missing components Y mis.",
+            "dock": "main",
+            "start": 70.344,
+            "end": 98.568
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "The entire statistical challenge centers on the conditional distribution of M given Y, parameterized by psi. In classical inference, if we wish to estimate parameters theta of the data model without modeling psi, we must know whether the missingness mechanism is ignorable. The likelihood function factorizes cleanly only when the missing data mechanism satisfies specific independence conditions.",
+            "dock": "main",
+            "start": 98.568,
+            "end": 122.928
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "In 1976, Donald Rubin published the definitive taxonomy dividing all missingness into three distinct regimes: Missing Completely at Random (MCAR), Missing at Random (MAR), and Missing Not at Random (MNAR).",
+            "dock": "main",
+            "start": 122.928,
+            "end": 137.64
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Under MCAR, the probability of missingness is strictly independent of both observed and unobserved data. Think of a laboratory technician dropping a random blood test tube on the floor. Complete-case analysis is statistically unbiased under MCAR, though sample power is wasted. Under MAR, missingness depends on observed features—for instance, older patients are less likely to upload smartwatch heart rate data. And under MNAR, missingness depends directly on the unobserved value itself, such as high-income earners refusing to disclose wealth.",
+            "dock": "main",
+            "start": 137.64,
+            "end": 173.16
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "A production-grade data cleaning architecture does not apply blind imputation. It implements a multi-stage diagnostic gate: first calculating the missingness fraction, visualizing missingness co-occurrence patterns, and executing statistical tests like Little's MCAR chi-squared test. If Little's test rejects MCAR with p less than 0.05, the pipeline routes the data to chained multivariate imputation.",
+            "dock": "main",
+            "start": 173.16,
+            "end": 200.328
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Notice the specialized pathways in our architecture. When MAR is confirmed, we deploy MICE with Predictive Mean Matching. If domain audits indicate MNAR, the pipeline forks to sensitivity models or joint Heckman selection stages, while preserving audit logs through versioned feature flags.",
+            "dock": "main",
+            "start": 200.328,
+            "end": 219.504
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Let us mathematically prove why naive mean imputation destroys statistical distributions. Suppose feature X has true population variance sigma squared. A fraction p of the records are missing and replaced by the sample mean x bar.",
+            "dock": "main",
+            "start": 219.504,
+            "end": 235.032
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Look at the sample variance definition: the sum of squared deviations divided by N. For every imputed row, x i equals x bar, so the deviation x i minus x bar is identically zero! These rows contribute exactly zero to the numerator, while N remains in the denominator. Consequently, the imputed sample variance equals 1 minus p times the true variance. If thirty percent of values are missing, sample variance instantly collapses by thirty percent, artificially shrinking standard errors and triggering severe Type I and Type II inference errors!",
+            "dock": "main",
+            "start": 235.032,
+            "end": 271.584
+          }
+        ]
+      },
+      {
+        "id": "s6",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "We have arrived at our first interactive laboratory: the Rubin Missingness and MICE Imputation Studio. Directly below me is a live canvas showing 120 bivariate data points with true correlation 0.85 and true mean 50.0.",
+            "dock": "main",
+            "start": 271.584,
+            "end": 287.4
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Try switching the Missingness Mechanism from MCAR to MAR and MNAR. Under MAR, high values of X trigger missingness in Y. Notice what happens when you toggle Remediation between Listwise Deletion, Mean Imputation, and Stochastic MICE! Watch how Mean Imputation squashes the points into a horizontal line, cutting variance retention down to sixty percent, while MICE preserves the full bivariate cloud!",
+            "dock": "sim",
+            "start": 287.4,
+            "end": 313.32
+          }
+        ]
+      },
+      {
+        "id": "s7",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Let us solidify our theoretical foundation with Active Checkpoint 1. A clinical feature X has true variance sigma squared of 100, and thirty percent of values are missing completely at random. If a junior data engineer performs univariate mean imputation, what is the resulting sample variance and downstream operational consequence? Select Option A, B, C, or D above me!",
+            "dock": "quiz",
+            "start": 313.32,
+            "end": 338.328
+          }
+        ]
+      },
+      {
+        "id": "s8",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "How do we statistically prove whether a dataset is MCAR? In 1988, Roderick Little derived a global multivariate test based on Expectation-Maximization maximum likelihood. The test partitions the dataset into J distinct missing-data patterns.",
+            "dock": "main",
+            "start": 338.328,
+            "end": 355.44
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "For each pattern j, Little computes the Mahalanobis distance between the observed pattern mean vector and the global maximum-likelihood mean vector, weighted by the inverted global covariance matrix. Under the null hypothesis that missingness is MCAR, this statistic follows a chi-squared distribution. If the resulting p-value is below 0.05, we reject MCAR, proving that missingness is MAR or MNAR!",
+            "dock": "main",
+            "start": 355.44,
+            "end": 382.56
+          }
+        ]
+      },
+      {
+        "id": "s9",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "When missingness spans multiple correlated variables across heterogeneous data types, joint modeling often breaks down because specifying a single multivariate probability distribution for mixed continuous, categorical, and count features is analytically intractable. Fully Conditional Specification, implemented via Multivariate Imputation by Chained Equations or MICE, circumvents this bottleneck by decomposing the joint distribution into a sequence of univariate conditional models.",
+            "dock": "main",
+            "start": 382.56,
+            "end": 411.936
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "MICE operates as a Gibbs sampler. After initializing missing values with simple median or random draws, the algorithm cycles iteratively through each incomplete variable Y_j, fitting a regression model on the currently imputed values of all other variables Y_minus_j, and drawing a replacement value from the posterior predictive distribution. Repeating this cycle for ten to twenty iterations allows the sequence to converge to the true underlying multivariate joint distribution.",
+            "dock": "main",
+            "start": 411.936,
+            "end": 442.32
+          }
+        ]
+      },
+      {
+        "id": "s10",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Standard linear regression imputation suffers from a fatal flaw: it frequently generates impossible, out-of-domain synthetic values. For example, it might predict a negative systolic blood pressure, an impossible fractional number of household children like 2.37, or values outside the permissible physical bounds of an instrument.",
+            "dock": "main",
+            "start": 442.32,
+            "end": 463.56
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Predictive Mean Matching, or PMM, solves this completely. Rather than taking the regression prediction directly, PMM calculates the linear prediction for the missing case, computes the metric distance to the predicted values of all completely observed records, selects a donor pool of the k closest neighbors, and randomly borrows an actual observed value from one of those donors. This guarantees that all imputed values are authentic, physically plausible, and bounded.",
+            "dock": "main",
+            "start": 463.56,
+            "end": 492.816
+          }
+        ]
+      },
+      {
+        "id": "s11",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "To understand why missing data handling is a safety-critical engineering discipline rather than a minor cleanup chore, examine the landmark clinical study on the MIMIC-IV electronic health records database. In a cohort of twenty-four thousand suspected sepsis patients in the intensive care unit, researchers evaluated clinical mortality predictors including arterial blood lactate and arterial oxygen saturation.",
+            "dock": "main",
+            "start": 492.816,
+            "end": 517.272
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Arterial lactate was missing in 68% of patient encounters because ICU physicians only order painful, invasive arterial blood gas draws when a patient presents with severe hemodynamic decompensation. When naive data scientists applied complete-case listwise deletion, dropping every patient with missing lactate, they discarded nearly all stable, recovering patients. The measured in-hospital cohort mortality rate jumped from the true population baseline of 11.4% to an artificial 34.2%, distorting all downstream AI triage models.",
+            "dock": "main",
+            "start": 517.272,
+            "end": 553.608
+          }
+        ]
+      },
+      {
+        "id": "s12",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Welcome to Slide 12, our second interactive workbench. Donald Rubin's 1987 multiple imputation formulation provides the formal mathematical machinery for combining estimates across M imputed datasets. When we analyze M imputed copies, we obtain M separate parameter estimates Q-hat-m and M variance estimates U-m.",
+            "dock": "main",
+            "start": 553.608,
+            "end": 575.52
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Rubin's rules state that the Total Variance T is not merely the average within-imputation variance U-bar; it incorporates the between-imputation variance B multiplied by the finite-sample correction factor 1 plus 1 over M. In this workbench, adjust the number of imputations M, within-imputation variance, and between-imputation variance to observe how Total Variance, Relative Increase in Variance, and the Fraction of Missing Information behave in real time.",
+            "dock": "main",
+            "start": 575.52,
+            "end": 603.408
+          }
+        ]
+      },
+      {
+        "id": "s13",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Time for our second active checkpoint. A biostatistician runs M = 5 multiple imputations for a clinical trial endpoint. The average within-imputation variance across the 5 models is U-bar = 4.00, and the sample variance between the 5 point estimates is B = 1.50. Using Donald Rubin's pooling formulation, calculate the exact Total Variance T and the approximate Fraction of Missing Information gamma. Select your answer below.",
+            "dock": "main",
+            "start": 603.408,
+            "end": 635.256
+          }
+        ]
+      },
+      {
+        "id": "s14",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "When missingness is Missing Not At Random, or MNAR, missingness depends directly on the unobserved value itself, even after conditioning on all available covariates. Under MNAR, the missingness mechanism is non-ignorable: standard MICE, regression imputation, and machine learning models remain systematically biased because the observed data distribution does not match the missing data distribution.",
+            "dock": "main",
+            "start": 635.256,
+            "end": 660.096
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "To address MNAR, engineers deploy two complementary paradigms: James Heckman's Nobel Prize-winning two-stage selection model, and pattern-mixture delta-shift sensitivity analysis. Heckman models the selection probability explicitly with a probit equation and injects the Inverse Mills Ratio as a corrective omitted variable in the primary regression. Meanwhile, delta-shift analysis systematically perturbs MAR imputations across an adversarial range of shift parameters to establish the tipping point where statistical conclusions overturn.",
+            "dock": "main",
+            "start": 660.096,
+            "end": 693.168
+          }
+        ]
+      },
+      {
+        "id": "s15",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "In production machine learning systems, data cleaning pipelines must be robust, type-safe, and resilient against silent data corruption. We implement a two-tier architecture: first, Pydantic V2 schema models validate ingested payloads, detect sentinel values like negative 999 or empty strings, and enforce hard missingness thresholds per batch.",
+            "dock": "main",
+            "start": 693.168,
+            "end": 716.616
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Second, downstream numeric matrices are processed through Scikit-Learn's IterativeImputer with Bayesian Ridge estimators, paired with MissingIndicator flags so neural networks and tree models retain explicit awareness of which values were reconstructed. Let's inspect the production code implementation.",
+            "dock": "main",
+            "start": 716.616,
+            "end": 734.736
+          }
+        ]
+      },
+      {
+        "id": "s16",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Congratulations on completing Chapter 5, Lesson 2: Missing Data Engineering. We have journeyed through Donald Rubin's foundational taxonomy of MCAR, MAR, and MNAR; proved mathematically why single mean imputation deflates variance by 1 minus p; examined Roderick Little's multivariate chi-squared test; mastered MICE Gibbs sampling and Predictive Mean Matching; and applied Rubin's variance pooling rules.",
+            "dock": "main",
+            "start": 734.736,
+            "end": 761.568
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Commit these Four Golden Rules to memory: First, complete-case deletion is only legitimate under MCAR with negligible missingness; under MAR or MNAR, it induces lethal selection bias. Second, never replace missing cells with simple column means when training statistical models. Third, default to MICE with Predictive Mean Matching for complex tabular records. And fourth, pool multiple imputations using Rubin's rules to propagate parameter uncertainty.",
+            "dock": "main",
+            "start": 761.568,
+            "end": 791.688
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "In Lesson 5.3, we confront the next major quality challenge in data engineering: Duplicate Detection, String Metrics, Blocking, and Record Linkage across dirty enterprise databases. I look forward to seeing you there.",
+            "dock": "main",
+            "start": 791.688,
+            "end": 806.664
+          }
+        ]
+      }
+    ]
+  },
+  "ch5_p2_duo": {
+    "duration": 689.448,
+    "slides": [
+      {
+        "id": "s1",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Welcome to Chapter 5, Lesson 2: Missing Data Engineering. In industrial data science, the single most dangerous line of code in Python is pandas dot dropna. It silently deletes rows, mutilates sample power, and injects severe selection bias.",
+            "dock": "main",
+            "start": 0.0,
+            "end": 17.28
+          },
+          {
+            "speaker": "Kaito",
+            "text": "Wait, Dr. Nova! In every Kaggle competition or beginner tutorial, people run dropna or fillna with the column mean on day one! If a feature only has five percent missing values, what is the harm in imputing the mean?",
+            "dock": "main",
+            "start": 17.28,
+            "end": 31.992
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Mean imputation creates artificial spikes at the center of the distribution! It deflates true sample variance, squashes standard errors, and shrinks correlation coefficients toward zero! By the end of this lesson, Kaito, you will see how mean imputation can cut statistical test power in half and cause production classifiers to fail catastrophically.",
+            "dock": "main",
+            "start": 31.992,
+            "end": 53.904
+          },
+          {
+            "speaker": "Kaito",
+            "text": "Then let's break down Donald Rubin's classic taxonomy—MCAR, MAR, and MNAR—and see when dropping rows is safe and when we must deploy MICE!",
+            "dock": "main",
+            "start": 53.904,
+            "end": 62.352
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Look closely at the joint likelihood equation, Kaito. The binary matrix M contains a 1 wherever an attribute is missing. To compute likelihood, we must integrate out all possible values of the missing data Y mis.",
+            "dock": "main",
+            "start": 62.352,
+            "end": 76.872
+          },
+          {
+            "speaker": "Kaito",
+            "text": "So if the probability of a missing value occurring in M depends on what the missing value actually was, we can't factor M out of the integral! That means we are stuck modeling how human behavior or sensor physics caused the deletion!",
+            "dock": "main",
+            "start": 76.872,
+            "end": 90.672
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly right! When M depends on unobserved values, the missingness mechanism is non-ignorable. But when M only depends on values we already recorded, or is completely random, M factors out cleanly, making life much simpler for data architects.",
+            "dock": "main",
+            "start": 90.672,
+            "end": 107.784
+          }
+        ]
+      },
+      {
+        "id": "s3",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, the name Missing at Random always confuses software engineers! It sounds like it means completely random, but you're saying MAR is actually systematically correlated with observed columns?",
+            "dock": "main",
+            "start": 107.784,
+            "end": 120.336
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "You've hit on the most infamous misnomer in statistics! Rubin's choice of 'Missing at Random' means missingness is random conditional on observed covariates. For example, if male patients are less likely to report depression symptoms than female patients, but within the male group missingness is random, that is MAR!",
+            "dock": "main",
+            "start": 120.336,
+            "end": 140.28
+          },
+          {
+            "speaker": "Kaito",
+            "text": "And if we drop missing rows under MAR, we drop disproportionately more men, warping our sample demographics! But if we impute using observed features, we recover the true conditional mean!",
+            "dock": "main",
+            "start": 140.28,
+            "end": 152.256
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Precisely! That is why recognizing MAR is the mathematical foundation of modern imputation.",
+            "dock": "main",
+            "start": 152.256,
+            "end": 159.504
+          }
+        ]
+      },
+      {
+        "id": "s4",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Look at the decision tree in the flowchart, Dr. Nova! In an automated ETL pipeline, how do we programmatically choose between MICE and Heckman selection without a human statistician reviewing every table?",
+            "dock": "main",
+            "start": 159.504,
+            "end": 172.08
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "We automate the statistical diagnostic! We run Little's MCAR test across all pattern strata. We also train auxiliary logistic regressors predicting M sub j from all observed covariates. If the pseudo-R-squared is high, we know observed features explain the missingness—confirming MAR!",
+            "dock": "main",
+            "start": 172.08,
+            "end": 192.048
+          },
+          {
+            "speaker": "Kaito",
+            "text": "And if the logistic model has zero predictive power yet domain experts know dropout is non-random, that flags potential MNAR!",
+            "dock": "main",
+            "start": 192.048,
+            "end": 200.04
+          }
+        ]
+      },
+      {
+        "id": "s5",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Wait, Dr. Nova! In the equation, because every imputed point equals x bar, its distance to the mean is zero! So thirty percent of our dataset is literally contributing zero variance!",
+            "dock": "main",
+            "start": 200.04,
+            "end": 213.384
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Precisely! And what happens to hypothesis tests? Standard error is sigma divided by square root of N. When sigma drops by thirty percent, confidence intervals shrink artificially, making noisy random fluctuations look statistically significant!",
+            "dock": "main",
+            "start": 213.384,
+            "end": 230.976
+          },
+          {
+            "speaker": "Kaito",
+            "text": "And in machine learning, decision trees and gradient boosters place unnatural splits directly on that artificial mean peak! Mean imputation is actively toxic to feature geometry!",
+            "dock": "main",
+            "start": 230.976,
+            "end": 242.352
+          }
+        ]
+      },
+      {
+        "id": "s6",
+        "turns": [
+          {
+            "speaker": "Dr. Nova",
+            "text": "Kaito, explore the simulator below! Switch the remediation strategy from Stochastic MICE to Univariate Mean Imputation and look at the canvas.",
+            "dock": "main",
+            "start": 242.352,
+            "end": 252.24
+          },
+          {
+            "speaker": "Kaito",
+            "text": "Look at the orange dots, Dr. Nova! They form a flat horizontal strip across the center! Our correlation dropped from 0.85 down to 0.65, and variance retention collapsed to sixty-eight percent!",
+            "dock": "sim",
+            "start": 252.24,
+            "end": 266.76
+          }
+        ]
+      },
+      {
+        "id": "s7",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Active Checkpoint 1! Feature X has variance 100 with thirty percent missing cells. If we mean-impute, does variance stay at 100, drop to 70, or jump to 130? Think carefully about the mathematical proof from Slide 5 and select your choice below!",
+            "dock": "quiz",
+            "start": 266.76,
+            "end": 285.12
+          }
+        ]
+      },
+      {
+        "id": "s8",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, Little's test formula looks like a sum of Mahalanobis distances! We are literally measuring how far each pattern's sub-vector deviates from the global Expectation-Maximization mean!",
+            "dock": "main",
+            "start": 285.12,
+            "end": 297.264
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly! If the missingness were truly completely random, every subset of rows with the same missing pattern would have approximately the same mean as the entire population. When those pattern means diverge significantly, Little's test flags that missingness is driven by underlying variables.",
+            "dock": "main",
+            "start": 297.264,
+            "end": 315.672
+          }
+        ]
+      },
+      {
+        "id": "s9",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, why do we need to loop through separate chained models? Why can't we just fit a single big deep learning autoencoder or multivariate Gaussian copula across all columns at once?",
+            "dock": "main",
+            "start": 315.672,
+            "end": 327.192
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "In real-world data, columns are fundamentally heterogeneous. Column A might be a patient's age which is positive and continuous; Column B might be a binary smoking flag; Column C might be an ordinal disease stage; and Column D might be an overdispersed emergency room visit count. A multivariate Gaussian assumes all variables are continuous and normal.",
+            "dock": "main",
+            "start": 327.192,
+            "end": 349.488
+          },
+          {
+            "speaker": "Kaito",
+            "text": "And MICE lets us pick the exact correct model family for each specific column! Logistic regression for binary, Poisson or negative binomial for counts, and predictive mean matching for skewed metrics!",
+            "dock": "main",
+            "start": 349.488,
+            "end": 362.088
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Spot on, Kaito. By allowing each column to have its own tailored conditional model while conditioning on the latest imputations of all other columns, MICE handles real-world tabular data with exceptional statistical fidelity.",
+            "dock": "main",
+            "start": 362.088,
+            "end": 376.368
+          }
+        ]
+      },
+      {
+        "id": "s10",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, this donor borrowing concept is brilliant! In linear regression imputation, if the target variable is 'number of ICU hospitalizations', the model might impute 1.73 or negative 0.4. But with PMM, it only borrows actual integers that real patients experienced!",
+            "dock": "main",
+            "start": 376.368,
+            "end": 395.568
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly. Furthermore, PMM preserves discrete spikes and bounds. If a variable is bounded strictly between 0 and 100, or has a bimodal distribution with peaks at 10 and 90, PMM will never impute an impossible value of 115 or an unobserved value in the valley at 50.",
+            "dock": "main",
+            "start": 395.568,
+            "end": 415.584
+          },
+          {
+            "speaker": "Kaito",
+            "text": "How do we choose the donor pool size k? If k is 1, doesn't it cause donor duplication where the exact same record is borrowed repeatedly?",
+            "dock": "main",
+            "start": 415.584,
+            "end": 425.016
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Yes, k=1 exhibits donor starvation and artificially deflates between-imputation variance. Setting k=5 or k=10 introduces sufficient stochastic diversity across multiple imputation passes while keeping the donor candidates tightly matched in predictive space.",
+            "dock": "main",
+            "start": 425.016,
+            "end": 443.328
+          }
+        ]
+      },
+      {
+        "id": "s11",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, that 3.0x jump in mortality is staggering. Just by running df.dropna(), researchers accidentally filtered out all the patients who were healthy enough not to need an arterial blood gas needle!",
+            "dock": "main",
+            "start": 443.328,
+            "end": 456.432
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly. This is why EHR data is classic Missing At Random or Missing Not At Random. A patient's vital signs and nurse chart notes explain why the lab was not ordered. Imputing those values using MICE with clinical covariates preserves the full 24,000-patient cohort.",
+            "dock": "main",
+            "start": 456.432,
+            "end": 475.248
+          },
+          {
+            "speaker": "Kaito",
+            "text": "So if an AI model was trained on the complete cases only, it would have learned an artificially severe prior probability of death for anyone admitted to the ICU!",
+            "dock": "main",
+            "start": 475.248,
+            "end": 484.44
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Precisely. It would trigger false alarms and over-prescribe aggressive vasopressors to mildly ill patients. Proper imputation isn't just a statistical luxury; in production healthcare systems, it is life or death.",
+            "dock": "main",
+            "start": 484.44,
+            "end": 499.008
+          }
+        ]
+      },
+      {
+        "id": "s12",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, look at the finite-sample penalty in Rubin's total variance equation: one plus one over M times B! If M is small, like M equals 2, that penalty is 1.5 times B. But as M grows to 20, one over M becomes 0.05, so the penalty drops to just 1.05 times B!",
+            "dock": "main",
+            "start": 499.008,
+            "end": 518.952
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly, Kaito. That penalty accounts for the fact that M imputations are only a finite sample from the infinite predictive distribution of missing values. Furthermore, the Fraction of Missing Information gamma reveals how much parameter uncertainty stems directly from unobserved records versus sample size.",
+            "dock": "main",
+            "start": 518.952,
+            "end": 538.872
+          }
+        ]
+      },
+      {
+        "id": "s13",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Let's work through this step by step! With M equals 5, the finite-sample multiplier is 1 plus 1 over 5, which is 1.20. So we multiply between-imputation variance B of 1.50 by 1.20, giving 1.80. Then add within-imputation variance of 4.00, which gives Total Variance T of 5.800!",
+            "dock": "main",
+            "start": 538.872,
+            "end": 562.728
+          }
+        ]
+      },
+      {
+        "id": "s14",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, Heckman's Inverse Mills Ratio is pure mathematical magic! In labor economics, we only observe wages for people who choose to work. People with high reservation wages stay home, so observed wages are upwardly biased. The Mills Ratio acts as an omitted variable proxy that soaks up that unobserved motivation!",
+            "dock": "main",
+            "start": 562.728,
+            "end": 583.776
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Exactly, Kaito. By including lambda as an explicit regressor, the remaining error term becomes orthogonal to the explanatory variables, restoring unbiased Ordinary Least Squares coefficients. And when we lack an instrument for Heckman's model, the delta-shift sensitivity analysis lets us perform stress-testing across adversarial assumptions.",
+            "dock": "main",
+            "start": 583.776,
+            "end": 606.384
+          }
+        ]
+      },
+      {
+        "id": "s15",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, look at line 25: add_indicator=True in Scikit-Learn's IterativeImputer! That automatically appends binary boolean columns indicating which specific cells were originally missing before imputation!",
+            "dock": "main",
+            "start": 606.384,
+            "end": 620.544
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Yes! That gives our downstream machine learning models the best of both worlds: they receive continuous, uncorrupted, imputed feature vectors without missing NaNs, while retaining explicit feature flags for whether the test was ordered, capturing clinical intent.",
+            "dock": "main",
+            "start": 620.544,
+            "end": 637.152
+          }
+        ]
+      },
+      {
+        "id": "s16",
+        "turns": [
+          {
+            "speaker": "Kaito",
+            "text": "Dr. Nova, this chapter completely transformed how I see data engineering. Before this, I thought missing data was just an annoying inconvenience that you fix with df.dropna() or SimpleImputer. Now I see that missingness patterns contain profound signals about clinical workflows, economic behavior, and survey psychology!",
+            "dock": "main",
+            "start": 637.152,
+            "end": 657.12
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "That is the mark of a true data architect, Kaito. Once you appreciate the mathematical boundaries between MCAR, MAR, and MNAR, and treat imputation as posterior predictive sampling with Rubin's variance pooling, your models become resilient, trustworthy, and mathematically sound.",
+            "dock": "main",
+            "start": 657.12,
+            "end": 675.84
+          },
+          {
+            "speaker": "Kaito",
+            "text": "I'm ready for Lesson 5.3! Duplicate detection and record linkage across messy enterprise data warehouses!",
+            "dock": "main",
+            "start": 675.84,
+            "end": 684.144
+          },
+          {
+            "speaker": "Dr. Nova",
+            "text": "Excellent work, Kaito. See you in Lesson 5.3!",
+            "dock": "main",
+            "start": 684.144,
+            "end": 689.448
+          }
+        ]
+      }
+    ]
+  },
+  "ch7_p1_solo": {
+    "duration": 639.42,
+    "sentences": [
+      {
+        "slideIndex": 0,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Lesson 7.1 of Dataset Fundamentals: Introduction to Dataset Bias and Algorithmic Fairness. Observational data is not an objective mirror of physical reality; it is an artifact produced by institutional measurement processes, sampling methodologies, historical resource allocations, and socio-economic inequities.",
+        "start": 0.0,
+        "end": 21.624
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "When machine learning models train on uncorrected observational data, they do not merely reflect historical disparities—they systematically codify, accelerate, and institutionalize them through self-reinforcing feedback loops. Today, we establish the mathematical foundations of socio-technical dynamical systems, dissect legal frameworks from disparate treatment to disparate impact, and algebraically prove Kleinberg's Impossibility Theorem.",
+        "start": 21.924,
+        "end": 48.948
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Let us trace the closed-loop architecture of automated decision-making. Historical disparities shape the initial training dataset D sub zero. An empirical risk minimizer learns an estimator f of x, which allocates resources such as loan approvals, bail recommendations, or police patrols.",
+        "start": 49.448,
+        "end": 68.744
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "These allocative decisions directly alter the observation process. If police are dispatched primarily to District A, they discover infractions primarily in District A, creating a skewed observation vector that feeds right back into tomorrow's training set. The model ends up predicting its own past decisions rather than latent reality.",
+        "start": 69.044,
+        "end": 89.66
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Let us formalize this dynamical system mathematically. Consider two districts, A and B, with identical true latent crime rates lambda. Suppose historical dispatch records contain an initial measurement distortion delta in District A, such that lambda hat A of zero equals one plus delta times lambda.",
+        "start": 90.16,
+        "end": 109.696
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Patrol resources are allocated via a softmax power-law response with feedback exponent gamma. Let alpha denote the baseline citizen reporting rate independent of patrols. The detected crime rate at round t scales as lambda times alpha plus one minus alpha times pi A of t. Substituting this back yields a one-dimensional discrete dynamical map, x sub t plus one equals T of x sub t.",
+        "start": 109.996,
+        "end": 135.052
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "To determine whether the system recovers to fair parity or diverges into a runaway policing trap, we evaluate the derivative of the dynamical map T of x at the symmetric fixed point x star equals one-half.",
+        "start": 135.552,
+        "end": 148.008
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Applying the quotient rule, the derivative at one half evaluates to gamma times one minus alpha divided by one plus alpha. If this derivative is strictly less than one, the parity fixed point is locally asymptotically stable, and any initial bias decays exponentially. But if it exceeds one, the parity fixed point undergoes a supercritical pitchfork bifurcation and destabilizes!",
+        "start": 148.308,
+        "end": 172.692
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Under US civil rights law, including Title VII, the Equal Credit Opportunity Act, and Article 10 of the European Union AI Act, algorithmic discrimination is partitioned into two distinct legal doctrines: Disparate Treatment and Disparate Impact.",
+        "start": 173.192,
+        "end": 189.392
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Disparate treatment is intentional differential treatment conditioned directly on protected attributes like race or gender. Disparate impact, by contrast, arises when a facially neutral policy or feature set produces disproportionately adverse outcomes for a protected class, such as through ZIP codes acting as high-capacity geographic proxies.",
+        "start": 189.692,
+        "end": 210.572
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Interactive Lab 1: The Runaway Feedback Loop Simulator. In the live canvas below, you can manipulate initial measurement distortion delta, feedback concentration exponent gamma, and citizen reporting baseline alpha.",
+        "start": 211.072,
+        "end": 225.904
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Watch the derivative indicator T prime of one-half. When gamma is set such that T prime exceeds 1.0, observe how an initial five percent reporting bias triggers an irreversible supercritical pitchfork divergence across 35 operational rounds, driving patrol allocations to one hundred percent in District A!",
+        "start": 226.204,
+        "end": 245.98
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "It is time for Active Recall Checkpoint 1. Consider a predictive policing algorithm where citizen baseline reporting alpha is 0.333, and the feedback exponent gamma is set to 2.4. District A starts with a 2% initial reporting overcount.",
+        "start": 246.48,
+        "end": 263.784
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Calculate the derivative T prime of one-half and determine whether the system stabilizes at parity or undergoes runaway divergence. Select Option A, B, or C above me to verify your mastery.",
+        "start": 264.084,
+        "end": 276.78
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Let us turn to formal fairness metrics. The most famous benchmark in legal compliance is the Disparate Impact Ratio, codified in the Equal Employment Opportunity Commission's Four-Fifths Rule.",
+        "start": 277.28,
+        "end": 289.28
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "The Disparate Impact Ratio is the selection rate of the unprivileged group divided by the selection rate of the privileged group. If this ratio falls below 0.80, courts establish a prima facie evidentiary presumption of illegal discrimination. Closely related is Demographic Parity Difference, which requires the absolute selection rate gap to be zero.",
+        "start": 289.58,
+        "end": 312.476
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "To respect qualifications while safeguarding fairness, Hardt, Price, and Srebro introduced Equal Opportunity in 2016. Equal Opportunity requires that qualified individuals, meaning those where true label Y equals 1, have equal probability of being selected regardless of demographic group.",
+        "start": 312.976,
+        "end": 332.488
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Mathematically, this means True Positive Rates must match across groups: TPR sub zero equals TPR sub one. Equalized Odds takes this one step further by demanding parity in both True Positive Rates and False Positive Rates simultaneously. In probabilistic notation, the prediction Y hat is conditionally independent of protected attribute A given true outcome Y.",
+        "start": 332.788,
+        "end": 356.932
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Our third foundational fairness paradigm is Group Calibration, also known as Predictive Parity. A risk-scoring tool or classifier is well-calibrated if a predicted probability corresponds to the exact same empirical probability of success regardless of demographic group.",
+        "start": 357.432,
+        "end": 374.112
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "For a binary decision, this requires Positive Predictive Value, or PPV, to be equal across cohorts: PPV sub zero equals PPV sub one. If a lender assigns a risk score of seven, that score must mean a sixty percent default rate whether the borrower is Black, White, male, or female. This was the exact mathematical defense mounted by Northpointe in the famous COMPAS audit.",
+        "start": 374.412,
+        "end": 400.02
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Here is the formal proof of Kleinberg and Chouldechova's Impossibility Theorem. Let p sub g denote the base prevalence rate of group g. By Bayes' theorem, the probability of positive prediction relates to true positive rate and positive predictive value as TPR times p sub g divided by PPV.",
+        "start": 400.52,
+        "end": 419.408
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Solving directly for False Positive Rate yields FPR sub g equals p sub g over 1 minus p sub g, times 1 minus PPV over PPV, times TPR. If we enforce equal calibration and equal opportunity across groups, the PPV and TPR terms cancel out completely, leaving the ratio of False Positive Rates equal to the ratio of base rate odds! Therefore, if base rates differ, equal false positive rates cannot hold.",
+        "start": 419.708,
+        "end": 448.82
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Interactive Lab 2: The Fairness Trilemma and COMPAS Calibration Workbench. In this environment, Group 0 has an underlying base rate of 32%, while Group 1 has an underlying base rate of 55%.",
+        "start": 449.32,
+        "end": 464.224
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Click the preset buttons to witness the trilemma firsthand. When you click 'Equalize PPV', the calibration gap drops to zero, but the False Positive Rate disparity leaps to 18 points. When you click 'Equalize FPR', the error gap vanishes, but the Disparate Impact Ratio plunges into severe violation!",
+        "start": 464.524,
+        "end": 484.708
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Time for Active Recall Checkpoint 2. Group 0 has base rate p sub zero equals 0.20, and Group 1 has base rate p sub one equals 0.50. An algorithm achieves equal positive predictive value and equal true positive rates.",
+        "start": 485.208,
+        "end": 502.872
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Calculate the theoretical ratio of False Positive Rates, FPR sub zero over FPR sub one. Select Option A, B, or C above me to confirm your computation.",
+        "start": 503.172,
+        "end": 515.244
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Beyond mathematical trade-offs, algorithmic fairness failures fall into two fundamental epistemological classes: Allocative Harms and Representational Harms, as categorized by Barocas, Crawford, and Selbst.",
+        "start": 515.744,
+        "end": 529.52
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Allocative harms occur when an algorithm withholds or differentially distributes immediate, measurable economic goods, liberties, or opportunities, such as mortgage underwriting, bail recommendations, or medical triage. Representational harms occur when systems degrade social dignity, perpetuate cultural stereotypes, or erase demographic visibility, such as facial recognition failures and gendered foundation model embeddings.",
+        "start": 529.82,
+        "end": 556.244
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Let us examine two landmark empirical case studies that permanently reshaped modern machine learning governance: the COMPAS judicial risk assessment audit and Amazon's automated resume screening tool.",
+        "start": 556.744,
+        "end": 568.744
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "In 2018, Amazon formally scrapped its experimental AI hiring tool after discovering that training on historical engineering resumes caused the model to actively penalize resumes containing the word 'women's' or graduates of all-women colleges. Even when explicit gender markers were dropped, high-dimensional latent vectors reconstructed the proxy, proving the failure of fairness through unawareness.",
+        "start": 569.044,
+        "end": 593.332
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "We conclude Lesson 7.1 with our production implementation verified under Pydantic V2. Our test suite rigorously audits feedback dynamical stability, algebraically proves Kleinberg's odds ratio invariant, and validates hiring selection compliance against the EEOC 80% rule.",
+        "start": 593.832,
+        "end": 612.528
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Remember the four cardinal rules of algorithmic fairness in dataset engineering: First, never trust fairness through blindness. Second, audit the dynamical derivative T prime of one-half before deploying allocative systems. Third, acknowledge the fairness trilemma and align with legal counsel on calibration versus error parity. And fourth, audit both allocative and representational harms continuously in production.",
+        "start": 612.828,
+        "end": 639.42
+      }
+    ]
+  },
+  "ch7_p1_duo": {
+    "duration": 683.5679999999998,
+    "sentences": [
+      {
+        "slideIndex": 0,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Welcome back Kaito! Today we confront the deepest question in machine learning system design: is data ever truly an objective mirror of reality?",
+        "start": 0.0,
+        "end": 9.48
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "Well, if our sensors and logging pipelines record events accurately without bugs, doesn't the data represent ground truth? How can raw numbers be biased?",
+        "start": 9.78,
+        "end": 19.86
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "Because numbers record human institutions, policing dispatches, lending histories, and societal inequalities! Worse, when a model acts on that data, it changes what is observed tomorrow. That creates a self-reinforcing socio-technical feedback loop.",
+        "start": 20.16,
+        "end": 37.368
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "So the algorithm doesn't just predict the world—it actively shapes future training data! Let's examine the mathematical formulation of that loop right now.",
+        "start": 37.668,
+        "end": 47.676
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Wait, Dr. Nova, you're saying that if we dispatch more police to District A, we will inevitably record more arrests there, even if District B has the exact same rate of underlying violations?",
+        "start": 48.176,
+        "end": 59.168
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. You cannot arrest someone you do not observe. If an officer spends eight hours in District A and zero hours in District B, observed crime in District B is zero by construction, while District A shows high crime.",
+        "start": 59.468,
+        "end": 74.252
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And when we retrain our predictive model next week, it sees District A as high-risk and recommends sending even more officers there!",
+        "start": 74.552,
+        "end": 82.136
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Precisely. That is the runaway feedback loop. Unless an algorithm actively accounts for discovery probability, it manufactures synthetic evidence of crime from pure sampling bias.",
+        "start": 82.436,
+        "end": 95.42
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "What do the parameters gamma and alpha physically represent in a real municipal police department, Dr. Nova?",
+        "start": 95.92,
+        "end": 102.76
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Alpha is citizen-initiated reporting—when residents call 911 independent of seeing a patrol car. If alpha is high, enforcement has ground truth from citizens. Gamma is the algorithm's greediness: gamma equals 1 is proportional dispatch, while gamma greater than 1 aggressively concentrates forces where crime was reported.",
+        "start": 103.06,
+        "end": 124.564
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "So if an algorithm has high gamma and low alpha, it creates its own reality! Let's see how the derivative at one-half reveals whether the system is stable or explodes.",
+        "start": 124.864,
+        "end": 135.688
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Hold on, Dr. Nova! You're telling me that if T prime of one-half is 1.01, the police will eventually send 100% of patrols to District A, even if the real difference in crime was only 1%?!",
+        "start": 136.188,
+        "end": 149.628
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "That is the exact definition of an unstable fixed point. The parity point at 50% repels the trajectory toward the absorbing boundaries. District A gets 100% of enforcement, and District B gets 0%.",
+        "start": 149.928,
+        "end": 165.24
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And the police chief looks at the records and says: 'Look, District A has all the crime!' But the algorithm literally engineered the crime wave!",
+        "start": 165.54,
+        "end": 174.828
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Precisely. The algorithm manufactured reality. Next, let us examine the legal and regulatory frameworks designed to police these very failures.",
+        "start": 175.128,
+        "end": 186.408
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Why can't we just delete the race and gender columns from our training set, Dr. Nova? If the model can't see the demographic label, how could it possibly discriminate?",
+        "start": 186.908,
+        "end": 197.276
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Because high-dimensional data is saturated with redundant proxies! A five-digit ZIP code in the United States correlates strongly with race due to decades of historical residential redlining. Browser user agents, browsing history, and purchase telemetry can predict protected attributes with over ninety percent accuracy.",
+        "start": 197.576,
+        "end": 217.76
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "So dropping the column gives managers a false sense of compliance while the model reconstructs the protected attribute internally!",
+        "start": 218.06,
+        "end": 225.452
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. That is the Blindness Fallacy. Legal compliance requires auditing disparate impact on outcomes, not pretending the model is blind.",
+        "start": 225.752,
+        "end": 236.6
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Look at the simulator controls, Dr. Nova! I have delta set to five percent, gamma at 1.80, and alpha at 0.20. The derivative needle shows T prime of one-half is 1.20!",
+        "start": 237.1,
+        "end": 251.644
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "And observe the trajectory on the canvas: round by round, District A patrol share climbs until it hits ninety-nine percent, while District B drops to zero! Now drag the citizen baseline slider alpha up to 0.40.",
+        "start": 251.944,
+        "end": 266.632
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "Whoa! T prime dropped to 0.77, and the two patrol lines immediately pull back together toward fifty-fifty parity! High citizen reporting self-corrects the initial reporting distortion!",
+        "start": 266.932,
+        "end": 280.228
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "That is dynamical bifurcation theory in action. Try different combinations of parameters to explore the critical boundary.",
+        "start": 280.528,
+        "end": 288.712
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Alpha is 0.333, gamma is 2.4, and District A has a 2% initial bias! Review the three options above me, and let's calculate the derivative together!",
+        "start": 289.212,
+        "end": 301.14
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Statistical parity seems so clean: just make sure both demographic groups get approved at the exact same rate! Why doesn't everyone just enforce demographic parity?",
+        "start": 301.64,
+        "end": 312.224
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Because statistical parity ignores qualified base rates! If one cohort has historically had ten years more experience in software engineering due to educational barriers, forcing equal acceptance rates either requires rejecting highly qualified individuals or hiring unqualified ones, which degrades accuracy and utility.",
+        "start": 312.524,
+        "end": 333.212
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "So statistical parity guarantees outcome balance, but it doesn't guarantee fairness conditioned on true qualification!",
+        "start": 333.512,
+        "end": 340.736
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Precisely. That insight led researchers to formulate error rate parity: Equal Opportunity and Equalized Odds.",
+        "start": 341.036,
+        "end": 349.58
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Wait, did you just say group-specific thresholds? Using a threshold of 0.45 for one group and 0.55 for another group? Wouldn't that be disparate treatment under the law?",
+        "start": 350.08,
+        "end": 363.088
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "And there is the central tension of algorithmic justice! To achieve equality of opportunity on outcomes when score distributions differ, an engineer must tune group thresholds post-processing. But doing so treats candidates differently based on their protected attribute, colliding directly with disparate treatment laws.",
+        "start": 363.388,
+        "end": 382.732
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "So if you keep thresholds identical, you get disparate impact; if you adjust thresholds to fix disparate impact, you risk disparate treatment!",
+        "start": 383.032,
+        "end": 391.6
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "That is the legal tightrope. Now let us examine the third mathematical definition: Predictive Parity and Group Calibration.",
+        "start": 391.9,
+        "end": 400.468
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "So we have three distinct fairness definitions: Demographic Parity, Equalized Odds, and Group Calibration. Can we just write an optimization function that enforces all three?",
+        "start": 400.968,
+        "end": 412.248
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "And that brings us to the most celebrated theoretical theorem in algorithmic fairness. It is mathematically impossible to satisfy them simultaneously whenever base prevalence rates differ between demographic groups!",
+        "start": 412.548,
+        "end": 425.868
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "Mathematically impossible? Not just hard to optimize, but algebraically impossible?!",
+        "start": 426.168,
+        "end": 433.056
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Impossible. Let us write out the exact algebraic proof right now.",
+        "start": 433.356,
+        "end": 438.756
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Look at that equation: FPR zero over FPR one equals Odds of p zero over Odds of p one! Everything else canceled out!",
+        "start": 439.256,
+        "end": 448.04
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Everything canceled out, Kaito. That single equation explains the entire 2016 COMPAS recidivism scandal between ProPublica and Northpointe.",
+        "start": 448.34,
+        "end": 459.14
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "ProPublica proved that Black defendants had double the False Positive Rate of White defendants. Northpointe responded that their tool was fair because risk scores were equally calibrated across racial groups!",
+        "start": 459.44,
+        "end": 471.536
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "And both parties were mathematically correct! Because Broward County had unequal historical arrest rates between cohorts, maintaining Northpointe's calibration mathematically mandated ProPublica's false positive disparity! Now, let us inspect this tradeoff live in Workbench 2.",
+        "start": 471.836,
+        "end": 489.716
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "I just clicked 'Equalize PPV (Northpointe)'. Both groups have calibrated PPVs around 68%, but look at the FPR Disparity card: it's glowing red with a huge gap!",
+        "start": 490.216,
+        "end": 502.144
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Now click 'Equalize FPR (ProPublica)'.",
+        "start": 502.444,
+        "end": 506.116
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "Now the FPR gap is 0.00, but the Disparate Impact Ratio drops to 0.65, violating the 80% rule, and the calibration gap opens up! You literally cannot push one metric down without the other ballooning!",
+        "start": 506.416,
+        "end": 521.152
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "That is the mathematical reality every data team must communicate to policy stakeholders. Fairness is not a free lunch; it is a constrained trade-off.",
+        "start": 521.452,
+        "end": 531.58
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Base rates of 20% and 50%! Review our three options above me, calculate the ratio of the odds, and let's select the correct answer!",
+        "start": 532.08,
+        "end": 541.704
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Most engineering teams focus strictly on allocative harms because they fear lawsuits under lending or employment laws. Are representational harms harder to detect?",
+        "start": 542.204,
+        "end": 552.932
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Far harder, Kaito! When a search engine or foundation model associates doctors with male pronouns and nurses with female pronouns, there is no single victim filing an adverse action notice. But over millions of interactions, it cements societal stereotypes into the collective subconscious.",
+        "start": 553.232,
+        "end": 572.12
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And when Joy Buolamwini tested commercial facial recognition systems in Gender Shades, she proved error rates were thirty times higher for darker-skinned females than lighter-skinned males!",
+        "start": 572.42,
+        "end": 582.5
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. A failure of representation directly translates into allocative failures when those models are deployed by law enforcement or border security.",
+        "start": 582.8,
+        "end": 593.168
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "The Amazon resume screening case is so terrifying because the engineers didn't tell the model to discriminate against women! The model just did exactly what it was trained to do: maximize similarity to historical hires.",
+        "start": 593.668,
+        "end": 607.324
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. When you define 'quality' as 'similarity to the people who succeeded here over the last ten years', you are not predicting merit; you are predicting demographic continuity.",
+        "start": 607.624,
+        "end": 619.12
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "Which means automated systems will naturally homogenize an organization unless active debiasing constraints are enforced!",
+        "start": 619.42,
+        "end": 626.932
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Let us codify these insights into our production Pydantic V2 verification suite.",
+        "start": 627.232,
+        "end": 634.528
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "What an eye-opening journey through algorithmic bias and fairness, Dr. Nova! We went from socio-technical feedback loops and pitchfork bifurcations to Title VII legal protections, the EEOC 80% rule, and the mathematical proof of Kleinberg's Trilemma.",
+        "start": 635.028,
+        "end": 650.916
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "And most importantly, Kaito, you now understand that dataset fairness is not a superficial checkmark. It is an end-to-end mathematical, legal, and architectural discipline.",
+        "start": 651.216,
+        "end": 662.832
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "In Lesson 7.2, we dive deeper into specific types of dataset bias, including historical, representation, measurement, and aggregation bias! Thank you, Dr. Nova!",
+        "start": 663.132,
+        "end": 675.3
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "See you in Lesson 7.2! Keep your feedback loops sub-critical and your data architectures rigorously auditable.",
+        "start": 675.6,
+        "end": 683.568
+      }
+    ]
+  },
+  "ch2_p7_solo": {
+    "duration": 987.336,
+    "sentences": [
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Lesson 2.7 of Dataset Fundamentals: Additional Sampling Strategies: Systematic Draws, Periodicity, and Network Referral. In the previous lesson, we established the mathematical foundations of classical probability sampling, including simple random, stratified, and cluster designs. However, real-world data engineering frequently confronts two brutal practical bottlenecks. First, drawing independent random integers across multi-terabyte database tables or unbounded network streams incurs punishing disk seek overhead and memory exhaustion. Second, when studying hidden, stigmatized, or highly specialized populations, such as gig economy couriers, rare disease patients, or zero-day security researchers, no exhaustive sampling frame exists. In this masterclass, we explore high-throughput Systematic Sampling on ordered streams, prove the inductive correctness of Vitter's streaming Reservoir Algorithm R, analyze catastrophic Spectral Periodicity resonance traps, and examine how Respondent-Driven Sampling uses Markov chain degree weighting to extract unbiased population parameters from peer-referral snowball networks.",
+        "start": 0.0,
+        "end": 76.466,
+        "words": [
+          {
+            "w": "Welcome",
+            "t": 0.0
+          },
+          {
+            "w": "to",
+            "t": 0.55
+          },
+          {
+            "w": "Lesson",
+            "t": 1.1
+          },
+          {
+            "w": "2.7",
+            "t": 1.65
+          },
+          {
+            "w": "of",
+            "t": 2.2
+          },
+          {
+            "w": "Dataset",
+            "t": 2.751
+          },
+          {
+            "w": "Fundamentals:",
+            "t": 3.301
+          },
+          {
+            "w": "Additional",
+            "t": 3.851
+          },
+          {
+            "w": "Sampling",
+            "t": 4.401
+          },
+          {
+            "w": "Strategies:",
+            "t": 4.951
+          },
+          {
+            "w": "Systematic",
+            "t": 5.501
+          },
+          {
+            "w": "Draws,",
+            "t": 6.051
+          },
+          {
+            "w": "Periodicity,",
+            "t": 6.601
+          },
+          {
+            "w": "and",
+            "t": 7.151
+          },
+          {
+            "w": "Network",
+            "t": 7.702
+          },
+          {
+            "w": "Referral.",
+            "t": 8.252
+          },
+          {
+            "w": "In",
+            "t": 8.802
+          },
+          {
+            "w": "the",
+            "t": 9.352
+          },
+          {
+            "w": "previous",
+            "t": 9.902
+          },
+          {
+            "w": "lesson,",
+            "t": 10.452
+          },
+          {
+            "w": "we",
+            "t": 11.002
+          },
+          {
+            "w": "established",
+            "t": 11.552
+          },
+          {
+            "w": "the",
+            "t": 12.103
+          },
+          {
+            "w": "mathematical",
+            "t": 12.653
+          },
+          {
+            "w": "foundations",
+            "t": 13.203
+          },
+          {
+            "w": "of",
+            "t": 13.753
+          },
+          {
+            "w": "classical",
+            "t": 14.303
+          },
+          {
+            "w": "probability",
+            "t": 14.853
+          },
+          {
+            "w": "sampling,",
+            "t": 15.403
+          },
+          {
+            "w": "including",
+            "t": 15.953
+          },
+          {
+            "w": "simple",
+            "t": 16.503
+          },
+          {
+            "w": "random,",
+            "t": 17.054
+          },
+          {
+            "w": "stratified,",
+            "t": 17.604
+          },
+          {
+            "w": "and",
+            "t": 18.154
+          },
+          {
+            "w": "cluster",
+            "t": 18.704
+          },
+          {
+            "w": "designs.",
+            "t": 19.254
+          },
+          {
+            "w": "However,",
+            "t": 19.804
+          },
+          {
+            "w": "real-world",
+            "t": 20.354
+          },
+          {
+            "w": "data",
+            "t": 20.904
+          },
+          {
+            "w": "engineering",
+            "t": 21.454
+          },
+          {
+            "w": "frequently",
+            "t": 22.005
+          },
+          {
+            "w": "confronts",
+            "t": 22.555
+          },
+          {
+            "w": "two",
+            "t": 23.105
+          },
+          {
+            "w": "brutal",
+            "t": 23.655
+          },
+          {
+            "w": "practical",
+            "t": 24.205
+          },
+          {
+            "w": "bottlenecks.",
+            "t": 24.755
+          },
+          {
+            "w": "First,",
+            "t": 25.305
+          },
+          {
+            "w": "drawing",
+            "t": 25.855
+          },
+          {
+            "w": "independent",
+            "t": 26.406
+          },
+          {
+            "w": "random",
+            "t": 26.956
+          },
+          {
+            "w": "integers",
+            "t": 27.506
+          },
+          {
+            "w": "across",
+            "t": 28.056
+          },
+          {
+            "w": "multi-terabyte",
+            "t": 28.606
+          },
+          {
+            "w": "database",
+            "t": 29.156
+          },
+          {
+            "w": "tables",
+            "t": 29.706
+          },
+          {
+            "w": "or",
+            "t": 30.256
+          },
+          {
+            "w": "unbounded",
+            "t": 30.806
+          },
+          {
+            "w": "network",
+            "t": 31.357
+          },
+          {
+            "w": "streams",
+            "t": 31.907
+          },
+          {
+            "w": "incurs",
+            "t": 32.457
+          },
+          {
+            "w": "punishing",
+            "t": 33.007
+          },
+          {
+            "w": "disk",
+            "t": 33.557
+          },
+          {
+            "w": "seek",
+            "t": 34.107
+          },
+          {
+            "w": "overhead",
+            "t": 34.657
+          },
+          {
+            "w": "and",
+            "t": 35.207
+          },
+          {
+            "w": "memory",
+            "t": 35.757
+          },
+          {
+            "w": "exhaustion.",
+            "t": 36.308
+          },
+          {
+            "w": "Second,",
+            "t": 36.858
+          },
+          {
+            "w": "when",
+            "t": 37.408
+          },
+          {
+            "w": "studying",
+            "t": 37.958
+          },
+          {
+            "w": "hidden,",
+            "t": 38.508
+          },
+          {
+            "w": "stigmatized,",
+            "t": 39.058
+          },
+          {
+            "w": "or",
+            "t": 39.608
+          },
+          {
+            "w": "highly",
+            "t": 40.158
+          },
+          {
+            "w": "specialized",
+            "t": 40.709
+          },
+          {
+            "w": "populations,",
+            "t": 41.259
+          },
+          {
+            "w": "such",
+            "t": 41.809
+          },
+          {
+            "w": "as",
+            "t": 42.359
+          },
+          {
+            "w": "gig",
+            "t": 42.909
+          },
+          {
+            "w": "economy",
+            "t": 43.459
+          },
+          {
+            "w": "couriers,",
+            "t": 44.009
+          },
+          {
+            "w": "rare",
+            "t": 44.559
+          },
+          {
+            "w": "disease",
+            "t": 45.109
+          },
+          {
+            "w": "patients,",
+            "t": 45.66
+          },
+          {
+            "w": "or",
+            "t": 46.21
+          },
+          {
+            "w": "zero-day",
+            "t": 46.76
+          },
+          {
+            "w": "security",
+            "t": 47.31
+          },
+          {
+            "w": "researchers,",
+            "t": 47.86
+          },
+          {
+            "w": "no",
+            "t": 48.41
+          },
+          {
+            "w": "exhaustive",
+            "t": 48.96
+          },
+          {
+            "w": "sampling",
+            "t": 49.51
+          },
+          {
+            "w": "frame",
+            "t": 50.06
+          },
+          {
+            "w": "exists.",
+            "t": 50.611
+          },
+          {
+            "w": "In",
+            "t": 51.161
+          },
+          {
+            "w": "this",
+            "t": 51.711
+          },
+          {
+            "w": "masterclass,",
+            "t": 52.261
+          },
+          {
+            "w": "we",
+            "t": 52.811
+          },
+          {
+            "w": "explore",
+            "t": 53.361
+          },
+          {
+            "w": "high-throughput",
+            "t": 53.911
+          },
+          {
+            "w": "Systematic",
+            "t": 54.461
+          },
+          {
+            "w": "Sampling",
+            "t": 55.012
+          },
+          {
+            "w": "on",
+            "t": 55.562
+          },
+          {
+            "w": "ordered",
+            "t": 56.112
+          },
+          {
+            "w": "streams,",
+            "t": 56.662
+          },
+          {
+            "w": "prove",
+            "t": 57.212
+          },
+          {
+            "w": "the",
+            "t": 57.762
+          },
+          {
+            "w": "inductive",
+            "t": 58.312
+          },
+          {
+            "w": "correctness",
+            "t": 58.862
+          },
+          {
+            "w": "of",
+            "t": 59.412
+          },
+          {
+            "w": "Vitter's",
+            "t": 59.963
+          },
+          {
+            "w": "streaming",
+            "t": 60.513
+          },
+          {
+            "w": "Reservoir",
+            "t": 61.063
+          },
+          {
+            "w": "Algorithm",
+            "t": 61.613
+          },
+          {
+            "w": "R,",
+            "t": 62.163
+          },
+          {
+            "w": "analyze",
+            "t": 62.713
+          },
+          {
+            "w": "catastrophic",
+            "t": 63.263
+          },
+          {
+            "w": "Spectral",
+            "t": 63.813
+          },
+          {
+            "w": "Periodicity",
+            "t": 64.363
+          },
+          {
+            "w": "resonance",
+            "t": 64.914
+          },
+          {
+            "w": "traps,",
+            "t": 65.464
+          },
+          {
+            "w": "and",
+            "t": 66.014
+          },
+          {
+            "w": "examine",
+            "t": 66.564
+          },
+          {
+            "w": "how",
+            "t": 67.114
+          },
+          {
+            "w": "Respondent-Driven",
+            "t": 67.664
+          },
+          {
+            "w": "Sampling",
+            "t": 68.214
+          },
+          {
+            "w": "uses",
+            "t": 68.764
+          },
+          {
+            "w": "Markov",
+            "t": 69.315
+          },
+          {
+            "w": "chain",
+            "t": 69.865
+          },
+          {
+            "w": "degree",
+            "t": 70.415
+          },
+          {
+            "w": "weighting",
+            "t": 70.965
+          },
+          {
+            "w": "to",
+            "t": 71.515
+          },
+          {
+            "w": "extract",
+            "t": 72.065
+          },
+          {
+            "w": "unbiased",
+            "t": 72.615
+          },
+          {
+            "w": "population",
+            "t": 73.165
+          },
+          {
+            "w": "parameters",
+            "t": 73.715
+          },
+          {
+            "w": "from",
+            "t": 74.266
+          },
+          {
+            "w": "peer-referral",
+            "t": 74.816
+          },
+          {
+            "w": "snowball",
+            "t": 75.366
+          },
+          {
+            "w": "networks.",
+            "t": 75.916
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Before running data collection, machine learning engineers must evaluate three fundamental architectural criteria: Does an exhaustive sampling frame exist? Is data ingested as a static batch or an unbounded stream? And do records exhibit network homophily or spatial clustering? If an exhaustive frame exists and is stored sequentially, systematic sampling achieves constant-time index traversal, provided the index order is verified to be non-periodic. If data arrives as an unbounded streaming buffer of unknown total length, Vitter's reservoir algorithm guarantees an exact uniform probability k over N with strictly bounded O of k memory. Conversely, if no frame exists, simple random sampling is structurally impossible. Data teams must transition to non-probability strategies, utilizing Respondent-Driven Sampling to mathematically de-bias peer-referral networks, or Adaptive Spatial Sampling when observations cluster into geographically dense phenomena.",
+        "start": 76.466,
+        "end": 141.163,
+        "words": [
+          {
+            "w": "Before",
+            "t": 76.466
+          },
+          {
+            "w": "running",
+            "t": 76.964
+          },
+          {
+            "w": "data",
+            "t": 77.461
+          },
+          {
+            "w": "collection,",
+            "t": 77.959
+          },
+          {
+            "w": "machine",
+            "t": 78.457
+          },
+          {
+            "w": "learning",
+            "t": 78.954
+          },
+          {
+            "w": "engineers",
+            "t": 79.452
+          },
+          {
+            "w": "must",
+            "t": 79.95
+          },
+          {
+            "w": "evaluate",
+            "t": 80.447
+          },
+          {
+            "w": "three",
+            "t": 80.945
+          },
+          {
+            "w": "fundamental",
+            "t": 81.443
+          },
+          {
+            "w": "architectural",
+            "t": 81.94
+          },
+          {
+            "w": "criteria:",
+            "t": 82.438
+          },
+          {
+            "w": "Does",
+            "t": 82.936
+          },
+          {
+            "w": "an",
+            "t": 83.433
+          },
+          {
+            "w": "exhaustive",
+            "t": 83.931
+          },
+          {
+            "w": "sampling",
+            "t": 84.429
+          },
+          {
+            "w": "frame",
+            "t": 84.926
+          },
+          {
+            "w": "exist?",
+            "t": 85.424
+          },
+          {
+            "w": "Is",
+            "t": 85.922
+          },
+          {
+            "w": "data",
+            "t": 86.419
+          },
+          {
+            "w": "ingested",
+            "t": 86.917
+          },
+          {
+            "w": "as",
+            "t": 87.415
+          },
+          {
+            "w": "a",
+            "t": 87.912
+          },
+          {
+            "w": "static",
+            "t": 88.41
+          },
+          {
+            "w": "batch",
+            "t": 88.908
+          },
+          {
+            "w": "or",
+            "t": 89.405
+          },
+          {
+            "w": "an",
+            "t": 89.903
+          },
+          {
+            "w": "unbounded",
+            "t": 90.401
+          },
+          {
+            "w": "stream?",
+            "t": 90.898
+          },
+          {
+            "w": "And",
+            "t": 91.396
+          },
+          {
+            "w": "do",
+            "t": 91.894
+          },
+          {
+            "w": "records",
+            "t": 92.391
+          },
+          {
+            "w": "exhibit",
+            "t": 92.889
+          },
+          {
+            "w": "network",
+            "t": 93.387
+          },
+          {
+            "w": "homophily",
+            "t": 93.884
+          },
+          {
+            "w": "or",
+            "t": 94.382
+          },
+          {
+            "w": "spatial",
+            "t": 94.88
+          },
+          {
+            "w": "clustering?",
+            "t": 95.377
+          },
+          {
+            "w": "If",
+            "t": 95.875
+          },
+          {
+            "w": "an",
+            "t": 96.373
+          },
+          {
+            "w": "exhaustive",
+            "t": 96.87
+          },
+          {
+            "w": "frame",
+            "t": 97.368
+          },
+          {
+            "w": "exists",
+            "t": 97.866
+          },
+          {
+            "w": "and",
+            "t": 98.363
+          },
+          {
+            "w": "is",
+            "t": 98.861
+          },
+          {
+            "w": "stored",
+            "t": 99.359
+          },
+          {
+            "w": "sequentially,",
+            "t": 99.856
+          },
+          {
+            "w": "systematic",
+            "t": 100.354
+          },
+          {
+            "w": "sampling",
+            "t": 100.852
+          },
+          {
+            "w": "achieves",
+            "t": 101.349
+          },
+          {
+            "w": "constant-time",
+            "t": 101.847
+          },
+          {
+            "w": "index",
+            "t": 102.345
+          },
+          {
+            "w": "traversal,",
+            "t": 102.842
+          },
+          {
+            "w": "provided",
+            "t": 103.34
+          },
+          {
+            "w": "the",
+            "t": 103.838
+          },
+          {
+            "w": "index",
+            "t": 104.335
+          },
+          {
+            "w": "order",
+            "t": 104.833
+          },
+          {
+            "w": "is",
+            "t": 105.331
+          },
+          {
+            "w": "verified",
+            "t": 105.828
+          },
+          {
+            "w": "to",
+            "t": 106.326
+          },
+          {
+            "w": "be",
+            "t": 106.824
+          },
+          {
+            "w": "non-periodic.",
+            "t": 107.321
+          },
+          {
+            "w": "If",
+            "t": 107.819
+          },
+          {
+            "w": "data",
+            "t": 108.317
+          },
+          {
+            "w": "arrives",
+            "t": 108.815
+          },
+          {
+            "w": "as",
+            "t": 109.312
+          },
+          {
+            "w": "an",
+            "t": 109.81
+          },
+          {
+            "w": "unbounded",
+            "t": 110.308
+          },
+          {
+            "w": "streaming",
+            "t": 110.805
+          },
+          {
+            "w": "buffer",
+            "t": 111.303
+          },
+          {
+            "w": "of",
+            "t": 111.801
+          },
+          {
+            "w": "unknown",
+            "t": 112.298
+          },
+          {
+            "w": "total",
+            "t": 112.796
+          },
+          {
+            "w": "length,",
+            "t": 113.294
+          },
+          {
+            "w": "Vitter's",
+            "t": 113.791
+          },
+          {
+            "w": "reservoir",
+            "t": 114.289
+          },
+          {
+            "w": "algorithm",
+            "t": 114.787
+          },
+          {
+            "w": "guarantees",
+            "t": 115.284
+          },
+          {
+            "w": "an",
+            "t": 115.782
+          },
+          {
+            "w": "exact",
+            "t": 116.28
+          },
+          {
+            "w": "uniform",
+            "t": 116.777
+          },
+          {
+            "w": "probability",
+            "t": 117.275
+          },
+          {
+            "w": "k",
+            "t": 117.773
+          },
+          {
+            "w": "over",
+            "t": 118.27
+          },
+          {
+            "w": "N",
+            "t": 118.768
+          },
+          {
+            "w": "with",
+            "t": 119.266
+          },
+          {
+            "w": "strictly",
+            "t": 119.763
+          },
+          {
+            "w": "bounded",
+            "t": 120.261
+          },
+          {
+            "w": "O",
+            "t": 120.759
+          },
+          {
+            "w": "of",
+            "t": 121.256
+          },
+          {
+            "w": "k",
+            "t": 121.754
+          },
+          {
+            "w": "memory.",
+            "t": 122.252
+          },
+          {
+            "w": "Conversely,",
+            "t": 122.749
+          },
+          {
+            "w": "if",
+            "t": 123.247
+          },
+          {
+            "w": "no",
+            "t": 123.745
+          },
+          {
+            "w": "frame",
+            "t": 124.242
+          },
+          {
+            "w": "exists,",
+            "t": 124.74
+          },
+          {
+            "w": "simple",
+            "t": 125.238
+          },
+          {
+            "w": "random",
+            "t": 125.735
+          },
+          {
+            "w": "sampling",
+            "t": 126.233
+          },
+          {
+            "w": "is",
+            "t": 126.731
+          },
+          {
+            "w": "structurally",
+            "t": 127.228
+          },
+          {
+            "w": "impossible.",
+            "t": 127.726
+          },
+          {
+            "w": "Data",
+            "t": 128.224
+          },
+          {
+            "w": "teams",
+            "t": 128.721
+          },
+          {
+            "w": "must",
+            "t": 129.219
+          },
+          {
+            "w": "transition",
+            "t": 129.717
+          },
+          {
+            "w": "to",
+            "t": 130.214
+          },
+          {
+            "w": "non-probability",
+            "t": 130.712
+          },
+          {
+            "w": "strategies,",
+            "t": 131.21
+          },
+          {
+            "w": "utilizing",
+            "t": 131.707
+          },
+          {
+            "w": "Respondent-Driven",
+            "t": 132.205
+          },
+          {
+            "w": "Sampling",
+            "t": 132.703
+          },
+          {
+            "w": "to",
+            "t": 133.2
+          },
+          {
+            "w": "mathematically",
+            "t": 133.698
+          },
+          {
+            "w": "de-bias",
+            "t": 134.196
+          },
+          {
+            "w": "peer-referral",
+            "t": 134.693
+          },
+          {
+            "w": "networks,",
+            "t": 135.191
+          },
+          {
+            "w": "or",
+            "t": 135.689
+          },
+          {
+            "w": "Adaptive",
+            "t": 136.186
+          },
+          {
+            "w": "Spatial",
+            "t": 136.684
+          },
+          {
+            "w": "Sampling",
+            "t": 137.182
+          },
+          {
+            "w": "when",
+            "t": 137.679
+          },
+          {
+            "w": "observations",
+            "t": 138.177
+          },
+          {
+            "w": "cluster",
+            "t": 138.675
+          },
+          {
+            "w": "into",
+            "t": 139.172
+          },
+          {
+            "w": "geographically",
+            "t": 139.67
+          },
+          {
+            "w": "dense",
+            "t": 140.168
+          },
+          {
+            "w": "phenomena.",
+            "t": 140.665
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "Systematic sampling is an elegant probability design where units are drawn at fixed periodic intervals through an ordered frame or continuous stream following a single initial random seed. Given a population of size N and a target sample size n, we compute the integer sampling stride k as floor of N over n. We then draw a single uniform random seed r between 1 and k. The sampled set S is generated deterministically as r, r plus k, r plus 2k, up to r plus n minus 1 times k. Because the random start seed r is chosen with uniform probability 1 over k, every single record in the population has an identical first-order inclusion probability pi-sub-i equal to 1 over k, which is approximately n over N. In production databases, systematic sampling eliminates the random read overhead of simple random sampling, replacing costly random index lookups with blazing fast sequential disk strides.",
+        "start": 141.163,
+        "end": 201.22,
+        "words": [
+          {
+            "w": "Systematic",
+            "t": 141.163
+          },
+          {
+            "w": "sampling",
+            "t": 141.556
+          },
+          {
+            "w": "is",
+            "t": 141.948
+          },
+          {
+            "w": "an",
+            "t": 142.341
+          },
+          {
+            "w": "elegant",
+            "t": 142.733
+          },
+          {
+            "w": "probability",
+            "t": 143.126
+          },
+          {
+            "w": "design",
+            "t": 143.518
+          },
+          {
+            "w": "where",
+            "t": 143.911
+          },
+          {
+            "w": "units",
+            "t": 144.303
+          },
+          {
+            "w": "are",
+            "t": 144.696
+          },
+          {
+            "w": "drawn",
+            "t": 145.088
+          },
+          {
+            "w": "at",
+            "t": 145.481
+          },
+          {
+            "w": "fixed",
+            "t": 145.873
+          },
+          {
+            "w": "periodic",
+            "t": 146.266
+          },
+          {
+            "w": "intervals",
+            "t": 146.658
+          },
+          {
+            "w": "through",
+            "t": 147.051
+          },
+          {
+            "w": "an",
+            "t": 147.443
+          },
+          {
+            "w": "ordered",
+            "t": 147.836
+          },
+          {
+            "w": "frame",
+            "t": 148.229
+          },
+          {
+            "w": "or",
+            "t": 148.621
+          },
+          {
+            "w": "continuous",
+            "t": 149.014
+          },
+          {
+            "w": "stream",
+            "t": 149.406
+          },
+          {
+            "w": "following",
+            "t": 149.799
+          },
+          {
+            "w": "a",
+            "t": 150.191
+          },
+          {
+            "w": "single",
+            "t": 150.584
+          },
+          {
+            "w": "initial",
+            "t": 150.976
+          },
+          {
+            "w": "random",
+            "t": 151.369
+          },
+          {
+            "w": "seed.",
+            "t": 151.761
+          },
+          {
+            "w": "Given",
+            "t": 152.154
+          },
+          {
+            "w": "a",
+            "t": 152.546
+          },
+          {
+            "w": "population",
+            "t": 152.939
+          },
+          {
+            "w": "of",
+            "t": 153.331
+          },
+          {
+            "w": "size",
+            "t": 153.724
+          },
+          {
+            "w": "N",
+            "t": 154.116
+          },
+          {
+            "w": "and",
+            "t": 154.509
+          },
+          {
+            "w": "a",
+            "t": 154.902
+          },
+          {
+            "w": "target",
+            "t": 155.294
+          },
+          {
+            "w": "sample",
+            "t": 155.687
+          },
+          {
+            "w": "size",
+            "t": 156.079
+          },
+          {
+            "w": "n,",
+            "t": 156.472
+          },
+          {
+            "w": "we",
+            "t": 156.864
+          },
+          {
+            "w": "compute",
+            "t": 157.257
+          },
+          {
+            "w": "the",
+            "t": 157.649
+          },
+          {
+            "w": "integer",
+            "t": 158.042
+          },
+          {
+            "w": "sampling",
+            "t": 158.434
+          },
+          {
+            "w": "stride",
+            "t": 158.827
+          },
+          {
+            "w": "k",
+            "t": 159.219
+          },
+          {
+            "w": "as",
+            "t": 159.612
+          },
+          {
+            "w": "floor",
+            "t": 160.004
+          },
+          {
+            "w": "of",
+            "t": 160.397
+          },
+          {
+            "w": "N",
+            "t": 160.789
+          },
+          {
+            "w": "over",
+            "t": 161.182
+          },
+          {
+            "w": "n.",
+            "t": 161.575
+          },
+          {
+            "w": "We",
+            "t": 161.967
+          },
+          {
+            "w": "then",
+            "t": 162.36
+          },
+          {
+            "w": "draw",
+            "t": 162.752
+          },
+          {
+            "w": "a",
+            "t": 163.145
+          },
+          {
+            "w": "single",
+            "t": 163.537
+          },
+          {
+            "w": "uniform",
+            "t": 163.93
+          },
+          {
+            "w": "random",
+            "t": 164.322
+          },
+          {
+            "w": "seed",
+            "t": 164.715
+          },
+          {
+            "w": "r",
+            "t": 165.107
+          },
+          {
+            "w": "between",
+            "t": 165.5
+          },
+          {
+            "w": "1",
+            "t": 165.892
+          },
+          {
+            "w": "and",
+            "t": 166.285
+          },
+          {
+            "w": "k.",
+            "t": 166.677
+          },
+          {
+            "w": "The",
+            "t": 167.07
+          },
+          {
+            "w": "sampled",
+            "t": 167.462
+          },
+          {
+            "w": "set",
+            "t": 167.855
+          },
+          {
+            "w": "S",
+            "t": 168.248
+          },
+          {
+            "w": "is",
+            "t": 168.64
+          },
+          {
+            "w": "generated",
+            "t": 169.033
+          },
+          {
+            "w": "deterministically",
+            "t": 169.425
+          },
+          {
+            "w": "as",
+            "t": 169.818
+          },
+          {
+            "w": "r,",
+            "t": 170.21
+          },
+          {
+            "w": "r",
+            "t": 170.603
+          },
+          {
+            "w": "plus",
+            "t": 170.995
+          },
+          {
+            "w": "k,",
+            "t": 171.388
+          },
+          {
+            "w": "r",
+            "t": 171.78
+          },
+          {
+            "w": "plus",
+            "t": 172.173
+          },
+          {
+            "w": "2k,",
+            "t": 172.565
+          },
+          {
+            "w": "up",
+            "t": 172.958
+          },
+          {
+            "w": "to",
+            "t": 173.35
+          },
+          {
+            "w": "r",
+            "t": 173.743
+          },
+          {
+            "w": "plus",
+            "t": 174.135
+          },
+          {
+            "w": "n",
+            "t": 174.528
+          },
+          {
+            "w": "minus",
+            "t": 174.921
+          },
+          {
+            "w": "1",
+            "t": 175.313
+          },
+          {
+            "w": "times",
+            "t": 175.706
+          },
+          {
+            "w": "k.",
+            "t": 176.098
+          },
+          {
+            "w": "Because",
+            "t": 176.491
+          },
+          {
+            "w": "the",
+            "t": 176.883
+          },
+          {
+            "w": "random",
+            "t": 177.276
+          },
+          {
+            "w": "start",
+            "t": 177.668
+          },
+          {
+            "w": "seed",
+            "t": 178.061
+          },
+          {
+            "w": "r",
+            "t": 178.453
+          },
+          {
+            "w": "is",
+            "t": 178.846
+          },
+          {
+            "w": "chosen",
+            "t": 179.238
+          },
+          {
+            "w": "with",
+            "t": 179.631
+          },
+          {
+            "w": "uniform",
+            "t": 180.023
+          },
+          {
+            "w": "probability",
+            "t": 180.416
+          },
+          {
+            "w": "1",
+            "t": 180.808
+          },
+          {
+            "w": "over",
+            "t": 181.201
+          },
+          {
+            "w": "k,",
+            "t": 181.594
+          },
+          {
+            "w": "every",
+            "t": 181.986
+          },
+          {
+            "w": "single",
+            "t": 182.379
+          },
+          {
+            "w": "record",
+            "t": 182.771
+          },
+          {
+            "w": "in",
+            "t": 183.164
+          },
+          {
+            "w": "the",
+            "t": 183.556
+          },
+          {
+            "w": "population",
+            "t": 183.949
+          },
+          {
+            "w": "has",
+            "t": 184.341
+          },
+          {
+            "w": "an",
+            "t": 184.734
+          },
+          {
+            "w": "identical",
+            "t": 185.126
+          },
+          {
+            "w": "first-order",
+            "t": 185.519
+          },
+          {
+            "w": "inclusion",
+            "t": 185.911
+          },
+          {
+            "w": "probability",
+            "t": 186.304
+          },
+          {
+            "w": "pi-sub-i",
+            "t": 186.696
+          },
+          {
+            "w": "equal",
+            "t": 187.089
+          },
+          {
+            "w": "to",
+            "t": 187.481
+          },
+          {
+            "w": "1",
+            "t": 187.874
+          },
+          {
+            "w": "over",
+            "t": 188.267
+          },
+          {
+            "w": "k,",
+            "t": 188.659
+          },
+          {
+            "w": "which",
+            "t": 189.052
+          },
+          {
+            "w": "is",
+            "t": 189.444
+          },
+          {
+            "w": "approximately",
+            "t": 189.837
+          },
+          {
+            "w": "n",
+            "t": 190.229
+          },
+          {
+            "w": "over",
+            "t": 190.622
+          },
+          {
+            "w": "N.",
+            "t": 191.014
+          },
+          {
+            "w": "In",
+            "t": 191.407
+          },
+          {
+            "w": "production",
+            "t": 191.799
+          },
+          {
+            "w": "databases,",
+            "t": 192.192
+          },
+          {
+            "w": "systematic",
+            "t": 192.584
+          },
+          {
+            "w": "sampling",
+            "t": 192.977
+          },
+          {
+            "w": "eliminates",
+            "t": 193.369
+          },
+          {
+            "w": "the",
+            "t": 193.762
+          },
+          {
+            "w": "random",
+            "t": 194.154
+          },
+          {
+            "w": "read",
+            "t": 194.547
+          },
+          {
+            "w": "overhead",
+            "t": 194.94
+          },
+          {
+            "w": "of",
+            "t": 195.332
+          },
+          {
+            "w": "simple",
+            "t": 195.725
+          },
+          {
+            "w": "random",
+            "t": 196.117
+          },
+          {
+            "w": "sampling,",
+            "t": 196.51
+          },
+          {
+            "w": "replacing",
+            "t": 196.902
+          },
+          {
+            "w": "costly",
+            "t": 197.295
+          },
+          {
+            "w": "random",
+            "t": 197.687
+          },
+          {
+            "w": "index",
+            "t": 198.08
+          },
+          {
+            "w": "lookups",
+            "t": 198.472
+          },
+          {
+            "w": "with",
+            "t": 198.865
+          },
+          {
+            "w": "blazing",
+            "t": 199.257
+          },
+          {
+            "w": "fast",
+            "t": 199.65
+          },
+          {
+            "w": "sequential",
+            "t": 200.042
+          },
+          {
+            "w": "disk",
+            "t": 200.435
+          },
+          {
+            "w": "strides.",
+            "t": 200.827
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Despite its computational elegance, systematic sampling harbors a fatal mathematical vulnerability known as the Periodicity Trap or Spectral Resonance. If the ordered dataset possesses an underlying cyclical frequency P, such as day-of-week demand swings, server rack indexing, or circadian physiological rhythms, and the sampling stride k resonates with that period, the sample locks into an identical phase of the wave. Mathematically, let unit y-sub-i equal mu plus amplitude A times the sine of 2 pi i over P, plus random error. If the sampling stride k equals P, or shares a common factor with P, every single sampled observation lands on the exact same phase angle. The resulting systematic sample mean suffers a severe, persistent bias equal to A times the sine of 2 pi r over P. For instance, if an e-commerce platform samples every 7th day starting on a Sunday, it will permanently measure weekend discount spikes, overestimating revenue by millions of dollars. To prevent this, data engineers must always audit power spectral density or apply random index shuffling.",
+        "start": 201.22,
+        "end": 273.584,
+        "words": [
+          {
+            "w": "Despite",
+            "t": 201.22
+          },
+          {
+            "w": "its",
+            "t": 201.643
+          },
+          {
+            "w": "computational",
+            "t": 202.066
+          },
+          {
+            "w": "elegance,",
+            "t": 202.49
+          },
+          {
+            "w": "systematic",
+            "t": 202.913
+          },
+          {
+            "w": "sampling",
+            "t": 203.336
+          },
+          {
+            "w": "harbors",
+            "t": 203.759
+          },
+          {
+            "w": "a",
+            "t": 204.182
+          },
+          {
+            "w": "fatal",
+            "t": 204.605
+          },
+          {
+            "w": "mathematical",
+            "t": 205.029
+          },
+          {
+            "w": "vulnerability",
+            "t": 205.452
+          },
+          {
+            "w": "known",
+            "t": 205.875
+          },
+          {
+            "w": "as",
+            "t": 206.298
+          },
+          {
+            "w": "the",
+            "t": 206.721
+          },
+          {
+            "w": "Periodicity",
+            "t": 207.145
+          },
+          {
+            "w": "Trap",
+            "t": 207.568
+          },
+          {
+            "w": "or",
+            "t": 207.991
+          },
+          {
+            "w": "Spectral",
+            "t": 208.414
+          },
+          {
+            "w": "Resonance.",
+            "t": 208.837
+          },
+          {
+            "w": "If",
+            "t": 209.26
+          },
+          {
+            "w": "the",
+            "t": 209.684
+          },
+          {
+            "w": "ordered",
+            "t": 210.107
+          },
+          {
+            "w": "dataset",
+            "t": 210.53
+          },
+          {
+            "w": "possesses",
+            "t": 210.953
+          },
+          {
+            "w": "an",
+            "t": 211.376
+          },
+          {
+            "w": "underlying",
+            "t": 211.8
+          },
+          {
+            "w": "cyclical",
+            "t": 212.223
+          },
+          {
+            "w": "frequency",
+            "t": 212.646
+          },
+          {
+            "w": "P,",
+            "t": 213.069
+          },
+          {
+            "w": "such",
+            "t": 213.492
+          },
+          {
+            "w": "as",
+            "t": 213.915
+          },
+          {
+            "w": "day-of-week",
+            "t": 214.339
+          },
+          {
+            "w": "demand",
+            "t": 214.762
+          },
+          {
+            "w": "swings,",
+            "t": 215.185
+          },
+          {
+            "w": "server",
+            "t": 215.608
+          },
+          {
+            "w": "rack",
+            "t": 216.031
+          },
+          {
+            "w": "indexing,",
+            "t": 216.455
+          },
+          {
+            "w": "or",
+            "t": 216.878
+          },
+          {
+            "w": "circadian",
+            "t": 217.301
+          },
+          {
+            "w": "physiological",
+            "t": 217.724
+          },
+          {
+            "w": "rhythms,",
+            "t": 218.147
+          },
+          {
+            "w": "and",
+            "t": 218.57
+          },
+          {
+            "w": "the",
+            "t": 218.994
+          },
+          {
+            "w": "sampling",
+            "t": 219.417
+          },
+          {
+            "w": "stride",
+            "t": 219.84
+          },
+          {
+            "w": "k",
+            "t": 220.263
+          },
+          {
+            "w": "resonates",
+            "t": 220.686
+          },
+          {
+            "w": "with",
+            "t": 221.11
+          },
+          {
+            "w": "that",
+            "t": 221.533
+          },
+          {
+            "w": "period,",
+            "t": 221.956
+          },
+          {
+            "w": "the",
+            "t": 222.379
+          },
+          {
+            "w": "sample",
+            "t": 222.802
+          },
+          {
+            "w": "locks",
+            "t": 223.225
+          },
+          {
+            "w": "into",
+            "t": 223.649
+          },
+          {
+            "w": "an",
+            "t": 224.072
+          },
+          {
+            "w": "identical",
+            "t": 224.495
+          },
+          {
+            "w": "phase",
+            "t": 224.918
+          },
+          {
+            "w": "of",
+            "t": 225.341
+          },
+          {
+            "w": "the",
+            "t": 225.765
+          },
+          {
+            "w": "wave.",
+            "t": 226.188
+          },
+          {
+            "w": "Mathematically,",
+            "t": 226.611
+          },
+          {
+            "w": "let",
+            "t": 227.034
+          },
+          {
+            "w": "unit",
+            "t": 227.457
+          },
+          {
+            "w": "y-sub-i",
+            "t": 227.88
+          },
+          {
+            "w": "equal",
+            "t": 228.304
+          },
+          {
+            "w": "mu",
+            "t": 228.727
+          },
+          {
+            "w": "plus",
+            "t": 229.15
+          },
+          {
+            "w": "amplitude",
+            "t": 229.573
+          },
+          {
+            "w": "A",
+            "t": 229.996
+          },
+          {
+            "w": "times",
+            "t": 230.42
+          },
+          {
+            "w": "the",
+            "t": 230.843
+          },
+          {
+            "w": "sine",
+            "t": 231.266
+          },
+          {
+            "w": "of",
+            "t": 231.689
+          },
+          {
+            "w": "2",
+            "t": 232.112
+          },
+          {
+            "w": "pi",
+            "t": 232.535
+          },
+          {
+            "w": "i",
+            "t": 232.959
+          },
+          {
+            "w": "over",
+            "t": 233.382
+          },
+          {
+            "w": "P,",
+            "t": 233.805
+          },
+          {
+            "w": "plus",
+            "t": 234.228
+          },
+          {
+            "w": "random",
+            "t": 234.651
+          },
+          {
+            "w": "error.",
+            "t": 235.075
+          },
+          {
+            "w": "If",
+            "t": 235.498
+          },
+          {
+            "w": "the",
+            "t": 235.921
+          },
+          {
+            "w": "sampling",
+            "t": 236.344
+          },
+          {
+            "w": "stride",
+            "t": 236.767
+          },
+          {
+            "w": "k",
+            "t": 237.19
+          },
+          {
+            "w": "equals",
+            "t": 237.614
+          },
+          {
+            "w": "P,",
+            "t": 238.037
+          },
+          {
+            "w": "or",
+            "t": 238.46
+          },
+          {
+            "w": "shares",
+            "t": 238.883
+          },
+          {
+            "w": "a",
+            "t": 239.306
+          },
+          {
+            "w": "common",
+            "t": 239.729
+          },
+          {
+            "w": "factor",
+            "t": 240.153
+          },
+          {
+            "w": "with",
+            "t": 240.576
+          },
+          {
+            "w": "P,",
+            "t": 240.999
+          },
+          {
+            "w": "every",
+            "t": 241.422
+          },
+          {
+            "w": "single",
+            "t": 241.845
+          },
+          {
+            "w": "sampled",
+            "t": 242.269
+          },
+          {
+            "w": "observation",
+            "t": 242.692
+          },
+          {
+            "w": "lands",
+            "t": 243.115
+          },
+          {
+            "w": "on",
+            "t": 243.538
+          },
+          {
+            "w": "the",
+            "t": 243.961
+          },
+          {
+            "w": "exact",
+            "t": 244.384
+          },
+          {
+            "w": "same",
+            "t": 244.808
+          },
+          {
+            "w": "phase",
+            "t": 245.231
+          },
+          {
+            "w": "angle.",
+            "t": 245.654
+          },
+          {
+            "w": "The",
+            "t": 246.077
+          },
+          {
+            "w": "resulting",
+            "t": 246.5
+          },
+          {
+            "w": "systematic",
+            "t": 246.924
+          },
+          {
+            "w": "sample",
+            "t": 247.347
+          },
+          {
+            "w": "mean",
+            "t": 247.77
+          },
+          {
+            "w": "suffers",
+            "t": 248.193
+          },
+          {
+            "w": "a",
+            "t": 248.616
+          },
+          {
+            "w": "severe,",
+            "t": 249.039
+          },
+          {
+            "w": "persistent",
+            "t": 249.463
+          },
+          {
+            "w": "bias",
+            "t": 249.886
+          },
+          {
+            "w": "equal",
+            "t": 250.309
+          },
+          {
+            "w": "to",
+            "t": 250.732
+          },
+          {
+            "w": "A",
+            "t": 251.155
+          },
+          {
+            "w": "times",
+            "t": 251.579
+          },
+          {
+            "w": "the",
+            "t": 252.002
+          },
+          {
+            "w": "sine",
+            "t": 252.425
+          },
+          {
+            "w": "of",
+            "t": 252.848
+          },
+          {
+            "w": "2",
+            "t": 253.271
+          },
+          {
+            "w": "pi",
+            "t": 253.694
+          },
+          {
+            "w": "r",
+            "t": 254.118
+          },
+          {
+            "w": "over",
+            "t": 254.541
+          },
+          {
+            "w": "P.",
+            "t": 254.964
+          },
+          {
+            "w": "For",
+            "t": 255.387
+          },
+          {
+            "w": "instance,",
+            "t": 255.81
+          },
+          {
+            "w": "if",
+            "t": 256.234
+          },
+          {
+            "w": "an",
+            "t": 256.657
+          },
+          {
+            "w": "e-commerce",
+            "t": 257.08
+          },
+          {
+            "w": "platform",
+            "t": 257.503
+          },
+          {
+            "w": "samples",
+            "t": 257.926
+          },
+          {
+            "w": "every",
+            "t": 258.349
+          },
+          {
+            "w": "7th",
+            "t": 258.773
+          },
+          {
+            "w": "day",
+            "t": 259.196
+          },
+          {
+            "w": "starting",
+            "t": 259.619
+          },
+          {
+            "w": "on",
+            "t": 260.042
+          },
+          {
+            "w": "a",
+            "t": 260.465
+          },
+          {
+            "w": "Sunday,",
+            "t": 260.889
+          },
+          {
+            "w": "it",
+            "t": 261.312
+          },
+          {
+            "w": "will",
+            "t": 261.735
+          },
+          {
+            "w": "permanently",
+            "t": 262.158
+          },
+          {
+            "w": "measure",
+            "t": 262.581
+          },
+          {
+            "w": "weekend",
+            "t": 263.004
+          },
+          {
+            "w": "discount",
+            "t": 263.428
+          },
+          {
+            "w": "spikes,",
+            "t": 263.851
+          },
+          {
+            "w": "overestimating",
+            "t": 264.274
+          },
+          {
+            "w": "revenue",
+            "t": 264.697
+          },
+          {
+            "w": "by",
+            "t": 265.12
+          },
+          {
+            "w": "millions",
+            "t": 265.544
+          },
+          {
+            "w": "of",
+            "t": 265.967
+          },
+          {
+            "w": "dollars.",
+            "t": 266.39
+          },
+          {
+            "w": "To",
+            "t": 266.813
+          },
+          {
+            "w": "prevent",
+            "t": 267.236
+          },
+          {
+            "w": "this,",
+            "t": 267.659
+          },
+          {
+            "w": "data",
+            "t": 268.083
+          },
+          {
+            "w": "engineers",
+            "t": 268.506
+          },
+          {
+            "w": "must",
+            "t": 268.929
+          },
+          {
+            "w": "always",
+            "t": 269.352
+          },
+          {
+            "w": "audit",
+            "t": 269.775
+          },
+          {
+            "w": "power",
+            "t": 270.199
+          },
+          {
+            "w": "spectral",
+            "t": 270.622
+          },
+          {
+            "w": "density",
+            "t": 271.045
+          },
+          {
+            "w": "or",
+            "t": 271.468
+          },
+          {
+            "w": "apply",
+            "t": 271.891
+          },
+          {
+            "w": "random",
+            "t": 272.314
+          },
+          {
+            "w": "index",
+            "t": 272.738
+          },
+          {
+            "w": "shuffling.",
+            "t": 273.161
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "What happens when you need to draw an unbiased random sample of size k, but data arrives as an infinite stream where total count N is unknown in advance? In 1985, Jeffrey Vitter formalized Reservoir Sampling, known as Algorithm R. The algorithm maintains a memory buffer of size k. The first k items from the stream fill the reservoir directly. For every subsequent arriving item i from k plus 1 to infinity, the algorithm generates a uniform random integer j between 1 and i. If j is less than or equal to k, the item replaces whatever was in reservoir slot j. If j exceeds k, the arriving item is discarded. We can prove by mathematical induction that at every step n, any element that has ever arrived in the stream has an exact inclusion probability equal to k over n. This elegant algorithm requires strictly O of k memory and a single streaming pass.",
+        "start": 273.584,
+        "end": 331.152,
+        "words": [
+          {
+            "w": "What",
+            "t": 273.584
+          },
+          {
+            "w": "happens",
+            "t": 273.955
+          },
+          {
+            "w": "when",
+            "t": 274.327
+          },
+          {
+            "w": "you",
+            "t": 274.698
+          },
+          {
+            "w": "need",
+            "t": 275.07
+          },
+          {
+            "w": "to",
+            "t": 275.441
+          },
+          {
+            "w": "draw",
+            "t": 275.812
+          },
+          {
+            "w": "an",
+            "t": 276.184
+          },
+          {
+            "w": "unbiased",
+            "t": 276.555
+          },
+          {
+            "w": "random",
+            "t": 276.927
+          },
+          {
+            "w": "sample",
+            "t": 277.298
+          },
+          {
+            "w": "of",
+            "t": 277.669
+          },
+          {
+            "w": "size",
+            "t": 278.041
+          },
+          {
+            "w": "k,",
+            "t": 278.412
+          },
+          {
+            "w": "but",
+            "t": 278.784
+          },
+          {
+            "w": "data",
+            "t": 279.155
+          },
+          {
+            "w": "arrives",
+            "t": 279.527
+          },
+          {
+            "w": "as",
+            "t": 279.898
+          },
+          {
+            "w": "an",
+            "t": 280.269
+          },
+          {
+            "w": "infinite",
+            "t": 280.641
+          },
+          {
+            "w": "stream",
+            "t": 281.012
+          },
+          {
+            "w": "where",
+            "t": 281.384
+          },
+          {
+            "w": "total",
+            "t": 281.755
+          },
+          {
+            "w": "count",
+            "t": 282.126
+          },
+          {
+            "w": "N",
+            "t": 282.498
+          },
+          {
+            "w": "is",
+            "t": 282.869
+          },
+          {
+            "w": "unknown",
+            "t": 283.241
+          },
+          {
+            "w": "in",
+            "t": 283.612
+          },
+          {
+            "w": "advance?",
+            "t": 283.983
+          },
+          {
+            "w": "In",
+            "t": 284.355
+          },
+          {
+            "w": "1985,",
+            "t": 284.726
+          },
+          {
+            "w": "Jeffrey",
+            "t": 285.098
+          },
+          {
+            "w": "Vitter",
+            "t": 285.469
+          },
+          {
+            "w": "formalized",
+            "t": 285.84
+          },
+          {
+            "w": "Reservoir",
+            "t": 286.212
+          },
+          {
+            "w": "Sampling,",
+            "t": 286.583
+          },
+          {
+            "w": "known",
+            "t": 286.955
+          },
+          {
+            "w": "as",
+            "t": 287.326
+          },
+          {
+            "w": "Algorithm",
+            "t": 287.697
+          },
+          {
+            "w": "R.",
+            "t": 288.069
+          },
+          {
+            "w": "The",
+            "t": 288.44
+          },
+          {
+            "w": "algorithm",
+            "t": 288.812
+          },
+          {
+            "w": "maintains",
+            "t": 289.183
+          },
+          {
+            "w": "a",
+            "t": 289.554
+          },
+          {
+            "w": "memory",
+            "t": 289.926
+          },
+          {
+            "w": "buffer",
+            "t": 290.297
+          },
+          {
+            "w": "of",
+            "t": 290.669
+          },
+          {
+            "w": "size",
+            "t": 291.04
+          },
+          {
+            "w": "k.",
+            "t": 291.412
+          },
+          {
+            "w": "The",
+            "t": 291.783
+          },
+          {
+            "w": "first",
+            "t": 292.154
+          },
+          {
+            "w": "k",
+            "t": 292.526
+          },
+          {
+            "w": "items",
+            "t": 292.897
+          },
+          {
+            "w": "from",
+            "t": 293.269
+          },
+          {
+            "w": "the",
+            "t": 293.64
+          },
+          {
+            "w": "stream",
+            "t": 294.011
+          },
+          {
+            "w": "fill",
+            "t": 294.383
+          },
+          {
+            "w": "the",
+            "t": 294.754
+          },
+          {
+            "w": "reservoir",
+            "t": 295.126
+          },
+          {
+            "w": "directly.",
+            "t": 295.497
+          },
+          {
+            "w": "For",
+            "t": 295.868
+          },
+          {
+            "w": "every",
+            "t": 296.24
+          },
+          {
+            "w": "subsequent",
+            "t": 296.611
+          },
+          {
+            "w": "arriving",
+            "t": 296.983
+          },
+          {
+            "w": "item",
+            "t": 297.354
+          },
+          {
+            "w": "i",
+            "t": 297.725
+          },
+          {
+            "w": "from",
+            "t": 298.097
+          },
+          {
+            "w": "k",
+            "t": 298.468
+          },
+          {
+            "w": "plus",
+            "t": 298.84
+          },
+          {
+            "w": "1",
+            "t": 299.211
+          },
+          {
+            "w": "to",
+            "t": 299.582
+          },
+          {
+            "w": "infinity,",
+            "t": 299.954
+          },
+          {
+            "w": "the",
+            "t": 300.325
+          },
+          {
+            "w": "algorithm",
+            "t": 300.697
+          },
+          {
+            "w": "generates",
+            "t": 301.068
+          },
+          {
+            "w": "a",
+            "t": 301.439
+          },
+          {
+            "w": "uniform",
+            "t": 301.811
+          },
+          {
+            "w": "random",
+            "t": 302.182
+          },
+          {
+            "w": "integer",
+            "t": 302.554
+          },
+          {
+            "w": "j",
+            "t": 302.925
+          },
+          {
+            "w": "between",
+            "t": 303.297
+          },
+          {
+            "w": "1",
+            "t": 303.668
+          },
+          {
+            "w": "and",
+            "t": 304.039
+          },
+          {
+            "w": "i.",
+            "t": 304.411
+          },
+          {
+            "w": "If",
+            "t": 304.782
+          },
+          {
+            "w": "j",
+            "t": 305.154
+          },
+          {
+            "w": "is",
+            "t": 305.525
+          },
+          {
+            "w": "less",
+            "t": 305.896
+          },
+          {
+            "w": "than",
+            "t": 306.268
+          },
+          {
+            "w": "or",
+            "t": 306.639
+          },
+          {
+            "w": "equal",
+            "t": 307.011
+          },
+          {
+            "w": "to",
+            "t": 307.382
+          },
+          {
+            "w": "k,",
+            "t": 307.753
+          },
+          {
+            "w": "the",
+            "t": 308.125
+          },
+          {
+            "w": "item",
+            "t": 308.496
+          },
+          {
+            "w": "replaces",
+            "t": 308.868
+          },
+          {
+            "w": "whatever",
+            "t": 309.239
+          },
+          {
+            "w": "was",
+            "t": 309.61
+          },
+          {
+            "w": "in",
+            "t": 309.982
+          },
+          {
+            "w": "reservoir",
+            "t": 310.353
+          },
+          {
+            "w": "slot",
+            "t": 310.725
+          },
+          {
+            "w": "j.",
+            "t": 311.096
+          },
+          {
+            "w": "If",
+            "t": 311.467
+          },
+          {
+            "w": "j",
+            "t": 311.839
+          },
+          {
+            "w": "exceeds",
+            "t": 312.21
+          },
+          {
+            "w": "k,",
+            "t": 312.582
+          },
+          {
+            "w": "the",
+            "t": 312.953
+          },
+          {
+            "w": "arriving",
+            "t": 313.324
+          },
+          {
+            "w": "item",
+            "t": 313.696
+          },
+          {
+            "w": "is",
+            "t": 314.067
+          },
+          {
+            "w": "discarded.",
+            "t": 314.439
+          },
+          {
+            "w": "We",
+            "t": 314.81
+          },
+          {
+            "w": "can",
+            "t": 315.182
+          },
+          {
+            "w": "prove",
+            "t": 315.553
+          },
+          {
+            "w": "by",
+            "t": 315.924
+          },
+          {
+            "w": "mathematical",
+            "t": 316.296
+          },
+          {
+            "w": "induction",
+            "t": 316.667
+          },
+          {
+            "w": "that",
+            "t": 317.039
+          },
+          {
+            "w": "at",
+            "t": 317.41
+          },
+          {
+            "w": "every",
+            "t": 317.781
+          },
+          {
+            "w": "step",
+            "t": 318.153
+          },
+          {
+            "w": "n,",
+            "t": 318.524
+          },
+          {
+            "w": "any",
+            "t": 318.896
+          },
+          {
+            "w": "element",
+            "t": 319.267
+          },
+          {
+            "w": "that",
+            "t": 319.638
+          },
+          {
+            "w": "has",
+            "t": 320.01
+          },
+          {
+            "w": "ever",
+            "t": 320.381
+          },
+          {
+            "w": "arrived",
+            "t": 320.753
+          },
+          {
+            "w": "in",
+            "t": 321.124
+          },
+          {
+            "w": "the",
+            "t": 321.495
+          },
+          {
+            "w": "stream",
+            "t": 321.867
+          },
+          {
+            "w": "has",
+            "t": 322.238
+          },
+          {
+            "w": "an",
+            "t": 322.61
+          },
+          {
+            "w": "exact",
+            "t": 322.981
+          },
+          {
+            "w": "inclusion",
+            "t": 323.352
+          },
+          {
+            "w": "probability",
+            "t": 323.724
+          },
+          {
+            "w": "equal",
+            "t": 324.095
+          },
+          {
+            "w": "to",
+            "t": 324.467
+          },
+          {
+            "w": "k",
+            "t": 324.838
+          },
+          {
+            "w": "over",
+            "t": 325.209
+          },
+          {
+            "w": "n.",
+            "t": 325.581
+          },
+          {
+            "w": "This",
+            "t": 325.952
+          },
+          {
+            "w": "elegant",
+            "t": 326.324
+          },
+          {
+            "w": "algorithm",
+            "t": 326.695
+          },
+          {
+            "w": "requires",
+            "t": 327.067
+          },
+          {
+            "w": "strictly",
+            "t": 327.438
+          },
+          {
+            "w": "O",
+            "t": 327.809
+          },
+          {
+            "w": "of",
+            "t": 328.181
+          },
+          {
+            "w": "k",
+            "t": 328.552
+          },
+          {
+            "w": "memory",
+            "t": 328.924
+          },
+          {
+            "w": "and",
+            "t": 329.295
+          },
+          {
+            "w": "a",
+            "t": 329.666
+          },
+          {
+            "w": "single",
+            "t": 330.038
+          },
+          {
+            "w": "streaming",
+            "t": 330.409
+          },
+          {
+            "w": "pass.",
+            "t": 330.781
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Laboratory 1: the Spectral Periodicity and Resonance Workbench. In this interactive simulation, we generate an ordered time-series population governed by a cyclical sinusoidal waveform with true baseline mean 50, amplitude A, and cycle period P, representing weekly or diurnal patterns. Use the sliders to adjust wave period P, sampling stride k, amplitude A, and random start seed r. Observe what happens when stride k exactly equals period P, such as sampling every 7th day when P is 7. The live indicator flashes a red Resonance Alert, and the sampled points lock onto the peak or trough of the wave, resulting in severe estimation bias. Now change stride k to 8 or 11, which are coprime to 7. Watch how the sampled points distribute evenly across all phases of the cycle, reducing estimation bias to near zero!",
+        "start": 331.152,
+        "end": 386.635,
+        "words": [
+          {
+            "w": "Welcome",
+            "t": 331.152
+          },
+          {
+            "w": "to",
+            "t": 331.554
+          },
+          {
+            "w": "Laboratory",
+            "t": 331.956
+          },
+          {
+            "w": "1:",
+            "t": 332.358
+          },
+          {
+            "w": "the",
+            "t": 332.76
+          },
+          {
+            "w": "Spectral",
+            "t": 333.162
+          },
+          {
+            "w": "Periodicity",
+            "t": 333.564
+          },
+          {
+            "w": "and",
+            "t": 333.966
+          },
+          {
+            "w": "Resonance",
+            "t": 334.368
+          },
+          {
+            "w": "Workbench.",
+            "t": 334.77
+          },
+          {
+            "w": "In",
+            "t": 335.173
+          },
+          {
+            "w": "this",
+            "t": 335.575
+          },
+          {
+            "w": "interactive",
+            "t": 335.977
+          },
+          {
+            "w": "simulation,",
+            "t": 336.379
+          },
+          {
+            "w": "we",
+            "t": 336.781
+          },
+          {
+            "w": "generate",
+            "t": 337.183
+          },
+          {
+            "w": "an",
+            "t": 337.585
+          },
+          {
+            "w": "ordered",
+            "t": 337.987
+          },
+          {
+            "w": "time-series",
+            "t": 338.389
+          },
+          {
+            "w": "population",
+            "t": 338.791
+          },
+          {
+            "w": "governed",
+            "t": 339.193
+          },
+          {
+            "w": "by",
+            "t": 339.595
+          },
+          {
+            "w": "a",
+            "t": 339.997
+          },
+          {
+            "w": "cyclical",
+            "t": 340.399
+          },
+          {
+            "w": "sinusoidal",
+            "t": 340.801
+          },
+          {
+            "w": "waveform",
+            "t": 341.203
+          },
+          {
+            "w": "with",
+            "t": 341.605
+          },
+          {
+            "w": "true",
+            "t": 342.007
+          },
+          {
+            "w": "baseline",
+            "t": 342.409
+          },
+          {
+            "w": "mean",
+            "t": 342.811
+          },
+          {
+            "w": "50,",
+            "t": 343.214
+          },
+          {
+            "w": "amplitude",
+            "t": 343.616
+          },
+          {
+            "w": "A,",
+            "t": 344.018
+          },
+          {
+            "w": "and",
+            "t": 344.42
+          },
+          {
+            "w": "cycle",
+            "t": 344.822
+          },
+          {
+            "w": "period",
+            "t": 345.224
+          },
+          {
+            "w": "P,",
+            "t": 345.626
+          },
+          {
+            "w": "representing",
+            "t": 346.028
+          },
+          {
+            "w": "weekly",
+            "t": 346.43
+          },
+          {
+            "w": "or",
+            "t": 346.832
+          },
+          {
+            "w": "diurnal",
+            "t": 347.234
+          },
+          {
+            "w": "patterns.",
+            "t": 347.636
+          },
+          {
+            "w": "Use",
+            "t": 348.038
+          },
+          {
+            "w": "the",
+            "t": 348.44
+          },
+          {
+            "w": "sliders",
+            "t": 348.842
+          },
+          {
+            "w": "to",
+            "t": 349.244
+          },
+          {
+            "w": "adjust",
+            "t": 349.646
+          },
+          {
+            "w": "wave",
+            "t": 350.048
+          },
+          {
+            "w": "period",
+            "t": 350.45
+          },
+          {
+            "w": "P,",
+            "t": 350.852
+          },
+          {
+            "w": "sampling",
+            "t": 351.255
+          },
+          {
+            "w": "stride",
+            "t": 351.657
+          },
+          {
+            "w": "k,",
+            "t": 352.059
+          },
+          {
+            "w": "amplitude",
+            "t": 352.461
+          },
+          {
+            "w": "A,",
+            "t": 352.863
+          },
+          {
+            "w": "and",
+            "t": 353.265
+          },
+          {
+            "w": "random",
+            "t": 353.667
+          },
+          {
+            "w": "start",
+            "t": 354.069
+          },
+          {
+            "w": "seed",
+            "t": 354.471
+          },
+          {
+            "w": "r.",
+            "t": 354.873
+          },
+          {
+            "w": "Observe",
+            "t": 355.275
+          },
+          {
+            "w": "what",
+            "t": 355.677
+          },
+          {
+            "w": "happens",
+            "t": 356.079
+          },
+          {
+            "w": "when",
+            "t": 356.481
+          },
+          {
+            "w": "stride",
+            "t": 356.883
+          },
+          {
+            "w": "k",
+            "t": 357.285
+          },
+          {
+            "w": "exactly",
+            "t": 357.687
+          },
+          {
+            "w": "equals",
+            "t": 358.089
+          },
+          {
+            "w": "period",
+            "t": 358.491
+          },
+          {
+            "w": "P,",
+            "t": 358.894
+          },
+          {
+            "w": "such",
+            "t": 359.296
+          },
+          {
+            "w": "as",
+            "t": 359.698
+          },
+          {
+            "w": "sampling",
+            "t": 360.1
+          },
+          {
+            "w": "every",
+            "t": 360.502
+          },
+          {
+            "w": "7th",
+            "t": 360.904
+          },
+          {
+            "w": "day",
+            "t": 361.306
+          },
+          {
+            "w": "when",
+            "t": 361.708
+          },
+          {
+            "w": "P",
+            "t": 362.11
+          },
+          {
+            "w": "is",
+            "t": 362.512
+          },
+          {
+            "w": "7.",
+            "t": 362.914
+          },
+          {
+            "w": "The",
+            "t": 363.316
+          },
+          {
+            "w": "live",
+            "t": 363.718
+          },
+          {
+            "w": "indicator",
+            "t": 364.12
+          },
+          {
+            "w": "flashes",
+            "t": 364.522
+          },
+          {
+            "w": "a",
+            "t": 364.924
+          },
+          {
+            "w": "red",
+            "t": 365.326
+          },
+          {
+            "w": "Resonance",
+            "t": 365.728
+          },
+          {
+            "w": "Alert,",
+            "t": 366.13
+          },
+          {
+            "w": "and",
+            "t": 366.532
+          },
+          {
+            "w": "the",
+            "t": 366.935
+          },
+          {
+            "w": "sampled",
+            "t": 367.337
+          },
+          {
+            "w": "points",
+            "t": 367.739
+          },
+          {
+            "w": "lock",
+            "t": 368.141
+          },
+          {
+            "w": "onto",
+            "t": 368.543
+          },
+          {
+            "w": "the",
+            "t": 368.945
+          },
+          {
+            "w": "peak",
+            "t": 369.347
+          },
+          {
+            "w": "or",
+            "t": 369.749
+          },
+          {
+            "w": "trough",
+            "t": 370.151
+          },
+          {
+            "w": "of",
+            "t": 370.553
+          },
+          {
+            "w": "the",
+            "t": 370.955
+          },
+          {
+            "w": "wave,",
+            "t": 371.357
+          },
+          {
+            "w": "resulting",
+            "t": 371.759
+          },
+          {
+            "w": "in",
+            "t": 372.161
+          },
+          {
+            "w": "severe",
+            "t": 372.563
+          },
+          {
+            "w": "estimation",
+            "t": 372.965
+          },
+          {
+            "w": "bias.",
+            "t": 373.367
+          },
+          {
+            "w": "Now",
+            "t": 373.769
+          },
+          {
+            "w": "change",
+            "t": 374.171
+          },
+          {
+            "w": "stride",
+            "t": 374.573
+          },
+          {
+            "w": "k",
+            "t": 374.976
+          },
+          {
+            "w": "to",
+            "t": 375.378
+          },
+          {
+            "w": "8",
+            "t": 375.78
+          },
+          {
+            "w": "or",
+            "t": 376.182
+          },
+          {
+            "w": "11,",
+            "t": 376.584
+          },
+          {
+            "w": "which",
+            "t": 376.986
+          },
+          {
+            "w": "are",
+            "t": 377.388
+          },
+          {
+            "w": "coprime",
+            "t": 377.79
+          },
+          {
+            "w": "to",
+            "t": 378.192
+          },
+          {
+            "w": "7.",
+            "t": 378.594
+          },
+          {
+            "w": "Watch",
+            "t": 378.996
+          },
+          {
+            "w": "how",
+            "t": 379.398
+          },
+          {
+            "w": "the",
+            "t": 379.8
+          },
+          {
+            "w": "sampled",
+            "t": 380.202
+          },
+          {
+            "w": "points",
+            "t": 380.604
+          },
+          {
+            "w": "distribute",
+            "t": 381.006
+          },
+          {
+            "w": "evenly",
+            "t": 381.408
+          },
+          {
+            "w": "across",
+            "t": 381.81
+          },
+          {
+            "w": "all",
+            "t": 382.212
+          },
+          {
+            "w": "phases",
+            "t": 382.614
+          },
+          {
+            "w": "of",
+            "t": 383.017
+          },
+          {
+            "w": "the",
+            "t": 383.419
+          },
+          {
+            "w": "cycle,",
+            "t": 383.821
+          },
+          {
+            "w": "reducing",
+            "t": 384.223
+          },
+          {
+            "w": "estimation",
+            "t": 384.625
+          },
+          {
+            "w": "bias",
+            "t": 385.027
+          },
+          {
+            "w": "to",
+            "t": 385.429
+          },
+          {
+            "w": "near",
+            "t": 385.831
+          },
+          {
+            "w": "zero!",
+            "t": 386.233
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "Time for Active Checkpoint 1. Let us verify your comprehension of streaming reservoir dynamics. Consider Vitter's Algorithm R maintaining a buffer of size k equals 100 elements. The stream has already processed n equals 1,000 items. When item number 1,001 arrives, what is the exact probability that an element that was already inside the reservoir at step 1,000 will still remain in the reservoir after step 1,001 is complete? Select Option A, B, C, or D.",
+        "start": 386.635,
+        "end": 417.302,
+        "words": [
+          {
+            "w": "Time",
+            "t": 386.635
+          },
+          {
+            "w": "for",
+            "t": 387.039
+          },
+          {
+            "w": "Active",
+            "t": 387.442
+          },
+          {
+            "w": "Checkpoint",
+            "t": 387.846
+          },
+          {
+            "w": "1.",
+            "t": 388.249
+          },
+          {
+            "w": "Let",
+            "t": 388.653
+          },
+          {
+            "w": "us",
+            "t": 389.056
+          },
+          {
+            "w": "verify",
+            "t": 389.46
+          },
+          {
+            "w": "your",
+            "t": 389.863
+          },
+          {
+            "w": "comprehension",
+            "t": 390.267
+          },
+          {
+            "w": "of",
+            "t": 390.67
+          },
+          {
+            "w": "streaming",
+            "t": 391.074
+          },
+          {
+            "w": "reservoir",
+            "t": 391.477
+          },
+          {
+            "w": "dynamics.",
+            "t": 391.881
+          },
+          {
+            "w": "Consider",
+            "t": 392.284
+          },
+          {
+            "w": "Vitter's",
+            "t": 392.688
+          },
+          {
+            "w": "Algorithm",
+            "t": 393.091
+          },
+          {
+            "w": "R",
+            "t": 393.495
+          },
+          {
+            "w": "maintaining",
+            "t": 393.898
+          },
+          {
+            "w": "a",
+            "t": 394.302
+          },
+          {
+            "w": "buffer",
+            "t": 394.705
+          },
+          {
+            "w": "of",
+            "t": 395.109
+          },
+          {
+            "w": "size",
+            "t": 395.512
+          },
+          {
+            "w": "k",
+            "t": 395.916
+          },
+          {
+            "w": "equals",
+            "t": 396.319
+          },
+          {
+            "w": "100",
+            "t": 396.723
+          },
+          {
+            "w": "elements.",
+            "t": 397.126
+          },
+          {
+            "w": "The",
+            "t": 397.53
+          },
+          {
+            "w": "stream",
+            "t": 397.933
+          },
+          {
+            "w": "has",
+            "t": 398.337
+          },
+          {
+            "w": "already",
+            "t": 398.74
+          },
+          {
+            "w": "processed",
+            "t": 399.144
+          },
+          {
+            "w": "n",
+            "t": 399.547
+          },
+          {
+            "w": "equals",
+            "t": 399.951
+          },
+          {
+            "w": "1,000",
+            "t": 400.354
+          },
+          {
+            "w": "items.",
+            "t": 400.758
+          },
+          {
+            "w": "When",
+            "t": 401.161
+          },
+          {
+            "w": "item",
+            "t": 401.565
+          },
+          {
+            "w": "number",
+            "t": 401.969
+          },
+          {
+            "w": "1,001",
+            "t": 402.372
+          },
+          {
+            "w": "arrives,",
+            "t": 402.776
+          },
+          {
+            "w": "what",
+            "t": 403.179
+          },
+          {
+            "w": "is",
+            "t": 403.583
+          },
+          {
+            "w": "the",
+            "t": 403.986
+          },
+          {
+            "w": "exact",
+            "t": 404.39
+          },
+          {
+            "w": "probability",
+            "t": 404.793
+          },
+          {
+            "w": "that",
+            "t": 405.197
+          },
+          {
+            "w": "an",
+            "t": 405.6
+          },
+          {
+            "w": "element",
+            "t": 406.004
+          },
+          {
+            "w": "that",
+            "t": 406.407
+          },
+          {
+            "w": "was",
+            "t": 406.811
+          },
+          {
+            "w": "already",
+            "t": 407.214
+          },
+          {
+            "w": "inside",
+            "t": 407.618
+          },
+          {
+            "w": "the",
+            "t": 408.021
+          },
+          {
+            "w": "reservoir",
+            "t": 408.425
+          },
+          {
+            "w": "at",
+            "t": 408.828
+          },
+          {
+            "w": "step",
+            "t": 409.232
+          },
+          {
+            "w": "1,000",
+            "t": 409.635
+          },
+          {
+            "w": "will",
+            "t": 410.039
+          },
+          {
+            "w": "still",
+            "t": 410.442
+          },
+          {
+            "w": "remain",
+            "t": 410.846
+          },
+          {
+            "w": "in",
+            "t": 411.249
+          },
+          {
+            "w": "the",
+            "t": 411.653
+          },
+          {
+            "w": "reservoir",
+            "t": 412.056
+          },
+          {
+            "w": "after",
+            "t": 412.46
+          },
+          {
+            "w": "step",
+            "t": 412.863
+          },
+          {
+            "w": "1,001",
+            "t": 413.267
+          },
+          {
+            "w": "is",
+            "t": 413.67
+          },
+          {
+            "w": "complete?",
+            "t": 414.074
+          },
+          {
+            "w": "Select",
+            "t": 414.477
+          },
+          {
+            "w": "Option",
+            "t": 414.881
+          },
+          {
+            "w": "A,",
+            "t": 415.284
+          },
+          {
+            "w": "B,",
+            "t": 415.688
+          },
+          {
+            "w": "C,",
+            "t": 416.091
+          },
+          {
+            "w": "or",
+            "t": 416.495
+          },
+          {
+            "w": "D.",
+            "t": 416.898
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Now we cross the fundamental boundary of survey methodology into non-probability sampling. In traditional probability sampling, an exhaustive directory or frame of the target population exists. But in machine learning practice, we frequently study hidden, stigmatized, or peer-restricted cohorts, such as illegal drug users, victims of human trafficking, gig economy gig workers who refuse tracking, or elite vulnerability researchers. When no sampling frame exists, random draws are structurally impossible. Engineering teams frequently resort to Convenience Sampling, collecting voluntary walk-up intercepts, web banner clicks, or student volunteers. The inclusion probability of unit i is governed by an unknown self-selection function of physical proximity, personal motivation, and tech affinity. Because highly motivated individuals systematically dominate the dataset, convenience samples cannot estimate population prevalence. They are valid exclusively for instrument pre-testing, usability bug bashes, and exploratory feasibility pilots.",
+        "start": 417.302,
+        "end": 487.716,
+        "words": [
+          {
+            "w": "Now",
+            "t": 417.302
+          },
+          {
+            "w": "we",
+            "t": 417.824
+          },
+          {
+            "w": "cross",
+            "t": 418.345
+          },
+          {
+            "w": "the",
+            "t": 418.867
+          },
+          {
+            "w": "fundamental",
+            "t": 419.388
+          },
+          {
+            "w": "boundary",
+            "t": 419.91
+          },
+          {
+            "w": "of",
+            "t": 420.432
+          },
+          {
+            "w": "survey",
+            "t": 420.953
+          },
+          {
+            "w": "methodology",
+            "t": 421.475
+          },
+          {
+            "w": "into",
+            "t": 421.996
+          },
+          {
+            "w": "non-probability",
+            "t": 422.518
+          },
+          {
+            "w": "sampling.",
+            "t": 423.039
+          },
+          {
+            "w": "In",
+            "t": 423.561
+          },
+          {
+            "w": "traditional",
+            "t": 424.083
+          },
+          {
+            "w": "probability",
+            "t": 424.604
+          },
+          {
+            "w": "sampling,",
+            "t": 425.126
+          },
+          {
+            "w": "an",
+            "t": 425.647
+          },
+          {
+            "w": "exhaustive",
+            "t": 426.169
+          },
+          {
+            "w": "directory",
+            "t": 426.691
+          },
+          {
+            "w": "or",
+            "t": 427.212
+          },
+          {
+            "w": "frame",
+            "t": 427.734
+          },
+          {
+            "w": "of",
+            "t": 428.255
+          },
+          {
+            "w": "the",
+            "t": 428.777
+          },
+          {
+            "w": "target",
+            "t": 429.298
+          },
+          {
+            "w": "population",
+            "t": 429.82
+          },
+          {
+            "w": "exists.",
+            "t": 430.342
+          },
+          {
+            "w": "But",
+            "t": 430.863
+          },
+          {
+            "w": "in",
+            "t": 431.385
+          },
+          {
+            "w": "machine",
+            "t": 431.906
+          },
+          {
+            "w": "learning",
+            "t": 432.428
+          },
+          {
+            "w": "practice,",
+            "t": 432.95
+          },
+          {
+            "w": "we",
+            "t": 433.471
+          },
+          {
+            "w": "frequently",
+            "t": 433.993
+          },
+          {
+            "w": "study",
+            "t": 434.514
+          },
+          {
+            "w": "hidden,",
+            "t": 435.036
+          },
+          {
+            "w": "stigmatized,",
+            "t": 435.557
+          },
+          {
+            "w": "or",
+            "t": 436.079
+          },
+          {
+            "w": "peer-restricted",
+            "t": 436.601
+          },
+          {
+            "w": "cohorts,",
+            "t": 437.122
+          },
+          {
+            "w": "such",
+            "t": 437.644
+          },
+          {
+            "w": "as",
+            "t": 438.165
+          },
+          {
+            "w": "illegal",
+            "t": 438.687
+          },
+          {
+            "w": "drug",
+            "t": 439.209
+          },
+          {
+            "w": "users,",
+            "t": 439.73
+          },
+          {
+            "w": "victims",
+            "t": 440.252
+          },
+          {
+            "w": "of",
+            "t": 440.773
+          },
+          {
+            "w": "human",
+            "t": 441.295
+          },
+          {
+            "w": "trafficking,",
+            "t": 441.817
+          },
+          {
+            "w": "gig",
+            "t": 442.338
+          },
+          {
+            "w": "economy",
+            "t": 442.86
+          },
+          {
+            "w": "gig",
+            "t": 443.381
+          },
+          {
+            "w": "workers",
+            "t": 443.903
+          },
+          {
+            "w": "who",
+            "t": 444.424
+          },
+          {
+            "w": "refuse",
+            "t": 444.946
+          },
+          {
+            "w": "tracking,",
+            "t": 445.468
+          },
+          {
+            "w": "or",
+            "t": 445.989
+          },
+          {
+            "w": "elite",
+            "t": 446.511
+          },
+          {
+            "w": "vulnerability",
+            "t": 447.032
+          },
+          {
+            "w": "researchers.",
+            "t": 447.554
+          },
+          {
+            "w": "When",
+            "t": 448.076
+          },
+          {
+            "w": "no",
+            "t": 448.597
+          },
+          {
+            "w": "sampling",
+            "t": 449.119
+          },
+          {
+            "w": "frame",
+            "t": 449.64
+          },
+          {
+            "w": "exists,",
+            "t": 450.162
+          },
+          {
+            "w": "random",
+            "t": 450.683
+          },
+          {
+            "w": "draws",
+            "t": 451.205
+          },
+          {
+            "w": "are",
+            "t": 451.727
+          },
+          {
+            "w": "structurally",
+            "t": 452.248
+          },
+          {
+            "w": "impossible.",
+            "t": 452.77
+          },
+          {
+            "w": "Engineering",
+            "t": 453.291
+          },
+          {
+            "w": "teams",
+            "t": 453.813
+          },
+          {
+            "w": "frequently",
+            "t": 454.335
+          },
+          {
+            "w": "resort",
+            "t": 454.856
+          },
+          {
+            "w": "to",
+            "t": 455.378
+          },
+          {
+            "w": "Convenience",
+            "t": 455.899
+          },
+          {
+            "w": "Sampling,",
+            "t": 456.421
+          },
+          {
+            "w": "collecting",
+            "t": 456.942
+          },
+          {
+            "w": "voluntary",
+            "t": 457.464
+          },
+          {
+            "w": "walk-up",
+            "t": 457.986
+          },
+          {
+            "w": "intercepts,",
+            "t": 458.507
+          },
+          {
+            "w": "web",
+            "t": 459.029
+          },
+          {
+            "w": "banner",
+            "t": 459.55
+          },
+          {
+            "w": "clicks,",
+            "t": 460.072
+          },
+          {
+            "w": "or",
+            "t": 460.594
+          },
+          {
+            "w": "student",
+            "t": 461.115
+          },
+          {
+            "w": "volunteers.",
+            "t": 461.637
+          },
+          {
+            "w": "The",
+            "t": 462.158
+          },
+          {
+            "w": "inclusion",
+            "t": 462.68
+          },
+          {
+            "w": "probability",
+            "t": 463.201
+          },
+          {
+            "w": "of",
+            "t": 463.723
+          },
+          {
+            "w": "unit",
+            "t": 464.245
+          },
+          {
+            "w": "i",
+            "t": 464.766
+          },
+          {
+            "w": "is",
+            "t": 465.288
+          },
+          {
+            "w": "governed",
+            "t": 465.809
+          },
+          {
+            "w": "by",
+            "t": 466.331
+          },
+          {
+            "w": "an",
+            "t": 466.853
+          },
+          {
+            "w": "unknown",
+            "t": 467.374
+          },
+          {
+            "w": "self-selection",
+            "t": 467.896
+          },
+          {
+            "w": "function",
+            "t": 468.417
+          },
+          {
+            "w": "of",
+            "t": 468.939
+          },
+          {
+            "w": "physical",
+            "t": 469.461
+          },
+          {
+            "w": "proximity,",
+            "t": 469.982
+          },
+          {
+            "w": "personal",
+            "t": 470.504
+          },
+          {
+            "w": "motivation,",
+            "t": 471.025
+          },
+          {
+            "w": "and",
+            "t": 471.547
+          },
+          {
+            "w": "tech",
+            "t": 472.068
+          },
+          {
+            "w": "affinity.",
+            "t": 472.59
+          },
+          {
+            "w": "Because",
+            "t": 473.112
+          },
+          {
+            "w": "highly",
+            "t": 473.633
+          },
+          {
+            "w": "motivated",
+            "t": 474.155
+          },
+          {
+            "w": "individuals",
+            "t": 474.676
+          },
+          {
+            "w": "systematically",
+            "t": 475.198
+          },
+          {
+            "w": "dominate",
+            "t": 475.72
+          },
+          {
+            "w": "the",
+            "t": 476.241
+          },
+          {
+            "w": "dataset,",
+            "t": 476.763
+          },
+          {
+            "w": "convenience",
+            "t": 477.284
+          },
+          {
+            "w": "samples",
+            "t": 477.806
+          },
+          {
+            "w": "cannot",
+            "t": 478.327
+          },
+          {
+            "w": "estimate",
+            "t": 478.849
+          },
+          {
+            "w": "population",
+            "t": 479.371
+          },
+          {
+            "w": "prevalence.",
+            "t": 479.892
+          },
+          {
+            "w": "They",
+            "t": 480.414
+          },
+          {
+            "w": "are",
+            "t": 480.935
+          },
+          {
+            "w": "valid",
+            "t": 481.457
+          },
+          {
+            "w": "exclusively",
+            "t": 481.979
+          },
+          {
+            "w": "for",
+            "t": 482.5
+          },
+          {
+            "w": "instrument",
+            "t": 483.022
+          },
+          {
+            "w": "pre-testing,",
+            "t": 483.543
+          },
+          {
+            "w": "usability",
+            "t": 484.065
+          },
+          {
+            "w": "bug",
+            "t": 484.586
+          },
+          {
+            "w": "bashes,",
+            "t": 485.108
+          },
+          {
+            "w": "and",
+            "t": 485.63
+          },
+          {
+            "w": "exploratory",
+            "t": 486.151
+          },
+          {
+            "w": "feasibility",
+            "t": 486.673
+          },
+          {
+            "w": "pilots.",
+            "t": 487.194
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "When studying hidden, marginalized, or specialized populations with no sampling frame, researchers frequently turn to Snowball Sampling, originally formalized by Leo Goodman in 1961. The process begins with a small set of verified seed participants who recruit eligible peers from their social networks, who in turn recruit further peers. While indispensable for reaching closed communities, naive snowball samples suffer from two severe structural distortions. The first is Degree Centrality Bias: individuals with vast social networks are vastly more likely to be recruited than socially isolated individuals. The second is Network Homophily, the sociological principle that individuals preferentially associate with peers who share similar traits. Mathematically, the probability of an edge between nodes of the same class is vastly higher than between nodes of different classes. Consequently, if your initial seeds belong to a particular sub-group, language, or platform, the chain referral remains trapped in that echo chamber, producing an unrepresentative convenience sample.",
+        "start": 487.716,
+        "end": 560.551,
+        "words": [
+          {
+            "w": "When",
+            "t": 487.716
+          },
+          {
+            "w": "studying",
+            "t": 488.195
+          },
+          {
+            "w": "hidden,",
+            "t": 488.674
+          },
+          {
+            "w": "marginalized,",
+            "t": 489.154
+          },
+          {
+            "w": "or",
+            "t": 489.633
+          },
+          {
+            "w": "specialized",
+            "t": 490.112
+          },
+          {
+            "w": "populations",
+            "t": 490.591
+          },
+          {
+            "w": "with",
+            "t": 491.07
+          },
+          {
+            "w": "no",
+            "t": 491.549
+          },
+          {
+            "w": "sampling",
+            "t": 492.029
+          },
+          {
+            "w": "frame,",
+            "t": 492.508
+          },
+          {
+            "w": "researchers",
+            "t": 492.987
+          },
+          {
+            "w": "frequently",
+            "t": 493.466
+          },
+          {
+            "w": "turn",
+            "t": 493.945
+          },
+          {
+            "w": "to",
+            "t": 494.424
+          },
+          {
+            "w": "Snowball",
+            "t": 494.904
+          },
+          {
+            "w": "Sampling,",
+            "t": 495.383
+          },
+          {
+            "w": "originally",
+            "t": 495.862
+          },
+          {
+            "w": "formalized",
+            "t": 496.341
+          },
+          {
+            "w": "by",
+            "t": 496.82
+          },
+          {
+            "w": "Leo",
+            "t": 497.3
+          },
+          {
+            "w": "Goodman",
+            "t": 497.779
+          },
+          {
+            "w": "in",
+            "t": 498.258
+          },
+          {
+            "w": "1961.",
+            "t": 498.737
+          },
+          {
+            "w": "The",
+            "t": 499.216
+          },
+          {
+            "w": "process",
+            "t": 499.695
+          },
+          {
+            "w": "begins",
+            "t": 500.175
+          },
+          {
+            "w": "with",
+            "t": 500.654
+          },
+          {
+            "w": "a",
+            "t": 501.133
+          },
+          {
+            "w": "small",
+            "t": 501.612
+          },
+          {
+            "w": "set",
+            "t": 502.091
+          },
+          {
+            "w": "of",
+            "t": 502.571
+          },
+          {
+            "w": "verified",
+            "t": 503.05
+          },
+          {
+            "w": "seed",
+            "t": 503.529
+          },
+          {
+            "w": "participants",
+            "t": 504.008
+          },
+          {
+            "w": "who",
+            "t": 504.487
+          },
+          {
+            "w": "recruit",
+            "t": 504.966
+          },
+          {
+            "w": "eligible",
+            "t": 505.446
+          },
+          {
+            "w": "peers",
+            "t": 505.925
+          },
+          {
+            "w": "from",
+            "t": 506.404
+          },
+          {
+            "w": "their",
+            "t": 506.883
+          },
+          {
+            "w": "social",
+            "t": 507.362
+          },
+          {
+            "w": "networks,",
+            "t": 507.841
+          },
+          {
+            "w": "who",
+            "t": 508.321
+          },
+          {
+            "w": "in",
+            "t": 508.8
+          },
+          {
+            "w": "turn",
+            "t": 509.279
+          },
+          {
+            "w": "recruit",
+            "t": 509.758
+          },
+          {
+            "w": "further",
+            "t": 510.237
+          },
+          {
+            "w": "peers.",
+            "t": 510.717
+          },
+          {
+            "w": "While",
+            "t": 511.196
+          },
+          {
+            "w": "indispensable",
+            "t": 511.675
+          },
+          {
+            "w": "for",
+            "t": 512.154
+          },
+          {
+            "w": "reaching",
+            "t": 512.633
+          },
+          {
+            "w": "closed",
+            "t": 513.112
+          },
+          {
+            "w": "communities,",
+            "t": 513.592
+          },
+          {
+            "w": "naive",
+            "t": 514.071
+          },
+          {
+            "w": "snowball",
+            "t": 514.55
+          },
+          {
+            "w": "samples",
+            "t": 515.029
+          },
+          {
+            "w": "suffer",
+            "t": 515.508
+          },
+          {
+            "w": "from",
+            "t": 515.987
+          },
+          {
+            "w": "two",
+            "t": 516.467
+          },
+          {
+            "w": "severe",
+            "t": 516.946
+          },
+          {
+            "w": "structural",
+            "t": 517.425
+          },
+          {
+            "w": "distortions.",
+            "t": 517.904
+          },
+          {
+            "w": "The",
+            "t": 518.383
+          },
+          {
+            "w": "first",
+            "t": 518.863
+          },
+          {
+            "w": "is",
+            "t": 519.342
+          },
+          {
+            "w": "Degree",
+            "t": 519.821
+          },
+          {
+            "w": "Centrality",
+            "t": 520.3
+          },
+          {
+            "w": "Bias:",
+            "t": 520.779
+          },
+          {
+            "w": "individuals",
+            "t": 521.258
+          },
+          {
+            "w": "with",
+            "t": 521.738
+          },
+          {
+            "w": "vast",
+            "t": 522.217
+          },
+          {
+            "w": "social",
+            "t": 522.696
+          },
+          {
+            "w": "networks",
+            "t": 523.175
+          },
+          {
+            "w": "are",
+            "t": 523.654
+          },
+          {
+            "w": "vastly",
+            "t": 524.134
+          },
+          {
+            "w": "more",
+            "t": 524.613
+          },
+          {
+            "w": "likely",
+            "t": 525.092
+          },
+          {
+            "w": "to",
+            "t": 525.571
+          },
+          {
+            "w": "be",
+            "t": 526.05
+          },
+          {
+            "w": "recruited",
+            "t": 526.529
+          },
+          {
+            "w": "than",
+            "t": 527.009
+          },
+          {
+            "w": "socially",
+            "t": 527.488
+          },
+          {
+            "w": "isolated",
+            "t": 527.967
+          },
+          {
+            "w": "individuals.",
+            "t": 528.446
+          },
+          {
+            "w": "The",
+            "t": 528.925
+          },
+          {
+            "w": "second",
+            "t": 529.404
+          },
+          {
+            "w": "is",
+            "t": 529.884
+          },
+          {
+            "w": "Network",
+            "t": 530.363
+          },
+          {
+            "w": "Homophily,",
+            "t": 530.842
+          },
+          {
+            "w": "the",
+            "t": 531.321
+          },
+          {
+            "w": "sociological",
+            "t": 531.8
+          },
+          {
+            "w": "principle",
+            "t": 532.28
+          },
+          {
+            "w": "that",
+            "t": 532.759
+          },
+          {
+            "w": "individuals",
+            "t": 533.238
+          },
+          {
+            "w": "preferentially",
+            "t": 533.717
+          },
+          {
+            "w": "associate",
+            "t": 534.196
+          },
+          {
+            "w": "with",
+            "t": 534.675
+          },
+          {
+            "w": "peers",
+            "t": 535.155
+          },
+          {
+            "w": "who",
+            "t": 535.634
+          },
+          {
+            "w": "share",
+            "t": 536.113
+          },
+          {
+            "w": "similar",
+            "t": 536.592
+          },
+          {
+            "w": "traits.",
+            "t": 537.071
+          },
+          {
+            "w": "Mathematically,",
+            "t": 537.55
+          },
+          {
+            "w": "the",
+            "t": 538.03
+          },
+          {
+            "w": "probability",
+            "t": 538.509
+          },
+          {
+            "w": "of",
+            "t": 538.988
+          },
+          {
+            "w": "an",
+            "t": 539.467
+          },
+          {
+            "w": "edge",
+            "t": 539.946
+          },
+          {
+            "w": "between",
+            "t": 540.426
+          },
+          {
+            "w": "nodes",
+            "t": 540.905
+          },
+          {
+            "w": "of",
+            "t": 541.384
+          },
+          {
+            "w": "the",
+            "t": 541.863
+          },
+          {
+            "w": "same",
+            "t": 542.342
+          },
+          {
+            "w": "class",
+            "t": 542.821
+          },
+          {
+            "w": "is",
+            "t": 543.301
+          },
+          {
+            "w": "vastly",
+            "t": 543.78
+          },
+          {
+            "w": "higher",
+            "t": 544.259
+          },
+          {
+            "w": "than",
+            "t": 544.738
+          },
+          {
+            "w": "between",
+            "t": 545.217
+          },
+          {
+            "w": "nodes",
+            "t": 545.696
+          },
+          {
+            "w": "of",
+            "t": 546.176
+          },
+          {
+            "w": "different",
+            "t": 546.655
+          },
+          {
+            "w": "classes.",
+            "t": 547.134
+          },
+          {
+            "w": "Consequently,",
+            "t": 547.613
+          },
+          {
+            "w": "if",
+            "t": 548.092
+          },
+          {
+            "w": "your",
+            "t": 548.572
+          },
+          {
+            "w": "initial",
+            "t": 549.051
+          },
+          {
+            "w": "seeds",
+            "t": 549.53
+          },
+          {
+            "w": "belong",
+            "t": 550.009
+          },
+          {
+            "w": "to",
+            "t": 550.488
+          },
+          {
+            "w": "a",
+            "t": 550.967
+          },
+          {
+            "w": "particular",
+            "t": 551.447
+          },
+          {
+            "w": "sub-group,",
+            "t": 551.926
+          },
+          {
+            "w": "language,",
+            "t": 552.405
+          },
+          {
+            "w": "or",
+            "t": 552.884
+          },
+          {
+            "w": "platform,",
+            "t": 553.363
+          },
+          {
+            "w": "the",
+            "t": 553.843
+          },
+          {
+            "w": "chain",
+            "t": 554.322
+          },
+          {
+            "w": "referral",
+            "t": 554.801
+          },
+          {
+            "w": "remains",
+            "t": 555.28
+          },
+          {
+            "w": "trapped",
+            "t": 555.759
+          },
+          {
+            "w": "in",
+            "t": 556.238
+          },
+          {
+            "w": "that",
+            "t": 556.718
+          },
+          {
+            "w": "echo",
+            "t": 557.197
+          },
+          {
+            "w": "chamber,",
+            "t": 557.676
+          },
+          {
+            "w": "producing",
+            "t": 558.155
+          },
+          {
+            "w": "an",
+            "t": 558.634
+          },
+          {
+            "w": "unrepresentative",
+            "t": 559.113
+          },
+          {
+            "w": "convenience",
+            "t": 559.593
+          },
+          {
+            "w": "sample.",
+            "t": 560.072
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "In 1997, Douglas Heckathorn introduced Respondent-Driven Sampling, or RDS, revolutionizing public health and social data science. RDS models peer recruitment as a Markov chain on a connected social network graph. As recruitment chains progress through multiple waves, typically 4 to 6 waves, the Markov process mixes and converges to its stationary distribution, rendering the final sample composition mathematically independent of the non-random initial seeds. Under this stationary distribution, an individual's probability of being selected is strictly proportional to their network degree d-sub-i. This is probability proportional to size. To eliminate this degree bias, the Volz-Heckathorn estimator weights each observation inversely by its self-reported network degree, w-sub-i equals 1 over d-sub-i. The resulting weighted sample mean provides an asymptotically unbiased estimator of true population parameters, unlocking rigorous statistical inference in hidden populations.",
+        "start": 560.551,
+        "end": 626.66,
+        "words": [
+          {
+            "w": "In",
+            "t": 560.551
+          },
+          {
+            "w": "1997,",
+            "t": 561.056
+          },
+          {
+            "w": "Douglas",
+            "t": 561.56
+          },
+          {
+            "w": "Heckathorn",
+            "t": 562.065
+          },
+          {
+            "w": "introduced",
+            "t": 562.57
+          },
+          {
+            "w": "Respondent-Driven",
+            "t": 563.074
+          },
+          {
+            "w": "Sampling,",
+            "t": 563.579
+          },
+          {
+            "w": "or",
+            "t": 564.084
+          },
+          {
+            "w": "RDS,",
+            "t": 564.588
+          },
+          {
+            "w": "revolutionizing",
+            "t": 565.093
+          },
+          {
+            "w": "public",
+            "t": 565.597
+          },
+          {
+            "w": "health",
+            "t": 566.102
+          },
+          {
+            "w": "and",
+            "t": 566.607
+          },
+          {
+            "w": "social",
+            "t": 567.111
+          },
+          {
+            "w": "data",
+            "t": 567.616
+          },
+          {
+            "w": "science.",
+            "t": 568.121
+          },
+          {
+            "w": "RDS",
+            "t": 568.625
+          },
+          {
+            "w": "models",
+            "t": 569.13
+          },
+          {
+            "w": "peer",
+            "t": 569.635
+          },
+          {
+            "w": "recruitment",
+            "t": 570.139
+          },
+          {
+            "w": "as",
+            "t": 570.644
+          },
+          {
+            "w": "a",
+            "t": 571.149
+          },
+          {
+            "w": "Markov",
+            "t": 571.653
+          },
+          {
+            "w": "chain",
+            "t": 572.158
+          },
+          {
+            "w": "on",
+            "t": 572.663
+          },
+          {
+            "w": "a",
+            "t": 573.167
+          },
+          {
+            "w": "connected",
+            "t": 573.672
+          },
+          {
+            "w": "social",
+            "t": 574.177
+          },
+          {
+            "w": "network",
+            "t": 574.681
+          },
+          {
+            "w": "graph.",
+            "t": 575.186
+          },
+          {
+            "w": "As",
+            "t": 575.69
+          },
+          {
+            "w": "recruitment",
+            "t": 576.195
+          },
+          {
+            "w": "chains",
+            "t": 576.7
+          },
+          {
+            "w": "progress",
+            "t": 577.204
+          },
+          {
+            "w": "through",
+            "t": 577.709
+          },
+          {
+            "w": "multiple",
+            "t": 578.214
+          },
+          {
+            "w": "waves,",
+            "t": 578.718
+          },
+          {
+            "w": "typically",
+            "t": 579.223
+          },
+          {
+            "w": "4",
+            "t": 579.728
+          },
+          {
+            "w": "to",
+            "t": 580.232
+          },
+          {
+            "w": "6",
+            "t": 580.737
+          },
+          {
+            "w": "waves,",
+            "t": 581.242
+          },
+          {
+            "w": "the",
+            "t": 581.746
+          },
+          {
+            "w": "Markov",
+            "t": 582.251
+          },
+          {
+            "w": "process",
+            "t": 582.756
+          },
+          {
+            "w": "mixes",
+            "t": 583.26
+          },
+          {
+            "w": "and",
+            "t": 583.765
+          },
+          {
+            "w": "converges",
+            "t": 584.269
+          },
+          {
+            "w": "to",
+            "t": 584.774
+          },
+          {
+            "w": "its",
+            "t": 585.279
+          },
+          {
+            "w": "stationary",
+            "t": 585.783
+          },
+          {
+            "w": "distribution,",
+            "t": 586.288
+          },
+          {
+            "w": "rendering",
+            "t": 586.793
+          },
+          {
+            "w": "the",
+            "t": 587.297
+          },
+          {
+            "w": "final",
+            "t": 587.802
+          },
+          {
+            "w": "sample",
+            "t": 588.307
+          },
+          {
+            "w": "composition",
+            "t": 588.811
+          },
+          {
+            "w": "mathematically",
+            "t": 589.316
+          },
+          {
+            "w": "independent",
+            "t": 589.821
+          },
+          {
+            "w": "of",
+            "t": 590.325
+          },
+          {
+            "w": "the",
+            "t": 590.83
+          },
+          {
+            "w": "non-random",
+            "t": 591.335
+          },
+          {
+            "w": "initial",
+            "t": 591.839
+          },
+          {
+            "w": "seeds.",
+            "t": 592.344
+          },
+          {
+            "w": "Under",
+            "t": 592.849
+          },
+          {
+            "w": "this",
+            "t": 593.353
+          },
+          {
+            "w": "stationary",
+            "t": 593.858
+          },
+          {
+            "w": "distribution,",
+            "t": 594.362
+          },
+          {
+            "w": "an",
+            "t": 594.867
+          },
+          {
+            "w": "individual's",
+            "t": 595.372
+          },
+          {
+            "w": "probability",
+            "t": 595.876
+          },
+          {
+            "w": "of",
+            "t": 596.381
+          },
+          {
+            "w": "being",
+            "t": 596.886
+          },
+          {
+            "w": "selected",
+            "t": 597.39
+          },
+          {
+            "w": "is",
+            "t": 597.895
+          },
+          {
+            "w": "strictly",
+            "t": 598.4
+          },
+          {
+            "w": "proportional",
+            "t": 598.904
+          },
+          {
+            "w": "to",
+            "t": 599.409
+          },
+          {
+            "w": "their",
+            "t": 599.914
+          },
+          {
+            "w": "network",
+            "t": 600.418
+          },
+          {
+            "w": "degree",
+            "t": 600.923
+          },
+          {
+            "w": "d-sub-i.",
+            "t": 601.428
+          },
+          {
+            "w": "This",
+            "t": 601.932
+          },
+          {
+            "w": "is",
+            "t": 602.437
+          },
+          {
+            "w": "probability",
+            "t": 602.942
+          },
+          {
+            "w": "proportional",
+            "t": 603.446
+          },
+          {
+            "w": "to",
+            "t": 603.951
+          },
+          {
+            "w": "size.",
+            "t": 604.455
+          },
+          {
+            "w": "To",
+            "t": 604.96
+          },
+          {
+            "w": "eliminate",
+            "t": 605.465
+          },
+          {
+            "w": "this",
+            "t": 605.969
+          },
+          {
+            "w": "degree",
+            "t": 606.474
+          },
+          {
+            "w": "bias,",
+            "t": 606.979
+          },
+          {
+            "w": "the",
+            "t": 607.483
+          },
+          {
+            "w": "Volz-Heckathorn",
+            "t": 607.988
+          },
+          {
+            "w": "estimator",
+            "t": 608.493
+          },
+          {
+            "w": "weights",
+            "t": 608.997
+          },
+          {
+            "w": "each",
+            "t": 609.502
+          },
+          {
+            "w": "observation",
+            "t": 610.007
+          },
+          {
+            "w": "inversely",
+            "t": 610.511
+          },
+          {
+            "w": "by",
+            "t": 611.016
+          },
+          {
+            "w": "its",
+            "t": 611.521
+          },
+          {
+            "w": "self-reported",
+            "t": 612.025
+          },
+          {
+            "w": "network",
+            "t": 612.53
+          },
+          {
+            "w": "degree,",
+            "t": 613.034
+          },
+          {
+            "w": "w-sub-i",
+            "t": 613.539
+          },
+          {
+            "w": "equals",
+            "t": 614.044
+          },
+          {
+            "w": "1",
+            "t": 614.548
+          },
+          {
+            "w": "over",
+            "t": 615.053
+          },
+          {
+            "w": "d-sub-i.",
+            "t": 615.558
+          },
+          {
+            "w": "The",
+            "t": 616.062
+          },
+          {
+            "w": "resulting",
+            "t": 616.567
+          },
+          {
+            "w": "weighted",
+            "t": 617.072
+          },
+          {
+            "w": "sample",
+            "t": 617.576
+          },
+          {
+            "w": "mean",
+            "t": 618.081
+          },
+          {
+            "w": "provides",
+            "t": 618.586
+          },
+          {
+            "w": "an",
+            "t": 619.09
+          },
+          {
+            "w": "asymptotically",
+            "t": 619.595
+          },
+          {
+            "w": "unbiased",
+            "t": 620.1
+          },
+          {
+            "w": "estimator",
+            "t": 620.604
+          },
+          {
+            "w": "of",
+            "t": 621.109
+          },
+          {
+            "w": "true",
+            "t": 621.614
+          },
+          {
+            "w": "population",
+            "t": 622.118
+          },
+          {
+            "w": "parameters,",
+            "t": 622.623
+          },
+          {
+            "w": "unlocking",
+            "t": 623.127
+          },
+          {
+            "w": "rigorous",
+            "t": 623.632
+          },
+          {
+            "w": "statistical",
+            "t": 624.137
+          },
+          {
+            "w": "inference",
+            "t": 624.641
+          },
+          {
+            "w": "in",
+            "t": 625.146
+          },
+          {
+            "w": "hidden",
+            "t": 625.651
+          },
+          {
+            "w": "populations.",
+            "t": 626.155
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "This architectural diagram illustrates the complete Respondent-Driven Sampling data collection pipeline in production. The campaign initiates with diverse seeds chosen purposively to span demographic strata. Each seed receives a strictly limited quota of coded referral coupons, typically 2 to 3. When recruited peers enter the research facility or secure web portal, their unique coupon code links the recruitment tree, and their personal network degree d-sub-i is rigorously audited. As recruitment progresses through wave 1, wave 2, wave 3, and reaches wave 4 and beyond, the Markov recruitment process reaches equilibrium. Homophily barriers cross over, and seed bias vanishes. Finally, the Volz-Heckathorn engine applies inverse-degree weights to all records, outputting asymptotically unbiased population estimates with bootstrap confidence intervals.",
+        "start": 626.66,
+        "end": 684.296,
+        "words": [
+          {
+            "w": "This",
+            "t": 626.66
+          },
+          {
+            "w": "architectural",
+            "t": 627.153
+          },
+          {
+            "w": "diagram",
+            "t": 627.645
+          },
+          {
+            "w": "illustrates",
+            "t": 628.138
+          },
+          {
+            "w": "the",
+            "t": 628.63
+          },
+          {
+            "w": "complete",
+            "t": 629.123
+          },
+          {
+            "w": "Respondent-Driven",
+            "t": 629.616
+          },
+          {
+            "w": "Sampling",
+            "t": 630.108
+          },
+          {
+            "w": "data",
+            "t": 630.601
+          },
+          {
+            "w": "collection",
+            "t": 631.094
+          },
+          {
+            "w": "pipeline",
+            "t": 631.586
+          },
+          {
+            "w": "in",
+            "t": 632.079
+          },
+          {
+            "w": "production.",
+            "t": 632.571
+          },
+          {
+            "w": "The",
+            "t": 633.064
+          },
+          {
+            "w": "campaign",
+            "t": 633.557
+          },
+          {
+            "w": "initiates",
+            "t": 634.049
+          },
+          {
+            "w": "with",
+            "t": 634.542
+          },
+          {
+            "w": "diverse",
+            "t": 635.034
+          },
+          {
+            "w": "seeds",
+            "t": 635.527
+          },
+          {
+            "w": "chosen",
+            "t": 636.02
+          },
+          {
+            "w": "purposively",
+            "t": 636.512
+          },
+          {
+            "w": "to",
+            "t": 637.005
+          },
+          {
+            "w": "span",
+            "t": 637.498
+          },
+          {
+            "w": "demographic",
+            "t": 637.99
+          },
+          {
+            "w": "strata.",
+            "t": 638.483
+          },
+          {
+            "w": "Each",
+            "t": 638.975
+          },
+          {
+            "w": "seed",
+            "t": 639.468
+          },
+          {
+            "w": "receives",
+            "t": 639.961
+          },
+          {
+            "w": "a",
+            "t": 640.453
+          },
+          {
+            "w": "strictly",
+            "t": 640.946
+          },
+          {
+            "w": "limited",
+            "t": 641.438
+          },
+          {
+            "w": "quota",
+            "t": 641.931
+          },
+          {
+            "w": "of",
+            "t": 642.424
+          },
+          {
+            "w": "coded",
+            "t": 642.916
+          },
+          {
+            "w": "referral",
+            "t": 643.409
+          },
+          {
+            "w": "coupons,",
+            "t": 643.902
+          },
+          {
+            "w": "typically",
+            "t": 644.394
+          },
+          {
+            "w": "2",
+            "t": 644.887
+          },
+          {
+            "w": "to",
+            "t": 645.379
+          },
+          {
+            "w": "3.",
+            "t": 645.872
+          },
+          {
+            "w": "When",
+            "t": 646.365
+          },
+          {
+            "w": "recruited",
+            "t": 646.857
+          },
+          {
+            "w": "peers",
+            "t": 647.35
+          },
+          {
+            "w": "enter",
+            "t": 647.842
+          },
+          {
+            "w": "the",
+            "t": 648.335
+          },
+          {
+            "w": "research",
+            "t": 648.828
+          },
+          {
+            "w": "facility",
+            "t": 649.32
+          },
+          {
+            "w": "or",
+            "t": 649.813
+          },
+          {
+            "w": "secure",
+            "t": 650.306
+          },
+          {
+            "w": "web",
+            "t": 650.798
+          },
+          {
+            "w": "portal,",
+            "t": 651.291
+          },
+          {
+            "w": "their",
+            "t": 651.783
+          },
+          {
+            "w": "unique",
+            "t": 652.276
+          },
+          {
+            "w": "coupon",
+            "t": 652.769
+          },
+          {
+            "w": "code",
+            "t": 653.261
+          },
+          {
+            "w": "links",
+            "t": 653.754
+          },
+          {
+            "w": "the",
+            "t": 654.246
+          },
+          {
+            "w": "recruitment",
+            "t": 654.739
+          },
+          {
+            "w": "tree,",
+            "t": 655.232
+          },
+          {
+            "w": "and",
+            "t": 655.724
+          },
+          {
+            "w": "their",
+            "t": 656.217
+          },
+          {
+            "w": "personal",
+            "t": 656.71
+          },
+          {
+            "w": "network",
+            "t": 657.202
+          },
+          {
+            "w": "degree",
+            "t": 657.695
+          },
+          {
+            "w": "d-sub-i",
+            "t": 658.187
+          },
+          {
+            "w": "is",
+            "t": 658.68
+          },
+          {
+            "w": "rigorously",
+            "t": 659.173
+          },
+          {
+            "w": "audited.",
+            "t": 659.665
+          },
+          {
+            "w": "As",
+            "t": 660.158
+          },
+          {
+            "w": "recruitment",
+            "t": 660.65
+          },
+          {
+            "w": "progresses",
+            "t": 661.143
+          },
+          {
+            "w": "through",
+            "t": 661.636
+          },
+          {
+            "w": "wave",
+            "t": 662.128
+          },
+          {
+            "w": "1,",
+            "t": 662.621
+          },
+          {
+            "w": "wave",
+            "t": 663.114
+          },
+          {
+            "w": "2,",
+            "t": 663.606
+          },
+          {
+            "w": "wave",
+            "t": 664.099
+          },
+          {
+            "w": "3,",
+            "t": 664.591
+          },
+          {
+            "w": "and",
+            "t": 665.084
+          },
+          {
+            "w": "reaches",
+            "t": 665.577
+          },
+          {
+            "w": "wave",
+            "t": 666.069
+          },
+          {
+            "w": "4",
+            "t": 666.562
+          },
+          {
+            "w": "and",
+            "t": 667.054
+          },
+          {
+            "w": "beyond,",
+            "t": 667.547
+          },
+          {
+            "w": "the",
+            "t": 668.04
+          },
+          {
+            "w": "Markov",
+            "t": 668.532
+          },
+          {
+            "w": "recruitment",
+            "t": 669.025
+          },
+          {
+            "w": "process",
+            "t": 669.518
+          },
+          {
+            "w": "reaches",
+            "t": 670.01
+          },
+          {
+            "w": "equilibrium.",
+            "t": 670.503
+          },
+          {
+            "w": "Homophily",
+            "t": 670.995
+          },
+          {
+            "w": "barriers",
+            "t": 671.488
+          },
+          {
+            "w": "cross",
+            "t": 671.981
+          },
+          {
+            "w": "over,",
+            "t": 672.473
+          },
+          {
+            "w": "and",
+            "t": 672.966
+          },
+          {
+            "w": "seed",
+            "t": 673.458
+          },
+          {
+            "w": "bias",
+            "t": 673.951
+          },
+          {
+            "w": "vanishes.",
+            "t": 674.444
+          },
+          {
+            "w": "Finally,",
+            "t": 674.936
+          },
+          {
+            "w": "the",
+            "t": 675.429
+          },
+          {
+            "w": "Volz-Heckathorn",
+            "t": 675.922
+          },
+          {
+            "w": "engine",
+            "t": 676.414
+          },
+          {
+            "w": "applies",
+            "t": 676.907
+          },
+          {
+            "w": "inverse-degree",
+            "t": 677.399
+          },
+          {
+            "w": "weights",
+            "t": 677.892
+          },
+          {
+            "w": "to",
+            "t": 678.385
+          },
+          {
+            "w": "all",
+            "t": 678.877
+          },
+          {
+            "w": "records,",
+            "t": 679.37
+          },
+          {
+            "w": "outputting",
+            "t": 679.862
+          },
+          {
+            "w": "asymptotically",
+            "t": 680.355
+          },
+          {
+            "w": "unbiased",
+            "t": 680.848
+          },
+          {
+            "w": "population",
+            "t": 681.34
+          },
+          {
+            "w": "estimates",
+            "t": 681.833
+          },
+          {
+            "w": "with",
+            "t": 682.326
+          },
+          {
+            "w": "bootstrap",
+            "t": 682.818
+          },
+          {
+            "w": "confidence",
+            "t": 683.311
+          },
+          {
+            "w": "intervals.",
+            "t": 683.803
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Laboratory 2: the Respondent-Driven Sampling Degree Bias Simulator. In this interactive lab, we simulate a hidden population where only 10 percent of participants are high-degree social hubs with an average of 40 contacts, while 90 percent are normal members with an average of 4 contacts. Furthermore, let these high-degree hubs exhibit an elevated trait value, such as 80 versus 20 for normal members. True population mean is 26.0. Use the sliders to adjust hub degree, normal degree, hub population fraction, and homophily factor. Notice how in the naive snowball draw, high-degree hubs dominate recruitment, pulling the unweighted sample mean up to nearly 50, an error of over 85 percent! Now observe the Volz-Heckathorn inverse-degree weighted mean. By weighting each participant by 1 over their personal degree, the estimator automatically penalizes the oversampled hubs, snapping the estimate back to 26.1, eliminating 98 percent of the sampling error!",
+        "start": 684.296,
+        "end": 749.531,
+        "words": [
+          {
+            "w": "Welcome",
+            "t": 684.296
+          },
+          {
+            "w": "to",
+            "t": 684.737
+          },
+          {
+            "w": "Laboratory",
+            "t": 685.178
+          },
+          {
+            "w": "2:",
+            "t": 685.618
+          },
+          {
+            "w": "the",
+            "t": 686.059
+          },
+          {
+            "w": "Respondent-Driven",
+            "t": 686.5
+          },
+          {
+            "w": "Sampling",
+            "t": 686.941
+          },
+          {
+            "w": "Degree",
+            "t": 687.381
+          },
+          {
+            "w": "Bias",
+            "t": 687.822
+          },
+          {
+            "w": "Simulator.",
+            "t": 688.263
+          },
+          {
+            "w": "In",
+            "t": 688.704
+          },
+          {
+            "w": "this",
+            "t": 689.145
+          },
+          {
+            "w": "interactive",
+            "t": 689.585
+          },
+          {
+            "w": "lab,",
+            "t": 690.026
+          },
+          {
+            "w": "we",
+            "t": 690.467
+          },
+          {
+            "w": "simulate",
+            "t": 690.908
+          },
+          {
+            "w": "a",
+            "t": 691.348
+          },
+          {
+            "w": "hidden",
+            "t": 691.789
+          },
+          {
+            "w": "population",
+            "t": 692.23
+          },
+          {
+            "w": "where",
+            "t": 692.671
+          },
+          {
+            "w": "only",
+            "t": 693.112
+          },
+          {
+            "w": "10",
+            "t": 693.552
+          },
+          {
+            "w": "percent",
+            "t": 693.993
+          },
+          {
+            "w": "of",
+            "t": 694.434
+          },
+          {
+            "w": "participants",
+            "t": 694.875
+          },
+          {
+            "w": "are",
+            "t": 695.315
+          },
+          {
+            "w": "high-degree",
+            "t": 695.756
+          },
+          {
+            "w": "social",
+            "t": 696.197
+          },
+          {
+            "w": "hubs",
+            "t": 696.638
+          },
+          {
+            "w": "with",
+            "t": 697.079
+          },
+          {
+            "w": "an",
+            "t": 697.519
+          },
+          {
+            "w": "average",
+            "t": 697.96
+          },
+          {
+            "w": "of",
+            "t": 698.401
+          },
+          {
+            "w": "40",
+            "t": 698.842
+          },
+          {
+            "w": "contacts,",
+            "t": 699.282
+          },
+          {
+            "w": "while",
+            "t": 699.723
+          },
+          {
+            "w": "90",
+            "t": 700.164
+          },
+          {
+            "w": "percent",
+            "t": 700.605
+          },
+          {
+            "w": "are",
+            "t": 701.046
+          },
+          {
+            "w": "normal",
+            "t": 701.486
+          },
+          {
+            "w": "members",
+            "t": 701.927
+          },
+          {
+            "w": "with",
+            "t": 702.368
+          },
+          {
+            "w": "an",
+            "t": 702.809
+          },
+          {
+            "w": "average",
+            "t": 703.249
+          },
+          {
+            "w": "of",
+            "t": 703.69
+          },
+          {
+            "w": "4",
+            "t": 704.131
+          },
+          {
+            "w": "contacts.",
+            "t": 704.572
+          },
+          {
+            "w": "Furthermore,",
+            "t": 705.013
+          },
+          {
+            "w": "let",
+            "t": 705.453
+          },
+          {
+            "w": "these",
+            "t": 705.894
+          },
+          {
+            "w": "high-degree",
+            "t": 706.335
+          },
+          {
+            "w": "hubs",
+            "t": 706.776
+          },
+          {
+            "w": "exhibit",
+            "t": 707.216
+          },
+          {
+            "w": "an",
+            "t": 707.657
+          },
+          {
+            "w": "elevated",
+            "t": 708.098
+          },
+          {
+            "w": "trait",
+            "t": 708.539
+          },
+          {
+            "w": "value,",
+            "t": 708.98
+          },
+          {
+            "w": "such",
+            "t": 709.42
+          },
+          {
+            "w": "as",
+            "t": 709.861
+          },
+          {
+            "w": "80",
+            "t": 710.302
+          },
+          {
+            "w": "versus",
+            "t": 710.743
+          },
+          {
+            "w": "20",
+            "t": 711.183
+          },
+          {
+            "w": "for",
+            "t": 711.624
+          },
+          {
+            "w": "normal",
+            "t": 712.065
+          },
+          {
+            "w": "members.",
+            "t": 712.506
+          },
+          {
+            "w": "True",
+            "t": 712.947
+          },
+          {
+            "w": "population",
+            "t": 713.387
+          },
+          {
+            "w": "mean",
+            "t": 713.828
+          },
+          {
+            "w": "is",
+            "t": 714.269
+          },
+          {
+            "w": "26.0.",
+            "t": 714.71
+          },
+          {
+            "w": "Use",
+            "t": 715.15
+          },
+          {
+            "w": "the",
+            "t": 715.591
+          },
+          {
+            "w": "sliders",
+            "t": 716.032
+          },
+          {
+            "w": "to",
+            "t": 716.473
+          },
+          {
+            "w": "adjust",
+            "t": 716.913
+          },
+          {
+            "w": "hub",
+            "t": 717.354
+          },
+          {
+            "w": "degree,",
+            "t": 717.795
+          },
+          {
+            "w": "normal",
+            "t": 718.236
+          },
+          {
+            "w": "degree,",
+            "t": 718.677
+          },
+          {
+            "w": "hub",
+            "t": 719.117
+          },
+          {
+            "w": "population",
+            "t": 719.558
+          },
+          {
+            "w": "fraction,",
+            "t": 719.999
+          },
+          {
+            "w": "and",
+            "t": 720.44
+          },
+          {
+            "w": "homophily",
+            "t": 720.88
+          },
+          {
+            "w": "factor.",
+            "t": 721.321
+          },
+          {
+            "w": "Notice",
+            "t": 721.762
+          },
+          {
+            "w": "how",
+            "t": 722.203
+          },
+          {
+            "w": "in",
+            "t": 722.644
+          },
+          {
+            "w": "the",
+            "t": 723.084
+          },
+          {
+            "w": "naive",
+            "t": 723.525
+          },
+          {
+            "w": "snowball",
+            "t": 723.966
+          },
+          {
+            "w": "draw,",
+            "t": 724.407
+          },
+          {
+            "w": "high-degree",
+            "t": 724.847
+          },
+          {
+            "w": "hubs",
+            "t": 725.288
+          },
+          {
+            "w": "dominate",
+            "t": 725.729
+          },
+          {
+            "w": "recruitment,",
+            "t": 726.17
+          },
+          {
+            "w": "pulling",
+            "t": 726.611
+          },
+          {
+            "w": "the",
+            "t": 727.051
+          },
+          {
+            "w": "unweighted",
+            "t": 727.492
+          },
+          {
+            "w": "sample",
+            "t": 727.933
+          },
+          {
+            "w": "mean",
+            "t": 728.374
+          },
+          {
+            "w": "up",
+            "t": 728.814
+          },
+          {
+            "w": "to",
+            "t": 729.255
+          },
+          {
+            "w": "nearly",
+            "t": 729.696
+          },
+          {
+            "w": "50,",
+            "t": 730.137
+          },
+          {
+            "w": "an",
+            "t": 730.578
+          },
+          {
+            "w": "error",
+            "t": 731.018
+          },
+          {
+            "w": "of",
+            "t": 731.459
+          },
+          {
+            "w": "over",
+            "t": 731.9
+          },
+          {
+            "w": "85",
+            "t": 732.341
+          },
+          {
+            "w": "percent!",
+            "t": 732.781
+          },
+          {
+            "w": "Now",
+            "t": 733.222
+          },
+          {
+            "w": "observe",
+            "t": 733.663
+          },
+          {
+            "w": "the",
+            "t": 734.104
+          },
+          {
+            "w": "Volz-Heckathorn",
+            "t": 734.545
+          },
+          {
+            "w": "inverse-degree",
+            "t": 734.985
+          },
+          {
+            "w": "weighted",
+            "t": 735.426
+          },
+          {
+            "w": "mean.",
+            "t": 735.867
+          },
+          {
+            "w": "By",
+            "t": 736.308
+          },
+          {
+            "w": "weighting",
+            "t": 736.748
+          },
+          {
+            "w": "each",
+            "t": 737.189
+          },
+          {
+            "w": "participant",
+            "t": 737.63
+          },
+          {
+            "w": "by",
+            "t": 738.071
+          },
+          {
+            "w": "1",
+            "t": 738.512
+          },
+          {
+            "w": "over",
+            "t": 738.952
+          },
+          {
+            "w": "their",
+            "t": 739.393
+          },
+          {
+            "w": "personal",
+            "t": 739.834
+          },
+          {
+            "w": "degree,",
+            "t": 740.275
+          },
+          {
+            "w": "the",
+            "t": 740.715
+          },
+          {
+            "w": "estimator",
+            "t": 741.156
+          },
+          {
+            "w": "automatically",
+            "t": 741.597
+          },
+          {
+            "w": "penalizes",
+            "t": 742.038
+          },
+          {
+            "w": "the",
+            "t": 742.479
+          },
+          {
+            "w": "oversampled",
+            "t": 742.919
+          },
+          {
+            "w": "hubs,",
+            "t": 743.36
+          },
+          {
+            "w": "snapping",
+            "t": 743.801
+          },
+          {
+            "w": "the",
+            "t": 744.242
+          },
+          {
+            "w": "estimate",
+            "t": 744.682
+          },
+          {
+            "w": "back",
+            "t": 745.123
+          },
+          {
+            "w": "to",
+            "t": 745.564
+          },
+          {
+            "w": "26.1,",
+            "t": 746.005
+          },
+          {
+            "w": "eliminating",
+            "t": 746.446
+          },
+          {
+            "w": "98",
+            "t": 746.886
+          },
+          {
+            "w": "percent",
+            "t": 747.327
+          },
+          {
+            "w": "of",
+            "t": 747.768
+          },
+          {
+            "w": "the",
+            "t": 748.209
+          },
+          {
+            "w": "sampling",
+            "t": 748.649
+          },
+          {
+            "w": "error!",
+            "t": 749.09
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "Time for Active Checkpoint 2. Let us test your operational understanding of RDS weighting. In a specialized study of zero-day cybersecurity exploit brokers, researchers deploy respondent-driven sampling. Participant A reports having 40 active professional peer contacts, while Participant B reports having 4 active professional contacts. According to the Volz-Heckathorn estimator, how does RDS adjust their sample weights? Select Option A, B, C, or D.",
+        "start": 749.531,
+        "end": 779.929,
+        "words": [
+          {
+            "w": "Time",
+            "t": 749.531
+          },
+          {
+            "w": "for",
+            "t": 750.006
+          },
+          {
+            "w": "Active",
+            "t": 750.481
+          },
+          {
+            "w": "Checkpoint",
+            "t": 750.956
+          },
+          {
+            "w": "2.",
+            "t": 751.431
+          },
+          {
+            "w": "Let",
+            "t": 751.906
+          },
+          {
+            "w": "us",
+            "t": 752.381
+          },
+          {
+            "w": "test",
+            "t": 752.856
+          },
+          {
+            "w": "your",
+            "t": 753.331
+          },
+          {
+            "w": "operational",
+            "t": 753.806
+          },
+          {
+            "w": "understanding",
+            "t": 754.281
+          },
+          {
+            "w": "of",
+            "t": 754.756
+          },
+          {
+            "w": "RDS",
+            "t": 755.231
+          },
+          {
+            "w": "weighting.",
+            "t": 755.706
+          },
+          {
+            "w": "In",
+            "t": 756.181
+          },
+          {
+            "w": "a",
+            "t": 756.656
+          },
+          {
+            "w": "specialized",
+            "t": 757.13
+          },
+          {
+            "w": "study",
+            "t": 757.605
+          },
+          {
+            "w": "of",
+            "t": 758.08
+          },
+          {
+            "w": "zero-day",
+            "t": 758.555
+          },
+          {
+            "w": "cybersecurity",
+            "t": 759.03
+          },
+          {
+            "w": "exploit",
+            "t": 759.505
+          },
+          {
+            "w": "brokers,",
+            "t": 759.98
+          },
+          {
+            "w": "researchers",
+            "t": 760.455
+          },
+          {
+            "w": "deploy",
+            "t": 760.93
+          },
+          {
+            "w": "respondent-driven",
+            "t": 761.405
+          },
+          {
+            "w": "sampling.",
+            "t": 761.88
+          },
+          {
+            "w": "Participant",
+            "t": 762.355
+          },
+          {
+            "w": "A",
+            "t": 762.83
+          },
+          {
+            "w": "reports",
+            "t": 763.305
+          },
+          {
+            "w": "having",
+            "t": 763.78
+          },
+          {
+            "w": "40",
+            "t": 764.255
+          },
+          {
+            "w": "active",
+            "t": 764.73
+          },
+          {
+            "w": "professional",
+            "t": 765.205
+          },
+          {
+            "w": "peer",
+            "t": 765.68
+          },
+          {
+            "w": "contacts,",
+            "t": 766.155
+          },
+          {
+            "w": "while",
+            "t": 766.63
+          },
+          {
+            "w": "Participant",
+            "t": 767.105
+          },
+          {
+            "w": "B",
+            "t": 767.58
+          },
+          {
+            "w": "reports",
+            "t": 768.055
+          },
+          {
+            "w": "having",
+            "t": 768.53
+          },
+          {
+            "w": "4",
+            "t": 769.005
+          },
+          {
+            "w": "active",
+            "t": 769.48
+          },
+          {
+            "w": "professional",
+            "t": 769.955
+          },
+          {
+            "w": "contacts.",
+            "t": 770.43
+          },
+          {
+            "w": "According",
+            "t": 770.905
+          },
+          {
+            "w": "to",
+            "t": 771.38
+          },
+          {
+            "w": "the",
+            "t": 771.855
+          },
+          {
+            "w": "Volz-Heckathorn",
+            "t": 772.329
+          },
+          {
+            "w": "estimator,",
+            "t": 772.804
+          },
+          {
+            "w": "how",
+            "t": 773.279
+          },
+          {
+            "w": "does",
+            "t": 773.754
+          },
+          {
+            "w": "RDS",
+            "t": 774.229
+          },
+          {
+            "w": "adjust",
+            "t": 774.704
+          },
+          {
+            "w": "their",
+            "t": 775.179
+          },
+          {
+            "w": "sample",
+            "t": 775.654
+          },
+          {
+            "w": "weights?",
+            "t": 776.129
+          },
+          {
+            "w": "Select",
+            "t": 776.604
+          },
+          {
+            "w": "Option",
+            "t": 777.079
+          },
+          {
+            "w": "A,",
+            "t": 777.554
+          },
+          {
+            "w": "B,",
+            "t": 778.029
+          },
+          {
+            "w": "C,",
+            "t": 778.504
+          },
+          {
+            "w": "or",
+            "t": 778.979
+          },
+          {
+            "w": "D.",
+            "t": 779.454
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "When data targets are rare but geographically or topologically clustered, such as oil spills, rare endangered species, disease clusters, or botnet command-and-control servers, classical random sampling wastes budget sampling vast empty regions. In 1990, Steven Thompson formulated Adaptive Cluster Sampling. The algorithm begins by drawing a sparse initial random sample of grid units. If a sampled unit satisfies a predefined condition C, such as exceeding a toxicity threshold or fraud rate, the sampling protocol dynamically expands, surveying all contiguous neighboring units in its 4-neighborhood. This expansion continues recursively until no new units meet condition C, identifying the complete connected cluster. Because cluster expansion is deterministic based on condition C, Horvitz-Thompson modified inclusion estimators remain strictly unbiased. To compute confidence intervals without assuming normal distributions, we apply Efron's non-parametric bootstrap, resampling the empirical data 1,000 times with replacement to construct percentile confidence bounds.",
+        "start": 779.929,
+        "end": 852.158,
+        "words": [
+          {
+            "w": "When",
+            "t": 779.929
+          },
+          {
+            "w": "data",
+            "t": 780.438
+          },
+          {
+            "w": "targets",
+            "t": 780.946
+          },
+          {
+            "w": "are",
+            "t": 781.455
+          },
+          {
+            "w": "rare",
+            "t": 781.964
+          },
+          {
+            "w": "but",
+            "t": 782.472
+          },
+          {
+            "w": "geographically",
+            "t": 782.981
+          },
+          {
+            "w": "or",
+            "t": 783.49
+          },
+          {
+            "w": "topologically",
+            "t": 783.998
+          },
+          {
+            "w": "clustered,",
+            "t": 784.507
+          },
+          {
+            "w": "such",
+            "t": 785.016
+          },
+          {
+            "w": "as",
+            "t": 785.524
+          },
+          {
+            "w": "oil",
+            "t": 786.033
+          },
+          {
+            "w": "spills,",
+            "t": 786.542
+          },
+          {
+            "w": "rare",
+            "t": 787.05
+          },
+          {
+            "w": "endangered",
+            "t": 787.559
+          },
+          {
+            "w": "species,",
+            "t": 788.067
+          },
+          {
+            "w": "disease",
+            "t": 788.576
+          },
+          {
+            "w": "clusters,",
+            "t": 789.085
+          },
+          {
+            "w": "or",
+            "t": 789.593
+          },
+          {
+            "w": "botnet",
+            "t": 790.102
+          },
+          {
+            "w": "command-and-control",
+            "t": 790.611
+          },
+          {
+            "w": "servers,",
+            "t": 791.119
+          },
+          {
+            "w": "classical",
+            "t": 791.628
+          },
+          {
+            "w": "random",
+            "t": 792.137
+          },
+          {
+            "w": "sampling",
+            "t": 792.645
+          },
+          {
+            "w": "wastes",
+            "t": 793.154
+          },
+          {
+            "w": "budget",
+            "t": 793.663
+          },
+          {
+            "w": "sampling",
+            "t": 794.171
+          },
+          {
+            "w": "vast",
+            "t": 794.68
+          },
+          {
+            "w": "empty",
+            "t": 795.189
+          },
+          {
+            "w": "regions.",
+            "t": 795.697
+          },
+          {
+            "w": "In",
+            "t": 796.206
+          },
+          {
+            "w": "1990,",
+            "t": 796.715
+          },
+          {
+            "w": "Steven",
+            "t": 797.223
+          },
+          {
+            "w": "Thompson",
+            "t": 797.732
+          },
+          {
+            "w": "formulated",
+            "t": 798.241
+          },
+          {
+            "w": "Adaptive",
+            "t": 798.749
+          },
+          {
+            "w": "Cluster",
+            "t": 799.258
+          },
+          {
+            "w": "Sampling.",
+            "t": 799.767
+          },
+          {
+            "w": "The",
+            "t": 800.275
+          },
+          {
+            "w": "algorithm",
+            "t": 800.784
+          },
+          {
+            "w": "begins",
+            "t": 801.293
+          },
+          {
+            "w": "by",
+            "t": 801.801
+          },
+          {
+            "w": "drawing",
+            "t": 802.31
+          },
+          {
+            "w": "a",
+            "t": 802.818
+          },
+          {
+            "w": "sparse",
+            "t": 803.327
+          },
+          {
+            "w": "initial",
+            "t": 803.836
+          },
+          {
+            "w": "random",
+            "t": 804.344
+          },
+          {
+            "w": "sample",
+            "t": 804.853
+          },
+          {
+            "w": "of",
+            "t": 805.362
+          },
+          {
+            "w": "grid",
+            "t": 805.87
+          },
+          {
+            "w": "units.",
+            "t": 806.379
+          },
+          {
+            "w": "If",
+            "t": 806.888
+          },
+          {
+            "w": "a",
+            "t": 807.396
+          },
+          {
+            "w": "sampled",
+            "t": 807.905
+          },
+          {
+            "w": "unit",
+            "t": 808.414
+          },
+          {
+            "w": "satisfies",
+            "t": 808.922
+          },
+          {
+            "w": "a",
+            "t": 809.431
+          },
+          {
+            "w": "predefined",
+            "t": 809.94
+          },
+          {
+            "w": "condition",
+            "t": 810.448
+          },
+          {
+            "w": "C,",
+            "t": 810.957
+          },
+          {
+            "w": "such",
+            "t": 811.466
+          },
+          {
+            "w": "as",
+            "t": 811.974
+          },
+          {
+            "w": "exceeding",
+            "t": 812.483
+          },
+          {
+            "w": "a",
+            "t": 812.992
+          },
+          {
+            "w": "toxicity",
+            "t": 813.5
+          },
+          {
+            "w": "threshold",
+            "t": 814.009
+          },
+          {
+            "w": "or",
+            "t": 814.518
+          },
+          {
+            "w": "fraud",
+            "t": 815.026
+          },
+          {
+            "w": "rate,",
+            "t": 815.535
+          },
+          {
+            "w": "the",
+            "t": 816.043
+          },
+          {
+            "w": "sampling",
+            "t": 816.552
+          },
+          {
+            "w": "protocol",
+            "t": 817.061
+          },
+          {
+            "w": "dynamically",
+            "t": 817.569
+          },
+          {
+            "w": "expands,",
+            "t": 818.078
+          },
+          {
+            "w": "surveying",
+            "t": 818.587
+          },
+          {
+            "w": "all",
+            "t": 819.095
+          },
+          {
+            "w": "contiguous",
+            "t": 819.604
+          },
+          {
+            "w": "neighboring",
+            "t": 820.113
+          },
+          {
+            "w": "units",
+            "t": 820.621
+          },
+          {
+            "w": "in",
+            "t": 821.13
+          },
+          {
+            "w": "its",
+            "t": 821.639
+          },
+          {
+            "w": "4-neighborhood.",
+            "t": 822.147
+          },
+          {
+            "w": "This",
+            "t": 822.656
+          },
+          {
+            "w": "expansion",
+            "t": 823.165
+          },
+          {
+            "w": "continues",
+            "t": 823.673
+          },
+          {
+            "w": "recursively",
+            "t": 824.182
+          },
+          {
+            "w": "until",
+            "t": 824.691
+          },
+          {
+            "w": "no",
+            "t": 825.199
+          },
+          {
+            "w": "new",
+            "t": 825.708
+          },
+          {
+            "w": "units",
+            "t": 826.217
+          },
+          {
+            "w": "meet",
+            "t": 826.725
+          },
+          {
+            "w": "condition",
+            "t": 827.234
+          },
+          {
+            "w": "C,",
+            "t": 827.743
+          },
+          {
+            "w": "identifying",
+            "t": 828.251
+          },
+          {
+            "w": "the",
+            "t": 828.76
+          },
+          {
+            "w": "complete",
+            "t": 829.269
+          },
+          {
+            "w": "connected",
+            "t": 829.777
+          },
+          {
+            "w": "cluster.",
+            "t": 830.286
+          },
+          {
+            "w": "Because",
+            "t": 830.794
+          },
+          {
+            "w": "cluster",
+            "t": 831.303
+          },
+          {
+            "w": "expansion",
+            "t": 831.812
+          },
+          {
+            "w": "is",
+            "t": 832.32
+          },
+          {
+            "w": "deterministic",
+            "t": 832.829
+          },
+          {
+            "w": "based",
+            "t": 833.338
+          },
+          {
+            "w": "on",
+            "t": 833.846
+          },
+          {
+            "w": "condition",
+            "t": 834.355
+          },
+          {
+            "w": "C,",
+            "t": 834.864
+          },
+          {
+            "w": "Horvitz-Thompson",
+            "t": 835.372
+          },
+          {
+            "w": "modified",
+            "t": 835.881
+          },
+          {
+            "w": "inclusion",
+            "t": 836.39
+          },
+          {
+            "w": "estimators",
+            "t": 836.898
+          },
+          {
+            "w": "remain",
+            "t": 837.407
+          },
+          {
+            "w": "strictly",
+            "t": 837.916
+          },
+          {
+            "w": "unbiased.",
+            "t": 838.424
+          },
+          {
+            "w": "To",
+            "t": 838.933
+          },
+          {
+            "w": "compute",
+            "t": 839.442
+          },
+          {
+            "w": "confidence",
+            "t": 839.95
+          },
+          {
+            "w": "intervals",
+            "t": 840.459
+          },
+          {
+            "w": "without",
+            "t": 840.968
+          },
+          {
+            "w": "assuming",
+            "t": 841.476
+          },
+          {
+            "w": "normal",
+            "t": 841.985
+          },
+          {
+            "w": "distributions,",
+            "t": 842.494
+          },
+          {
+            "w": "we",
+            "t": 843.002
+          },
+          {
+            "w": "apply",
+            "t": 843.511
+          },
+          {
+            "w": "Efron's",
+            "t": 844.02
+          },
+          {
+            "w": "non-parametric",
+            "t": 844.528
+          },
+          {
+            "w": "bootstrap,",
+            "t": 845.037
+          },
+          {
+            "w": "resampling",
+            "t": 845.545
+          },
+          {
+            "w": "the",
+            "t": 846.054
+          },
+          {
+            "w": "empirical",
+            "t": 846.563
+          },
+          {
+            "w": "data",
+            "t": 847.071
+          },
+          {
+            "w": "1,000",
+            "t": 847.58
+          },
+          {
+            "w": "times",
+            "t": 848.089
+          },
+          {
+            "w": "with",
+            "t": 848.597
+          },
+          {
+            "w": "replacement",
+            "t": 849.106
+          },
+          {
+            "w": "to",
+            "t": 849.615
+          },
+          {
+            "w": "construct",
+            "t": 850.123
+          },
+          {
+            "w": "percentile",
+            "t": 850.632
+          },
+          {
+            "w": "confidence",
+            "t": 851.141
+          },
+          {
+            "w": "bounds.",
+            "t": 851.649
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Here is the production-grade Python implementation of our Extended Sampling Engine. This clean, modular class encapsulates all four algorithms we explored today. First, systematic_sample executes fixed-stride selection with uniform random start seed r. Second, reservoir_sample implements Vitter's Algorithm R, managing an unbounded stream with strictly bounded O of k memory and uniform inclusion probability. Third, rds_estimator applies Volz-Heckathorn inverse-degree weighting to peer referral surveys, completely neutralizing hub bias. Fourth, expand_adaptive_cluster implements recursive topological expansion across a spatial grid, automatically identifying connected components exceeding threshold C. Notice the automated test assertions at the bottom: every algorithm is validated with deterministic assertions, ensuring robust integration into data engineering and feature store pipelines.",
+        "start": 852.158,
+        "end": 912.618,
+        "words": [
+          {
+            "w": "Here",
+            "t": 852.158
+          },
+          {
+            "w": "is",
+            "t": 852.708
+          },
+          {
+            "w": "the",
+            "t": 853.257
+          },
+          {
+            "w": "production-grade",
+            "t": 853.807
+          },
+          {
+            "w": "Python",
+            "t": 854.357
+          },
+          {
+            "w": "implementation",
+            "t": 854.906
+          },
+          {
+            "w": "of",
+            "t": 855.456
+          },
+          {
+            "w": "our",
+            "t": 856.005
+          },
+          {
+            "w": "Extended",
+            "t": 856.555
+          },
+          {
+            "w": "Sampling",
+            "t": 857.105
+          },
+          {
+            "w": "Engine.",
+            "t": 857.654
+          },
+          {
+            "w": "This",
+            "t": 858.204
+          },
+          {
+            "w": "clean,",
+            "t": 858.754
+          },
+          {
+            "w": "modular",
+            "t": 859.303
+          },
+          {
+            "w": "class",
+            "t": 859.853
+          },
+          {
+            "w": "encapsulates",
+            "t": 860.403
+          },
+          {
+            "w": "all",
+            "t": 860.952
+          },
+          {
+            "w": "four",
+            "t": 861.502
+          },
+          {
+            "w": "algorithms",
+            "t": 862.051
+          },
+          {
+            "w": "we",
+            "t": 862.601
+          },
+          {
+            "w": "explored",
+            "t": 863.151
+          },
+          {
+            "w": "today.",
+            "t": 863.7
+          },
+          {
+            "w": "First,",
+            "t": 864.25
+          },
+          {
+            "w": "systematic_sample",
+            "t": 864.8
+          },
+          {
+            "w": "executes",
+            "t": 865.349
+          },
+          {
+            "w": "fixed-stride",
+            "t": 865.899
+          },
+          {
+            "w": "selection",
+            "t": 866.449
+          },
+          {
+            "w": "with",
+            "t": 866.998
+          },
+          {
+            "w": "uniform",
+            "t": 867.548
+          },
+          {
+            "w": "random",
+            "t": 868.097
+          },
+          {
+            "w": "start",
+            "t": 868.647
+          },
+          {
+            "w": "seed",
+            "t": 869.197
+          },
+          {
+            "w": "r.",
+            "t": 869.746
+          },
+          {
+            "w": "Second,",
+            "t": 870.296
+          },
+          {
+            "w": "reservoir_sample",
+            "t": 870.846
+          },
+          {
+            "w": "implements",
+            "t": 871.395
+          },
+          {
+            "w": "Vitter's",
+            "t": 871.945
+          },
+          {
+            "w": "Algorithm",
+            "t": 872.495
+          },
+          {
+            "w": "R,",
+            "t": 873.044
+          },
+          {
+            "w": "managing",
+            "t": 873.594
+          },
+          {
+            "w": "an",
+            "t": 874.143
+          },
+          {
+            "w": "unbounded",
+            "t": 874.693
+          },
+          {
+            "w": "stream",
+            "t": 875.243
+          },
+          {
+            "w": "with",
+            "t": 875.792
+          },
+          {
+            "w": "strictly",
+            "t": 876.342
+          },
+          {
+            "w": "bounded",
+            "t": 876.892
+          },
+          {
+            "w": "O",
+            "t": 877.441
+          },
+          {
+            "w": "of",
+            "t": 877.991
+          },
+          {
+            "w": "k",
+            "t": 878.541
+          },
+          {
+            "w": "memory",
+            "t": 879.09
+          },
+          {
+            "w": "and",
+            "t": 879.64
+          },
+          {
+            "w": "uniform",
+            "t": 880.189
+          },
+          {
+            "w": "inclusion",
+            "t": 880.739
+          },
+          {
+            "w": "probability.",
+            "t": 881.289
+          },
+          {
+            "w": "Third,",
+            "t": 881.838
+          },
+          {
+            "w": "rds_estimator",
+            "t": 882.388
+          },
+          {
+            "w": "applies",
+            "t": 882.938
+          },
+          {
+            "w": "Volz-Heckathorn",
+            "t": 883.487
+          },
+          {
+            "w": "inverse-degree",
+            "t": 884.037
+          },
+          {
+            "w": "weighting",
+            "t": 884.587
+          },
+          {
+            "w": "to",
+            "t": 885.136
+          },
+          {
+            "w": "peer",
+            "t": 885.686
+          },
+          {
+            "w": "referral",
+            "t": 886.235
+          },
+          {
+            "w": "surveys,",
+            "t": 886.785
+          },
+          {
+            "w": "completely",
+            "t": 887.335
+          },
+          {
+            "w": "neutralizing",
+            "t": 887.884
+          },
+          {
+            "w": "hub",
+            "t": 888.434
+          },
+          {
+            "w": "bias.",
+            "t": 888.984
+          },
+          {
+            "w": "Fourth,",
+            "t": 889.533
+          },
+          {
+            "w": "expand_adaptive_cluster",
+            "t": 890.083
+          },
+          {
+            "w": "implements",
+            "t": 890.633
+          },
+          {
+            "w": "recursive",
+            "t": 891.182
+          },
+          {
+            "w": "topological",
+            "t": 891.732
+          },
+          {
+            "w": "expansion",
+            "t": 892.281
+          },
+          {
+            "w": "across",
+            "t": 892.831
+          },
+          {
+            "w": "a",
+            "t": 893.381
+          },
+          {
+            "w": "spatial",
+            "t": 893.93
+          },
+          {
+            "w": "grid,",
+            "t": 894.48
+          },
+          {
+            "w": "automatically",
+            "t": 895.03
+          },
+          {
+            "w": "identifying",
+            "t": 895.579
+          },
+          {
+            "w": "connected",
+            "t": 896.129
+          },
+          {
+            "w": "components",
+            "t": 896.679
+          },
+          {
+            "w": "exceeding",
+            "t": 897.228
+          },
+          {
+            "w": "threshold",
+            "t": 897.778
+          },
+          {
+            "w": "C.",
+            "t": 898.327
+          },
+          {
+            "w": "Notice",
+            "t": 898.877
+          },
+          {
+            "w": "the",
+            "t": 899.427
+          },
+          {
+            "w": "automated",
+            "t": 899.976
+          },
+          {
+            "w": "test",
+            "t": 900.526
+          },
+          {
+            "w": "assertions",
+            "t": 901.076
+          },
+          {
+            "w": "at",
+            "t": 901.625
+          },
+          {
+            "w": "the",
+            "t": 902.175
+          },
+          {
+            "w": "bottom:",
+            "t": 902.725
+          },
+          {
+            "w": "every",
+            "t": 903.274
+          },
+          {
+            "w": "algorithm",
+            "t": 903.824
+          },
+          {
+            "w": "is",
+            "t": 904.373
+          },
+          {
+            "w": "validated",
+            "t": 904.923
+          },
+          {
+            "w": "with",
+            "t": 905.473
+          },
+          {
+            "w": "deterministic",
+            "t": 906.022
+          },
+          {
+            "w": "assertions,",
+            "t": 906.572
+          },
+          {
+            "w": "ensuring",
+            "t": 907.122
+          },
+          {
+            "w": "robust",
+            "t": 907.671
+          },
+          {
+            "w": "integration",
+            "t": 908.221
+          },
+          {
+            "w": "into",
+            "t": 908.771
+          },
+          {
+            "w": "data",
+            "t": 909.32
+          },
+          {
+            "w": "engineering",
+            "t": 909.87
+          },
+          {
+            "w": "and",
+            "t": 910.419
+          },
+          {
+            "w": "feature",
+            "t": 910.969
+          },
+          {
+            "w": "store",
+            "t": 911.519
+          },
+          {
+            "w": "pipelines.",
+            "t": 912.068
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "Congratulations on completing Lesson 2.7 of Dataset Fundamentals: Additional Sampling Strategies: Systematic Draws, Periodicity, and Network Referral. Let us synthesize our journey into the Four Golden Rules of Extended Sampling. Rule 1: Always verify spectral independence before systematic strides. If an ordered frame exhibits cyclical periodicity, apply index shuffling to prevent catastrophic phase-locking. Rule 2: Deploy Vitter's Algorithm R for unbounded streams; it guarantees provable uniform inclusion with strictly bounded O of k memory. Rule 3: Never report raw snowball statistics. For peer-referral networks, apply Respondent-Driven Sampling with Volz-Heckathorn inverse-degree weighting w-sub-i equals 1 over d-sub-i. Rule 4: Deploy adaptive cluster sampling with bootstrap confidence intervals when detecting rare, geographically concentrated phenomena. In Lesson 2.8, we transition from theoretical sampling mathematics to modern production tooling stacks: building headless browser scrapers, orchestrating Scrapy pipelines, and ingesting massive unstructured datasets at scale. See you there!",
+        "start": 912.618,
+        "end": 987.336,
+        "words": [
+          {
+            "w": "Congratulations",
+            "t": 912.618
+          },
+          {
+            "w": "on",
+            "t": 913.141
+          },
+          {
+            "w": "completing",
+            "t": 913.663
+          },
+          {
+            "w": "Lesson",
+            "t": 914.186
+          },
+          {
+            "w": "2.7",
+            "t": 914.708
+          },
+          {
+            "w": "of",
+            "t": 915.231
+          },
+          {
+            "w": "Dataset",
+            "t": 915.753
+          },
+          {
+            "w": "Fundamentals:",
+            "t": 916.276
+          },
+          {
+            "w": "Additional",
+            "t": 916.798
+          },
+          {
+            "w": "Sampling",
+            "t": 917.321
+          },
+          {
+            "w": "Strategies:",
+            "t": 917.843
+          },
+          {
+            "w": "Systematic",
+            "t": 918.366
+          },
+          {
+            "w": "Draws,",
+            "t": 918.888
+          },
+          {
+            "w": "Periodicity,",
+            "t": 919.411
+          },
+          {
+            "w": "and",
+            "t": 919.933
+          },
+          {
+            "w": "Network",
+            "t": 920.456
+          },
+          {
+            "w": "Referral.",
+            "t": 920.978
+          },
+          {
+            "w": "Let",
+            "t": 921.501
+          },
+          {
+            "w": "us",
+            "t": 922.023
+          },
+          {
+            "w": "synthesize",
+            "t": 922.546
+          },
+          {
+            "w": "our",
+            "t": 923.068
+          },
+          {
+            "w": "journey",
+            "t": 923.591
+          },
+          {
+            "w": "into",
+            "t": 924.113
+          },
+          {
+            "w": "the",
+            "t": 924.636
+          },
+          {
+            "w": "Four",
+            "t": 925.158
+          },
+          {
+            "w": "Golden",
+            "t": 925.681
+          },
+          {
+            "w": "Rules",
+            "t": 926.203
+          },
+          {
+            "w": "of",
+            "t": 926.726
+          },
+          {
+            "w": "Extended",
+            "t": 927.248
+          },
+          {
+            "w": "Sampling.",
+            "t": 927.771
+          },
+          {
+            "w": "Rule",
+            "t": 928.293
+          },
+          {
+            "w": "1:",
+            "t": 928.816
+          },
+          {
+            "w": "Always",
+            "t": 929.338
+          },
+          {
+            "w": "verify",
+            "t": 929.861
+          },
+          {
+            "w": "spectral",
+            "t": 930.383
+          },
+          {
+            "w": "independence",
+            "t": 930.906
+          },
+          {
+            "w": "before",
+            "t": 931.428
+          },
+          {
+            "w": "systematic",
+            "t": 931.951
+          },
+          {
+            "w": "strides.",
+            "t": 932.473
+          },
+          {
+            "w": "If",
+            "t": 932.996
+          },
+          {
+            "w": "an",
+            "t": 933.518
+          },
+          {
+            "w": "ordered",
+            "t": 934.041
+          },
+          {
+            "w": "frame",
+            "t": 934.563
+          },
+          {
+            "w": "exhibits",
+            "t": 935.086
+          },
+          {
+            "w": "cyclical",
+            "t": 935.608
+          },
+          {
+            "w": "periodicity,",
+            "t": 936.131
+          },
+          {
+            "w": "apply",
+            "t": 936.653
+          },
+          {
+            "w": "index",
+            "t": 937.176
+          },
+          {
+            "w": "shuffling",
+            "t": 937.698
+          },
+          {
+            "w": "to",
+            "t": 938.221
+          },
+          {
+            "w": "prevent",
+            "t": 938.743
+          },
+          {
+            "w": "catastrophic",
+            "t": 939.266
+          },
+          {
+            "w": "phase-locking.",
+            "t": 939.788
+          },
+          {
+            "w": "Rule",
+            "t": 940.311
+          },
+          {
+            "w": "2:",
+            "t": 940.833
+          },
+          {
+            "w": "Deploy",
+            "t": 941.356
+          },
+          {
+            "w": "Vitter's",
+            "t": 941.878
+          },
+          {
+            "w": "Algorithm",
+            "t": 942.401
+          },
+          {
+            "w": "R",
+            "t": 942.923
+          },
+          {
+            "w": "for",
+            "t": 943.446
+          },
+          {
+            "w": "unbounded",
+            "t": 943.968
+          },
+          {
+            "w": "streams;",
+            "t": 944.491
+          },
+          {
+            "w": "it",
+            "t": 945.013
+          },
+          {
+            "w": "guarantees",
+            "t": 945.536
+          },
+          {
+            "w": "provable",
+            "t": 946.058
+          },
+          {
+            "w": "uniform",
+            "t": 946.581
+          },
+          {
+            "w": "inclusion",
+            "t": 947.103
+          },
+          {
+            "w": "with",
+            "t": 947.626
+          },
+          {
+            "w": "strictly",
+            "t": 948.148
+          },
+          {
+            "w": "bounded",
+            "t": 948.671
+          },
+          {
+            "w": "O",
+            "t": 949.193
+          },
+          {
+            "w": "of",
+            "t": 949.716
+          },
+          {
+            "w": "k",
+            "t": 950.238
+          },
+          {
+            "w": "memory.",
+            "t": 950.761
+          },
+          {
+            "w": "Rule",
+            "t": 951.283
+          },
+          {
+            "w": "3:",
+            "t": 951.806
+          },
+          {
+            "w": "Never",
+            "t": 952.328
+          },
+          {
+            "w": "report",
+            "t": 952.851
+          },
+          {
+            "w": "raw",
+            "t": 953.373
+          },
+          {
+            "w": "snowball",
+            "t": 953.896
+          },
+          {
+            "w": "statistics.",
+            "t": 954.418
+          },
+          {
+            "w": "For",
+            "t": 954.941
+          },
+          {
+            "w": "peer-referral",
+            "t": 955.463
+          },
+          {
+            "w": "networks,",
+            "t": 955.986
+          },
+          {
+            "w": "apply",
+            "t": 956.508
+          },
+          {
+            "w": "Respondent-Driven",
+            "t": 957.031
+          },
+          {
+            "w": "Sampling",
+            "t": 957.553
+          },
+          {
+            "w": "with",
+            "t": 958.076
+          },
+          {
+            "w": "Volz-Heckathorn",
+            "t": 958.598
+          },
+          {
+            "w": "inverse-degree",
+            "t": 959.121
+          },
+          {
+            "w": "weighting",
+            "t": 959.643
+          },
+          {
+            "w": "w-sub-i",
+            "t": 960.166
+          },
+          {
+            "w": "equals",
+            "t": 960.688
+          },
+          {
+            "w": "1",
+            "t": 961.211
+          },
+          {
+            "w": "over",
+            "t": 961.733
+          },
+          {
+            "w": "d-sub-i.",
+            "t": 962.256
+          },
+          {
+            "w": "Rule",
+            "t": 962.778
+          },
+          {
+            "w": "4:",
+            "t": 963.301
+          },
+          {
+            "w": "Deploy",
+            "t": 963.823
+          },
+          {
+            "w": "adaptive",
+            "t": 964.346
+          },
+          {
+            "w": "cluster",
+            "t": 964.868
+          },
+          {
+            "w": "sampling",
+            "t": 965.391
+          },
+          {
+            "w": "with",
+            "t": 965.913
+          },
+          {
+            "w": "bootstrap",
+            "t": 966.436
+          },
+          {
+            "w": "confidence",
+            "t": 966.958
+          },
+          {
+            "w": "intervals",
+            "t": 967.481
+          },
+          {
+            "w": "when",
+            "t": 968.003
+          },
+          {
+            "w": "detecting",
+            "t": 968.526
+          },
+          {
+            "w": "rare,",
+            "t": 969.048
+          },
+          {
+            "w": "geographically",
+            "t": 969.571
+          },
+          {
+            "w": "concentrated",
+            "t": 970.093
+          },
+          {
+            "w": "phenomena.",
+            "t": 970.616
+          },
+          {
+            "w": "In",
+            "t": 971.138
+          },
+          {
+            "w": "Lesson",
+            "t": 971.661
+          },
+          {
+            "w": "2.8,",
+            "t": 972.183
+          },
+          {
+            "w": "we",
+            "t": 972.706
+          },
+          {
+            "w": "transition",
+            "t": 973.228
+          },
+          {
+            "w": "from",
+            "t": 973.751
+          },
+          {
+            "w": "theoretical",
+            "t": 974.273
+          },
+          {
+            "w": "sampling",
+            "t": 974.796
+          },
+          {
+            "w": "mathematics",
+            "t": 975.318
+          },
+          {
+            "w": "to",
+            "t": 975.841
+          },
+          {
+            "w": "modern",
+            "t": 976.363
+          },
+          {
+            "w": "production",
+            "t": 976.886
+          },
+          {
+            "w": "tooling",
+            "t": 977.408
+          },
+          {
+            "w": "stacks:",
+            "t": 977.931
+          },
+          {
+            "w": "building",
+            "t": 978.453
+          },
+          {
+            "w": "headless",
+            "t": 978.976
+          },
+          {
+            "w": "browser",
+            "t": 979.498
+          },
+          {
+            "w": "scrapers,",
+            "t": 980.021
+          },
+          {
+            "w": "orchestrating",
+            "t": 980.543
+          },
+          {
+            "w": "Scrapy",
+            "t": 981.066
+          },
+          {
+            "w": "pipelines,",
+            "t": 981.588
+          },
+          {
+            "w": "and",
+            "t": 982.111
+          },
+          {
+            "w": "ingesting",
+            "t": 982.633
+          },
+          {
+            "w": "massive",
+            "t": 983.156
+          },
+          {
+            "w": "unstructured",
+            "t": 983.678
+          },
+          {
+            "w": "datasets",
+            "t": 984.201
+          },
+          {
+            "w": "at",
+            "t": 984.723
+          },
+          {
+            "w": "scale.",
+            "t": 985.246
+          },
+          {
+            "w": "See",
+            "t": 985.768
+          },
+          {
+            "w": "you",
+            "t": 986.291
+          },
+          {
+            "w": "there!",
+            "t": 986.813
+          }
+        ]
+      }
+    ]
+  },
+  "ch2_p7_duo": {
+    "duration": 671.376,
+    "sentences": [
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Welcome back Kaito! In Lesson 2.6, we solved the classic probability sampling triad: simple random, stratified, and cluster designs. But what happens in production when a stream has no total length, or when you are researching hidden populations with zero master directories?",
+        "start": 0.0,
+        "end": 18.543,
+        "words": [
+          {
+            "w": "Welcome",
+            "t": 0.0
+          },
+          {
+            "w": "back",
+            "t": 0.442
+          },
+          {
+            "w": "Kaito!",
+            "t": 0.883
+          },
+          {
+            "w": "In",
+            "t": 1.325
+          },
+          {
+            "w": "Lesson",
+            "t": 1.766
+          },
+          {
+            "w": "2.6,",
+            "t": 2.208
+          },
+          {
+            "w": "we",
+            "t": 2.649
+          },
+          {
+            "w": "solved",
+            "t": 3.091
+          },
+          {
+            "w": "the",
+            "t": 3.532
+          },
+          {
+            "w": "classic",
+            "t": 3.974
+          },
+          {
+            "w": "probability",
+            "t": 4.415
+          },
+          {
+            "w": "sampling",
+            "t": 4.857
+          },
+          {
+            "w": "triad:",
+            "t": 5.298
+          },
+          {
+            "w": "simple",
+            "t": 5.739
+          },
+          {
+            "w": "random,",
+            "t": 6.181
+          },
+          {
+            "w": "stratified,",
+            "t": 6.623
+          },
+          {
+            "w": "and",
+            "t": 7.064
+          },
+          {
+            "w": "cluster",
+            "t": 7.505
+          },
+          {
+            "w": "designs.",
+            "t": 7.947
+          },
+          {
+            "w": "But",
+            "t": 8.389
+          },
+          {
+            "w": "what",
+            "t": 8.83
+          },
+          {
+            "w": "happens",
+            "t": 9.271
+          },
+          {
+            "w": "in",
+            "t": 9.713
+          },
+          {
+            "w": "production",
+            "t": 10.155
+          },
+          {
+            "w": "when",
+            "t": 10.596
+          },
+          {
+            "w": "a",
+            "t": 11.037
+          },
+          {
+            "w": "stream",
+            "t": 11.479
+          },
+          {
+            "w": "has",
+            "t": 11.921
+          },
+          {
+            "w": "no",
+            "t": 12.362
+          },
+          {
+            "w": "total",
+            "t": 12.803
+          },
+          {
+            "w": "length,",
+            "t": 13.245
+          },
+          {
+            "w": "or",
+            "t": 13.687
+          },
+          {
+            "w": "when",
+            "t": 14.128
+          },
+          {
+            "w": "you",
+            "t": 14.569
+          },
+          {
+            "w": "are",
+            "t": 15.011
+          },
+          {
+            "w": "researching",
+            "t": 15.453
+          },
+          {
+            "w": "hidden",
+            "t": 15.894
+          },
+          {
+            "w": "populations",
+            "t": 16.335
+          },
+          {
+            "w": "with",
+            "t": 16.777
+          },
+          {
+            "w": "zero",
+            "t": 17.218
+          },
+          {
+            "w": "master",
+            "t": 17.66
+          },
+          {
+            "w": "directories?",
+            "t": 18.102
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Kaito",
+        "text": "That is the daily reality of data engineering, Dr. Nova! In high-speed Kafka pipelines or network logs, generating millions of random seeks kills disk throughput. And if we are auditing gig delivery drivers or dark web malware authors, there is no government census to draw from!",
+        "start": 18.543,
+        "end": 37.355,
+        "words": [
+          {
+            "w": "That",
+            "t": 18.543
+          },
+          {
+            "w": "is",
+            "t": 18.952
+          },
+          {
+            "w": "the",
+            "t": 19.361
+          },
+          {
+            "w": "daily",
+            "t": 19.77
+          },
+          {
+            "w": "reality",
+            "t": 20.179
+          },
+          {
+            "w": "of",
+            "t": 20.588
+          },
+          {
+            "w": "data",
+            "t": 20.997
+          },
+          {
+            "w": "engineering,",
+            "t": 21.406
+          },
+          {
+            "w": "Dr.",
+            "t": 21.815
+          },
+          {
+            "w": "Nova!",
+            "t": 22.224
+          },
+          {
+            "w": "In",
+            "t": 22.633
+          },
+          {
+            "w": "high-speed",
+            "t": 23.042
+          },
+          {
+            "w": "Kafka",
+            "t": 23.45
+          },
+          {
+            "w": "pipelines",
+            "t": 23.859
+          },
+          {
+            "w": "or",
+            "t": 24.268
+          },
+          {
+            "w": "network",
+            "t": 24.677
+          },
+          {
+            "w": "logs,",
+            "t": 25.086
+          },
+          {
+            "w": "generating",
+            "t": 25.495
+          },
+          {
+            "w": "millions",
+            "t": 25.904
+          },
+          {
+            "w": "of",
+            "t": 26.313
+          },
+          {
+            "w": "random",
+            "t": 26.722
+          },
+          {
+            "w": "seeks",
+            "t": 27.131
+          },
+          {
+            "w": "kills",
+            "t": 27.54
+          },
+          {
+            "w": "disk",
+            "t": 27.949
+          },
+          {
+            "w": "throughput.",
+            "t": 28.358
+          },
+          {
+            "w": "And",
+            "t": 28.767
+          },
+          {
+            "w": "if",
+            "t": 29.176
+          },
+          {
+            "w": "we",
+            "t": 29.585
+          },
+          {
+            "w": "are",
+            "t": 29.994
+          },
+          {
+            "w": "auditing",
+            "t": 30.403
+          },
+          {
+            "w": "gig",
+            "t": 30.812
+          },
+          {
+            "w": "delivery",
+            "t": 31.221
+          },
+          {
+            "w": "drivers",
+            "t": 31.63
+          },
+          {
+            "w": "or",
+            "t": 32.039
+          },
+          {
+            "w": "dark",
+            "t": 32.448
+          },
+          {
+            "w": "web",
+            "t": 32.856
+          },
+          {
+            "w": "malware",
+            "t": 33.265
+          },
+          {
+            "w": "authors,",
+            "t": 33.674
+          },
+          {
+            "w": "there",
+            "t": 34.083
+          },
+          {
+            "w": "is",
+            "t": 34.492
+          },
+          {
+            "w": "no",
+            "t": 34.901
+          },
+          {
+            "w": "government",
+            "t": 35.31
+          },
+          {
+            "w": "census",
+            "t": 35.719
+          },
+          {
+            "w": "to",
+            "t": 36.128
+          },
+          {
+            "w": "draw",
+            "t": 36.537
+          },
+          {
+            "w": "from!",
+            "t": 36.946
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Today we tackle the engineering and mathematical solutions: Systematic sampling on streams, Vitter's streaming Reservoir Algorithm R, the deadly spectral periodicity trap, and Respondent-Driven Sampling for network referral chains.",
+        "start": 37.355,
+        "end": 53.538,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 37.355
+          },
+          {
+            "w": "Today",
+            "t": 37.894
+          },
+          {
+            "w": "we",
+            "t": 38.434
+          },
+          {
+            "w": "tackle",
+            "t": 38.973
+          },
+          {
+            "w": "the",
+            "t": 39.513
+          },
+          {
+            "w": "engineering",
+            "t": 40.052
+          },
+          {
+            "w": "and",
+            "t": 40.592
+          },
+          {
+            "w": "mathematical",
+            "t": 41.131
+          },
+          {
+            "w": "solutions:",
+            "t": 41.67
+          },
+          {
+            "w": "Systematic",
+            "t": 42.21
+          },
+          {
+            "w": "sampling",
+            "t": 42.749
+          },
+          {
+            "w": "on",
+            "t": 43.289
+          },
+          {
+            "w": "streams,",
+            "t": 43.828
+          },
+          {
+            "w": "Vitter's",
+            "t": 44.368
+          },
+          {
+            "w": "streaming",
+            "t": 44.907
+          },
+          {
+            "w": "Reservoir",
+            "t": 45.447
+          },
+          {
+            "w": "Algorithm",
+            "t": 45.986
+          },
+          {
+            "w": "R,",
+            "t": 46.525
+          },
+          {
+            "w": "the",
+            "t": 47.065
+          },
+          {
+            "w": "deadly",
+            "t": 47.604
+          },
+          {
+            "w": "spectral",
+            "t": 48.144
+          },
+          {
+            "w": "periodicity",
+            "t": 48.683
+          },
+          {
+            "w": "trap,",
+            "t": 49.223
+          },
+          {
+            "w": "and",
+            "t": 49.762
+          },
+          {
+            "w": "Respondent-Driven",
+            "t": 50.301
+          },
+          {
+            "w": "Sampling",
+            "t": 50.841
+          },
+          {
+            "w": "for",
+            "t": 51.38
+          },
+          {
+            "w": "network",
+            "t": 51.92
+          },
+          {
+            "w": "referral",
+            "t": 52.459
+          },
+          {
+            "w": "chains.",
+            "t": 52.999
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Kaito",
+        "text": "Look at this flowchart, Dr. Nova! It cleanly branches between frame-based probability approaches and network-based non-probability approaches.",
+        "start": 53.538,
+        "end": 63.113,
+        "words": [
+          {
+            "w": "Look",
+            "t": 53.538
+          },
+          {
+            "w": "at",
+            "t": 54.101
+          },
+          {
+            "w": "this",
+            "t": 54.664
+          },
+          {
+            "w": "flowchart,",
+            "t": 55.228
+          },
+          {
+            "w": "Dr.",
+            "t": 55.791
+          },
+          {
+            "w": "Nova!",
+            "t": 56.354
+          },
+          {
+            "w": "It",
+            "t": 56.917
+          },
+          {
+            "w": "cleanly",
+            "t": 57.481
+          },
+          {
+            "w": "branches",
+            "t": 58.044
+          },
+          {
+            "w": "between",
+            "t": 58.607
+          },
+          {
+            "w": "frame-based",
+            "t": 59.17
+          },
+          {
+            "w": "probability",
+            "t": 59.734
+          },
+          {
+            "w": "approaches",
+            "t": 60.297
+          },
+          {
+            "w": "and",
+            "t": 60.86
+          },
+          {
+            "w": "network-based",
+            "t": 61.423
+          },
+          {
+            "w": "non-probability",
+            "t": 61.987
+          },
+          {
+            "w": "approaches.",
+            "t": 62.55
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. When an exhaustive sampling frame is present, your choice depends on ingestion constraints. If querying random rows causes high seek latency, systematic draws give O(1) sequential performance. But if you are in an unbounded Kafka stream where total count N is unknown, you must use Vitter's reservoir sampling.",
+        "start": 63.113,
+        "end": 84.757,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 63.113
+          },
+          {
+            "w": "When",
+            "t": 63.555
+          },
+          {
+            "w": "an",
+            "t": 63.996
+          },
+          {
+            "w": "exhaustive",
+            "t": 64.438
+          },
+          {
+            "w": "sampling",
+            "t": 64.88
+          },
+          {
+            "w": "frame",
+            "t": 65.322
+          },
+          {
+            "w": "is",
+            "t": 65.763
+          },
+          {
+            "w": "present,",
+            "t": 66.205
+          },
+          {
+            "w": "your",
+            "t": 66.647
+          },
+          {
+            "w": "choice",
+            "t": 67.088
+          },
+          {
+            "w": "depends",
+            "t": 67.53
+          },
+          {
+            "w": "on",
+            "t": 67.972
+          },
+          {
+            "w": "ingestion",
+            "t": 68.414
+          },
+          {
+            "w": "constraints.",
+            "t": 68.855
+          },
+          {
+            "w": "If",
+            "t": 69.297
+          },
+          {
+            "w": "querying",
+            "t": 69.739
+          },
+          {
+            "w": "random",
+            "t": 70.18
+          },
+          {
+            "w": "rows",
+            "t": 70.622
+          },
+          {
+            "w": "causes",
+            "t": 71.064
+          },
+          {
+            "w": "high",
+            "t": 71.506
+          },
+          {
+            "w": "seek",
+            "t": 71.947
+          },
+          {
+            "w": "latency,",
+            "t": 72.389
+          },
+          {
+            "w": "systematic",
+            "t": 72.831
+          },
+          {
+            "w": "draws",
+            "t": 73.272
+          },
+          {
+            "w": "give",
+            "t": 73.714
+          },
+          {
+            "w": "O(1)",
+            "t": 74.156
+          },
+          {
+            "w": "sequential",
+            "t": 74.598
+          },
+          {
+            "w": "performance.",
+            "t": 75.039
+          },
+          {
+            "w": "But",
+            "t": 75.481
+          },
+          {
+            "w": "if",
+            "t": 75.923
+          },
+          {
+            "w": "you",
+            "t": 76.364
+          },
+          {
+            "w": "are",
+            "t": 76.806
+          },
+          {
+            "w": "in",
+            "t": 77.248
+          },
+          {
+            "w": "an",
+            "t": 77.69
+          },
+          {
+            "w": "unbounded",
+            "t": 78.131
+          },
+          {
+            "w": "Kafka",
+            "t": 78.573
+          },
+          {
+            "w": "stream",
+            "t": 79.015
+          },
+          {
+            "w": "where",
+            "t": 79.456
+          },
+          {
+            "w": "total",
+            "t": 79.898
+          },
+          {
+            "w": "count",
+            "t": 80.34
+          },
+          {
+            "w": "N",
+            "t": 80.782
+          },
+          {
+            "w": "is",
+            "t": 81.223
+          },
+          {
+            "w": "unknown,",
+            "t": 81.665
+          },
+          {
+            "w": "you",
+            "t": 82.107
+          },
+          {
+            "w": "must",
+            "t": 82.548
+          },
+          {
+            "w": "use",
+            "t": 82.99
+          },
+          {
+            "w": "Vitter's",
+            "t": 83.432
+          },
+          {
+            "w": "reservoir",
+            "t": 83.874
+          },
+          {
+            "w": "sampling.",
+            "t": 84.315
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Kaito",
+        "text": "And when no frame exists at all, naive convenience draws fail completely. But Respondent-Driven Sampling uses network degrees to mathematically recover population unbiasedness!",
+        "start": 84.757,
+        "end": 96.624,
+        "words": [
+          {
+            "w": "And",
+            "t": 84.757
+          },
+          {
+            "w": "when",
+            "t": 85.273
+          },
+          {
+            "w": "no",
+            "t": 85.789
+          },
+          {
+            "w": "frame",
+            "t": 86.305
+          },
+          {
+            "w": "exists",
+            "t": 86.821
+          },
+          {
+            "w": "at",
+            "t": 87.337
+          },
+          {
+            "w": "all,",
+            "t": 87.853
+          },
+          {
+            "w": "naive",
+            "t": 88.369
+          },
+          {
+            "w": "convenience",
+            "t": 88.885
+          },
+          {
+            "w": "draws",
+            "t": 89.401
+          },
+          {
+            "w": "fail",
+            "t": 89.917
+          },
+          {
+            "w": "completely.",
+            "t": 90.433
+          },
+          {
+            "w": "But",
+            "t": 90.948
+          },
+          {
+            "w": "Respondent-Driven",
+            "t": 91.464
+          },
+          {
+            "w": "Sampling",
+            "t": 91.98
+          },
+          {
+            "w": "uses",
+            "t": 92.496
+          },
+          {
+            "w": "network",
+            "t": 93.012
+          },
+          {
+            "w": "degrees",
+            "t": 93.528
+          },
+          {
+            "w": "to",
+            "t": 94.044
+          },
+          {
+            "w": "mathematically",
+            "t": 94.56
+          },
+          {
+            "w": "recover",
+            "t": 95.076
+          },
+          {
+            "w": "population",
+            "t": 95.592
+          },
+          {
+            "w": "unbiasedness!",
+            "t": 96.108
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "Notice how simple systematic sampling is, Kaito. You pick one random seed r between 1 and k, and then stride through the stream taking every k-th record. Why is this so popular in production systems?",
+        "start": 96.624,
+        "end": 110.042,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 96.624
+          },
+          {
+            "w": "how",
+            "t": 97.007
+          },
+          {
+            "w": "simple",
+            "t": 97.391
+          },
+          {
+            "w": "systematic",
+            "t": 97.774
+          },
+          {
+            "w": "sampling",
+            "t": 98.157
+          },
+          {
+            "w": "is,",
+            "t": 98.541
+          },
+          {
+            "w": "Kaito.",
+            "t": 98.924
+          },
+          {
+            "w": "You",
+            "t": 99.308
+          },
+          {
+            "w": "pick",
+            "t": 99.691
+          },
+          {
+            "w": "one",
+            "t": 100.074
+          },
+          {
+            "w": "random",
+            "t": 100.458
+          },
+          {
+            "w": "seed",
+            "t": 100.841
+          },
+          {
+            "w": "r",
+            "t": 101.224
+          },
+          {
+            "w": "between",
+            "t": 101.608
+          },
+          {
+            "w": "1",
+            "t": 101.991
+          },
+          {
+            "w": "and",
+            "t": 102.375
+          },
+          {
+            "w": "k,",
+            "t": 102.758
+          },
+          {
+            "w": "and",
+            "t": 103.141
+          },
+          {
+            "w": "then",
+            "t": 103.525
+          },
+          {
+            "w": "stride",
+            "t": 103.908
+          },
+          {
+            "w": "through",
+            "t": 104.291
+          },
+          {
+            "w": "the",
+            "t": 104.675
+          },
+          {
+            "w": "stream",
+            "t": 105.058
+          },
+          {
+            "w": "taking",
+            "t": 105.442
+          },
+          {
+            "w": "every",
+            "t": 105.825
+          },
+          {
+            "w": "k-th",
+            "t": 106.208
+          },
+          {
+            "w": "record.",
+            "t": 106.592
+          },
+          {
+            "w": "Why",
+            "t": 106.975
+          },
+          {
+            "w": "is",
+            "t": 107.358
+          },
+          {
+            "w": "this",
+            "t": 107.742
+          },
+          {
+            "w": "so",
+            "t": 108.125
+          },
+          {
+            "w": "popular",
+            "t": 108.509
+          },
+          {
+            "w": "in",
+            "t": 108.892
+          },
+          {
+            "w": "production",
+            "t": 109.275
+          },
+          {
+            "w": "systems?",
+            "t": 109.659
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Kaito",
+        "text": "Because it destroys disk I/O bottlenecks! In a massive columnar table or Postgres database, drawing 10,000 independent random rows requires 10,000 index seek operations. With systematic sampling, you seek once to offset r, and then do sequential block reads with stride k!",
+        "start": 110.042,
+        "end": 128.382,
+        "words": [
+          {
+            "w": "Because",
+            "t": 110.042
+          },
+          {
+            "w": "it",
+            "t": 110.479
+          },
+          {
+            "w": "destroys",
+            "t": 110.915
+          },
+          {
+            "w": "disk",
+            "t": 111.352
+          },
+          {
+            "w": "I/O",
+            "t": 111.789
+          },
+          {
+            "w": "bottlenecks!",
+            "t": 112.225
+          },
+          {
+            "w": "In",
+            "t": 112.662
+          },
+          {
+            "w": "a",
+            "t": 113.099
+          },
+          {
+            "w": "massive",
+            "t": 113.535
+          },
+          {
+            "w": "columnar",
+            "t": 113.972
+          },
+          {
+            "w": "table",
+            "t": 114.409
+          },
+          {
+            "w": "or",
+            "t": 114.845
+          },
+          {
+            "w": "Postgres",
+            "t": 115.282
+          },
+          {
+            "w": "database,",
+            "t": 115.719
+          },
+          {
+            "w": "drawing",
+            "t": 116.155
+          },
+          {
+            "w": "10,000",
+            "t": 116.592
+          },
+          {
+            "w": "independent",
+            "t": 117.029
+          },
+          {
+            "w": "random",
+            "t": 117.465
+          },
+          {
+            "w": "rows",
+            "t": 117.902
+          },
+          {
+            "w": "requires",
+            "t": 118.339
+          },
+          {
+            "w": "10,000",
+            "t": 118.775
+          },
+          {
+            "w": "index",
+            "t": 119.212
+          },
+          {
+            "w": "seek",
+            "t": 119.649
+          },
+          {
+            "w": "operations.",
+            "t": 120.085
+          },
+          {
+            "w": "With",
+            "t": 120.522
+          },
+          {
+            "w": "systematic",
+            "t": 120.959
+          },
+          {
+            "w": "sampling,",
+            "t": 121.395
+          },
+          {
+            "w": "you",
+            "t": 121.832
+          },
+          {
+            "w": "seek",
+            "t": 122.269
+          },
+          {
+            "w": "once",
+            "t": 122.705
+          },
+          {
+            "w": "to",
+            "t": 123.142
+          },
+          {
+            "w": "offset",
+            "t": 123.579
+          },
+          {
+            "w": "r,",
+            "t": 124.015
+          },
+          {
+            "w": "and",
+            "t": 124.452
+          },
+          {
+            "w": "then",
+            "t": 124.889
+          },
+          {
+            "w": "do",
+            "t": 125.325
+          },
+          {
+            "w": "sequential",
+            "t": 125.762
+          },
+          {
+            "w": "block",
+            "t": 126.199
+          },
+          {
+            "w": "reads",
+            "t": 126.635
+          },
+          {
+            "w": "with",
+            "t": 127.072
+          },
+          {
+            "w": "stride",
+            "t": 127.509
+          },
+          {
+            "w": "k!",
+            "t": 127.945
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. And because the seed r has probability 1 over k, every record in the table has an exact inclusion probability of 1 over k. It is mathematically an EPSEM equal-probability selection method!",
+        "start": 128.382,
+        "end": 141.665,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 128.382
+          },
+          {
+            "w": "And",
+            "t": 128.785
+          },
+          {
+            "w": "because",
+            "t": 129.187
+          },
+          {
+            "w": "the",
+            "t": 129.59
+          },
+          {
+            "w": "seed",
+            "t": 129.992
+          },
+          {
+            "w": "r",
+            "t": 130.395
+          },
+          {
+            "w": "has",
+            "t": 130.797
+          },
+          {
+            "w": "probability",
+            "t": 131.2
+          },
+          {
+            "w": "1",
+            "t": 131.602
+          },
+          {
+            "w": "over",
+            "t": 132.005
+          },
+          {
+            "w": "k,",
+            "t": 132.407
+          },
+          {
+            "w": "every",
+            "t": 132.81
+          },
+          {
+            "w": "record",
+            "t": 133.212
+          },
+          {
+            "w": "in",
+            "t": 133.615
+          },
+          {
+            "w": "the",
+            "t": 134.017
+          },
+          {
+            "w": "table",
+            "t": 134.42
+          },
+          {
+            "w": "has",
+            "t": 134.822
+          },
+          {
+            "w": "an",
+            "t": 135.225
+          },
+          {
+            "w": "exact",
+            "t": 135.627
+          },
+          {
+            "w": "inclusion",
+            "t": 136.03
+          },
+          {
+            "w": "probability",
+            "t": 136.432
+          },
+          {
+            "w": "of",
+            "t": 136.835
+          },
+          {
+            "w": "1",
+            "t": 137.237
+          },
+          {
+            "w": "over",
+            "t": 137.64
+          },
+          {
+            "w": "k.",
+            "t": 138.042
+          },
+          {
+            "w": "It",
+            "t": 138.445
+          },
+          {
+            "w": "is",
+            "t": 138.847
+          },
+          {
+            "w": "mathematically",
+            "t": 139.25
+          },
+          {
+            "w": "an",
+            "t": 139.652
+          },
+          {
+            "w": "EPSEM",
+            "t": 140.055
+          },
+          {
+            "w": "equal-probability",
+            "t": 140.457
+          },
+          {
+            "w": "selection",
+            "t": 140.86
+          },
+          {
+            "w": "method!",
+            "t": 141.262
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Kaito",
+        "text": "Wait, Dr. Nova! If systematic sampling has an inclusion probability of 1 over k for every unit, how can it produce massive bias?",
+        "start": 141.665,
+        "end": 150.296,
+        "words": [
+          {
+            "w": "Wait,",
+            "t": 141.665
+          },
+          {
+            "w": "Dr.",
+            "t": 142.04
+          },
+          {
+            "w": "Nova!",
+            "t": 142.416
+          },
+          {
+            "w": "If",
+            "t": 142.791
+          },
+          {
+            "w": "systematic",
+            "t": 143.166
+          },
+          {
+            "w": "sampling",
+            "t": 143.541
+          },
+          {
+            "w": "has",
+            "t": 143.917
+          },
+          {
+            "w": "an",
+            "t": 144.292
+          },
+          {
+            "w": "inclusion",
+            "t": 144.667
+          },
+          {
+            "w": "probability",
+            "t": 145.042
+          },
+          {
+            "w": "of",
+            "t": 145.418
+          },
+          {
+            "w": "1",
+            "t": 145.793
+          },
+          {
+            "w": "over",
+            "t": 146.168
+          },
+          {
+            "w": "k",
+            "t": 146.543
+          },
+          {
+            "w": "for",
+            "t": 146.919
+          },
+          {
+            "w": "every",
+            "t": 147.294
+          },
+          {
+            "w": "unit,",
+            "t": 147.669
+          },
+          {
+            "w": "how",
+            "t": 148.044
+          },
+          {
+            "w": "can",
+            "t": 148.42
+          },
+          {
+            "w": "it",
+            "t": 148.795
+          },
+          {
+            "w": "produce",
+            "t": 149.17
+          },
+          {
+            "w": "massive",
+            "t": 149.545
+          },
+          {
+            "w": "bias?",
+            "t": 149.921
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "That is the subtlety of probability sampling, Kaito! Unbiasedness holds across all possible random seeds r. But once a single seed r is drawn, if stride k matches cycle period P, every single sampled record lands on the exact same phase of the sine wave!",
+        "start": 150.296,
+        "end": 167.423,
+        "words": [
+          {
+            "w": "That",
+            "t": 150.296
+          },
+          {
+            "w": "is",
+            "t": 150.677
+          },
+          {
+            "w": "the",
+            "t": 151.057
+          },
+          {
+            "w": "subtlety",
+            "t": 151.438
+          },
+          {
+            "w": "of",
+            "t": 151.818
+          },
+          {
+            "w": "probability",
+            "t": 152.199
+          },
+          {
+            "w": "sampling,",
+            "t": 152.58
+          },
+          {
+            "w": "Kaito!",
+            "t": 152.96
+          },
+          {
+            "w": "Unbiasedness",
+            "t": 153.341
+          },
+          {
+            "w": "holds",
+            "t": 153.721
+          },
+          {
+            "w": "across",
+            "t": 154.102
+          },
+          {
+            "w": "all",
+            "t": 154.483
+          },
+          {
+            "w": "possible",
+            "t": 154.863
+          },
+          {
+            "w": "random",
+            "t": 155.244
+          },
+          {
+            "w": "seeds",
+            "t": 155.624
+          },
+          {
+            "w": "r.",
+            "t": 156.005
+          },
+          {
+            "w": "But",
+            "t": 156.386
+          },
+          {
+            "w": "once",
+            "t": 156.766
+          },
+          {
+            "w": "a",
+            "t": 157.147
+          },
+          {
+            "w": "single",
+            "t": 157.527
+          },
+          {
+            "w": "seed",
+            "t": 157.908
+          },
+          {
+            "w": "r",
+            "t": 158.289
+          },
+          {
+            "w": "is",
+            "t": 158.669
+          },
+          {
+            "w": "drawn,",
+            "t": 159.05
+          },
+          {
+            "w": "if",
+            "t": 159.43
+          },
+          {
+            "w": "stride",
+            "t": 159.811
+          },
+          {
+            "w": "k",
+            "t": 160.192
+          },
+          {
+            "w": "matches",
+            "t": 160.572
+          },
+          {
+            "w": "cycle",
+            "t": 160.953
+          },
+          {
+            "w": "period",
+            "t": 161.333
+          },
+          {
+            "w": "P,",
+            "t": 161.714
+          },
+          {
+            "w": "every",
+            "t": 162.095
+          },
+          {
+            "w": "single",
+            "t": 162.475
+          },
+          {
+            "w": "sampled",
+            "t": 162.856
+          },
+          {
+            "w": "record",
+            "t": 163.236
+          },
+          {
+            "w": "lands",
+            "t": 163.617
+          },
+          {
+            "w": "on",
+            "t": 163.998
+          },
+          {
+            "w": "the",
+            "t": 164.378
+          },
+          {
+            "w": "exact",
+            "t": 164.759
+          },
+          {
+            "w": "same",
+            "t": 165.139
+          },
+          {
+            "w": "phase",
+            "t": 165.52
+          },
+          {
+            "w": "of",
+            "t": 165.901
+          },
+          {
+            "w": "the",
+            "t": 166.281
+          },
+          {
+            "w": "sine",
+            "t": 166.662
+          },
+          {
+            "w": "wave!",
+            "t": 167.042
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Kaito",
+        "text": "Aha! So if your stride is 7 days, and you start on Sunday, every single observation is a Sunday! If weekend traffic is double weekday traffic, your sample average will permanently overestimate the true mean by amplitude A!",
+        "start": 167.423,
+        "end": 182.392,
+        "words": [
+          {
+            "w": "Aha!",
+            "t": 167.423
+          },
+          {
+            "w": "So",
+            "t": 167.817
+          },
+          {
+            "w": "if",
+            "t": 168.211
+          },
+          {
+            "w": "your",
+            "t": 168.605
+          },
+          {
+            "w": "stride",
+            "t": 168.999
+          },
+          {
+            "w": "is",
+            "t": 169.393
+          },
+          {
+            "w": "7",
+            "t": 169.787
+          },
+          {
+            "w": "days,",
+            "t": 170.18
+          },
+          {
+            "w": "and",
+            "t": 170.574
+          },
+          {
+            "w": "you",
+            "t": 170.968
+          },
+          {
+            "w": "start",
+            "t": 171.362
+          },
+          {
+            "w": "on",
+            "t": 171.756
+          },
+          {
+            "w": "Sunday,",
+            "t": 172.15
+          },
+          {
+            "w": "every",
+            "t": 172.544
+          },
+          {
+            "w": "single",
+            "t": 172.938
+          },
+          {
+            "w": "observation",
+            "t": 173.332
+          },
+          {
+            "w": "is",
+            "t": 173.726
+          },
+          {
+            "w": "a",
+            "t": 174.12
+          },
+          {
+            "w": "Sunday!",
+            "t": 174.514
+          },
+          {
+            "w": "If",
+            "t": 174.907
+          },
+          {
+            "w": "weekend",
+            "t": 175.301
+          },
+          {
+            "w": "traffic",
+            "t": 175.695
+          },
+          {
+            "w": "is",
+            "t": 176.089
+          },
+          {
+            "w": "double",
+            "t": 176.483
+          },
+          {
+            "w": "weekday",
+            "t": 176.877
+          },
+          {
+            "w": "traffic,",
+            "t": 177.271
+          },
+          {
+            "w": "your",
+            "t": 177.665
+          },
+          {
+            "w": "sample",
+            "t": 178.059
+          },
+          {
+            "w": "average",
+            "t": 178.453
+          },
+          {
+            "w": "will",
+            "t": 178.847
+          },
+          {
+            "w": "permanently",
+            "t": 179.241
+          },
+          {
+            "w": "overestimate",
+            "t": 179.635
+          },
+          {
+            "w": "the",
+            "t": 180.028
+          },
+          {
+            "w": "true",
+            "t": 180.422
+          },
+          {
+            "w": "mean",
+            "t": 180.816
+          },
+          {
+            "w": "by",
+            "t": 181.21
+          },
+          {
+            "w": "amplitude",
+            "t": 181.604
+          },
+          {
+            "w": "A!",
+            "t": 181.998
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Increasing the sample size n does not save you, because every additional sample just repeats the same corrupted phase. That is why we must audit periodicity!",
+        "start": 182.392,
+        "end": 193.72,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 182.392
+          },
+          {
+            "w": "Increasing",
+            "t": 182.812
+          },
+          {
+            "w": "the",
+            "t": 183.231
+          },
+          {
+            "w": "sample",
+            "t": 183.651
+          },
+          {
+            "w": "size",
+            "t": 184.07
+          },
+          {
+            "w": "n",
+            "t": 184.49
+          },
+          {
+            "w": "does",
+            "t": 184.909
+          },
+          {
+            "w": "not",
+            "t": 185.329
+          },
+          {
+            "w": "save",
+            "t": 185.748
+          },
+          {
+            "w": "you,",
+            "t": 186.168
+          },
+          {
+            "w": "because",
+            "t": 186.588
+          },
+          {
+            "w": "every",
+            "t": 187.007
+          },
+          {
+            "w": "additional",
+            "t": 187.427
+          },
+          {
+            "w": "sample",
+            "t": 187.846
+          },
+          {
+            "w": "just",
+            "t": 188.266
+          },
+          {
+            "w": "repeats",
+            "t": 188.685
+          },
+          {
+            "w": "the",
+            "t": 189.105
+          },
+          {
+            "w": "same",
+            "t": 189.524
+          },
+          {
+            "w": "corrupted",
+            "t": 189.944
+          },
+          {
+            "w": "phase.",
+            "t": 190.364
+          },
+          {
+            "w": "That",
+            "t": 190.783
+          },
+          {
+            "w": "is",
+            "t": 191.203
+          },
+          {
+            "w": "why",
+            "t": 191.622
+          },
+          {
+            "w": "we",
+            "t": 192.042
+          },
+          {
+            "w": "must",
+            "t": 192.461
+          },
+          {
+            "w": "audit",
+            "t": 192.881
+          },
+          {
+            "w": "periodicity!",
+            "t": 193.3
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Kaito",
+        "text": "Vitter's Algorithm R is brilliant, Dr. Nova! In an infinite streaming pipeline like Apache Flink or Kafka, we don't know if the stream will have 10,000 events or 10 billion events. But we can guarantee a uniform sample with fixed RAM!",
+        "start": 193.72,
+        "end": 209.498,
+        "words": [
+          {
+            "w": "Vitter's",
+            "t": 193.72
+          },
+          {
+            "w": "Algorithm",
+            "t": 194.105
+          },
+          {
+            "w": "R",
+            "t": 194.49
+          },
+          {
+            "w": "is",
+            "t": 194.874
+          },
+          {
+            "w": "brilliant,",
+            "t": 195.259
+          },
+          {
+            "w": "Dr.",
+            "t": 195.644
+          },
+          {
+            "w": "Nova!",
+            "t": 196.029
+          },
+          {
+            "w": "In",
+            "t": 196.414
+          },
+          {
+            "w": "an",
+            "t": 196.799
+          },
+          {
+            "w": "infinite",
+            "t": 197.183
+          },
+          {
+            "w": "streaming",
+            "t": 197.568
+          },
+          {
+            "w": "pipeline",
+            "t": 197.953
+          },
+          {
+            "w": "like",
+            "t": 198.338
+          },
+          {
+            "w": "Apache",
+            "t": 198.723
+          },
+          {
+            "w": "Flink",
+            "t": 199.108
+          },
+          {
+            "w": "or",
+            "t": 199.492
+          },
+          {
+            "w": "Kafka,",
+            "t": 199.877
+          },
+          {
+            "w": "we",
+            "t": 200.262
+          },
+          {
+            "w": "don't",
+            "t": 200.647
+          },
+          {
+            "w": "know",
+            "t": 201.032
+          },
+          {
+            "w": "if",
+            "t": 201.417
+          },
+          {
+            "w": "the",
+            "t": 201.801
+          },
+          {
+            "w": "stream",
+            "t": 202.186
+          },
+          {
+            "w": "will",
+            "t": 202.571
+          },
+          {
+            "w": "have",
+            "t": 202.956
+          },
+          {
+            "w": "10,000",
+            "t": 203.341
+          },
+          {
+            "w": "events",
+            "t": 203.726
+          },
+          {
+            "w": "or",
+            "t": 204.11
+          },
+          {
+            "w": "10",
+            "t": 204.495
+          },
+          {
+            "w": "billion",
+            "t": 204.88
+          },
+          {
+            "w": "events.",
+            "t": 205.265
+          },
+          {
+            "w": "But",
+            "t": 205.65
+          },
+          {
+            "w": "we",
+            "t": 206.035
+          },
+          {
+            "w": "can",
+            "t": 206.419
+          },
+          {
+            "w": "guarantee",
+            "t": 206.804
+          },
+          {
+            "w": "a",
+            "t": 207.189
+          },
+          {
+            "w": "uniform",
+            "t": 207.574
+          },
+          {
+            "w": "sample",
+            "t": 207.959
+          },
+          {
+            "w": "with",
+            "t": 208.344
+          },
+          {
+            "w": "fixed",
+            "t": 208.728
+          },
+          {
+            "w": "RAM!",
+            "t": 209.113
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "That is the magic of the inductive cancellation. At step n plus 1, the new item enters with probability k over n plus 1. And every existing item survives with probability n over n plus 1. When you multiply the prior k over n by n over n plus 1, the n terms cancel cleanly out!",
+        "start": 209.498,
+        "end": 228.108,
+        "words": [
+          {
+            "w": "That",
+            "t": 209.498
+          },
+          {
+            "w": "is",
+            "t": 209.83
+          },
+          {
+            "w": "the",
+            "t": 210.163
+          },
+          {
+            "w": "magic",
+            "t": 210.495
+          },
+          {
+            "w": "of",
+            "t": 210.827
+          },
+          {
+            "w": "the",
+            "t": 211.16
+          },
+          {
+            "w": "inductive",
+            "t": 211.492
+          },
+          {
+            "w": "cancellation.",
+            "t": 211.824
+          },
+          {
+            "w": "At",
+            "t": 212.157
+          },
+          {
+            "w": "step",
+            "t": 212.489
+          },
+          {
+            "w": "n",
+            "t": 212.821
+          },
+          {
+            "w": "plus",
+            "t": 213.154
+          },
+          {
+            "w": "1,",
+            "t": 213.486
+          },
+          {
+            "w": "the",
+            "t": 213.818
+          },
+          {
+            "w": "new",
+            "t": 214.15
+          },
+          {
+            "w": "item",
+            "t": 214.483
+          },
+          {
+            "w": "enters",
+            "t": 214.815
+          },
+          {
+            "w": "with",
+            "t": 215.147
+          },
+          {
+            "w": "probability",
+            "t": 215.48
+          },
+          {
+            "w": "k",
+            "t": 215.812
+          },
+          {
+            "w": "over",
+            "t": 216.144
+          },
+          {
+            "w": "n",
+            "t": 216.477
+          },
+          {
+            "w": "plus",
+            "t": 216.809
+          },
+          {
+            "w": "1.",
+            "t": 217.141
+          },
+          {
+            "w": "And",
+            "t": 217.474
+          },
+          {
+            "w": "every",
+            "t": 217.806
+          },
+          {
+            "w": "existing",
+            "t": 218.138
+          },
+          {
+            "w": "item",
+            "t": 218.471
+          },
+          {
+            "w": "survives",
+            "t": 218.803
+          },
+          {
+            "w": "with",
+            "t": 219.135
+          },
+          {
+            "w": "probability",
+            "t": 219.468
+          },
+          {
+            "w": "n",
+            "t": 219.8
+          },
+          {
+            "w": "over",
+            "t": 220.132
+          },
+          {
+            "w": "n",
+            "t": 220.465
+          },
+          {
+            "w": "plus",
+            "t": 220.797
+          },
+          {
+            "w": "1.",
+            "t": 221.129
+          },
+          {
+            "w": "When",
+            "t": 221.462
+          },
+          {
+            "w": "you",
+            "t": 221.794
+          },
+          {
+            "w": "multiply",
+            "t": 222.126
+          },
+          {
+            "w": "the",
+            "t": 222.459
+          },
+          {
+            "w": "prior",
+            "t": 222.791
+          },
+          {
+            "w": "k",
+            "t": 223.123
+          },
+          {
+            "w": "over",
+            "t": 223.456
+          },
+          {
+            "w": "n",
+            "t": 223.788
+          },
+          {
+            "w": "by",
+            "t": 224.12
+          },
+          {
+            "w": "n",
+            "t": 224.452
+          },
+          {
+            "w": "over",
+            "t": 224.785
+          },
+          {
+            "w": "n",
+            "t": 225.117
+          },
+          {
+            "w": "plus",
+            "t": 225.449
+          },
+          {
+            "w": "1,",
+            "t": 225.782
+          },
+          {
+            "w": "the",
+            "t": 226.114
+          },
+          {
+            "w": "n",
+            "t": 226.446
+          },
+          {
+            "w": "terms",
+            "t": 226.779
+          },
+          {
+            "w": "cancel",
+            "t": 227.111
+          },
+          {
+            "w": "cleanly",
+            "t": 227.443
+          },
+          {
+            "w": "out!",
+            "t": 227.776
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Kaito",
+        "text": "Leaving exactly k over n plus 1! So whether the stream halts at noon or midnight, the buffer is always an unbiased simple random sample without replacement!",
+        "start": 228.108,
+        "end": 238.627,
+        "words": [
+          {
+            "w": "Leaving",
+            "t": 228.108
+          },
+          {
+            "w": "exactly",
+            "t": 228.498
+          },
+          {
+            "w": "k",
+            "t": 228.887
+          },
+          {
+            "w": "over",
+            "t": 229.277
+          },
+          {
+            "w": "n",
+            "t": 229.666
+          },
+          {
+            "w": "plus",
+            "t": 230.056
+          },
+          {
+            "w": "1!",
+            "t": 230.446
+          },
+          {
+            "w": "So",
+            "t": 230.835
+          },
+          {
+            "w": "whether",
+            "t": 231.225
+          },
+          {
+            "w": "the",
+            "t": 231.614
+          },
+          {
+            "w": "stream",
+            "t": 232.004
+          },
+          {
+            "w": "halts",
+            "t": 232.394
+          },
+          {
+            "w": "at",
+            "t": 232.783
+          },
+          {
+            "w": "noon",
+            "t": 233.173
+          },
+          {
+            "w": "or",
+            "t": 233.562
+          },
+          {
+            "w": "midnight,",
+            "t": 233.952
+          },
+          {
+            "w": "the",
+            "t": 234.341
+          },
+          {
+            "w": "buffer",
+            "t": 234.731
+          },
+          {
+            "w": "is",
+            "t": 235.121
+          },
+          {
+            "w": "always",
+            "t": 235.51
+          },
+          {
+            "w": "an",
+            "t": 235.9
+          },
+          {
+            "w": "unbiased",
+            "t": 236.289
+          },
+          {
+            "w": "simple",
+            "t": 236.679
+          },
+          {
+            "w": "random",
+            "t": 237.069
+          },
+          {
+            "w": "sample",
+            "t": 237.458
+          },
+          {
+            "w": "without",
+            "t": 237.848
+          },
+          {
+            "w": "replacement!",
+            "t": 238.237
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Kaito",
+        "text": "Look at the SVG wave canvas, Dr. Nova! When P equals 7 and k equals 7, every single orange circle lands right on the top shoulder of the sine wave! The true mean is 50, but our sample mean is 64.6!",
+        "start": 238.627,
+        "end": 251.91,
+        "words": [
+          {
+            "w": "Look",
+            "t": 238.627
+          },
+          {
+            "w": "at",
+            "t": 238.951
+          },
+          {
+            "w": "the",
+            "t": 239.275
+          },
+          {
+            "w": "SVG",
+            "t": 239.599
+          },
+          {
+            "w": "wave",
+            "t": 239.923
+          },
+          {
+            "w": "canvas,",
+            "t": 240.247
+          },
+          {
+            "w": "Dr.",
+            "t": 240.571
+          },
+          {
+            "w": "Nova!",
+            "t": 240.895
+          },
+          {
+            "w": "When",
+            "t": 241.219
+          },
+          {
+            "w": "P",
+            "t": 241.543
+          },
+          {
+            "w": "equals",
+            "t": 241.867
+          },
+          {
+            "w": "7",
+            "t": 242.191
+          },
+          {
+            "w": "and",
+            "t": 242.515
+          },
+          {
+            "w": "k",
+            "t": 242.839
+          },
+          {
+            "w": "equals",
+            "t": 243.163
+          },
+          {
+            "w": "7,",
+            "t": 243.487
+          },
+          {
+            "w": "every",
+            "t": 243.811
+          },
+          {
+            "w": "single",
+            "t": 244.135
+          },
+          {
+            "w": "orange",
+            "t": 244.459
+          },
+          {
+            "w": "circle",
+            "t": 244.783
+          },
+          {
+            "w": "lands",
+            "t": 245.107
+          },
+          {
+            "w": "right",
+            "t": 245.43
+          },
+          {
+            "w": "on",
+            "t": 245.754
+          },
+          {
+            "w": "the",
+            "t": 246.078
+          },
+          {
+            "w": "top",
+            "t": 246.402
+          },
+          {
+            "w": "shoulder",
+            "t": 246.726
+          },
+          {
+            "w": "of",
+            "t": 247.05
+          },
+          {
+            "w": "the",
+            "t": 247.374
+          },
+          {
+            "w": "sine",
+            "t": 247.698
+          },
+          {
+            "w": "wave!",
+            "t": 248.022
+          },
+          {
+            "w": "The",
+            "t": 248.346
+          },
+          {
+            "w": "true",
+            "t": 248.67
+          },
+          {
+            "w": "mean",
+            "t": 248.994
+          },
+          {
+            "w": "is",
+            "t": 249.318
+          },
+          {
+            "w": "50,",
+            "t": 249.642
+          },
+          {
+            "w": "but",
+            "t": 249.966
+          },
+          {
+            "w": "our",
+            "t": 250.29
+          },
+          {
+            "w": "sample",
+            "t": 250.614
+          },
+          {
+            "w": "mean",
+            "t": 250.938
+          },
+          {
+            "w": "is",
+            "t": 251.262
+          },
+          {
+            "w": "64.6!",
+            "t": 251.586
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "That is spectral phase-locking in action, Kaito! Because stride 7 is an exact multiple of the wave period 7, every single sample is drawn at the exact same phase offset. The resonance badge is glowing red!",
+        "start": 251.91,
+        "end": 265.733,
+        "words": [
+          {
+            "w": "That",
+            "t": 251.91
+          },
+          {
+            "w": "is",
+            "t": 252.294
+          },
+          {
+            "w": "spectral",
+            "t": 252.678
+          },
+          {
+            "w": "phase-locking",
+            "t": 253.062
+          },
+          {
+            "w": "in",
+            "t": 253.446
+          },
+          {
+            "w": "action,",
+            "t": 253.83
+          },
+          {
+            "w": "Kaito!",
+            "t": 254.214
+          },
+          {
+            "w": "Because",
+            "t": 254.598
+          },
+          {
+            "w": "stride",
+            "t": 254.982
+          },
+          {
+            "w": "7",
+            "t": 255.366
+          },
+          {
+            "w": "is",
+            "t": 255.75
+          },
+          {
+            "w": "an",
+            "t": 256.134
+          },
+          {
+            "w": "exact",
+            "t": 256.518
+          },
+          {
+            "w": "multiple",
+            "t": 256.902
+          },
+          {
+            "w": "of",
+            "t": 257.286
+          },
+          {
+            "w": "the",
+            "t": 257.67
+          },
+          {
+            "w": "wave",
+            "t": 258.054
+          },
+          {
+            "w": "period",
+            "t": 258.438
+          },
+          {
+            "w": "7,",
+            "t": 258.822
+          },
+          {
+            "w": "every",
+            "t": 259.205
+          },
+          {
+            "w": "single",
+            "t": 259.589
+          },
+          {
+            "w": "sample",
+            "t": 259.973
+          },
+          {
+            "w": "is",
+            "t": 260.357
+          },
+          {
+            "w": "drawn",
+            "t": 260.741
+          },
+          {
+            "w": "at",
+            "t": 261.125
+          },
+          {
+            "w": "the",
+            "t": 261.509
+          },
+          {
+            "w": "exact",
+            "t": 261.893
+          },
+          {
+            "w": "same",
+            "t": 262.277
+          },
+          {
+            "w": "phase",
+            "t": 262.661
+          },
+          {
+            "w": "offset.",
+            "t": 263.045
+          },
+          {
+            "w": "The",
+            "t": 263.429
+          },
+          {
+            "w": "resonance",
+            "t": 263.813
+          },
+          {
+            "w": "badge",
+            "t": 264.197
+          },
+          {
+            "w": "is",
+            "t": 264.581
+          },
+          {
+            "w": "glowing",
+            "t": 264.965
+          },
+          {
+            "w": "red!",
+            "t": 265.349
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Kaito",
+        "text": "Let me drag stride k to 8... Wow! As soon as k equals 8, gcd of 8 and 7 is 1! The sampled circles scatter across peaks, troughs, and mid-points. The sample mean snaps back to 50.1, virtually zero bias!",
+        "start": 265.733,
+        "end": 279.286,
+        "words": [
+          {
+            "w": "Let",
+            "t": 265.733
+          },
+          {
+            "w": "me",
+            "t": 266.072
+          },
+          {
+            "w": "drag",
+            "t": 266.411
+          },
+          {
+            "w": "stride",
+            "t": 266.749
+          },
+          {
+            "w": "k",
+            "t": 267.088
+          },
+          {
+            "w": "to",
+            "t": 267.427
+          },
+          {
+            "w": "8...",
+            "t": 267.766
+          },
+          {
+            "w": "Wow!",
+            "t": 268.105
+          },
+          {
+            "w": "As",
+            "t": 268.444
+          },
+          {
+            "w": "soon",
+            "t": 268.782
+          },
+          {
+            "w": "as",
+            "t": 269.121
+          },
+          {
+            "w": "k",
+            "t": 269.46
+          },
+          {
+            "w": "equals",
+            "t": 269.799
+          },
+          {
+            "w": "8,",
+            "t": 270.138
+          },
+          {
+            "w": "gcd",
+            "t": 270.477
+          },
+          {
+            "w": "of",
+            "t": 270.815
+          },
+          {
+            "w": "8",
+            "t": 271.154
+          },
+          {
+            "w": "and",
+            "t": 271.493
+          },
+          {
+            "w": "7",
+            "t": 271.832
+          },
+          {
+            "w": "is",
+            "t": 272.171
+          },
+          {
+            "w": "1!",
+            "t": 272.51
+          },
+          {
+            "w": "The",
+            "t": 272.848
+          },
+          {
+            "w": "sampled",
+            "t": 273.187
+          },
+          {
+            "w": "circles",
+            "t": 273.526
+          },
+          {
+            "w": "scatter",
+            "t": 273.865
+          },
+          {
+            "w": "across",
+            "t": 274.204
+          },
+          {
+            "w": "peaks,",
+            "t": 274.542
+          },
+          {
+            "w": "troughs,",
+            "t": 274.881
+          },
+          {
+            "w": "and",
+            "t": 275.22
+          },
+          {
+            "w": "mid-points.",
+            "t": 275.559
+          },
+          {
+            "w": "The",
+            "t": 275.898
+          },
+          {
+            "w": "sample",
+            "t": 276.237
+          },
+          {
+            "w": "mean",
+            "t": 276.575
+          },
+          {
+            "w": "snaps",
+            "t": 276.914
+          },
+          {
+            "w": "back",
+            "t": 277.253
+          },
+          {
+            "w": "to",
+            "t": 277.592
+          },
+          {
+            "w": "50.1,",
+            "t": 277.931
+          },
+          {
+            "w": "virtually",
+            "t": 278.27
+          },
+          {
+            "w": "zero",
+            "t": 278.608
+          },
+          {
+            "w": "bias!",
+            "t": 278.947
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Kaito",
+        "text": "Checkpoint time! So an existing item only gets booted out if the newcomer enters AND picks that item's exact slot!",
+        "start": 279.286,
+        "end": 286.973,
+        "words": [
+          {
+            "w": "Checkpoint",
+            "t": 279.286
+          },
+          {
+            "w": "time!",
+            "t": 279.67
+          },
+          {
+            "w": "So",
+            "t": 280.055
+          },
+          {
+            "w": "an",
+            "t": 280.439
+          },
+          {
+            "w": "existing",
+            "t": 280.823
+          },
+          {
+            "w": "item",
+            "t": 281.208
+          },
+          {
+            "w": "only",
+            "t": 281.592
+          },
+          {
+            "w": "gets",
+            "t": 281.976
+          },
+          {
+            "w": "booted",
+            "t": 282.361
+          },
+          {
+            "w": "out",
+            "t": 282.745
+          },
+          {
+            "w": "if",
+            "t": 283.13
+          },
+          {
+            "w": "the",
+            "t": 283.514
+          },
+          {
+            "w": "newcomer",
+            "t": 283.898
+          },
+          {
+            "w": "enters",
+            "t": 284.283
+          },
+          {
+            "w": "AND",
+            "t": 284.667
+          },
+          {
+            "w": "picks",
+            "t": 285.051
+          },
+          {
+            "w": "that",
+            "t": 285.436
+          },
+          {
+            "w": "item's",
+            "t": 285.82
+          },
+          {
+            "w": "exact",
+            "t": 286.204
+          },
+          {
+            "w": "slot!",
+            "t": 286.589
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Calculate the probability that the new item enters, multiplied by 1 over k for targeting that specific slot, and subtract that replacement probability from 1.",
+        "start": 286.973,
+        "end": 298.233,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 286.973
+          },
+          {
+            "w": "Calculate",
+            "t": 287.406
+          },
+          {
+            "w": "the",
+            "t": 287.839
+          },
+          {
+            "w": "probability",
+            "t": 288.272
+          },
+          {
+            "w": "that",
+            "t": 288.705
+          },
+          {
+            "w": "the",
+            "t": 289.138
+          },
+          {
+            "w": "new",
+            "t": 289.571
+          },
+          {
+            "w": "item",
+            "t": 290.005
+          },
+          {
+            "w": "enters,",
+            "t": 290.438
+          },
+          {
+            "w": "multiplied",
+            "t": 290.871
+          },
+          {
+            "w": "by",
+            "t": 291.304
+          },
+          {
+            "w": "1",
+            "t": 291.737
+          },
+          {
+            "w": "over",
+            "t": 292.17
+          },
+          {
+            "w": "k",
+            "t": 292.603
+          },
+          {
+            "w": "for",
+            "t": 293.036
+          },
+          {
+            "w": "targeting",
+            "t": 293.469
+          },
+          {
+            "w": "that",
+            "t": 293.902
+          },
+          {
+            "w": "specific",
+            "t": 294.335
+          },
+          {
+            "w": "slot,",
+            "t": 294.768
+          },
+          {
+            "w": "and",
+            "t": 295.201
+          },
+          {
+            "w": "subtract",
+            "t": 295.635
+          },
+          {
+            "w": "that",
+            "t": 296.068
+          },
+          {
+            "w": "replacement",
+            "t": 296.501
+          },
+          {
+            "w": "probability",
+            "t": 296.934
+          },
+          {
+            "w": "from",
+            "t": 297.367
+          },
+          {
+            "w": "1.",
+            "t": 297.8
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Kaito",
+        "text": "Every data science team does this at least once, Dr. Nova! They send a Slack survey or set up an iPad at the company cafeteria, get 500 responses, and claim their model represents all users!",
+        "start": 298.233,
+        "end": 311.044,
+        "words": [
+          {
+            "w": "Every",
+            "t": 298.233
+          },
+          {
+            "w": "data",
+            "t": 298.599
+          },
+          {
+            "w": "science",
+            "t": 298.965
+          },
+          {
+            "w": "team",
+            "t": 299.331
+          },
+          {
+            "w": "does",
+            "t": 299.697
+          },
+          {
+            "w": "this",
+            "t": 300.063
+          },
+          {
+            "w": "at",
+            "t": 300.429
+          },
+          {
+            "w": "least",
+            "t": 300.795
+          },
+          {
+            "w": "once,",
+            "t": 301.161
+          },
+          {
+            "w": "Dr.",
+            "t": 301.527
+          },
+          {
+            "w": "Nova!",
+            "t": 301.893
+          },
+          {
+            "w": "They",
+            "t": 302.259
+          },
+          {
+            "w": "send",
+            "t": 302.625
+          },
+          {
+            "w": "a",
+            "t": 302.991
+          },
+          {
+            "w": "Slack",
+            "t": 303.357
+          },
+          {
+            "w": "survey",
+            "t": 303.723
+          },
+          {
+            "w": "or",
+            "t": 304.089
+          },
+          {
+            "w": "set",
+            "t": 304.455
+          },
+          {
+            "w": "up",
+            "t": 304.822
+          },
+          {
+            "w": "an",
+            "t": 305.188
+          },
+          {
+            "w": "iPad",
+            "t": 305.554
+          },
+          {
+            "w": "at",
+            "t": 305.92
+          },
+          {
+            "w": "the",
+            "t": 306.286
+          },
+          {
+            "w": "company",
+            "t": 306.652
+          },
+          {
+            "w": "cafeteria,",
+            "t": 307.018
+          },
+          {
+            "w": "get",
+            "t": 307.384
+          },
+          {
+            "w": "500",
+            "t": 307.75
+          },
+          {
+            "w": "responses,",
+            "t": 308.116
+          },
+          {
+            "w": "and",
+            "t": 308.482
+          },
+          {
+            "w": "claim",
+            "t": 308.848
+          },
+          {
+            "w": "their",
+            "t": 309.214
+          },
+          {
+            "w": "model",
+            "t": 309.58
+          },
+          {
+            "w": "represents",
+            "t": 309.946
+          },
+          {
+            "w": "all",
+            "t": 310.312
+          },
+          {
+            "w": "users!",
+            "t": 310.678
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "That is the classic convenience sampling illusion, Kaito. Who responds to a cafeteria iPad? People who have free time, who like technology, and who happen to walk past that specific door. Your inclusion probability pi-sub-i is heavily dependent on motivation and physical proximity.",
+        "start": 311.044,
+        "end": 330.059,
+        "words": [
+          {
+            "w": "That",
+            "t": 311.044
+          },
+          {
+            "w": "is",
+            "t": 311.486
+          },
+          {
+            "w": "the",
+            "t": 311.928
+          },
+          {
+            "w": "classic",
+            "t": 312.371
+          },
+          {
+            "w": "convenience",
+            "t": 312.813
+          },
+          {
+            "w": "sampling",
+            "t": 313.255
+          },
+          {
+            "w": "illusion,",
+            "t": 313.697
+          },
+          {
+            "w": "Kaito.",
+            "t": 314.139
+          },
+          {
+            "w": "Who",
+            "t": 314.582
+          },
+          {
+            "w": "responds",
+            "t": 315.024
+          },
+          {
+            "w": "to",
+            "t": 315.466
+          },
+          {
+            "w": "a",
+            "t": 315.908
+          },
+          {
+            "w": "cafeteria",
+            "t": 316.351
+          },
+          {
+            "w": "iPad?",
+            "t": 316.793
+          },
+          {
+            "w": "People",
+            "t": 317.235
+          },
+          {
+            "w": "who",
+            "t": 317.677
+          },
+          {
+            "w": "have",
+            "t": 318.119
+          },
+          {
+            "w": "free",
+            "t": 318.562
+          },
+          {
+            "w": "time,",
+            "t": 319.004
+          },
+          {
+            "w": "who",
+            "t": 319.446
+          },
+          {
+            "w": "like",
+            "t": 319.888
+          },
+          {
+            "w": "technology,",
+            "t": 320.33
+          },
+          {
+            "w": "and",
+            "t": 320.773
+          },
+          {
+            "w": "who",
+            "t": 321.215
+          },
+          {
+            "w": "happen",
+            "t": 321.657
+          },
+          {
+            "w": "to",
+            "t": 322.099
+          },
+          {
+            "w": "walk",
+            "t": 322.541
+          },
+          {
+            "w": "past",
+            "t": 322.984
+          },
+          {
+            "w": "that",
+            "t": 323.426
+          },
+          {
+            "w": "specific",
+            "t": 323.868
+          },
+          {
+            "w": "door.",
+            "t": 324.31
+          },
+          {
+            "w": "Your",
+            "t": 324.752
+          },
+          {
+            "w": "inclusion",
+            "t": 325.195
+          },
+          {
+            "w": "probability",
+            "t": 325.637
+          },
+          {
+            "w": "pi-sub-i",
+            "t": 326.079
+          },
+          {
+            "w": "is",
+            "t": 326.521
+          },
+          {
+            "w": "heavily",
+            "t": 326.964
+          },
+          {
+            "w": "dependent",
+            "t": 327.406
+          },
+          {
+            "w": "on",
+            "t": 327.848
+          },
+          {
+            "w": "motivation",
+            "t": 328.29
+          },
+          {
+            "w": "and",
+            "t": 328.732
+          },
+          {
+            "w": "physical",
+            "t": 329.175
+          },
+          {
+            "w": "proximity.",
+            "t": 329.617
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Kaito",
+        "text": "So people who are swamped with work or working remotely have zero probability of being selected! You cannot compute a margin of error because pi-sub-i is completely undefined!",
+        "start": 330.059,
+        "end": 341.859,
+        "words": [
+          {
+            "w": "So",
+            "t": 330.059
+          },
+          {
+            "w": "people",
+            "t": 330.48
+          },
+          {
+            "w": "who",
+            "t": 330.902
+          },
+          {
+            "w": "are",
+            "t": 331.323
+          },
+          {
+            "w": "swamped",
+            "t": 331.745
+          },
+          {
+            "w": "with",
+            "t": 332.166
+          },
+          {
+            "w": "work",
+            "t": 332.588
+          },
+          {
+            "w": "or",
+            "t": 333.009
+          },
+          {
+            "w": "working",
+            "t": 333.43
+          },
+          {
+            "w": "remotely",
+            "t": 333.852
+          },
+          {
+            "w": "have",
+            "t": 334.273
+          },
+          {
+            "w": "zero",
+            "t": 334.695
+          },
+          {
+            "w": "probability",
+            "t": 335.116
+          },
+          {
+            "w": "of",
+            "t": 335.538
+          },
+          {
+            "w": "being",
+            "t": 335.959
+          },
+          {
+            "w": "selected!",
+            "t": 336.38
+          },
+          {
+            "w": "You",
+            "t": 336.802
+          },
+          {
+            "w": "cannot",
+            "t": 337.223
+          },
+          {
+            "w": "compute",
+            "t": 337.645
+          },
+          {
+            "w": "a",
+            "t": 338.066
+          },
+          {
+            "w": "margin",
+            "t": 338.488
+          },
+          {
+            "w": "of",
+            "t": 338.909
+          },
+          {
+            "w": "error",
+            "t": 339.33
+          },
+          {
+            "w": "because",
+            "t": 339.752
+          },
+          {
+            "w": "pi-sub-i",
+            "t": 340.173
+          },
+          {
+            "w": "is",
+            "t": 340.595
+          },
+          {
+            "w": "completely",
+            "t": 341.016
+          },
+          {
+            "w": "undefined!",
+            "t": 341.438
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Kaito",
+        "text": "Snowball sampling sounds great in theory: ask five people to each recruit three friends, and your sample grows exponentially! But in practice, you end up surveying the same tight-knit clique!",
+        "start": 341.859,
+        "end": 354.738,
+        "words": [
+          {
+            "w": "Snowball",
+            "t": 341.859
+          },
+          {
+            "w": "sampling",
+            "t": 342.288
+          },
+          {
+            "w": "sounds",
+            "t": 342.718
+          },
+          {
+            "w": "great",
+            "t": 343.147
+          },
+          {
+            "w": "in",
+            "t": 343.576
+          },
+          {
+            "w": "theory:",
+            "t": 344.005
+          },
+          {
+            "w": "ask",
+            "t": 344.435
+          },
+          {
+            "w": "five",
+            "t": 344.864
+          },
+          {
+            "w": "people",
+            "t": 345.293
+          },
+          {
+            "w": "to",
+            "t": 345.723
+          },
+          {
+            "w": "each",
+            "t": 346.152
+          },
+          {
+            "w": "recruit",
+            "t": 346.581
+          },
+          {
+            "w": "three",
+            "t": 347.011
+          },
+          {
+            "w": "friends,",
+            "t": 347.44
+          },
+          {
+            "w": "and",
+            "t": 347.869
+          },
+          {
+            "w": "your",
+            "t": 348.298
+          },
+          {
+            "w": "sample",
+            "t": 348.728
+          },
+          {
+            "w": "grows",
+            "t": 349.157
+          },
+          {
+            "w": "exponentially!",
+            "t": 349.586
+          },
+          {
+            "w": "But",
+            "t": 350.016
+          },
+          {
+            "w": "in",
+            "t": 350.445
+          },
+          {
+            "w": "practice,",
+            "t": 350.874
+          },
+          {
+            "w": "you",
+            "t": 351.304
+          },
+          {
+            "w": "end",
+            "t": 351.733
+          },
+          {
+            "w": "up",
+            "t": 352.162
+          },
+          {
+            "w": "surveying",
+            "t": 352.591
+          },
+          {
+            "w": "the",
+            "t": 353.021
+          },
+          {
+            "w": "same",
+            "t": 353.45
+          },
+          {
+            "w": "tight-knit",
+            "t": 353.879
+          },
+          {
+            "w": "clique!",
+            "t": 354.309
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "Exactly, Kaito. That is the dual hazard of degree centrality and homophily. Popular people with 50 friends get recruited ten times as often as someone with 2 friends. And because people recruit friends like themselves, the sample reflects the seed's demographic bubble.",
+        "start": 354.738,
+        "end": 372.876,
+        "words": [
+          {
+            "w": "Exactly,",
+            "t": 354.738
+          },
+          {
+            "w": "Kaito.",
+            "t": 355.17
+          },
+          {
+            "w": "That",
+            "t": 355.602
+          },
+          {
+            "w": "is",
+            "t": 356.034
+          },
+          {
+            "w": "the",
+            "t": 356.465
+          },
+          {
+            "w": "dual",
+            "t": 356.897
+          },
+          {
+            "w": "hazard",
+            "t": 357.329
+          },
+          {
+            "w": "of",
+            "t": 357.761
+          },
+          {
+            "w": "degree",
+            "t": 358.193
+          },
+          {
+            "w": "centrality",
+            "t": 358.625
+          },
+          {
+            "w": "and",
+            "t": 359.057
+          },
+          {
+            "w": "homophily.",
+            "t": 359.488
+          },
+          {
+            "w": "Popular",
+            "t": 359.92
+          },
+          {
+            "w": "people",
+            "t": 360.352
+          },
+          {
+            "w": "with",
+            "t": 360.784
+          },
+          {
+            "w": "50",
+            "t": 361.216
+          },
+          {
+            "w": "friends",
+            "t": 361.648
+          },
+          {
+            "w": "get",
+            "t": 362.08
+          },
+          {
+            "w": "recruited",
+            "t": 362.511
+          },
+          {
+            "w": "ten",
+            "t": 362.943
+          },
+          {
+            "w": "times",
+            "t": 363.375
+          },
+          {
+            "w": "as",
+            "t": 363.807
+          },
+          {
+            "w": "often",
+            "t": 364.239
+          },
+          {
+            "w": "as",
+            "t": 364.671
+          },
+          {
+            "w": "someone",
+            "t": 365.103
+          },
+          {
+            "w": "with",
+            "t": 365.534
+          },
+          {
+            "w": "2",
+            "t": 365.966
+          },
+          {
+            "w": "friends.",
+            "t": 366.398
+          },
+          {
+            "w": "And",
+            "t": 366.83
+          },
+          {
+            "w": "because",
+            "t": 367.262
+          },
+          {
+            "w": "people",
+            "t": 367.694
+          },
+          {
+            "w": "recruit",
+            "t": 368.126
+          },
+          {
+            "w": "friends",
+            "t": 368.557
+          },
+          {
+            "w": "like",
+            "t": 368.989
+          },
+          {
+            "w": "themselves,",
+            "t": 369.421
+          },
+          {
+            "w": "the",
+            "t": 369.853
+          },
+          {
+            "w": "sample",
+            "t": 370.285
+          },
+          {
+            "w": "reflects",
+            "t": 370.717
+          },
+          {
+            "w": "the",
+            "t": 371.149
+          },
+          {
+            "w": "seed's",
+            "t": 371.58
+          },
+          {
+            "w": "demographic",
+            "t": 372.012
+          },
+          {
+            "w": "bubble.",
+            "t": 372.444
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Kaito",
+        "text": "So if your seed driver lives in north Brooklyn, 90 percent of your sample lives in north Brooklyn! Can we mathematically de-bias this recruitment chain?",
+        "start": 372.876,
+        "end": 383.125,
+        "words": [
+          {
+            "w": "So",
+            "t": 372.876
+          },
+          {
+            "w": "if",
+            "t": 373.286
+          },
+          {
+            "w": "your",
+            "t": 373.696
+          },
+          {
+            "w": "seed",
+            "t": 374.106
+          },
+          {
+            "w": "driver",
+            "t": 374.516
+          },
+          {
+            "w": "lives",
+            "t": 374.926
+          },
+          {
+            "w": "in",
+            "t": 375.336
+          },
+          {
+            "w": "north",
+            "t": 375.746
+          },
+          {
+            "w": "Brooklyn,",
+            "t": 376.156
+          },
+          {
+            "w": "90",
+            "t": 376.566
+          },
+          {
+            "w": "percent",
+            "t": 376.976
+          },
+          {
+            "w": "of",
+            "t": 377.386
+          },
+          {
+            "w": "your",
+            "t": 377.796
+          },
+          {
+            "w": "sample",
+            "t": 378.205
+          },
+          {
+            "w": "lives",
+            "t": 378.615
+          },
+          {
+            "w": "in",
+            "t": 379.025
+          },
+          {
+            "w": "north",
+            "t": 379.435
+          },
+          {
+            "w": "Brooklyn!",
+            "t": 379.845
+          },
+          {
+            "w": "Can",
+            "t": 380.255
+          },
+          {
+            "w": "we",
+            "t": 380.665
+          },
+          {
+            "w": "mathematically",
+            "t": 381.075
+          },
+          {
+            "w": "de-bias",
+            "t": 381.485
+          },
+          {
+            "w": "this",
+            "t": 381.895
+          },
+          {
+            "w": "recruitment",
+            "t": 382.305
+          },
+          {
+            "w": "chain?",
+            "t": 382.715
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "Yes! By turning the recruitment process into a Markov random walk and applying Respondent-Driven Sampling!",
+        "start": 383.125,
+        "end": 390.272,
+        "words": [
+          {
+            "w": "Yes!",
+            "t": 383.125
+          },
+          {
+            "w": "By",
+            "t": 383.601
+          },
+          {
+            "w": "turning",
+            "t": 384.078
+          },
+          {
+            "w": "the",
+            "t": 384.554
+          },
+          {
+            "w": "recruitment",
+            "t": 385.031
+          },
+          {
+            "w": "process",
+            "t": 385.507
+          },
+          {
+            "w": "into",
+            "t": 385.984
+          },
+          {
+            "w": "a",
+            "t": 386.46
+          },
+          {
+            "w": "Markov",
+            "t": 386.937
+          },
+          {
+            "w": "random",
+            "t": 387.413
+          },
+          {
+            "w": "walk",
+            "t": 387.89
+          },
+          {
+            "w": "and",
+            "t": 388.366
+          },
+          {
+            "w": "applying",
+            "t": 388.843
+          },
+          {
+            "w": "Respondent-Driven",
+            "t": 389.319
+          },
+          {
+            "w": "Sampling!",
+            "t": 389.796
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Kaito",
+        "text": "Wait, Dr. Nova! In RDS, recruitment starts with convenience seeds. How can a convenience seed produce an unbiased probability estimate?",
+        "start": 390.272,
+        "end": 399.375,
+        "words": [
+          {
+            "w": "Wait,",
+            "t": 390.272
+          },
+          {
+            "w": "Dr.",
+            "t": 390.727
+          },
+          {
+            "w": "Nova!",
+            "t": 391.182
+          },
+          {
+            "w": "In",
+            "t": 391.637
+          },
+          {
+            "w": "RDS,",
+            "t": 392.093
+          },
+          {
+            "w": "recruitment",
+            "t": 392.548
+          },
+          {
+            "w": "starts",
+            "t": 393.003
+          },
+          {
+            "w": "with",
+            "t": 393.458
+          },
+          {
+            "w": "convenience",
+            "t": 393.913
+          },
+          {
+            "w": "seeds.",
+            "t": 394.368
+          },
+          {
+            "w": "How",
+            "t": 394.823
+          },
+          {
+            "w": "can",
+            "t": 395.279
+          },
+          {
+            "w": "a",
+            "t": 395.734
+          },
+          {
+            "w": "convenience",
+            "t": 396.189
+          },
+          {
+            "w": "seed",
+            "t": 396.644
+          },
+          {
+            "w": "produce",
+            "t": 397.099
+          },
+          {
+            "w": "an",
+            "t": 397.554
+          },
+          {
+            "w": "unbiased",
+            "t": 398.01
+          },
+          {
+            "w": "probability",
+            "t": 398.465
+          },
+          {
+            "w": "estimate?",
+            "t": 398.92
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Because of Markov chain mixing! Think of recruitment as a random walk on the network graph. With each coupon wave, the memory of the seed fades. By wave 4 to 6, the probability of sampling any node depends only on that node's degree d-sub-i, not who the seed was!",
+        "start": 399.375,
+        "end": 417.108,
+        "words": [
+          {
+            "w": "Because",
+            "t": 399.375
+          },
+          {
+            "w": "of",
+            "t": 399.737
+          },
+          {
+            "w": "Markov",
+            "t": 400.099
+          },
+          {
+            "w": "chain",
+            "t": 400.461
+          },
+          {
+            "w": "mixing!",
+            "t": 400.823
+          },
+          {
+            "w": "Think",
+            "t": 401.184
+          },
+          {
+            "w": "of",
+            "t": 401.546
+          },
+          {
+            "w": "recruitment",
+            "t": 401.908
+          },
+          {
+            "w": "as",
+            "t": 402.27
+          },
+          {
+            "w": "a",
+            "t": 402.632
+          },
+          {
+            "w": "random",
+            "t": 402.994
+          },
+          {
+            "w": "walk",
+            "t": 403.356
+          },
+          {
+            "w": "on",
+            "t": 403.718
+          },
+          {
+            "w": "the",
+            "t": 404.08
+          },
+          {
+            "w": "network",
+            "t": 404.442
+          },
+          {
+            "w": "graph.",
+            "t": 404.803
+          },
+          {
+            "w": "With",
+            "t": 405.165
+          },
+          {
+            "w": "each",
+            "t": 405.527
+          },
+          {
+            "w": "coupon",
+            "t": 405.889
+          },
+          {
+            "w": "wave,",
+            "t": 406.251
+          },
+          {
+            "w": "the",
+            "t": 406.613
+          },
+          {
+            "w": "memory",
+            "t": 406.975
+          },
+          {
+            "w": "of",
+            "t": 407.337
+          },
+          {
+            "w": "the",
+            "t": 407.699
+          },
+          {
+            "w": "seed",
+            "t": 408.061
+          },
+          {
+            "w": "fades.",
+            "t": 408.422
+          },
+          {
+            "w": "By",
+            "t": 408.784
+          },
+          {
+            "w": "wave",
+            "t": 409.146
+          },
+          {
+            "w": "4",
+            "t": 409.508
+          },
+          {
+            "w": "to",
+            "t": 409.87
+          },
+          {
+            "w": "6,",
+            "t": 410.232
+          },
+          {
+            "w": "the",
+            "t": 410.594
+          },
+          {
+            "w": "probability",
+            "t": 410.956
+          },
+          {
+            "w": "of",
+            "t": 411.318
+          },
+          {
+            "w": "sampling",
+            "t": 411.68
+          },
+          {
+            "w": "any",
+            "t": 412.041
+          },
+          {
+            "w": "node",
+            "t": 412.403
+          },
+          {
+            "w": "depends",
+            "t": 412.765
+          },
+          {
+            "w": "only",
+            "t": 413.127
+          },
+          {
+            "w": "on",
+            "t": 413.489
+          },
+          {
+            "w": "that",
+            "t": 413.851
+          },
+          {
+            "w": "node's",
+            "t": 414.213
+          },
+          {
+            "w": "degree",
+            "t": 414.575
+          },
+          {
+            "w": "d-sub-i,",
+            "t": 414.937
+          },
+          {
+            "w": "not",
+            "t": 415.299
+          },
+          {
+            "w": "who",
+            "t": 415.66
+          },
+          {
+            "w": "the",
+            "t": 416.022
+          },
+          {
+            "w": "seed",
+            "t": 416.384
+          },
+          {
+            "w": "was!",
+            "t": 416.746
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Kaito",
+        "text": "And since selection probability is strictly proportional to degree, we weight each person inversely by 1 over d-sub-i! If Alice knows 40 people and Bob knows 4 people, Bob gets ten times the weight of Alice!",
+        "start": 417.108,
+        "end": 431.066,
+        "words": [
+          {
+            "w": "And",
+            "t": 417.108
+          },
+          {
+            "w": "since",
+            "t": 417.496
+          },
+          {
+            "w": "selection",
+            "t": 417.883
+          },
+          {
+            "w": "probability",
+            "t": 418.271
+          },
+          {
+            "w": "is",
+            "t": 418.659
+          },
+          {
+            "w": "strictly",
+            "t": 419.047
+          },
+          {
+            "w": "proportional",
+            "t": 419.434
+          },
+          {
+            "w": "to",
+            "t": 419.822
+          },
+          {
+            "w": "degree,",
+            "t": 420.21
+          },
+          {
+            "w": "we",
+            "t": 420.597
+          },
+          {
+            "w": "weight",
+            "t": 420.985
+          },
+          {
+            "w": "each",
+            "t": 421.373
+          },
+          {
+            "w": "person",
+            "t": 421.761
+          },
+          {
+            "w": "inversely",
+            "t": 422.148
+          },
+          {
+            "w": "by",
+            "t": 422.536
+          },
+          {
+            "w": "1",
+            "t": 422.924
+          },
+          {
+            "w": "over",
+            "t": 423.312
+          },
+          {
+            "w": "d-sub-i!",
+            "t": 423.699
+          },
+          {
+            "w": "If",
+            "t": 424.087
+          },
+          {
+            "w": "Alice",
+            "t": 424.475
+          },
+          {
+            "w": "knows",
+            "t": 424.862
+          },
+          {
+            "w": "40",
+            "t": 425.25
+          },
+          {
+            "w": "people",
+            "t": 425.638
+          },
+          {
+            "w": "and",
+            "t": 426.026
+          },
+          {
+            "w": "Bob",
+            "t": 426.413
+          },
+          {
+            "w": "knows",
+            "t": 426.801
+          },
+          {
+            "w": "4",
+            "t": 427.189
+          },
+          {
+            "w": "people,",
+            "t": 427.577
+          },
+          {
+            "w": "Bob",
+            "t": 427.964
+          },
+          {
+            "w": "gets",
+            "t": 428.352
+          },
+          {
+            "w": "ten",
+            "t": 428.74
+          },
+          {
+            "w": "times",
+            "t": 429.127
+          },
+          {
+            "w": "the",
+            "t": 429.515
+          },
+          {
+            "w": "weight",
+            "t": 429.903
+          },
+          {
+            "w": "of",
+            "t": 430.291
+          },
+          {
+            "w": "Alice!",
+            "t": 430.678
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Spot on. That is the Volz-Heckathorn estimator. It completely counteracts the structural over-sampling of popular nodes!",
+        "start": 431.066,
+        "end": 439.157,
+        "words": [
+          {
+            "w": "Spot",
+            "t": 431.066
+          },
+          {
+            "w": "on.",
+            "t": 431.572
+          },
+          {
+            "w": "That",
+            "t": 432.077
+          },
+          {
+            "w": "is",
+            "t": 432.583
+          },
+          {
+            "w": "the",
+            "t": 433.089
+          },
+          {
+            "w": "Volz-Heckathorn",
+            "t": 433.594
+          },
+          {
+            "w": "estimator.",
+            "t": 434.1
+          },
+          {
+            "w": "It",
+            "t": 434.606
+          },
+          {
+            "w": "completely",
+            "t": 435.111
+          },
+          {
+            "w": "counteracts",
+            "t": 435.617
+          },
+          {
+            "w": "the",
+            "t": 436.123
+          },
+          {
+            "w": "structural",
+            "t": 436.629
+          },
+          {
+            "w": "over-sampling",
+            "t": 437.134
+          },
+          {
+            "w": "of",
+            "t": 437.64
+          },
+          {
+            "w": "popular",
+            "t": 438.146
+          },
+          {
+            "w": "nodes!",
+            "t": 438.651
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Kaito",
+        "text": "Look at the pipeline flow! The quota of 2 to 3 coupons per respondent is a critical engineering safeguard, isn't it?",
+        "start": 439.157,
+        "end": 446.979,
+        "words": [
+          {
+            "w": "Look",
+            "t": 439.157
+          },
+          {
+            "w": "at",
+            "t": 439.529
+          },
+          {
+            "w": "the",
+            "t": 439.902
+          },
+          {
+            "w": "pipeline",
+            "t": 440.274
+          },
+          {
+            "w": "flow!",
+            "t": 440.647
+          },
+          {
+            "w": "The",
+            "t": 441.019
+          },
+          {
+            "w": "quota",
+            "t": 441.392
+          },
+          {
+            "w": "of",
+            "t": 441.764
+          },
+          {
+            "w": "2",
+            "t": 442.137
+          },
+          {
+            "w": "to",
+            "t": 442.509
+          },
+          {
+            "w": "3",
+            "t": 442.882
+          },
+          {
+            "w": "coupons",
+            "t": 443.254
+          },
+          {
+            "w": "per",
+            "t": 443.627
+          },
+          {
+            "w": "respondent",
+            "t": 443.999
+          },
+          {
+            "w": "is",
+            "t": 444.372
+          },
+          {
+            "w": "a",
+            "t": 444.744
+          },
+          {
+            "w": "critical",
+            "t": 445.117
+          },
+          {
+            "w": "engineering",
+            "t": 445.489
+          },
+          {
+            "w": "safeguard,",
+            "t": 445.862
+          },
+          {
+            "w": "isn't",
+            "t": 446.234
+          },
+          {
+            "w": "it?",
+            "t": 446.607
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "It is essential, Kaito. If you gave people unlimited coupons, a single charismatic super-hub could recruit 200 of their direct friends, completely short-circuiting the Markov random walk!",
+        "start": 446.979,
+        "end": 459.588,
+        "words": [
+          {
+            "w": "It",
+            "t": 446.979
+          },
+          {
+            "w": "is",
+            "t": 447.446
+          },
+          {
+            "w": "essential,",
+            "t": 447.913
+          },
+          {
+            "w": "Kaito.",
+            "t": 448.38
+          },
+          {
+            "w": "If",
+            "t": 448.847
+          },
+          {
+            "w": "you",
+            "t": 449.314
+          },
+          {
+            "w": "gave",
+            "t": 449.781
+          },
+          {
+            "w": "people",
+            "t": 450.248
+          },
+          {
+            "w": "unlimited",
+            "t": 450.715
+          },
+          {
+            "w": "coupons,",
+            "t": 451.182
+          },
+          {
+            "w": "a",
+            "t": 451.649
+          },
+          {
+            "w": "single",
+            "t": 452.116
+          },
+          {
+            "w": "charismatic",
+            "t": 452.583
+          },
+          {
+            "w": "super-hub",
+            "t": 453.05
+          },
+          {
+            "w": "could",
+            "t": 453.517
+          },
+          {
+            "w": "recruit",
+            "t": 453.984
+          },
+          {
+            "w": "200",
+            "t": 454.451
+          },
+          {
+            "w": "of",
+            "t": 454.918
+          },
+          {
+            "w": "their",
+            "t": 455.385
+          },
+          {
+            "w": "direct",
+            "t": 455.852
+          },
+          {
+            "w": "friends,",
+            "t": 456.319
+          },
+          {
+            "w": "completely",
+            "t": 456.786
+          },
+          {
+            "w": "short-circuiting",
+            "t": 457.253
+          },
+          {
+            "w": "the",
+            "t": 457.72
+          },
+          {
+            "w": "Markov",
+            "t": 458.187
+          },
+          {
+            "w": "random",
+            "t": 458.654
+          },
+          {
+            "w": "walk!",
+            "t": 459.121
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Kaito",
+        "text": "By capping coupons at 2 or 3, you force the chain to recruit deep into the network across 4, 5, or 6 waves, guaranteeing Markovian convergence!",
+        "start": 459.588,
+        "end": 469.23,
+        "words": [
+          {
+            "w": "By",
+            "t": 459.588
+          },
+          {
+            "w": "capping",
+            "t": 459.959
+          },
+          {
+            "w": "coupons",
+            "t": 460.33
+          },
+          {
+            "w": "at",
+            "t": 460.701
+          },
+          {
+            "w": "2",
+            "t": 461.071
+          },
+          {
+            "w": "or",
+            "t": 461.442
+          },
+          {
+            "w": "3,",
+            "t": 461.813
+          },
+          {
+            "w": "you",
+            "t": 462.184
+          },
+          {
+            "w": "force",
+            "t": 462.555
+          },
+          {
+            "w": "the",
+            "t": 462.926
+          },
+          {
+            "w": "chain",
+            "t": 463.296
+          },
+          {
+            "w": "to",
+            "t": 463.667
+          },
+          {
+            "w": "recruit",
+            "t": 464.038
+          },
+          {
+            "w": "deep",
+            "t": 464.409
+          },
+          {
+            "w": "into",
+            "t": 464.78
+          },
+          {
+            "w": "the",
+            "t": 465.151
+          },
+          {
+            "w": "network",
+            "t": 465.522
+          },
+          {
+            "w": "across",
+            "t": 465.892
+          },
+          {
+            "w": "4,",
+            "t": 466.263
+          },
+          {
+            "w": "5,",
+            "t": 466.634
+          },
+          {
+            "w": "or",
+            "t": 467.005
+          },
+          {
+            "w": "6",
+            "t": 467.376
+          },
+          {
+            "w": "waves,",
+            "t": 467.747
+          },
+          {
+            "w": "guaranteeing",
+            "t": 468.117
+          },
+          {
+            "w": "Markovian",
+            "t": 468.488
+          },
+          {
+            "w": "convergence!",
+            "t": 468.859
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Kaito",
+        "text": "Look at the bars in the simulation, Dr. Nova! In the population, hubs are only 10 percent of people. But because they have 40 contacts compared to 4, they represent over 52 percent of the naive snowball sample!",
+        "start": 469.23,
+        "end": 483.39,
+        "words": [
+          {
+            "w": "Look",
+            "t": 469.23
+          },
+          {
+            "w": "at",
+            "t": 469.603
+          },
+          {
+            "w": "the",
+            "t": 469.975
+          },
+          {
+            "w": "bars",
+            "t": 470.348
+          },
+          {
+            "w": "in",
+            "t": 470.721
+          },
+          {
+            "w": "the",
+            "t": 471.093
+          },
+          {
+            "w": "simulation,",
+            "t": 471.466
+          },
+          {
+            "w": "Dr.",
+            "t": 471.838
+          },
+          {
+            "w": "Nova!",
+            "t": 472.211
+          },
+          {
+            "w": "In",
+            "t": 472.584
+          },
+          {
+            "w": "the",
+            "t": 472.956
+          },
+          {
+            "w": "population,",
+            "t": 473.329
+          },
+          {
+            "w": "hubs",
+            "t": 473.702
+          },
+          {
+            "w": "are",
+            "t": 474.074
+          },
+          {
+            "w": "only",
+            "t": 474.447
+          },
+          {
+            "w": "10",
+            "t": 474.819
+          },
+          {
+            "w": "percent",
+            "t": 475.192
+          },
+          {
+            "w": "of",
+            "t": 475.565
+          },
+          {
+            "w": "people.",
+            "t": 475.937
+          },
+          {
+            "w": "But",
+            "t": 476.31
+          },
+          {
+            "w": "because",
+            "t": 476.683
+          },
+          {
+            "w": "they",
+            "t": 477.055
+          },
+          {
+            "w": "have",
+            "t": 477.428
+          },
+          {
+            "w": "40",
+            "t": 477.801
+          },
+          {
+            "w": "contacts",
+            "t": 478.173
+          },
+          {
+            "w": "compared",
+            "t": 478.546
+          },
+          {
+            "w": "to",
+            "t": 478.918
+          },
+          {
+            "w": "4,",
+            "t": 479.291
+          },
+          {
+            "w": "they",
+            "t": 479.664
+          },
+          {
+            "w": "represent",
+            "t": 480.036
+          },
+          {
+            "w": "over",
+            "t": 480.409
+          },
+          {
+            "w": "52",
+            "t": 480.782
+          },
+          {
+            "w": "percent",
+            "t": 481.154
+          },
+          {
+            "w": "of",
+            "t": 481.527
+          },
+          {
+            "w": "the",
+            "t": 481.899
+          },
+          {
+            "w": "naive",
+            "t": 482.272
+          },
+          {
+            "w": "snowball",
+            "t": 482.645
+          },
+          {
+            "w": "sample!",
+            "t": 483.017
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. And because hubs have a trait value of 80 compared to 20 for regular folks, the naive snowball sample mean doubles from 26 up to 51.5. A massive 98 percent error!",
+        "start": 483.39,
+        "end": 494.92,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 483.39
+          },
+          {
+            "w": "And",
+            "t": 483.75
+          },
+          {
+            "w": "because",
+            "t": 484.111
+          },
+          {
+            "w": "hubs",
+            "t": 484.471
+          },
+          {
+            "w": "have",
+            "t": 484.831
+          },
+          {
+            "w": "a",
+            "t": 485.192
+          },
+          {
+            "w": "trait",
+            "t": 485.552
+          },
+          {
+            "w": "value",
+            "t": 485.912
+          },
+          {
+            "w": "of",
+            "t": 486.272
+          },
+          {
+            "w": "80",
+            "t": 486.633
+          },
+          {
+            "w": "compared",
+            "t": 486.993
+          },
+          {
+            "w": "to",
+            "t": 487.353
+          },
+          {
+            "w": "20",
+            "t": 487.714
+          },
+          {
+            "w": "for",
+            "t": 488.074
+          },
+          {
+            "w": "regular",
+            "t": 488.434
+          },
+          {
+            "w": "folks,",
+            "t": 488.795
+          },
+          {
+            "w": "the",
+            "t": 489.155
+          },
+          {
+            "w": "naive",
+            "t": 489.515
+          },
+          {
+            "w": "snowball",
+            "t": 489.876
+          },
+          {
+            "w": "sample",
+            "t": 490.236
+          },
+          {
+            "w": "mean",
+            "t": 490.596
+          },
+          {
+            "w": "doubles",
+            "t": 490.957
+          },
+          {
+            "w": "from",
+            "t": 491.317
+          },
+          {
+            "w": "26",
+            "t": 491.677
+          },
+          {
+            "w": "up",
+            "t": 492.038
+          },
+          {
+            "w": "to",
+            "t": 492.398
+          },
+          {
+            "w": "51.5.",
+            "t": 492.758
+          },
+          {
+            "w": "A",
+            "t": 493.118
+          },
+          {
+            "w": "massive",
+            "t": 493.479
+          },
+          {
+            "w": "98",
+            "t": 493.839
+          },
+          {
+            "w": "percent",
+            "t": 494.199
+          },
+          {
+            "w": "error!",
+            "t": 494.56
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Kaito",
+        "text": "And look at the blue bar below it: the Volz-Heckathorn estimator weights each person by 1 over degree. That slashes the hubs' weight by 10x, bringing the estimate down to 26.18, within half a percent of ground truth!",
+        "start": 494.92,
+        "end": 509.484,
+        "words": [
+          {
+            "w": "And",
+            "t": 494.92
+          },
+          {
+            "w": "look",
+            "t": 495.303
+          },
+          {
+            "w": "at",
+            "t": 495.687
+          },
+          {
+            "w": "the",
+            "t": 496.07
+          },
+          {
+            "w": "blue",
+            "t": 496.453
+          },
+          {
+            "w": "bar",
+            "t": 496.836
+          },
+          {
+            "w": "below",
+            "t": 497.22
+          },
+          {
+            "w": "it:",
+            "t": 497.603
+          },
+          {
+            "w": "the",
+            "t": 497.986
+          },
+          {
+            "w": "Volz-Heckathorn",
+            "t": 498.369
+          },
+          {
+            "w": "estimator",
+            "t": 498.753
+          },
+          {
+            "w": "weights",
+            "t": 499.136
+          },
+          {
+            "w": "each",
+            "t": 499.519
+          },
+          {
+            "w": "person",
+            "t": 499.902
+          },
+          {
+            "w": "by",
+            "t": 500.286
+          },
+          {
+            "w": "1",
+            "t": 500.669
+          },
+          {
+            "w": "over",
+            "t": 501.052
+          },
+          {
+            "w": "degree.",
+            "t": 501.435
+          },
+          {
+            "w": "That",
+            "t": 501.819
+          },
+          {
+            "w": "slashes",
+            "t": 502.202
+          },
+          {
+            "w": "the",
+            "t": 502.585
+          },
+          {
+            "w": "hubs'",
+            "t": 502.969
+          },
+          {
+            "w": "weight",
+            "t": 503.352
+          },
+          {
+            "w": "by",
+            "t": 503.735
+          },
+          {
+            "w": "10x,",
+            "t": 504.118
+          },
+          {
+            "w": "bringing",
+            "t": 504.502
+          },
+          {
+            "w": "the",
+            "t": 504.885
+          },
+          {
+            "w": "estimate",
+            "t": 505.268
+          },
+          {
+            "w": "down",
+            "t": 505.651
+          },
+          {
+            "w": "to",
+            "t": 506.035
+          },
+          {
+            "w": "26.18,",
+            "t": 506.418
+          },
+          {
+            "w": "within",
+            "t": 506.801
+          },
+          {
+            "w": "half",
+            "t": 507.184
+          },
+          {
+            "w": "a",
+            "t": 507.568
+          },
+          {
+            "w": "percent",
+            "t": 507.951
+          },
+          {
+            "w": "of",
+            "t": 508.334
+          },
+          {
+            "w": "ground",
+            "t": 508.717
+          },
+          {
+            "w": "truth!",
+            "t": 509.101
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Kaito",
+        "text": "This one is straightforward, Dr. Nova! If Alice has 40 contacts and Bob has 4 contacts, who gets weighted higher?",
+        "start": 509.484,
+        "end": 517.103,
+        "words": [
+          {
+            "w": "This",
+            "t": 509.484
+          },
+          {
+            "w": "one",
+            "t": 509.865
+          },
+          {
+            "w": "is",
+            "t": 510.246
+          },
+          {
+            "w": "straightforward,",
+            "t": 510.627
+          },
+          {
+            "w": "Dr.",
+            "t": 511.008
+          },
+          {
+            "w": "Nova!",
+            "t": 511.389
+          },
+          {
+            "w": "If",
+            "t": 511.77
+          },
+          {
+            "w": "Alice",
+            "t": 512.151
+          },
+          {
+            "w": "has",
+            "t": 512.532
+          },
+          {
+            "w": "40",
+            "t": 512.913
+          },
+          {
+            "w": "contacts",
+            "t": 513.293
+          },
+          {
+            "w": "and",
+            "t": 513.674
+          },
+          {
+            "w": "Bob",
+            "t": 514.055
+          },
+          {
+            "w": "has",
+            "t": 514.436
+          },
+          {
+            "w": "4",
+            "t": 514.817
+          },
+          {
+            "w": "contacts,",
+            "t": 515.198
+          },
+          {
+            "w": "who",
+            "t": 515.579
+          },
+          {
+            "w": "gets",
+            "t": 515.96
+          },
+          {
+            "w": "weighted",
+            "t": 516.341
+          },
+          {
+            "w": "higher?",
+            "t": 516.722
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "Remember: because Alice has 40 contacts, people like Alice are ten times overrepresented in the recruitment tree. To restore population balance, Bob must receive ten times the weight of Alice!",
+        "start": 517.103,
+        "end": 530.049,
+        "words": [
+          {
+            "w": "Remember:",
+            "t": 517.103
+          },
+          {
+            "w": "because",
+            "t": 517.535
+          },
+          {
+            "w": "Alice",
+            "t": 517.966
+          },
+          {
+            "w": "has",
+            "t": 518.398
+          },
+          {
+            "w": "40",
+            "t": 518.829
+          },
+          {
+            "w": "contacts,",
+            "t": 519.261
+          },
+          {
+            "w": "people",
+            "t": 519.692
+          },
+          {
+            "w": "like",
+            "t": 520.124
+          },
+          {
+            "w": "Alice",
+            "t": 520.555
+          },
+          {
+            "w": "are",
+            "t": 520.987
+          },
+          {
+            "w": "ten",
+            "t": 521.418
+          },
+          {
+            "w": "times",
+            "t": 521.85
+          },
+          {
+            "w": "overrepresented",
+            "t": 522.281
+          },
+          {
+            "w": "in",
+            "t": 522.713
+          },
+          {
+            "w": "the",
+            "t": 523.144
+          },
+          {
+            "w": "recruitment",
+            "t": 523.576
+          },
+          {
+            "w": "tree.",
+            "t": 524.008
+          },
+          {
+            "w": "To",
+            "t": 524.439
+          },
+          {
+            "w": "restore",
+            "t": 524.871
+          },
+          {
+            "w": "population",
+            "t": 525.302
+          },
+          {
+            "w": "balance,",
+            "t": 525.734
+          },
+          {
+            "w": "Bob",
+            "t": 526.165
+          },
+          {
+            "w": "must",
+            "t": 526.597
+          },
+          {
+            "w": "receive",
+            "t": 527.028
+          },
+          {
+            "w": "ten",
+            "t": 527.46
+          },
+          {
+            "w": "times",
+            "t": 527.891
+          },
+          {
+            "w": "the",
+            "t": 528.323
+          },
+          {
+            "w": "weight",
+            "t": 528.754
+          },
+          {
+            "w": "of",
+            "t": 529.186
+          },
+          {
+            "w": "Alice!",
+            "t": 529.617
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Kaito",
+        "text": "Adaptive cluster sampling is like automated search-and-rescue, Dr. Nova! You scan randomly, and the moment your sensor detects a hotspot above threshold C, you recursively expand and map the entire contiguous zone!",
+        "start": 530.049,
+        "end": 544.478,
+        "words": [
+          {
+            "w": "Adaptive",
+            "t": 530.049
+          },
+          {
+            "w": "cluster",
+            "t": 530.5
+          },
+          {
+            "w": "sampling",
+            "t": 530.951
+          },
+          {
+            "w": "is",
+            "t": 531.402
+          },
+          {
+            "w": "like",
+            "t": 531.853
+          },
+          {
+            "w": "automated",
+            "t": 532.304
+          },
+          {
+            "w": "search-and-rescue,",
+            "t": 532.754
+          },
+          {
+            "w": "Dr.",
+            "t": 533.205
+          },
+          {
+            "w": "Nova!",
+            "t": 533.656
+          },
+          {
+            "w": "You",
+            "t": 534.107
+          },
+          {
+            "w": "scan",
+            "t": 534.558
+          },
+          {
+            "w": "randomly,",
+            "t": 535.009
+          },
+          {
+            "w": "and",
+            "t": 535.46
+          },
+          {
+            "w": "the",
+            "t": 535.911
+          },
+          {
+            "w": "moment",
+            "t": 536.362
+          },
+          {
+            "w": "your",
+            "t": 536.813
+          },
+          {
+            "w": "sensor",
+            "t": 537.264
+          },
+          {
+            "w": "detects",
+            "t": 537.714
+          },
+          {
+            "w": "a",
+            "t": 538.165
+          },
+          {
+            "w": "hotspot",
+            "t": 538.616
+          },
+          {
+            "w": "above",
+            "t": 539.067
+          },
+          {
+            "w": "threshold",
+            "t": 539.518
+          },
+          {
+            "w": "C,",
+            "t": 539.969
+          },
+          {
+            "w": "you",
+            "t": 540.42
+          },
+          {
+            "w": "recursively",
+            "t": 540.871
+          },
+          {
+            "w": "expand",
+            "t": 541.322
+          },
+          {
+            "w": "and",
+            "t": 541.773
+          },
+          {
+            "w": "map",
+            "t": 542.223
+          },
+          {
+            "w": "the",
+            "t": 542.674
+          },
+          {
+            "w": "entire",
+            "t": 543.125
+          },
+          {
+            "w": "contiguous",
+            "t": 543.576
+          },
+          {
+            "w": "zone!",
+            "t": 544.027
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Think of detecting botnets across IP subnets, or soil contamination. If you did pure simple random sampling, you would miss the localized cluster 99 times out of 100. Adaptive sampling concentrates your queries exactly where the variance and density live.",
+        "start": 544.478,
+        "end": 562.279,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 544.478
+          },
+          {
+            "w": "Think",
+            "t": 544.912
+          },
+          {
+            "w": "of",
+            "t": 545.346
+          },
+          {
+            "w": "detecting",
+            "t": 545.781
+          },
+          {
+            "w": "botnets",
+            "t": 546.215
+          },
+          {
+            "w": "across",
+            "t": 546.649
+          },
+          {
+            "w": "IP",
+            "t": 547.083
+          },
+          {
+            "w": "subnets,",
+            "t": 547.517
+          },
+          {
+            "w": "or",
+            "t": 547.951
+          },
+          {
+            "w": "soil",
+            "t": 548.386
+          },
+          {
+            "w": "contamination.",
+            "t": 548.82
+          },
+          {
+            "w": "If",
+            "t": 549.254
+          },
+          {
+            "w": "you",
+            "t": 549.688
+          },
+          {
+            "w": "did",
+            "t": 550.122
+          },
+          {
+            "w": "pure",
+            "t": 550.556
+          },
+          {
+            "w": "simple",
+            "t": 550.991
+          },
+          {
+            "w": "random",
+            "t": 551.425
+          },
+          {
+            "w": "sampling,",
+            "t": 551.859
+          },
+          {
+            "w": "you",
+            "t": 552.293
+          },
+          {
+            "w": "would",
+            "t": 552.727
+          },
+          {
+            "w": "miss",
+            "t": 553.161
+          },
+          {
+            "w": "the",
+            "t": 553.596
+          },
+          {
+            "w": "localized",
+            "t": 554.03
+          },
+          {
+            "w": "cluster",
+            "t": 554.464
+          },
+          {
+            "w": "99",
+            "t": 554.898
+          },
+          {
+            "w": "times",
+            "t": 555.332
+          },
+          {
+            "w": "out",
+            "t": 555.766
+          },
+          {
+            "w": "of",
+            "t": 556.201
+          },
+          {
+            "w": "100.",
+            "t": 556.635
+          },
+          {
+            "w": "Adaptive",
+            "t": 557.069
+          },
+          {
+            "w": "sampling",
+            "t": 557.503
+          },
+          {
+            "w": "concentrates",
+            "t": 557.937
+          },
+          {
+            "w": "your",
+            "t": 558.371
+          },
+          {
+            "w": "queries",
+            "t": 558.806
+          },
+          {
+            "w": "exactly",
+            "t": 559.24
+          },
+          {
+            "w": "where",
+            "t": 559.674
+          },
+          {
+            "w": "the",
+            "t": 560.108
+          },
+          {
+            "w": "variance",
+            "t": 560.542
+          },
+          {
+            "w": "and",
+            "t": 560.976
+          },
+          {
+            "w": "density",
+            "t": 561.411
+          },
+          {
+            "w": "live.",
+            "t": 561.845
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Kaito",
+        "text": "And by bootstrapping the resulting sample with replacement, we get valid empirical confidence intervals without assuming anything about the underlying distribution!",
+        "start": 562.279,
+        "end": 573.337,
+        "words": [
+          {
+            "w": "And",
+            "t": 562.279
+          },
+          {
+            "w": "by",
+            "t": 562.806
+          },
+          {
+            "w": "bootstrapping",
+            "t": 563.332
+          },
+          {
+            "w": "the",
+            "t": 563.859
+          },
+          {
+            "w": "resulting",
+            "t": 564.385
+          },
+          {
+            "w": "sample",
+            "t": 564.912
+          },
+          {
+            "w": "with",
+            "t": 565.438
+          },
+          {
+            "w": "replacement,",
+            "t": 565.965
+          },
+          {
+            "w": "we",
+            "t": 566.492
+          },
+          {
+            "w": "get",
+            "t": 567.018
+          },
+          {
+            "w": "valid",
+            "t": 567.545
+          },
+          {
+            "w": "empirical",
+            "t": 568.071
+          },
+          {
+            "w": "confidence",
+            "t": 568.598
+          },
+          {
+            "w": "intervals",
+            "t": 569.124
+          },
+          {
+            "w": "without",
+            "t": 569.651
+          },
+          {
+            "w": "assuming",
+            "t": 570.178
+          },
+          {
+            "w": "anything",
+            "t": 570.704
+          },
+          {
+            "w": "about",
+            "t": 571.231
+          },
+          {
+            "w": "the",
+            "t": 571.757
+          },
+          {
+            "w": "underlying",
+            "t": 572.284
+          },
+          {
+            "w": "distribution!",
+            "t": 572.81
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Kaito",
+        "text": "Look at the RDS estimator function on lines 24 to 27, Dr. Nova! It is literally two lines of vectorized NumPy! Weights equal 1 over degrees, then return sum of values times weights divided by sum of weights!",
+        "start": 573.337,
+        "end": 587.295,
+        "words": [
+          {
+            "w": "Look",
+            "t": 573.337
+          },
+          {
+            "w": "at",
+            "t": 573.704
+          },
+          {
+            "w": "the",
+            "t": 574.072
+          },
+          {
+            "w": "RDS",
+            "t": 574.439
+          },
+          {
+            "w": "estimator",
+            "t": 574.806
+          },
+          {
+            "w": "function",
+            "t": 575.174
+          },
+          {
+            "w": "on",
+            "t": 575.541
+          },
+          {
+            "w": "lines",
+            "t": 575.908
+          },
+          {
+            "w": "24",
+            "t": 576.276
+          },
+          {
+            "w": "to",
+            "t": 576.643
+          },
+          {
+            "w": "27,",
+            "t": 577.01
+          },
+          {
+            "w": "Dr.",
+            "t": 577.377
+          },
+          {
+            "w": "Nova!",
+            "t": 577.745
+          },
+          {
+            "w": "It",
+            "t": 578.112
+          },
+          {
+            "w": "is",
+            "t": 578.479
+          },
+          {
+            "w": "literally",
+            "t": 578.847
+          },
+          {
+            "w": "two",
+            "t": 579.214
+          },
+          {
+            "w": "lines",
+            "t": 579.581
+          },
+          {
+            "w": "of",
+            "t": 579.949
+          },
+          {
+            "w": "vectorized",
+            "t": 580.316
+          },
+          {
+            "w": "NumPy!",
+            "t": 580.683
+          },
+          {
+            "w": "Weights",
+            "t": 581.051
+          },
+          {
+            "w": "equal",
+            "t": 581.418
+          },
+          {
+            "w": "1",
+            "t": 581.785
+          },
+          {
+            "w": "over",
+            "t": 582.153
+          },
+          {
+            "w": "degrees,",
+            "t": 582.52
+          },
+          {
+            "w": "then",
+            "t": 582.887
+          },
+          {
+            "w": "return",
+            "t": 583.255
+          },
+          {
+            "w": "sum",
+            "t": 583.622
+          },
+          {
+            "w": "of",
+            "t": 583.989
+          },
+          {
+            "w": "values",
+            "t": 584.356
+          },
+          {
+            "w": "times",
+            "t": 584.724
+          },
+          {
+            "w": "weights",
+            "t": 585.091
+          },
+          {
+            "w": "divided",
+            "t": 585.458
+          },
+          {
+            "w": "by",
+            "t": 585.826
+          },
+          {
+            "w": "sum",
+            "t": 586.193
+          },
+          {
+            "w": "of",
+            "t": 586.56
+          },
+          {
+            "w": "weights!",
+            "t": 586.928
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Simple, robust, and mathematically grounded, Kaito. And look at the unit test below it: even though hubs and normal participants are split 50-50 in the sample, the RDS estimator outputs 25.45, completely rejecting the hub distortion!",
+        "start": 587.295,
+        "end": 603.006,
+        "words": [
+          {
+            "w": "Simple,",
+            "t": 587.295
+          },
+          {
+            "w": "robust,",
+            "t": 587.731
+          },
+          {
+            "w": "and",
+            "t": 588.168
+          },
+          {
+            "w": "mathematically",
+            "t": 588.604
+          },
+          {
+            "w": "grounded,",
+            "t": 589.041
+          },
+          {
+            "w": "Kaito.",
+            "t": 589.477
+          },
+          {
+            "w": "And",
+            "t": 589.913
+          },
+          {
+            "w": "look",
+            "t": 590.35
+          },
+          {
+            "w": "at",
+            "t": 590.786
+          },
+          {
+            "w": "the",
+            "t": 591.223
+          },
+          {
+            "w": "unit",
+            "t": 591.659
+          },
+          {
+            "w": "test",
+            "t": 592.096
+          },
+          {
+            "w": "below",
+            "t": 592.532
+          },
+          {
+            "w": "it:",
+            "t": 592.968
+          },
+          {
+            "w": "even",
+            "t": 593.405
+          },
+          {
+            "w": "though",
+            "t": 593.841
+          },
+          {
+            "w": "hubs",
+            "t": 594.278
+          },
+          {
+            "w": "and",
+            "t": 594.714
+          },
+          {
+            "w": "normal",
+            "t": 595.15
+          },
+          {
+            "w": "participants",
+            "t": 595.587
+          },
+          {
+            "w": "are",
+            "t": 596.023
+          },
+          {
+            "w": "split",
+            "t": 596.46
+          },
+          {
+            "w": "50-50",
+            "t": 596.896
+          },
+          {
+            "w": "in",
+            "t": 597.333
+          },
+          {
+            "w": "the",
+            "t": 597.769
+          },
+          {
+            "w": "sample,",
+            "t": 598.205
+          },
+          {
+            "w": "the",
+            "t": 598.642
+          },
+          {
+            "w": "RDS",
+            "t": 599.078
+          },
+          {
+            "w": "estimator",
+            "t": 599.515
+          },
+          {
+            "w": "outputs",
+            "t": 599.951
+          },
+          {
+            "w": "25.45,",
+            "t": 600.387
+          },
+          {
+            "w": "completely",
+            "t": 600.824
+          },
+          {
+            "w": "rejecting",
+            "t": 601.26
+          },
+          {
+            "w": "the",
+            "t": 601.697
+          },
+          {
+            "w": "hub",
+            "t": 602.133
+          },
+          {
+            "w": "distortion!",
+            "t": 602.57
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Kaito",
+        "text": "And the reservoir sampler guarantees equal inclusion probability for any streaming source with fixed memory! An essential tool for any streaming ML infrastructure!",
+        "start": 603.006,
+        "end": 613.997,
+        "words": [
+          {
+            "w": "And",
+            "t": 603.006
+          },
+          {
+            "w": "the",
+            "t": 603.484
+          },
+          {
+            "w": "reservoir",
+            "t": 603.962
+          },
+          {
+            "w": "sampler",
+            "t": 604.44
+          },
+          {
+            "w": "guarantees",
+            "t": 604.917
+          },
+          {
+            "w": "equal",
+            "t": 605.395
+          },
+          {
+            "w": "inclusion",
+            "t": 605.873
+          },
+          {
+            "w": "probability",
+            "t": 606.351
+          },
+          {
+            "w": "for",
+            "t": 606.829
+          },
+          {
+            "w": "any",
+            "t": 607.307
+          },
+          {
+            "w": "streaming",
+            "t": 607.785
+          },
+          {
+            "w": "source",
+            "t": 608.263
+          },
+          {
+            "w": "with",
+            "t": 608.74
+          },
+          {
+            "w": "fixed",
+            "t": 609.218
+          },
+          {
+            "w": "memory!",
+            "t": 609.696
+          },
+          {
+            "w": "An",
+            "t": 610.174
+          },
+          {
+            "w": "essential",
+            "t": 610.652
+          },
+          {
+            "w": "tool",
+            "t": 611.13
+          },
+          {
+            "w": "for",
+            "t": 611.608
+          },
+          {
+            "w": "any",
+            "t": 612.086
+          },
+          {
+            "w": "streaming",
+            "t": 612.563
+          },
+          {
+            "w": "ML",
+            "t": 613.041
+          },
+          {
+            "w": "infrastructure!",
+            "t": 613.519
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Kaito",
+        "text": "What an incredible masterclass, Dr. Nova! We started with high-speed streaming systematic strides, uncovered the sneaky spectral periodicity trap, proved Vitter's algorithm R by induction, and de-biased snowball networks with Respondent-Driven Sampling!",
+        "start": 613.997,
+        "end": 631.056,
+        "words": [
+          {
+            "w": "What",
+            "t": 613.997
+          },
+          {
+            "w": "an",
+            "t": 614.53
+          },
+          {
+            "w": "incredible",
+            "t": 615.063
+          },
+          {
+            "w": "masterclass,",
+            "t": 615.596
+          },
+          {
+            "w": "Dr.",
+            "t": 616.129
+          },
+          {
+            "w": "Nova!",
+            "t": 616.662
+          },
+          {
+            "w": "We",
+            "t": 617.196
+          },
+          {
+            "w": "started",
+            "t": 617.729
+          },
+          {
+            "w": "with",
+            "t": 618.262
+          },
+          {
+            "w": "high-speed",
+            "t": 618.795
+          },
+          {
+            "w": "streaming",
+            "t": 619.328
+          },
+          {
+            "w": "systematic",
+            "t": 619.861
+          },
+          {
+            "w": "strides,",
+            "t": 620.394
+          },
+          {
+            "w": "uncovered",
+            "t": 620.927
+          },
+          {
+            "w": "the",
+            "t": 621.46
+          },
+          {
+            "w": "sneaky",
+            "t": 621.993
+          },
+          {
+            "w": "spectral",
+            "t": 622.526
+          },
+          {
+            "w": "periodicity",
+            "t": 623.06
+          },
+          {
+            "w": "trap,",
+            "t": 623.593
+          },
+          {
+            "w": "proved",
+            "t": 624.126
+          },
+          {
+            "w": "Vitter's",
+            "t": 624.659
+          },
+          {
+            "w": "algorithm",
+            "t": 625.192
+          },
+          {
+            "w": "R",
+            "t": 625.725
+          },
+          {
+            "w": "by",
+            "t": 626.258
+          },
+          {
+            "w": "induction,",
+            "t": 626.791
+          },
+          {
+            "w": "and",
+            "t": 627.324
+          },
+          {
+            "w": "de-biased",
+            "t": 627.857
+          },
+          {
+            "w": "snowball",
+            "t": 628.391
+          },
+          {
+            "w": "networks",
+            "t": 628.924
+          },
+          {
+            "w": "with",
+            "t": 629.457
+          },
+          {
+            "w": "Respondent-Driven",
+            "t": 629.99
+          },
+          {
+            "w": "Sampling!",
+            "t": 630.523
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "You summarized the journey brilliantly, Kaito. Remember the core philosophy: whether you are dealing with multi-terabyte log streams or hidden human networks with zero sampling frames, mathematical rigour and proper weighting allow you to extract valid statistical truth.",
+        "start": 631.056,
+        "end": 649.329,
+        "words": [
+          {
+            "w": "You",
+            "t": 631.056
+          },
+          {
+            "w": "summarized",
+            "t": 631.537
+          },
+          {
+            "w": "the",
+            "t": 632.018
+          },
+          {
+            "w": "journey",
+            "t": 632.499
+          },
+          {
+            "w": "brilliantly,",
+            "t": 632.979
+          },
+          {
+            "w": "Kaito.",
+            "t": 633.46
+          },
+          {
+            "w": "Remember",
+            "t": 633.941
+          },
+          {
+            "w": "the",
+            "t": 634.422
+          },
+          {
+            "w": "core",
+            "t": 634.903
+          },
+          {
+            "w": "philosophy:",
+            "t": 635.384
+          },
+          {
+            "w": "whether",
+            "t": 635.865
+          },
+          {
+            "w": "you",
+            "t": 636.346
+          },
+          {
+            "w": "are",
+            "t": 636.826
+          },
+          {
+            "w": "dealing",
+            "t": 637.307
+          },
+          {
+            "w": "with",
+            "t": 637.788
+          },
+          {
+            "w": "multi-terabyte",
+            "t": 638.269
+          },
+          {
+            "w": "log",
+            "t": 638.75
+          },
+          {
+            "w": "streams",
+            "t": 639.231
+          },
+          {
+            "w": "or",
+            "t": 639.712
+          },
+          {
+            "w": "hidden",
+            "t": 640.192
+          },
+          {
+            "w": "human",
+            "t": 640.673
+          },
+          {
+            "w": "networks",
+            "t": 641.154
+          },
+          {
+            "w": "with",
+            "t": 641.635
+          },
+          {
+            "w": "zero",
+            "t": 642.116
+          },
+          {
+            "w": "sampling",
+            "t": 642.597
+          },
+          {
+            "w": "frames,",
+            "t": 643.078
+          },
+          {
+            "w": "mathematical",
+            "t": 643.559
+          },
+          {
+            "w": "rigour",
+            "t": 644.039
+          },
+          {
+            "w": "and",
+            "t": 644.52
+          },
+          {
+            "w": "proper",
+            "t": 645.001
+          },
+          {
+            "w": "weighting",
+            "t": 645.482
+          },
+          {
+            "w": "allow",
+            "t": 645.963
+          },
+          {
+            "w": "you",
+            "t": 646.444
+          },
+          {
+            "w": "to",
+            "t": 646.925
+          },
+          {
+            "w": "extract",
+            "t": 647.406
+          },
+          {
+            "w": "valid",
+            "t": 647.886
+          },
+          {
+            "w": "statistical",
+            "t": 648.367
+          },
+          {
+            "w": "truth.",
+            "t": 648.848
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Kaito",
+        "text": "And now that we have mastered sampling theory across Lessons 2.6 and 2.7, what is coming up next in Lesson 2.8?",
+        "start": 649.329,
+        "end": 656.813,
+        "words": [
+          {
+            "w": "And",
+            "t": 649.329
+          },
+          {
+            "w": "now",
+            "t": 649.685
+          },
+          {
+            "w": "that",
+            "t": 650.042
+          },
+          {
+            "w": "we",
+            "t": 650.398
+          },
+          {
+            "w": "have",
+            "t": 650.755
+          },
+          {
+            "w": "mastered",
+            "t": 651.111
+          },
+          {
+            "w": "sampling",
+            "t": 651.467
+          },
+          {
+            "w": "theory",
+            "t": 651.824
+          },
+          {
+            "w": "across",
+            "t": 652.18
+          },
+          {
+            "w": "Lessons",
+            "t": 652.536
+          },
+          {
+            "w": "2.6",
+            "t": 652.893
+          },
+          {
+            "w": "and",
+            "t": 653.249
+          },
+          {
+            "w": "2.7,",
+            "t": 653.606
+          },
+          {
+            "w": "what",
+            "t": 653.962
+          },
+          {
+            "w": "is",
+            "t": 654.318
+          },
+          {
+            "w": "coming",
+            "t": 654.675
+          },
+          {
+            "w": "up",
+            "t": 655.031
+          },
+          {
+            "w": "next",
+            "t": 655.387
+          },
+          {
+            "w": "in",
+            "t": 655.744
+          },
+          {
+            "w": "Lesson",
+            "t": 656.1
+          },
+          {
+            "w": "2.8?",
+            "t": 656.457
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "In Lesson 2.8, we dive deep into production engineering tooling: setting up headless Chrome drivers, orchestrating distributed Scrapy spiders, and handling proxies, captchas, and dynamic rate limiting. See you there!",
+        "start": 656.813,
+        "end": 671.376,
+        "words": [
+          {
+            "w": "In",
+            "t": 656.813
+          },
+          {
+            "w": "Lesson",
+            "t": 657.298
+          },
+          {
+            "w": "2.8,",
+            "t": 657.784
+          },
+          {
+            "w": "we",
+            "t": 658.269
+          },
+          {
+            "w": "dive",
+            "t": 658.755
+          },
+          {
+            "w": "deep",
+            "t": 659.24
+          },
+          {
+            "w": "into",
+            "t": 659.726
+          },
+          {
+            "w": "production",
+            "t": 660.211
+          },
+          {
+            "w": "engineering",
+            "t": 660.696
+          },
+          {
+            "w": "tooling:",
+            "t": 661.182
+          },
+          {
+            "w": "setting",
+            "t": 661.667
+          },
+          {
+            "w": "up",
+            "t": 662.153
+          },
+          {
+            "w": "headless",
+            "t": 662.638
+          },
+          {
+            "w": "Chrome",
+            "t": 663.124
+          },
+          {
+            "w": "drivers,",
+            "t": 663.609
+          },
+          {
+            "w": "orchestrating",
+            "t": 664.094
+          },
+          {
+            "w": "distributed",
+            "t": 664.58
+          },
+          {
+            "w": "Scrapy",
+            "t": 665.065
+          },
+          {
+            "w": "spiders,",
+            "t": 665.551
+          },
+          {
+            "w": "and",
+            "t": 666.036
+          },
+          {
+            "w": "handling",
+            "t": 666.522
+          },
+          {
+            "w": "proxies,",
+            "t": 667.007
+          },
+          {
+            "w": "captchas,",
+            "t": 667.493
+          },
+          {
+            "w": "and",
+            "t": 667.978
+          },
+          {
+            "w": "dynamic",
+            "t": 668.463
+          },
+          {
+            "w": "rate",
+            "t": 668.949
+          },
+          {
+            "w": "limiting.",
+            "t": 669.434
+          },
+          {
+            "w": "See",
+            "t": 669.92
+          },
+          {
+            "w": "you",
+            "t": 670.405
+          },
+          {
+            "w": "there!",
+            "t": 670.891
+          }
+        ]
+      }
+    ]
+  },
+  "ch3_p3_solo": {
+    "duration": 528.048,
+    "sentences": [
+      {
+        "slideIndex": 0,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Track 3, Lesson 3.3 of Dataset Fundamentals: The Utility-Privacy Frontier, Pareto Dilemmas, and Externalities. In data engineering, analytical utility and privacy protection exist in unavoidable mathematical tension.",
+        "dock": "main",
+        "start": 0.0,
+        "end": 16.92
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "The most mathematically useful dataset is raw, unredacted microdata with continuous coordinates and exact clinical codes. The only perfectly private dataset is pure white noise. Today, we formalize the Pareto trade-off curve, Differential Privacy guarantees, Kaldor-Hicks social externalities, and Helen Nissenbaum's Contextual Integrity.",
+        "dock": "main",
+        "start": 16.92,
+        "end": 39.36
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Let raw empirical dataset D be transformed by sanitization mechanism M of D. The data architect formulates a constrained multi-objective optimization problem: maximize analytical utility U subject to privacy risk R remaining bounded by epsilon.",
+        "dock": "main",
+        "start": 39.36,
+        "end": 55.848
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Notice how global sensitivity Delta f dictates this frontier. For a counting query, Delta f equals 1. For a sum query over salary, Delta f equals the entire salary range. Higher sensitivity directly forces higher perturbation to preserve privacy.",
+        "dock": "main",
+        "start": 55.848,
+        "end": 74.256
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "A mechanism M star belongs to the Pareto frontier if and only if no alternative M prime exists that strictly improves utility without increasing disclosure risk. Any sanitization pipeline operating below the frontier is strictly dominated.",
+        "dock": "main",
+        "start": 74.256,
+        "end": 89.232
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "In production, naive heuristic masking and unsalted MD5 hashing are prime examples of architecturally defective mechanisms. They degrade downstream data utility by 30 percent while providing near zero real-world privacy protection against auxiliary linkage attacks.",
+        "dock": "main",
+        "start": 89.232,
+        "end": 106.488
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Under Cynthia Dwork's foundational formulation, a mechanism provides epsilon-Differential Privacy if for any two neighboring datasets D1 and D2 differing by a single record, the probability ratio of any output S is bounded by e to the epsilon.",
+        "dock": "main",
+        "start": 106.488,
+        "end": 121.752
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "To sanitize a numeric query f, the Laplace Mechanism injects zero-mean noise drawn from a Laplace distribution scaled to Delta f over epsilon. The expected Mean Squared Error scales inversely with epsilon squared: two times Delta f squared over epsilon squared.",
+        "dock": "main",
+        "start": 121.752,
+        "end": 138.6
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "When data harvesting generates systemic societal harms, such as dynamic price discrimination or surveillance capitalism, we evaluate net welfare using the Kaldor-Hicks criterion: beneficiary utility minus subject loss minus unpriced negative externalities.",
+        "dock": "main",
+        "start": 138.6,
+        "end": 154.944
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Furthermore, institutional decision-makers exhibit risk aversion modeled by the Arrow-Pratt certainty equivalent. Expected utility is penalized by half alpha times the variance of disclosure risk, modeling the severe cost of GDPR fines and catastrophic reputational collapse.",
+        "dock": "main",
+        "start": 154.944,
+        "end": 172.56
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the Pareto Utility-Privacy Laboratory! In the simulator below, tune the privacy budget epsilon from 0.02 to 5.0, adjust query sensitivity Delta f, and inspect the real-time SVG Pareto frontier curve.",
+        "dock": "sim",
+        "start": 172.56,
+        "end": 188.808
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Click Preset 1 for raw microdata, Preset 2 for optimal Differential Privacy at epsilon equals 1.0, and Preset 4 to see how excessive noise destroys query utility. Notice how the published query and relative error adapt dynamically.",
+        "dock": "sim",
+        "start": 188.808,
+        "end": 204.936
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Time for Active Recall Checkpoint 1! The US Census Bureau adopted Differential Privacy with epsilon approximately 19.6 for the 2020 decennial census, sparking fierce pushback from rural town leaders and civil rights lawyers.",
+        "dock": "checkpoint",
+        "start": 204.936,
+        "end": 220.368
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Select the correct mathematical and engineering diagnosis below to demonstrate your mastery of relative error scaling in the Laplace Mechanism.",
+        "dock": "checkpoint",
+        "start": 220.368,
+        "end": 228.96
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "An engineering dilemma arises when a system must arbitrate between legitimate, competing normative values where no single choice is harm-free. We classify these into three archetypes.",
+        "dock": "main",
+        "start": 228.96,
+        "end": 240.624
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Dilemma 1 pits Public Health Surveillance against Civil Autonomy. Dilemma 2 pits Institutional Accuracy against Demographic Error Parity. And Dilemma 3 pits Platform Engagement Optimization against Mental Health Externalities.",
+        "dock": "main",
+        "start": 240.624,
+        "end": 255.96
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Table 3.2 maps how ethical philosophies evaluate each dilemma. Consequentialists evaluate the aggregate outcome—lives saved or total profit. Deontologists evaluate rights, duties, and whether individuals are treated as mere means to an end.",
+        "dock": "main",
+        "start": 255.96,
+        "end": 272.88
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Notice the third column: the engineering resolution! For contact tracing, we don't surrender to mass surveillance—we engineer decentralized Bluetooth tokens. For recidivism, we calibrate explicit error parity thresholds.",
+        "dock": "main",
+        "start": 272.88,
+        "end": 288.288
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "In 2018, US Census Bureau internal researchers proved a sobering vulnerability: by linking published aggregate census tables with commercial credit rolls and voter registries, an adversary could reconstruct individual microdata for over 52 million Americans.",
+        "dock": "main",
+        "start": 288.288,
+        "end": 305.232
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "To prevent reconstruction, the Bureau implemented the Disclosure Avoidance System with epsilon approximately 19.6. But rural leaders sued, demonstrating that noise distorted voting age population counts in small precincts, threatening Voting Rights Act redistricting compliance.",
+        "dock": "main",
+        "start": 305.232,
+        "end": 322.896
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "In 2020, governments deploying automated contact tracing faced a critical architectural crossroads. Centralized architectures in Singapore and South Korea uploaded continuous GPS trails and social contact graphs to state health department databases.",
+        "dock": "main",
+        "start": 322.896,
+        "end": 339.36
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "The inevitable occurred: function creep. In Singapore, police formally accessed TraceTogether contact logs for murder investigations, violating public privacy pledges. Meanwhile, the decentralized GAEN Bluetooth architecture proved that local cryptographic matching provided equivalent health tracking with zero centralized surveillance risk.",
+        "dock": "main",
+        "start": 339.36,
+        "end": 361.272
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Interactive Lab 2: The Kaldor-Hicks Social Welfare and Externalities Workbench. Here you can quantify how producer surplus, consumer surplus loss, and unpriced third-party externalities interact.",
+        "dock": "sim",
+        "start": 361.272,
+        "end": 375.192
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Try the dynamic pricing preset, the ad-tech behavioral monetization preset, and the ethical privacy-preserving sharing preset. Notice how unpriced data externalities can drag total social net benefit into severe negative territory.",
+        "dock": "sim",
+        "start": 375.192,
+        "end": 390.264
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Checkpoint 2 tests your understanding of data externalities! In 2018, law enforcement identified the Golden State Killer through GEDmatch, even though the suspect never submitted DNA. In that same year, Strava's global heatmap exfiltrated secret US military bases.",
+        "dock": "checkpoint",
+        "start": 390.264,
+        "end": 409.2
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Analyze both incidents and select the underlying engineering mechanism that explains how individual uploads compromise non-consenting third parties.",
+        "dock": "checkpoint",
+        "start": 409.2,
+        "end": 418.248
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "In November 2017, Strava published an interactive global data visualization displaying 3 trillion GPS coordinates from 27 million users. Strava believed that massive aggregation eliminated individual privacy risk.",
+        "dock": "main",
+        "start": 418.248,
+        "end": 433.848
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "They failed to account for spatial context. In conflict zones like Syria, Somalia, and Afghanistan, local civilians do not jog with GPS watches. Military personnel on secret forward operating bases did. The high-contrast heat trails traced guard towers, patrol paths, and supply airstrips.",
+        "dock": "main",
+        "start": 433.848,
+        "end": 455.04
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Here is our production Python implementation: pareto frontier auditor dot py. It uses Pydantic V2 to define MechanismCandidate schemas and executes automated non-dominance checks across candidate sanitization pipelines.",
+        "dock": "main",
+        "start": 455.04,
+        "end": 469.968
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Notice how the LaplacePrivacyEngine executes calibrated Differential Privacy queries and validates that empirical Monte Carlo MSE over ten thousand trials matches the theoretical prediction of two times Delta f squared over epsilon squared within ten percent.",
+        "dock": "main",
+        "start": 469.968,
+        "end": 485.664
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Let us summarize the five core engineering takeaways from Lesson 3.3. First: Privacy and utility are mathematically opposed; you cannot maximize both without finding the optimal Pareto operating point. Second: Eliminate sub-optimal pipelines that destroy data utility while failing to stop re-identification.",
+        "dock": "main",
+        "start": 485.664,
+        "end": 506.376
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Third: Internalize unpriced negative externalities using the Kaldor-Hicks framework. Fourth: Use Differential Privacy as a provable mathematical bound holding against all auxiliary data. And fifth: Enforce Helen Nissenbaum's Contextual Integrity. Up next is Lesson 3.4: Data Privacy Principles!",
+        "dock": "main",
+        "start": 506.376,
+        "end": 528.048
+      }
+    ]
+  },
+  "ch3_p3_duo": {
+    "duration": 739.9920000000001,
+    "sentences": [
+      {
+        "slideIndex": 0,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Lesson 3.3, Kaito! Today we explore the inescapable mathematical trade-off between analytical utility and individual privacy.",
+        "dock": "main",
+        "start": 0.0,
+        "end": 10.416
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, product managers always promise our users 100 percent data utility and 100 percent zero-risk anonymity. Is that actually achievable with modern cryptography?",
+        "dock": "main",
+        "start": 10.416,
+        "end": 22.56
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "Never! That claim violates fundamental information theory. A dataset with zero privacy risk is literally pure random noise, providing zero analytical value. Every production data system must choose an exact operating point along the Pareto frontier.",
+        "dock": "main",
+        "start": 22.56,
+        "end": 40.392
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "So our goal isn't eliminating tension—it's eliminating architectural waste and finding the Pareto-optimal operating point where privacy loss is provably bounded!",
+        "dock": "main",
+        "start": 40.392,
+        "end": 49.728
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Look at the three operating points on our board, Kaito. Point A is raw microdata, Point B is a tuned differential privacy mechanism, and Point C is excessive perturbation.",
+        "dock": "main",
+        "start": 49.728,
+        "end": 60.84
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "Point A is what data scientists ask for because their gradient boosted trees get 99 percent accuracy! But in production, Point A is a legal nightmare waiting for a Sweeney linkage breach.",
+        "dock": "main",
+        "start": 60.84,
+        "end": 72.288
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. And if compliance officers panic, they force Point C—adding so much noise that the dataset becomes useless. Ethical engineering lives at Point B: maximizing utility while enforcing provable risk bounds.",
+        "dock": "main",
+        "start": 72.288,
+        "end": 87.576
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "And the key knob is global sensitivity Delta f! If our query has high sensitivity, we must inject substantially more noise to maintain the exact same privacy budget.",
+        "dock": "main",
+        "start": 87.576,
+        "end": 98.688
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Look closely at the formula for Pareto non-dominance, Kaito. If pipeline M prime achieves both higher utility and lower risk than pipeline M, what does that say about M?",
+        "dock": "main",
+        "start": 98.688,
+        "end": 109.872
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "It means pipeline M is strictly dominated! It is literally defective code that harms both the user and the company.",
+        "dock": "main",
+        "start": 109.872,
+        "end": 118.008
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Last year an engineering team hashed phone numbers with unsalted SHA-256. It broke analytical substring searches, yet took an attacker four seconds to invert with a precomputed rainbow table. Lower utility and zero privacy!",
+        "dock": "main",
+        "start": 118.008,
+        "end": 135.912
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "Our automated CI/CD auditor should instantly flag and reject any sanitization candidate that is dominated by an existing differential privacy mechanism!",
+        "dock": "main",
+        "start": 135.912,
+        "end": 145.68
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Notice the mathematical beauty of Dwork's theorem, Kaito. It makes zero assumptions about what auxiliary databases an attacker might possess in the future.",
+        "dock": "main",
+        "start": 145.68,
+        "end": 155.568
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "Because it guarantees that whether my data is included or completely deleted, the probability of any model output changes by at most e to the epsilon!",
+        "dock": "main",
+        "start": 155.568,
+        "end": 164.352
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "Precisely. But look at the MSE formula: two times Delta f squared over epsilon squared. If your budget epsilon is set too low—say 0.01—the error variance blows up exponentially, destroying query utility.",
+        "dock": "main",
+        "start": 164.352,
+        "end": 180.768
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "And if epsilon is set to 20, the noise is microscopic, but your privacy guarantee weakens because e to the 20 is nearly 500 million! Finding the right epsilon is the true engineering craft.",
+        "dock": "main",
+        "start": 180.768,
+        "end": 193.32
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Notice the term X external in the Kaldor-Hicks formula, Kaito. That term explains why ad-tech business models often feel predatory.",
+        "dock": "main",
+        "start": 193.32,
+        "end": 202.656
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "Because the platform gets the advertising revenue, but users and their contacts suffer the unpriced privacy erosion, dynamic price discrimination, and psychological manipulation!",
+        "dock": "main",
+        "start": 202.656,
+        "end": 213.192
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "Precisely. If an engineering pipeline creates 10 million dollars in corporate profit but imposes 15 million dollars in societal externalities, Kaldor-Hicks social net benefit is negative. True engineering maturity requires internalizing those externalities.",
+        "dock": "main",
+        "start": 213.192,
+        "end": 230.856
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "And the Arrow-Pratt certainty equivalent shows why compliance officers are so conservative: the variance of privacy risk carries a severe quadratic penalty under GDPR!",
+        "dock": "main",
+        "start": 230.856,
+        "end": 240.912
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Kaito, let's test our Laplace simulator! Right now, under Preset 2 with epsilon equals 1.0, our analytical utility is 94 percent with robust privacy protection.",
+        "dock": "sim",
+        "start": 240.912,
+        "end": 253.8
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "Let me click Preset 1 for Raw Microdata! Wow—utility jumps to 99 percent, but look at the red warning badge: Re-ID Leakage Risk spikes to 0.95! The yellow operating point moves all the way to the top right danger zone.",
+        "dock": "sim",
+        "start": 253.8,
+        "end": 269.64
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "Now click Preset 4 for Over-Noise at epsilon equals 0.02. Privacy protection is almost 100 percent, but the relative query error explodes past 400 percent! That is why we must balance trade-offs mathematically.",
+        "dock": "sim",
+        "start": 269.64,
+        "end": 286.224
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "And increasing sensitivity Delta f shifts the entire curve downward! That's why query design and bounded clamping are just as critical as choosing epsilon.",
+        "dock": "sim",
+        "start": 286.224,
+        "end": 296.208
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Kaito, here is Checkpoint 1! Why did small rural communities sue the US Census Bureau over Differential Privacy, when major metropolitan areas barely noticed any change?",
+        "dock": "checkpoint",
+        "start": 296.208,
+        "end": 307.704
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "Let's analyze the math: Laplace noise variance is two times Delta f over epsilon squared—which depends only on sensitivity, not on the population size of the district!",
+        "dock": "checkpoint",
+        "start": 307.704,
+        "end": 317.856
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Let's see if you can select the precise engineering answer among the choices below!",
+        "dock": "checkpoint",
+        "start": 317.856,
+        "end": 324.504
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Notice why these three dilemmas are so dangerous, Kaito: both sides have compelling moral arguments!",
+        "dock": "main",
+        "start": 324.504,
+        "end": 331.224
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "Right! In Dilemma 1, public health officials genuinely want to save lives during a viral pandemic. But civil libertarians rightly fear building a permanent location tracking apparatus that outlasts the disease.",
+        "dock": "main",
+        "start": 331.224,
+        "end": 345.36
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "And in Dilemma 3, product managers claim they are merely giving users what they click on, while ignoring that algorithms exploit neurological vulnerabilities for unpriced corporate profit.",
+        "dock": "main",
+        "start": 345.36,
+        "end": 356.904
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "To resolve these dilemmas, we need to compare how Consequentialist and Deontological moral frameworks analyze each engineering choice!",
+        "dock": "main",
+        "start": 356.904,
+        "end": 364.776
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Notice how Table 3.2 resolves the deadlock, Kaito. Philosophers often debate Consequentialism versus Deontology for centuries. But engineers must ship code on Monday morning!",
+        "dock": "main",
+        "start": 364.776,
+        "end": 377.568
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "That's why the Engineering Resolution column is so empowering! In the COVID-19 pandemic, governments thought they had to choose between letting people die or tracking everyone's GPS coordinates.",
+        "dock": "main",
+        "start": 377.568,
+        "end": 389.472
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "Until cryptographers at Apple, Google, and European universities created GAEN: exchanging ephemeral cryptographic beacons that match exposures locally on your phone without sending any location data to the government.",
+        "dock": "main",
+        "start": 389.472,
+        "end": 403.056
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "That shifted the Pareto frontier outward! It achieved 80 percent of the epidemiological benefit while completely eliminating the dragnet surveillance risk.",
+        "dock": "main",
+        "start": 403.056,
+        "end": 413.28
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Kaito, many critics thought the Census Bureau was paranoid for adopting Differential Privacy. But what did their internal attack prove?",
+        "dock": "main",
+        "start": 413.28,
+        "end": 422.112
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "It proved that traditional de-identification techniques—like table cell suppression and data swapping—are completely broken against modern linear programming reconstruction! Fifty-two million people's raw records were exfiltrated from public tables.",
+        "dock": "main",
+        "start": 422.112,
+        "end": 436.704
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Yet rural demographers had a legitimate grievance: a small reservation of 120 people could see its count swing to 95 or 145, altering legislative redistricting and federal grant allocation.",
+        "dock": "main",
+        "start": 436.704,
+        "end": 452.088
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "So the solution wasn't deleting Differential Privacy—it was hierarchically allocating the epsilon budget so high-stakes legal attributes received lower noise!",
+        "dock": "main",
+        "start": 452.088,
+        "end": 461.352
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Notice the tragic lesson of Singapore's TraceTogether app, Kaito. The government promised users their data would only be used for COVID-19 contact tracing.",
+        "dock": "main",
+        "start": 461.352,
+        "end": 471.744
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "And less than a year later, the police used existing criminal procedural codes to subpoena the data for a murder case! Once data exists in a central database, function creep is almost inevitable.",
+        "dock": "main",
+        "start": 471.744,
+        "end": 484.128
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "That is the core rule of privacy engineering: Policy promises do not protect data; architecture protects data! If you don't store the centralized coordinates, no subpoena or hacker can ever exfiltrate them.",
+        "dock": "main",
+        "start": 484.128,
+        "end": 497.448
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "Decentralized architectures like GAEN eliminate the single point of failure and prove that ethical engineering and public safety can coexist!",
+        "dock": "main",
+        "start": 497.448,
+        "end": 505.8
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Kaito, let's explore our Kaldor-Hicks Workbench below! Notice the three presets: Airline Dynamic Pricing, Ad-Tech Behavioral Profiling, and Ethical Differential Privacy Sharing.",
+        "dock": "sim",
+        "start": 505.8,
+        "end": 517.848
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "Let me select Airline Dynamic Pricing! Producer profit rises by 45 thousand dollars, but consumer surplus drops by 35 thousand, and unpriced negative externalities—like lost trust and defensive VPN costs—add another 25 thousand!",
+        "dock": "sim",
+        "start": 517.848,
+        "end": 533.256
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "Resulting in a net social welfare loss of minus 15 thousand dollars! The corporate earnings call celebrates record margins, while society absorbs a deadweight loss. That is why ethical regulation intervenes.",
+        "dock": "sim",
+        "start": 533.256,
+        "end": 547.608
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "Now toggle to Ethical Differential Privacy Sharing: producer value is 30 thousand, consumer loss is near zero, and externalities drop to 2 thousand, giving a robust positive net benefit of plus 28 thousand!",
+        "dock": "sim",
+        "start": 547.608,
+        "end": 560.376
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Kaito, here is our second checkpoint! Why does one user uploading their DNA or running route destroy the privacy of hundreds of other people who never used the platform?",
+        "dock": "checkpoint",
+        "start": 560.376,
+        "end": 570.768
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "Because data isn't an isolated commodity! We share 50 percent of our DNA with siblings, and 12.5 percent with first cousins. When merely two percent of a population tests their DNA, they form a genealogical net spanning 90 percent of society!",
+        "dock": "checkpoint",
+        "start": 570.768,
+        "end": 587.592
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Let's see if you can identify the exact answer diagnosing both the GEDmatch linkage and the Strava military exfiltration!",
+        "dock": "checkpoint",
+        "start": 587.592,
+        "end": 596.856
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Look at Strava's mistake, Kaito. Their engineers assumed that because they aggregated 3 trillion data points, no individual could ever be exposed.",
+        "dock": "main",
+        "start": 596.856,
+        "end": 606.912
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "They forgot that base rate matters! In downtown Manhattan, a million runners create a blurry cloud. But in Helmand province in Afghanistan, the only people running five miles in a neat circle at 6:00 AM are foreign soldiers stationed at a secret base!",
+        "dock": "main",
+        "start": 606.912,
+        "end": 622.584
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "And that directly violates Helen Nissenbaum's transmission principles. Athletes surrendered telemetry to track their cardio workouts, not to publish an open-source targeting map for hostile adversaries.",
+        "dock": "main",
+        "start": 622.584,
+        "end": 635.304
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "Contextual integrity reminds us that privacy is violated the moment data crosses boundaries without respecting the governing social norm!",
+        "dock": "main",
+        "start": 635.304,
+        "end": 643.272
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Take a look at the identify pareto frontier method in our script, Kaito. It iterates across every candidate sanitization mechanism and eliminates any that are strictly dominated.",
+        "dock": "main",
+        "start": 643.272,
+        "end": 654.504
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "And it flags candidate 3—Suboptimal Naive Masking—because it has both worse utility and higher disclosure risk than our Laplace mechanism! That means our CI/CD pipeline blocks deployment automatically.",
+        "dock": "main",
+        "start": 654.504,
+        "end": 667.656
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "Furthermore, the test suite runs ten thousand Monte Carlo query simulations to verify that empirical variance matches theoretical MSE within statistical tolerances. That is how we ensure mathematical theory translates into production reliability.",
+        "dock": "main",
+        "start": 667.656,
+        "end": 683.712
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "Type-safe Pydantic contracts combined with Monte Carlo verification give our engineering teams total confidence before shipping!",
+        "dock": "main",
+        "start": 683.712,
+        "end": 691.224
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Outstanding work today, Kaito! You've mastered the mathematics of the Pareto frontier, Differential Privacy noise calibration, Kaldor-Hicks externalities, and Contextual Integrity.",
+        "dock": "main",
+        "start": 691.224,
+        "end": 703.728
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 1,
+        "speaker": "Kaito",
+        "text": "Thank you, Dr. Nova! I now understand why naive masking is a dangerous trap, how the 2020 Census solved database reconstruction, and how GAEN achieved decentralized privacy.",
+        "dock": "main",
+        "start": 703.728,
+        "end": 715.848
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 2,
+        "speaker": "Dr. Nova",
+        "text": "In our next lecture—Lesson 3.4: Data Privacy Principles—we dive deep into tabular anonymization algorithms: k-anonymity, l-diversity, t-closeness, and production differential privacy engines!",
+        "dock": "main",
+        "start": 715.848,
+        "end": 729.96
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 3,
+        "speaker": "Kaito",
+        "text": "I can't wait to turn these theoretical guarantees into concrete anonymization code in Lesson 3.4! Let's build ethical systems that protect everyone.",
+        "dock": "main",
+        "start": 729.96,
+        "end": 739.992
+      }
+    ]
+  },
+  "ch3_p4_solo": {
+    "duration": 568.44,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Track 3, Lesson 3.4 of Dataset Fundamentals: Data Privacy Principles, Informed Consent, Quasi-Identifiers, and Privacy by Design. Today we translate ethical commitments into concrete data engineering architecture.",
+        "start": 0.0,
+        "end": 16.104,
+        "slideIndex": 0
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Stripping names and email addresses does not create an anonymous dataset. Real-world privacy breaches stem from structural quasi-identifier linkage and dark-pattern consent bundling. We formalize Sweeney's cardinality theorem, the HIPAA 18 Safe Harbor taxonomy, GDPR Article 5 minimization via Information Bottlenecks, and Ann Cavoukian's Privacy by Design axioms.",
+        "start": 16.104,
+        "end": 40.272,
+        "slideIndex": 0
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "In production schema architecture, attributes are classified into four distinct tiers: Direct Identifiers, Quasi-Identifiers, Sensitive Attributes, and Insensitive Telemetry.",
+        "start": 40.272,
+        "end": 52.392,
+        "slideIndex": 1
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Direct Identifiers like Social Security Numbers uniquely single out an individual in isolation. Quasi-Identifiers like 5-digit ZIP codes, gender, and birth dates appear harmless alone, but re-identify individuals when joined with auxiliary voter registries. Sensitive attributes carry confidential payloads, while insensitive telemetry contains operational parameters.",
+        "start": 52.392,
+        "end": 76.416,
+        "slideIndex": 1
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Let vector Q denote m discrete quasi-identifiers. The theoretical domain cardinality is the Cartesian product of the attribute state spaces: cardinality of Omega Q equals the product of domain sizes of Q k.",
+        "start": 76.416,
+        "end": 90.792,
+        "slideIndex": 2
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "For the classic triad of 5-digit ZIP code, binary gender, and birth date across 100 years, the domain cardinality is approximately 3.14 billion discrete cells. Because the entire United States population is an order of magnitude smaller at 330 million, the space is astronomically sparse. 87.1 percent of residents occupy unique singleton cells, resulting in deterministic re-identification when joined with voter rolls.",
+        "start": 90.792,
+        "end": 120.504,
+        "slideIndex": 2
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Under the US Health Insurance Portability and Accountability Act Safe Harbor method, health microdata is considered formally de-identified only if all 18 specified direct and indirect identifiers are excised.",
+        "start": 120.504,
+        "end": 133.56,
+        "slideIndex": 3
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "This covers direct personal identifiers like names and SSNs, network telemetry like IP addresses and URLs, biometric full-face photos, and strict spatio-temporal rules. ZIP codes must be truncated to 3 digits, and if the 3-digit area contains fewer than 20,000 residents, it must be zeroed out to 000. All dates related to an individual must be generalized to years, and ages over 89 must be binned into a single 90-plus cohort.",
+        "start": 133.56,
+        "end": 164.28,
+        "slideIndex": 3
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "The European General Data Protection Regulation establishes seven foundational principles in Article 5 that govern every modern data pipeline.",
+        "start": 164.28,
+        "end": 173.184,
+        "slideIndex": 4
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "First, Lawfulness and Transparency under Article 6 require an explicit legal basis. Second, Purpose Limitation prevents function creep—data collected for billing cannot be fed to ML training. Third, Data Minimization requires collecting only what is strictly necessary. Fourth, Accuracy mandates automated correction DAGs. Fifth, Storage Limitation enforces automatic deletion. Sixth, Integrity guarantees encryption. And seventh, Accountability demands audit trails.",
+        "start": 173.184,
+        "end": 207.36,
+        "slideIndex": 4
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the HIPAA 18 Detection and Consent Studio! Here you can test real-time regular expression sanitization, quasi-identifier generalization, and dynamic consent contract enforcement.",
+        "start": 207.36,
+        "end": 220.32,
+        "slideIndex": 5
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Notice how switching Direct PII handling from Cleartext to Salted HMAC replaces names and Social Security numbers with cryptographic digests. Then adjust ZIP code generalization to see the 3-digit prefix 20,000 population rule in action. Finally, toggle Patient Consent Scope to test GDPR Article 17 erasure gating.",
+        "start": 220.32,
+        "end": 242.736,
+        "slideIndex": 5
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Time for Active Checkpoint 1! Let's calculate the combinatorial sparsity of a healthcare registry and determine the exact re-identification probability for a unique demographic resident.",
+        "start": 242.736,
+        "end": 254.688,
+        "slideIndex": 6
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Article 5(1)(c) of the GDPR mandates Data Minimization, but how do we formalize it mathematically? We use the Information Bottleneck method developed by Naftali Tishby.",
+        "start": 254.688,
+        "end": 267.216,
+        "slideIndex": 7
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Let X denote raw collected telemetry, Y denote the authorized downstream task target, and Z denote the compressed encoded representation. The Information Bottleneck objective minimizes the mutual information between X and Z while maximizing the mutual information between Z and Y, governed by Lagrange multiplier beta.",
+        "start": 267.216,
+        "end": 287.568,
+        "slideIndex": 7
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Under Helen Nissenbaum's theory of Contextual Integrity, privacy is not absolute secrecy; it is the appropriate flow of information according to contextual norms.",
+        "start": 287.568,
+        "end": 297.6,
+        "slideIndex": 8
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "We formalize Purpose Limitation as a statistical leakage bound: the conditional mutual information between the encoded representation Z and any unauthorized secondary target Y secondary, given the primary target Y primary, must be bounded by a strict leakage threshold tau leak. This mathematical invariant prevents function creep when user telemetry crosses contextual boundaries.",
+        "start": 297.6,
+        "end": 321.312,
+        "slideIndex": 8
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "When a data subject exercises their GDPR Article 17 Right to Erasure, retraining a multi-billion parameter neural network from scratch on D minus z is economically and computationally impossible.",
+        "start": 321.312,
+        "end": 334.224,
+        "slideIndex": 9
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Using second-order Taylor expansions and Koh and Liang's influence functions, we calculate the parameter update delta theta required to remove sample z's gradient influence. The update equals negative one over N times the inverse empirical Hessian matrix times the sample gradient.",
+        "start": 334.224,
+        "end": 351.792,
+        "slideIndex": 9
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Developed by Dr. Ann Cavoukian and formally codified under GDPR Article 25, Privacy by Design establishes seven architectural axioms for modern engineering.",
+        "start": 351.792,
+        "end": 362.808,
+        "slideIndex": 10
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "First, Proactive not Reactive: anticipate privacy risks at ingestion. Second, Privacy as the Default: maximum confidentiality with zero opt-in burden. Third, Embedded into Design: not an add-on bolt-on. Fourth, Positive-Sum: rejecting false tradeoffs between privacy and functionality. Fifth, End-to-End Security throughout the lifecycle. Sixth, Transparency and Open Verification. And seventh, Respect for User Privacy.",
+        "start": 362.808,
+        "end": 394.776,
+        "slideIndex": 10
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the Information Bottleneck and Purpose Limitation Workbench! Here we balance telemetry compression against task utility and secondary concept leakage.",
+        "start": 394.776,
+        "end": 405.336,
+        "slideIndex": 11
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Adjust the compression multiplier beta: at high beta, the pipeline transmits raw features, achieving 98 percent accuracy but leaking 85 percent of sensitive secondary attributes like health and income. Tune beta down to find the positive-sum operating point where task utility stays above 90 percent while collateral leakage collapses to zero.",
+        "start": 405.336,
+        "end": 426.888,
+        "slideIndex": 11
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Active Checkpoint 2! Let's evaluate the legal and architectural constraints surrounding consumer consent contracts and dark-pattern data bundling.",
+        "start": 426.888,
+        "end": 437.016,
+        "slideIndex": 12
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Let us examine three pivotal real-world privacy failures that redefined international regulatory enforcement and dataset engineering.",
+        "start": 437.016,
+        "end": 445.104,
+        "slideIndex": 13
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "In 2017, the UK ICO ruled that Google DeepMind and the Royal Free NHS Trust unlawfully transferred 1.6 million patient records for their Streams clinical app without explicit patient consent. In 2018, Cambridge Analytica harvested 87 million Facebook profiles via an Open Graph API friend-permission cascade, resulting in a historic 5 billion dollar FTC fine. And Polar Flow exposed the home addresses of 6,400 military and secret service personnel by failing to normalize low-density GPS running tracks.",
+        "start": 445.104,
+        "end": 481.392,
+        "slideIndex": 13
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Here is our production Python implementation: the HIPAASafeHarborScrubber class, built with Pydantic V2 audit records, pre-compiled regular expressions, and keyed cryptographic HMAC hashing.",
+        "start": 481.392,
+        "end": 494.808,
+        "slideIndex": 14
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Notice how direct identifiers like SSNs, Medical Record Numbers, and emails are scrubbed or replaced with HMAC tokens. Meanwhile, ZIP codes are generalized to 3-digit prefixes according to the HIPAA 20,000 resident threshold, and exact dates are truncated to birth years. The resulting audit log certifies Safe Harbor compliance.",
+        "start": 494.808,
+        "end": 517.728,
+        "slideIndex": 14
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Congratulations on completing Lesson 3.4! Let us synthesize the five foundational laws of data privacy engineering.",
+        "start": 517.728,
+        "end": 526.344,
+        "slideIndex": 15
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "First, Quasi-Identifier Sparsity: Cartesian domain cardinality always dwarfs population, making singletons deterministic targets. Second, Information Bottleneck Minimization: compress non-task telemetry while preserving task utility. Third, Contextual Integrity: verify mutual information leakage remains bounded. Fourth, Privacy by Default: zero opt-in burden. And fifth, Unbundled Consent: never gate core service delivery behind secondary data brokering. In Lesson 3.5, we explore advanced Privacy-Preserving Techniques: k-anonymity, l-diversity, t-closeness, and Homomorphic Encryption.",
+        "start": 526.344,
+        "end": 568.44,
+        "slideIndex": 15
+      }
+    ]
+  },
+  "ch3_p4_duo": {
+    "duration": 621.6,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Lesson 3.4, Kaito! Today we explore why removing names and email addresses from a production database fails to protect user confidentiality.",
+        "start": 0.0,
+        "end": 11.016,
+        "slideIndex": 0
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, if we drop Social Security Numbers, names, and phone numbers, haven't we eliminated all personal data? What can an adversary actually do with a 5-digit ZIP code and birth year?",
+        "start": 11.016,
+        "end": 23.184,
+        "slideIndex": 0
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "They can deterministically re-identify 87.1 percent of the entire United States population! Latanya Sweeney proved that high-dimensional demographic combinations create unique singleton footprints across public databases. That is the quasi-identifier trap.",
+        "start": 23.184,
+        "end": 40.968,
+        "slideIndex": 0
+      },
+      {
+        "speaker": "Kaito",
+        "text": "So anonymization isn't just a list of columns to drop—it's a rigorous mathematical property governed by HIPAA Safe Harbor, Information Bottlenecks, and Privacy by Design!",
+        "start": 40.968,
+        "end": 51.12,
+        "slideIndex": 0
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why do we separate Quasi-Identifiers from Sensitive Attributes? Aren't both part of the user's personal record?",
+        "start": 51.12,
+        "end": 59.976,
+        "slideIndex": 1
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "They play completely different mathematical roles in an attack! Quasi-identifiers are the linkage bridge: they exist in both your private dataset and public registries like voter rolls. Sensitive attributes are the confidential payload the attacker wants to steal, like medical diagnoses or salary.",
+        "start": 59.976,
+        "end": 79.008,
+        "slideIndex": 1
+      },
+      {
+        "speaker": "Kaito",
+        "text": "I see! If an attacker links my ZIP code and birthday to the voter roll, they unmask my name, and then read my sensitive clinical diagnosis! That's why quasi-identifiers require generalization.",
+        "start": 79.008,
+        "end": 92.616,
+        "slideIndex": 1
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Wait, Dr. Nova! There are only 330 million people in the United States. How can three simple fields create 3.14 billion cells?",
+        "start": 92.616,
+        "end": 103.944,
+        "slideIndex": 2
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "That is the power of the Cartesian product! 43,000 ZIP codes multiplied by 2 genders multiplied by 36,500 birthdays yields over 3.1 billion combinations. When you scatter 330 million people into 3.1 billion buckets, most buckets contain at most one person!",
+        "start": 103.944,
+        "end": 124.632,
+        "slideIndex": 2
+      },
+      {
+        "speaker": "Kaito",
+        "text": "And if you are the only person in your bucket, anyone with a public voter roll can match your ZIP, gender, and birthday to your exact name with 100 percent certainty!",
+        "start": 124.632,
+        "end": 133.872,
+        "slideIndex": 2
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, look at Element 16: why does HIPAA require changing a 3-digit ZIP code to '000' if fewer than 20,000 people live there?",
+        "start": 133.872,
+        "end": 142.92,
+        "slideIndex": 3
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Because of low-density statistical exposure! If a 3-digit postal zone covers a remote rural county with only 4,000 residents, even generalized microdata makes individuals identifiable. The 20,000 threshold enforces a minimum population denominator across all published geographic buckets.",
+        "start": 142.92,
+        "end": 162.312,
+        "slideIndex": 3
+      },
+      {
+        "speaker": "Kaito",
+        "text": "And the same logic applies to Element 17: grouping everyone over age 89 into a single 90-plus bucket prevents unmasking the rare 102-year-old living in that county!",
+        "start": 162.312,
+        "end": 172.824,
+        "slideIndex": 3
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, in machine learning startups, engineers often hoard all available user clickstreams and billing data just in case an ML model needs it in the future. Is that allowed under GDPR?",
+        "start": 172.824,
+        "end": 184.944,
+        "slideIndex": 4
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Absolutely not! That directly violates both Purpose Limitation and Data Minimization. If data was collected to process a credit card payment, routing that telemetry to train a recommendation engine without fresh consent is illegal under Article 5.",
+        "start": 184.944,
+        "end": 201.672,
+        "slideIndex": 4
+      },
+      {
+        "speaker": "Kaito",
+        "text": "And Article 5(2) places the burden of proof entirely on us! We must prove our data lineage with immutable audit logs, or risk fines up to 20 million euros!",
+        "start": 201.672,
+        "end": 212.808,
+        "slideIndex": 4
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Look at the live sanitization studio above us, Dr. Nova! Under Preset 1, we have Governor Weld's clinical note with SSN, MRN, phone, exact Cambridge ZIP 02138, and full birthdate.",
+        "start": 212.808,
+        "end": 226.272,
+        "slideIndex": 5
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Exactly! If you leave direct identifiers clear and ZIP codes exact, HIPAA Safe Harbor immediately flags critical violations. Watch what happens when you switch Direct Mode to Salted HMAC and ZIP Mode to 3-digit prefix!",
+        "start": 226.272,
+        "end": 242.472,
+        "slideIndex": 5
+      },
+      {
+        "speaker": "Kaito",
+        "text": "The ZIP code collapses to '021 star star', birthdate becomes 1945, and direct fields turn into HMAC digests! Safe Harbor flips to compliant, and our patient's privacy is preserved!",
+        "start": 242.472,
+        "end": 255.816,
+        "slideIndex": 5
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Checkpoint time! Look at the scenario above me, Dr. Nova: a patient registry collects age from 0 to 100, 8 blood types, and 1,000 distinct 3-digit ZIP codes. What is the total cardinality of this space, and how vulnerable is the sole resident at age 98?",
+        "start": 255.816,
+        "end": 273.888,
+        "slideIndex": 6
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, this Information Bottleneck formula is elegant! Minimizing I of X and Z compresses away unnecessary personal features, while maximizing I of Z and Y protects our authorized model accuracy!",
+        "start": 273.888,
+        "end": 287.208,
+        "slideIndex": 7
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Exactly, Kaito! Take smart thermostat voice commands: streaming raw 44.1 kHz audio to the cloud leaks ambient family conversations, emotional stress, and occupant presence. That violates Data Minimization.",
+        "start": 287.208,
+        "end": 303.672,
+        "slideIndex": 7
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Instead, an on-device neural network compresses the audio down to a single binary intent bit: 'increase temperature'! That squeezes I of X and Z to zero while keeping I of Z and Y at 100 percent!",
+        "start": 303.672,
+        "end": 316.224,
+        "slideIndex": 7
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why does Nissenbaum say privacy is not absolute secrecy? Isn't sharing data inherently a loss of privacy?",
+        "start": 316.224,
+        "end": 325.056,
+        "slideIndex": 8
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Not at all! When you tell your doctor your symptoms, you expect them to record it to treat your illness. Privacy is preserved because the transmission principle of medical confidentiality holds. But if that doctor sells those symptoms to a life insurance broker, the context is shattered!",
+        "start": 325.056,
+        "end": 343.368,
+        "slideIndex": 8
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Because the transmission principle changed from care to commercial underwriting! And our mathematical leakage invariant proves that secondary mutual information must stay below tau leak!",
+        "start": 343.368,
+        "end": 354.456,
+        "slideIndex": 8
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, when a user clicks 'Delete My Account', our backend executes a database drop. Why do data protection authorities say that might not satisfy Article 17?",
+        "start": 354.456,
+        "end": 365.736,
+        "slideIndex": 9
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Because if you used their personal medical notes to train a neural network, that network memorized their private patterns into its floating-point weights! Deleting the row from PostgreSQL does not erase the gradient updates inside the model.",
+        "start": 365.736,
+        "end": 379.872,
+        "slideIndex": 9
+      },
+      {
+        "speaker": "Kaito",
+        "text": "That's why influence functions are revolutionary! By calculating the inverse Hessian multiplied by the sample gradient, we subtract their exact parameter footprint without having to retrain the entire model from scratch!",
+        "start": 379.872,
+        "end": 393.12,
+        "slideIndex": 9
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, Axiom 4 says 'Positive-Sum: Full Functionality'. But didn't Lesson 3.3 prove that the Pareto frontier creates a fundamental trade-off between utility and privacy?",
+        "start": 393.12,
+        "end": 405.216,
+        "slideIndex": 10
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Brilliant observation, Kaito! The Pareto trade-off exists along the mathematical frontier. But most legacy systems operate far below the frontier—using raw unencrypted logs, leaky hashes, and manual processes that produce terrible privacy AND terrible utility!",
+        "start": 405.216,
+        "end": 423.72,
+        "slideIndex": 10
+      },
+      {
+        "speaker": "Kaito",
+        "text": "So Positive-Sum engineering means pushing our architecture up to the Pareto frontier! By deploying edge embeddings and Differential Privacy, we eliminate architectural waste and deliver both security and performance!",
+        "start": 423.72,
+        "end": 436.848,
+        "slideIndex": 10
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Look at the mutual information meters above us, Dr. Nova! Under Preset 1, beta equals 10.0: our model gets 98 percent task accuracy, but secondary demographic leakage is blazing red at 85 percent!",
+        "start": 436.848,
+        "end": 451.416,
+        "slideIndex": 11
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Switch to Preset 2, Kaito! That sets beta to 1.8. Notice how secondary concept leakage drops to 4 percent, while primary task accuracy barely budges, remaining at 92.4 percent.",
+        "start": 451.416,
+        "end": 466.824,
+        "slideIndex": 11
+      },
+      {
+        "speaker": "Kaito",
+        "text": "That's the Privacy by Design sweet spot! We satisfy GDPR Article 5(1)(c) Data Minimization and Helen Nissenbaum's Purpose Limitation without crippling our model's performance!",
+        "start": 466.824,
+        "end": 478.968,
+        "slideIndex": 11
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Active Checkpoint 2! A genomics startup requires users to sign a 40-page EULA where receiving DNA ancestry results automatically licenses their raw genome to pharmaceutical sponsors. How do GDPR Article 7(4) and the FTC rule on this?",
+        "start": 478.968,
+        "end": 496.368,
+        "slideIndex": 12
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, Cambridge Analytica is chilling! Only 270,000 people took that quiz, yet 87 million people had their psychological profiles harvested! How was that architecturally possible?",
+        "start": 496.368,
+        "end": 510.456,
+        "slideIndex": 13
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "It was the transitive friend-permission cascade in Facebook's early Open Graph API. The system assumed that if Alice installed an app, Alice had the authority to grant that app access to Bob's private timeline, even though Bob never touched the app!",
+        "start": 510.456,
+        "end": 525.096,
+        "slideIndex": 13
+      },
+      {
+        "speaker": "Kaito",
+        "text": "That completely violates Cavoukian's second axiom: Privacy as the Default! Bob's privacy was eliminated by Alice's click. That's why modern OAuth scopes strictly prohibit transitive third-party data grants!",
+        "start": 525.096,
+        "end": 539.28,
+        "slideIndex": 13
+      },
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, in line 22, why does token hash use a secret salt key with HMAC-SHA256 instead of plain SHA-256?",
+        "start": 539.28,
+        "end": 548.4,
+        "slideIndex": 14
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "Because of rainbow tables and precomputation! There are only 1 billion valid 9-digit Social Security numbers. An adversary with a GPU can precompute plain SHA-256 hashes of every possible SSN in under two minutes! Keyed HMAC prevents dictionary reversal without the KMS master key.",
+        "start": 548.4,
+        "end": 569.928,
+        "slideIndex": 14
+      },
+      {
+        "speaker": "Kaito",
+        "text": "And the 3-digit ZIP truncation coupled with birth year binning satisfies HIPAA 45 CFR § 164.514, protecting our patient records from linkage attacks!",
+        "start": 569.928,
+        "end": 581.352,
+        "slideIndex": 14
+      },
+      {
+        "speaker": "Kaito",
+        "text": "What an incredible masterclass, Dr. Nova! We started with Latanya Sweeney's 87.1 percent re-identification discovery and finished with Information Bottlenecks and Privacy by Design!",
+        "start": 581.352,
+        "end": 593.712,
+        "slideIndex": 15
+      },
+      {
+        "speaker": "Dr. Nova",
+        "text": "You've grasped the core principle, Kaito: privacy is not an obstacle to engineering—it is a core engineering specification. When systems are designed with privacy by default, salted HMAC tokens, and unbundled dynamic consent, user trust and data utility flourish together.",
+        "start": 593.712,
+        "end": 611.976,
+        "slideIndex": 15
+      },
+      {
+        "speaker": "Kaito",
+        "text": "I can't wait for Lesson 3.5, where we dive into formal privacy mechanisms: k-anonymity, l-diversity, t-closeness, and Homomorphic Encryption!",
+        "start": 611.976,
+        "end": 621.6,
+        "slideIndex": 15
+      }
+    ]
+  },
+  "ch6_p3_solo": {
+  "duration": 652.37,
+  "sentences": [
+    {
+      "slide": 1,
+      "turn": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 6.3 of Dataset Fundamentals: Dispersion, Distributional Shape, and Grouping. In exploratory data analysis, central tendency tells us only where mass clusters. It reveals nothing about spread, asymmetry, heavy tail risk, or hidden mixture components.",
+      "start": 0.0,
+      "end": 19.51,
+      "duration": 19.51
+    },
+    {
+      "slide": 1,
+      "turn": 1,
+      "speaker": "Dr. Nova",
+      "text": "Today we establish the full classical moment hierarchy, prove Bessel's correction and Jensen's downward bias on standard deviation, formalize robust scale metrics like MAD and Q-sub-n, explore Westfall's proof that kurtosis measures tail weight rather than peak curvature, and derive the Law of Total Variance\u2014Eve's Law\u2014to decompose subpopulation heterogeneity.",
+      "start": 19.51,
+      "end": 41.57,
+      "duration": 22.06
+    },
+    {
+      "slide": 2,
+      "turn": 2,
+      "speaker": "Dr. Nova",
+      "text": "The naive plug-in sample variance S-squared-sub-n divides squared deviations by n. But deviations are measured from the empirical sample mean x-bar rather than the true population parameter mu. Because the sample mean is specifically chosen to minimize squared deviations for that exact sample, it sits artificially closer to the observations than mu does.",
+      "start": 41.57,
+      "end": 63.7,
+      "duration": 22.13
+    },
+    {
+      "slide": 2,
+      "turn": 3,
+      "speaker": "Dr. Nova",
+      "text": "Decomposing the deviation into x-sub-i minus mu minus x-bar minus mu, squaring, and taking expectations reveals that the expected sum of squared deviations is exactly n minus 1 times sigma-squared. Dividing by n systematically underestimates population variance by a factor of n minus 1 over n. Bessel's correction divides by n minus 1, restoring exact unbiasedness.",
+      "start": 63.7,
+      "end": 88.44,
+      "duration": 24.74
+    },
+    {
+      "slide": 3,
+      "turn": 4,
+      "speaker": "Dr. Nova",
+      "text": "Here is one of the most widespread misconceptions in applied engineering: engineers believe that because s-squared is an unbiased estimator of variance sigma-squared, taking its square root s must be an unbiased estimator of standard deviation sigma. This is mathematically false.",
+      "start": 88.44,
+      "end": 105.48,
+      "duration": 17.04
+    },
+    {
+      "slide": 3,
+      "turn": 5,
+      "speaker": "Dr. Nova",
+      "text": "The square root function is strictly concave: its second derivative is strictly negative for all positive values. By Jensen's inequality, the expectation of a strictly concave function of a random variable is strictly less than the function of the expectation. Therefore, E of s is strictly less than sigma: sample standard deviation systematically underestimates true population spread.",
+      "start": 105.48,
+      "end": 129.96,
+      "duration": 24.48
+    },
+    {
+      "slide": 4,
+      "turn": 6,
+      "speaker": "Dr. Nova",
+      "text": "Parametric standard deviation suffers an asymptotic breakdown point of zero percent: a single corrupted telemetry point exploding towards infinity blows standard deviation up to infinity as well. In robust statistics, we deploy order statistics to achieve high resistance.",
+      "start": 129.96,
+      "end": 147.22,
+      "duration": 17.26
+    },
+    {
+      "slide": 4,
+      "turn": 7,
+      "speaker": "Dr. Nova",
+      "text": "The Median Absolute Deviation, or MAD, achieves an optimal 50 percent breakdown point. For standard Gaussian data, the raw MAD is 0.6745. Scaling MAD by 1.4826 converts it into an asymptotically consistent estimator for Gaussian sigma. For higher Gaussian efficiency, Rousseeuw and Croux developed the Q-sub-n estimator, which retains a 50 percent breakdown point while achieving 82.3 percent asymptotic relative efficiency.",
+      "start": 147.22,
+      "end": 178.63,
+      "duration": 31.42
+    },
+    {
+      "slide": 5,
+      "turn": 8,
+      "speaker": "Dr. Nova",
+      "text": "When comparing dispersion across disparate features with different physical units\u2014like revenue in dollars versus latency in milliseconds\u2014standard deviation cannot be compared directly. We require dimensionless, scale-free metrics.",
+      "start": 178.63,
+      "end": 193.39,
+      "duration": 14.76
+    },
+    {
+      "slide": 5,
+      "turn": 9,
+      "speaker": "Dr. Nova",
+      "text": "The Coefficient of Variation, s over x-bar, normalizes standard deviation by the mean, but requires a strictly positive ratio scale. For robust scale-free dispersion, the Quartile Coefficient of Dispersion normalizes IQR by the sum of quartiles. And the Gini Coefficient quantifies pairwise inequality across order statistics, ranging from zero for total equality to one for maximal concentration.",
+      "start": 193.39,
+      "end": 219.6,
+      "duration": 26.21
+    },
+    {
+      "slide": 6,
+      "turn": 10,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 1: Distributional Moments and Shape Dynamics Studio! In this sandbox, you can experiment directly with five generative distributions: Normal, Lognormal, Left-Skewed Weibull, Heavy-Tailed Student-t, and Uniform.",
+      "start": 219.6,
+      "end": 235.82,
+      "duration": 16.22
+    },
+    {
+      "slide": 6,
+      "turn": 11,
+      "speaker": "Dr. Nova",
+      "text": "Drag the outlier contamination slider and observe how the sample mean and standard deviation wander off, while the median and the green MAD band remain steadfastly anchored. Inspect the real-time Fisher skewness and excess kurtosis readouts below.",
+      "start": 235.82,
+      "end": 250.99,
+      "duration": 15.17
+    },
+    {
+      "slide": 7,
+      "turn": 12,
+      "speaker": "Dr. Nova",
+      "text": "Let us pause for Active Checkpoint 1. A junior engineer calculates sample variance using Bessel's correction: s-squared equals 1 over n minus 1 times the sum of squared deviations. They claim that taking the square root, s equals square root of s-squared, produces an exactly unbiased estimator of the population standard deviation sigma.",
+      "start": 250.99,
+      "end": 273.1,
+      "duration": 22.1
+    },
+    {
+      "slide": 7,
+      "turn": 13,
+      "speaker": "Dr. Nova",
+      "text": "Evaluate the mathematical validity of this claim. Does s equal sigma in expectation, or does Jensen's inequality force a systematic bias? Select the correct architectural response below.",
+      "start": 273.1,
+      "end": 286.18,
+      "duration": 13.08
+    },
+    {
+      "slide": 8,
+      "turn": 14,
+      "speaker": "Dr. Nova",
+      "text": "Moving to the third central moment, skewness measures distribution asymmetry. In standardized form, alpha-3 equals E of Z-cubed. Because cubing preserves the sign of deviations, observations far to the right create large positive terms, pulling skewness positive.",
+      "start": 286.18,
+      "end": 303.96,
+      "duration": 17.78
+    },
+    {
+      "slide": 8,
+      "turn": 15,
+      "speaker": "Dr. Nova",
+      "text": "The unbiased finite-sample estimator is Fisher-Pearson skewness, G-sub-1. Positive skewness indicates a right tail stretching towards infinity, common in income and API latency. Negative skewness indicates a left tail, typical of component lifespans. To diagnose skewness without sensitivity to extreme tail outliers, Bowley's quantile skewness B-1 evaluates quartile symmetry in the bounded interval minus 1 to plus 1.",
+      "start": 303.96,
+      "end": 332.42,
+      "duration": 28.46
+    },
+    {
+      "slide": 9,
+      "turn": 16,
+      "speaker": "Dr. Nova",
+      "text": "For over a century, elementary statistics textbooks claimed that kurtosis measures peak sharpness. In 2014, Peter Westfall published his seminal paper, Kurtosis as Peakedness: R.I.P., proving mathematically that kurtosis has virtually nothing to do with peak curvature.",
+      "start": 332.42,
+      "end": 350.52,
+      "duration": 18.1
+    },
+    {
+      "slide": 9,
+      "turn": 17,
+      "speaker": "Dr. Nova",
+      "text": "Because standardized deviations are raised to the fourth power, observations near the central peak\u2014where absolute Z is less than one\u2014contribute negligible fractions strictly less than one. For example, at Z equals 0.5, Z to the fourth is 0.0625. In contrast, an observation in the tail at Z equals 4 contributes 256. Kurtosis measures tail weight and extreme outlier propensity, nothing else.",
+      "start": 350.52,
+      "end": 380.69,
+      "duration": 30.17
+    },
+    {
+      "slide": 10,
+      "turn": 18,
+      "speaker": "Dr. Nova",
+      "text": "When exploratory data contains categorical groupings\u2014such as customer subscription tiers, operating system types, or geographical regions\u2014treating all observations as a single undifferentiated pool destroys statistical signal.",
+      "start": 380.69,
+      "end": 395.26,
+      "duration": 14.57
+    },
+    {
+      "slide": 10,
+      "turn": 19,
+      "speaker": "Dr. Nova",
+      "text": "The Law of Total Variance, affectionately known as Eve's Law, provides an exact orthogonal decomposition: total population variance equals the expected within-group variance plus the variance of the group means. The first term represents unexplained internal cohort noise; the second term represents explained discriminatory signal between groups.",
+      "start": 395.26,
+      "end": 416.18,
+      "duration": 20.93
+    },
+    {
+      "slide": 11,
+      "turn": 20,
+      "speaker": "Dr. Nova",
+      "text": "The ratio of between-group variance to total variance is known as the Correlation Ratio, or eta-squared. Eta-squared measures the proportion of total variance explained by grouping, bounded strictly between zero and one.",
+      "start": 416.18,
+      "end": 430.25,
+      "duration": 14.06
+    },
+    {
+      "slide": 11,
+      "turn": 21,
+      "speaker": "Dr. Nova",
+      "text": "When eta-squared exceeds 0.40, subpopulation separation accounts for the dominant share of variance. In machine learning pipelines, this mandates either training cohort-specific sub-models or prioritizing the grouping feature for primary tree splits. When eta-squared is below 0.10, the cohorts overlap heavily and grouping provides negligible predictive signal.",
+      "start": 430.25,
+      "end": 454.97,
+      "duration": 24.72
+    },
+    {
+      "slide": 12,
+      "turn": 22,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 2: Eve's Law Stratified Variance Workbench! In this studio, we model three customer account cohorts: Tier 1 Starter at 50 percent, Tier 2 Pro at 30 percent, and Tier 3 Enterprise at 20 percent.",
+      "start": 454.97,
+      "end": 471.12,
+      "duration": 16.15
+    },
+    {
+      "slide": 12,
+      "turn": 23,
+      "speaker": "Dr. Nova",
+      "text": "Use the sliders to adjust Group Mean Separation Delta-mu and Within-Group Noise sigma-w. Watch how the stacked variance bar partitions total variance into explained between-group signal and within-group noise, and verify that the conservation delta remains zero.",
+      "start": 471.12,
+      "end": 486.17,
+      "duration": 15.05
+    },
+    {
+      "slide": 13,
+      "turn": 24,
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 2. A machine learning team analyzes server packet latency and reports an excess kurtosis of plus 14.2. Simultaneously, they test two categorical candidate features: Feature A with eta-squared of 0.008, and Feature B with eta-squared of 0.485.",
+      "start": 486.17,
+      "end": 507.55,
+      "duration": 21.38
+    },
+    {
+      "slide": 13,
+      "turn": 25,
+      "speaker": "Dr. Nova",
+      "text": "What concrete architectural conclusions and feature selection decisions should the team make? Review the mathematical properties of fourth moments and Eve's Law, and select the correct response.",
+      "start": 507.55,
+      "end": 519.12,
+      "duration": 11.57
+    },
+    {
+      "slide": 14,
+      "turn": 26,
+      "speaker": "Dr. Nova",
+      "text": "Let us examine two real-world production case studies where higher moments and variance decomposition resolved critical system failures. In high-frequency trading, a network switch upgrade improved average packet latency from 18 to 16 microseconds, and standard deviation shrank from 4.2 to 3.8 microseconds. Yet automated risk throttles tripped repeatedly.",
+      "start": 519.12,
+      "end": 543.07,
+      "duration": 23.95
+    },
+    {
+      "slide": 14,
+      "turn": 27,
+      "speaker": "Dr. Nova",
+      "text": "Fourth moment analysis revealed that excess kurtosis had exploded from 1.1 to 52.4. Buffer saturation caused rare 2,800 microsecond stalls: 700 sigma above the mean! Because deviations are raised to the fourth power, that stall was amplified by 290 billion times, immediately exposing the buffer flaw. In our second case, SaaS revenue heterogeneity had an eta-squared of 95.5 percent across account tiers. Fitting separate tier models improved R-squared from 0.14 to 0.89.",
+      "start": 543.07,
+      "end": 580.39,
+      "duration": 37.32
+    },
+    {
+      "slide": 15,
+      "turn": 28,
+      "speaker": "Dr. Nova",
+      "text": "In production machine learning pipelines, moment calculations and variance decompositions must be backed by strict runtime contracts. Here is our enterprise Python implementation leveraging Pydantic V2.",
+      "start": 580.39,
+      "end": 594.1,
+      "duration": 13.7
+    },
+    {
+      "slide": 15,
+      "turn": 29,
+      "speaker": "Dr. Nova",
+      "text": "The MomentProfile class validates sample size thresholds, unbiased Bessel variance, robust MAD, Bowley skewness, and Gini coefficient. Meanwhile, EvesLawDecomposition enforces an after-validator ensuring that total variance equals within-group plus between-group variance within ten to the minus four precision.",
+      "start": 594.1,
+      "end": 613.58,
+      "duration": 19.49
+    },
+    {
+      "slide": 16,
+      "turn": 30,
+      "speaker": "Dr. Nova",
+      "text": "We conclude Lesson 6.3 with four cardinal rules that must govern dispersion, shape, and grouping analysis in all data systems.",
+      "start": 613.58,
+      "end": 622.42,
+      "duration": 8.83
+    },
+    {
+      "slide": 16,
+      "turn": 31,
+      "speaker": "Dr. Nova",
+      "text": "First, always use Bessel's correction for sample variance, but remember that sample standard deviation remains biased downwards by Jensen's inequality. Second, deploy normal-consistent MAD when tails are heavy. Third, treat kurtosis strictly as tail leverage, never as peak sharpness. And fourth, decompose subpopulation variance via Eve's Law before fitting global models. See you in Lesson 6.4 for Univariate and Bivariate Visualization!",
+      "start": 622.42,
+      "end": 652.37,
+      "duration": 29.95
+    }
+  ],
+  "words": [
+    {
+      "word": "welcome",
+      "start": 0.0,
+      "end": 0.53
+    },
+    {
+      "word": "to",
+      "start": 0.53,
+      "end": 1.05
+    },
+    {
+      "word": "lesson",
+      "start": 1.05,
+      "end": 1.58
+    },
+    {
+      "word": "63",
+      "start": 1.58,
+      "end": 2.11
+    },
+    {
+      "word": "of",
+      "start": 2.11,
+      "end": 2.64
+    },
+    {
+      "word": "dataset",
+      "start": 2.64,
+      "end": 3.16
+    },
+    {
+      "word": "fundamentals",
+      "start": 3.16,
+      "end": 3.69
+    },
+    {
+      "word": "dispersion",
+      "start": 3.69,
+      "end": 4.22
+    },
+    {
+      "word": "distributional",
+      "start": 4.22,
+      "end": 4.75
+    },
+    {
+      "word": "shape",
+      "start": 4.75,
+      "end": 5.27
+    },
+    {
+      "word": "and",
+      "start": 5.27,
+      "end": 5.8
+    },
+    {
+      "word": "grouping",
+      "start": 5.8,
+      "end": 6.33
+    },
+    {
+      "word": "in",
+      "start": 6.33,
+      "end": 6.85
+    },
+    {
+      "word": "exploratory",
+      "start": 6.85,
+      "end": 7.38
+    },
+    {
+      "word": "data",
+      "start": 7.38,
+      "end": 7.91
+    },
+    {
+      "word": "analysis",
+      "start": 7.91,
+      "end": 8.44
+    },
+    {
+      "word": "central",
+      "start": 8.44,
+      "end": 8.96
+    },
+    {
+      "word": "tendency",
+      "start": 8.96,
+      "end": 9.49
+    },
+    {
+      "word": "tells",
+      "start": 9.49,
+      "end": 10.02
+    },
+    {
+      "word": "us",
+      "start": 10.02,
+      "end": 10.55
+    },
+    {
+      "word": "only",
+      "start": 10.55,
+      "end": 11.07
+    },
+    {
+      "word": "where",
+      "start": 11.07,
+      "end": 11.6
+    },
+    {
+      "word": "mass",
+      "start": 11.6,
+      "end": 12.13
+    },
+    {
+      "word": "clusters",
+      "start": 12.13,
+      "end": 12.66
+    },
+    {
+      "word": "it",
+      "start": 12.66,
+      "end": 13.18
+    },
+    {
+      "word": "reveals",
+      "start": 13.18,
+      "end": 13.71
+    },
+    {
+      "word": "nothing",
+      "start": 13.71,
+      "end": 14.24
+    },
+    {
+      "word": "about",
+      "start": 14.24,
+      "end": 14.76
+    },
+    {
+      "word": "spread",
+      "start": 14.76,
+      "end": 15.29
+    },
+    {
+      "word": "asymmetry",
+      "start": 15.29,
+      "end": 15.82
+    },
+    {
+      "word": "heavy",
+      "start": 15.82,
+      "end": 16.35
+    },
+    {
+      "word": "tail",
+      "start": 16.35,
+      "end": 16.87
+    },
+    {
+      "word": "risk",
+      "start": 16.87,
+      "end": 17.4
+    },
+    {
+      "word": "or",
+      "start": 17.4,
+      "end": 17.93
+    },
+    {
+      "word": "hidden",
+      "start": 17.93,
+      "end": 18.46
+    },
+    {
+      "word": "mixture",
+      "start": 18.46,
+      "end": 18.98
+    },
+    {
+      "word": "components",
+      "start": 18.98,
+      "end": 19.51
+    },
+    {
+      "word": "today",
+      "start": 19.51,
+      "end": 19.96
+    },
+    {
+      "word": "we",
+      "start": 19.96,
+      "end": 20.41
+    },
+    {
+      "word": "establish",
+      "start": 20.41,
+      "end": 20.86
+    },
+    {
+      "word": "the",
+      "start": 20.86,
+      "end": 21.31
+    },
+    {
+      "word": "full",
+      "start": 21.31,
+      "end": 21.76
+    },
+    {
+      "word": "classical",
+      "start": 21.76,
+      "end": 22.21
+    },
+    {
+      "word": "moment",
+      "start": 22.21,
+      "end": 22.66
+    },
+    {
+      "word": "hierarchy",
+      "start": 22.66,
+      "end": 23.11
+    },
+    {
+      "word": "prove",
+      "start": 23.11,
+      "end": 23.56
+    },
+    {
+      "word": "bessels",
+      "start": 23.56,
+      "end": 24.01
+    },
+    {
+      "word": "correction",
+      "start": 24.01,
+      "end": 24.46
+    },
+    {
+      "word": "and",
+      "start": 24.46,
+      "end": 24.91
+    },
+    {
+      "word": "jensens",
+      "start": 24.91,
+      "end": 25.36
+    },
+    {
+      "word": "downward",
+      "start": 25.36,
+      "end": 25.81
+    },
+    {
+      "word": "bias",
+      "start": 25.81,
+      "end": 26.26
+    },
+    {
+      "word": "on",
+      "start": 26.26,
+      "end": 26.71
+    },
+    {
+      "word": "standard",
+      "start": 26.71,
+      "end": 27.16
+    },
+    {
+      "word": "deviation",
+      "start": 27.16,
+      "end": 27.61
+    },
+    {
+      "word": "formalize",
+      "start": 27.61,
+      "end": 28.06
+    },
+    {
+      "word": "robust",
+      "start": 28.06,
+      "end": 28.51
+    },
+    {
+      "word": "scale",
+      "start": 28.51,
+      "end": 28.96
+    },
+    {
+      "word": "metrics",
+      "start": 28.96,
+      "end": 29.41
+    },
+    {
+      "word": "like",
+      "start": 29.41,
+      "end": 29.86
+    },
+    {
+      "word": "mad",
+      "start": 29.86,
+      "end": 30.31
+    },
+    {
+      "word": "and",
+      "start": 30.31,
+      "end": 30.77
+    },
+    {
+      "word": "qsubn",
+      "start": 30.77,
+      "end": 31.22
+    },
+    {
+      "word": "explore",
+      "start": 31.22,
+      "end": 31.67
+    },
+    {
+      "word": "westfalls",
+      "start": 31.67,
+      "end": 32.12
+    },
+    {
+      "word": "proof",
+      "start": 32.12,
+      "end": 32.57
+    },
+    {
+      "word": "that",
+      "start": 32.57,
+      "end": 33.02
+    },
+    {
+      "word": "kurtosis",
+      "start": 33.02,
+      "end": 33.47
+    },
+    {
+      "word": "measures",
+      "start": 33.47,
+      "end": 33.92
+    },
+    {
+      "word": "tail",
+      "start": 33.92,
+      "end": 34.37
+    },
+    {
+      "word": "weight",
+      "start": 34.37,
+      "end": 34.82
+    },
+    {
+      "word": "rather",
+      "start": 34.82,
+      "end": 35.27
+    },
+    {
+      "word": "than",
+      "start": 35.27,
+      "end": 35.72
+    },
+    {
+      "word": "peak",
+      "start": 35.72,
+      "end": 36.17
+    },
+    {
+      "word": "curvature",
+      "start": 36.17,
+      "end": 36.62
+    },
+    {
+      "word": "and",
+      "start": 36.62,
+      "end": 37.07
+    },
+    {
+      "word": "derive",
+      "start": 37.07,
+      "end": 37.52
+    },
+    {
+      "word": "the",
+      "start": 37.52,
+      "end": 37.97
+    },
+    {
+      "word": "law",
+      "start": 37.97,
+      "end": 38.42
+    },
+    {
+      "word": "of",
+      "start": 38.42,
+      "end": 38.87
+    },
+    {
+      "word": "total",
+      "start": 38.87,
+      "end": 39.32
+    },
+    {
+      "word": "varianceeves",
+      "start": 39.32,
+      "end": 39.77
+    },
+    {
+      "word": "lawto",
+      "start": 39.77,
+      "end": 40.22
+    },
+    {
+      "word": "decompose",
+      "start": 40.22,
+      "end": 40.67
+    },
+    {
+      "word": "subpopulation",
+      "start": 40.67,
+      "end": 41.12
+    },
+    {
+      "word": "heterogeneity",
+      "start": 41.12,
+      "end": 41.57
+    },
+    {
+      "word": "the",
+      "start": 41.57,
+      "end": 41.99
+    },
+    {
+      "word": "naive",
+      "start": 41.99,
+      "end": 42.41
+    },
+    {
+      "word": "plugin",
+      "start": 42.41,
+      "end": 42.82
+    },
+    {
+      "word": "sample",
+      "start": 42.82,
+      "end": 43.24
+    },
+    {
+      "word": "variance",
+      "start": 43.24,
+      "end": 43.66
+    },
+    {
+      "word": "ssquaredsubn",
+      "start": 43.66,
+      "end": 44.08
+    },
+    {
+      "word": "divides",
+      "start": 44.08,
+      "end": 44.49
+    },
+    {
+      "word": "squared",
+      "start": 44.49,
+      "end": 44.91
+    },
+    {
+      "word": "deviations",
+      "start": 44.91,
+      "end": 45.33
+    },
+    {
+      "word": "by",
+      "start": 45.33,
+      "end": 45.75
+    },
+    {
+      "word": "n",
+      "start": 45.75,
+      "end": 46.16
+    },
+    {
+      "word": "but",
+      "start": 46.16,
+      "end": 46.58
+    },
+    {
+      "word": "deviations",
+      "start": 46.58,
+      "end": 47.0
+    },
+    {
+      "word": "are",
+      "start": 47.0,
+      "end": 47.42
+    },
+    {
+      "word": "measured",
+      "start": 47.42,
+      "end": 47.83
+    },
+    {
+      "word": "from",
+      "start": 47.83,
+      "end": 48.25
+    },
+    {
+      "word": "the",
+      "start": 48.25,
+      "end": 48.67
+    },
+    {
+      "word": "empirical",
+      "start": 48.67,
+      "end": 49.09
+    },
+    {
+      "word": "sample",
+      "start": 49.09,
+      "end": 49.5
+    },
+    {
+      "word": "mean",
+      "start": 49.5,
+      "end": 49.92
+    },
+    {
+      "word": "xbar",
+      "start": 49.92,
+      "end": 50.34
+    },
+    {
+      "word": "rather",
+      "start": 50.34,
+      "end": 50.76
+    },
+    {
+      "word": "than",
+      "start": 50.76,
+      "end": 51.17
+    },
+    {
+      "word": "the",
+      "start": 51.17,
+      "end": 51.59
+    },
+    {
+      "word": "true",
+      "start": 51.59,
+      "end": 52.01
+    },
+    {
+      "word": "population",
+      "start": 52.01,
+      "end": 52.43
+    },
+    {
+      "word": "parameter",
+      "start": 52.43,
+      "end": 52.84
+    },
+    {
+      "word": "mu",
+      "start": 52.84,
+      "end": 53.26
+    },
+    {
+      "word": "because",
+      "start": 53.26,
+      "end": 53.68
+    },
+    {
+      "word": "the",
+      "start": 53.68,
+      "end": 54.1
+    },
+    {
+      "word": "sample",
+      "start": 54.1,
+      "end": 54.51
+    },
+    {
+      "word": "mean",
+      "start": 54.51,
+      "end": 54.93
+    },
+    {
+      "word": "is",
+      "start": 54.93,
+      "end": 55.35
+    },
+    {
+      "word": "specifically",
+      "start": 55.35,
+      "end": 55.77
+    },
+    {
+      "word": "chosen",
+      "start": 55.77,
+      "end": 56.18
+    },
+    {
+      "word": "to",
+      "start": 56.18,
+      "end": 56.6
+    },
+    {
+      "word": "minimize",
+      "start": 56.6,
+      "end": 57.02
+    },
+    {
+      "word": "squared",
+      "start": 57.02,
+      "end": 57.44
+    },
+    {
+      "word": "deviations",
+      "start": 57.44,
+      "end": 57.85
+    },
+    {
+      "word": "for",
+      "start": 57.85,
+      "end": 58.27
+    },
+    {
+      "word": "that",
+      "start": 58.27,
+      "end": 58.69
+    },
+    {
+      "word": "exact",
+      "start": 58.69,
+      "end": 59.11
+    },
+    {
+      "word": "sample",
+      "start": 59.11,
+      "end": 59.52
+    },
+    {
+      "word": "it",
+      "start": 59.52,
+      "end": 59.94
+    },
+    {
+      "word": "sits",
+      "start": 59.94,
+      "end": 60.36
+    },
+    {
+      "word": "artificially",
+      "start": 60.36,
+      "end": 60.78
+    },
+    {
+      "word": "closer",
+      "start": 60.78,
+      "end": 61.19
+    },
+    {
+      "word": "to",
+      "start": 61.19,
+      "end": 61.61
+    },
+    {
+      "word": "the",
+      "start": 61.61,
+      "end": 62.03
+    },
+    {
+      "word": "observations",
+      "start": 62.03,
+      "end": 62.45
+    },
+    {
+      "word": "than",
+      "start": 62.45,
+      "end": 62.86
+    },
+    {
+      "word": "mu",
+      "start": 62.86,
+      "end": 63.28
+    },
+    {
+      "word": "does",
+      "start": 63.28,
+      "end": 63.7
+    },
+    {
+      "word": "decomposing",
+      "start": 63.7,
+      "end": 64.14
+    },
+    {
+      "word": "the",
+      "start": 64.14,
+      "end": 64.58
+    },
+    {
+      "word": "deviation",
+      "start": 64.58,
+      "end": 65.03
+    },
+    {
+      "word": "into",
+      "start": 65.03,
+      "end": 65.47
+    },
+    {
+      "word": "xsubi",
+      "start": 65.47,
+      "end": 65.91
+    },
+    {
+      "word": "minus",
+      "start": 65.91,
+      "end": 66.35
+    },
+    {
+      "word": "mu",
+      "start": 66.35,
+      "end": 66.79
+    },
+    {
+      "word": "minus",
+      "start": 66.79,
+      "end": 67.23
+    },
+    {
+      "word": "xbar",
+      "start": 67.23,
+      "end": 67.68
+    },
+    {
+      "word": "minus",
+      "start": 67.68,
+      "end": 68.12
+    },
+    {
+      "word": "mu",
+      "start": 68.12,
+      "end": 68.56
+    },
+    {
+      "word": "squaring",
+      "start": 68.56,
+      "end": 69.0
+    },
+    {
+      "word": "and",
+      "start": 69.0,
+      "end": 69.44
+    },
+    {
+      "word": "taking",
+      "start": 69.44,
+      "end": 69.89
+    },
+    {
+      "word": "expectations",
+      "start": 69.89,
+      "end": 70.33
+    },
+    {
+      "word": "reveals",
+      "start": 70.33,
+      "end": 70.77
+    },
+    {
+      "word": "that",
+      "start": 70.77,
+      "end": 71.21
+    },
+    {
+      "word": "the",
+      "start": 71.21,
+      "end": 71.65
+    },
+    {
+      "word": "expected",
+      "start": 71.65,
+      "end": 72.09
+    },
+    {
+      "word": "sum",
+      "start": 72.09,
+      "end": 72.54
+    },
+    {
+      "word": "of",
+      "start": 72.54,
+      "end": 72.98
+    },
+    {
+      "word": "squared",
+      "start": 72.98,
+      "end": 73.42
+    },
+    {
+      "word": "deviations",
+      "start": 73.42,
+      "end": 73.86
+    },
+    {
+      "word": "is",
+      "start": 73.86,
+      "end": 74.3
+    },
+    {
+      "word": "exactly",
+      "start": 74.3,
+      "end": 74.74
+    },
+    {
+      "word": "n",
+      "start": 74.74,
+      "end": 75.19
+    },
+    {
+      "word": "minus",
+      "start": 75.19,
+      "end": 75.63
+    },
+    {
+      "word": "1",
+      "start": 75.63,
+      "end": 76.07
+    },
+    {
+      "word": "times",
+      "start": 76.07,
+      "end": 76.51
+    },
+    {
+      "word": "sigmasquared",
+      "start": 76.51,
+      "end": 76.95
+    },
+    {
+      "word": "dividing",
+      "start": 76.95,
+      "end": 77.4
+    },
+    {
+      "word": "by",
+      "start": 77.4,
+      "end": 77.84
+    },
+    {
+      "word": "n",
+      "start": 77.84,
+      "end": 78.28
+    },
+    {
+      "word": "systematically",
+      "start": 78.28,
+      "end": 78.72
+    },
+    {
+      "word": "underestimates",
+      "start": 78.72,
+      "end": 79.16
+    },
+    {
+      "word": "population",
+      "start": 79.16,
+      "end": 79.6
+    },
+    {
+      "word": "variance",
+      "start": 79.6,
+      "end": 80.05
+    },
+    {
+      "word": "by",
+      "start": 80.05,
+      "end": 80.49
+    },
+    {
+      "word": "a",
+      "start": 80.49,
+      "end": 80.93
+    },
+    {
+      "word": "factor",
+      "start": 80.93,
+      "end": 81.37
+    },
+    {
+      "word": "of",
+      "start": 81.37,
+      "end": 81.81
+    },
+    {
+      "word": "n",
+      "start": 81.81,
+      "end": 82.25
+    },
+    {
+      "word": "minus",
+      "start": 82.25,
+      "end": 82.7
+    },
+    {
+      "word": "1",
+      "start": 82.7,
+      "end": 83.14
+    },
+    {
+      "word": "over",
+      "start": 83.14,
+      "end": 83.58
+    },
+    {
+      "word": "n",
+      "start": 83.58,
+      "end": 84.02
+    },
+    {
+      "word": "bessels",
+      "start": 84.02,
+      "end": 84.46
+    },
+    {
+      "word": "correction",
+      "start": 84.46,
+      "end": 84.91
+    },
+    {
+      "word": "divides",
+      "start": 84.91,
+      "end": 85.35
+    },
+    {
+      "word": "by",
+      "start": 85.35,
+      "end": 85.79
+    },
+    {
+      "word": "n",
+      "start": 85.79,
+      "end": 86.23
+    },
+    {
+      "word": "minus",
+      "start": 86.23,
+      "end": 86.67
+    },
+    {
+      "word": "1",
+      "start": 86.67,
+      "end": 87.11
+    },
+    {
+      "word": "restoring",
+      "start": 87.11,
+      "end": 87.56
+    },
+    {
+      "word": "exact",
+      "start": 87.56,
+      "end": 88.0
+    },
+    {
+      "word": "unbiasedness",
+      "start": 88.0,
+      "end": 88.44
+    },
+    {
+      "word": "here",
+      "start": 88.44,
+      "end": 88.86
+    },
+    {
+      "word": "is",
+      "start": 88.86,
+      "end": 89.27
+    },
+    {
+      "word": "one",
+      "start": 89.27,
+      "end": 89.69
+    },
+    {
+      "word": "of",
+      "start": 89.69,
+      "end": 90.1
+    },
+    {
+      "word": "the",
+      "start": 90.1,
+      "end": 90.52
+    },
+    {
+      "word": "most",
+      "start": 90.52,
+      "end": 90.93
+    },
+    {
+      "word": "widespread",
+      "start": 90.93,
+      "end": 91.35
+    },
+    {
+      "word": "misconceptions",
+      "start": 91.35,
+      "end": 91.76
+    },
+    {
+      "word": "in",
+      "start": 91.76,
+      "end": 92.18
+    },
+    {
+      "word": "applied",
+      "start": 92.18,
+      "end": 92.6
+    },
+    {
+      "word": "engineering",
+      "start": 92.6,
+      "end": 93.01
+    },
+    {
+      "word": "engineers",
+      "start": 93.01,
+      "end": 93.43
+    },
+    {
+      "word": "believe",
+      "start": 93.43,
+      "end": 93.84
+    },
+    {
+      "word": "that",
+      "start": 93.84,
+      "end": 94.26
+    },
+    {
+      "word": "because",
+      "start": 94.26,
+      "end": 94.67
+    },
+    {
+      "word": "ssquared",
+      "start": 94.67,
+      "end": 95.09
+    },
+    {
+      "word": "is",
+      "start": 95.09,
+      "end": 95.51
+    },
+    {
+      "word": "an",
+      "start": 95.51,
+      "end": 95.92
+    },
+    {
+      "word": "unbiased",
+      "start": 95.92,
+      "end": 96.34
+    },
+    {
+      "word": "estimator",
+      "start": 96.34,
+      "end": 96.75
+    },
+    {
+      "word": "of",
+      "start": 96.75,
+      "end": 97.17
+    },
+    {
+      "word": "variance",
+      "start": 97.17,
+      "end": 97.58
+    },
+    {
+      "word": "sigmasquared",
+      "start": 97.58,
+      "end": 98.0
+    },
+    {
+      "word": "taking",
+      "start": 98.0,
+      "end": 98.41
+    },
+    {
+      "word": "its",
+      "start": 98.41,
+      "end": 98.83
+    },
+    {
+      "word": "square",
+      "start": 98.83,
+      "end": 99.25
+    },
+    {
+      "word": "root",
+      "start": 99.25,
+      "end": 99.66
+    },
+    {
+      "word": "s",
+      "start": 99.66,
+      "end": 100.08
+    },
+    {
+      "word": "must",
+      "start": 100.08,
+      "end": 100.49
+    },
+    {
+      "word": "be",
+      "start": 100.49,
+      "end": 100.91
+    },
+    {
+      "word": "an",
+      "start": 100.91,
+      "end": 101.32
+    },
+    {
+      "word": "unbiased",
+      "start": 101.32,
+      "end": 101.74
+    },
+    {
+      "word": "estimator",
+      "start": 101.74,
+      "end": 102.16
+    },
+    {
+      "word": "of",
+      "start": 102.16,
+      "end": 102.57
+    },
+    {
+      "word": "standard",
+      "start": 102.57,
+      "end": 102.99
+    },
+    {
+      "word": "deviation",
+      "start": 102.99,
+      "end": 103.4
+    },
+    {
+      "word": "sigma",
+      "start": 103.4,
+      "end": 103.82
+    },
+    {
+      "word": "this",
+      "start": 103.82,
+      "end": 104.23
+    },
+    {
+      "word": "is",
+      "start": 104.23,
+      "end": 104.65
+    },
+    {
+      "word": "mathematically",
+      "start": 104.65,
+      "end": 105.06
+    },
+    {
+      "word": "false",
+      "start": 105.06,
+      "end": 105.48
+    },
+    {
+      "word": "the",
+      "start": 105.48,
+      "end": 105.91
+    },
+    {
+      "word": "square",
+      "start": 105.91,
+      "end": 106.34
+    },
+    {
+      "word": "root",
+      "start": 106.34,
+      "end": 106.77
+    },
+    {
+      "word": "function",
+      "start": 106.77,
+      "end": 107.2
+    },
+    {
+      "word": "is",
+      "start": 107.2,
+      "end": 107.63
+    },
+    {
+      "word": "strictly",
+      "start": 107.63,
+      "end": 108.06
+    },
+    {
+      "word": "concave",
+      "start": 108.06,
+      "end": 108.49
+    },
+    {
+      "word": "its",
+      "start": 108.49,
+      "end": 108.92
+    },
+    {
+      "word": "second",
+      "start": 108.92,
+      "end": 109.35
+    },
+    {
+      "word": "derivative",
+      "start": 109.35,
+      "end": 109.77
+    },
+    {
+      "word": "is",
+      "start": 109.77,
+      "end": 110.2
+    },
+    {
+      "word": "strictly",
+      "start": 110.2,
+      "end": 110.63
+    },
+    {
+      "word": "negative",
+      "start": 110.63,
+      "end": 111.06
+    },
+    {
+      "word": "for",
+      "start": 111.06,
+      "end": 111.49
+    },
+    {
+      "word": "all",
+      "start": 111.49,
+      "end": 111.92
+    },
+    {
+      "word": "positive",
+      "start": 111.92,
+      "end": 112.35
+    },
+    {
+      "word": "values",
+      "start": 112.35,
+      "end": 112.78
+    },
+    {
+      "word": "by",
+      "start": 112.78,
+      "end": 113.21
+    },
+    {
+      "word": "jensens",
+      "start": 113.21,
+      "end": 113.64
+    },
+    {
+      "word": "inequality",
+      "start": 113.64,
+      "end": 114.07
+    },
+    {
+      "word": "the",
+      "start": 114.07,
+      "end": 114.5
+    },
+    {
+      "word": "expectation",
+      "start": 114.5,
+      "end": 114.93
+    },
+    {
+      "word": "of",
+      "start": 114.93,
+      "end": 115.36
+    },
+    {
+      "word": "a",
+      "start": 115.36,
+      "end": 115.79
+    },
+    {
+      "word": "strictly",
+      "start": 115.79,
+      "end": 116.22
+    },
+    {
+      "word": "concave",
+      "start": 116.22,
+      "end": 116.65
+    },
+    {
+      "word": "function",
+      "start": 116.65,
+      "end": 117.08
+    },
+    {
+      "word": "of",
+      "start": 117.08,
+      "end": 117.51
+    },
+    {
+      "word": "a",
+      "start": 117.51,
+      "end": 117.93
+    },
+    {
+      "word": "random",
+      "start": 117.93,
+      "end": 118.36
+    },
+    {
+      "word": "variable",
+      "start": 118.36,
+      "end": 118.79
+    },
+    {
+      "word": "is",
+      "start": 118.79,
+      "end": 119.22
+    },
+    {
+      "word": "strictly",
+      "start": 119.22,
+      "end": 119.65
+    },
+    {
+      "word": "less",
+      "start": 119.65,
+      "end": 120.08
+    },
+    {
+      "word": "than",
+      "start": 120.08,
+      "end": 120.51
+    },
+    {
+      "word": "the",
+      "start": 120.51,
+      "end": 120.94
+    },
+    {
+      "word": "function",
+      "start": 120.94,
+      "end": 121.37
+    },
+    {
+      "word": "of",
+      "start": 121.37,
+      "end": 121.8
+    },
+    {
+      "word": "the",
+      "start": 121.8,
+      "end": 122.23
+    },
+    {
+      "word": "expectation",
+      "start": 122.23,
+      "end": 122.66
+    },
+    {
+      "word": "therefore",
+      "start": 122.66,
+      "end": 123.09
+    },
+    {
+      "word": "e",
+      "start": 123.09,
+      "end": 123.52
+    },
+    {
+      "word": "of",
+      "start": 123.52,
+      "end": 123.95
+    },
+    {
+      "word": "s",
+      "start": 123.95,
+      "end": 124.38
+    },
+    {
+      "word": "is",
+      "start": 124.38,
+      "end": 124.81
+    },
+    {
+      "word": "strictly",
+      "start": 124.81,
+      "end": 125.24
+    },
+    {
+      "word": "less",
+      "start": 125.24,
+      "end": 125.67
+    },
+    {
+      "word": "than",
+      "start": 125.67,
+      "end": 126.09
+    },
+    {
+      "word": "sigma",
+      "start": 126.09,
+      "end": 126.52
+    },
+    {
+      "word": "sample",
+      "start": 126.52,
+      "end": 126.95
+    },
+    {
+      "word": "standard",
+      "start": 126.95,
+      "end": 127.38
+    },
+    {
+      "word": "deviation",
+      "start": 127.38,
+      "end": 127.81
+    },
+    {
+      "word": "systematically",
+      "start": 127.81,
+      "end": 128.24
+    },
+    {
+      "word": "underestimates",
+      "start": 128.24,
+      "end": 128.67
+    },
+    {
+      "word": "true",
+      "start": 128.67,
+      "end": 129.1
+    },
+    {
+      "word": "population",
+      "start": 129.1,
+      "end": 129.53
+    },
+    {
+      "word": "spread",
+      "start": 129.53,
+      "end": 129.96
+    },
+    {
+      "word": "parametric",
+      "start": 129.96,
+      "end": 130.41
+    },
+    {
+      "word": "standard",
+      "start": 130.41,
+      "end": 130.87
+    },
+    {
+      "word": "deviation",
+      "start": 130.87,
+      "end": 131.32
+    },
+    {
+      "word": "suffers",
+      "start": 131.32,
+      "end": 131.78
+    },
+    {
+      "word": "an",
+      "start": 131.78,
+      "end": 132.23
+    },
+    {
+      "word": "asymptotic",
+      "start": 132.23,
+      "end": 132.69
+    },
+    {
+      "word": "breakdown",
+      "start": 132.69,
+      "end": 133.14
+    },
+    {
+      "word": "point",
+      "start": 133.14,
+      "end": 133.59
+    },
+    {
+      "word": "of",
+      "start": 133.59,
+      "end": 134.05
+    },
+    {
+      "word": "zero",
+      "start": 134.05,
+      "end": 134.5
+    },
+    {
+      "word": "percent",
+      "start": 134.5,
+      "end": 134.96
+    },
+    {
+      "word": "a",
+      "start": 134.96,
+      "end": 135.41
+    },
+    {
+      "word": "single",
+      "start": 135.41,
+      "end": 135.86
+    },
+    {
+      "word": "corrupted",
+      "start": 135.86,
+      "end": 136.32
+    },
+    {
+      "word": "telemetry",
+      "start": 136.32,
+      "end": 136.77
+    },
+    {
+      "word": "point",
+      "start": 136.77,
+      "end": 137.23
+    },
+    {
+      "word": "exploding",
+      "start": 137.23,
+      "end": 137.68
+    },
+    {
+      "word": "towards",
+      "start": 137.68,
+      "end": 138.14
+    },
+    {
+      "word": "infinity",
+      "start": 138.14,
+      "end": 138.59
+    },
+    {
+      "word": "blows",
+      "start": 138.59,
+      "end": 139.04
+    },
+    {
+      "word": "standard",
+      "start": 139.04,
+      "end": 139.5
+    },
+    {
+      "word": "deviation",
+      "start": 139.5,
+      "end": 139.95
+    },
+    {
+      "word": "up",
+      "start": 139.95,
+      "end": 140.41
+    },
+    {
+      "word": "to",
+      "start": 140.41,
+      "end": 140.86
+    },
+    {
+      "word": "infinity",
+      "start": 140.86,
+      "end": 141.32
+    },
+    {
+      "word": "as",
+      "start": 141.32,
+      "end": 141.77
+    },
+    {
+      "word": "well",
+      "start": 141.77,
+      "end": 142.22
+    },
+    {
+      "word": "in",
+      "start": 142.22,
+      "end": 142.68
+    },
+    {
+      "word": "robust",
+      "start": 142.68,
+      "end": 143.13
+    },
+    {
+      "word": "statistics",
+      "start": 143.13,
+      "end": 143.59
+    },
+    {
+      "word": "we",
+      "start": 143.59,
+      "end": 144.04
+    },
+    {
+      "word": "deploy",
+      "start": 144.04,
+      "end": 144.49
+    },
+    {
+      "word": "order",
+      "start": 144.49,
+      "end": 144.95
+    },
+    {
+      "word": "statistics",
+      "start": 144.95,
+      "end": 145.4
+    },
+    {
+      "word": "to",
+      "start": 145.4,
+      "end": 145.86
+    },
+    {
+      "word": "achieve",
+      "start": 145.86,
+      "end": 146.31
+    },
+    {
+      "word": "high",
+      "start": 146.31,
+      "end": 146.77
+    },
+    {
+      "word": "resistance",
+      "start": 146.77,
+      "end": 147.22
+    },
+    {
+      "word": "the",
+      "start": 147.22,
+      "end": 147.73
+    },
+    {
+      "word": "median",
+      "start": 147.73,
+      "end": 148.25
+    },
+    {
+      "word": "absolute",
+      "start": 148.25,
+      "end": 148.76
+    },
+    {
+      "word": "deviation",
+      "start": 148.76,
+      "end": 149.28
+    },
+    {
+      "word": "or",
+      "start": 149.28,
+      "end": 149.79
+    },
+    {
+      "word": "mad",
+      "start": 149.79,
+      "end": 150.31
+    },
+    {
+      "word": "achieves",
+      "start": 150.31,
+      "end": 150.82
+    },
+    {
+      "word": "an",
+      "start": 150.82,
+      "end": 151.34
+    },
+    {
+      "word": "optimal",
+      "start": 151.34,
+      "end": 151.85
+    },
+    {
+      "word": "50",
+      "start": 151.85,
+      "end": 152.37
+    },
+    {
+      "word": "percent",
+      "start": 152.37,
+      "end": 152.88
+    },
+    {
+      "word": "breakdown",
+      "start": 152.88,
+      "end": 153.4
+    },
+    {
+      "word": "point",
+      "start": 153.4,
+      "end": 153.91
+    },
+    {
+      "word": "for",
+      "start": 153.91,
+      "end": 154.43
+    },
+    {
+      "word": "standard",
+      "start": 154.43,
+      "end": 154.94
+    },
+    {
+      "word": "gaussian",
+      "start": 154.94,
+      "end": 155.46
+    },
+    {
+      "word": "data",
+      "start": 155.46,
+      "end": 155.97
+    },
+    {
+      "word": "the",
+      "start": 155.97,
+      "end": 156.49
+    },
+    {
+      "word": "raw",
+      "start": 156.49,
+      "end": 157.0
+    },
+    {
+      "word": "mad",
+      "start": 157.0,
+      "end": 157.52
+    },
+    {
+      "word": "is",
+      "start": 157.52,
+      "end": 158.03
+    },
+    {
+      "word": "06745",
+      "start": 158.03,
+      "end": 158.55
+    },
+    {
+      "word": "scaling",
+      "start": 158.55,
+      "end": 159.06
+    },
+    {
+      "word": "mad",
+      "start": 159.06,
+      "end": 159.58
+    },
+    {
+      "word": "by",
+      "start": 159.58,
+      "end": 160.09
+    },
+    {
+      "word": "14826",
+      "start": 160.09,
+      "end": 160.61
+    },
+    {
+      "word": "converts",
+      "start": 160.61,
+      "end": 161.12
+    },
+    {
+      "word": "it",
+      "start": 161.12,
+      "end": 161.64
+    },
+    {
+      "word": "into",
+      "start": 161.64,
+      "end": 162.15
+    },
+    {
+      "word": "an",
+      "start": 162.15,
+      "end": 162.67
+    },
+    {
+      "word": "asymptotically",
+      "start": 162.67,
+      "end": 163.18
+    },
+    {
+      "word": "consistent",
+      "start": 163.18,
+      "end": 163.7
+    },
+    {
+      "word": "estimator",
+      "start": 163.7,
+      "end": 164.21
+    },
+    {
+      "word": "for",
+      "start": 164.21,
+      "end": 164.73
+    },
+    {
+      "word": "gaussian",
+      "start": 164.73,
+      "end": 165.24
+    },
+    {
+      "word": "sigma",
+      "start": 165.24,
+      "end": 165.76
+    },
+    {
+      "word": "for",
+      "start": 165.76,
+      "end": 166.27
+    },
+    {
+      "word": "higher",
+      "start": 166.27,
+      "end": 166.79
+    },
+    {
+      "word": "gaussian",
+      "start": 166.79,
+      "end": 167.3
+    },
+    {
+      "word": "efficiency",
+      "start": 167.3,
+      "end": 167.82
+    },
+    {
+      "word": "rousseeuw",
+      "start": 167.82,
+      "end": 168.33
+    },
+    {
+      "word": "and",
+      "start": 168.33,
+      "end": 168.85
+    },
+    {
+      "word": "croux",
+      "start": 168.85,
+      "end": 169.36
+    },
+    {
+      "word": "developed",
+      "start": 169.36,
+      "end": 169.88
+    },
+    {
+      "word": "the",
+      "start": 169.88,
+      "end": 170.39
+    },
+    {
+      "word": "qsubn",
+      "start": 170.39,
+      "end": 170.91
+    },
+    {
+      "word": "estimator",
+      "start": 170.91,
+      "end": 171.42
+    },
+    {
+      "word": "which",
+      "start": 171.42,
+      "end": 171.94
+    },
+    {
+      "word": "retains",
+      "start": 171.94,
+      "end": 172.45
+    },
+    {
+      "word": "a",
+      "start": 172.45,
+      "end": 172.97
+    },
+    {
+      "word": "50",
+      "start": 172.97,
+      "end": 173.48
+    },
+    {
+      "word": "percent",
+      "start": 173.48,
+      "end": 174.0
+    },
+    {
+      "word": "breakdown",
+      "start": 174.0,
+      "end": 174.51
+    },
+    {
+      "word": "point",
+      "start": 174.51,
+      "end": 175.03
+    },
+    {
+      "word": "while",
+      "start": 175.03,
+      "end": 175.54
+    },
+    {
+      "word": "achieving",
+      "start": 175.54,
+      "end": 176.06
+    },
+    {
+      "word": "823",
+      "start": 176.06,
+      "end": 176.57
+    },
+    {
+      "word": "percent",
+      "start": 176.57,
+      "end": 177.09
+    },
+    {
+      "word": "asymptotic",
+      "start": 177.09,
+      "end": 177.6
+    },
+    {
+      "word": "relative",
+      "start": 177.6,
+      "end": 178.12
+    },
+    {
+      "word": "efficiency",
+      "start": 178.12,
+      "end": 178.63
+    },
+    {
+      "word": "when",
+      "start": 178.63,
+      "end": 179.18
+    },
+    {
+      "word": "comparing",
+      "start": 179.18,
+      "end": 179.72
+    },
+    {
+      "word": "dispersion",
+      "start": 179.72,
+      "end": 180.27
+    },
+    {
+      "word": "across",
+      "start": 180.27,
+      "end": 180.82
+    },
+    {
+      "word": "disparate",
+      "start": 180.82,
+      "end": 181.36
+    },
+    {
+      "word": "features",
+      "start": 181.36,
+      "end": 181.91
+    },
+    {
+      "word": "with",
+      "start": 181.91,
+      "end": 182.46
+    },
+    {
+      "word": "different",
+      "start": 182.46,
+      "end": 183.0
+    },
+    {
+      "word": "physical",
+      "start": 183.0,
+      "end": 183.55
+    },
+    {
+      "word": "unitslike",
+      "start": 183.55,
+      "end": 184.1
+    },
+    {
+      "word": "revenue",
+      "start": 184.1,
+      "end": 184.64
+    },
+    {
+      "word": "in",
+      "start": 184.64,
+      "end": 185.19
+    },
+    {
+      "word": "dollars",
+      "start": 185.19,
+      "end": 185.74
+    },
+    {
+      "word": "versus",
+      "start": 185.74,
+      "end": 186.28
+    },
+    {
+      "word": "latency",
+      "start": 186.28,
+      "end": 186.83
+    },
+    {
+      "word": "in",
+      "start": 186.83,
+      "end": 187.38
+    },
+    {
+      "word": "millisecondsstandard",
+      "start": 187.38,
+      "end": 187.92
+    },
+    {
+      "word": "deviation",
+      "start": 187.92,
+      "end": 188.47
+    },
+    {
+      "word": "cannot",
+      "start": 188.47,
+      "end": 189.02
+    },
+    {
+      "word": "be",
+      "start": 189.02,
+      "end": 189.56
+    },
+    {
+      "word": "compared",
+      "start": 189.56,
+      "end": 190.11
+    },
+    {
+      "word": "directly",
+      "start": 190.11,
+      "end": 190.66
+    },
+    {
+      "word": "we",
+      "start": 190.66,
+      "end": 191.2
+    },
+    {
+      "word": "require",
+      "start": 191.2,
+      "end": 191.75
+    },
+    {
+      "word": "dimensionless",
+      "start": 191.75,
+      "end": 192.3
+    },
+    {
+      "word": "scalefree",
+      "start": 192.3,
+      "end": 192.84
+    },
+    {
+      "word": "metrics",
+      "start": 192.84,
+      "end": 193.39
+    },
+    {
+      "word": "the",
+      "start": 193.39,
+      "end": 193.85
+    },
+    {
+      "word": "coefficient",
+      "start": 193.85,
+      "end": 194.31
+    },
+    {
+      "word": "of",
+      "start": 194.31,
+      "end": 194.77
+    },
+    {
+      "word": "variation",
+      "start": 194.77,
+      "end": 195.23
+    },
+    {
+      "word": "s",
+      "start": 195.23,
+      "end": 195.69
+    },
+    {
+      "word": "over",
+      "start": 195.69,
+      "end": 196.15
+    },
+    {
+      "word": "xbar",
+      "start": 196.15,
+      "end": 196.61
+    },
+    {
+      "word": "normalizes",
+      "start": 196.61,
+      "end": 197.07
+    },
+    {
+      "word": "standard",
+      "start": 197.07,
+      "end": 197.53
+    },
+    {
+      "word": "deviation",
+      "start": 197.53,
+      "end": 197.99
+    },
+    {
+      "word": "by",
+      "start": 197.99,
+      "end": 198.45
+    },
+    {
+      "word": "the",
+      "start": 198.45,
+      "end": 198.91
+    },
+    {
+      "word": "mean",
+      "start": 198.91,
+      "end": 199.37
+    },
+    {
+      "word": "but",
+      "start": 199.37,
+      "end": 199.83
+    },
+    {
+      "word": "requires",
+      "start": 199.83,
+      "end": 200.29
+    },
+    {
+      "word": "a",
+      "start": 200.29,
+      "end": 200.75
+    },
+    {
+      "word": "strictly",
+      "start": 200.75,
+      "end": 201.21
+    },
+    {
+      "word": "positive",
+      "start": 201.21,
+      "end": 201.67
+    },
+    {
+      "word": "ratio",
+      "start": 201.67,
+      "end": 202.13
+    },
+    {
+      "word": "scale",
+      "start": 202.13,
+      "end": 202.59
+    },
+    {
+      "word": "for",
+      "start": 202.59,
+      "end": 203.05
+    },
+    {
+      "word": "robust",
+      "start": 203.05,
+      "end": 203.51
+    },
+    {
+      "word": "scalefree",
+      "start": 203.51,
+      "end": 203.97
+    },
+    {
+      "word": "dispersion",
+      "start": 203.97,
+      "end": 204.43
+    },
+    {
+      "word": "the",
+      "start": 204.43,
+      "end": 204.89
+    },
+    {
+      "word": "quartile",
+      "start": 204.89,
+      "end": 205.35
+    },
+    {
+      "word": "coefficient",
+      "start": 205.35,
+      "end": 205.81
+    },
+    {
+      "word": "of",
+      "start": 205.81,
+      "end": 206.27
+    },
+    {
+      "word": "dispersion",
+      "start": 206.27,
+      "end": 206.72
+    },
+    {
+      "word": "normalizes",
+      "start": 206.72,
+      "end": 207.18
+    },
+    {
+      "word": "iqr",
+      "start": 207.18,
+      "end": 207.64
+    },
+    {
+      "word": "by",
+      "start": 207.64,
+      "end": 208.1
+    },
+    {
+      "word": "the",
+      "start": 208.1,
+      "end": 208.56
+    },
+    {
+      "word": "sum",
+      "start": 208.56,
+      "end": 209.02
+    },
+    {
+      "word": "of",
+      "start": 209.02,
+      "end": 209.48
+    },
+    {
+      "word": "quartiles",
+      "start": 209.48,
+      "end": 209.94
+    },
+    {
+      "word": "and",
+      "start": 209.94,
+      "end": 210.4
+    },
+    {
+      "word": "the",
+      "start": 210.4,
+      "end": 210.86
+    },
+    {
+      "word": "gini",
+      "start": 210.86,
+      "end": 211.32
+    },
+    {
+      "word": "coefficient",
+      "start": 211.32,
+      "end": 211.78
+    },
+    {
+      "word": "quantifies",
+      "start": 211.78,
+      "end": 212.24
+    },
+    {
+      "word": "pairwise",
+      "start": 212.24,
+      "end": 212.7
+    },
+    {
+      "word": "inequality",
+      "start": 212.7,
+      "end": 213.16
+    },
+    {
+      "word": "across",
+      "start": 213.16,
+      "end": 213.62
+    },
+    {
+      "word": "order",
+      "start": 213.62,
+      "end": 214.08
+    },
+    {
+      "word": "statistics",
+      "start": 214.08,
+      "end": 214.54
+    },
+    {
+      "word": "ranging",
+      "start": 214.54,
+      "end": 215.0
+    },
+    {
+      "word": "from",
+      "start": 215.0,
+      "end": 215.46
+    },
+    {
+      "word": "zero",
+      "start": 215.46,
+      "end": 215.92
+    },
+    {
+      "word": "for",
+      "start": 215.92,
+      "end": 216.38
+    },
+    {
+      "word": "total",
+      "start": 216.38,
+      "end": 216.84
+    },
+    {
+      "word": "equality",
+      "start": 216.84,
+      "end": 217.3
+    },
+    {
+      "word": "to",
+      "start": 217.3,
+      "end": 217.76
+    },
+    {
+      "word": "one",
+      "start": 217.76,
+      "end": 218.22
+    },
+    {
+      "word": "for",
+      "start": 218.22,
+      "end": 218.68
+    },
+    {
+      "word": "maximal",
+      "start": 218.68,
+      "end": 219.14
+    },
+    {
+      "word": "concentration",
+      "start": 219.14,
+      "end": 219.6
+    },
+    {
+      "word": "welcome",
+      "start": 219.6,
+      "end": 220.14
+    },
+    {
+      "word": "to",
+      "start": 220.14,
+      "end": 220.68
+    },
+    {
+      "word": "interactive",
+      "start": 220.68,
+      "end": 221.22
+    },
+    {
+      "word": "lab",
+      "start": 221.22,
+      "end": 221.76
+    },
+    {
+      "word": "1",
+      "start": 221.76,
+      "end": 222.3
+    },
+    {
+      "word": "distributional",
+      "start": 222.3,
+      "end": 222.84
+    },
+    {
+      "word": "moments",
+      "start": 222.84,
+      "end": 223.38
+    },
+    {
+      "word": "and",
+      "start": 223.38,
+      "end": 223.93
+    },
+    {
+      "word": "shape",
+      "start": 223.93,
+      "end": 224.47
+    },
+    {
+      "word": "dynamics",
+      "start": 224.47,
+      "end": 225.01
+    },
+    {
+      "word": "studio",
+      "start": 225.01,
+      "end": 225.55
+    },
+    {
+      "word": "in",
+      "start": 225.55,
+      "end": 226.09
+    },
+    {
+      "word": "this",
+      "start": 226.09,
+      "end": 226.63
+    },
+    {
+      "word": "sandbox",
+      "start": 226.63,
+      "end": 227.17
+    },
+    {
+      "word": "you",
+      "start": 227.17,
+      "end": 227.71
+    },
+    {
+      "word": "can",
+      "start": 227.71,
+      "end": 228.25
+    },
+    {
+      "word": "experiment",
+      "start": 228.25,
+      "end": 228.79
+    },
+    {
+      "word": "directly",
+      "start": 228.79,
+      "end": 229.33
+    },
+    {
+      "word": "with",
+      "start": 229.33,
+      "end": 229.87
+    },
+    {
+      "word": "five",
+      "start": 229.87,
+      "end": 230.41
+    },
+    {
+      "word": "generative",
+      "start": 230.41,
+      "end": 230.95
+    },
+    {
+      "word": "distributions",
+      "start": 230.95,
+      "end": 231.49
+    },
+    {
+      "word": "normal",
+      "start": 231.49,
+      "end": 232.04
+    },
+    {
+      "word": "lognormal",
+      "start": 232.04,
+      "end": 232.58
+    },
+    {
+      "word": "leftskewed",
+      "start": 232.58,
+      "end": 233.12
+    },
+    {
+      "word": "weibull",
+      "start": 233.12,
+      "end": 233.66
+    },
+    {
+      "word": "heavytailed",
+      "start": 233.66,
+      "end": 234.2
+    },
+    {
+      "word": "studentt",
+      "start": 234.2,
+      "end": 234.74
+    },
+    {
+      "word": "and",
+      "start": 234.74,
+      "end": 235.28
+    },
+    {
+      "word": "uniform",
+      "start": 235.28,
+      "end": 235.82
+    },
+    {
+      "word": "drag",
+      "start": 235.82,
+      "end": 236.23
+    },
+    {
+      "word": "the",
+      "start": 236.23,
+      "end": 236.64
+    },
+    {
+      "word": "outlier",
+      "start": 236.64,
+      "end": 237.05
+    },
+    {
+      "word": "contamination",
+      "start": 237.05,
+      "end": 237.46
+    },
+    {
+      "word": "slider",
+      "start": 237.46,
+      "end": 237.87
+    },
+    {
+      "word": "and",
+      "start": 237.87,
+      "end": 238.28
+    },
+    {
+      "word": "observe",
+      "start": 238.28,
+      "end": 238.69
+    },
+    {
+      "word": "how",
+      "start": 238.69,
+      "end": 239.1
+    },
+    {
+      "word": "the",
+      "start": 239.1,
+      "end": 239.51
+    },
+    {
+      "word": "sample",
+      "start": 239.51,
+      "end": 239.92
+    },
+    {
+      "word": "mean",
+      "start": 239.92,
+      "end": 240.33
+    },
+    {
+      "word": "and",
+      "start": 240.33,
+      "end": 240.74
+    },
+    {
+      "word": "standard",
+      "start": 240.74,
+      "end": 241.15
+    },
+    {
+      "word": "deviation",
+      "start": 241.15,
+      "end": 241.56
+    },
+    {
+      "word": "wander",
+      "start": 241.56,
+      "end": 241.97
+    },
+    {
+      "word": "off",
+      "start": 241.97,
+      "end": 242.38
+    },
+    {
+      "word": "while",
+      "start": 242.38,
+      "end": 242.79
+    },
+    {
+      "word": "the",
+      "start": 242.79,
+      "end": 243.2
+    },
+    {
+      "word": "median",
+      "start": 243.2,
+      "end": 243.61
+    },
+    {
+      "word": "and",
+      "start": 243.61,
+      "end": 244.02
+    },
+    {
+      "word": "the",
+      "start": 244.02,
+      "end": 244.43
+    },
+    {
+      "word": "green",
+      "start": 244.43,
+      "end": 244.84
+    },
+    {
+      "word": "mad",
+      "start": 244.84,
+      "end": 245.25
+    },
+    {
+      "word": "band",
+      "start": 245.25,
+      "end": 245.66
+    },
+    {
+      "word": "remain",
+      "start": 245.66,
+      "end": 246.07
+    },
+    {
+      "word": "steadfastly",
+      "start": 246.07,
+      "end": 246.48
+    },
+    {
+      "word": "anchored",
+      "start": 246.48,
+      "end": 246.89
+    },
+    {
+      "word": "inspect",
+      "start": 246.89,
+      "end": 247.3
+    },
+    {
+      "word": "the",
+      "start": 247.3,
+      "end": 247.71
+    },
+    {
+      "word": "realtime",
+      "start": 247.71,
+      "end": 248.12
+    },
+    {
+      "word": "fisher",
+      "start": 248.12,
+      "end": 248.53
+    },
+    {
+      "word": "skewness",
+      "start": 248.53,
+      "end": 248.94
+    },
+    {
+      "word": "and",
+      "start": 248.94,
+      "end": 249.35
+    },
+    {
+      "word": "excess",
+      "start": 249.35,
+      "end": 249.76
+    },
+    {
+      "word": "kurtosis",
+      "start": 249.76,
+      "end": 250.17
+    },
+    {
+      "word": "readouts",
+      "start": 250.17,
+      "end": 250.58
+    },
+    {
+      "word": "below",
+      "start": 250.58,
+      "end": 250.99
+    },
+    {
+      "word": "let",
+      "start": 250.99,
+      "end": 251.41
+    },
+    {
+      "word": "us",
+      "start": 251.41,
+      "end": 251.82
+    },
+    {
+      "word": "pause",
+      "start": 251.82,
+      "end": 252.24
+    },
+    {
+      "word": "for",
+      "start": 252.24,
+      "end": 252.66
+    },
+    {
+      "word": "active",
+      "start": 252.66,
+      "end": 253.08
+    },
+    {
+      "word": "checkpoint",
+      "start": 253.08,
+      "end": 253.49
+    },
+    {
+      "word": "1",
+      "start": 253.49,
+      "end": 253.91
+    },
+    {
+      "word": "a",
+      "start": 253.91,
+      "end": 254.33
+    },
+    {
+      "word": "junior",
+      "start": 254.33,
+      "end": 254.74
+    },
+    {
+      "word": "engineer",
+      "start": 254.74,
+      "end": 255.16
+    },
+    {
+      "word": "calculates",
+      "start": 255.16,
+      "end": 255.58
+    },
+    {
+      "word": "sample",
+      "start": 255.58,
+      "end": 256.0
+    },
+    {
+      "word": "variance",
+      "start": 256.0,
+      "end": 256.41
+    },
+    {
+      "word": "using",
+      "start": 256.41,
+      "end": 256.83
+    },
+    {
+      "word": "bessels",
+      "start": 256.83,
+      "end": 257.25
+    },
+    {
+      "word": "correction",
+      "start": 257.25,
+      "end": 257.66
+    },
+    {
+      "word": "ssquared",
+      "start": 257.66,
+      "end": 258.08
+    },
+    {
+      "word": "equals",
+      "start": 258.08,
+      "end": 258.5
+    },
+    {
+      "word": "1",
+      "start": 258.5,
+      "end": 258.92
+    },
+    {
+      "word": "over",
+      "start": 258.92,
+      "end": 259.33
+    },
+    {
+      "word": "n",
+      "start": 259.33,
+      "end": 259.75
+    },
+    {
+      "word": "minus",
+      "start": 259.75,
+      "end": 260.17
+    },
+    {
+      "word": "1",
+      "start": 260.17,
+      "end": 260.58
+    },
+    {
+      "word": "times",
+      "start": 260.58,
+      "end": 261.0
+    },
+    {
+      "word": "the",
+      "start": 261.0,
+      "end": 261.42
+    },
+    {
+      "word": "sum",
+      "start": 261.42,
+      "end": 261.84
+    },
+    {
+      "word": "of",
+      "start": 261.84,
+      "end": 262.25
+    },
+    {
+      "word": "squared",
+      "start": 262.25,
+      "end": 262.67
+    },
+    {
+      "word": "deviations",
+      "start": 262.67,
+      "end": 263.09
+    },
+    {
+      "word": "they",
+      "start": 263.09,
+      "end": 263.51
+    },
+    {
+      "word": "claim",
+      "start": 263.51,
+      "end": 263.92
+    },
+    {
+      "word": "that",
+      "start": 263.92,
+      "end": 264.34
+    },
+    {
+      "word": "taking",
+      "start": 264.34,
+      "end": 264.76
+    },
+    {
+      "word": "the",
+      "start": 264.76,
+      "end": 265.17
+    },
+    {
+      "word": "square",
+      "start": 265.17,
+      "end": 265.59
+    },
+    {
+      "word": "root",
+      "start": 265.59,
+      "end": 266.01
+    },
+    {
+      "word": "s",
+      "start": 266.01,
+      "end": 266.43
+    },
+    {
+      "word": "equals",
+      "start": 266.43,
+      "end": 266.84
+    },
+    {
+      "word": "square",
+      "start": 266.84,
+      "end": 267.26
+    },
+    {
+      "word": "root",
+      "start": 267.26,
+      "end": 267.68
+    },
+    {
+      "word": "of",
+      "start": 267.68,
+      "end": 268.09
+    },
+    {
+      "word": "ssquared",
+      "start": 268.09,
+      "end": 268.51
+    },
+    {
+      "word": "produces",
+      "start": 268.51,
+      "end": 268.93
+    },
+    {
+      "word": "an",
+      "start": 268.93,
+      "end": 269.35
+    },
+    {
+      "word": "exactly",
+      "start": 269.35,
+      "end": 269.76
+    },
+    {
+      "word": "unbiased",
+      "start": 269.76,
+      "end": 270.18
+    },
+    {
+      "word": "estimator",
+      "start": 270.18,
+      "end": 270.6
+    },
+    {
+      "word": "of",
+      "start": 270.6,
+      "end": 271.01
+    },
+    {
+      "word": "the",
+      "start": 271.01,
+      "end": 271.43
+    },
+    {
+      "word": "population",
+      "start": 271.43,
+      "end": 271.85
+    },
+    {
+      "word": "standard",
+      "start": 271.85,
+      "end": 272.27
+    },
+    {
+      "word": "deviation",
+      "start": 272.27,
+      "end": 272.68
+    },
+    {
+      "word": "sigma",
+      "start": 272.68,
+      "end": 273.1
+    },
+    {
+      "word": "evaluate",
+      "start": 273.1,
+      "end": 273.58
+    },
+    {
+      "word": "the",
+      "start": 273.58,
+      "end": 274.07
+    },
+    {
+      "word": "mathematical",
+      "start": 274.07,
+      "end": 274.55
+    },
+    {
+      "word": "validity",
+      "start": 274.55,
+      "end": 275.04
+    },
+    {
+      "word": "of",
+      "start": 275.04,
+      "end": 275.52
+    },
+    {
+      "word": "this",
+      "start": 275.52,
+      "end": 276.01
+    },
+    {
+      "word": "claim",
+      "start": 276.01,
+      "end": 276.49
+    },
+    {
+      "word": "does",
+      "start": 276.49,
+      "end": 276.98
+    },
+    {
+      "word": "s",
+      "start": 276.98,
+      "end": 277.46
+    },
+    {
+      "word": "equal",
+      "start": 277.46,
+      "end": 277.94
+    },
+    {
+      "word": "sigma",
+      "start": 277.94,
+      "end": 278.43
+    },
+    {
+      "word": "in",
+      "start": 278.43,
+      "end": 278.91
+    },
+    {
+      "word": "expectation",
+      "start": 278.91,
+      "end": 279.4
+    },
+    {
+      "word": "or",
+      "start": 279.4,
+      "end": 279.88
+    },
+    {
+      "word": "does",
+      "start": 279.88,
+      "end": 280.37
+    },
+    {
+      "word": "jensens",
+      "start": 280.37,
+      "end": 280.85
+    },
+    {
+      "word": "inequality",
+      "start": 280.85,
+      "end": 281.34
+    },
+    {
+      "word": "force",
+      "start": 281.34,
+      "end": 281.82
+    },
+    {
+      "word": "a",
+      "start": 281.82,
+      "end": 282.3
+    },
+    {
+      "word": "systematic",
+      "start": 282.3,
+      "end": 282.79
+    },
+    {
+      "word": "bias",
+      "start": 282.79,
+      "end": 283.27
+    },
+    {
+      "word": "select",
+      "start": 283.27,
+      "end": 283.76
+    },
+    {
+      "word": "the",
+      "start": 283.76,
+      "end": 284.24
+    },
+    {
+      "word": "correct",
+      "start": 284.24,
+      "end": 284.73
+    },
+    {
+      "word": "architectural",
+      "start": 284.73,
+      "end": 285.21
+    },
+    {
+      "word": "response",
+      "start": 285.21,
+      "end": 285.7
+    },
+    {
+      "word": "below",
+      "start": 285.7,
+      "end": 286.18
+    },
+    {
+      "word": "moving",
+      "start": 286.18,
+      "end": 286.66
+    },
+    {
+      "word": "to",
+      "start": 286.66,
+      "end": 287.14
+    },
+    {
+      "word": "the",
+      "start": 287.14,
+      "end": 287.62
+    },
+    {
+      "word": "third",
+      "start": 287.62,
+      "end": 288.1
+    },
+    {
+      "word": "central",
+      "start": 288.1,
+      "end": 288.58
+    },
+    {
+      "word": "moment",
+      "start": 288.58,
+      "end": 289.06
+    },
+    {
+      "word": "skewness",
+      "start": 289.06,
+      "end": 289.54
+    },
+    {
+      "word": "measures",
+      "start": 289.54,
+      "end": 290.02
+    },
+    {
+      "word": "distribution",
+      "start": 290.02,
+      "end": 290.5
+    },
+    {
+      "word": "asymmetry",
+      "start": 290.5,
+      "end": 290.99
+    },
+    {
+      "word": "in",
+      "start": 290.99,
+      "end": 291.47
+    },
+    {
+      "word": "standardized",
+      "start": 291.47,
+      "end": 291.95
+    },
+    {
+      "word": "form",
+      "start": 291.95,
+      "end": 292.43
+    },
+    {
+      "word": "alpha3",
+      "start": 292.43,
+      "end": 292.91
+    },
+    {
+      "word": "equals",
+      "start": 292.91,
+      "end": 293.39
+    },
+    {
+      "word": "e",
+      "start": 293.39,
+      "end": 293.87
+    },
+    {
+      "word": "of",
+      "start": 293.87,
+      "end": 294.35
+    },
+    {
+      "word": "zcubed",
+      "start": 294.35,
+      "end": 294.83
+    },
+    {
+      "word": "because",
+      "start": 294.83,
+      "end": 295.31
+    },
+    {
+      "word": "cubing",
+      "start": 295.31,
+      "end": 295.79
+    },
+    {
+      "word": "preserves",
+      "start": 295.79,
+      "end": 296.27
+    },
+    {
+      "word": "the",
+      "start": 296.27,
+      "end": 296.75
+    },
+    {
+      "word": "sign",
+      "start": 296.75,
+      "end": 297.23
+    },
+    {
+      "word": "of",
+      "start": 297.23,
+      "end": 297.71
+    },
+    {
+      "word": "deviations",
+      "start": 297.71,
+      "end": 298.19
+    },
+    {
+      "word": "observations",
+      "start": 298.19,
+      "end": 298.67
+    },
+    {
+      "word": "far",
+      "start": 298.67,
+      "end": 299.15
+    },
+    {
+      "word": "to",
+      "start": 299.15,
+      "end": 299.64
+    },
+    {
+      "word": "the",
+      "start": 299.64,
+      "end": 300.12
+    },
+    {
+      "word": "right",
+      "start": 300.12,
+      "end": 300.6
+    },
+    {
+      "word": "create",
+      "start": 300.6,
+      "end": 301.08
+    },
+    {
+      "word": "large",
+      "start": 301.08,
+      "end": 301.56
+    },
+    {
+      "word": "positive",
+      "start": 301.56,
+      "end": 302.04
+    },
+    {
+      "word": "terms",
+      "start": 302.04,
+      "end": 302.52
+    },
+    {
+      "word": "pulling",
+      "start": 302.52,
+      "end": 303.0
+    },
+    {
+      "word": "skewness",
+      "start": 303.0,
+      "end": 303.48
+    },
+    {
+      "word": "positive",
+      "start": 303.48,
+      "end": 303.96
+    },
+    {
+      "word": "the",
+      "start": 303.96,
+      "end": 304.45
+    },
+    {
+      "word": "unbiased",
+      "start": 304.45,
+      "end": 304.94
+    },
+    {
+      "word": "finitesample",
+      "start": 304.94,
+      "end": 305.43
+    },
+    {
+      "word": "estimator",
+      "start": 305.43,
+      "end": 305.92
+    },
+    {
+      "word": "is",
+      "start": 305.92,
+      "end": 306.41
+    },
+    {
+      "word": "fisherpearson",
+      "start": 306.41,
+      "end": 306.9
+    },
+    {
+      "word": "skewness",
+      "start": 306.9,
+      "end": 307.39
+    },
+    {
+      "word": "gsub1",
+      "start": 307.39,
+      "end": 307.89
+    },
+    {
+      "word": "positive",
+      "start": 307.89,
+      "end": 308.38
+    },
+    {
+      "word": "skewness",
+      "start": 308.38,
+      "end": 308.87
+    },
+    {
+      "word": "indicates",
+      "start": 308.87,
+      "end": 309.36
+    },
+    {
+      "word": "a",
+      "start": 309.36,
+      "end": 309.85
+    },
+    {
+      "word": "right",
+      "start": 309.85,
+      "end": 310.34
+    },
+    {
+      "word": "tail",
+      "start": 310.34,
+      "end": 310.83
+    },
+    {
+      "word": "stretching",
+      "start": 310.83,
+      "end": 311.32
+    },
+    {
+      "word": "towards",
+      "start": 311.32,
+      "end": 311.81
+    },
+    {
+      "word": "infinity",
+      "start": 311.81,
+      "end": 312.3
+    },
+    {
+      "word": "common",
+      "start": 312.3,
+      "end": 312.79
+    },
+    {
+      "word": "in",
+      "start": 312.79,
+      "end": 313.28
+    },
+    {
+      "word": "income",
+      "start": 313.28,
+      "end": 313.77
+    },
+    {
+      "word": "and",
+      "start": 313.77,
+      "end": 314.26
+    },
+    {
+      "word": "api",
+      "start": 314.26,
+      "end": 314.76
+    },
+    {
+      "word": "latency",
+      "start": 314.76,
+      "end": 315.25
+    },
+    {
+      "word": "negative",
+      "start": 315.25,
+      "end": 315.74
+    },
+    {
+      "word": "skewness",
+      "start": 315.74,
+      "end": 316.23
+    },
+    {
+      "word": "indicates",
+      "start": 316.23,
+      "end": 316.72
+    },
+    {
+      "word": "a",
+      "start": 316.72,
+      "end": 317.21
+    },
+    {
+      "word": "left",
+      "start": 317.21,
+      "end": 317.7
+    },
+    {
+      "word": "tail",
+      "start": 317.7,
+      "end": 318.19
+    },
+    {
+      "word": "typical",
+      "start": 318.19,
+      "end": 318.68
+    },
+    {
+      "word": "of",
+      "start": 318.68,
+      "end": 319.17
+    },
+    {
+      "word": "component",
+      "start": 319.17,
+      "end": 319.66
+    },
+    {
+      "word": "lifespans",
+      "start": 319.66,
+      "end": 320.15
+    },
+    {
+      "word": "to",
+      "start": 320.15,
+      "end": 320.64
+    },
+    {
+      "word": "diagnose",
+      "start": 320.64,
+      "end": 321.13
+    },
+    {
+      "word": "skewness",
+      "start": 321.13,
+      "end": 321.62
+    },
+    {
+      "word": "without",
+      "start": 321.62,
+      "end": 322.12
+    },
+    {
+      "word": "sensitivity",
+      "start": 322.12,
+      "end": 322.61
+    },
+    {
+      "word": "to",
+      "start": 322.61,
+      "end": 323.1
+    },
+    {
+      "word": "extreme",
+      "start": 323.1,
+      "end": 323.59
+    },
+    {
+      "word": "tail",
+      "start": 323.59,
+      "end": 324.08
+    },
+    {
+      "word": "outliers",
+      "start": 324.08,
+      "end": 324.57
+    },
+    {
+      "word": "bowleys",
+      "start": 324.57,
+      "end": 325.06
+    },
+    {
+      "word": "quantile",
+      "start": 325.06,
+      "end": 325.55
+    },
+    {
+      "word": "skewness",
+      "start": 325.55,
+      "end": 326.04
+    },
+    {
+      "word": "b1",
+      "start": 326.04,
+      "end": 326.53
+    },
+    {
+      "word": "evaluates",
+      "start": 326.53,
+      "end": 327.02
+    },
+    {
+      "word": "quartile",
+      "start": 327.02,
+      "end": 327.51
+    },
+    {
+      "word": "symmetry",
+      "start": 327.51,
+      "end": 328.0
+    },
+    {
+      "word": "in",
+      "start": 328.0,
+      "end": 328.49
+    },
+    {
+      "word": "the",
+      "start": 328.49,
+      "end": 328.99
+    },
+    {
+      "word": "bounded",
+      "start": 328.99,
+      "end": 329.48
+    },
+    {
+      "word": "interval",
+      "start": 329.48,
+      "end": 329.97
+    },
+    {
+      "word": "minus",
+      "start": 329.97,
+      "end": 330.46
+    },
+    {
+      "word": "1",
+      "start": 330.46,
+      "end": 330.95
+    },
+    {
+      "word": "to",
+      "start": 330.95,
+      "end": 331.44
+    },
+    {
+      "word": "plus",
+      "start": 331.44,
+      "end": 331.93
+    },
+    {
+      "word": "1",
+      "start": 331.93,
+      "end": 332.42
+    },
+    {
+      "word": "for",
+      "start": 332.42,
+      "end": 332.91
+    },
+    {
+      "word": "over",
+      "start": 332.91,
+      "end": 333.4
+    },
+    {
+      "word": "a",
+      "start": 333.4,
+      "end": 333.89
+    },
+    {
+      "word": "century",
+      "start": 333.89,
+      "end": 334.38
+    },
+    {
+      "word": "elementary",
+      "start": 334.38,
+      "end": 334.87
+    },
+    {
+      "word": "statistics",
+      "start": 334.87,
+      "end": 335.36
+    },
+    {
+      "word": "textbooks",
+      "start": 335.36,
+      "end": 335.84
+    },
+    {
+      "word": "claimed",
+      "start": 335.84,
+      "end": 336.33
+    },
+    {
+      "word": "that",
+      "start": 336.33,
+      "end": 336.82
+    },
+    {
+      "word": "kurtosis",
+      "start": 336.82,
+      "end": 337.31
+    },
+    {
+      "word": "measures",
+      "start": 337.31,
+      "end": 337.8
+    },
+    {
+      "word": "peak",
+      "start": 337.8,
+      "end": 338.29
+    },
+    {
+      "word": "sharpness",
+      "start": 338.29,
+      "end": 338.78
+    },
+    {
+      "word": "in",
+      "start": 338.78,
+      "end": 339.27
+    },
+    {
+      "word": "2014",
+      "start": 339.27,
+      "end": 339.76
+    },
+    {
+      "word": "peter",
+      "start": 339.76,
+      "end": 340.25
+    },
+    {
+      "word": "westfall",
+      "start": 340.25,
+      "end": 340.74
+    },
+    {
+      "word": "published",
+      "start": 340.74,
+      "end": 341.23
+    },
+    {
+      "word": "his",
+      "start": 341.23,
+      "end": 341.71
+    },
+    {
+      "word": "seminal",
+      "start": 341.71,
+      "end": 342.2
+    },
+    {
+      "word": "paper",
+      "start": 342.2,
+      "end": 342.69
+    },
+    {
+      "word": "kurtosis",
+      "start": 342.69,
+      "end": 343.18
+    },
+    {
+      "word": "as",
+      "start": 343.18,
+      "end": 343.67
+    },
+    {
+      "word": "peakedness",
+      "start": 343.67,
+      "end": 344.16
+    },
+    {
+      "word": "rip",
+      "start": 344.16,
+      "end": 344.65
+    },
+    {
+      "word": "proving",
+      "start": 344.65,
+      "end": 345.14
+    },
+    {
+      "word": "mathematically",
+      "start": 345.14,
+      "end": 345.63
+    },
+    {
+      "word": "that",
+      "start": 345.63,
+      "end": 346.12
+    },
+    {
+      "word": "kurtosis",
+      "start": 346.12,
+      "end": 346.61
+    },
+    {
+      "word": "has",
+      "start": 346.61,
+      "end": 347.1
+    },
+    {
+      "word": "virtually",
+      "start": 347.1,
+      "end": 347.58
+    },
+    {
+      "word": "nothing",
+      "start": 347.58,
+      "end": 348.07
+    },
+    {
+      "word": "to",
+      "start": 348.07,
+      "end": 348.56
+    },
+    {
+      "word": "do",
+      "start": 348.56,
+      "end": 349.05
+    },
+    {
+      "word": "with",
+      "start": 349.05,
+      "end": 349.54
+    },
+    {
+      "word": "peak",
+      "start": 349.54,
+      "end": 350.03
+    },
+    {
+      "word": "curvature",
+      "start": 350.03,
+      "end": 350.52
+    },
+    {
+      "word": "because",
+      "start": 350.52,
+      "end": 351.01
+    },
+    {
+      "word": "standardized",
+      "start": 351.01,
+      "end": 351.51
+    },
+    {
+      "word": "deviations",
+      "start": 351.51,
+      "end": 352.0
+    },
+    {
+      "word": "are",
+      "start": 352.0,
+      "end": 352.5
+    },
+    {
+      "word": "raised",
+      "start": 352.5,
+      "end": 352.99
+    },
+    {
+      "word": "to",
+      "start": 352.99,
+      "end": 353.49
+    },
+    {
+      "word": "the",
+      "start": 353.49,
+      "end": 353.98
+    },
+    {
+      "word": "fourth",
+      "start": 353.98,
+      "end": 354.48
+    },
+    {
+      "word": "power",
+      "start": 354.48,
+      "end": 354.97
+    },
+    {
+      "word": "observations",
+      "start": 354.97,
+      "end": 355.47
+    },
+    {
+      "word": "near",
+      "start": 355.47,
+      "end": 355.96
+    },
+    {
+      "word": "the",
+      "start": 355.96,
+      "end": 356.46
+    },
+    {
+      "word": "central",
+      "start": 356.46,
+      "end": 356.95
+    },
+    {
+      "word": "peakwhere",
+      "start": 356.95,
+      "end": 357.44
+    },
+    {
+      "word": "absolute",
+      "start": 357.44,
+      "end": 357.94
+    },
+    {
+      "word": "z",
+      "start": 357.94,
+      "end": 358.43
+    },
+    {
+      "word": "is",
+      "start": 358.43,
+      "end": 358.93
+    },
+    {
+      "word": "less",
+      "start": 358.93,
+      "end": 359.42
+    },
+    {
+      "word": "than",
+      "start": 359.42,
+      "end": 359.92
+    },
+    {
+      "word": "onecontribute",
+      "start": 359.92,
+      "end": 360.41
+    },
+    {
+      "word": "negligible",
+      "start": 360.41,
+      "end": 360.91
+    },
+    {
+      "word": "fractions",
+      "start": 360.91,
+      "end": 361.4
+    },
+    {
+      "word": "strictly",
+      "start": 361.4,
+      "end": 361.9
+    },
+    {
+      "word": "less",
+      "start": 361.9,
+      "end": 362.39
+    },
+    {
+      "word": "than",
+      "start": 362.39,
+      "end": 362.88
+    },
+    {
+      "word": "one",
+      "start": 362.88,
+      "end": 363.38
+    },
+    {
+      "word": "for",
+      "start": 363.38,
+      "end": 363.87
+    },
+    {
+      "word": "example",
+      "start": 363.87,
+      "end": 364.37
+    },
+    {
+      "word": "at",
+      "start": 364.37,
+      "end": 364.86
+    },
+    {
+      "word": "z",
+      "start": 364.86,
+      "end": 365.36
+    },
+    {
+      "word": "equals",
+      "start": 365.36,
+      "end": 365.85
+    },
+    {
+      "word": "05",
+      "start": 365.85,
+      "end": 366.35
+    },
+    {
+      "word": "z",
+      "start": 366.35,
+      "end": 366.84
+    },
+    {
+      "word": "to",
+      "start": 366.84,
+      "end": 367.34
+    },
+    {
+      "word": "the",
+      "start": 367.34,
+      "end": 367.83
+    },
+    {
+      "word": "fourth",
+      "start": 367.83,
+      "end": 368.33
+    },
+    {
+      "word": "is",
+      "start": 368.33,
+      "end": 368.82
+    },
+    {
+      "word": "00625",
+      "start": 368.82,
+      "end": 369.31
+    },
+    {
+      "word": "in",
+      "start": 369.31,
+      "end": 369.81
+    },
+    {
+      "word": "contrast",
+      "start": 369.81,
+      "end": 370.3
+    },
+    {
+      "word": "an",
+      "start": 370.3,
+      "end": 370.8
+    },
+    {
+      "word": "observation",
+      "start": 370.8,
+      "end": 371.29
+    },
+    {
+      "word": "in",
+      "start": 371.29,
+      "end": 371.79
+    },
+    {
+      "word": "the",
+      "start": 371.79,
+      "end": 372.28
+    },
+    {
+      "word": "tail",
+      "start": 372.28,
+      "end": 372.78
+    },
+    {
+      "word": "at",
+      "start": 372.78,
+      "end": 373.27
+    },
+    {
+      "word": "z",
+      "start": 373.27,
+      "end": 373.77
+    },
+    {
+      "word": "equals",
+      "start": 373.77,
+      "end": 374.26
+    },
+    {
+      "word": "4",
+      "start": 374.26,
+      "end": 374.75
+    },
+    {
+      "word": "contributes",
+      "start": 374.75,
+      "end": 375.25
+    },
+    {
+      "word": "256",
+      "start": 375.25,
+      "end": 375.74
+    },
+    {
+      "word": "kurtosis",
+      "start": 375.74,
+      "end": 376.24
+    },
+    {
+      "word": "measures",
+      "start": 376.24,
+      "end": 376.73
+    },
+    {
+      "word": "tail",
+      "start": 376.73,
+      "end": 377.23
+    },
+    {
+      "word": "weight",
+      "start": 377.23,
+      "end": 377.72
+    },
+    {
+      "word": "and",
+      "start": 377.72,
+      "end": 378.22
+    },
+    {
+      "word": "extreme",
+      "start": 378.22,
+      "end": 378.71
+    },
+    {
+      "word": "outlier",
+      "start": 378.71,
+      "end": 379.21
+    },
+    {
+      "word": "propensity",
+      "start": 379.21,
+      "end": 379.7
+    },
+    {
+      "word": "nothing",
+      "start": 379.7,
+      "end": 380.2
+    },
+    {
+      "word": "else",
+      "start": 380.2,
+      "end": 380.69
+    },
+    {
+      "word": "when",
+      "start": 380.69,
+      "end": 381.25
+    },
+    {
+      "word": "exploratory",
+      "start": 381.25,
+      "end": 381.81
+    },
+    {
+      "word": "data",
+      "start": 381.81,
+      "end": 382.37
+    },
+    {
+      "word": "contains",
+      "start": 382.37,
+      "end": 382.93
+    },
+    {
+      "word": "categorical",
+      "start": 382.93,
+      "end": 383.49
+    },
+    {
+      "word": "groupingssuch",
+      "start": 383.49,
+      "end": 384.05
+    },
+    {
+      "word": "as",
+      "start": 384.05,
+      "end": 384.61
+    },
+    {
+      "word": "customer",
+      "start": 384.61,
+      "end": 385.17
+    },
+    {
+      "word": "subscription",
+      "start": 385.17,
+      "end": 385.73
+    },
+    {
+      "word": "tiers",
+      "start": 385.73,
+      "end": 386.29
+    },
+    {
+      "word": "operating",
+      "start": 386.29,
+      "end": 386.85
+    },
+    {
+      "word": "system",
+      "start": 386.85,
+      "end": 387.41
+    },
+    {
+      "word": "types",
+      "start": 387.41,
+      "end": 387.98
+    },
+    {
+      "word": "or",
+      "start": 387.98,
+      "end": 388.54
+    },
+    {
+      "word": "geographical",
+      "start": 388.54,
+      "end": 389.1
+    },
+    {
+      "word": "regionstreating",
+      "start": 389.1,
+      "end": 389.66
+    },
+    {
+      "word": "all",
+      "start": 389.66,
+      "end": 390.22
+    },
+    {
+      "word": "observations",
+      "start": 390.22,
+      "end": 390.78
+    },
+    {
+      "word": "as",
+      "start": 390.78,
+      "end": 391.34
+    },
+    {
+      "word": "a",
+      "start": 391.34,
+      "end": 391.9
+    },
+    {
+      "word": "single",
+      "start": 391.9,
+      "end": 392.46
+    },
+    {
+      "word": "undifferentiated",
+      "start": 392.46,
+      "end": 393.02
+    },
+    {
+      "word": "pool",
+      "start": 393.02,
+      "end": 393.58
+    },
+    {
+      "word": "destroys",
+      "start": 393.58,
+      "end": 394.14
+    },
+    {
+      "word": "statistical",
+      "start": 394.14,
+      "end": 394.7
+    },
+    {
+      "word": "signal",
+      "start": 394.7,
+      "end": 395.26
+    },
+    {
+      "word": "the",
+      "start": 395.26,
+      "end": 395.71
+    },
+    {
+      "word": "law",
+      "start": 395.71,
+      "end": 396.15
+    },
+    {
+      "word": "of",
+      "start": 396.15,
+      "end": 396.6
+    },
+    {
+      "word": "total",
+      "start": 396.6,
+      "end": 397.04
+    },
+    {
+      "word": "variance",
+      "start": 397.04,
+      "end": 397.49
+    },
+    {
+      "word": "affectionately",
+      "start": 397.49,
+      "end": 397.93
+    },
+    {
+      "word": "known",
+      "start": 397.93,
+      "end": 398.38
+    },
+    {
+      "word": "as",
+      "start": 398.38,
+      "end": 398.82
+    },
+    {
+      "word": "eves",
+      "start": 398.82,
+      "end": 399.27
+    },
+    {
+      "word": "law",
+      "start": 399.27,
+      "end": 399.71
+    },
+    {
+      "word": "provides",
+      "start": 399.71,
+      "end": 400.16
+    },
+    {
+      "word": "an",
+      "start": 400.16,
+      "end": 400.6
+    },
+    {
+      "word": "exact",
+      "start": 400.6,
+      "end": 401.05
+    },
+    {
+      "word": "orthogonal",
+      "start": 401.05,
+      "end": 401.49
+    },
+    {
+      "word": "decomposition",
+      "start": 401.49,
+      "end": 401.94
+    },
+    {
+      "word": "total",
+      "start": 401.94,
+      "end": 402.38
+    },
+    {
+      "word": "population",
+      "start": 402.38,
+      "end": 402.83
+    },
+    {
+      "word": "variance",
+      "start": 402.83,
+      "end": 403.27
+    },
+    {
+      "word": "equals",
+      "start": 403.27,
+      "end": 403.72
+    },
+    {
+      "word": "the",
+      "start": 403.72,
+      "end": 404.16
+    },
+    {
+      "word": "expected",
+      "start": 404.16,
+      "end": 404.61
+    },
+    {
+      "word": "withingroup",
+      "start": 404.61,
+      "end": 405.05
+    },
+    {
+      "word": "variance",
+      "start": 405.05,
+      "end": 405.5
+    },
+    {
+      "word": "plus",
+      "start": 405.5,
+      "end": 405.94
+    },
+    {
+      "word": "the",
+      "start": 405.94,
+      "end": 406.39
+    },
+    {
+      "word": "variance",
+      "start": 406.39,
+      "end": 406.83
+    },
+    {
+      "word": "of",
+      "start": 406.83,
+      "end": 407.28
+    },
+    {
+      "word": "the",
+      "start": 407.28,
+      "end": 407.72
+    },
+    {
+      "word": "group",
+      "start": 407.72,
+      "end": 408.17
+    },
+    {
+      "word": "means",
+      "start": 408.17,
+      "end": 408.61
+    },
+    {
+      "word": "the",
+      "start": 408.61,
+      "end": 409.06
+    },
+    {
+      "word": "first",
+      "start": 409.06,
+      "end": 409.5
+    },
+    {
+      "word": "term",
+      "start": 409.5,
+      "end": 409.95
+    },
+    {
+      "word": "represents",
+      "start": 409.95,
+      "end": 410.39
+    },
+    {
+      "word": "unexplained",
+      "start": 410.39,
+      "end": 410.84
+    },
+    {
+      "word": "internal",
+      "start": 410.84,
+      "end": 411.28
+    },
+    {
+      "word": "cohort",
+      "start": 411.28,
+      "end": 411.73
+    },
+    {
+      "word": "noise",
+      "start": 411.73,
+      "end": 412.17
+    },
+    {
+      "word": "the",
+      "start": 412.17,
+      "end": 412.62
+    },
+    {
+      "word": "second",
+      "start": 412.62,
+      "end": 413.06
+    },
+    {
+      "word": "term",
+      "start": 413.06,
+      "end": 413.51
+    },
+    {
+      "word": "represents",
+      "start": 413.51,
+      "end": 413.95
+    },
+    {
+      "word": "explained",
+      "start": 413.95,
+      "end": 414.4
+    },
+    {
+      "word": "discriminatory",
+      "start": 414.4,
+      "end": 414.84
+    },
+    {
+      "word": "signal",
+      "start": 414.84,
+      "end": 415.29
+    },
+    {
+      "word": "between",
+      "start": 415.29,
+      "end": 415.73
+    },
+    {
+      "word": "groups",
+      "start": 415.73,
+      "end": 416.18
+    },
+    {
+      "word": "the",
+      "start": 416.18,
+      "end": 416.62
+    },
+    {
+      "word": "ratio",
+      "start": 416.62,
+      "end": 417.06
+    },
+    {
+      "word": "of",
+      "start": 417.06,
+      "end": 417.5
+    },
+    {
+      "word": "betweengroup",
+      "start": 417.5,
+      "end": 417.94
+    },
+    {
+      "word": "variance",
+      "start": 417.94,
+      "end": 418.38
+    },
+    {
+      "word": "to",
+      "start": 418.38,
+      "end": 418.82
+    },
+    {
+      "word": "total",
+      "start": 418.82,
+      "end": 419.26
+    },
+    {
+      "word": "variance",
+      "start": 419.26,
+      "end": 419.7
+    },
+    {
+      "word": "is",
+      "start": 419.7,
+      "end": 420.14
+    },
+    {
+      "word": "known",
+      "start": 420.14,
+      "end": 420.58
+    },
+    {
+      "word": "as",
+      "start": 420.58,
+      "end": 421.02
+    },
+    {
+      "word": "the",
+      "start": 421.02,
+      "end": 421.46
+    },
+    {
+      "word": "correlation",
+      "start": 421.46,
+      "end": 421.9
+    },
+    {
+      "word": "ratio",
+      "start": 421.9,
+      "end": 422.34
+    },
+    {
+      "word": "or",
+      "start": 422.34,
+      "end": 422.78
+    },
+    {
+      "word": "etasquared",
+      "start": 422.78,
+      "end": 423.21
+    },
+    {
+      "word": "etasquared",
+      "start": 423.22,
+      "end": 423.65
+    },
+    {
+      "word": "measures",
+      "start": 423.65,
+      "end": 424.09
+    },
+    {
+      "word": "the",
+      "start": 424.09,
+      "end": 424.53
+    },
+    {
+      "word": "proportion",
+      "start": 424.53,
+      "end": 424.97
+    },
+    {
+      "word": "of",
+      "start": 424.97,
+      "end": 425.41
+    },
+    {
+      "word": "total",
+      "start": 425.41,
+      "end": 425.85
+    },
+    {
+      "word": "variance",
+      "start": 425.85,
+      "end": 426.29
+    },
+    {
+      "word": "explained",
+      "start": 426.29,
+      "end": 426.73
+    },
+    {
+      "word": "by",
+      "start": 426.73,
+      "end": 427.17
+    },
+    {
+      "word": "grouping",
+      "start": 427.17,
+      "end": 427.61
+    },
+    {
+      "word": "bounded",
+      "start": 427.61,
+      "end": 428.05
+    },
+    {
+      "word": "strictly",
+      "start": 428.05,
+      "end": 428.49
+    },
+    {
+      "word": "between",
+      "start": 428.49,
+      "end": 428.93
+    },
+    {
+      "word": "zero",
+      "start": 428.93,
+      "end": 429.37
+    },
+    {
+      "word": "and",
+      "start": 429.37,
+      "end": 429.81
+    },
+    {
+      "word": "one",
+      "start": 429.81,
+      "end": 430.25
+    },
+    {
+      "word": "when",
+      "start": 430.25,
+      "end": 430.78
+    },
+    {
+      "word": "etasquared",
+      "start": 430.78,
+      "end": 431.3
+    },
+    {
+      "word": "exceeds",
+      "start": 431.3,
+      "end": 431.83
+    },
+    {
+      "word": "040",
+      "start": 431.83,
+      "end": 432.35
+    },
+    {
+      "word": "subpopulation",
+      "start": 432.35,
+      "end": 432.88
+    },
+    {
+      "word": "separation",
+      "start": 432.88,
+      "end": 433.41
+    },
+    {
+      "word": "accounts",
+      "start": 433.41,
+      "end": 433.93
+    },
+    {
+      "word": "for",
+      "start": 433.93,
+      "end": 434.46
+    },
+    {
+      "word": "the",
+      "start": 434.46,
+      "end": 434.98
+    },
+    {
+      "word": "dominant",
+      "start": 434.98,
+      "end": 435.51
+    },
+    {
+      "word": "share",
+      "start": 435.51,
+      "end": 436.04
+    },
+    {
+      "word": "of",
+      "start": 436.04,
+      "end": 436.56
+    },
+    {
+      "word": "variance",
+      "start": 436.56,
+      "end": 437.09
+    },
+    {
+      "word": "in",
+      "start": 437.09,
+      "end": 437.61
+    },
+    {
+      "word": "machine",
+      "start": 437.61,
+      "end": 438.14
+    },
+    {
+      "word": "learning",
+      "start": 438.14,
+      "end": 438.67
+    },
+    {
+      "word": "pipelines",
+      "start": 438.67,
+      "end": 439.19
+    },
+    {
+      "word": "this",
+      "start": 439.19,
+      "end": 439.72
+    },
+    {
+      "word": "mandates",
+      "start": 439.72,
+      "end": 440.24
+    },
+    {
+      "word": "either",
+      "start": 440.24,
+      "end": 440.77
+    },
+    {
+      "word": "training",
+      "start": 440.77,
+      "end": 441.3
+    },
+    {
+      "word": "cohortspecific",
+      "start": 441.3,
+      "end": 441.82
+    },
+    {
+      "word": "submodels",
+      "start": 441.82,
+      "end": 442.35
+    },
+    {
+      "word": "or",
+      "start": 442.35,
+      "end": 442.87
+    },
+    {
+      "word": "prioritizing",
+      "start": 442.87,
+      "end": 443.4
+    },
+    {
+      "word": "the",
+      "start": 443.4,
+      "end": 443.92
+    },
+    {
+      "word": "grouping",
+      "start": 443.92,
+      "end": 444.45
+    },
+    {
+      "word": "feature",
+      "start": 444.45,
+      "end": 444.98
+    },
+    {
+      "word": "for",
+      "start": 444.98,
+      "end": 445.5
+    },
+    {
+      "word": "primary",
+      "start": 445.5,
+      "end": 446.03
+    },
+    {
+      "word": "tree",
+      "start": 446.03,
+      "end": 446.55
+    },
+    {
+      "word": "splits",
+      "start": 446.55,
+      "end": 447.08
+    },
+    {
+      "word": "when",
+      "start": 447.08,
+      "end": 447.61
+    },
+    {
+      "word": "etasquared",
+      "start": 447.61,
+      "end": 448.13
+    },
+    {
+      "word": "is",
+      "start": 448.13,
+      "end": 448.66
+    },
+    {
+      "word": "below",
+      "start": 448.66,
+      "end": 449.18
+    },
+    {
+      "word": "010",
+      "start": 449.18,
+      "end": 449.71
+    },
+    {
+      "word": "the",
+      "start": 449.71,
+      "end": 450.24
+    },
+    {
+      "word": "cohorts",
+      "start": 450.24,
+      "end": 450.76
+    },
+    {
+      "word": "overlap",
+      "start": 450.76,
+      "end": 451.29
+    },
+    {
+      "word": "heavily",
+      "start": 451.29,
+      "end": 451.81
+    },
+    {
+      "word": "and",
+      "start": 451.81,
+      "end": 452.34
+    },
+    {
+      "word": "grouping",
+      "start": 452.34,
+      "end": 452.87
+    },
+    {
+      "word": "provides",
+      "start": 452.87,
+      "end": 453.39
+    },
+    {
+      "word": "negligible",
+      "start": 453.39,
+      "end": 453.92
+    },
+    {
+      "word": "predictive",
+      "start": 453.92,
+      "end": 454.44
+    },
+    {
+      "word": "signal",
+      "start": 454.44,
+      "end": 454.97
+    },
+    {
+      "word": "welcome",
+      "start": 454.97,
+      "end": 455.4
+    },
+    {
+      "word": "to",
+      "start": 455.4,
+      "end": 455.82
+    },
+    {
+      "word": "interactive",
+      "start": 455.82,
+      "end": 456.25
+    },
+    {
+      "word": "lab",
+      "start": 456.25,
+      "end": 456.67
+    },
+    {
+      "word": "2",
+      "start": 456.67,
+      "end": 457.1
+    },
+    {
+      "word": "eves",
+      "start": 457.1,
+      "end": 457.52
+    },
+    {
+      "word": "law",
+      "start": 457.52,
+      "end": 457.95
+    },
+    {
+      "word": "stratified",
+      "start": 457.95,
+      "end": 458.37
+    },
+    {
+      "word": "variance",
+      "start": 458.37,
+      "end": 458.8
+    },
+    {
+      "word": "workbench",
+      "start": 458.8,
+      "end": 459.22
+    },
+    {
+      "word": "in",
+      "start": 459.22,
+      "end": 459.65
+    },
+    {
+      "word": "this",
+      "start": 459.65,
+      "end": 460.07
+    },
+    {
+      "word": "studio",
+      "start": 460.07,
+      "end": 460.5
+    },
+    {
+      "word": "we",
+      "start": 460.5,
+      "end": 460.92
+    },
+    {
+      "word": "model",
+      "start": 460.92,
+      "end": 461.35
+    },
+    {
+      "word": "three",
+      "start": 461.35,
+      "end": 461.77
+    },
+    {
+      "word": "customer",
+      "start": 461.77,
+      "end": 462.2
+    },
+    {
+      "word": "account",
+      "start": 462.19,
+      "end": 462.62
+    },
+    {
+      "word": "cohorts",
+      "start": 462.62,
+      "end": 463.05
+    },
+    {
+      "word": "tier",
+      "start": 463.05,
+      "end": 463.47
+    },
+    {
+      "word": "1",
+      "start": 463.47,
+      "end": 463.9
+    },
+    {
+      "word": "starter",
+      "start": 463.9,
+      "end": 464.32
+    },
+    {
+      "word": "at",
+      "start": 464.32,
+      "end": 464.75
+    },
+    {
+      "word": "50",
+      "start": 464.75,
+      "end": 465.17
+    },
+    {
+      "word": "percent",
+      "start": 465.17,
+      "end": 465.6
+    },
+    {
+      "word": "tier",
+      "start": 465.6,
+      "end": 466.02
+    },
+    {
+      "word": "2",
+      "start": 466.02,
+      "end": 466.44
+    },
+    {
+      "word": "pro",
+      "start": 466.44,
+      "end": 466.87
+    },
+    {
+      "word": "at",
+      "start": 466.87,
+      "end": 467.3
+    },
+    {
+      "word": "30",
+      "start": 467.3,
+      "end": 467.72
+    },
+    {
+      "word": "percent",
+      "start": 467.72,
+      "end": 468.15
+    },
+    {
+      "word": "and",
+      "start": 468.14,
+      "end": 468.57
+    },
+    {
+      "word": "tier",
+      "start": 468.57,
+      "end": 469.0
+    },
+    {
+      "word": "3",
+      "start": 469.0,
+      "end": 469.42
+    },
+    {
+      "word": "enterprise",
+      "start": 469.42,
+      "end": 469.85
+    },
+    {
+      "word": "at",
+      "start": 469.85,
+      "end": 470.27
+    },
+    {
+      "word": "20",
+      "start": 470.27,
+      "end": 470.69
+    },
+    {
+      "word": "percent",
+      "start": 470.69,
+      "end": 471.12
+    },
+    {
+      "word": "use",
+      "start": 471.12,
+      "end": 471.53
+    },
+    {
+      "word": "the",
+      "start": 471.53,
+      "end": 471.93
+    },
+    {
+      "word": "sliders",
+      "start": 471.93,
+      "end": 472.34
+    },
+    {
+      "word": "to",
+      "start": 472.34,
+      "end": 472.75
+    },
+    {
+      "word": "adjust",
+      "start": 472.75,
+      "end": 473.15
+    },
+    {
+      "word": "group",
+      "start": 473.15,
+      "end": 473.56
+    },
+    {
+      "word": "mean",
+      "start": 473.56,
+      "end": 473.97
+    },
+    {
+      "word": "separation",
+      "start": 473.97,
+      "end": 474.37
+    },
+    {
+      "word": "deltamu",
+      "start": 474.37,
+      "end": 474.78
+    },
+    {
+      "word": "and",
+      "start": 474.78,
+      "end": 475.19
+    },
+    {
+      "word": "withingroup",
+      "start": 475.19,
+      "end": 475.59
+    },
+    {
+      "word": "noise",
+      "start": 475.59,
+      "end": 476.0
+    },
+    {
+      "word": "sigmaw",
+      "start": 476.0,
+      "end": 476.41
+    },
+    {
+      "word": "watch",
+      "start": 476.41,
+      "end": 476.81
+    },
+    {
+      "word": "how",
+      "start": 476.81,
+      "end": 477.22
+    },
+    {
+      "word": "the",
+      "start": 477.22,
+      "end": 477.63
+    },
+    {
+      "word": "stacked",
+      "start": 477.63,
+      "end": 478.03
+    },
+    {
+      "word": "variance",
+      "start": 478.03,
+      "end": 478.44
+    },
+    {
+      "word": "bar",
+      "start": 478.44,
+      "end": 478.85
+    },
+    {
+      "word": "partitions",
+      "start": 478.85,
+      "end": 479.26
+    },
+    {
+      "word": "total",
+      "start": 479.26,
+      "end": 479.66
+    },
+    {
+      "word": "variance",
+      "start": 479.66,
+      "end": 480.07
+    },
+    {
+      "word": "into",
+      "start": 480.07,
+      "end": 480.48
+    },
+    {
+      "word": "explained",
+      "start": 480.48,
+      "end": 480.88
+    },
+    {
+      "word": "betweengroup",
+      "start": 480.88,
+      "end": 481.29
+    },
+    {
+      "word": "signal",
+      "start": 481.29,
+      "end": 481.7
+    },
+    {
+      "word": "and",
+      "start": 481.7,
+      "end": 482.1
+    },
+    {
+      "word": "withingroup",
+      "start": 482.1,
+      "end": 482.51
+    },
+    {
+      "word": "noise",
+      "start": 482.51,
+      "end": 482.92
+    },
+    {
+      "word": "and",
+      "start": 482.92,
+      "end": 483.32
+    },
+    {
+      "word": "verify",
+      "start": 483.32,
+      "end": 483.73
+    },
+    {
+      "word": "that",
+      "start": 483.73,
+      "end": 484.14
+    },
+    {
+      "word": "the",
+      "start": 484.14,
+      "end": 484.54
+    },
+    {
+      "word": "conservation",
+      "start": 484.54,
+      "end": 484.95
+    },
+    {
+      "word": "delta",
+      "start": 484.95,
+      "end": 485.36
+    },
+    {
+      "word": "remains",
+      "start": 485.36,
+      "end": 485.76
+    },
+    {
+      "word": "zero",
+      "start": 485.76,
+      "end": 486.17
+    },
+    {
+      "word": "time",
+      "start": 486.17,
+      "end": 486.69
+    },
+    {
+      "word": "for",
+      "start": 486.69,
+      "end": 487.21
+    },
+    {
+      "word": "active",
+      "start": 487.21,
+      "end": 487.73
+    },
+    {
+      "word": "checkpoint",
+      "start": 487.73,
+      "end": 488.26
+    },
+    {
+      "word": "2",
+      "start": 488.26,
+      "end": 488.78
+    },
+    {
+      "word": "a",
+      "start": 488.78,
+      "end": 489.3
+    },
+    {
+      "word": "machine",
+      "start": 489.3,
+      "end": 489.82
+    },
+    {
+      "word": "learning",
+      "start": 489.82,
+      "end": 490.34
+    },
+    {
+      "word": "team",
+      "start": 490.34,
+      "end": 490.86
+    },
+    {
+      "word": "analyzes",
+      "start": 490.86,
+      "end": 491.38
+    },
+    {
+      "word": "server",
+      "start": 491.38,
+      "end": 491.91
+    },
+    {
+      "word": "packet",
+      "start": 491.91,
+      "end": 492.43
+    },
+    {
+      "word": "latency",
+      "start": 492.43,
+      "end": 492.95
+    },
+    {
+      "word": "and",
+      "start": 492.95,
+      "end": 493.47
+    },
+    {
+      "word": "reports",
+      "start": 493.47,
+      "end": 493.99
+    },
+    {
+      "word": "an",
+      "start": 493.99,
+      "end": 494.51
+    },
+    {
+      "word": "excess",
+      "start": 494.51,
+      "end": 495.03
+    },
+    {
+      "word": "kurtosis",
+      "start": 495.03,
+      "end": 495.56
+    },
+    {
+      "word": "of",
+      "start": 495.56,
+      "end": 496.08
+    },
+    {
+      "word": "plus",
+      "start": 496.08,
+      "end": 496.6
+    },
+    {
+      "word": "142",
+      "start": 496.6,
+      "end": 497.12
+    },
+    {
+      "word": "simultaneously",
+      "start": 497.12,
+      "end": 497.64
+    },
+    {
+      "word": "they",
+      "start": 497.64,
+      "end": 498.16
+    },
+    {
+      "word": "test",
+      "start": 498.16,
+      "end": 498.69
+    },
+    {
+      "word": "two",
+      "start": 498.69,
+      "end": 499.21
+    },
+    {
+      "word": "categorical",
+      "start": 499.21,
+      "end": 499.73
+    },
+    {
+      "word": "candidate",
+      "start": 499.73,
+      "end": 500.25
+    },
+    {
+      "word": "features",
+      "start": 500.25,
+      "end": 500.77
+    },
+    {
+      "word": "feature",
+      "start": 500.77,
+      "end": 501.29
+    },
+    {
+      "word": "a",
+      "start": 501.29,
+      "end": 501.81
+    },
+    {
+      "word": "with",
+      "start": 501.81,
+      "end": 502.34
+    },
+    {
+      "word": "etasquared",
+      "start": 502.34,
+      "end": 502.86
+    },
+    {
+      "word": "of",
+      "start": 502.86,
+      "end": 503.38
+    },
+    {
+      "word": "0008",
+      "start": 503.38,
+      "end": 503.9
+    },
+    {
+      "word": "and",
+      "start": 503.9,
+      "end": 504.42
+    },
+    {
+      "word": "feature",
+      "start": 504.42,
+      "end": 504.94
+    },
+    {
+      "word": "b",
+      "start": 504.94,
+      "end": 505.46
+    },
+    {
+      "word": "with",
+      "start": 505.46,
+      "end": 505.99
+    },
+    {
+      "word": "etasquared",
+      "start": 505.99,
+      "end": 506.51
+    },
+    {
+      "word": "of",
+      "start": 506.51,
+      "end": 507.03
+    },
+    {
+      "word": "0485",
+      "start": 507.03,
+      "end": 507.55
+    },
+    {
+      "word": "what",
+      "start": 507.55,
+      "end": 507.98
+    },
+    {
+      "word": "concrete",
+      "start": 507.98,
+      "end": 508.41
+    },
+    {
+      "word": "architectural",
+      "start": 508.41,
+      "end": 508.84
+    },
+    {
+      "word": "conclusions",
+      "start": 508.84,
+      "end": 509.26
+    },
+    {
+      "word": "and",
+      "start": 509.26,
+      "end": 509.69
+    },
+    {
+      "word": "feature",
+      "start": 509.69,
+      "end": 510.12
+    },
+    {
+      "word": "selection",
+      "start": 510.12,
+      "end": 510.55
+    },
+    {
+      "word": "decisions",
+      "start": 510.55,
+      "end": 510.98
+    },
+    {
+      "word": "should",
+      "start": 510.98,
+      "end": 511.41
+    },
+    {
+      "word": "the",
+      "start": 511.41,
+      "end": 511.84
+    },
+    {
+      "word": "team",
+      "start": 511.84,
+      "end": 512.26
+    },
+    {
+      "word": "make",
+      "start": 512.26,
+      "end": 512.69
+    },
+    {
+      "word": "review",
+      "start": 512.69,
+      "end": 513.12
+    },
+    {
+      "word": "the",
+      "start": 513.12,
+      "end": 513.55
+    },
+    {
+      "word": "mathematical",
+      "start": 513.55,
+      "end": 513.98
+    },
+    {
+      "word": "properties",
+      "start": 513.98,
+      "end": 514.41
+    },
+    {
+      "word": "of",
+      "start": 514.41,
+      "end": 514.83
+    },
+    {
+      "word": "fourth",
+      "start": 514.83,
+      "end": 515.26
+    },
+    {
+      "word": "moments",
+      "start": 515.26,
+      "end": 515.69
+    },
+    {
+      "word": "and",
+      "start": 515.69,
+      "end": 516.12
+    },
+    {
+      "word": "eves",
+      "start": 516.12,
+      "end": 516.55
+    },
+    {
+      "word": "law",
+      "start": 516.55,
+      "end": 516.98
+    },
+    {
+      "word": "and",
+      "start": 516.98,
+      "end": 517.41
+    },
+    {
+      "word": "select",
+      "start": 517.41,
+      "end": 517.83
+    },
+    {
+      "word": "the",
+      "start": 517.83,
+      "end": 518.26
+    },
+    {
+      "word": "correct",
+      "start": 518.26,
+      "end": 518.69
+    },
+    {
+      "word": "response",
+      "start": 518.69,
+      "end": 519.12
+    },
+    {
+      "word": "let",
+      "start": 519.12,
+      "end": 519.61
+    },
+    {
+      "word": "us",
+      "start": 519.61,
+      "end": 520.1
+    },
+    {
+      "word": "examine",
+      "start": 520.1,
+      "end": 520.59
+    },
+    {
+      "word": "two",
+      "start": 520.59,
+      "end": 521.08
+    },
+    {
+      "word": "realworld",
+      "start": 521.08,
+      "end": 521.56
+    },
+    {
+      "word": "production",
+      "start": 521.56,
+      "end": 522.05
+    },
+    {
+      "word": "case",
+      "start": 522.05,
+      "end": 522.54
+    },
+    {
+      "word": "studies",
+      "start": 522.54,
+      "end": 523.03
+    },
+    {
+      "word": "where",
+      "start": 523.03,
+      "end": 523.52
+    },
+    {
+      "word": "higher",
+      "start": 523.52,
+      "end": 524.01
+    },
+    {
+      "word": "moments",
+      "start": 524.01,
+      "end": 524.5
+    },
+    {
+      "word": "and",
+      "start": 524.5,
+      "end": 524.99
+    },
+    {
+      "word": "variance",
+      "start": 524.99,
+      "end": 525.47
+    },
+    {
+      "word": "decomposition",
+      "start": 525.47,
+      "end": 525.96
+    },
+    {
+      "word": "resolved",
+      "start": 525.96,
+      "end": 526.45
+    },
+    {
+      "word": "critical",
+      "start": 526.45,
+      "end": 526.94
+    },
+    {
+      "word": "system",
+      "start": 526.94,
+      "end": 527.43
+    },
+    {
+      "word": "failures",
+      "start": 527.43,
+      "end": 527.92
+    },
+    {
+      "word": "in",
+      "start": 527.92,
+      "end": 528.41
+    },
+    {
+      "word": "highfrequency",
+      "start": 528.41,
+      "end": 528.9
+    },
+    {
+      "word": "trading",
+      "start": 528.9,
+      "end": 529.38
+    },
+    {
+      "word": "a",
+      "start": 529.38,
+      "end": 529.87
+    },
+    {
+      "word": "network",
+      "start": 529.87,
+      "end": 530.36
+    },
+    {
+      "word": "switch",
+      "start": 530.36,
+      "end": 530.85
+    },
+    {
+      "word": "upgrade",
+      "start": 530.85,
+      "end": 531.34
+    },
+    {
+      "word": "improved",
+      "start": 531.34,
+      "end": 531.83
+    },
+    {
+      "word": "average",
+      "start": 531.83,
+      "end": 532.32
+    },
+    {
+      "word": "packet",
+      "start": 532.32,
+      "end": 532.81
+    },
+    {
+      "word": "latency",
+      "start": 532.81,
+      "end": 533.29
+    },
+    {
+      "word": "from",
+      "start": 533.29,
+      "end": 533.78
+    },
+    {
+      "word": "18",
+      "start": 533.78,
+      "end": 534.27
+    },
+    {
+      "word": "to",
+      "start": 534.27,
+      "end": 534.76
+    },
+    {
+      "word": "16",
+      "start": 534.76,
+      "end": 535.25
+    },
+    {
+      "word": "microseconds",
+      "start": 535.25,
+      "end": 535.74
+    },
+    {
+      "word": "and",
+      "start": 535.74,
+      "end": 536.23
+    },
+    {
+      "word": "standard",
+      "start": 536.23,
+      "end": 536.72
+    },
+    {
+      "word": "deviation",
+      "start": 536.72,
+      "end": 537.2
+    },
+    {
+      "word": "shrank",
+      "start": 537.2,
+      "end": 537.69
+    },
+    {
+      "word": "from",
+      "start": 537.69,
+      "end": 538.18
+    },
+    {
+      "word": "42",
+      "start": 538.18,
+      "end": 538.67
+    },
+    {
+      "word": "to",
+      "start": 538.67,
+      "end": 539.16
+    },
+    {
+      "word": "38",
+      "start": 539.16,
+      "end": 539.65
+    },
+    {
+      "word": "microseconds",
+      "start": 539.65,
+      "end": 540.14
+    },
+    {
+      "word": "yet",
+      "start": 540.14,
+      "end": 540.63
+    },
+    {
+      "word": "automated",
+      "start": 540.63,
+      "end": 541.11
+    },
+    {
+      "word": "risk",
+      "start": 541.11,
+      "end": 541.6
+    },
+    {
+      "word": "throttles",
+      "start": 541.6,
+      "end": 542.09
+    },
+    {
+      "word": "tripped",
+      "start": 542.09,
+      "end": 542.58
+    },
+    {
+      "word": "repeatedly",
+      "start": 542.58,
+      "end": 543.07
+    },
+    {
+      "word": "fourth",
+      "start": 543.07,
+      "end": 543.59
+    },
+    {
+      "word": "moment",
+      "start": 543.59,
+      "end": 544.11
+    },
+    {
+      "word": "analysis",
+      "start": 544.11,
+      "end": 544.62
+    },
+    {
+      "word": "revealed",
+      "start": 544.62,
+      "end": 545.14
+    },
+    {
+      "word": "that",
+      "start": 545.14,
+      "end": 545.66
+    },
+    {
+      "word": "excess",
+      "start": 545.66,
+      "end": 546.18
+    },
+    {
+      "word": "kurtosis",
+      "start": 546.18,
+      "end": 546.7
+    },
+    {
+      "word": "had",
+      "start": 546.7,
+      "end": 547.22
+    },
+    {
+      "word": "exploded",
+      "start": 547.22,
+      "end": 547.74
+    },
+    {
+      "word": "from",
+      "start": 547.74,
+      "end": 548.25
+    },
+    {
+      "word": "11",
+      "start": 548.25,
+      "end": 548.77
+    },
+    {
+      "word": "to",
+      "start": 548.77,
+      "end": 549.29
+    },
+    {
+      "word": "524",
+      "start": 549.29,
+      "end": 549.81
+    },
+    {
+      "word": "buffer",
+      "start": 549.81,
+      "end": 550.33
+    },
+    {
+      "word": "saturation",
+      "start": 550.33,
+      "end": 550.85
+    },
+    {
+      "word": "caused",
+      "start": 550.85,
+      "end": 551.36
+    },
+    {
+      "word": "rare",
+      "start": 551.36,
+      "end": 551.88
+    },
+    {
+      "word": "2800",
+      "start": 551.88,
+      "end": 552.4
+    },
+    {
+      "word": "microsecond",
+      "start": 552.4,
+      "end": 552.92
+    },
+    {
+      "word": "stalls",
+      "start": 552.92,
+      "end": 553.44
+    },
+    {
+      "word": "700",
+      "start": 553.44,
+      "end": 553.96
+    },
+    {
+      "word": "sigma",
+      "start": 553.96,
+      "end": 554.47
+    },
+    {
+      "word": "above",
+      "start": 554.47,
+      "end": 554.99
+    },
+    {
+      "word": "the",
+      "start": 554.99,
+      "end": 555.51
+    },
+    {
+      "word": "mean",
+      "start": 555.51,
+      "end": 556.03
+    },
+    {
+      "word": "because",
+      "start": 556.03,
+      "end": 556.55
+    },
+    {
+      "word": "deviations",
+      "start": 556.55,
+      "end": 557.07
+    },
+    {
+      "word": "are",
+      "start": 557.07,
+      "end": 557.58
+    },
+    {
+      "word": "raised",
+      "start": 557.58,
+      "end": 558.1
+    },
+    {
+      "word": "to",
+      "start": 558.1,
+      "end": 558.62
+    },
+    {
+      "word": "the",
+      "start": 558.62,
+      "end": 559.14
+    },
+    {
+      "word": "fourth",
+      "start": 559.14,
+      "end": 559.66
+    },
+    {
+      "word": "power",
+      "start": 559.66,
+      "end": 560.17
+    },
+    {
+      "word": "that",
+      "start": 560.18,
+      "end": 560.69
+    },
+    {
+      "word": "stall",
+      "start": 560.69,
+      "end": 561.21
+    },
+    {
+      "word": "was",
+      "start": 561.21,
+      "end": 561.73
+    },
+    {
+      "word": "amplified",
+      "start": 561.73,
+      "end": 562.25
+    },
+    {
+      "word": "by",
+      "start": 562.25,
+      "end": 562.77
+    },
+    {
+      "word": "290",
+      "start": 562.77,
+      "end": 563.28
+    },
+    {
+      "word": "billion",
+      "start": 563.28,
+      "end": 563.8
+    },
+    {
+      "word": "times",
+      "start": 563.8,
+      "end": 564.32
+    },
+    {
+      "word": "immediately",
+      "start": 564.32,
+      "end": 564.84
+    },
+    {
+      "word": "exposing",
+      "start": 564.84,
+      "end": 565.36
+    },
+    {
+      "word": "the",
+      "start": 565.36,
+      "end": 565.88
+    },
+    {
+      "word": "buffer",
+      "start": 565.88,
+      "end": 566.39
+    },
+    {
+      "word": "flaw",
+      "start": 566.39,
+      "end": 566.91
+    },
+    {
+      "word": "in",
+      "start": 566.91,
+      "end": 567.43
+    },
+    {
+      "word": "our",
+      "start": 567.43,
+      "end": 567.95
+    },
+    {
+      "word": "second",
+      "start": 567.95,
+      "end": 568.47
+    },
+    {
+      "word": "case",
+      "start": 568.47,
+      "end": 568.99
+    },
+    {
+      "word": "saas",
+      "start": 568.99,
+      "end": 569.5
+    },
+    {
+      "word": "revenue",
+      "start": 569.5,
+      "end": 570.02
+    },
+    {
+      "word": "heterogeneity",
+      "start": 570.02,
+      "end": 570.54
+    },
+    {
+      "word": "had",
+      "start": 570.54,
+      "end": 571.06
+    },
+    {
+      "word": "an",
+      "start": 571.06,
+      "end": 571.58
+    },
+    {
+      "word": "etasquared",
+      "start": 571.58,
+      "end": 572.1
+    },
+    {
+      "word": "of",
+      "start": 572.1,
+      "end": 572.62
+    },
+    {
+      "word": "955",
+      "start": 572.62,
+      "end": 573.13
+    },
+    {
+      "word": "percent",
+      "start": 573.13,
+      "end": 573.65
+    },
+    {
+      "word": "across",
+      "start": 573.65,
+      "end": 574.17
+    },
+    {
+      "word": "account",
+      "start": 574.17,
+      "end": 574.69
+    },
+    {
+      "word": "tiers",
+      "start": 574.69,
+      "end": 575.21
+    },
+    {
+      "word": "fitting",
+      "start": 575.21,
+      "end": 575.73
+    },
+    {
+      "word": "separate",
+      "start": 575.73,
+      "end": 576.24
+    },
+    {
+      "word": "tier",
+      "start": 576.24,
+      "end": 576.76
+    },
+    {
+      "word": "models",
+      "start": 576.76,
+      "end": 577.28
+    },
+    {
+      "word": "improved",
+      "start": 577.28,
+      "end": 577.8
+    },
+    {
+      "word": "rsquared",
+      "start": 577.8,
+      "end": 578.32
+    },
+    {
+      "word": "from",
+      "start": 578.32,
+      "end": 578.83
+    },
+    {
+      "word": "014",
+      "start": 578.84,
+      "end": 579.35
+    },
+    {
+      "word": "to",
+      "start": 579.35,
+      "end": 579.87
+    },
+    {
+      "word": "089",
+      "start": 579.87,
+      "end": 580.39
+    },
+    {
+      "word": "in",
+      "start": 580.39,
+      "end": 580.92
+    },
+    {
+      "word": "production",
+      "start": 580.92,
+      "end": 581.44
+    },
+    {
+      "word": "machine",
+      "start": 581.44,
+      "end": 581.97
+    },
+    {
+      "word": "learning",
+      "start": 581.97,
+      "end": 582.5
+    },
+    {
+      "word": "pipelines",
+      "start": 582.5,
+      "end": 583.03
+    },
+    {
+      "word": "moment",
+      "start": 583.03,
+      "end": 583.55
+    },
+    {
+      "word": "calculations",
+      "start": 583.55,
+      "end": 584.08
+    },
+    {
+      "word": "and",
+      "start": 584.08,
+      "end": 584.61
+    },
+    {
+      "word": "variance",
+      "start": 584.61,
+      "end": 585.14
+    },
+    {
+      "word": "decompositions",
+      "start": 585.14,
+      "end": 585.66
+    },
+    {
+      "word": "must",
+      "start": 585.66,
+      "end": 586.19
+    },
+    {
+      "word": "be",
+      "start": 586.19,
+      "end": 586.72
+    },
+    {
+      "word": "backed",
+      "start": 586.72,
+      "end": 587.25
+    },
+    {
+      "word": "by",
+      "start": 587.25,
+      "end": 587.77
+    },
+    {
+      "word": "strict",
+      "start": 587.77,
+      "end": 588.3
+    },
+    {
+      "word": "runtime",
+      "start": 588.3,
+      "end": 588.83
+    },
+    {
+      "word": "contracts",
+      "start": 588.83,
+      "end": 589.35
+    },
+    {
+      "word": "here",
+      "start": 589.35,
+      "end": 589.88
+    },
+    {
+      "word": "is",
+      "start": 589.88,
+      "end": 590.41
+    },
+    {
+      "word": "our",
+      "start": 590.41,
+      "end": 590.94
+    },
+    {
+      "word": "enterprise",
+      "start": 590.94,
+      "end": 591.46
+    },
+    {
+      "word": "python",
+      "start": 591.46,
+      "end": 591.99
+    },
+    {
+      "word": "implementation",
+      "start": 591.99,
+      "end": 592.52
+    },
+    {
+      "word": "leveraging",
+      "start": 592.52,
+      "end": 593.05
+    },
+    {
+      "word": "pydantic",
+      "start": 593.05,
+      "end": 593.57
+    },
+    {
+      "word": "v2",
+      "start": 593.57,
+      "end": 594.1
+    },
+    {
+      "word": "the",
+      "start": 594.1,
+      "end": 594.61
+    },
+    {
+      "word": "momentprofile",
+      "start": 594.61,
+      "end": 595.13
+    },
+    {
+      "word": "class",
+      "start": 595.13,
+      "end": 595.64
+    },
+    {
+      "word": "validates",
+      "start": 595.64,
+      "end": 596.15
+    },
+    {
+      "word": "sample",
+      "start": 596.15,
+      "end": 596.66
+    },
+    {
+      "word": "size",
+      "start": 596.66,
+      "end": 597.18
+    },
+    {
+      "word": "thresholds",
+      "start": 597.18,
+      "end": 597.69
+    },
+    {
+      "word": "unbiased",
+      "start": 597.69,
+      "end": 598.2
+    },
+    {
+      "word": "bessel",
+      "start": 598.2,
+      "end": 598.71
+    },
+    {
+      "word": "variance",
+      "start": 598.71,
+      "end": 599.23
+    },
+    {
+      "word": "robust",
+      "start": 599.23,
+      "end": 599.74
+    },
+    {
+      "word": "mad",
+      "start": 599.74,
+      "end": 600.25
+    },
+    {
+      "word": "bowley",
+      "start": 600.25,
+      "end": 600.76
+    },
+    {
+      "word": "skewness",
+      "start": 600.76,
+      "end": 601.28
+    },
+    {
+      "word": "and",
+      "start": 601.28,
+      "end": 601.79
+    },
+    {
+      "word": "gini",
+      "start": 601.79,
+      "end": 602.3
+    },
+    {
+      "word": "coefficient",
+      "start": 602.3,
+      "end": 602.81
+    },
+    {
+      "word": "meanwhile",
+      "start": 602.81,
+      "end": 603.33
+    },
+    {
+      "word": "eveslawdecomposition",
+      "start": 603.33,
+      "end": 603.84
+    },
+    {
+      "word": "enforces",
+      "start": 603.84,
+      "end": 604.35
+    },
+    {
+      "word": "an",
+      "start": 604.35,
+      "end": 604.87
+    },
+    {
+      "word": "aftervalidator",
+      "start": 604.87,
+      "end": 605.38
+    },
+    {
+      "word": "ensuring",
+      "start": 605.38,
+      "end": 605.89
+    },
+    {
+      "word": "that",
+      "start": 605.89,
+      "end": 606.4
+    },
+    {
+      "word": "total",
+      "start": 606.4,
+      "end": 606.92
+    },
+    {
+      "word": "variance",
+      "start": 606.92,
+      "end": 607.43
+    },
+    {
+      "word": "equals",
+      "start": 607.43,
+      "end": 607.94
+    },
+    {
+      "word": "withingroup",
+      "start": 607.94,
+      "end": 608.45
+    },
+    {
+      "word": "plus",
+      "start": 608.45,
+      "end": 608.97
+    },
+    {
+      "word": "betweengroup",
+      "start": 608.97,
+      "end": 609.48
+    },
+    {
+      "word": "variance",
+      "start": 609.48,
+      "end": 609.99
+    },
+    {
+      "word": "within",
+      "start": 609.99,
+      "end": 610.5
+    },
+    {
+      "word": "ten",
+      "start": 610.5,
+      "end": 611.02
+    },
+    {
+      "word": "to",
+      "start": 611.02,
+      "end": 611.53
+    },
+    {
+      "word": "the",
+      "start": 611.53,
+      "end": 612.04
+    },
+    {
+      "word": "minus",
+      "start": 612.04,
+      "end": 612.55
+    },
+    {
+      "word": "four",
+      "start": 612.55,
+      "end": 613.07
+    },
+    {
+      "word": "precision",
+      "start": 613.07,
+      "end": 613.58
+    },
+    {
+      "word": "we",
+      "start": 613.58,
+      "end": 614.02
+    },
+    {
+      "word": "conclude",
+      "start": 614.02,
+      "end": 614.46
+    },
+    {
+      "word": "lesson",
+      "start": 614.46,
+      "end": 614.91
+    },
+    {
+      "word": "63",
+      "start": 614.91,
+      "end": 615.35
+    },
+    {
+      "word": "with",
+      "start": 615.35,
+      "end": 615.79
+    },
+    {
+      "word": "four",
+      "start": 615.79,
+      "end": 616.23
+    },
+    {
+      "word": "cardinal",
+      "start": 616.23,
+      "end": 616.67
+    },
+    {
+      "word": "rules",
+      "start": 616.67,
+      "end": 617.12
+    },
+    {
+      "word": "that",
+      "start": 617.12,
+      "end": 617.56
+    },
+    {
+      "word": "must",
+      "start": 617.56,
+      "end": 618.0
+    },
+    {
+      "word": "govern",
+      "start": 618.0,
+      "end": 618.44
+    },
+    {
+      "word": "dispersion",
+      "start": 618.44,
+      "end": 618.88
+    },
+    {
+      "word": "shape",
+      "start": 618.88,
+      "end": 619.33
+    },
+    {
+      "word": "and",
+      "start": 619.33,
+      "end": 619.77
+    },
+    {
+      "word": "grouping",
+      "start": 619.77,
+      "end": 620.21
+    },
+    {
+      "word": "analysis",
+      "start": 620.21,
+      "end": 620.65
+    },
+    {
+      "word": "in",
+      "start": 620.65,
+      "end": 621.09
+    },
+    {
+      "word": "all",
+      "start": 621.09,
+      "end": 621.54
+    },
+    {
+      "word": "data",
+      "start": 621.54,
+      "end": 621.98
+    },
+    {
+      "word": "systems",
+      "start": 621.98,
+      "end": 622.42
+    },
+    {
+      "word": "first",
+      "start": 622.42,
+      "end": 622.91
+    },
+    {
+      "word": "always",
+      "start": 622.91,
+      "end": 623.4
+    },
+    {
+      "word": "use",
+      "start": 623.4,
+      "end": 623.89
+    },
+    {
+      "word": "bessels",
+      "start": 623.89,
+      "end": 624.38
+    },
+    {
+      "word": "correction",
+      "start": 624.38,
+      "end": 624.87
+    },
+    {
+      "word": "for",
+      "start": 624.87,
+      "end": 625.37
+    },
+    {
+      "word": "sample",
+      "start": 625.37,
+      "end": 625.86
+    },
+    {
+      "word": "variance",
+      "start": 625.86,
+      "end": 626.35
+    },
+    {
+      "word": "but",
+      "start": 626.35,
+      "end": 626.84
+    },
+    {
+      "word": "remember",
+      "start": 626.84,
+      "end": 627.33
+    },
+    {
+      "word": "that",
+      "start": 627.33,
+      "end": 627.82
+    },
+    {
+      "word": "sample",
+      "start": 627.82,
+      "end": 628.31
+    },
+    {
+      "word": "standard",
+      "start": 628.31,
+      "end": 628.8
+    },
+    {
+      "word": "deviation",
+      "start": 628.8,
+      "end": 629.29
+    },
+    {
+      "word": "remains",
+      "start": 629.29,
+      "end": 629.78
+    },
+    {
+      "word": "biased",
+      "start": 629.78,
+      "end": 630.28
+    },
+    {
+      "word": "downwards",
+      "start": 630.28,
+      "end": 630.77
+    },
+    {
+      "word": "by",
+      "start": 630.77,
+      "end": 631.26
+    },
+    {
+      "word": "jensens",
+      "start": 631.26,
+      "end": 631.75
+    },
+    {
+      "word": "inequality",
+      "start": 631.75,
+      "end": 632.24
+    },
+    {
+      "word": "second",
+      "start": 632.24,
+      "end": 632.73
+    },
+    {
+      "word": "deploy",
+      "start": 632.73,
+      "end": 633.22
+    },
+    {
+      "word": "normalconsistent",
+      "start": 633.22,
+      "end": 633.71
+    },
+    {
+      "word": "mad",
+      "start": 633.71,
+      "end": 634.2
+    },
+    {
+      "word": "when",
+      "start": 634.2,
+      "end": 634.69
+    },
+    {
+      "word": "tails",
+      "start": 634.69,
+      "end": 635.19
+    },
+    {
+      "word": "are",
+      "start": 635.19,
+      "end": 635.68
+    },
+    {
+      "word": "heavy",
+      "start": 635.68,
+      "end": 636.17
+    },
+    {
+      "word": "third",
+      "start": 636.17,
+      "end": 636.66
+    },
+    {
+      "word": "treat",
+      "start": 636.66,
+      "end": 637.15
+    },
+    {
+      "word": "kurtosis",
+      "start": 637.15,
+      "end": 637.64
+    },
+    {
+      "word": "strictly",
+      "start": 637.64,
+      "end": 638.13
+    },
+    {
+      "word": "as",
+      "start": 638.13,
+      "end": 638.62
+    },
+    {
+      "word": "tail",
+      "start": 638.62,
+      "end": 639.11
+    },
+    {
+      "word": "leverage",
+      "start": 639.11,
+      "end": 639.6
+    },
+    {
+      "word": "never",
+      "start": 639.6,
+      "end": 640.1
+    },
+    {
+      "word": "as",
+      "start": 640.1,
+      "end": 640.59
+    },
+    {
+      "word": "peak",
+      "start": 640.59,
+      "end": 641.08
+    },
+    {
+      "word": "sharpness",
+      "start": 641.08,
+      "end": 641.57
+    },
+    {
+      "word": "and",
+      "start": 641.57,
+      "end": 642.06
+    },
+    {
+      "word": "fourth",
+      "start": 642.06,
+      "end": 642.55
+    },
+    {
+      "word": "decompose",
+      "start": 642.55,
+      "end": 643.04
+    },
+    {
+      "word": "subpopulation",
+      "start": 643.04,
+      "end": 643.53
+    },
+    {
+      "word": "variance",
+      "start": 643.53,
+      "end": 644.02
+    },
+    {
+      "word": "via",
+      "start": 644.02,
+      "end": 644.51
+    },
+    {
+      "word": "eves",
+      "start": 644.51,
+      "end": 645.01
+    },
+    {
+      "word": "law",
+      "start": 645.01,
+      "end": 645.5
+    },
+    {
+      "word": "before",
+      "start": 645.5,
+      "end": 645.99
+    },
+    {
+      "word": "fitting",
+      "start": 645.99,
+      "end": 646.48
+    },
+    {
+      "word": "global",
+      "start": 646.48,
+      "end": 646.97
+    },
+    {
+      "word": "models",
+      "start": 646.97,
+      "end": 647.46
+    },
+    {
+      "word": "see",
+      "start": 647.46,
+      "end": 647.95
+    },
+    {
+      "word": "you",
+      "start": 647.95,
+      "end": 648.44
+    },
+    {
+      "word": "in",
+      "start": 648.44,
+      "end": 648.93
+    },
+    {
+      "word": "lesson",
+      "start": 648.93,
+      "end": 649.42
+    },
+    {
+      "word": "64",
+      "start": 649.42,
+      "end": 649.92
+    },
+    {
+      "word": "for",
+      "start": 649.92,
+      "end": 650.41
+    },
+    {
+      "word": "univariate",
+      "start": 650.41,
+      "end": 650.9
+    },
+    {
+      "word": "and",
+      "start": 650.9,
+      "end": 651.39
+    },
+    {
+      "word": "bivariate",
+      "start": 651.39,
+      "end": 651.88
+    },
+    {
+      "word": "visualization",
+      "start": 651.88,
+      "end": 652.37
+    }
+  ]
+},
+  "ch6_p3_duo": {
+  "duration": 674.42,
+  "sentences": [
+    {
+      "slide": 1,
+      "turn": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, in Lesson 6.2 we nailed location estimators: mean, median, and Hodges-Lehmann. If we know where the distribution is centered, why do we need higher moments and dispersion?",
+      "start": 0.0,
+      "end": 11.74,
+      "duration": 11.74
+    },
+    {
+      "slide": 1,
+      "turn": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because center tells only a tiny fraction of the story, Kaito! Consider two server clusters: both have a mean response time of 50 milliseconds. But Cluster A has a standard deviation of 2 milliseconds, while Cluster B has an excess kurtosis of 50 with intermittent 3-second micro-burst timeouts.",
+      "start": 11.74,
+      "end": 31.25,
+      "duration": 19.51
+    },
+    {
+      "slide": 1,
+      "turn": 2,
+      "speaker": "Kaito",
+      "text": "Whoa! Cluster B would destroy user SLAs while maintaining an identical sample mean! So dispersion and shape are where production failures actually hide.",
+      "start": 31.25,
+      "end": 42.24,
+      "duration": 10.99
+    },
+    {
+      "slide": 1,
+      "turn": 3,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. Today we formalize Bessel's correction, probe why sample standard deviation is systematically biased downwards by Jensen's inequality, debunk the myth that kurtosis measures peak sharpness, and master Eve's Law for cohort stratification.",
+      "start": 42.24,
+      "end": 58.42,
+      "duration": 16.18
+    },
+    {
+      "slide": 2,
+      "turn": 4,
+      "speaker": "Kaito",
+      "text": "Every stats textbook says to divide by n minus 1 instead of n for sample variance, but people often treat it like an arbitrary rule of thumb. Where does that n minus 1 actually come from?",
+      "start": 58.42,
+      "end": 70.1,
+      "duration": 11.69
+    },
+    {
+      "slide": 2,
+      "turn": 5,
+      "speaker": "Dr. Nova",
+      "text": "It comes directly from estimating the mean first, Kaito! When you compute x-bar from your n points, the sum of deviations around x-bar is identically zero: sum of x-sub-i minus x-bar equals zero. That consumes one independent degree of freedom.",
+      "start": 70.1,
+      "end": 87.14,
+      "duration": 17.04
+    },
+    {
+      "slide": 2,
+      "turn": 6,
+      "speaker": "Kaito",
+      "text": "Right! If you know the mean and any n minus 1 data points, the last point is completely determined! It has zero freedom to vary.",
+      "start": 87.14,
+      "end": 97.01,
+      "duration": 9.86
+    },
+    {
+      "slide": 2,
+      "turn": 7,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. And mathematically, measuring spread from x-bar rather than true mu subtracts the variance of the mean itself, which is sigma-squared over n. Scaling by n over n minus 1 repairs that downward bias exactly.",
+      "start": 97.01,
+      "end": 111.46,
+      "duration": 14.45
+    },
+    {
+      "slide": 3,
+      "turn": 8,
+      "speaker": "Kaito",
+      "text": "Wait, Dr. Nova! If s-squared is unbiased for sigma-squared, how can its square root NOT be unbiased for sigma? Square root is just the inverse operation!",
+      "start": 111.46,
+      "end": 123.07,
+      "duration": 11.62
+    },
+    {
+      "slide": 3,
+      "turn": 9,
+      "speaker": "Dr. Nova",
+      "text": "Expectation is a linear operator, Kaito! It does not commute with nonlinear transformations: the expectation of the square root is not the square root of the expectation. Because square root bends downwards\u2014it is strictly concave\u2014Jensen's inequality proves that E of s is strictly less than sigma.",
+      "start": 123.07,
+      "end": 142.54,
+      "duration": 19.46
+    },
+    {
+      "slide": 3,
+      "turn": 10,
+      "speaker": "Kaito",
+      "text": "Fascinating! So sample standard deviation always underestimates true population volatility in finite samples!",
+      "start": 142.54,
+      "end": 150.89,
+      "duration": 8.35
+    },
+    {
+      "slide": 3,
+      "turn": 11,
+      "speaker": "Dr. Nova",
+      "text": "Always. At n equals 2, sample standard deviation underestimates sigma by nearly 20 percent! For Gaussian data, you must multiply s by the c-4 factor if you demand strict unbiasedness.",
+      "start": 150.89,
+      "end": 165.14,
+      "duration": 14.26
+    },
+    {
+      "slide": 4,
+      "turn": 12,
+      "speaker": "Kaito",
+      "text": "So standard deviation has a zero percent breakdown point, just like the sample mean! A single rogue outlier can explode it to infinity.",
+      "start": 165.14,
+      "end": 174.34,
+      "duration": 9.19
+    },
+    {
+      "slide": 4,
+      "turn": 13,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. That is why automated production health pipelines using standard deviation for anomaly thresholds fail so frequently. When outliers contaminate the stream, standard deviation inflates, which widens the threshold and allows subsequent bad data to slip through undetected!",
+      "start": 174.34,
+      "end": 192.58,
+      "duration": 18.24
+    },
+    {
+      "slide": 4,
+      "turn": 14,
+      "speaker": "Kaito",
+      "text": "A classic masking effect! What should we use instead?",
+      "start": 192.58,
+      "end": 197.57,
+      "duration": 4.99
+    },
+    {
+      "slide": 4,
+      "turn": 15,
+      "speaker": "Dr. Nova",
+      "text": "Use the Normal-Consistent MAD, which is 1.4826 times MAD, or the Rousseeuw-Croux Q-sub-n estimator. Both resist up to 50 percent contamination while providing unbiased scale estimates under Gaussian baselines.",
+      "start": 197.57,
+      "end": 212.09,
+      "duration": 14.52
+    },
+    {
+      "slide": 5,
+      "turn": 16,
+      "speaker": "Kaito",
+      "text": "I see! If I have a feature measured in micrograms and another in gigabytes, I can't just say the gigabyte standard deviation is bigger and call it more dispersed.",
+      "start": 212.09,
+      "end": 222.34,
+      "duration": 10.25
+    },
+    {
+      "slide": 5,
+      "turn": 17,
+      "speaker": "Dr. Nova",
+      "text": "Never! Standard deviation carries the physical dimensions of the measurement. Changing units from dollars to cents multiplies standard deviation by 100 without altering the underlying distribution. Dimensionless metrics like CV, QCD, and Gini eliminate unit dependence entirely.",
+      "start": 222.34,
+      "end": 242.21,
+      "duration": 19.87
+    },
+    {
+      "slide": 5,
+      "turn": 18,
+      "speaker": "Kaito",
+      "text": "And the Gini coefficient isn't just for economics income inequality\u2014it can measure resource concentration in cluster workloads or API token usage across accounts!",
+      "start": 242.21,
+      "end": 251.71,
+      "duration": 9.5
+    },
+    {
+      "slide": 5,
+      "turn": 19,
+      "speaker": "Dr. Nova",
+      "text": "Spot on. A high Gini coefficient in API latency indicates that a tiny fraction of heavy queries consumes the overwhelming majority of compute time.",
+      "start": 251.71,
+      "end": 262.32,
+      "duration": 10.61
+    },
+    {
+      "slide": 6,
+      "turn": 20,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, let's stress-test these estimators! What happens if I choose the Lognormal profile and inject 10 percent outliers?",
+      "start": 262.32,
+      "end": 270.94,
+      "duration": 8.62
+    },
+    {
+      "slide": 6,
+      "turn": 21,
+      "speaker": "Dr. Nova",
+      "text": "Try it right on the canvas, Kaito! Notice how the red dashed Mean line flies to the right, dragging standard deviation with it, while the blue Median and the green MAD interval hold their ground. Watch the Excess Kurtosis indicator turn red as it detects the heavy tails!",
+      "start": 270.94,
+      "end": 288.19,
+      "duration": 17.26
+    },
+    {
+      "slide": 7,
+      "turn": 22,
+      "speaker": "Kaito",
+      "text": "Time for our first knowledge check! A data engineer applies Bessel's n minus 1 correction to sample variance, takes the square root, and announces: 'Our sample standard deviation is 100 percent unbiased!' What's the verdict, Dr. Nova?",
+      "start": 288.19,
+      "end": 303.82,
+      "duration": 15.62
+    },
+    {
+      "slide": 7,
+      "turn": 23,
+      "speaker": "Dr. Nova",
+      "text": "Let our students decide! Think carefully about Jensen's inequality and the concavity of the square root function. Lock in your answer below!",
+      "start": 303.82,
+      "end": 313.85,
+      "duration": 10.03
+    },
+    {
+      "slide": 8,
+      "turn": 24,
+      "speaker": "Kaito",
+      "text": "Fisher skewness raises deviations to the third power. Doesn't that make it wildly sensitive to extreme outliers, just like variance?",
+      "start": 313.85,
+      "end": 322.85,
+      "duration": 9.0
+    },
+    {
+      "slide": 8,
+      "turn": 25,
+      "speaker": "Dr. Nova",
+      "text": "Even more sensitive, Kaito! Because deviations are cubed, a single extreme outlier at 10 sigma contributes 1,000 to the numerator, completely dominating the sample skewness.",
+      "start": 322.85,
+      "end": 335.21,
+      "duration": 12.36
+    },
+    {
+      "slide": 8,
+      "turn": 26,
+      "speaker": "Kaito",
+      "text": "So if our dataset has dirty sensor noise, G-sub-1 might report extreme skewness even when the core body of data is perfectly symmetric!",
+      "start": 335.21,
+      "end": 343.58,
+      "duration": 8.38
+    },
+    {
+      "slide": 8,
+      "turn": 27,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. In robust exploratory data analysis, you always pair G-sub-1 with Bowley's quantile skewness B-1. If B-1 is near zero while G-sub-1 is massive, the asymmetry is entirely driven by isolated tail outliers, not the underlying population geometry.",
+      "start": 343.58,
+      "end": 362.4,
+      "duration": 18.82
+    },
+    {
+      "slide": 9,
+      "turn": 28,
+      "speaker": "Kaito",
+      "text": "Hold on! In high school, they taught us that leptokurtic meant a sharp pointy peak, and platykurtic meant a flat, broad peak! Was that completely wrong?",
+      "start": 362.4,
+      "end": 373.13,
+      "duration": 10.73
+    },
+    {
+      "slide": 9,
+      "turn": 29,
+      "speaker": "Dr. Nova",
+      "text": "Completely wrong, Kaito! As Westfall proved, you can construct distributions with infinitely sharp needle peaks that have low kurtosis, and distributions with completely flat or bimodal tops that have massive kurtosis.",
+      "start": 373.13,
+      "end": 387.46,
+      "duration": 14.33
+    },
+    {
+      "slide": 9,
+      "turn": 30,
+      "speaker": "Kaito",
+      "text": "Because raising to the fourth power gives near-zero weight to the center, and colossal weight to the tails!",
+      "start": 387.46,
+      "end": 393.36,
+      "duration": 5.9
+    },
+    {
+      "slide": 9,
+      "turn": 31,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Z to the fourth power is a tail leverage detector. High excess kurtosis tells you that your system is exposed to rare, catastrophic tail shocks.",
+      "start": 393.36,
+      "end": 404.98,
+      "duration": 11.62
+    },
+    {
+      "slide": 10,
+      "turn": 32,
+      "speaker": "Kaito",
+      "text": "Eve's Law! What an elegant name. Why do statisticians call it Eve's Law?",
+      "start": 404.98,
+      "end": 412.03,
+      "duration": 7.06
+    },
+    {
+      "slide": 10,
+      "turn": 33,
+      "speaker": "Dr. Nova",
+      "text": "Look at the letters of the operators: E of Var plus Var of E: E-V-V-E, spelling EVVE, or Eve! It tells us that total variance can be cleanly partitioned into internal within-group noise and between-group signal.",
+      "start": 412.03,
+      "end": 426.36,
+      "duration": 14.33
+    },
+    {
+      "slide": 10,
+      "turn": 34,
+      "speaker": "Kaito",
+      "text": "And the two terms always sum up to the total variance with zero overlap, right?",
+      "start": 426.36,
+      "end": 431.47,
+      "duration": 5.11
+    },
+    {
+      "slide": 10,
+      "turn": 35,
+      "speaker": "Dr. Nova",
+      "text": "With zero overlap and zero leakage! In our production code, we assert that total variance minus the sum of within and between is less than 10 to the minus 4. It is a fundamental conservation invariant.",
+      "start": 431.47,
+      "end": 445.03,
+      "duration": 13.56
+    },
+    {
+      "slide": 11,
+      "turn": 36,
+      "speaker": "Kaito",
+      "text": "Eta-squared is like R-squared, but for categorical grouping features!",
+      "start": 445.03,
+      "end": 449.83,
+      "duration": 4.8
+    },
+    {
+      "slide": 11,
+      "turn": 37,
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito! It is the non-linear generalized R-squared of an ANOVA model. If a proposed customer grouping feature has an eta-squared of 0.008, it explains less than one percent of target variance.",
+      "start": 449.83,
+      "end": 465.12,
+      "duration": 15.29
+    },
+    {
+      "slide": 11,
+      "turn": 38,
+      "speaker": "Kaito",
+      "text": "And training a complex model on that feature would just overfit to noise! Whereas if eta-squared is 0.85, the cohorts live in completely different universes.",
+      "start": 465.12,
+      "end": 476.11,
+      "duration": 10.99
+    },
+    {
+      "slide": 11,
+      "turn": 39,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. That is why computing eta-squared during exploratory analysis is mandatory before feature selection.",
+      "start": 476.11,
+      "end": 484.46,
+      "duration": 8.35
+    },
+    {
+      "slide": 12,
+      "turn": 40,
+      "speaker": "Kaito",
+      "text": "Look at the canvas, Dr. Nova! When I push group separation up to 80, the cohorts pull apart into three clear clusters, and eta-squared jumps over 80 percent!",
+      "start": 484.46,
+      "end": 495.19,
+      "duration": 10.73
+    },
+    {
+      "slide": 12,
+      "turn": 41,
+      "speaker": "Dr. Nova",
+      "text": "Notice the stacked bar, Kaito: the blue Between portion dominates. Now dial within-group noise up to 60. What happens?",
+      "start": 495.19,
+      "end": 505.03,
+      "duration": 9.84
+    },
+    {
+      "slide": 12,
+      "turn": 42,
+      "speaker": "Kaito",
+      "text": "The points blur together into a giant overlapping cloud! Between variance drops to 20 percent, and the verdict warns of weak separation.",
+      "start": 505.03,
+      "end": 514.37,
+      "duration": 9.34
+    },
+    {
+      "slide": 12,
+      "turn": 43,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. That balance sheet proves mathematically whether customer tier is worth splitting into separate models.",
+      "start": 514.37,
+      "end": 522.26,
+      "duration": 7.9
+    },
+    {
+      "slide": 13,
+      "turn": 44,
+      "speaker": "Kaito",
+      "text": "Checkpoint 2 puts everything together: Westfall's kurtosis paradigm and Eve's Law feature selection! Excess kurtosis is plus 14.2, Feature A has eta-squared 0.008, and Feature B has eta-squared 0.485.",
+      "start": 522.26,
+      "end": 537.7,
+      "duration": 15.43
+    },
+    {
+      "slide": 13,
+      "turn": 45,
+      "speaker": "Dr. Nova",
+      "text": "Don't fall into the peakedness trap, students! Reason through what the fourth power means for tails, and what eta-squared means for variance partitioning. Choose wisely!",
+      "start": 537.7,
+      "end": 549.07,
+      "duration": 11.38
+    },
+    {
+      "slide": 14,
+      "turn": 46,
+      "speaker": "Kaito",
+      "text": "That HFT case study is incredible! The mean improved and the standard deviation shrunk, yet trading throttles were failing! Lower-order moments completely hid the catastrophic tail.",
+      "start": 549.07,
+      "end": 561.6,
+      "duration": 12.53
+    },
+    {
+      "slide": 14,
+      "turn": 47,
+      "speaker": "Dr. Nova",
+      "text": "That is the power of the fourth moment, Kaito. Squaring dilutes rare localized spikes in large samples. But raising to the fourth power acts like a mega-magnifying glass for tail risk.",
+      "start": 561.6,
+      "end": 574.32,
+      "duration": 12.72
+    },
+    {
+      "slide": 14,
+      "turn": 48,
+      "speaker": "Kaito",
+      "text": "And with the SaaS dataset, forcing all three tiers into a single model poisoned the gradient updates. Eve's Law told them right away: split the training data!",
+      "start": 574.32,
+      "end": 584.42,
+      "duration": 10.1
+    },
+    {
+      "slide": 14,
+      "turn": 49,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Variance decomposition turns exploratory data analysis from guesswork into rigorous systems engineering.",
+      "start": 584.42,
+      "end": 592.85,
+      "duration": 8.42
+    },
+    {
+      "slide": 15,
+      "turn": 50,
+      "speaker": "Kaito",
+      "text": "Look at that model validator! If total variance doesn't match within plus between within 10 to the minus 4, Pydantic raises a validation error immediately.",
+      "start": 592.85,
+      "end": 603.36,
+      "duration": 10.51
+    },
+    {
+      "slide": 15,
+      "turn": 51,
+      "speaker": "Dr. Nova",
+      "text": "Yes, Kaito. That catches numerical underflow, missing values, or unweighted group averaging bugs before they ever reach feature stores or training pipelines.",
+      "start": 603.36,
+      "end": 614.81,
+      "duration": 11.45
+    },
+    {
+      "slide": 15,
+      "turn": 52,
+      "speaker": "Kaito",
+      "text": "Clean, robust, and mathematically sound. Production-ready data engineering at its finest!",
+      "start": 614.81,
+      "end": 621.89,
+      "duration": 7.08
+    },
+    {
+      "slide": 15,
+      "turn": 53,
+      "speaker": "Dr. Nova",
+      "text": "Always enforce your mathematical invariants directly in code contracts.",
+      "start": 621.89,
+      "end": 626.86,
+      "duration": 4.97
+    },
+    {
+      "slide": 16,
+      "turn": 54,
+      "speaker": "Kaito",
+      "text": "What a masterclass, Dr. Nova! From Bessel's degrees of freedom and Jensen's square root bias to Westfall's kurtosis proof and Eve's Law variance partitioning, our exploratory toolkit is now bulletproof.",
+      "start": 626.86,
+      "end": 639.48,
+      "duration": 12.62
+    },
+    {
+      "slide": 16,
+      "turn": 55,
+      "speaker": "Dr. Nova",
+      "text": "You have mastered the foundational physics of dispersion and distributional shape, Kaito. Remember our four cardinal rules whenever you analyze empirical distributions.",
+      "start": 639.48,
+      "end": 650.23,
+      "duration": 10.75
+    },
+    {
+      "slide": 16,
+      "turn": 56,
+      "speaker": "Kaito",
+      "text": "Unbiased variance, robust MAD for fat tails, kurtosis as tail risk, and Eve's Law for cohort stratification. What's next in Lesson 6.4?",
+      "start": 650.23,
+      "end": 660.43,
+      "duration": 10.2
+    },
+    {
+      "slide": 16,
+      "turn": 57,
+      "speaker": "Dr. Nova",
+      "text": "In Lesson 6.4, we take these moments and shapes into visual geometry: Univariate and Bivariate Visualization, kernel density estimation bandwidths, and bivariate scatter structure. See you there!",
+      "start": 660.43,
+      "end": 674.42,
+      "duration": 13.99
+    }
+  ],
+  "words": [
+    {
+      "word": "dr",
+      "start": 0.0,
+      "end": 0.4
+    },
+    {
+      "word": "nova",
+      "start": 0.4,
+      "end": 0.81
+    },
+    {
+      "word": "in",
+      "start": 0.81,
+      "end": 1.21
+    },
+    {
+      "word": "lesson",
+      "start": 1.21,
+      "end": 1.62
+    },
+    {
+      "word": "62",
+      "start": 1.62,
+      "end": 2.02
+    },
+    {
+      "word": "we",
+      "start": 2.02,
+      "end": 2.43
+    },
+    {
+      "word": "nailed",
+      "start": 2.43,
+      "end": 2.83
+    },
+    {
+      "word": "location",
+      "start": 2.83,
+      "end": 3.24
+    },
+    {
+      "word": "estimators",
+      "start": 3.24,
+      "end": 3.64
+    },
+    {
+      "word": "mean",
+      "start": 3.64,
+      "end": 4.05
+    },
+    {
+      "word": "median",
+      "start": 4.05,
+      "end": 4.45
+    },
+    {
+      "word": "and",
+      "start": 4.45,
+      "end": 4.86
+    },
+    {
+      "word": "hodgeslehmann",
+      "start": 4.86,
+      "end": 5.26
+    },
+    {
+      "word": "if",
+      "start": 5.26,
+      "end": 5.67
+    },
+    {
+      "word": "we",
+      "start": 5.67,
+      "end": 6.07
+    },
+    {
+      "word": "know",
+      "start": 6.07,
+      "end": 6.48
+    },
+    {
+      "word": "where",
+      "start": 6.48,
+      "end": 6.88
+    },
+    {
+      "word": "the",
+      "start": 6.88,
+      "end": 7.29
+    },
+    {
+      "word": "distribution",
+      "start": 7.29,
+      "end": 7.69
+    },
+    {
+      "word": "is",
+      "start": 7.69,
+      "end": 8.1
+    },
+    {
+      "word": "centered",
+      "start": 8.1,
+      "end": 8.5
+    },
+    {
+      "word": "why",
+      "start": 8.5,
+      "end": 8.91
+    },
+    {
+      "word": "do",
+      "start": 8.91,
+      "end": 9.31
+    },
+    {
+      "word": "we",
+      "start": 9.31,
+      "end": 9.72
+    },
+    {
+      "word": "need",
+      "start": 9.72,
+      "end": 10.12
+    },
+    {
+      "word": "higher",
+      "start": 10.12,
+      "end": 10.53
+    },
+    {
+      "word": "moments",
+      "start": 10.53,
+      "end": 10.93
+    },
+    {
+      "word": "and",
+      "start": 10.93,
+      "end": 11.34
+    },
+    {
+      "word": "dispersion",
+      "start": 11.34,
+      "end": 11.74
+    },
+    {
+      "word": "because",
+      "start": 11.74,
+      "end": 12.15
+    },
+    {
+      "word": "center",
+      "start": 12.15,
+      "end": 12.55
+    },
+    {
+      "word": "tells",
+      "start": 12.55,
+      "end": 12.96
+    },
+    {
+      "word": "only",
+      "start": 12.96,
+      "end": 13.37
+    },
+    {
+      "word": "a",
+      "start": 13.37,
+      "end": 13.77
+    },
+    {
+      "word": "tiny",
+      "start": 13.77,
+      "end": 14.18
+    },
+    {
+      "word": "fraction",
+      "start": 14.18,
+      "end": 14.59
+    },
+    {
+      "word": "of",
+      "start": 14.59,
+      "end": 14.99
+    },
+    {
+      "word": "the",
+      "start": 14.99,
+      "end": 15.4
+    },
+    {
+      "word": "story",
+      "start": 15.4,
+      "end": 15.8
+    },
+    {
+      "word": "kaito",
+      "start": 15.8,
+      "end": 16.21
+    },
+    {
+      "word": "consider",
+      "start": 16.21,
+      "end": 16.62
+    },
+    {
+      "word": "two",
+      "start": 16.62,
+      "end": 17.02
+    },
+    {
+      "word": "server",
+      "start": 17.02,
+      "end": 17.43
+    },
+    {
+      "word": "clusters",
+      "start": 17.43,
+      "end": 17.84
+    },
+    {
+      "word": "both",
+      "start": 17.84,
+      "end": 18.24
+    },
+    {
+      "word": "have",
+      "start": 18.24,
+      "end": 18.65
+    },
+    {
+      "word": "a",
+      "start": 18.65,
+      "end": 19.06
+    },
+    {
+      "word": "mean",
+      "start": 19.06,
+      "end": 19.46
+    },
+    {
+      "word": "response",
+      "start": 19.46,
+      "end": 19.87
+    },
+    {
+      "word": "time",
+      "start": 19.87,
+      "end": 20.28
+    },
+    {
+      "word": "of",
+      "start": 20.28,
+      "end": 20.68
+    },
+    {
+      "word": "50",
+      "start": 20.68,
+      "end": 21.09
+    },
+    {
+      "word": "milliseconds",
+      "start": 21.09,
+      "end": 21.49
+    },
+    {
+      "word": "but",
+      "start": 21.49,
+      "end": 21.9
+    },
+    {
+      "word": "cluster",
+      "start": 21.9,
+      "end": 22.31
+    },
+    {
+      "word": "a",
+      "start": 22.31,
+      "end": 22.71
+    },
+    {
+      "word": "has",
+      "start": 22.71,
+      "end": 23.12
+    },
+    {
+      "word": "a",
+      "start": 23.12,
+      "end": 23.53
+    },
+    {
+      "word": "standard",
+      "start": 23.53,
+      "end": 23.93
+    },
+    {
+      "word": "deviation",
+      "start": 23.93,
+      "end": 24.34
+    },
+    {
+      "word": "of",
+      "start": 24.34,
+      "end": 24.75
+    },
+    {
+      "word": "2",
+      "start": 24.75,
+      "end": 25.15
+    },
+    {
+      "word": "milliseconds",
+      "start": 25.15,
+      "end": 25.56
+    },
+    {
+      "word": "while",
+      "start": 25.56,
+      "end": 25.97
+    },
+    {
+      "word": "cluster",
+      "start": 25.97,
+      "end": 26.37
+    },
+    {
+      "word": "b",
+      "start": 26.37,
+      "end": 26.78
+    },
+    {
+      "word": "has",
+      "start": 26.78,
+      "end": 27.19
+    },
+    {
+      "word": "an",
+      "start": 27.19,
+      "end": 27.59
+    },
+    {
+      "word": "excess",
+      "start": 27.59,
+      "end": 28.0
+    },
+    {
+      "word": "kurtosis",
+      "start": 28.0,
+      "end": 28.4
+    },
+    {
+      "word": "of",
+      "start": 28.4,
+      "end": 28.81
+    },
+    {
+      "word": "50",
+      "start": 28.81,
+      "end": 29.22
+    },
+    {
+      "word": "with",
+      "start": 29.22,
+      "end": 29.62
+    },
+    {
+      "word": "intermittent",
+      "start": 29.62,
+      "end": 30.03
+    },
+    {
+      "word": "3second",
+      "start": 30.03,
+      "end": 30.44
+    },
+    {
+      "word": "microburst",
+      "start": 30.44,
+      "end": 30.84
+    },
+    {
+      "word": "timeouts",
+      "start": 30.84,
+      "end": 31.25
+    },
+    {
+      "word": "whoa",
+      "start": 31.25,
+      "end": 31.73
+    },
+    {
+      "word": "cluster",
+      "start": 31.73,
+      "end": 32.21
+    },
+    {
+      "word": "b",
+      "start": 32.21,
+      "end": 32.68
+    },
+    {
+      "word": "would",
+      "start": 32.68,
+      "end": 33.16
+    },
+    {
+      "word": "destroy",
+      "start": 33.16,
+      "end": 33.64
+    },
+    {
+      "word": "user",
+      "start": 33.64,
+      "end": 34.12
+    },
+    {
+      "word": "slas",
+      "start": 34.12,
+      "end": 34.59
+    },
+    {
+      "word": "while",
+      "start": 34.59,
+      "end": 35.07
+    },
+    {
+      "word": "maintaining",
+      "start": 35.07,
+      "end": 35.55
+    },
+    {
+      "word": "an",
+      "start": 35.55,
+      "end": 36.03
+    },
+    {
+      "word": "identical",
+      "start": 36.03,
+      "end": 36.51
+    },
+    {
+      "word": "sample",
+      "start": 36.51,
+      "end": 36.98
+    },
+    {
+      "word": "mean",
+      "start": 36.98,
+      "end": 37.46
+    },
+    {
+      "word": "so",
+      "start": 37.46,
+      "end": 37.94
+    },
+    {
+      "word": "dispersion",
+      "start": 37.94,
+      "end": 38.42
+    },
+    {
+      "word": "and",
+      "start": 38.42,
+      "end": 38.9
+    },
+    {
+      "word": "shape",
+      "start": 38.9,
+      "end": 39.37
+    },
+    {
+      "word": "are",
+      "start": 39.37,
+      "end": 39.85
+    },
+    {
+      "word": "where",
+      "start": 39.85,
+      "end": 40.33
+    },
+    {
+      "word": "production",
+      "start": 40.33,
+      "end": 40.81
+    },
+    {
+      "word": "failures",
+      "start": 40.81,
+      "end": 41.28
+    },
+    {
+      "word": "actually",
+      "start": 41.28,
+      "end": 41.76
+    },
+    {
+      "word": "hide",
+      "start": 41.76,
+      "end": 42.24
+    },
+    {
+      "word": "precisely",
+      "start": 42.24,
+      "end": 42.73
+    },
+    {
+      "word": "today",
+      "start": 42.73,
+      "end": 43.22
+    },
+    {
+      "word": "we",
+      "start": 43.22,
+      "end": 43.71
+    },
+    {
+      "word": "formalize",
+      "start": 43.71,
+      "end": 44.2
+    },
+    {
+      "word": "bessels",
+      "start": 44.2,
+      "end": 44.69
+    },
+    {
+      "word": "correction",
+      "start": 44.69,
+      "end": 45.18
+    },
+    {
+      "word": "probe",
+      "start": 45.18,
+      "end": 45.67
+    },
+    {
+      "word": "why",
+      "start": 45.67,
+      "end": 46.16
+    },
+    {
+      "word": "sample",
+      "start": 46.16,
+      "end": 46.65
+    },
+    {
+      "word": "standard",
+      "start": 46.65,
+      "end": 47.14
+    },
+    {
+      "word": "deviation",
+      "start": 47.14,
+      "end": 47.63
+    },
+    {
+      "word": "is",
+      "start": 47.63,
+      "end": 48.12
+    },
+    {
+      "word": "systematically",
+      "start": 48.12,
+      "end": 48.61
+    },
+    {
+      "word": "biased",
+      "start": 48.61,
+      "end": 49.1
+    },
+    {
+      "word": "downwards",
+      "start": 49.1,
+      "end": 49.59
+    },
+    {
+      "word": "by",
+      "start": 49.59,
+      "end": 50.08
+    },
+    {
+      "word": "jensens",
+      "start": 50.08,
+      "end": 50.58
+    },
+    {
+      "word": "inequality",
+      "start": 50.58,
+      "end": 51.07
+    },
+    {
+      "word": "debunk",
+      "start": 51.07,
+      "end": 51.56
+    },
+    {
+      "word": "the",
+      "start": 51.56,
+      "end": 52.05
+    },
+    {
+      "word": "myth",
+      "start": 52.05,
+      "end": 52.54
+    },
+    {
+      "word": "that",
+      "start": 52.54,
+      "end": 53.03
+    },
+    {
+      "word": "kurtosis",
+      "start": 53.03,
+      "end": 53.52
+    },
+    {
+      "word": "measures",
+      "start": 53.52,
+      "end": 54.01
+    },
+    {
+      "word": "peak",
+      "start": 54.01,
+      "end": 54.5
+    },
+    {
+      "word": "sharpness",
+      "start": 54.5,
+      "end": 54.99
+    },
+    {
+      "word": "and",
+      "start": 54.99,
+      "end": 55.48
+    },
+    {
+      "word": "master",
+      "start": 55.48,
+      "end": 55.97
+    },
+    {
+      "word": "eves",
+      "start": 55.97,
+      "end": 56.46
+    },
+    {
+      "word": "law",
+      "start": 56.46,
+      "end": 56.95
+    },
+    {
+      "word": "for",
+      "start": 56.95,
+      "end": 57.44
+    },
+    {
+      "word": "cohort",
+      "start": 57.44,
+      "end": 57.93
+    },
+    {
+      "word": "stratification",
+      "start": 57.93,
+      "end": 58.42
+    },
+    {
+      "word": "every",
+      "start": 58.42,
+      "end": 58.74
+    },
+    {
+      "word": "stats",
+      "start": 58.74,
+      "end": 59.07
+    },
+    {
+      "word": "textbook",
+      "start": 59.07,
+      "end": 59.39
+    },
+    {
+      "word": "says",
+      "start": 59.39,
+      "end": 59.72
+    },
+    {
+      "word": "to",
+      "start": 59.72,
+      "end": 60.04
+    },
+    {
+      "word": "divide",
+      "start": 60.04,
+      "end": 60.37
+    },
+    {
+      "word": "by",
+      "start": 60.37,
+      "end": 60.69
+    },
+    {
+      "word": "n",
+      "start": 60.69,
+      "end": 61.02
+    },
+    {
+      "word": "minus",
+      "start": 61.02,
+      "end": 61.34
+    },
+    {
+      "word": "1",
+      "start": 61.34,
+      "end": 61.66
+    },
+    {
+      "word": "instead",
+      "start": 61.66,
+      "end": 61.99
+    },
+    {
+      "word": "of",
+      "start": 61.99,
+      "end": 62.31
+    },
+    {
+      "word": "n",
+      "start": 62.31,
+      "end": 62.64
+    },
+    {
+      "word": "for",
+      "start": 62.64,
+      "end": 62.96
+    },
+    {
+      "word": "sample",
+      "start": 62.96,
+      "end": 63.29
+    },
+    {
+      "word": "variance",
+      "start": 63.29,
+      "end": 63.61
+    },
+    {
+      "word": "but",
+      "start": 63.61,
+      "end": 63.94
+    },
+    {
+      "word": "people",
+      "start": 63.94,
+      "end": 64.26
+    },
+    {
+      "word": "often",
+      "start": 64.26,
+      "end": 64.58
+    },
+    {
+      "word": "treat",
+      "start": 64.58,
+      "end": 64.91
+    },
+    {
+      "word": "it",
+      "start": 64.91,
+      "end": 65.23
+    },
+    {
+      "word": "like",
+      "start": 65.23,
+      "end": 65.56
+    },
+    {
+      "word": "an",
+      "start": 65.56,
+      "end": 65.88
+    },
+    {
+      "word": "arbitrary",
+      "start": 65.88,
+      "end": 66.21
+    },
+    {
+      "word": "rule",
+      "start": 66.21,
+      "end": 66.53
+    },
+    {
+      "word": "of",
+      "start": 66.53,
+      "end": 66.86
+    },
+    {
+      "word": "thumb",
+      "start": 66.86,
+      "end": 67.18
+    },
+    {
+      "word": "where",
+      "start": 67.18,
+      "end": 67.5
+    },
+    {
+      "word": "does",
+      "start": 67.5,
+      "end": 67.83
+    },
+    {
+      "word": "that",
+      "start": 67.83,
+      "end": 68.15
+    },
+    {
+      "word": "n",
+      "start": 68.15,
+      "end": 68.48
+    },
+    {
+      "word": "minus",
+      "start": 68.48,
+      "end": 68.8
+    },
+    {
+      "word": "1",
+      "start": 68.8,
+      "end": 69.13
+    },
+    {
+      "word": "actually",
+      "start": 69.13,
+      "end": 69.45
+    },
+    {
+      "word": "come",
+      "start": 69.45,
+      "end": 69.78
+    },
+    {
+      "word": "from",
+      "start": 69.78,
+      "end": 70.1
+    },
+    {
+      "word": "it",
+      "start": 70.1,
+      "end": 70.53
+    },
+    {
+      "word": "comes",
+      "start": 70.53,
+      "end": 70.95
+    },
+    {
+      "word": "directly",
+      "start": 70.95,
+      "end": 71.38
+    },
+    {
+      "word": "from",
+      "start": 71.38,
+      "end": 71.8
+    },
+    {
+      "word": "estimating",
+      "start": 71.8,
+      "end": 72.23
+    },
+    {
+      "word": "the",
+      "start": 72.23,
+      "end": 72.66
+    },
+    {
+      "word": "mean",
+      "start": 72.66,
+      "end": 73.08
+    },
+    {
+      "word": "first",
+      "start": 73.08,
+      "end": 73.51
+    },
+    {
+      "word": "kaito",
+      "start": 73.51,
+      "end": 73.93
+    },
+    {
+      "word": "when",
+      "start": 73.93,
+      "end": 74.36
+    },
+    {
+      "word": "you",
+      "start": 74.36,
+      "end": 74.79
+    },
+    {
+      "word": "compute",
+      "start": 74.79,
+      "end": 75.21
+    },
+    {
+      "word": "xbar",
+      "start": 75.21,
+      "end": 75.64
+    },
+    {
+      "word": "from",
+      "start": 75.64,
+      "end": 76.06
+    },
+    {
+      "word": "your",
+      "start": 76.06,
+      "end": 76.49
+    },
+    {
+      "word": "n",
+      "start": 76.49,
+      "end": 76.92
+    },
+    {
+      "word": "points",
+      "start": 76.92,
+      "end": 77.34
+    },
+    {
+      "word": "the",
+      "start": 77.34,
+      "end": 77.77
+    },
+    {
+      "word": "sum",
+      "start": 77.77,
+      "end": 78.19
+    },
+    {
+      "word": "of",
+      "start": 78.19,
+      "end": 78.62
+    },
+    {
+      "word": "deviations",
+      "start": 78.62,
+      "end": 79.05
+    },
+    {
+      "word": "around",
+      "start": 79.05,
+      "end": 79.47
+    },
+    {
+      "word": "xbar",
+      "start": 79.47,
+      "end": 79.9
+    },
+    {
+      "word": "is",
+      "start": 79.9,
+      "end": 80.32
+    },
+    {
+      "word": "identically",
+      "start": 80.32,
+      "end": 80.75
+    },
+    {
+      "word": "zero",
+      "start": 80.75,
+      "end": 81.18
+    },
+    {
+      "word": "sum",
+      "start": 81.18,
+      "end": 81.6
+    },
+    {
+      "word": "of",
+      "start": 81.6,
+      "end": 82.03
+    },
+    {
+      "word": "xsubi",
+      "start": 82.03,
+      "end": 82.45
+    },
+    {
+      "word": "minus",
+      "start": 82.45,
+      "end": 82.88
+    },
+    {
+      "word": "xbar",
+      "start": 82.88,
+      "end": 83.31
+    },
+    {
+      "word": "equals",
+      "start": 83.31,
+      "end": 83.73
+    },
+    {
+      "word": "zero",
+      "start": 83.73,
+      "end": 84.16
+    },
+    {
+      "word": "that",
+      "start": 84.16,
+      "end": 84.58
+    },
+    {
+      "word": "consumes",
+      "start": 84.58,
+      "end": 85.01
+    },
+    {
+      "word": "one",
+      "start": 85.01,
+      "end": 85.44
+    },
+    {
+      "word": "independent",
+      "start": 85.44,
+      "end": 85.86
+    },
+    {
+      "word": "degree",
+      "start": 85.86,
+      "end": 86.29
+    },
+    {
+      "word": "of",
+      "start": 86.29,
+      "end": 86.71
+    },
+    {
+      "word": "freedom",
+      "start": 86.71,
+      "end": 87.14
+    },
+    {
+      "word": "right",
+      "start": 87.14,
+      "end": 87.53
+    },
+    {
+      "word": "if",
+      "start": 87.53,
+      "end": 87.93
+    },
+    {
+      "word": "you",
+      "start": 87.93,
+      "end": 88.32
+    },
+    {
+      "word": "know",
+      "start": 88.32,
+      "end": 88.72
+    },
+    {
+      "word": "the",
+      "start": 88.72,
+      "end": 89.11
+    },
+    {
+      "word": "mean",
+      "start": 89.11,
+      "end": 89.51
+    },
+    {
+      "word": "and",
+      "start": 89.51,
+      "end": 89.9
+    },
+    {
+      "word": "any",
+      "start": 89.9,
+      "end": 90.3
+    },
+    {
+      "word": "n",
+      "start": 90.3,
+      "end": 90.69
+    },
+    {
+      "word": "minus",
+      "start": 90.69,
+      "end": 91.09
+    },
+    {
+      "word": "1",
+      "start": 91.09,
+      "end": 91.48
+    },
+    {
+      "word": "data",
+      "start": 91.48,
+      "end": 91.88
+    },
+    {
+      "word": "points",
+      "start": 91.88,
+      "end": 92.27
+    },
+    {
+      "word": "the",
+      "start": 92.27,
+      "end": 92.67
+    },
+    {
+      "word": "last",
+      "start": 92.67,
+      "end": 93.06
+    },
+    {
+      "word": "point",
+      "start": 93.06,
+      "end": 93.46
+    },
+    {
+      "word": "is",
+      "start": 93.46,
+      "end": 93.85
+    },
+    {
+      "word": "completely",
+      "start": 93.85,
+      "end": 94.25
+    },
+    {
+      "word": "determined",
+      "start": 94.25,
+      "end": 94.64
+    },
+    {
+      "word": "it",
+      "start": 94.64,
+      "end": 95.04
+    },
+    {
+      "word": "has",
+      "start": 95.04,
+      "end": 95.43
+    },
+    {
+      "word": "zero",
+      "start": 95.43,
+      "end": 95.83
+    },
+    {
+      "word": "freedom",
+      "start": 95.83,
+      "end": 96.22
+    },
+    {
+      "word": "to",
+      "start": 96.22,
+      "end": 96.62
+    },
+    {
+      "word": "vary",
+      "start": 96.62,
+      "end": 97.01
+    },
+    {
+      "word": "exactly",
+      "start": 97.01,
+      "end": 97.42
+    },
+    {
+      "word": "and",
+      "start": 97.42,
+      "end": 97.84
+    },
+    {
+      "word": "mathematically",
+      "start": 97.84,
+      "end": 98.25
+    },
+    {
+      "word": "measuring",
+      "start": 98.25,
+      "end": 98.66
+    },
+    {
+      "word": "spread",
+      "start": 98.66,
+      "end": 99.07
+    },
+    {
+      "word": "from",
+      "start": 99.07,
+      "end": 99.49
+    },
+    {
+      "word": "xbar",
+      "start": 99.49,
+      "end": 99.9
+    },
+    {
+      "word": "rather",
+      "start": 99.9,
+      "end": 100.31
+    },
+    {
+      "word": "than",
+      "start": 100.31,
+      "end": 100.73
+    },
+    {
+      "word": "true",
+      "start": 100.73,
+      "end": 101.14
+    },
+    {
+      "word": "mu",
+      "start": 101.14,
+      "end": 101.55
+    },
+    {
+      "word": "subtracts",
+      "start": 101.55,
+      "end": 101.96
+    },
+    {
+      "word": "the",
+      "start": 101.96,
+      "end": 102.38
+    },
+    {
+      "word": "variance",
+      "start": 102.38,
+      "end": 102.79
+    },
+    {
+      "word": "of",
+      "start": 102.79,
+      "end": 103.2
+    },
+    {
+      "word": "the",
+      "start": 103.2,
+      "end": 103.62
+    },
+    {
+      "word": "mean",
+      "start": 103.62,
+      "end": 104.03
+    },
+    {
+      "word": "itself",
+      "start": 104.03,
+      "end": 104.44
+    },
+    {
+      "word": "which",
+      "start": 104.44,
+      "end": 104.85
+    },
+    {
+      "word": "is",
+      "start": 104.85,
+      "end": 105.27
+    },
+    {
+      "word": "sigmasquared",
+      "start": 105.27,
+      "end": 105.68
+    },
+    {
+      "word": "over",
+      "start": 105.68,
+      "end": 106.09
+    },
+    {
+      "word": "n",
+      "start": 106.09,
+      "end": 106.51
+    },
+    {
+      "word": "scaling",
+      "start": 106.51,
+      "end": 106.92
+    },
+    {
+      "word": "by",
+      "start": 106.92,
+      "end": 107.33
+    },
+    {
+      "word": "n",
+      "start": 107.33,
+      "end": 107.74
+    },
+    {
+      "word": "over",
+      "start": 107.74,
+      "end": 108.16
+    },
+    {
+      "word": "n",
+      "start": 108.16,
+      "end": 108.57
+    },
+    {
+      "word": "minus",
+      "start": 108.57,
+      "end": 108.98
+    },
+    {
+      "word": "1",
+      "start": 108.98,
+      "end": 109.4
+    },
+    {
+      "word": "repairs",
+      "start": 109.4,
+      "end": 109.81
+    },
+    {
+      "word": "that",
+      "start": 109.81,
+      "end": 110.22
+    },
+    {
+      "word": "downward",
+      "start": 110.22,
+      "end": 110.63
+    },
+    {
+      "word": "bias",
+      "start": 110.63,
+      "end": 111.05
+    },
+    {
+      "word": "exactly",
+      "start": 111.05,
+      "end": 111.46
+    },
+    {
+      "word": "wait",
+      "start": 111.46,
+      "end": 111.91
+    },
+    {
+      "word": "dr",
+      "start": 111.91,
+      "end": 112.35
+    },
+    {
+      "word": "nova",
+      "start": 112.35,
+      "end": 112.8
+    },
+    {
+      "word": "if",
+      "start": 112.8,
+      "end": 113.25
+    },
+    {
+      "word": "ssquared",
+      "start": 113.25,
+      "end": 113.69
+    },
+    {
+      "word": "is",
+      "start": 113.69,
+      "end": 114.14
+    },
+    {
+      "word": "unbiased",
+      "start": 114.14,
+      "end": 114.59
+    },
+    {
+      "word": "for",
+      "start": 114.59,
+      "end": 115.03
+    },
+    {
+      "word": "sigmasquared",
+      "start": 115.03,
+      "end": 115.48
+    },
+    {
+      "word": "how",
+      "start": 115.48,
+      "end": 115.93
+    },
+    {
+      "word": "can",
+      "start": 115.93,
+      "end": 116.37
+    },
+    {
+      "word": "its",
+      "start": 116.37,
+      "end": 116.82
+    },
+    {
+      "word": "square",
+      "start": 116.82,
+      "end": 117.27
+    },
+    {
+      "word": "root",
+      "start": 117.26,
+      "end": 117.71
+    },
+    {
+      "word": "not",
+      "start": 117.71,
+      "end": 118.16
+    },
+    {
+      "word": "be",
+      "start": 118.16,
+      "end": 118.6
+    },
+    {
+      "word": "unbiased",
+      "start": 118.6,
+      "end": 119.05
+    },
+    {
+      "word": "for",
+      "start": 119.05,
+      "end": 119.5
+    },
+    {
+      "word": "sigma",
+      "start": 119.5,
+      "end": 119.94
+    },
+    {
+      "word": "square",
+      "start": 119.94,
+      "end": 120.39
+    },
+    {
+      "word": "root",
+      "start": 120.39,
+      "end": 120.84
+    },
+    {
+      "word": "is",
+      "start": 120.84,
+      "end": 121.28
+    },
+    {
+      "word": "just",
+      "start": 121.28,
+      "end": 121.73
+    },
+    {
+      "word": "the",
+      "start": 121.73,
+      "end": 122.18
+    },
+    {
+      "word": "inverse",
+      "start": 122.18,
+      "end": 122.62
+    },
+    {
+      "word": "operation",
+      "start": 122.62,
+      "end": 123.07
+    },
+    {
+      "word": "expectation",
+      "start": 123.07,
+      "end": 123.49
+    },
+    {
+      "word": "is",
+      "start": 123.49,
+      "end": 123.92
+    },
+    {
+      "word": "a",
+      "start": 123.92,
+      "end": 124.34
+    },
+    {
+      "word": "linear",
+      "start": 124.34,
+      "end": 124.76
+    },
+    {
+      "word": "operator",
+      "start": 124.76,
+      "end": 125.19
+    },
+    {
+      "word": "kaito",
+      "start": 125.19,
+      "end": 125.61
+    },
+    {
+      "word": "it",
+      "start": 125.61,
+      "end": 126.03
+    },
+    {
+      "word": "does",
+      "start": 126.03,
+      "end": 126.46
+    },
+    {
+      "word": "not",
+      "start": 126.46,
+      "end": 126.88
+    },
+    {
+      "word": "commute",
+      "start": 126.88,
+      "end": 127.3
+    },
+    {
+      "word": "with",
+      "start": 127.3,
+      "end": 127.73
+    },
+    {
+      "word": "nonlinear",
+      "start": 127.73,
+      "end": 128.15
+    },
+    {
+      "word": "transformations",
+      "start": 128.15,
+      "end": 128.57
+    },
+    {
+      "word": "the",
+      "start": 128.57,
+      "end": 129.0
+    },
+    {
+      "word": "expectation",
+      "start": 129.0,
+      "end": 129.42
+    },
+    {
+      "word": "of",
+      "start": 129.42,
+      "end": 129.84
+    },
+    {
+      "word": "the",
+      "start": 129.84,
+      "end": 130.27
+    },
+    {
+      "word": "square",
+      "start": 130.27,
+      "end": 130.69
+    },
+    {
+      "word": "root",
+      "start": 130.69,
+      "end": 131.11
+    },
+    {
+      "word": "is",
+      "start": 131.11,
+      "end": 131.54
+    },
+    {
+      "word": "not",
+      "start": 131.54,
+      "end": 131.96
+    },
+    {
+      "word": "the",
+      "start": 131.96,
+      "end": 132.38
+    },
+    {
+      "word": "square",
+      "start": 132.38,
+      "end": 132.8
+    },
+    {
+      "word": "root",
+      "start": 132.81,
+      "end": 133.23
+    },
+    {
+      "word": "of",
+      "start": 133.23,
+      "end": 133.65
+    },
+    {
+      "word": "the",
+      "start": 133.65,
+      "end": 134.07
+    },
+    {
+      "word": "expectation",
+      "start": 134.07,
+      "end": 134.5
+    },
+    {
+      "word": "because",
+      "start": 134.5,
+      "end": 134.92
+    },
+    {
+      "word": "square",
+      "start": 134.92,
+      "end": 135.34
+    },
+    {
+      "word": "root",
+      "start": 135.34,
+      "end": 135.77
+    },
+    {
+      "word": "bends",
+      "start": 135.77,
+      "end": 136.19
+    },
+    {
+      "word": "downwardsit",
+      "start": 136.19,
+      "end": 136.61
+    },
+    {
+      "word": "is",
+      "start": 136.61,
+      "end": 137.04
+    },
+    {
+      "word": "strictly",
+      "start": 137.04,
+      "end": 137.46
+    },
+    {
+      "word": "concavejensens",
+      "start": 137.46,
+      "end": 137.88
+    },
+    {
+      "word": "inequality",
+      "start": 137.88,
+      "end": 138.31
+    },
+    {
+      "word": "proves",
+      "start": 138.31,
+      "end": 138.73
+    },
+    {
+      "word": "that",
+      "start": 138.73,
+      "end": 139.15
+    },
+    {
+      "word": "e",
+      "start": 139.15,
+      "end": 139.58
+    },
+    {
+      "word": "of",
+      "start": 139.58,
+      "end": 140.0
+    },
+    {
+      "word": "s",
+      "start": 140.0,
+      "end": 140.42
+    },
+    {
+      "word": "is",
+      "start": 140.42,
+      "end": 140.85
+    },
+    {
+      "word": "strictly",
+      "start": 140.85,
+      "end": 141.27
+    },
+    {
+      "word": "less",
+      "start": 141.27,
+      "end": 141.69
+    },
+    {
+      "word": "than",
+      "start": 141.69,
+      "end": 142.12
+    },
+    {
+      "word": "sigma",
+      "start": 142.12,
+      "end": 142.54
+    },
+    {
+      "word": "fascinating",
+      "start": 142.54,
+      "end": 143.18
+    },
+    {
+      "word": "so",
+      "start": 143.18,
+      "end": 143.82
+    },
+    {
+      "word": "sample",
+      "start": 143.82,
+      "end": 144.47
+    },
+    {
+      "word": "standard",
+      "start": 144.47,
+      "end": 145.11
+    },
+    {
+      "word": "deviation",
+      "start": 145.11,
+      "end": 145.75
+    },
+    {
+      "word": "always",
+      "start": 145.75,
+      "end": 146.39
+    },
+    {
+      "word": "underestimates",
+      "start": 146.39,
+      "end": 147.04
+    },
+    {
+      "word": "true",
+      "start": 147.04,
+      "end": 147.68
+    },
+    {
+      "word": "population",
+      "start": 147.68,
+      "end": 148.32
+    },
+    {
+      "word": "volatility",
+      "start": 148.32,
+      "end": 148.96
+    },
+    {
+      "word": "in",
+      "start": 148.96,
+      "end": 149.61
+    },
+    {
+      "word": "finite",
+      "start": 149.61,
+      "end": 150.25
+    },
+    {
+      "word": "samples",
+      "start": 150.25,
+      "end": 150.89
+    },
+    {
+      "word": "always",
+      "start": 150.89,
+      "end": 151.36
+    },
+    {
+      "word": "at",
+      "start": 151.36,
+      "end": 151.84
+    },
+    {
+      "word": "n",
+      "start": 151.84,
+      "end": 152.31
+    },
+    {
+      "word": "equals",
+      "start": 152.31,
+      "end": 152.79
+    },
+    {
+      "word": "2",
+      "start": 152.79,
+      "end": 153.26
+    },
+    {
+      "word": "sample",
+      "start": 153.26,
+      "end": 153.74
+    },
+    {
+      "word": "standard",
+      "start": 153.74,
+      "end": 154.21
+    },
+    {
+      "word": "deviation",
+      "start": 154.21,
+      "end": 154.69
+    },
+    {
+      "word": "underestimates",
+      "start": 154.69,
+      "end": 155.16
+    },
+    {
+      "word": "sigma",
+      "start": 155.16,
+      "end": 155.64
+    },
+    {
+      "word": "by",
+      "start": 155.64,
+      "end": 156.11
+    },
+    {
+      "word": "nearly",
+      "start": 156.11,
+      "end": 156.59
+    },
+    {
+      "word": "20",
+      "start": 156.59,
+      "end": 157.06
+    },
+    {
+      "word": "percent",
+      "start": 157.06,
+      "end": 157.54
+    },
+    {
+      "word": "for",
+      "start": 157.54,
+      "end": 158.01
+    },
+    {
+      "word": "gaussian",
+      "start": 158.01,
+      "end": 158.49
+    },
+    {
+      "word": "data",
+      "start": 158.49,
+      "end": 158.96
+    },
+    {
+      "word": "you",
+      "start": 158.96,
+      "end": 159.44
+    },
+    {
+      "word": "must",
+      "start": 159.44,
+      "end": 159.91
+    },
+    {
+      "word": "multiply",
+      "start": 159.91,
+      "end": 160.39
+    },
+    {
+      "word": "s",
+      "start": 160.39,
+      "end": 160.86
+    },
+    {
+      "word": "by",
+      "start": 160.86,
+      "end": 161.34
+    },
+    {
+      "word": "the",
+      "start": 161.34,
+      "end": 161.81
+    },
+    {
+      "word": "c4",
+      "start": 161.81,
+      "end": 162.29
+    },
+    {
+      "word": "factor",
+      "start": 162.29,
+      "end": 162.76
+    },
+    {
+      "word": "if",
+      "start": 162.76,
+      "end": 163.24
+    },
+    {
+      "word": "you",
+      "start": 163.24,
+      "end": 163.71
+    },
+    {
+      "word": "demand",
+      "start": 163.71,
+      "end": 164.19
+    },
+    {
+      "word": "strict",
+      "start": 164.19,
+      "end": 164.66
+    },
+    {
+      "word": "unbiasedness",
+      "start": 164.66,
+      "end": 165.14
+    },
+    {
+      "word": "so",
+      "start": 165.14,
+      "end": 165.54
+    },
+    {
+      "word": "standard",
+      "start": 165.54,
+      "end": 165.94
+    },
+    {
+      "word": "deviation",
+      "start": 165.94,
+      "end": 166.34
+    },
+    {
+      "word": "has",
+      "start": 166.34,
+      "end": 166.74
+    },
+    {
+      "word": "a",
+      "start": 166.74,
+      "end": 167.14
+    },
+    {
+      "word": "zero",
+      "start": 167.14,
+      "end": 167.54
+    },
+    {
+      "word": "percent",
+      "start": 167.54,
+      "end": 167.94
+    },
+    {
+      "word": "breakdown",
+      "start": 167.94,
+      "end": 168.34
+    },
+    {
+      "word": "point",
+      "start": 168.34,
+      "end": 168.74
+    },
+    {
+      "word": "just",
+      "start": 168.74,
+      "end": 169.14
+    },
+    {
+      "word": "like",
+      "start": 169.14,
+      "end": 169.54
+    },
+    {
+      "word": "the",
+      "start": 169.54,
+      "end": 169.94
+    },
+    {
+      "word": "sample",
+      "start": 169.94,
+      "end": 170.34
+    },
+    {
+      "word": "mean",
+      "start": 170.34,
+      "end": 170.74
+    },
+    {
+      "word": "a",
+      "start": 170.74,
+      "end": 171.14
+    },
+    {
+      "word": "single",
+      "start": 171.14,
+      "end": 171.54
+    },
+    {
+      "word": "rogue",
+      "start": 171.54,
+      "end": 171.94
+    },
+    {
+      "word": "outlier",
+      "start": 171.94,
+      "end": 172.34
+    },
+    {
+      "word": "can",
+      "start": 172.34,
+      "end": 172.74
+    },
+    {
+      "word": "explode",
+      "start": 172.74,
+      "end": 173.14
+    },
+    {
+      "word": "it",
+      "start": 173.14,
+      "end": 173.54
+    },
+    {
+      "word": "to",
+      "start": 173.54,
+      "end": 173.94
+    },
+    {
+      "word": "infinity",
+      "start": 173.94,
+      "end": 174.34
+    },
+    {
+      "word": "exactly",
+      "start": 174.34,
+      "end": 174.82
+    },
+    {
+      "word": "that",
+      "start": 174.82,
+      "end": 175.3
+    },
+    {
+      "word": "is",
+      "start": 175.3,
+      "end": 175.78
+    },
+    {
+      "word": "why",
+      "start": 175.78,
+      "end": 176.26
+    },
+    {
+      "word": "automated",
+      "start": 176.26,
+      "end": 176.74
+    },
+    {
+      "word": "production",
+      "start": 176.74,
+      "end": 177.22
+    },
+    {
+      "word": "health",
+      "start": 177.22,
+      "end": 177.7
+    },
+    {
+      "word": "pipelines",
+      "start": 177.7,
+      "end": 178.18
+    },
+    {
+      "word": "using",
+      "start": 178.18,
+      "end": 178.66
+    },
+    {
+      "word": "standard",
+      "start": 178.66,
+      "end": 179.14
+    },
+    {
+      "word": "deviation",
+      "start": 179.14,
+      "end": 179.62
+    },
+    {
+      "word": "for",
+      "start": 179.62,
+      "end": 180.1
+    },
+    {
+      "word": "anomaly",
+      "start": 180.1,
+      "end": 180.58
+    },
+    {
+      "word": "thresholds",
+      "start": 180.58,
+      "end": 181.06
+    },
+    {
+      "word": "fail",
+      "start": 181.06,
+      "end": 181.54
+    },
+    {
+      "word": "so",
+      "start": 181.54,
+      "end": 182.02
+    },
+    {
+      "word": "frequently",
+      "start": 182.02,
+      "end": 182.5
+    },
+    {
+      "word": "when",
+      "start": 182.5,
+      "end": 182.98
+    },
+    {
+      "word": "outliers",
+      "start": 182.98,
+      "end": 183.46
+    },
+    {
+      "word": "contaminate",
+      "start": 183.46,
+      "end": 183.94
+    },
+    {
+      "word": "the",
+      "start": 183.94,
+      "end": 184.42
+    },
+    {
+      "word": "stream",
+      "start": 184.42,
+      "end": 184.9
+    },
+    {
+      "word": "standard",
+      "start": 184.9,
+      "end": 185.38
+    },
+    {
+      "word": "deviation",
+      "start": 185.38,
+      "end": 185.86
+    },
+    {
+      "word": "inflates",
+      "start": 185.86,
+      "end": 186.34
+    },
+    {
+      "word": "which",
+      "start": 186.34,
+      "end": 186.82
+    },
+    {
+      "word": "widens",
+      "start": 186.82,
+      "end": 187.3
+    },
+    {
+      "word": "the",
+      "start": 187.3,
+      "end": 187.78
+    },
+    {
+      "word": "threshold",
+      "start": 187.78,
+      "end": 188.26
+    },
+    {
+      "word": "and",
+      "start": 188.26,
+      "end": 188.74
+    },
+    {
+      "word": "allows",
+      "start": 188.74,
+      "end": 189.22
+    },
+    {
+      "word": "subsequent",
+      "start": 189.22,
+      "end": 189.7
+    },
+    {
+      "word": "bad",
+      "start": 189.7,
+      "end": 190.18
+    },
+    {
+      "word": "data",
+      "start": 190.18,
+      "end": 190.66
+    },
+    {
+      "word": "to",
+      "start": 190.66,
+      "end": 191.14
+    },
+    {
+      "word": "slip",
+      "start": 191.14,
+      "end": 191.62
+    },
+    {
+      "word": "through",
+      "start": 191.62,
+      "end": 192.1
+    },
+    {
+      "word": "undetected",
+      "start": 192.1,
+      "end": 192.58
+    },
+    {
+      "word": "a",
+      "start": 192.58,
+      "end": 193.13
+    },
+    {
+      "word": "classic",
+      "start": 193.13,
+      "end": 193.69
+    },
+    {
+      "word": "masking",
+      "start": 193.69,
+      "end": 194.24
+    },
+    {
+      "word": "effect",
+      "start": 194.24,
+      "end": 194.8
+    },
+    {
+      "word": "what",
+      "start": 194.8,
+      "end": 195.35
+    },
+    {
+      "word": "should",
+      "start": 195.35,
+      "end": 195.91
+    },
+    {
+      "word": "we",
+      "start": 195.91,
+      "end": 196.46
+    },
+    {
+      "word": "use",
+      "start": 196.46,
+      "end": 197.02
+    },
+    {
+      "word": "instead",
+      "start": 197.02,
+      "end": 197.57
+    },
+    {
+      "word": "use",
+      "start": 197.57,
+      "end": 198.07
+    },
+    {
+      "word": "the",
+      "start": 198.07,
+      "end": 198.57
+    },
+    {
+      "word": "normalconsistent",
+      "start": 198.57,
+      "end": 199.07
+    },
+    {
+      "word": "mad",
+      "start": 199.07,
+      "end": 199.57
+    },
+    {
+      "word": "which",
+      "start": 199.57,
+      "end": 200.07
+    },
+    {
+      "word": "is",
+      "start": 200.07,
+      "end": 200.57
+    },
+    {
+      "word": "14826",
+      "start": 200.57,
+      "end": 201.07
+    },
+    {
+      "word": "times",
+      "start": 201.07,
+      "end": 201.58
+    },
+    {
+      "word": "mad",
+      "start": 201.58,
+      "end": 202.08
+    },
+    {
+      "word": "or",
+      "start": 202.08,
+      "end": 202.58
+    },
+    {
+      "word": "the",
+      "start": 202.58,
+      "end": 203.08
+    },
+    {
+      "word": "rousseeuwcroux",
+      "start": 203.08,
+      "end": 203.58
+    },
+    {
+      "word": "qsubn",
+      "start": 203.58,
+      "end": 204.08
+    },
+    {
+      "word": "estimator",
+      "start": 204.08,
+      "end": 204.58
+    },
+    {
+      "word": "both",
+      "start": 204.58,
+      "end": 205.08
+    },
+    {
+      "word": "resist",
+      "start": 205.08,
+      "end": 205.58
+    },
+    {
+      "word": "up",
+      "start": 205.58,
+      "end": 206.08
+    },
+    {
+      "word": "to",
+      "start": 206.08,
+      "end": 206.58
+    },
+    {
+      "word": "50",
+      "start": 206.58,
+      "end": 207.08
+    },
+    {
+      "word": "percent",
+      "start": 207.08,
+      "end": 207.58
+    },
+    {
+      "word": "contamination",
+      "start": 207.58,
+      "end": 208.08
+    },
+    {
+      "word": "while",
+      "start": 208.08,
+      "end": 208.59
+    },
+    {
+      "word": "providing",
+      "start": 208.59,
+      "end": 209.09
+    },
+    {
+      "word": "unbiased",
+      "start": 209.09,
+      "end": 209.59
+    },
+    {
+      "word": "scale",
+      "start": 209.59,
+      "end": 210.09
+    },
+    {
+      "word": "estimates",
+      "start": 210.09,
+      "end": 210.59
+    },
+    {
+      "word": "under",
+      "start": 210.59,
+      "end": 211.09
+    },
+    {
+      "word": "gaussian",
+      "start": 211.09,
+      "end": 211.59
+    },
+    {
+      "word": "baselines",
+      "start": 211.59,
+      "end": 212.09
+    },
+    {
+      "word": "i",
+      "start": 212.09,
+      "end": 212.44
+    },
+    {
+      "word": "see",
+      "start": 212.44,
+      "end": 212.8
+    },
+    {
+      "word": "if",
+      "start": 212.8,
+      "end": 213.15
+    },
+    {
+      "word": "i",
+      "start": 213.15,
+      "end": 213.5
+    },
+    {
+      "word": "have",
+      "start": 213.5,
+      "end": 213.86
+    },
+    {
+      "word": "a",
+      "start": 213.86,
+      "end": 214.21
+    },
+    {
+      "word": "feature",
+      "start": 214.21,
+      "end": 214.56
+    },
+    {
+      "word": "measured",
+      "start": 214.56,
+      "end": 214.92
+    },
+    {
+      "word": "in",
+      "start": 214.92,
+      "end": 215.27
+    },
+    {
+      "word": "micrograms",
+      "start": 215.27,
+      "end": 215.62
+    },
+    {
+      "word": "and",
+      "start": 215.62,
+      "end": 215.98
+    },
+    {
+      "word": "another",
+      "start": 215.98,
+      "end": 216.33
+    },
+    {
+      "word": "in",
+      "start": 216.33,
+      "end": 216.68
+    },
+    {
+      "word": "gigabytes",
+      "start": 216.68,
+      "end": 217.04
+    },
+    {
+      "word": "i",
+      "start": 217.04,
+      "end": 217.39
+    },
+    {
+      "word": "cant",
+      "start": 217.39,
+      "end": 217.75
+    },
+    {
+      "word": "just",
+      "start": 217.75,
+      "end": 218.1
+    },
+    {
+      "word": "say",
+      "start": 218.1,
+      "end": 218.45
+    },
+    {
+      "word": "the",
+      "start": 218.45,
+      "end": 218.81
+    },
+    {
+      "word": "gigabyte",
+      "start": 218.81,
+      "end": 219.16
+    },
+    {
+      "word": "standard",
+      "start": 219.16,
+      "end": 219.51
+    },
+    {
+      "word": "deviation",
+      "start": 219.51,
+      "end": 219.87
+    },
+    {
+      "word": "is",
+      "start": 219.87,
+      "end": 220.22
+    },
+    {
+      "word": "bigger",
+      "start": 220.22,
+      "end": 220.57
+    },
+    {
+      "word": "and",
+      "start": 220.57,
+      "end": 220.93
+    },
+    {
+      "word": "call",
+      "start": 220.93,
+      "end": 221.28
+    },
+    {
+      "word": "it",
+      "start": 221.28,
+      "end": 221.63
+    },
+    {
+      "word": "more",
+      "start": 221.63,
+      "end": 221.99
+    },
+    {
+      "word": "dispersed",
+      "start": 221.99,
+      "end": 222.34
+    },
+    {
+      "word": "never",
+      "start": 222.34,
+      "end": 222.88
+    },
+    {
+      "word": "standard",
+      "start": 222.88,
+      "end": 223.41
+    },
+    {
+      "word": "deviation",
+      "start": 223.41,
+      "end": 223.95
+    },
+    {
+      "word": "carries",
+      "start": 223.95,
+      "end": 224.49
+    },
+    {
+      "word": "the",
+      "start": 224.49,
+      "end": 225.03
+    },
+    {
+      "word": "physical",
+      "start": 225.03,
+      "end": 225.56
+    },
+    {
+      "word": "dimensions",
+      "start": 225.56,
+      "end": 226.1
+    },
+    {
+      "word": "of",
+      "start": 226.1,
+      "end": 226.64
+    },
+    {
+      "word": "the",
+      "start": 226.64,
+      "end": 227.17
+    },
+    {
+      "word": "measurement",
+      "start": 227.17,
+      "end": 227.71
+    },
+    {
+      "word": "changing",
+      "start": 227.71,
+      "end": 228.25
+    },
+    {
+      "word": "units",
+      "start": 228.25,
+      "end": 228.78
+    },
+    {
+      "word": "from",
+      "start": 228.78,
+      "end": 229.32
+    },
+    {
+      "word": "dollars",
+      "start": 229.32,
+      "end": 229.86
+    },
+    {
+      "word": "to",
+      "start": 229.86,
+      "end": 230.4
+    },
+    {
+      "word": "cents",
+      "start": 230.4,
+      "end": 230.93
+    },
+    {
+      "word": "multiplies",
+      "start": 230.93,
+      "end": 231.47
+    },
+    {
+      "word": "standard",
+      "start": 231.47,
+      "end": 232.01
+    },
+    {
+      "word": "deviation",
+      "start": 232.01,
+      "end": 232.54
+    },
+    {
+      "word": "by",
+      "start": 232.54,
+      "end": 233.08
+    },
+    {
+      "word": "100",
+      "start": 233.08,
+      "end": 233.62
+    },
+    {
+      "word": "without",
+      "start": 233.62,
+      "end": 234.15
+    },
+    {
+      "word": "altering",
+      "start": 234.15,
+      "end": 234.69
+    },
+    {
+      "word": "the",
+      "start": 234.69,
+      "end": 235.23
+    },
+    {
+      "word": "underlying",
+      "start": 235.23,
+      "end": 235.77
+    },
+    {
+      "word": "distribution",
+      "start": 235.77,
+      "end": 236.3
+    },
+    {
+      "word": "dimensionless",
+      "start": 236.3,
+      "end": 236.84
+    },
+    {
+      "word": "metrics",
+      "start": 236.84,
+      "end": 237.38
+    },
+    {
+      "word": "like",
+      "start": 237.38,
+      "end": 237.91
+    },
+    {
+      "word": "cv",
+      "start": 237.91,
+      "end": 238.45
+    },
+    {
+      "word": "qcd",
+      "start": 238.45,
+      "end": 238.99
+    },
+    {
+      "word": "and",
+      "start": 238.99,
+      "end": 239.52
+    },
+    {
+      "word": "gini",
+      "start": 239.52,
+      "end": 240.06
+    },
+    {
+      "word": "eliminate",
+      "start": 240.06,
+      "end": 240.6
+    },
+    {
+      "word": "unit",
+      "start": 240.6,
+      "end": 241.14
+    },
+    {
+      "word": "dependence",
+      "start": 241.14,
+      "end": 241.67
+    },
+    {
+      "word": "entirely",
+      "start": 241.67,
+      "end": 242.21
+    },
+    {
+      "word": "and",
+      "start": 242.21,
+      "end": 242.62
+    },
+    {
+      "word": "the",
+      "start": 242.62,
+      "end": 243.04
+    },
+    {
+      "word": "gini",
+      "start": 243.04,
+      "end": 243.45
+    },
+    {
+      "word": "coefficient",
+      "start": 243.45,
+      "end": 243.86
+    },
+    {
+      "word": "isnt",
+      "start": 243.86,
+      "end": 244.28
+    },
+    {
+      "word": "just",
+      "start": 244.28,
+      "end": 244.69
+    },
+    {
+      "word": "for",
+      "start": 244.69,
+      "end": 245.1
+    },
+    {
+      "word": "economics",
+      "start": 245.1,
+      "end": 245.51
+    },
+    {
+      "word": "income",
+      "start": 245.51,
+      "end": 245.93
+    },
+    {
+      "word": "inequalityit",
+      "start": 245.93,
+      "end": 246.34
+    },
+    {
+      "word": "can",
+      "start": 246.34,
+      "end": 246.75
+    },
+    {
+      "word": "measure",
+      "start": 246.75,
+      "end": 247.17
+    },
+    {
+      "word": "resource",
+      "start": 247.17,
+      "end": 247.58
+    },
+    {
+      "word": "concentration",
+      "start": 247.58,
+      "end": 247.99
+    },
+    {
+      "word": "in",
+      "start": 247.99,
+      "end": 248.41
+    },
+    {
+      "word": "cluster",
+      "start": 248.41,
+      "end": 248.82
+    },
+    {
+      "word": "workloads",
+      "start": 248.82,
+      "end": 249.23
+    },
+    {
+      "word": "or",
+      "start": 249.23,
+      "end": 249.64
+    },
+    {
+      "word": "api",
+      "start": 249.64,
+      "end": 250.06
+    },
+    {
+      "word": "token",
+      "start": 250.06,
+      "end": 250.47
+    },
+    {
+      "word": "usage",
+      "start": 250.47,
+      "end": 250.88
+    },
+    {
+      "word": "across",
+      "start": 250.88,
+      "end": 251.3
+    },
+    {
+      "word": "accounts",
+      "start": 251.3,
+      "end": 251.71
+    },
+    {
+      "word": "spot",
+      "start": 251.71,
+      "end": 252.15
+    },
+    {
+      "word": "on",
+      "start": 252.15,
+      "end": 252.59
+    },
+    {
+      "word": "a",
+      "start": 252.59,
+      "end": 253.04
+    },
+    {
+      "word": "high",
+      "start": 253.04,
+      "end": 253.48
+    },
+    {
+      "word": "gini",
+      "start": 253.48,
+      "end": 253.92
+    },
+    {
+      "word": "coefficient",
+      "start": 253.92,
+      "end": 254.36
+    },
+    {
+      "word": "in",
+      "start": 254.36,
+      "end": 254.8
+    },
+    {
+      "word": "api",
+      "start": 254.8,
+      "end": 255.25
+    },
+    {
+      "word": "latency",
+      "start": 255.25,
+      "end": 255.69
+    },
+    {
+      "word": "indicates",
+      "start": 255.69,
+      "end": 256.13
+    },
+    {
+      "word": "that",
+      "start": 256.13,
+      "end": 256.57
+    },
+    {
+      "word": "a",
+      "start": 256.57,
+      "end": 257.02
+    },
+    {
+      "word": "tiny",
+      "start": 257.01,
+      "end": 257.46
+    },
+    {
+      "word": "fraction",
+      "start": 257.46,
+      "end": 257.9
+    },
+    {
+      "word": "of",
+      "start": 257.9,
+      "end": 258.34
+    },
+    {
+      "word": "heavy",
+      "start": 258.34,
+      "end": 258.78
+    },
+    {
+      "word": "queries",
+      "start": 258.78,
+      "end": 259.23
+    },
+    {
+      "word": "consumes",
+      "start": 259.23,
+      "end": 259.67
+    },
+    {
+      "word": "the",
+      "start": 259.67,
+      "end": 260.11
+    },
+    {
+      "word": "overwhelming",
+      "start": 260.11,
+      "end": 260.55
+    },
+    {
+      "word": "majority",
+      "start": 260.55,
+      "end": 260.99
+    },
+    {
+      "word": "of",
+      "start": 260.99,
+      "end": 261.44
+    },
+    {
+      "word": "compute",
+      "start": 261.44,
+      "end": 261.88
+    },
+    {
+      "word": "time",
+      "start": 261.88,
+      "end": 262.32
+    },
+    {
+      "word": "dr",
+      "start": 262.32,
+      "end": 262.77
+    },
+    {
+      "word": "nova",
+      "start": 262.77,
+      "end": 263.23
+    },
+    {
+      "word": "lets",
+      "start": 263.23,
+      "end": 263.68
+    },
+    {
+      "word": "stresstest",
+      "start": 263.68,
+      "end": 264.13
+    },
+    {
+      "word": "these",
+      "start": 264.13,
+      "end": 264.59
+    },
+    {
+      "word": "estimators",
+      "start": 264.59,
+      "end": 265.04
+    },
+    {
+      "word": "what",
+      "start": 265.04,
+      "end": 265.5
+    },
+    {
+      "word": "happens",
+      "start": 265.5,
+      "end": 265.95
+    },
+    {
+      "word": "if",
+      "start": 265.95,
+      "end": 266.4
+    },
+    {
+      "word": "i",
+      "start": 266.4,
+      "end": 266.86
+    },
+    {
+      "word": "choose",
+      "start": 266.86,
+      "end": 267.31
+    },
+    {
+      "word": "the",
+      "start": 267.31,
+      "end": 267.76
+    },
+    {
+      "word": "lognormal",
+      "start": 267.76,
+      "end": 268.22
+    },
+    {
+      "word": "profile",
+      "start": 268.22,
+      "end": 268.67
+    },
+    {
+      "word": "and",
+      "start": 268.67,
+      "end": 269.13
+    },
+    {
+      "word": "inject",
+      "start": 269.13,
+      "end": 269.58
+    },
+    {
+      "word": "10",
+      "start": 269.58,
+      "end": 270.03
+    },
+    {
+      "word": "percent",
+      "start": 270.03,
+      "end": 270.49
+    },
+    {
+      "word": "outliers",
+      "start": 270.49,
+      "end": 270.94
+    },
+    {
+      "word": "try",
+      "start": 270.94,
+      "end": 271.3
+    },
+    {
+      "word": "it",
+      "start": 271.3,
+      "end": 271.66
+    },
+    {
+      "word": "right",
+      "start": 271.66,
+      "end": 272.02
+    },
+    {
+      "word": "on",
+      "start": 272.02,
+      "end": 272.38
+    },
+    {
+      "word": "the",
+      "start": 272.38,
+      "end": 272.74
+    },
+    {
+      "word": "canvas",
+      "start": 272.74,
+      "end": 273.1
+    },
+    {
+      "word": "kaito",
+      "start": 273.1,
+      "end": 273.46
+    },
+    {
+      "word": "notice",
+      "start": 273.46,
+      "end": 273.81
+    },
+    {
+      "word": "how",
+      "start": 273.81,
+      "end": 274.17
+    },
+    {
+      "word": "the",
+      "start": 274.17,
+      "end": 274.53
+    },
+    {
+      "word": "red",
+      "start": 274.53,
+      "end": 274.89
+    },
+    {
+      "word": "dashed",
+      "start": 274.89,
+      "end": 275.25
+    },
+    {
+      "word": "mean",
+      "start": 275.25,
+      "end": 275.61
+    },
+    {
+      "word": "line",
+      "start": 275.61,
+      "end": 275.97
+    },
+    {
+      "word": "flies",
+      "start": 275.97,
+      "end": 276.33
+    },
+    {
+      "word": "to",
+      "start": 276.33,
+      "end": 276.69
+    },
+    {
+      "word": "the",
+      "start": 276.69,
+      "end": 277.05
+    },
+    {
+      "word": "right",
+      "start": 277.05,
+      "end": 277.41
+    },
+    {
+      "word": "dragging",
+      "start": 277.41,
+      "end": 277.77
+    },
+    {
+      "word": "standard",
+      "start": 277.77,
+      "end": 278.13
+    },
+    {
+      "word": "deviation",
+      "start": 278.13,
+      "end": 278.49
+    },
+    {
+      "word": "with",
+      "start": 278.49,
+      "end": 278.85
+    },
+    {
+      "word": "it",
+      "start": 278.85,
+      "end": 279.21
+    },
+    {
+      "word": "while",
+      "start": 279.21,
+      "end": 279.56
+    },
+    {
+      "word": "the",
+      "start": 279.56,
+      "end": 279.92
+    },
+    {
+      "word": "blue",
+      "start": 279.92,
+      "end": 280.28
+    },
+    {
+      "word": "median",
+      "start": 280.28,
+      "end": 280.64
+    },
+    {
+      "word": "and",
+      "start": 280.64,
+      "end": 281.0
+    },
+    {
+      "word": "the",
+      "start": 281.0,
+      "end": 281.36
+    },
+    {
+      "word": "green",
+      "start": 281.36,
+      "end": 281.72
+    },
+    {
+      "word": "mad",
+      "start": 281.72,
+      "end": 282.08
+    },
+    {
+      "word": "interval",
+      "start": 282.08,
+      "end": 282.44
+    },
+    {
+      "word": "hold",
+      "start": 282.44,
+      "end": 282.8
+    },
+    {
+      "word": "their",
+      "start": 282.8,
+      "end": 283.16
+    },
+    {
+      "word": "ground",
+      "start": 283.16,
+      "end": 283.52
+    },
+    {
+      "word": "watch",
+      "start": 283.52,
+      "end": 283.88
+    },
+    {
+      "word": "the",
+      "start": 283.88,
+      "end": 284.24
+    },
+    {
+      "word": "excess",
+      "start": 284.24,
+      "end": 284.6
+    },
+    {
+      "word": "kurtosis",
+      "start": 284.6,
+      "end": 284.96
+    },
+    {
+      "word": "indicator",
+      "start": 284.96,
+      "end": 285.31
+    },
+    {
+      "word": "turn",
+      "start": 285.31,
+      "end": 285.67
+    },
+    {
+      "word": "red",
+      "start": 285.67,
+      "end": 286.03
+    },
+    {
+      "word": "as",
+      "start": 286.03,
+      "end": 286.39
+    },
+    {
+      "word": "it",
+      "start": 286.39,
+      "end": 286.75
+    },
+    {
+      "word": "detects",
+      "start": 286.75,
+      "end": 287.11
+    },
+    {
+      "word": "the",
+      "start": 287.11,
+      "end": 287.47
+    },
+    {
+      "word": "heavy",
+      "start": 287.47,
+      "end": 287.83
+    },
+    {
+      "word": "tails",
+      "start": 287.83,
+      "end": 288.19
+    },
+    {
+      "word": "time",
+      "start": 288.19,
+      "end": 288.61
+    },
+    {
+      "word": "for",
+      "start": 288.61,
+      "end": 289.03
+    },
+    {
+      "word": "our",
+      "start": 289.03,
+      "end": 289.46
+    },
+    {
+      "word": "first",
+      "start": 289.46,
+      "end": 289.88
+    },
+    {
+      "word": "knowledge",
+      "start": 289.88,
+      "end": 290.3
+    },
+    {
+      "word": "check",
+      "start": 290.3,
+      "end": 290.72
+    },
+    {
+      "word": "a",
+      "start": 290.72,
+      "end": 291.15
+    },
+    {
+      "word": "data",
+      "start": 291.15,
+      "end": 291.57
+    },
+    {
+      "word": "engineer",
+      "start": 291.57,
+      "end": 291.99
+    },
+    {
+      "word": "applies",
+      "start": 291.99,
+      "end": 292.41
+    },
+    {
+      "word": "bessels",
+      "start": 292.41,
+      "end": 292.84
+    },
+    {
+      "word": "n",
+      "start": 292.84,
+      "end": 293.26
+    },
+    {
+      "word": "minus",
+      "start": 293.26,
+      "end": 293.68
+    },
+    {
+      "word": "1",
+      "start": 293.68,
+      "end": 294.1
+    },
+    {
+      "word": "correction",
+      "start": 294.1,
+      "end": 294.53
+    },
+    {
+      "word": "to",
+      "start": 294.53,
+      "end": 294.95
+    },
+    {
+      "word": "sample",
+      "start": 294.95,
+      "end": 295.37
+    },
+    {
+      "word": "variance",
+      "start": 295.37,
+      "end": 295.79
+    },
+    {
+      "word": "takes",
+      "start": 295.79,
+      "end": 296.22
+    },
+    {
+      "word": "the",
+      "start": 296.22,
+      "end": 296.64
+    },
+    {
+      "word": "square",
+      "start": 296.64,
+      "end": 297.06
+    },
+    {
+      "word": "root",
+      "start": 297.06,
+      "end": 297.48
+    },
+    {
+      "word": "and",
+      "start": 297.48,
+      "end": 297.91
+    },
+    {
+      "word": "announces",
+      "start": 297.91,
+      "end": 298.33
+    },
+    {
+      "word": "our",
+      "start": 298.33,
+      "end": 298.75
+    },
+    {
+      "word": "sample",
+      "start": 298.75,
+      "end": 299.17
+    },
+    {
+      "word": "standard",
+      "start": 299.17,
+      "end": 299.6
+    },
+    {
+      "word": "deviation",
+      "start": 299.6,
+      "end": 300.02
+    },
+    {
+      "word": "is",
+      "start": 300.02,
+      "end": 300.44
+    },
+    {
+      "word": "100",
+      "start": 300.44,
+      "end": 300.86
+    },
+    {
+      "word": "percent",
+      "start": 300.86,
+      "end": 301.29
+    },
+    {
+      "word": "unbiased",
+      "start": 301.29,
+      "end": 301.71
+    },
+    {
+      "word": "whats",
+      "start": 301.71,
+      "end": 302.13
+    },
+    {
+      "word": "the",
+      "start": 302.13,
+      "end": 302.55
+    },
+    {
+      "word": "verdict",
+      "start": 302.55,
+      "end": 302.98
+    },
+    {
+      "word": "dr",
+      "start": 302.98,
+      "end": 303.4
+    },
+    {
+      "word": "nova",
+      "start": 303.4,
+      "end": 303.82
+    },
+    {
+      "word": "let",
+      "start": 303.82,
+      "end": 304.28
+    },
+    {
+      "word": "our",
+      "start": 304.28,
+      "end": 304.73
+    },
+    {
+      "word": "students",
+      "start": 304.73,
+      "end": 305.19
+    },
+    {
+      "word": "decide",
+      "start": 305.19,
+      "end": 305.64
+    },
+    {
+      "word": "think",
+      "start": 305.64,
+      "end": 306.1
+    },
+    {
+      "word": "carefully",
+      "start": 306.1,
+      "end": 306.56
+    },
+    {
+      "word": "about",
+      "start": 306.56,
+      "end": 307.01
+    },
+    {
+      "word": "jensens",
+      "start": 307.01,
+      "end": 307.47
+    },
+    {
+      "word": "inequality",
+      "start": 307.47,
+      "end": 307.92
+    },
+    {
+      "word": "and",
+      "start": 307.92,
+      "end": 308.38
+    },
+    {
+      "word": "the",
+      "start": 308.38,
+      "end": 308.83
+    },
+    {
+      "word": "concavity",
+      "start": 308.84,
+      "end": 309.29
+    },
+    {
+      "word": "of",
+      "start": 309.29,
+      "end": 309.75
+    },
+    {
+      "word": "the",
+      "start": 309.75,
+      "end": 310.2
+    },
+    {
+      "word": "square",
+      "start": 310.2,
+      "end": 310.66
+    },
+    {
+      "word": "root",
+      "start": 310.66,
+      "end": 311.11
+    },
+    {
+      "word": "function",
+      "start": 311.11,
+      "end": 311.57
+    },
+    {
+      "word": "lock",
+      "start": 311.57,
+      "end": 312.03
+    },
+    {
+      "word": "in",
+      "start": 312.03,
+      "end": 312.48
+    },
+    {
+      "word": "your",
+      "start": 312.48,
+      "end": 312.94
+    },
+    {
+      "word": "answer",
+      "start": 312.94,
+      "end": 313.39
+    },
+    {
+      "word": "below",
+      "start": 313.39,
+      "end": 313.85
+    },
+    {
+      "word": "fisher",
+      "start": 313.85,
+      "end": 314.3
+    },
+    {
+      "word": "skewness",
+      "start": 314.3,
+      "end": 314.75
+    },
+    {
+      "word": "raises",
+      "start": 314.75,
+      "end": 315.2
+    },
+    {
+      "word": "deviations",
+      "start": 315.2,
+      "end": 315.65
+    },
+    {
+      "word": "to",
+      "start": 315.65,
+      "end": 316.1
+    },
+    {
+      "word": "the",
+      "start": 316.1,
+      "end": 316.55
+    },
+    {
+      "word": "third",
+      "start": 316.55,
+      "end": 317.0
+    },
+    {
+      "word": "power",
+      "start": 317.0,
+      "end": 317.45
+    },
+    {
+      "word": "doesnt",
+      "start": 317.45,
+      "end": 317.9
+    },
+    {
+      "word": "that",
+      "start": 317.9,
+      "end": 318.35
+    },
+    {
+      "word": "make",
+      "start": 318.35,
+      "end": 318.8
+    },
+    {
+      "word": "it",
+      "start": 318.8,
+      "end": 319.25
+    },
+    {
+      "word": "wildly",
+      "start": 319.25,
+      "end": 319.7
+    },
+    {
+      "word": "sensitive",
+      "start": 319.7,
+      "end": 320.15
+    },
+    {
+      "word": "to",
+      "start": 320.15,
+      "end": 320.6
+    },
+    {
+      "word": "extreme",
+      "start": 320.6,
+      "end": 321.05
+    },
+    {
+      "word": "outliers",
+      "start": 321.05,
+      "end": 321.5
+    },
+    {
+      "word": "just",
+      "start": 321.5,
+      "end": 321.95
+    },
+    {
+      "word": "like",
+      "start": 321.95,
+      "end": 322.4
+    },
+    {
+      "word": "variance",
+      "start": 322.4,
+      "end": 322.85
+    },
+    {
+      "word": "even",
+      "start": 322.85,
+      "end": 323.34
+    },
+    {
+      "word": "more",
+      "start": 323.34,
+      "end": 323.84
+    },
+    {
+      "word": "sensitive",
+      "start": 323.84,
+      "end": 324.33
+    },
+    {
+      "word": "kaito",
+      "start": 324.33,
+      "end": 324.83
+    },
+    {
+      "word": "because",
+      "start": 324.83,
+      "end": 325.32
+    },
+    {
+      "word": "deviations",
+      "start": 325.32,
+      "end": 325.82
+    },
+    {
+      "word": "are",
+      "start": 325.82,
+      "end": 326.31
+    },
+    {
+      "word": "cubed",
+      "start": 326.31,
+      "end": 326.81
+    },
+    {
+      "word": "a",
+      "start": 326.81,
+      "end": 327.3
+    },
+    {
+      "word": "single",
+      "start": 327.3,
+      "end": 327.79
+    },
+    {
+      "word": "extreme",
+      "start": 327.79,
+      "end": 328.29
+    },
+    {
+      "word": "outlier",
+      "start": 328.29,
+      "end": 328.78
+    },
+    {
+      "word": "at",
+      "start": 328.78,
+      "end": 329.28
+    },
+    {
+      "word": "10",
+      "start": 329.28,
+      "end": 329.77
+    },
+    {
+      "word": "sigma",
+      "start": 329.77,
+      "end": 330.27
+    },
+    {
+      "word": "contributes",
+      "start": 330.27,
+      "end": 330.76
+    },
+    {
+      "word": "1000",
+      "start": 330.76,
+      "end": 331.25
+    },
+    {
+      "word": "to",
+      "start": 331.25,
+      "end": 331.75
+    },
+    {
+      "word": "the",
+      "start": 331.75,
+      "end": 332.24
+    },
+    {
+      "word": "numerator",
+      "start": 332.24,
+      "end": 332.74
+    },
+    {
+      "word": "completely",
+      "start": 332.74,
+      "end": 333.23
+    },
+    {
+      "word": "dominating",
+      "start": 333.23,
+      "end": 333.73
+    },
+    {
+      "word": "the",
+      "start": 333.73,
+      "end": 334.22
+    },
+    {
+      "word": "sample",
+      "start": 334.22,
+      "end": 334.72
+    },
+    {
+      "word": "skewness",
+      "start": 334.72,
+      "end": 335.21
+    },
+    {
+      "word": "so",
+      "start": 335.21,
+      "end": 335.57
+    },
+    {
+      "word": "if",
+      "start": 335.57,
+      "end": 335.94
+    },
+    {
+      "word": "our",
+      "start": 335.94,
+      "end": 336.3
+    },
+    {
+      "word": "dataset",
+      "start": 336.3,
+      "end": 336.67
+    },
+    {
+      "word": "has",
+      "start": 336.67,
+      "end": 337.03
+    },
+    {
+      "word": "dirty",
+      "start": 337.03,
+      "end": 337.39
+    },
+    {
+      "word": "sensor",
+      "start": 337.39,
+      "end": 337.76
+    },
+    {
+      "word": "noise",
+      "start": 337.76,
+      "end": 338.12
+    },
+    {
+      "word": "gsub1",
+      "start": 338.12,
+      "end": 338.49
+    },
+    {
+      "word": "might",
+      "start": 338.49,
+      "end": 338.85
+    },
+    {
+      "word": "report",
+      "start": 338.85,
+      "end": 339.21
+    },
+    {
+      "word": "extreme",
+      "start": 339.21,
+      "end": 339.58
+    },
+    {
+      "word": "skewness",
+      "start": 339.58,
+      "end": 339.94
+    },
+    {
+      "word": "even",
+      "start": 339.94,
+      "end": 340.3
+    },
+    {
+      "word": "when",
+      "start": 340.3,
+      "end": 340.67
+    },
+    {
+      "word": "the",
+      "start": 340.67,
+      "end": 341.03
+    },
+    {
+      "word": "core",
+      "start": 341.03,
+      "end": 341.4
+    },
+    {
+      "word": "body",
+      "start": 341.4,
+      "end": 341.76
+    },
+    {
+      "word": "of",
+      "start": 341.76,
+      "end": 342.12
+    },
+    {
+      "word": "data",
+      "start": 342.12,
+      "end": 342.49
+    },
+    {
+      "word": "is",
+      "start": 342.49,
+      "end": 342.85
+    },
+    {
+      "word": "perfectly",
+      "start": 342.85,
+      "end": 343.22
+    },
+    {
+      "word": "symmetric",
+      "start": 343.22,
+      "end": 343.58
+    },
+    {
+      "word": "exactly",
+      "start": 343.58,
+      "end": 344.08
+    },
+    {
+      "word": "in",
+      "start": 344.08,
+      "end": 344.57
+    },
+    {
+      "word": "robust",
+      "start": 344.57,
+      "end": 345.07
+    },
+    {
+      "word": "exploratory",
+      "start": 345.07,
+      "end": 345.56
+    },
+    {
+      "word": "data",
+      "start": 345.56,
+      "end": 346.06
+    },
+    {
+      "word": "analysis",
+      "start": 346.06,
+      "end": 346.55
+    },
+    {
+      "word": "you",
+      "start": 346.55,
+      "end": 347.05
+    },
+    {
+      "word": "always",
+      "start": 347.05,
+      "end": 347.54
+    },
+    {
+      "word": "pair",
+      "start": 347.54,
+      "end": 348.04
+    },
+    {
+      "word": "gsub1",
+      "start": 348.04,
+      "end": 348.53
+    },
+    {
+      "word": "with",
+      "start": 348.53,
+      "end": 349.03
+    },
+    {
+      "word": "bowleys",
+      "start": 349.03,
+      "end": 349.52
+    },
+    {
+      "word": "quantile",
+      "start": 349.52,
+      "end": 350.02
+    },
+    {
+      "word": "skewness",
+      "start": 350.02,
+      "end": 350.51
+    },
+    {
+      "word": "b1",
+      "start": 350.51,
+      "end": 351.01
+    },
+    {
+      "word": "if",
+      "start": 351.01,
+      "end": 351.5
+    },
+    {
+      "word": "b1",
+      "start": 351.5,
+      "end": 352.0
+    },
+    {
+      "word": "is",
+      "start": 352.0,
+      "end": 352.49
+    },
+    {
+      "word": "near",
+      "start": 352.49,
+      "end": 352.99
+    },
+    {
+      "word": "zero",
+      "start": 352.99,
+      "end": 353.49
+    },
+    {
+      "word": "while",
+      "start": 353.49,
+      "end": 353.98
+    },
+    {
+      "word": "gsub1",
+      "start": 353.98,
+      "end": 354.48
+    },
+    {
+      "word": "is",
+      "start": 354.48,
+      "end": 354.97
+    },
+    {
+      "word": "massive",
+      "start": 354.97,
+      "end": 355.47
+    },
+    {
+      "word": "the",
+      "start": 355.47,
+      "end": 355.96
+    },
+    {
+      "word": "asymmetry",
+      "start": 355.96,
+      "end": 356.46
+    },
+    {
+      "word": "is",
+      "start": 356.46,
+      "end": 356.95
+    },
+    {
+      "word": "entirely",
+      "start": 356.95,
+      "end": 357.45
+    },
+    {
+      "word": "driven",
+      "start": 357.45,
+      "end": 357.94
+    },
+    {
+      "word": "by",
+      "start": 357.94,
+      "end": 358.44
+    },
+    {
+      "word": "isolated",
+      "start": 358.44,
+      "end": 358.93
+    },
+    {
+      "word": "tail",
+      "start": 358.93,
+      "end": 359.43
+    },
+    {
+      "word": "outliers",
+      "start": 359.43,
+      "end": 359.92
+    },
+    {
+      "word": "not",
+      "start": 359.92,
+      "end": 360.42
+    },
+    {
+      "word": "the",
+      "start": 360.42,
+      "end": 360.91
+    },
+    {
+      "word": "underlying",
+      "start": 360.91,
+      "end": 361.41
+    },
+    {
+      "word": "population",
+      "start": 361.41,
+      "end": 361.9
+    },
+    {
+      "word": "geometry",
+      "start": 361.9,
+      "end": 362.4
+    },
+    {
+      "word": "hold",
+      "start": 362.4,
+      "end": 362.81
+    },
+    {
+      "word": "on",
+      "start": 362.81,
+      "end": 363.23
+    },
+    {
+      "word": "in",
+      "start": 363.23,
+      "end": 363.64
+    },
+    {
+      "word": "high",
+      "start": 363.64,
+      "end": 364.05
+    },
+    {
+      "word": "school",
+      "start": 364.05,
+      "end": 364.46
+    },
+    {
+      "word": "they",
+      "start": 364.46,
+      "end": 364.88
+    },
+    {
+      "word": "taught",
+      "start": 364.88,
+      "end": 365.29
+    },
+    {
+      "word": "us",
+      "start": 365.29,
+      "end": 365.7
+    },
+    {
+      "word": "that",
+      "start": 365.7,
+      "end": 366.11
+    },
+    {
+      "word": "leptokurtic",
+      "start": 366.11,
+      "end": 366.53
+    },
+    {
+      "word": "meant",
+      "start": 366.53,
+      "end": 366.94
+    },
+    {
+      "word": "a",
+      "start": 366.94,
+      "end": 367.35
+    },
+    {
+      "word": "sharp",
+      "start": 367.35,
+      "end": 367.76
+    },
+    {
+      "word": "pointy",
+      "start": 367.76,
+      "end": 368.18
+    },
+    {
+      "word": "peak",
+      "start": 368.18,
+      "end": 368.59
+    },
+    {
+      "word": "and",
+      "start": 368.59,
+      "end": 369.0
+    },
+    {
+      "word": "platykurtic",
+      "start": 369.0,
+      "end": 369.42
+    },
+    {
+      "word": "meant",
+      "start": 369.42,
+      "end": 369.83
+    },
+    {
+      "word": "a",
+      "start": 369.83,
+      "end": 370.24
+    },
+    {
+      "word": "flat",
+      "start": 370.24,
+      "end": 370.65
+    },
+    {
+      "word": "broad",
+      "start": 370.65,
+      "end": 371.07
+    },
+    {
+      "word": "peak",
+      "start": 371.07,
+      "end": 371.48
+    },
+    {
+      "word": "was",
+      "start": 371.48,
+      "end": 371.89
+    },
+    {
+      "word": "that",
+      "start": 371.89,
+      "end": 372.3
+    },
+    {
+      "word": "completely",
+      "start": 372.3,
+      "end": 372.72
+    },
+    {
+      "word": "wrong",
+      "start": 372.72,
+      "end": 373.13
+    },
+    {
+      "word": "completely",
+      "start": 373.13,
+      "end": 373.59
+    },
+    {
+      "word": "wrong",
+      "start": 373.59,
+      "end": 374.05
+    },
+    {
+      "word": "kaito",
+      "start": 374.05,
+      "end": 374.52
+    },
+    {
+      "word": "as",
+      "start": 374.52,
+      "end": 374.98
+    },
+    {
+      "word": "westfall",
+      "start": 374.98,
+      "end": 375.44
+    },
+    {
+      "word": "proved",
+      "start": 375.44,
+      "end": 375.9
+    },
+    {
+      "word": "you",
+      "start": 375.9,
+      "end": 376.37
+    },
+    {
+      "word": "can",
+      "start": 376.37,
+      "end": 376.83
+    },
+    {
+      "word": "construct",
+      "start": 376.83,
+      "end": 377.29
+    },
+    {
+      "word": "distributions",
+      "start": 377.29,
+      "end": 377.75
+    },
+    {
+      "word": "with",
+      "start": 377.75,
+      "end": 378.21
+    },
+    {
+      "word": "infinitely",
+      "start": 378.21,
+      "end": 378.68
+    },
+    {
+      "word": "sharp",
+      "start": 378.68,
+      "end": 379.14
+    },
+    {
+      "word": "needle",
+      "start": 379.14,
+      "end": 379.6
+    },
+    {
+      "word": "peaks",
+      "start": 379.6,
+      "end": 380.06
+    },
+    {
+      "word": "that",
+      "start": 380.06,
+      "end": 380.53
+    },
+    {
+      "word": "have",
+      "start": 380.53,
+      "end": 380.99
+    },
+    {
+      "word": "low",
+      "start": 380.99,
+      "end": 381.45
+    },
+    {
+      "word": "kurtosis",
+      "start": 381.45,
+      "end": 381.91
+    },
+    {
+      "word": "and",
+      "start": 381.91,
+      "end": 382.38
+    },
+    {
+      "word": "distributions",
+      "start": 382.38,
+      "end": 382.84
+    },
+    {
+      "word": "with",
+      "start": 382.84,
+      "end": 383.3
+    },
+    {
+      "word": "completely",
+      "start": 383.3,
+      "end": 383.76
+    },
+    {
+      "word": "flat",
+      "start": 383.76,
+      "end": 384.22
+    },
+    {
+      "word": "or",
+      "start": 384.22,
+      "end": 384.69
+    },
+    {
+      "word": "bimodal",
+      "start": 384.69,
+      "end": 385.15
+    },
+    {
+      "word": "tops",
+      "start": 385.15,
+      "end": 385.61
+    },
+    {
+      "word": "that",
+      "start": 385.61,
+      "end": 386.07
+    },
+    {
+      "word": "have",
+      "start": 386.07,
+      "end": 386.54
+    },
+    {
+      "word": "massive",
+      "start": 386.54,
+      "end": 387.0
+    },
+    {
+      "word": "kurtosis",
+      "start": 387.0,
+      "end": 387.46
+    },
+    {
+      "word": "because",
+      "start": 387.46,
+      "end": 387.79
+    },
+    {
+      "word": "raising",
+      "start": 387.79,
+      "end": 388.12
+    },
+    {
+      "word": "to",
+      "start": 388.12,
+      "end": 388.44
+    },
+    {
+      "word": "the",
+      "start": 388.44,
+      "end": 388.77
+    },
+    {
+      "word": "fourth",
+      "start": 388.77,
+      "end": 389.1
+    },
+    {
+      "word": "power",
+      "start": 389.1,
+      "end": 389.43
+    },
+    {
+      "word": "gives",
+      "start": 389.43,
+      "end": 389.75
+    },
+    {
+      "word": "nearzero",
+      "start": 389.75,
+      "end": 390.08
+    },
+    {
+      "word": "weight",
+      "start": 390.08,
+      "end": 390.41
+    },
+    {
+      "word": "to",
+      "start": 390.41,
+      "end": 390.74
+    },
+    {
+      "word": "the",
+      "start": 390.74,
+      "end": 391.07
+    },
+    {
+      "word": "center",
+      "start": 391.07,
+      "end": 391.39
+    },
+    {
+      "word": "and",
+      "start": 391.39,
+      "end": 391.72
+    },
+    {
+      "word": "colossal",
+      "start": 391.72,
+      "end": 392.05
+    },
+    {
+      "word": "weight",
+      "start": 392.05,
+      "end": 392.38
+    },
+    {
+      "word": "to",
+      "start": 392.38,
+      "end": 392.7
+    },
+    {
+      "word": "the",
+      "start": 392.7,
+      "end": 393.03
+    },
+    {
+      "word": "tails",
+      "start": 393.03,
+      "end": 393.36
+    },
+    {
+      "word": "exactly",
+      "start": 393.36,
+      "end": 393.81
+    },
+    {
+      "word": "z",
+      "start": 393.81,
+      "end": 394.25
+    },
+    {
+      "word": "to",
+      "start": 394.25,
+      "end": 394.7
+    },
+    {
+      "word": "the",
+      "start": 394.7,
+      "end": 395.15
+    },
+    {
+      "word": "fourth",
+      "start": 395.15,
+      "end": 395.59
+    },
+    {
+      "word": "power",
+      "start": 395.59,
+      "end": 396.04
+    },
+    {
+      "word": "is",
+      "start": 396.04,
+      "end": 396.49
+    },
+    {
+      "word": "a",
+      "start": 396.49,
+      "end": 396.94
+    },
+    {
+      "word": "tail",
+      "start": 396.94,
+      "end": 397.38
+    },
+    {
+      "word": "leverage",
+      "start": 397.38,
+      "end": 397.83
+    },
+    {
+      "word": "detector",
+      "start": 397.83,
+      "end": 398.28
+    },
+    {
+      "word": "high",
+      "start": 398.28,
+      "end": 398.72
+    },
+    {
+      "word": "excess",
+      "start": 398.72,
+      "end": 399.17
+    },
+    {
+      "word": "kurtosis",
+      "start": 399.17,
+      "end": 399.62
+    },
+    {
+      "word": "tells",
+      "start": 399.62,
+      "end": 400.06
+    },
+    {
+      "word": "you",
+      "start": 400.06,
+      "end": 400.51
+    },
+    {
+      "word": "that",
+      "start": 400.51,
+      "end": 400.96
+    },
+    {
+      "word": "your",
+      "start": 400.96,
+      "end": 401.4
+    },
+    {
+      "word": "system",
+      "start": 401.4,
+      "end": 401.85
+    },
+    {
+      "word": "is",
+      "start": 401.85,
+      "end": 402.3
+    },
+    {
+      "word": "exposed",
+      "start": 402.3,
+      "end": 402.75
+    },
+    {
+      "word": "to",
+      "start": 402.75,
+      "end": 403.19
+    },
+    {
+      "word": "rare",
+      "start": 403.19,
+      "end": 403.64
+    },
+    {
+      "word": "catastrophic",
+      "start": 403.64,
+      "end": 404.09
+    },
+    {
+      "word": "tail",
+      "start": 404.09,
+      "end": 404.53
+    },
+    {
+      "word": "shocks",
+      "start": 404.53,
+      "end": 404.98
+    },
+    {
+      "word": "eves",
+      "start": 404.98,
+      "end": 405.52
+    },
+    {
+      "word": "law",
+      "start": 405.52,
+      "end": 406.06
+    },
+    {
+      "word": "what",
+      "start": 406.06,
+      "end": 406.61
+    },
+    {
+      "word": "an",
+      "start": 406.61,
+      "end": 407.15
+    },
+    {
+      "word": "elegant",
+      "start": 407.15,
+      "end": 407.69
+    },
+    {
+      "word": "name",
+      "start": 407.69,
+      "end": 408.23
+    },
+    {
+      "word": "why",
+      "start": 408.23,
+      "end": 408.78
+    },
+    {
+      "word": "do",
+      "start": 408.78,
+      "end": 409.32
+    },
+    {
+      "word": "statisticians",
+      "start": 409.32,
+      "end": 409.86
+    },
+    {
+      "word": "call",
+      "start": 409.86,
+      "end": 410.4
+    },
+    {
+      "word": "it",
+      "start": 410.4,
+      "end": 410.95
+    },
+    {
+      "word": "eves",
+      "start": 410.95,
+      "end": 411.49
+    },
+    {
+      "word": "law",
+      "start": 411.49,
+      "end": 412.03
+    },
+    {
+      "word": "look",
+      "start": 412.03,
+      "end": 412.43
+    },
+    {
+      "word": "at",
+      "start": 412.43,
+      "end": 412.83
+    },
+    {
+      "word": "the",
+      "start": 412.83,
+      "end": 413.22
+    },
+    {
+      "word": "letters",
+      "start": 413.22,
+      "end": 413.62
+    },
+    {
+      "word": "of",
+      "start": 413.62,
+      "end": 414.02
+    },
+    {
+      "word": "the",
+      "start": 414.02,
+      "end": 414.42
+    },
+    {
+      "word": "operators",
+      "start": 414.42,
+      "end": 414.82
+    },
+    {
+      "word": "e",
+      "start": 414.82,
+      "end": 415.21
+    },
+    {
+      "word": "of",
+      "start": 415.21,
+      "end": 415.61
+    },
+    {
+      "word": "var",
+      "start": 415.61,
+      "end": 416.01
+    },
+    {
+      "word": "plus",
+      "start": 416.01,
+      "end": 416.41
+    },
+    {
+      "word": "var",
+      "start": 416.41,
+      "end": 416.81
+    },
+    {
+      "word": "of",
+      "start": 416.81,
+      "end": 417.2
+    },
+    {
+      "word": "e",
+      "start": 417.2,
+      "end": 417.6
+    },
+    {
+      "word": "evve",
+      "start": 417.6,
+      "end": 418.0
+    },
+    {
+      "word": "spelling",
+      "start": 418.0,
+      "end": 418.4
+    },
+    {
+      "word": "evve",
+      "start": 418.4,
+      "end": 418.8
+    },
+    {
+      "word": "or",
+      "start": 418.8,
+      "end": 419.19
+    },
+    {
+      "word": "eve",
+      "start": 419.19,
+      "end": 419.59
+    },
+    {
+      "word": "it",
+      "start": 419.59,
+      "end": 419.99
+    },
+    {
+      "word": "tells",
+      "start": 419.99,
+      "end": 420.39
+    },
+    {
+      "word": "us",
+      "start": 420.39,
+      "end": 420.79
+    },
+    {
+      "word": "that",
+      "start": 420.79,
+      "end": 421.19
+    },
+    {
+      "word": "total",
+      "start": 421.19,
+      "end": 421.58
+    },
+    {
+      "word": "variance",
+      "start": 421.58,
+      "end": 421.98
+    },
+    {
+      "word": "can",
+      "start": 421.98,
+      "end": 422.38
+    },
+    {
+      "word": "be",
+      "start": 422.38,
+      "end": 422.78
+    },
+    {
+      "word": "cleanly",
+      "start": 422.78,
+      "end": 423.18
+    },
+    {
+      "word": "partitioned",
+      "start": 423.18,
+      "end": 423.57
+    },
+    {
+      "word": "into",
+      "start": 423.57,
+      "end": 423.97
+    },
+    {
+      "word": "internal",
+      "start": 423.97,
+      "end": 424.37
+    },
+    {
+      "word": "withingroup",
+      "start": 424.37,
+      "end": 424.77
+    },
+    {
+      "word": "noise",
+      "start": 424.77,
+      "end": 425.17
+    },
+    {
+      "word": "and",
+      "start": 425.17,
+      "end": 425.56
+    },
+    {
+      "word": "betweengroup",
+      "start": 425.56,
+      "end": 425.96
+    },
+    {
+      "word": "signal",
+      "start": 425.96,
+      "end": 426.36
+    },
+    {
+      "word": "and",
+      "start": 426.36,
+      "end": 426.7
+    },
+    {
+      "word": "the",
+      "start": 426.7,
+      "end": 427.04
+    },
+    {
+      "word": "two",
+      "start": 427.04,
+      "end": 427.38
+    },
+    {
+      "word": "terms",
+      "start": 427.38,
+      "end": 427.72
+    },
+    {
+      "word": "always",
+      "start": 427.72,
+      "end": 428.06
+    },
+    {
+      "word": "sum",
+      "start": 428.06,
+      "end": 428.4
+    },
+    {
+      "word": "up",
+      "start": 428.4,
+      "end": 428.74
+    },
+    {
+      "word": "to",
+      "start": 428.74,
+      "end": 429.09
+    },
+    {
+      "word": "the",
+      "start": 429.09,
+      "end": 429.43
+    },
+    {
+      "word": "total",
+      "start": 429.43,
+      "end": 429.77
+    },
+    {
+      "word": "variance",
+      "start": 429.77,
+      "end": 430.11
+    },
+    {
+      "word": "with",
+      "start": 430.11,
+      "end": 430.45
+    },
+    {
+      "word": "zero",
+      "start": 430.45,
+      "end": 430.79
+    },
+    {
+      "word": "overlap",
+      "start": 430.79,
+      "end": 431.13
+    },
+    {
+      "word": "right",
+      "start": 431.13,
+      "end": 431.47
+    },
+    {
+      "word": "with",
+      "start": 431.47,
+      "end": 431.85
+    },
+    {
+      "word": "zero",
+      "start": 431.85,
+      "end": 432.22
+    },
+    {
+      "word": "overlap",
+      "start": 432.22,
+      "end": 432.6
+    },
+    {
+      "word": "and",
+      "start": 432.6,
+      "end": 432.98
+    },
+    {
+      "word": "zero",
+      "start": 432.98,
+      "end": 433.35
+    },
+    {
+      "word": "leakage",
+      "start": 433.35,
+      "end": 433.73
+    },
+    {
+      "word": "in",
+      "start": 433.73,
+      "end": 434.11
+    },
+    {
+      "word": "our",
+      "start": 434.11,
+      "end": 434.48
+    },
+    {
+      "word": "production",
+      "start": 434.48,
+      "end": 434.86
+    },
+    {
+      "word": "code",
+      "start": 434.86,
+      "end": 435.24
+    },
+    {
+      "word": "we",
+      "start": 435.24,
+      "end": 435.61
+    },
+    {
+      "word": "assert",
+      "start": 435.61,
+      "end": 435.99
+    },
+    {
+      "word": "that",
+      "start": 435.99,
+      "end": 436.37
+    },
+    {
+      "word": "total",
+      "start": 436.37,
+      "end": 436.74
+    },
+    {
+      "word": "variance",
+      "start": 436.74,
+      "end": 437.12
+    },
+    {
+      "word": "minus",
+      "start": 437.12,
+      "end": 437.5
+    },
+    {
+      "word": "the",
+      "start": 437.5,
+      "end": 437.87
+    },
+    {
+      "word": "sum",
+      "start": 437.87,
+      "end": 438.25
+    },
+    {
+      "word": "of",
+      "start": 438.25,
+      "end": 438.63
+    },
+    {
+      "word": "within",
+      "start": 438.63,
+      "end": 439.0
+    },
+    {
+      "word": "and",
+      "start": 439.0,
+      "end": 439.38
+    },
+    {
+      "word": "between",
+      "start": 439.38,
+      "end": 439.76
+    },
+    {
+      "word": "is",
+      "start": 439.76,
+      "end": 440.13
+    },
+    {
+      "word": "less",
+      "start": 440.13,
+      "end": 440.51
+    },
+    {
+      "word": "than",
+      "start": 440.51,
+      "end": 440.89
+    },
+    {
+      "word": "10",
+      "start": 440.89,
+      "end": 441.26
+    },
+    {
+      "word": "to",
+      "start": 441.26,
+      "end": 441.64
+    },
+    {
+      "word": "the",
+      "start": 441.64,
+      "end": 442.02
+    },
+    {
+      "word": "minus",
+      "start": 442.02,
+      "end": 442.39
+    },
+    {
+      "word": "4",
+      "start": 442.39,
+      "end": 442.77
+    },
+    {
+      "word": "it",
+      "start": 442.77,
+      "end": 443.15
+    },
+    {
+      "word": "is",
+      "start": 443.15,
+      "end": 443.52
+    },
+    {
+      "word": "a",
+      "start": 443.52,
+      "end": 443.9
+    },
+    {
+      "word": "fundamental",
+      "start": 443.9,
+      "end": 444.28
+    },
+    {
+      "word": "conservation",
+      "start": 444.28,
+      "end": 444.65
+    },
+    {
+      "word": "invariant",
+      "start": 444.65,
+      "end": 445.03
+    },
+    {
+      "word": "etasquared",
+      "start": 445.03,
+      "end": 445.56
+    },
+    {
+      "word": "is",
+      "start": 445.56,
+      "end": 446.1
+    },
+    {
+      "word": "like",
+      "start": 446.1,
+      "end": 446.63
+    },
+    {
+      "word": "rsquared",
+      "start": 446.63,
+      "end": 447.16
+    },
+    {
+      "word": "but",
+      "start": 447.16,
+      "end": 447.7
+    },
+    {
+      "word": "for",
+      "start": 447.7,
+      "end": 448.23
+    },
+    {
+      "word": "categorical",
+      "start": 448.23,
+      "end": 448.76
+    },
+    {
+      "word": "grouping",
+      "start": 448.76,
+      "end": 449.3
+    },
+    {
+      "word": "features",
+      "start": 449.3,
+      "end": 449.83
+    },
+    {
+      "word": "exactly",
+      "start": 449.83,
+      "end": 450.31
+    },
+    {
+      "word": "kaito",
+      "start": 450.31,
+      "end": 450.79
+    },
+    {
+      "word": "it",
+      "start": 450.79,
+      "end": 451.26
+    },
+    {
+      "word": "is",
+      "start": 451.26,
+      "end": 451.74
+    },
+    {
+      "word": "the",
+      "start": 451.74,
+      "end": 452.22
+    },
+    {
+      "word": "nonlinear",
+      "start": 452.22,
+      "end": 452.7
+    },
+    {
+      "word": "generalized",
+      "start": 452.7,
+      "end": 453.17
+    },
+    {
+      "word": "rsquared",
+      "start": 453.17,
+      "end": 453.65
+    },
+    {
+      "word": "of",
+      "start": 453.65,
+      "end": 454.13
+    },
+    {
+      "word": "an",
+      "start": 454.13,
+      "end": 454.61
+    },
+    {
+      "word": "anova",
+      "start": 454.61,
+      "end": 455.09
+    },
+    {
+      "word": "model",
+      "start": 455.09,
+      "end": 455.56
+    },
+    {
+      "word": "if",
+      "start": 455.56,
+      "end": 456.04
+    },
+    {
+      "word": "a",
+      "start": 456.04,
+      "end": 456.52
+    },
+    {
+      "word": "proposed",
+      "start": 456.52,
+      "end": 457.0
+    },
+    {
+      "word": "customer",
+      "start": 457.0,
+      "end": 457.48
+    },
+    {
+      "word": "grouping",
+      "start": 457.48,
+      "end": 457.95
+    },
+    {
+      "word": "feature",
+      "start": 457.95,
+      "end": 458.43
+    },
+    {
+      "word": "has",
+      "start": 458.43,
+      "end": 458.91
+    },
+    {
+      "word": "an",
+      "start": 458.91,
+      "end": 459.39
+    },
+    {
+      "word": "etasquared",
+      "start": 459.39,
+      "end": 459.86
+    },
+    {
+      "word": "of",
+      "start": 459.86,
+      "end": 460.34
+    },
+    {
+      "word": "0008",
+      "start": 460.34,
+      "end": 460.82
+    },
+    {
+      "word": "it",
+      "start": 460.82,
+      "end": 461.3
+    },
+    {
+      "word": "explains",
+      "start": 461.3,
+      "end": 461.78
+    },
+    {
+      "word": "less",
+      "start": 461.78,
+      "end": 462.25
+    },
+    {
+      "word": "than",
+      "start": 462.25,
+      "end": 462.73
+    },
+    {
+      "word": "one",
+      "start": 462.73,
+      "end": 463.21
+    },
+    {
+      "word": "percent",
+      "start": 463.21,
+      "end": 463.69
+    },
+    {
+      "word": "of",
+      "start": 463.69,
+      "end": 464.16
+    },
+    {
+      "word": "target",
+      "start": 464.16,
+      "end": 464.64
+    },
+    {
+      "word": "variance",
+      "start": 464.64,
+      "end": 465.12
+    },
+    {
+      "word": "and",
+      "start": 465.12,
+      "end": 465.56
+    },
+    {
+      "word": "training",
+      "start": 465.56,
+      "end": 466.0
+    },
+    {
+      "word": "a",
+      "start": 466.0,
+      "end": 466.44
+    },
+    {
+      "word": "complex",
+      "start": 466.44,
+      "end": 466.88
+    },
+    {
+      "word": "model",
+      "start": 466.88,
+      "end": 467.32
+    },
+    {
+      "word": "on",
+      "start": 467.32,
+      "end": 467.76
+    },
+    {
+      "word": "that",
+      "start": 467.76,
+      "end": 468.2
+    },
+    {
+      "word": "feature",
+      "start": 468.2,
+      "end": 468.64
+    },
+    {
+      "word": "would",
+      "start": 468.64,
+      "end": 469.08
+    },
+    {
+      "word": "just",
+      "start": 469.08,
+      "end": 469.52
+    },
+    {
+      "word": "overfit",
+      "start": 469.52,
+      "end": 469.96
+    },
+    {
+      "word": "to",
+      "start": 469.96,
+      "end": 470.4
+    },
+    {
+      "word": "noise",
+      "start": 470.4,
+      "end": 470.83
+    },
+    {
+      "word": "whereas",
+      "start": 470.83,
+      "end": 471.27
+    },
+    {
+      "word": "if",
+      "start": 471.27,
+      "end": 471.71
+    },
+    {
+      "word": "etasquared",
+      "start": 471.71,
+      "end": 472.15
+    },
+    {
+      "word": "is",
+      "start": 472.15,
+      "end": 472.59
+    },
+    {
+      "word": "085",
+      "start": 472.59,
+      "end": 473.03
+    },
+    {
+      "word": "the",
+      "start": 473.03,
+      "end": 473.47
+    },
+    {
+      "word": "cohorts",
+      "start": 473.47,
+      "end": 473.91
+    },
+    {
+      "word": "live",
+      "start": 473.91,
+      "end": 474.35
+    },
+    {
+      "word": "in",
+      "start": 474.35,
+      "end": 474.79
+    },
+    {
+      "word": "completely",
+      "start": 474.79,
+      "end": 475.23
+    },
+    {
+      "word": "different",
+      "start": 475.23,
+      "end": 475.67
+    },
+    {
+      "word": "universes",
+      "start": 475.67,
+      "end": 476.11
+    },
+    {
+      "word": "precisely",
+      "start": 476.11,
+      "end": 476.71
+    },
+    {
+      "word": "that",
+      "start": 476.71,
+      "end": 477.3
+    },
+    {
+      "word": "is",
+      "start": 477.3,
+      "end": 477.9
+    },
+    {
+      "word": "why",
+      "start": 477.9,
+      "end": 478.5
+    },
+    {
+      "word": "computing",
+      "start": 478.5,
+      "end": 479.09
+    },
+    {
+      "word": "etasquared",
+      "start": 479.09,
+      "end": 479.69
+    },
+    {
+      "word": "during",
+      "start": 479.69,
+      "end": 480.29
+    },
+    {
+      "word": "exploratory",
+      "start": 480.28,
+      "end": 480.88
+    },
+    {
+      "word": "analysis",
+      "start": 480.88,
+      "end": 481.48
+    },
+    {
+      "word": "is",
+      "start": 481.48,
+      "end": 482.07
+    },
+    {
+      "word": "mandatory",
+      "start": 482.07,
+      "end": 482.67
+    },
+    {
+      "word": "before",
+      "start": 482.67,
+      "end": 483.27
+    },
+    {
+      "word": "feature",
+      "start": 483.27,
+      "end": 483.86
+    },
+    {
+      "word": "selection",
+      "start": 483.86,
+      "end": 484.46
+    },
+    {
+      "word": "look",
+      "start": 484.46,
+      "end": 484.84
+    },
+    {
+      "word": "at",
+      "start": 484.84,
+      "end": 485.23
+    },
+    {
+      "word": "the",
+      "start": 485.23,
+      "end": 485.61
+    },
+    {
+      "word": "canvas",
+      "start": 485.61,
+      "end": 485.99
+    },
+    {
+      "word": "dr",
+      "start": 485.99,
+      "end": 486.38
+    },
+    {
+      "word": "nova",
+      "start": 486.38,
+      "end": 486.76
+    },
+    {
+      "word": "when",
+      "start": 486.76,
+      "end": 487.14
+    },
+    {
+      "word": "i",
+      "start": 487.14,
+      "end": 487.53
+    },
+    {
+      "word": "push",
+      "start": 487.53,
+      "end": 487.91
+    },
+    {
+      "word": "group",
+      "start": 487.91,
+      "end": 488.29
+    },
+    {
+      "word": "separation",
+      "start": 488.29,
+      "end": 488.68
+    },
+    {
+      "word": "up",
+      "start": 488.68,
+      "end": 489.06
+    },
+    {
+      "word": "to",
+      "start": 489.06,
+      "end": 489.44
+    },
+    {
+      "word": "80",
+      "start": 489.44,
+      "end": 489.82
+    },
+    {
+      "word": "the",
+      "start": 489.82,
+      "end": 490.21
+    },
+    {
+      "word": "cohorts",
+      "start": 490.21,
+      "end": 490.59
+    },
+    {
+      "word": "pull",
+      "start": 490.59,
+      "end": 490.97
+    },
+    {
+      "word": "apart",
+      "start": 490.97,
+      "end": 491.36
+    },
+    {
+      "word": "into",
+      "start": 491.36,
+      "end": 491.74
+    },
+    {
+      "word": "three",
+      "start": 491.74,
+      "end": 492.12
+    },
+    {
+      "word": "clear",
+      "start": 492.12,
+      "end": 492.51
+    },
+    {
+      "word": "clusters",
+      "start": 492.51,
+      "end": 492.89
+    },
+    {
+      "word": "and",
+      "start": 492.89,
+      "end": 493.27
+    },
+    {
+      "word": "etasquared",
+      "start": 493.27,
+      "end": 493.66
+    },
+    {
+      "word": "jumps",
+      "start": 493.66,
+      "end": 494.04
+    },
+    {
+      "word": "over",
+      "start": 494.04,
+      "end": 494.42
+    },
+    {
+      "word": "80",
+      "start": 494.42,
+      "end": 494.81
+    },
+    {
+      "word": "percent",
+      "start": 494.81,
+      "end": 495.19
+    },
+    {
+      "word": "notice",
+      "start": 495.19,
+      "end": 495.71
+    },
+    {
+      "word": "the",
+      "start": 495.71,
+      "end": 496.23
+    },
+    {
+      "word": "stacked",
+      "start": 496.23,
+      "end": 496.74
+    },
+    {
+      "word": "bar",
+      "start": 496.74,
+      "end": 497.26
+    },
+    {
+      "word": "kaito",
+      "start": 497.26,
+      "end": 497.78
+    },
+    {
+      "word": "the",
+      "start": 497.78,
+      "end": 498.3
+    },
+    {
+      "word": "blue",
+      "start": 498.3,
+      "end": 498.82
+    },
+    {
+      "word": "between",
+      "start": 498.82,
+      "end": 499.33
+    },
+    {
+      "word": "portion",
+      "start": 499.33,
+      "end": 499.85
+    },
+    {
+      "word": "dominates",
+      "start": 499.85,
+      "end": 500.37
+    },
+    {
+      "word": "now",
+      "start": 500.37,
+      "end": 500.89
+    },
+    {
+      "word": "dial",
+      "start": 500.89,
+      "end": 501.4
+    },
+    {
+      "word": "withingroup",
+      "start": 501.4,
+      "end": 501.92
+    },
+    {
+      "word": "noise",
+      "start": 501.92,
+      "end": 502.44
+    },
+    {
+      "word": "up",
+      "start": 502.44,
+      "end": 502.96
+    },
+    {
+      "word": "to",
+      "start": 502.96,
+      "end": 503.48
+    },
+    {
+      "word": "60",
+      "start": 503.48,
+      "end": 503.99
+    },
+    {
+      "word": "what",
+      "start": 503.99,
+      "end": 504.51
+    },
+    {
+      "word": "happens",
+      "start": 504.51,
+      "end": 505.03
+    },
+    {
+      "word": "the",
+      "start": 505.03,
+      "end": 505.45
+    },
+    {
+      "word": "points",
+      "start": 505.45,
+      "end": 505.88
+    },
+    {
+      "word": "blur",
+      "start": 505.88,
+      "end": 506.3
+    },
+    {
+      "word": "together",
+      "start": 506.3,
+      "end": 506.73
+    },
+    {
+      "word": "into",
+      "start": 506.73,
+      "end": 507.15
+    },
+    {
+      "word": "a",
+      "start": 507.15,
+      "end": 507.58
+    },
+    {
+      "word": "giant",
+      "start": 507.58,
+      "end": 508.0
+    },
+    {
+      "word": "overlapping",
+      "start": 508.0,
+      "end": 508.43
+    },
+    {
+      "word": "cloud",
+      "start": 508.43,
+      "end": 508.85
+    },
+    {
+      "word": "between",
+      "start": 508.85,
+      "end": 509.28
+    },
+    {
+      "word": "variance",
+      "start": 509.28,
+      "end": 509.7
+    },
+    {
+      "word": "drops",
+      "start": 509.7,
+      "end": 510.12
+    },
+    {
+      "word": "to",
+      "start": 510.12,
+      "end": 510.55
+    },
+    {
+      "word": "20",
+      "start": 510.55,
+      "end": 510.97
+    },
+    {
+      "word": "percent",
+      "start": 510.97,
+      "end": 511.4
+    },
+    {
+      "word": "and",
+      "start": 511.4,
+      "end": 511.82
+    },
+    {
+      "word": "the",
+      "start": 511.82,
+      "end": 512.25
+    },
+    {
+      "word": "verdict",
+      "start": 512.25,
+      "end": 512.67
+    },
+    {
+      "word": "warns",
+      "start": 512.67,
+      "end": 513.1
+    },
+    {
+      "word": "of",
+      "start": 513.1,
+      "end": 513.52
+    },
+    {
+      "word": "weak",
+      "start": 513.52,
+      "end": 513.95
+    },
+    {
+      "word": "separation",
+      "start": 513.95,
+      "end": 514.37
+    },
+    {
+      "word": "exactly",
+      "start": 514.37,
+      "end": 514.9
+    },
+    {
+      "word": "that",
+      "start": 514.9,
+      "end": 515.42
+    },
+    {
+      "word": "balance",
+      "start": 515.42,
+      "end": 515.95
+    },
+    {
+      "word": "sheet",
+      "start": 515.95,
+      "end": 516.47
+    },
+    {
+      "word": "proves",
+      "start": 516.47,
+      "end": 517.0
+    },
+    {
+      "word": "mathematically",
+      "start": 517.0,
+      "end": 517.53
+    },
+    {
+      "word": "whether",
+      "start": 517.53,
+      "end": 518.05
+    },
+    {
+      "word": "customer",
+      "start": 518.05,
+      "end": 518.58
+    },
+    {
+      "word": "tier",
+      "start": 518.58,
+      "end": 519.1
+    },
+    {
+      "word": "is",
+      "start": 519.1,
+      "end": 519.63
+    },
+    {
+      "word": "worth",
+      "start": 519.63,
+      "end": 520.16
+    },
+    {
+      "word": "splitting",
+      "start": 520.16,
+      "end": 520.68
+    },
+    {
+      "word": "into",
+      "start": 520.68,
+      "end": 521.21
+    },
+    {
+      "word": "separate",
+      "start": 521.21,
+      "end": 521.73
+    },
+    {
+      "word": "models",
+      "start": 521.73,
+      "end": 522.26
+    },
+    {
+      "word": "checkpoint",
+      "start": 522.26,
+      "end": 522.79
+    },
+    {
+      "word": "2",
+      "start": 522.79,
+      "end": 523.32
+    },
+    {
+      "word": "puts",
+      "start": 523.32,
+      "end": 523.86
+    },
+    {
+      "word": "everything",
+      "start": 523.86,
+      "end": 524.39
+    },
+    {
+      "word": "together",
+      "start": 524.39,
+      "end": 524.92
+    },
+    {
+      "word": "westfalls",
+      "start": 524.92,
+      "end": 525.45
+    },
+    {
+      "word": "kurtosis",
+      "start": 525.45,
+      "end": 525.99
+    },
+    {
+      "word": "paradigm",
+      "start": 525.99,
+      "end": 526.52
+    },
+    {
+      "word": "and",
+      "start": 526.52,
+      "end": 527.05
+    },
+    {
+      "word": "eves",
+      "start": 527.05,
+      "end": 527.58
+    },
+    {
+      "word": "law",
+      "start": 527.58,
+      "end": 528.12
+    },
+    {
+      "word": "feature",
+      "start": 528.12,
+      "end": 528.65
+    },
+    {
+      "word": "selection",
+      "start": 528.65,
+      "end": 529.18
+    },
+    {
+      "word": "excess",
+      "start": 529.18,
+      "end": 529.71
+    },
+    {
+      "word": "kurtosis",
+      "start": 529.71,
+      "end": 530.25
+    },
+    {
+      "word": "is",
+      "start": 530.25,
+      "end": 530.78
+    },
+    {
+      "word": "plus",
+      "start": 530.78,
+      "end": 531.31
+    },
+    {
+      "word": "142",
+      "start": 531.31,
+      "end": 531.84
+    },
+    {
+      "word": "feature",
+      "start": 531.84,
+      "end": 532.38
+    },
+    {
+      "word": "a",
+      "start": 532.38,
+      "end": 532.91
+    },
+    {
+      "word": "has",
+      "start": 532.91,
+      "end": 533.44
+    },
+    {
+      "word": "etasquared",
+      "start": 533.44,
+      "end": 533.97
+    },
+    {
+      "word": "0008",
+      "start": 533.97,
+      "end": 534.51
+    },
+    {
+      "word": "and",
+      "start": 534.51,
+      "end": 535.04
+    },
+    {
+      "word": "feature",
+      "start": 535.04,
+      "end": 535.57
+    },
+    {
+      "word": "b",
+      "start": 535.57,
+      "end": 536.1
+    },
+    {
+      "word": "has",
+      "start": 536.1,
+      "end": 536.64
+    },
+    {
+      "word": "etasquared",
+      "start": 536.64,
+      "end": 537.17
+    },
+    {
+      "word": "0485",
+      "start": 537.17,
+      "end": 537.7
+    },
+    {
+      "word": "dont",
+      "start": 537.7,
+      "end": 538.15
+    },
+    {
+      "word": "fall",
+      "start": 538.15,
+      "end": 538.61
+    },
+    {
+      "word": "into",
+      "start": 538.61,
+      "end": 539.06
+    },
+    {
+      "word": "the",
+      "start": 539.06,
+      "end": 539.52
+    },
+    {
+      "word": "peakedness",
+      "start": 539.52,
+      "end": 539.97
+    },
+    {
+      "word": "trap",
+      "start": 539.97,
+      "end": 540.43
+    },
+    {
+      "word": "students",
+      "start": 540.43,
+      "end": 540.88
+    },
+    {
+      "word": "reason",
+      "start": 540.88,
+      "end": 541.34
+    },
+    {
+      "word": "through",
+      "start": 541.34,
+      "end": 541.79
+    },
+    {
+      "word": "what",
+      "start": 541.79,
+      "end": 542.25
+    },
+    {
+      "word": "the",
+      "start": 542.25,
+      "end": 542.7
+    },
+    {
+      "word": "fourth",
+      "start": 542.7,
+      "end": 543.16
+    },
+    {
+      "word": "power",
+      "start": 543.16,
+      "end": 543.61
+    },
+    {
+      "word": "means",
+      "start": 543.61,
+      "end": 544.07
+    },
+    {
+      "word": "for",
+      "start": 544.07,
+      "end": 544.52
+    },
+    {
+      "word": "tails",
+      "start": 544.52,
+      "end": 544.98
+    },
+    {
+      "word": "and",
+      "start": 544.98,
+      "end": 545.43
+    },
+    {
+      "word": "what",
+      "start": 545.43,
+      "end": 545.89
+    },
+    {
+      "word": "etasquared",
+      "start": 545.89,
+      "end": 546.34
+    },
+    {
+      "word": "means",
+      "start": 546.34,
+      "end": 546.8
+    },
+    {
+      "word": "for",
+      "start": 546.8,
+      "end": 547.25
+    },
+    {
+      "word": "variance",
+      "start": 547.25,
+      "end": 547.71
+    },
+    {
+      "word": "partitioning",
+      "start": 547.71,
+      "end": 548.16
+    },
+    {
+      "word": "choose",
+      "start": 548.16,
+      "end": 548.62
+    },
+    {
+      "word": "wisely",
+      "start": 548.62,
+      "end": 549.07
+    },
+    {
+      "word": "that",
+      "start": 549.07,
+      "end": 549.55
+    },
+    {
+      "word": "hft",
+      "start": 549.55,
+      "end": 550.03
+    },
+    {
+      "word": "case",
+      "start": 550.03,
+      "end": 550.52
+    },
+    {
+      "word": "study",
+      "start": 550.52,
+      "end": 551.0
+    },
+    {
+      "word": "is",
+      "start": 551.0,
+      "end": 551.48
+    },
+    {
+      "word": "incredible",
+      "start": 551.48,
+      "end": 551.96
+    },
+    {
+      "word": "the",
+      "start": 551.96,
+      "end": 552.44
+    },
+    {
+      "word": "mean",
+      "start": 552.44,
+      "end": 552.93
+    },
+    {
+      "word": "improved",
+      "start": 552.93,
+      "end": 553.41
+    },
+    {
+      "word": "and",
+      "start": 553.41,
+      "end": 553.89
+    },
+    {
+      "word": "the",
+      "start": 553.89,
+      "end": 554.37
+    },
+    {
+      "word": "standard",
+      "start": 554.37,
+      "end": 554.85
+    },
+    {
+      "word": "deviation",
+      "start": 554.85,
+      "end": 555.34
+    },
+    {
+      "word": "shrunk",
+      "start": 555.34,
+      "end": 555.82
+    },
+    {
+      "word": "yet",
+      "start": 555.82,
+      "end": 556.3
+    },
+    {
+      "word": "trading",
+      "start": 556.3,
+      "end": 556.78
+    },
+    {
+      "word": "throttles",
+      "start": 556.78,
+      "end": 557.26
+    },
+    {
+      "word": "were",
+      "start": 557.26,
+      "end": 557.74
+    },
+    {
+      "word": "failing",
+      "start": 557.74,
+      "end": 558.23
+    },
+    {
+      "word": "lowerorder",
+      "start": 558.23,
+      "end": 558.71
+    },
+    {
+      "word": "moments",
+      "start": 558.71,
+      "end": 559.19
+    },
+    {
+      "word": "completely",
+      "start": 559.19,
+      "end": 559.67
+    },
+    {
+      "word": "hid",
+      "start": 559.67,
+      "end": 560.15
+    },
+    {
+      "word": "the",
+      "start": 560.15,
+      "end": 560.64
+    },
+    {
+      "word": "catastrophic",
+      "start": 560.64,
+      "end": 561.12
+    },
+    {
+      "word": "tail",
+      "start": 561.12,
+      "end": 561.6
+    },
+    {
+      "word": "that",
+      "start": 561.6,
+      "end": 562.01
+    },
+    {
+      "word": "is",
+      "start": 562.01,
+      "end": 562.42
+    },
+    {
+      "word": "the",
+      "start": 562.42,
+      "end": 562.83
+    },
+    {
+      "word": "power",
+      "start": 562.83,
+      "end": 563.24
+    },
+    {
+      "word": "of",
+      "start": 563.24,
+      "end": 563.65
+    },
+    {
+      "word": "the",
+      "start": 563.65,
+      "end": 564.06
+    },
+    {
+      "word": "fourth",
+      "start": 564.06,
+      "end": 564.47
+    },
+    {
+      "word": "moment",
+      "start": 564.47,
+      "end": 564.88
+    },
+    {
+      "word": "kaito",
+      "start": 564.88,
+      "end": 565.29
+    },
+    {
+      "word": "squaring",
+      "start": 565.29,
+      "end": 565.7
+    },
+    {
+      "word": "dilutes",
+      "start": 565.7,
+      "end": 566.11
+    },
+    {
+      "word": "rare",
+      "start": 566.11,
+      "end": 566.52
+    },
+    {
+      "word": "localized",
+      "start": 566.52,
+      "end": 566.93
+    },
+    {
+      "word": "spikes",
+      "start": 566.93,
+      "end": 567.34
+    },
+    {
+      "word": "in",
+      "start": 567.34,
+      "end": 567.75
+    },
+    {
+      "word": "large",
+      "start": 567.75,
+      "end": 568.17
+    },
+    {
+      "word": "samples",
+      "start": 568.17,
+      "end": 568.58
+    },
+    {
+      "word": "but",
+      "start": 568.58,
+      "end": 568.99
+    },
+    {
+      "word": "raising",
+      "start": 568.99,
+      "end": 569.4
+    },
+    {
+      "word": "to",
+      "start": 569.4,
+      "end": 569.81
+    },
+    {
+      "word": "the",
+      "start": 569.81,
+      "end": 570.22
+    },
+    {
+      "word": "fourth",
+      "start": 570.22,
+      "end": 570.63
+    },
+    {
+      "word": "power",
+      "start": 570.63,
+      "end": 571.04
+    },
+    {
+      "word": "acts",
+      "start": 571.04,
+      "end": 571.45
+    },
+    {
+      "word": "like",
+      "start": 571.45,
+      "end": 571.86
+    },
+    {
+      "word": "a",
+      "start": 571.86,
+      "end": 572.27
+    },
+    {
+      "word": "megamagnifying",
+      "start": 572.27,
+      "end": 572.68
+    },
+    {
+      "word": "glass",
+      "start": 572.68,
+      "end": 573.09
+    },
+    {
+      "word": "for",
+      "start": 573.09,
+      "end": 573.5
+    },
+    {
+      "word": "tail",
+      "start": 573.5,
+      "end": 573.91
+    },
+    {
+      "word": "risk",
+      "start": 573.91,
+      "end": 574.32
+    },
+    {
+      "word": "and",
+      "start": 574.32,
+      "end": 574.69
+    },
+    {
+      "word": "with",
+      "start": 574.69,
+      "end": 575.07
+    },
+    {
+      "word": "the",
+      "start": 575.07,
+      "end": 575.44
+    },
+    {
+      "word": "saas",
+      "start": 575.44,
+      "end": 575.82
+    },
+    {
+      "word": "dataset",
+      "start": 575.82,
+      "end": 576.19
+    },
+    {
+      "word": "forcing",
+      "start": 576.19,
+      "end": 576.56
+    },
+    {
+      "word": "all",
+      "start": 576.56,
+      "end": 576.94
+    },
+    {
+      "word": "three",
+      "start": 576.94,
+      "end": 577.31
+    },
+    {
+      "word": "tiers",
+      "start": 577.31,
+      "end": 577.69
+    },
+    {
+      "word": "into",
+      "start": 577.69,
+      "end": 578.06
+    },
+    {
+      "word": "a",
+      "start": 578.06,
+      "end": 578.43
+    },
+    {
+      "word": "single",
+      "start": 578.43,
+      "end": 578.81
+    },
+    {
+      "word": "model",
+      "start": 578.81,
+      "end": 579.18
+    },
+    {
+      "word": "poisoned",
+      "start": 579.18,
+      "end": 579.56
+    },
+    {
+      "word": "the",
+      "start": 579.56,
+      "end": 579.93
+    },
+    {
+      "word": "gradient",
+      "start": 579.93,
+      "end": 580.31
+    },
+    {
+      "word": "updates",
+      "start": 580.31,
+      "end": 580.68
+    },
+    {
+      "word": "eves",
+      "start": 580.68,
+      "end": 581.05
+    },
+    {
+      "word": "law",
+      "start": 581.05,
+      "end": 581.43
+    },
+    {
+      "word": "told",
+      "start": 581.43,
+      "end": 581.8
+    },
+    {
+      "word": "them",
+      "start": 581.8,
+      "end": 582.18
+    },
+    {
+      "word": "right",
+      "start": 582.18,
+      "end": 582.55
+    },
+    {
+      "word": "away",
+      "start": 582.55,
+      "end": 582.92
+    },
+    {
+      "word": "split",
+      "start": 582.92,
+      "end": 583.3
+    },
+    {
+      "word": "the",
+      "start": 583.3,
+      "end": 583.67
+    },
+    {
+      "word": "training",
+      "start": 583.67,
+      "end": 584.05
+    },
+    {
+      "word": "data",
+      "start": 584.05,
+      "end": 584.42
+    },
+    {
+      "word": "exactly",
+      "start": 584.42,
+      "end": 585.07
+    },
+    {
+      "word": "variance",
+      "start": 585.07,
+      "end": 585.72
+    },
+    {
+      "word": "decomposition",
+      "start": 585.72,
+      "end": 586.37
+    },
+    {
+      "word": "turns",
+      "start": 586.37,
+      "end": 587.01
+    },
+    {
+      "word": "exploratory",
+      "start": 587.01,
+      "end": 587.66
+    },
+    {
+      "word": "data",
+      "start": 587.66,
+      "end": 588.31
+    },
+    {
+      "word": "analysis",
+      "start": 588.31,
+      "end": 588.96
+    },
+    {
+      "word": "from",
+      "start": 588.96,
+      "end": 589.61
+    },
+    {
+      "word": "guesswork",
+      "start": 589.61,
+      "end": 590.26
+    },
+    {
+      "word": "into",
+      "start": 590.26,
+      "end": 590.9
+    },
+    {
+      "word": "rigorous",
+      "start": 590.9,
+      "end": 591.55
+    },
+    {
+      "word": "systems",
+      "start": 591.55,
+      "end": 592.2
+    },
+    {
+      "word": "engineering",
+      "start": 592.2,
+      "end": 592.85
+    },
+    {
+      "word": "look",
+      "start": 592.85,
+      "end": 593.27
+    },
+    {
+      "word": "at",
+      "start": 593.27,
+      "end": 593.69
+    },
+    {
+      "word": "that",
+      "start": 593.69,
+      "end": 594.11
+    },
+    {
+      "word": "model",
+      "start": 594.11,
+      "end": 594.53
+    },
+    {
+      "word": "validator",
+      "start": 594.53,
+      "end": 594.95
+    },
+    {
+      "word": "if",
+      "start": 594.95,
+      "end": 595.37
+    },
+    {
+      "word": "total",
+      "start": 595.37,
+      "end": 595.79
+    },
+    {
+      "word": "variance",
+      "start": 595.79,
+      "end": 596.21
+    },
+    {
+      "word": "doesnt",
+      "start": 596.21,
+      "end": 596.63
+    },
+    {
+      "word": "match",
+      "start": 596.63,
+      "end": 597.05
+    },
+    {
+      "word": "within",
+      "start": 597.05,
+      "end": 597.47
+    },
+    {
+      "word": "plus",
+      "start": 597.47,
+      "end": 597.89
+    },
+    {
+      "word": "between",
+      "start": 597.89,
+      "end": 598.32
+    },
+    {
+      "word": "within",
+      "start": 598.32,
+      "end": 598.74
+    },
+    {
+      "word": "10",
+      "start": 598.74,
+      "end": 599.16
+    },
+    {
+      "word": "to",
+      "start": 599.16,
+      "end": 599.58
+    },
+    {
+      "word": "the",
+      "start": 599.58,
+      "end": 600.0
+    },
+    {
+      "word": "minus",
+      "start": 600.0,
+      "end": 600.42
+    },
+    {
+      "word": "4",
+      "start": 600.42,
+      "end": 600.84
+    },
+    {
+      "word": "pydantic",
+      "start": 600.84,
+      "end": 601.26
+    },
+    {
+      "word": "raises",
+      "start": 601.26,
+      "end": 601.68
+    },
+    {
+      "word": "a",
+      "start": 601.68,
+      "end": 602.1
+    },
+    {
+      "word": "validation",
+      "start": 602.1,
+      "end": 602.52
+    },
+    {
+      "word": "error",
+      "start": 602.52,
+      "end": 602.94
+    },
+    {
+      "word": "immediately",
+      "start": 602.94,
+      "end": 603.36
+    },
+    {
+      "word": "yes",
+      "start": 603.36,
+      "end": 603.88
+    },
+    {
+      "word": "kaito",
+      "start": 603.88,
+      "end": 604.4
+    },
+    {
+      "word": "that",
+      "start": 604.4,
+      "end": 604.92
+    },
+    {
+      "word": "catches",
+      "start": 604.92,
+      "end": 605.44
+    },
+    {
+      "word": "numerical",
+      "start": 605.44,
+      "end": 605.96
+    },
+    {
+      "word": "underflow",
+      "start": 605.96,
+      "end": 606.48
+    },
+    {
+      "word": "missing",
+      "start": 606.48,
+      "end": 607.0
+    },
+    {
+      "word": "values",
+      "start": 607.0,
+      "end": 607.52
+    },
+    {
+      "word": "or",
+      "start": 607.52,
+      "end": 608.04
+    },
+    {
+      "word": "unweighted",
+      "start": 608.04,
+      "end": 608.56
+    },
+    {
+      "word": "group",
+      "start": 608.56,
+      "end": 609.08
+    },
+    {
+      "word": "averaging",
+      "start": 609.09,
+      "end": 609.61
+    },
+    {
+      "word": "bugs",
+      "start": 609.61,
+      "end": 610.13
+    },
+    {
+      "word": "before",
+      "start": 610.13,
+      "end": 610.65
+    },
+    {
+      "word": "they",
+      "start": 610.65,
+      "end": 611.17
+    },
+    {
+      "word": "ever",
+      "start": 611.17,
+      "end": 611.69
+    },
+    {
+      "word": "reach",
+      "start": 611.69,
+      "end": 612.21
+    },
+    {
+      "word": "feature",
+      "start": 612.21,
+      "end": 612.73
+    },
+    {
+      "word": "stores",
+      "start": 612.73,
+      "end": 613.25
+    },
+    {
+      "word": "or",
+      "start": 613.25,
+      "end": 613.77
+    },
+    {
+      "word": "training",
+      "start": 613.77,
+      "end": 614.29
+    },
+    {
+      "word": "pipelines",
+      "start": 614.29,
+      "end": 614.81
+    },
+    {
+      "word": "clean",
+      "start": 614.81,
+      "end": 615.45
+    },
+    {
+      "word": "robust",
+      "start": 615.45,
+      "end": 616.1
+    },
+    {
+      "word": "and",
+      "start": 616.1,
+      "end": 616.74
+    },
+    {
+      "word": "mathematically",
+      "start": 616.74,
+      "end": 617.38
+    },
+    {
+      "word": "sound",
+      "start": 617.38,
+      "end": 618.03
+    },
+    {
+      "word": "productionready",
+      "start": 618.03,
+      "end": 618.67
+    },
+    {
+      "word": "data",
+      "start": 618.67,
+      "end": 619.32
+    },
+    {
+      "word": "engineering",
+      "start": 619.32,
+      "end": 619.96
+    },
+    {
+      "word": "at",
+      "start": 619.96,
+      "end": 620.6
+    },
+    {
+      "word": "its",
+      "start": 620.6,
+      "end": 621.25
+    },
+    {
+      "word": "finest",
+      "start": 621.25,
+      "end": 621.89
+    },
+    {
+      "word": "always",
+      "start": 621.89,
+      "end": 622.44
+    },
+    {
+      "word": "enforce",
+      "start": 622.44,
+      "end": 622.99
+    },
+    {
+      "word": "your",
+      "start": 622.99,
+      "end": 623.55
+    },
+    {
+      "word": "mathematical",
+      "start": 623.55,
+      "end": 624.1
+    },
+    {
+      "word": "invariants",
+      "start": 624.1,
+      "end": 624.65
+    },
+    {
+      "word": "directly",
+      "start": 624.65,
+      "end": 625.2
+    },
+    {
+      "word": "in",
+      "start": 625.2,
+      "end": 625.76
+    },
+    {
+      "word": "code",
+      "start": 625.76,
+      "end": 626.31
+    },
+    {
+      "word": "contracts",
+      "start": 626.31,
+      "end": 626.86
+    },
+    {
+      "word": "what",
+      "start": 626.86,
+      "end": 627.28
+    },
+    {
+      "word": "a",
+      "start": 627.28,
+      "end": 627.7
+    },
+    {
+      "word": "masterclass",
+      "start": 627.7,
+      "end": 628.12
+    },
+    {
+      "word": "dr",
+      "start": 628.12,
+      "end": 628.54
+    },
+    {
+      "word": "nova",
+      "start": 628.54,
+      "end": 628.96
+    },
+    {
+      "word": "from",
+      "start": 628.96,
+      "end": 629.38
+    },
+    {
+      "word": "bessels",
+      "start": 629.38,
+      "end": 629.8
+    },
+    {
+      "word": "degrees",
+      "start": 629.8,
+      "end": 630.23
+    },
+    {
+      "word": "of",
+      "start": 630.23,
+      "end": 630.65
+    },
+    {
+      "word": "freedom",
+      "start": 630.65,
+      "end": 631.07
+    },
+    {
+      "word": "and",
+      "start": 631.07,
+      "end": 631.49
+    },
+    {
+      "word": "jensens",
+      "start": 631.49,
+      "end": 631.91
+    },
+    {
+      "word": "square",
+      "start": 631.91,
+      "end": 632.33
+    },
+    {
+      "word": "root",
+      "start": 632.33,
+      "end": 632.75
+    },
+    {
+      "word": "bias",
+      "start": 632.75,
+      "end": 633.17
+    },
+    {
+      "word": "to",
+      "start": 633.17,
+      "end": 633.59
+    },
+    {
+      "word": "westfalls",
+      "start": 633.59,
+      "end": 634.01
+    },
+    {
+      "word": "kurtosis",
+      "start": 634.01,
+      "end": 634.43
+    },
+    {
+      "word": "proof",
+      "start": 634.43,
+      "end": 634.85
+    },
+    {
+      "word": "and",
+      "start": 634.85,
+      "end": 635.27
+    },
+    {
+      "word": "eves",
+      "start": 635.27,
+      "end": 635.69
+    },
+    {
+      "word": "law",
+      "start": 635.69,
+      "end": 636.11
+    },
+    {
+      "word": "variance",
+      "start": 636.11,
+      "end": 636.54
+    },
+    {
+      "word": "partitioning",
+      "start": 636.54,
+      "end": 636.96
+    },
+    {
+      "word": "our",
+      "start": 636.96,
+      "end": 637.38
+    },
+    {
+      "word": "exploratory",
+      "start": 637.38,
+      "end": 637.8
+    },
+    {
+      "word": "toolkit",
+      "start": 637.8,
+      "end": 638.22
+    },
+    {
+      "word": "is",
+      "start": 638.22,
+      "end": 638.64
+    },
+    {
+      "word": "now",
+      "start": 638.64,
+      "end": 639.06
+    },
+    {
+      "word": "bulletproof",
+      "start": 639.06,
+      "end": 639.48
+    },
+    {
+      "word": "you",
+      "start": 639.48,
+      "end": 639.97
+    },
+    {
+      "word": "have",
+      "start": 639.97,
+      "end": 640.46
+    },
+    {
+      "word": "mastered",
+      "start": 640.46,
+      "end": 640.95
+    },
+    {
+      "word": "the",
+      "start": 640.95,
+      "end": 641.43
+    },
+    {
+      "word": "foundational",
+      "start": 641.43,
+      "end": 641.92
+    },
+    {
+      "word": "physics",
+      "start": 641.92,
+      "end": 642.41
+    },
+    {
+      "word": "of",
+      "start": 642.41,
+      "end": 642.9
+    },
+    {
+      "word": "dispersion",
+      "start": 642.9,
+      "end": 643.39
+    },
+    {
+      "word": "and",
+      "start": 643.39,
+      "end": 643.88
+    },
+    {
+      "word": "distributional",
+      "start": 643.88,
+      "end": 644.37
+    },
+    {
+      "word": "shape",
+      "start": 644.37,
+      "end": 644.86
+    },
+    {
+      "word": "kaito",
+      "start": 644.86,
+      "end": 645.34
+    },
+    {
+      "word": "remember",
+      "start": 645.34,
+      "end": 645.83
+    },
+    {
+      "word": "our",
+      "start": 645.83,
+      "end": 646.32
+    },
+    {
+      "word": "four",
+      "start": 646.32,
+      "end": 646.81
+    },
+    {
+      "word": "cardinal",
+      "start": 646.81,
+      "end": 647.3
+    },
+    {
+      "word": "rules",
+      "start": 647.3,
+      "end": 647.79
+    },
+    {
+      "word": "whenever",
+      "start": 647.79,
+      "end": 648.28
+    },
+    {
+      "word": "you",
+      "start": 648.28,
+      "end": 648.76
+    },
+    {
+      "word": "analyze",
+      "start": 648.76,
+      "end": 649.25
+    },
+    {
+      "word": "empirical",
+      "start": 649.25,
+      "end": 649.74
+    },
+    {
+      "word": "distributions",
+      "start": 649.74,
+      "end": 650.23
+    },
+    {
+      "word": "unbiased",
+      "start": 650.23,
+      "end": 650.69
+    },
+    {
+      "word": "variance",
+      "start": 650.69,
+      "end": 651.16
+    },
+    {
+      "word": "robust",
+      "start": 651.16,
+      "end": 651.62
+    },
+    {
+      "word": "mad",
+      "start": 651.62,
+      "end": 652.08
+    },
+    {
+      "word": "for",
+      "start": 652.08,
+      "end": 652.55
+    },
+    {
+      "word": "fat",
+      "start": 652.55,
+      "end": 653.01
+    },
+    {
+      "word": "tails",
+      "start": 653.01,
+      "end": 653.48
+    },
+    {
+      "word": "kurtosis",
+      "start": 653.48,
+      "end": 653.94
+    },
+    {
+      "word": "as",
+      "start": 653.94,
+      "end": 654.4
+    },
+    {
+      "word": "tail",
+      "start": 654.4,
+      "end": 654.87
+    },
+    {
+      "word": "risk",
+      "start": 654.87,
+      "end": 655.33
+    },
+    {
+      "word": "and",
+      "start": 655.33,
+      "end": 655.79
+    },
+    {
+      "word": "eves",
+      "start": 655.79,
+      "end": 656.26
+    },
+    {
+      "word": "law",
+      "start": 656.26,
+      "end": 656.72
+    },
+    {
+      "word": "for",
+      "start": 656.72,
+      "end": 657.18
+    },
+    {
+      "word": "cohort",
+      "start": 657.18,
+      "end": 657.65
+    },
+    {
+      "word": "stratification",
+      "start": 657.65,
+      "end": 658.11
+    },
+    {
+      "word": "whats",
+      "start": 658.11,
+      "end": 658.58
+    },
+    {
+      "word": "next",
+      "start": 658.58,
+      "end": 659.04
+    },
+    {
+      "word": "in",
+      "start": 659.04,
+      "end": 659.5
+    },
+    {
+      "word": "lesson",
+      "start": 659.5,
+      "end": 659.97
+    },
+    {
+      "word": "64",
+      "start": 659.97,
+      "end": 660.43
+    },
+    {
+      "word": "in",
+      "start": 660.43,
+      "end": 660.95
+    },
+    {
+      "word": "lesson",
+      "start": 660.95,
+      "end": 661.47
+    },
+    {
+      "word": "64",
+      "start": 661.47,
+      "end": 661.98
+    },
+    {
+      "word": "we",
+      "start": 661.98,
+      "end": 662.5
+    },
+    {
+      "word": "take",
+      "start": 662.5,
+      "end": 663.02
+    },
+    {
+      "word": "these",
+      "start": 663.02,
+      "end": 663.54
+    },
+    {
+      "word": "moments",
+      "start": 663.54,
+      "end": 664.06
+    },
+    {
+      "word": "and",
+      "start": 664.06,
+      "end": 664.58
+    },
+    {
+      "word": "shapes",
+      "start": 664.58,
+      "end": 665.09
+    },
+    {
+      "word": "into",
+      "start": 665.09,
+      "end": 665.61
+    },
+    {
+      "word": "visual",
+      "start": 665.61,
+      "end": 666.13
+    },
+    {
+      "word": "geometry",
+      "start": 666.13,
+      "end": 666.65
+    },
+    {
+      "word": "univariate",
+      "start": 666.65,
+      "end": 667.17
+    },
+    {
+      "word": "and",
+      "start": 667.17,
+      "end": 667.68
+    },
+    {
+      "word": "bivariate",
+      "start": 667.68,
+      "end": 668.2
+    },
+    {
+      "word": "visualization",
+      "start": 668.2,
+      "end": 668.72
+    },
+    {
+      "word": "kernel",
+      "start": 668.72,
+      "end": 669.24
+    },
+    {
+      "word": "density",
+      "start": 669.24,
+      "end": 669.76
+    },
+    {
+      "word": "estimation",
+      "start": 669.76,
+      "end": 670.27
+    },
+    {
+      "word": "bandwidths",
+      "start": 670.27,
+      "end": 670.79
+    },
+    {
+      "word": "and",
+      "start": 670.79,
+      "end": 671.31
+    },
+    {
+      "word": "bivariate",
+      "start": 671.31,
+      "end": 671.83
+    },
+    {
+      "word": "scatter",
+      "start": 671.83,
+      "end": 672.35
+    },
+    {
+      "word": "structure",
+      "start": 672.35,
+      "end": 672.87
+    },
+    {
+      "word": "see",
+      "start": 672.87,
+      "end": 673.38
+    },
+    {
+      "word": "you",
+      "start": 673.38,
+      "end": 673.9
+    },
+    {
+      "word": "there",
+      "start": 673.9,
+      "end": 674.42
+    }
+  ]
+}
 };

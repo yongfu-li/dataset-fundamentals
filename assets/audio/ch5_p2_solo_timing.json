@@ -1,0 +1,302 @@
+{
+  "duration": 806.664,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Chapter 5, Lesson 2: Missing Data Engineering, Rubin's Taxonomy, and Multivariate Imputation by Chained Equations. Missing values are ubiquitous across industrial data pipelines, medical registries, and sensor telemetry. Naive shortcuts like zero-filling, mean substitution, or complete-case listwise deletion destroy feature variance, attenuate correlations, and inject fatal selection bias. Today, we formalize how to diagnose the stochastic mechanism behind missingness and restore true population distributions.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 35.52
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "We organize missing data engineering around three core tenets: First, fidelity: missingness is not just missing values, but a stochastic process governed by a binary mask matrix. Second, identifiability: understanding whether missingness is ignorable or non-ignorable dictates whether likelihood-based imputation can recover unbiased parameters. And third, valid uncertainty propagation: single imputation produces overconfident p-values, requiring Donald Rubin's Multiple Imputation pooling rules to quantify the Fraction of Missing Information.",
+          "dock": "main",
+          "start": 35.52,
+          "end": 70.344
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let our target population data matrix be denoted Y, containing N rows and D features. In reality, we do not observe Y directly; instead, we observe an empirical realization defined by the binary missingness indicator matrix M, where entry M sub ij equals 1 if cell Y sub ij is unobserved, and 0 if observed. Thus, Y is cleanly partitioned into observed components Y obs and missing components Y mis.",
+          "dock": "main",
+          "start": 70.344,
+          "end": 98.568
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The entire statistical challenge centers on the conditional distribution of M given Y, parameterized by psi. In classical inference, if we wish to estimate parameters theta of the data model without modeling psi, we must know whether the missingness mechanism is ignorable. The likelihood function factorizes cleanly only when the missing data mechanism satisfies specific independence conditions.",
+          "dock": "main",
+          "start": 98.568,
+          "end": 122.928
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "In 1976, Donald Rubin published the definitive taxonomy dividing all missingness into three distinct regimes: Missing Completely at Random (MCAR), Missing at Random (MAR), and Missing Not at Random (MNAR).",
+          "dock": "main",
+          "start": 122.928,
+          "end": 137.64
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Under MCAR, the probability of missingness is strictly independent of both observed and unobserved data. Think of a laboratory technician dropping a random blood test tube on the floor. Complete-case analysis is statistically unbiased under MCAR, though sample power is wasted. Under MAR, missingness depends on observed features\u2014for instance, older patients are less likely to upload smartwatch heart rate data. And under MNAR, missingness depends directly on the unobserved value itself, such as high-income earners refusing to disclose wealth.",
+          "dock": "main",
+          "start": 137.64,
+          "end": 173.16
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "A production-grade data cleaning architecture does not apply blind imputation. It implements a multi-stage diagnostic gate: first calculating the missingness fraction, visualizing missingness co-occurrence patterns, and executing statistical tests like Little's MCAR chi-squared test. If Little's test rejects MCAR with p less than 0.05, the pipeline routes the data to chained multivariate imputation.",
+          "dock": "main",
+          "start": 173.16,
+          "end": 200.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice the specialized pathways in our architecture. When MAR is confirmed, we deploy MICE with Predictive Mean Matching. If domain audits indicate MNAR, the pipeline forks to sensitivity models or joint Heckman selection stages, while preserving audit logs through versioned feature flags.",
+          "dock": "main",
+          "start": 200.328,
+          "end": 219.504
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us mathematically prove why naive mean imputation destroys statistical distributions. Suppose feature X has true population variance sigma squared. A fraction p of the records are missing and replaced by the sample mean x bar.",
+          "dock": "main",
+          "start": 219.504,
+          "end": 235.032
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at the sample variance definition: the sum of squared deviations divided by N. For every imputed row, x i equals x bar, so the deviation x i minus x bar is identically zero! These rows contribute exactly zero to the numerator, while N remains in the denominator. Consequently, the imputed sample variance equals 1 minus p times the true variance. If thirty percent of values are missing, sample variance instantly collapses by thirty percent, artificially shrinking standard errors and triggering severe Type I and Type II inference errors!",
+          "dock": "main",
+          "start": 235.032,
+          "end": 271.584
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "We have arrived at our first interactive laboratory: the Rubin Missingness and MICE Imputation Studio. Directly below me is a live canvas showing 120 bivariate data points with true correlation 0.85 and true mean 50.0.",
+          "dock": "main",
+          "start": 271.584,
+          "end": 287.4
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Try switching the Missingness Mechanism from MCAR to MAR and MNAR. Under MAR, high values of X trigger missingness in Y. Notice what happens when you toggle Remediation between Listwise Deletion, Mean Imputation, and Stochastic MICE! Watch how Mean Imputation squashes the points into a horizontal line, cutting variance retention down to sixty percent, while MICE preserves the full bivariate cloud!",
+          "dock": "sim",
+          "start": 287.4,
+          "end": 313.32
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us solidify our theoretical foundation with Active Checkpoint 1. A clinical feature X has true variance sigma squared of 100, and thirty percent of values are missing completely at random. If a junior data engineer performs univariate mean imputation, what is the resulting sample variance and downstream operational consequence? Select Option A, B, C, or D above me!",
+          "dock": "quiz",
+          "start": 313.32,
+          "end": 338.328
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "How do we statistically prove whether a dataset is MCAR? In 1988, Roderick Little derived a global multivariate test based on Expectation-Maximization maximum likelihood. The test partitions the dataset into J distinct missing-data patterns.",
+          "dock": "main",
+          "start": 338.328,
+          "end": 355.44
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "For each pattern j, Little computes the Mahalanobis distance between the observed pattern mean vector and the global maximum-likelihood mean vector, weighted by the inverted global covariance matrix. Under the null hypothesis that missingness is MCAR, this statistic follows a chi-squared distribution. If the resulting p-value is below 0.05, we reject MCAR, proving that missingness is MAR or MNAR!",
+          "dock": "main",
+          "start": 355.44,
+          "end": 382.56
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "When missingness spans multiple correlated variables across heterogeneous data types, joint modeling often breaks down because specifying a single multivariate probability distribution for mixed continuous, categorical, and count features is analytically intractable. Fully Conditional Specification, implemented via Multivariate Imputation by Chained Equations or MICE, circumvents this bottleneck by decomposing the joint distribution into a sequence of univariate conditional models.",
+          "dock": "main",
+          "start": 382.56,
+          "end": 411.936
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "MICE operates as a Gibbs sampler. After initializing missing values with simple median or random draws, the algorithm cycles iteratively through each incomplete variable Y_j, fitting a regression model on the currently imputed values of all other variables Y_minus_j, and drawing a replacement value from the posterior predictive distribution. Repeating this cycle for ten to twenty iterations allows the sequence to converge to the true underlying multivariate joint distribution.",
+          "dock": "main",
+          "start": 411.936,
+          "end": 442.32
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Standard linear regression imputation suffers from a fatal flaw: it frequently generates impossible, out-of-domain synthetic values. For example, it might predict a negative systolic blood pressure, an impossible fractional number of household children like 2.37, or values outside the permissible physical bounds of an instrument.",
+          "dock": "main",
+          "start": 442.32,
+          "end": 463.56
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Predictive Mean Matching, or PMM, solves this completely. Rather than taking the regression prediction directly, PMM calculates the linear prediction for the missing case, computes the metric distance to the predicted values of all completely observed records, selects a donor pool of the k closest neighbors, and randomly borrows an actual observed value from one of those donors. This guarantees that all imputed values are authentic, physically plausible, and bounded.",
+          "dock": "main",
+          "start": 463.56,
+          "end": 492.816
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "To understand why missing data handling is a safety-critical engineering discipline rather than a minor cleanup chore, examine the landmark clinical study on the MIMIC-IV electronic health records database. In a cohort of twenty-four thousand suspected sepsis patients in the intensive care unit, researchers evaluated clinical mortality predictors including arterial blood lactate and arterial oxygen saturation.",
+          "dock": "main",
+          "start": 492.816,
+          "end": 517.272
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Arterial lactate was missing in 68% of patient encounters because ICU physicians only order painful, invasive arterial blood gas draws when a patient presents with severe hemodynamic decompensation. When naive data scientists applied complete-case listwise deletion, dropping every patient with missing lactate, they discarded nearly all stable, recovering patients. The measured in-hospital cohort mortality rate jumped from the true population baseline of 11.4% to an artificial 34.2%, distorting all downstream AI triage models.",
+          "dock": "main",
+          "start": 517.272,
+          "end": 553.608
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Slide 12, our second interactive workbench. Donald Rubin's 1987 multiple imputation formulation provides the formal mathematical machinery for combining estimates across M imputed datasets. When we analyze M imputed copies, we obtain M separate parameter estimates Q-hat-m and M variance estimates U-m.",
+          "dock": "main",
+          "start": 553.608,
+          "end": 575.52
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Rubin's rules state that the Total Variance T is not merely the average within-imputation variance U-bar; it incorporates the between-imputation variance B multiplied by the finite-sample correction factor 1 plus 1 over M. In this workbench, adjust the number of imputations M, within-imputation variance, and between-imputation variance to observe how Total Variance, Relative Increase in Variance, and the Fraction of Missing Information behave in real time.",
+          "dock": "main",
+          "start": 575.52,
+          "end": 603.408
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for our second active checkpoint. A biostatistician runs M = 5 multiple imputations for a clinical trial endpoint. The average within-imputation variance across the 5 models is U-bar = 4.00, and the sample variance between the 5 point estimates is B = 1.50. Using Donald Rubin's pooling formulation, calculate the exact Total Variance T and the approximate Fraction of Missing Information gamma. Select your answer below.",
+          "dock": "main",
+          "start": 603.408,
+          "end": 635.256
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "When missingness is Missing Not At Random, or MNAR, missingness depends directly on the unobserved value itself, even after conditioning on all available covariates. Under MNAR, the missingness mechanism is non-ignorable: standard MICE, regression imputation, and machine learning models remain systematically biased because the observed data distribution does not match the missing data distribution.",
+          "dock": "main",
+          "start": 635.256,
+          "end": 660.096
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "To address MNAR, engineers deploy two complementary paradigms: James Heckman's Nobel Prize-winning two-stage selection model, and pattern-mixture delta-shift sensitivity analysis. Heckman models the selection probability explicitly with a probit equation and injects the Inverse Mills Ratio as a corrective omitted variable in the primary regression. Meanwhile, delta-shift analysis systematically perturbs MAR imputations across an adversarial range of shift parameters to establish the tipping point where statistical conclusions overturn.",
+          "dock": "main",
+          "start": 660.096,
+          "end": 693.168
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "In production machine learning systems, data cleaning pipelines must be robust, type-safe, and resilient against silent data corruption. We implement a two-tier architecture: first, Pydantic V2 schema models validate ingested payloads, detect sentinel values like negative 999 or empty strings, and enforce hard missingness thresholds per batch.",
+          "dock": "main",
+          "start": 693.168,
+          "end": 716.616
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Second, downstream numeric matrices are processed through Scikit-Learn's IterativeImputer with Bayesian Ridge estimators, paired with MissingIndicator flags so neural networks and tree models retain explicit awareness of which values were reconstructed. Let's inspect the production code implementation.",
+          "dock": "main",
+          "start": 716.616,
+          "end": 734.736
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Congratulations on completing Chapter 5, Lesson 2: Missing Data Engineering. We have journeyed through Donald Rubin's foundational taxonomy of MCAR, MAR, and MNAR; proved mathematically why single mean imputation deflates variance by 1 minus p; examined Roderick Little's multivariate chi-squared test; mastered MICE Gibbs sampling and Predictive Mean Matching; and applied Rubin's variance pooling rules.",
+          "dock": "main",
+          "start": 734.736,
+          "end": 761.568
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Commit these Four Golden Rules to memory: First, complete-case deletion is only legitimate under MCAR with negligible missingness; under MAR or MNAR, it induces lethal selection bias. Second, never replace missing cells with simple column means when training statistical models. Third, default to MICE with Predictive Mean Matching for complex tabular records. And fourth, pool multiple imputations using Rubin's rules to propagate parameter uncertainty.",
+          "dock": "main",
+          "start": 761.568,
+          "end": 791.688
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In Lesson 5.3, we confront the next major quality challenge in data engineering: Duplicate Detection, String Metrics, Blocking, and Record Linkage across dirty enterprise databases. I look forward to seeing you there.",
+          "dock": "main",
+          "start": 791.688,
+          "end": 806.664
+        }
+      ]
+    }
+  ]
+}

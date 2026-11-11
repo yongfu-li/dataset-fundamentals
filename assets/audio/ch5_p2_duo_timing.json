@@ -1,0 +1,400 @@
+{
+  "duration": 689.448,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Chapter 5, Lesson 2: Missing Data Engineering. In industrial data science, the single most dangerous line of code in Python is pandas dot dropna. It silently deletes rows, mutilates sample power, and injects severe selection bias.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 17.28
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! In every Kaggle competition or beginner tutorial, people run dropna or fillna with the column mean on day one! If a feature only has five percent missing values, what is the harm in imputing the mean?",
+          "dock": "main",
+          "start": 17.28,
+          "end": 31.992
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Mean imputation creates artificial spikes at the center of the distribution! It deflates true sample variance, squashes standard errors, and shrinks correlation coefficients toward zero! By the end of this lesson, Kaito, you will see how mean imputation can cut statistical test power in half and cause production classifiers to fail catastrophically.",
+          "dock": "main",
+          "start": 31.992,
+          "end": 53.904
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Then let's break down Donald Rubin's classic taxonomy\u2014MCAR, MAR, and MNAR\u2014and see when dropping rows is safe and when we must deploy MICE!",
+          "dock": "main",
+          "start": 53.904,
+          "end": 62.352
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look closely at the joint likelihood equation, Kaito. The binary matrix M contains a 1 wherever an attribute is missing. To compute likelihood, we must integrate out all possible values of the missing data Y mis.",
+          "dock": "main",
+          "start": 62.352,
+          "end": 76.872
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So if the probability of a missing value occurring in M depends on what the missing value actually was, we can't factor M out of the integral! That means we are stuck modeling how human behavior or sensor physics caused the deletion!",
+          "dock": "main",
+          "start": 76.872,
+          "end": 90.672
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly right! When M depends on unobserved values, the missingness mechanism is non-ignorable. But when M only depends on values we already recorded, or is completely random, M factors out cleanly, making life much simpler for data architects.",
+          "dock": "main",
+          "start": 90.672,
+          "end": 107.784
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, the name Missing at Random always confuses software engineers! It sounds like it means completely random, but you're saying MAR is actually systematically correlated with observed columns?",
+          "dock": "main",
+          "start": 107.784,
+          "end": 120.336
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "You've hit on the most infamous misnomer in statistics! Rubin's choice of 'Missing at Random' means missingness is random conditional on observed covariates. For example, if male patients are less likely to report depression symptoms than female patients, but within the male group missingness is random, that is MAR!",
+          "dock": "main",
+          "start": 120.336,
+          "end": 140.28
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And if we drop missing rows under MAR, we drop disproportionately more men, warping our sample demographics! But if we impute using observed features, we recover the true conditional mean!",
+          "dock": "main",
+          "start": 140.28,
+          "end": 152.256
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely! That is why recognizing MAR is the mathematical foundation of modern imputation.",
+          "dock": "main",
+          "start": 152.256,
+          "end": 159.504
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Look at the decision tree in the flowchart, Dr. Nova! In an automated ETL pipeline, how do we programmatically choose between MICE and Heckman selection without a human statistician reviewing every table?",
+          "dock": "main",
+          "start": 159.504,
+          "end": 172.08
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "We automate the statistical diagnostic! We run Little's MCAR test across all pattern strata. We also train auxiliary logistic regressors predicting M sub j from all observed covariates. If the pseudo-R-squared is high, we know observed features explain the missingness\u2014confirming MAR!",
+          "dock": "main",
+          "start": 172.08,
+          "end": 192.048
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And if the logistic model has zero predictive power yet domain experts know dropout is non-random, that flags potential MNAR!",
+          "dock": "main",
+          "start": 192.048,
+          "end": 200.04
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! In the equation, because every imputed point equals x bar, its distance to the mean is zero! So thirty percent of our dataset is literally contributing zero variance!",
+          "dock": "main",
+          "start": 200.04,
+          "end": 213.384
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely! And what happens to hypothesis tests? Standard error is sigma divided by square root of N. When sigma drops by thirty percent, confidence intervals shrink artificially, making noisy random fluctuations look statistically significant!",
+          "dock": "main",
+          "start": 213.384,
+          "end": 230.976
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And in machine learning, decision trees and gradient boosters place unnatural splits directly on that artificial mean peak! Mean imputation is actively toxic to feature geometry!",
+          "dock": "main",
+          "start": 230.976,
+          "end": 242.352
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, explore the simulator below! Switch the remediation strategy from Stochastic MICE to Univariate Mean Imputation and look at the canvas.",
+          "dock": "main",
+          "start": 242.352,
+          "end": 252.24
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Look at the orange dots, Dr. Nova! They form a flat horizontal strip across the center! Our correlation dropped from 0.85 down to 0.65, and variance retention collapsed to sixty-eight percent!",
+          "dock": "sim",
+          "start": 252.24,
+          "end": 266.76
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Active Checkpoint 1! Feature X has variance 100 with thirty percent missing cells. If we mean-impute, does variance stay at 100, drop to 70, or jump to 130? Think carefully about the mathematical proof from Slide 5 and select your choice below!",
+          "dock": "quiz",
+          "start": 266.76,
+          "end": 285.12
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, Little's test formula looks like a sum of Mahalanobis distances! We are literally measuring how far each pattern's sub-vector deviates from the global Expectation-Maximization mean!",
+          "dock": "main",
+          "start": 285.12,
+          "end": 297.264
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! If the missingness were truly completely random, every subset of rows with the same missing pattern would have approximately the same mean as the entire population. When those pattern means diverge significantly, Little's test flags that missingness is driven by underlying variables.",
+          "dock": "main",
+          "start": 297.264,
+          "end": 315.672
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why do we need to loop through separate chained models? Why can't we just fit a single big deep learning autoencoder or multivariate Gaussian copula across all columns at once?",
+          "dock": "main",
+          "start": 315.672,
+          "end": 327.192
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In real-world data, columns are fundamentally heterogeneous. Column A might be a patient's age which is positive and continuous; Column B might be a binary smoking flag; Column C might be an ordinal disease stage; and Column D might be an overdispersed emergency room visit count. A multivariate Gaussian assumes all variables are continuous and normal.",
+          "dock": "main",
+          "start": 327.192,
+          "end": 349.488
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And MICE lets us pick the exact correct model family for each specific column! Logistic regression for binary, Poisson or negative binomial for counts, and predictive mean matching for skewed metrics!",
+          "dock": "main",
+          "start": 349.488,
+          "end": 362.088
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on, Kaito. By allowing each column to have its own tailored conditional model while conditioning on the latest imputations of all other columns, MICE handles real-world tabular data with exceptional statistical fidelity.",
+          "dock": "main",
+          "start": 362.088,
+          "end": 376.368
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, this donor borrowing concept is brilliant! In linear regression imputation, if the target variable is 'number of ICU hospitalizations', the model might impute 1.73 or negative 0.4. But with PMM, it only borrows actual integers that real patients experienced!",
+          "dock": "main",
+          "start": 376.368,
+          "end": 395.568
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Furthermore, PMM preserves discrete spikes and bounds. If a variable is bounded strictly between 0 and 100, or has a bimodal distribution with peaks at 10 and 90, PMM will never impute an impossible value of 115 or an unobserved value in the valley at 50.",
+          "dock": "main",
+          "start": 395.568,
+          "end": 415.584
+        },
+        {
+          "speaker": "Kaito",
+          "text": "How do we choose the donor pool size k? If k is 1, doesn't it cause donor duplication where the exact same record is borrowed repeatedly?",
+          "dock": "main",
+          "start": 415.584,
+          "end": 425.016
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes, k=1 exhibits donor starvation and artificially deflates between-imputation variance. Setting k=5 or k=10 introduces sufficient stochastic diversity across multiple imputation passes while keeping the donor candidates tightly matched in predictive space.",
+          "dock": "main",
+          "start": 425.016,
+          "end": 443.328
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, that 3.0x jump in mortality is staggering. Just by running df.dropna(), researchers accidentally filtered out all the patients who were healthy enough not to need an arterial blood gas needle!",
+          "dock": "main",
+          "start": 443.328,
+          "end": 456.432
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. This is why EHR data is classic Missing At Random or Missing Not At Random. A patient's vital signs and nurse chart notes explain why the lab was not ordered. Imputing those values using MICE with clinical covariates preserves the full 24,000-patient cohort.",
+          "dock": "main",
+          "start": 456.432,
+          "end": 475.248
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So if an AI model was trained on the complete cases only, it would have learned an artificially severe prior probability of death for anyone admitted to the ICU!",
+          "dock": "main",
+          "start": 475.248,
+          "end": 484.44
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. It would trigger false alarms and over-prescribe aggressive vasopressors to mildly ill patients. Proper imputation isn't just a statistical luxury; in production healthcare systems, it is life or death.",
+          "dock": "main",
+          "start": 484.44,
+          "end": 499.008
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at the finite-sample penalty in Rubin's total variance equation: one plus one over M times B! If M is small, like M equals 2, that penalty is 1.5 times B. But as M grows to 20, one over M becomes 0.05, so the penalty drops to just 1.05 times B!",
+          "dock": "main",
+          "start": 499.008,
+          "end": 518.952
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly, Kaito. That penalty accounts for the fact that M imputations are only a finite sample from the infinite predictive distribution of missing values. Furthermore, the Fraction of Missing Information gamma reveals how much parameter uncertainty stems directly from unobserved records versus sample size.",
+          "dock": "main",
+          "start": 518.952,
+          "end": 538.872
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Let's work through this step by step! With M equals 5, the finite-sample multiplier is 1 plus 1 over 5, which is 1.20. So we multiply between-imputation variance B of 1.50 by 1.20, giving 1.80. Then add within-imputation variance of 4.00, which gives Total Variance T of 5.800!",
+          "dock": "main",
+          "start": 538.872,
+          "end": 562.728
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, Heckman's Inverse Mills Ratio is pure mathematical magic! In labor economics, we only observe wages for people who choose to work. People with high reservation wages stay home, so observed wages are upwardly biased. The Mills Ratio acts as an omitted variable proxy that soaks up that unobserved motivation!",
+          "dock": "main",
+          "start": 562.728,
+          "end": 583.776
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly, Kaito. By including lambda as an explicit regressor, the remaining error term becomes orthogonal to the explanatory variables, restoring unbiased Ordinary Least Squares coefficients. And when we lack an instrument for Heckman's model, the delta-shift sensitivity analysis lets us perform stress-testing across adversarial assumptions.",
+          "dock": "main",
+          "start": 583.776,
+          "end": 606.384
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at line 25: add_indicator=True in Scikit-Learn's IterativeImputer! That automatically appends binary boolean columns indicating which specific cells were originally missing before imputation!",
+          "dock": "main",
+          "start": 606.384,
+          "end": 620.544
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes! That gives our downstream machine learning models the best of both worlds: they receive continuous, uncorrupted, imputed feature vectors without missing NaNs, while retaining explicit feature flags for whether the test was ordered, capturing clinical intent.",
+          "dock": "main",
+          "start": 620.544,
+          "end": 637.152
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, this chapter completely transformed how I see data engineering. Before this, I thought missing data was just an annoying inconvenience that you fix with df.dropna() or SimpleImputer. Now I see that missingness patterns contain profound signals about clinical workflows, economic behavior, and survey psychology!",
+          "dock": "main",
+          "start": 637.152,
+          "end": 657.12
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is the mark of a true data architect, Kaito. Once you appreciate the mathematical boundaries between MCAR, MAR, and MNAR, and treat imputation as posterior predictive sampling with Rubin's variance pooling, your models become resilient, trustworthy, and mathematically sound.",
+          "dock": "main",
+          "start": 657.12,
+          "end": 675.84
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I'm ready for Lesson 5.3! Duplicate detection and record linkage across messy enterprise data warehouses!",
+          "dock": "main",
+          "start": 675.84,
+          "end": 684.144
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Excellent work, Kaito. See you in Lesson 5.3!",
+          "dock": "main",
+          "start": 684.144,
+          "end": 689.448
+        }
+      ]
+    }
+  ]
+}
