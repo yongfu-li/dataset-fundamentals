@@ -1,311 +1,4239 @@
 {
   "duration": 471.12,
-  "slides": [
+  "sentences": [
     {
-      "slideIndex": 0,
-      "startTime": 0.0,
-      "endTime": 39.072,
-      "turns": [
+      "slide": 1,
+      "slideId": "s1",
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Track 2, Lesson 2.2 of Dataset Fundamentals: Data Sources, Primary Generation, Secondary Repurposing, and Real-Time Streaming Ingestion. In production machine learning, the fundamental determinant of generalization is not algorithmic complexity, but source provenance and ingestion stability.",
+      "start": 0.0,
+      "end": 20.381,
+      "words": [
         {
-          "speaker": "Dr. Nova",
-          "startTime": 0.0,
-          "endTime": 20.352,
-          "duration": 20.352,
-          "text": "Welcome to Track 2, Lesson 2.2 of Dataset Fundamentals: Data Sources, Primary Generation, Secondary Repurposing, and Real-Time Streaming Ingestion. In production machine learning, the fundamental determinant of generalization is not algorithmic complexity, but source provenance and ingestion stability."
+          "w": "Welcome",
+          "t": 0.0
         },
         {
-          "speaker": "Dr. Nova",
-          "startTime": 20.352,
-          "endTime": 39.072,
-          "duration": 18.72,
-          "text": "Today, we formalize the orthogonal axes of Provenance Authority and Temporal Velocity. We derive covariate shift importance weighting, the Kish-Sugiyama effective sample size penalty, Little's Law for queue stability, and production streaming pipelines with dead-letter queues. Let us dive in."
-        }
-      ]
-    },
-    {
-      "slideIndex": 1,
-      "startTime": 39.072,
-      "endTime": 73.056,
-      "turns": [
-        {
-          "speaker": "Dr. Nova",
-          "startTime": 39.072,
-          "endTime": 54.504,
-          "duration": 15.432,
-          "text": "Every dataset source is governed by two orthogonal engineering axes: Provenance Authority, which dictates whether you control the sampling distribution, and Temporal Velocity, which dictates whether records arrive in static batches or an unbounded live stream."
+          "w": "to",
+          "t": 0.536
         },
         {
-          "speaker": "Dr. Nova",
-          "startTime": 54.504,
-          "endTime": 73.056,
-          "duration": 18.552,
-          "text": "Primary data guarantees that the observed distribution matches the target population, but at high marginal cost. Secondary data is nearly free to acquire, but forces you to handle distribution shift. Streaming telemetry introduces queue buffer dynamics and Little's Law constraints."
-        }
-      ]
-    },
-    {
-      "slideIndex": 2,
-      "startTime": 73.056,
-      "endTime": 103.584,
-      "turns": [
-        {
-          "speaker": "Dr. Nova",
-          "startTime": 73.056,
-          "endTime": 84.12,
-          "duration": 11.064,
-          "text": "In Primary Data Generation, the data collection team possesses direct experimental sovereignty over the sampling mechanism, instrument calibration, and response protocols."
+          "w": "Track",
+          "t": 1.073
         },
         {
-          "speaker": "Dr. Nova",
-          "startTime": 84.12,
-          "endTime": 103.584,
-          "duration": 19.464,
-          "text": "Because observations are sampled directly from the true target distribution P_target, the empirical loss is an unbiased estimator of true expected generalization risk, meaning the expectation of the empirical loss equals the true risk. However, marginal cost scales linearly with sample size."
-        }
-      ]
-    },
-    {
-      "slideIndex": 3,
-      "startTime": 103.584,
-      "endTime": 139.824,
-      "turns": [
-        {
-          "speaker": "Dr. Nova",
-          "startTime": 103.584,
-          "endTime": 119.76,
-          "duration": 16.176,
-          "text": "Secondary data repurposes external records gathered for different objectives, such as hospital insurance billing codes or public web scrapes. While acquisition cost approaches zero, the source distribution Q of X differs from target distribution P of X."
+          "w": "2,",
+          "t": 1.609
         },
         {
-          "speaker": "Dr. Nova",
-          "startTime": 119.76,
-          "endTime": 139.824,
-          "duration": 20.064,
-          "text": "Under the Covariate Shift assumption, the conditional concept mapping Q of Y given X equals P of Y given X, but the input feature marginals diverge. To reconstruct unbiased target risk, we must re-weight each observation by the Radon-Nikodym density ratio, w of x equals P of x over Q of x."
-        }
-      ]
-    },
-    {
-      "slideIndex": 4,
-      "startTime": 139.824,
-      "endTime": 174.168,
-      "turns": [
-        {
-          "speaker": "Dr. Nova",
-          "startTime": 139.824,
-          "endTime": 154.392,
-          "duration": 14.568,
-          "text": "When we re-weight secondary data using importance weights, our statistical degrees of freedom degrade. Kish and Sugiyama proved that the effective sample size, n sub eff, depends inversely on the variance of the density ratios."
+          "w": "Lesson",
+          "t": 2.145
         },
         {
-          "speaker": "Dr. Nova",
-          "startTime": 154.392,
-          "endTime": 174.168,
-          "duration": 19.776,
-          "text": "The analytical formula is n divided by one plus the variance of w of X under Q. If the variance of weights is 3.0, a nominal dataset of one thousand samples carries the statistical power of only two hundred and fifty independent samples. Seventy-five percent of your nominal sample is lost."
-        }
-      ]
-    },
-    {
-      "slideIndex": 5,
-      "startTime": 174.168,
-      "endTime": 190.584,
-      "turns": [
-        {
-          "speaker": "Dr. Nova",
-          "startTime": 174.168,
-          "endTime": 190.584,
-          "duration": 16.416,
-          "text": "Welcome to Interactive Lab 1. Here, you can adjust the source and target distribution means, nominal secondary sample size, and empirical weight variance. Watch how the Kish-Sugiyama effective sample size dynamically calculates in real time."
-        }
-      ]
-    },
-    {
-      "slideIndex": 6,
-      "startTime": 190.584,
-      "endTime": 206.928,
-      "turns": [
-        {
-          "speaker": "Dr. Nova",
-          "startTime": 190.584,
-          "endTime": 206.928,
-          "duration": 16.344,
-          "text": "Let us verify your comprehension with Active Checkpoint 1. A secondary dataset contains one thousand records. The empirical density ratio variance is 3.0. Calculate the exact Kish-Sugiyama effective sample size."
-        }
-      ]
-    },
-    {
-      "slideIndex": 7,
-      "startTime": 206.928,
-      "endTime": 238.464,
-      "turns": [
-        {
-          "speaker": "Dr. Nova",
-          "startTime": 206.928,
-          "endTime": 221.472,
-          "duration": 14.544,
-          "text": "Now we transition along the temporal velocity axis to real-time streaming telemetry. In streaming architectures, records arrive continuously at rate lambda from unbounded sources such as IoT sensors or financial tickers."
+          "w": "2.2",
+          "t": 2.682
         },
         {
-          "speaker": "Dr. Nova",
-          "startTime": 221.472,
-          "endTime": 238.464,
-          "duration": 16.992,
-          "text": "Event arrivals follow a Poisson process, where inter-arrival times are exponentially distributed. Because the total population N approaches infinity, standard offline uniform sampling is impossible, necessitating online reservoir sampling and temporal sliding windows."
-        }
-      ]
-    },
-    {
-      "slideIndex": 8,
-      "startTime": 238.464,
-      "endTime": 276.072,
-      "turns": [
-        {
-          "speaker": "Dr. Nova",
-          "startTime": 238.464,
-          "endTime": 255.768,
-          "duration": 17.304,
-          "text": "To prevent streaming pipelines from crashing under load, we govern queue buffers using Little's Law, proven by John Little in 1961. The steady-state average number of items in the system, L, equals arrival rate lambda multiplied by average residency latency W."
+          "w": "of",
+          "t": 3.218
         },
         {
-          "speaker": "Dr. Nova",
-          "startTime": 255.768,
-          "endTime": 276.072,
-          "duration": 20.304,
-          "text": "In an M/M/1 queue with worker service rate mu, traffic intensity rho equals lambda divided by mu. Stability requires rho to be strictly less than 1. If arrival rate lambda equals or exceeds service rate mu, queue depth diverges to infinity, causing buffer exhaustion and dropped packets."
-        }
-      ]
-    },
-    {
-      "slideIndex": 9,
-      "startTime": 276.072,
-      "endTime": 304.176,
-      "turns": [
-        {
-          "speaker": "Dr. Nova",
-          "startTime": 276.072,
-          "endTime": 283.56,
-          "duration": 7.488,
-          "text": "Here we synthesize the operational trade-offs across all three data source modalities into an engineering decision matrix."
+          "w": "Dataset",
+          "t": 3.754
         },
         {
-          "speaker": "Dr. Nova",
-          "startTime": 283.56,
-          "endTime": 304.176,
-          "duration": 20.616,
-          "text": "Notice that no source dominates unconditionally. Primary generation maximizes sampling control and minimizes covariate shift, but incurs high marginal cost. Secondary data reduces cost, but introduces schema friction and licensing complexity. Streaming requires active backpressure engineering."
-        }
-      ]
-    },
-    {
-      "slideIndex": 10,
-      "startTime": 304.176,
-      "endTime": 331.416,
-      "turns": [
-        {
-          "speaker": "Dr. Nova",
-          "startTime": 304.176,
-          "endTime": 316.44,
-          "duration": 12.264,
-          "text": "In production machine learning systems, streaming ingestion pipelines are decoupled into partitioned event brokers like Apache Kafka, schema validation worker pools, and automated dead-letter queues."
+          "w": "Fundamentals:",
+          "t": 4.291
         },
         {
-          "speaker": "Dr. Nova",
-          "startTime": 316.44,
-          "endTime": 331.416,
-          "duration": 14.976,
-          "text": "When malformed records or schema violations arrive, they are diverted into a Dead-Letter Queue rather than crashing the consumer group. If traffic intensity exceeds 0.85, backpressure controllers dynamically scale the worker pool."
-        }
-      ]
-    },
-    {
-      "slideIndex": 11,
-      "startTime": 331.416,
-      "endTime": 346.92,
-      "turns": [
-        {
-          "speaker": "Dr. Nova",
-          "startTime": 331.416,
-          "endTime": 346.92,
-          "duration": 15.504,
-          "text": "Welcome to Interactive Lab 2. Here, you can adjust arrival rate lambda and worker processing rate mu in real time. Watch how traffic intensity rho, residency latency W, and buffer occupancy L respond dynamically."
-        }
-      ]
-    },
-    {
-      "slideIndex": 12,
-      "startTime": 346.92,
-      "endTime": 367.584,
-      "turns": [
-        {
-          "speaker": "Dr. Nova",
-          "startTime": 346.92,
-          "endTime": 367.584,
-          "duration": 20.664,
-          "text": "Time for Active Checkpoint 2. An IoT sensor broker receives packets at arrival rate lambda equals two thousand packets per second. Average processing latency W is forty milliseconds. If buffer capacity is 120 packets, calculate steady-state occupancy L and determine stability."
-        }
-      ]
-    },
-    {
-      "slideIndex": 13,
-      "startTime": 367.584,
-      "endTime": 405.216,
-      "turns": [
-        {
-          "speaker": "Dr. Nova",
-          "startTime": 367.584,
-          "endTime": 382.248,
-          "duration": 14.664,
-          "text": "Consider this landmark cardiovascular risk study analyzing 120,000 patient cohorts. Researchers initially ingested secondary insurance billing claims because they were immediately available at near-zero marginal cost."
+          "w": "Data",
+          "t": 4.827
         },
         {
-          "speaker": "Dr. Nova",
-          "startTime": 382.248,
-          "endTime": 405.216,
-          "duration": 22.968,
-          "text": "However, billing codes indicated reimbursement categories rather than underlying physiological pathology, causing severe covariate shift. By collecting a prospective primary cohort of 10,000 patients and computing density ratios, they re-weighted the secondary data, preserving 92% of statistical power while slashing costs by 78%."
+          "w": "Sources,",
+          "t": 5.363
+        },
+        {
+          "w": "Primary",
+          "t": 5.9
+        },
+        {
+          "w": "Generation,",
+          "t": 6.436
+        },
+        {
+          "w": "Secondary",
+          "t": 6.972
+        },
+        {
+          "w": "Repurposing,",
+          "t": 7.509
+        },
+        {
+          "w": "and",
+          "t": 8.045
+        },
+        {
+          "w": "Real-Time",
+          "t": 8.581
+        },
+        {
+          "w": "Streaming",
+          "t": 9.118
+        },
+        {
+          "w": "Ingestion.",
+          "t": 9.654
+        },
+        {
+          "w": "In",
+          "t": 10.191
+        },
+        {
+          "w": "production",
+          "t": 10.727
+        },
+        {
+          "w": "machine",
+          "t": 11.263
+        },
+        {
+          "w": "learning,",
+          "t": 11.8
+        },
+        {
+          "w": "the",
+          "t": 12.336
+        },
+        {
+          "w": "fundamental",
+          "t": 12.872
+        },
+        {
+          "w": "determinant",
+          "t": 13.409
+        },
+        {
+          "w": "of",
+          "t": 13.945
+        },
+        {
+          "w": "generalization",
+          "t": 14.481
+        },
+        {
+          "w": "is",
+          "t": 15.018
+        },
+        {
+          "w": "not",
+          "t": 15.554
+        },
+        {
+          "w": "algorithmic",
+          "t": 16.09
+        },
+        {
+          "w": "complexity,",
+          "t": 16.627
+        },
+        {
+          "w": "but",
+          "t": 17.163
+        },
+        {
+          "w": "source",
+          "t": 17.699
+        },
+        {
+          "w": "provenance",
+          "t": 18.236
+        },
+        {
+          "w": "and",
+          "t": 18.772
+        },
+        {
+          "w": "ingestion",
+          "t": 19.308
+        },
+        {
+          "w": "stability.",
+          "t": 19.845
         }
       ]
     },
     {
-      "slideIndex": 14,
-      "startTime": 405.216,
-      "endTime": 435.624,
-      "turns": [
+      "slide": 1,
+      "slideId": "s1",
+      "speaker": "Dr. Nova",
+      "text": "Today, we formalize the orthogonal axes of Provenance Authority and Temporal Velocity. We derive covariate shift importance weighting, the Kish-Sugiyama effective sample size penalty, Little's Law for queue stability, and production streaming pipelines with dead-letter queues. Let us dive in.",
+      "start": 20.381,
+      "end": 40.089,
+      "words": [
         {
-          "speaker": "Dr. Nova",
-          "startTime": 405.216,
-          "endTime": 420.528,
-          "duration": 15.312,
-          "text": "Slide 15 provides an executable discrete-event simulation of our streaming ingestion pipeline in Python. It models Poisson inter-arrival intervals, single-worker departure dynamics, and verifies Little's Law with automated assertions."
+          "w": "Today,",
+          "t": 20.381
         },
         {
-          "speaker": "Dr. Nova",
-          "startTime": 420.528,
-          "endTime": 435.624,
-          "duration": 15.096,
-          "text": "Notice the automated checks at the bottom: we assert that traffic intensity rho is strictly less than 1.0, and verify that empirical latency W aligns with theoretical M/M/1 queuing within expected sampling tolerances."
+          "w": "we",
+          "t": 20.874
+        },
+        {
+          "w": "formalize",
+          "t": 21.366
+        },
+        {
+          "w": "the",
+          "t": 21.859
+        },
+        {
+          "w": "orthogonal",
+          "t": 22.352
+        },
+        {
+          "w": "axes",
+          "t": 22.845
+        },
+        {
+          "w": "of",
+          "t": 23.337
+        },
+        {
+          "w": "Provenance",
+          "t": 23.83
+        },
+        {
+          "w": "Authority",
+          "t": 24.323
+        },
+        {
+          "w": "and",
+          "t": 24.815
+        },
+        {
+          "w": "Temporal",
+          "t": 25.308
+        },
+        {
+          "w": "Velocity.",
+          "t": 25.801
+        },
+        {
+          "w": "We",
+          "t": 26.293
+        },
+        {
+          "w": "derive",
+          "t": 26.786
+        },
+        {
+          "w": "covariate",
+          "t": 27.279
+        },
+        {
+          "w": "shift",
+          "t": 27.771
+        },
+        {
+          "w": "importance",
+          "t": 28.264
+        },
+        {
+          "w": "weighting,",
+          "t": 28.757
+        },
+        {
+          "w": "the",
+          "t": 29.25
+        },
+        {
+          "w": "Kish-Sugiyama",
+          "t": 29.742
+        },
+        {
+          "w": "effective",
+          "t": 30.235
+        },
+        {
+          "w": "sample",
+          "t": 30.728
+        },
+        {
+          "w": "size",
+          "t": 31.22
+        },
+        {
+          "w": "penalty,",
+          "t": 31.713
+        },
+        {
+          "w": "Little's",
+          "t": 32.206
+        },
+        {
+          "w": "Law",
+          "t": 32.698
+        },
+        {
+          "w": "for",
+          "t": 33.191
+        },
+        {
+          "w": "queue",
+          "t": 33.684
+        },
+        {
+          "w": "stability,",
+          "t": 34.177
+        },
+        {
+          "w": "and",
+          "t": 34.669
+        },
+        {
+          "w": "production",
+          "t": 35.162
+        },
+        {
+          "w": "streaming",
+          "t": 35.655
+        },
+        {
+          "w": "pipelines",
+          "t": 36.147
+        },
+        {
+          "w": "with",
+          "t": 36.64
+        },
+        {
+          "w": "dead-letter",
+          "t": 37.133
+        },
+        {
+          "w": "queues.",
+          "t": 37.626
+        },
+        {
+          "w": "Let",
+          "t": 38.118
+        },
+        {
+          "w": "us",
+          "t": 38.611
+        },
+        {
+          "w": "dive",
+          "t": 39.104
+        },
+        {
+          "w": "in.",
+          "t": 39.596
         }
       ]
     },
     {
-      "slideIndex": 15,
-      "startTime": 435.624,
-      "endTime": 471.12,
-      "turns": [
+      "slide": 2,
+      "slideId": "s2",
+      "speaker": "Dr. Nova",
+      "text": "Every dataset source is governed by two orthogonal engineering axes: Provenance Authority, which dictates whether you control the sampling distribution, and Temporal Velocity, which dictates whether records arrive in static batches or an unbounded live stream.",
+      "start": 40.089,
+      "end": 57.578,
+      "words": [
         {
-          "speaker": "Dr. Nova",
-          "startTime": 435.624,
-          "endTime": 455.64,
-          "duration": 20.016,
-          "text": "Congratulations on completing Lesson 2.2. Today, we established the mathematical and architectural foundations of data sourcing: primary generation for unbiased experimental ground truth, secondary repurposing calibrated via importance density ratios, and streaming telemetry sized via Little's Law."
+          "w": "Every",
+          "t": 40.089
         },
         {
-          "speaker": "Dr. Nova",
-          "startTime": 455.64,
-          "endTime": 471.12,
-          "duration": 15.48,
-          "text": "In Lesson 2.3, we transition from high-level source strategies to concrete acquisition instruments: designing psychometrically sound questionnaires, web scraping protocols, and automated API crawlers. Outstanding work today."
+          "w": "dataset",
+          "t": 40.575
+        },
+        {
+          "w": "source",
+          "t": 41.061
+        },
+        {
+          "w": "is",
+          "t": 41.546
+        },
+        {
+          "w": "governed",
+          "t": 42.032
+        },
+        {
+          "w": "by",
+          "t": 42.518
+        },
+        {
+          "w": "two",
+          "t": 43.004
+        },
+        {
+          "w": "orthogonal",
+          "t": 43.49
+        },
+        {
+          "w": "engineering",
+          "t": 43.975
+        },
+        {
+          "w": "axes:",
+          "t": 44.461
+        },
+        {
+          "w": "Provenance",
+          "t": 44.947
+        },
+        {
+          "w": "Authority,",
+          "t": 45.433
+        },
+        {
+          "w": "which",
+          "t": 45.919
+        },
+        {
+          "w": "dictates",
+          "t": 46.404
+        },
+        {
+          "w": "whether",
+          "t": 46.89
+        },
+        {
+          "w": "you",
+          "t": 47.376
+        },
+        {
+          "w": "control",
+          "t": 47.862
+        },
+        {
+          "w": "the",
+          "t": 48.348
+        },
+        {
+          "w": "sampling",
+          "t": 48.834
+        },
+        {
+          "w": "distribution,",
+          "t": 49.319
+        },
+        {
+          "w": "and",
+          "t": 49.805
+        },
+        {
+          "w": "Temporal",
+          "t": 50.291
+        },
+        {
+          "w": "Velocity,",
+          "t": 50.777
+        },
+        {
+          "w": "which",
+          "t": 51.263
+        },
+        {
+          "w": "dictates",
+          "t": 51.748
+        },
+        {
+          "w": "whether",
+          "t": 52.234
+        },
+        {
+          "w": "records",
+          "t": 52.72
+        },
+        {
+          "w": "arrive",
+          "t": 53.206
+        },
+        {
+          "w": "in",
+          "t": 53.692
+        },
+        {
+          "w": "static",
+          "t": 54.177
+        },
+        {
+          "w": "batches",
+          "t": 54.663
+        },
+        {
+          "w": "or",
+          "t": 55.149
+        },
+        {
+          "w": "an",
+          "t": 55.635
+        },
+        {
+          "w": "unbounded",
+          "t": 56.121
+        },
+        {
+          "w": "live",
+          "t": 56.606
+        },
+        {
+          "w": "stream.",
+          "t": 57.092
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "slideId": "s2",
+      "speaker": "Dr. Nova",
+      "text": "Primary data guarantees that the observed distribution matches the target population, but at high marginal cost. Secondary data is nearly free to acquire, but forces you to handle distribution shift. Streaming telemetry introduces queue buffer dynamics and Little's Law constraints.",
+      "start": 57.578,
+      "end": 76.547,
+      "words": [
+        {
+          "w": "Primary",
+          "t": 57.578
+        },
+        {
+          "w": "data",
+          "t": 58.052
+        },
+        {
+          "w": "guarantees",
+          "t": 58.526
+        },
+        {
+          "w": "that",
+          "t": 59.001
+        },
+        {
+          "w": "the",
+          "t": 59.475
+        },
+        {
+          "w": "observed",
+          "t": 59.949
+        },
+        {
+          "w": "distribution",
+          "t": 60.423
+        },
+        {
+          "w": "matches",
+          "t": 60.898
+        },
+        {
+          "w": "the",
+          "t": 61.372
+        },
+        {
+          "w": "target",
+          "t": 61.846
+        },
+        {
+          "w": "population,",
+          "t": 62.32
+        },
+        {
+          "w": "but",
+          "t": 62.794
+        },
+        {
+          "w": "at",
+          "t": 63.269
+        },
+        {
+          "w": "high",
+          "t": 63.743
+        },
+        {
+          "w": "marginal",
+          "t": 64.217
+        },
+        {
+          "w": "cost.",
+          "t": 64.691
+        },
+        {
+          "w": "Secondary",
+          "t": 65.166
+        },
+        {
+          "w": "data",
+          "t": 65.64
+        },
+        {
+          "w": "is",
+          "t": 66.114
+        },
+        {
+          "w": "nearly",
+          "t": 66.588
+        },
+        {
+          "w": "free",
+          "t": 67.062
+        },
+        {
+          "w": "to",
+          "t": 67.537
+        },
+        {
+          "w": "acquire,",
+          "t": 68.011
+        },
+        {
+          "w": "but",
+          "t": 68.485
+        },
+        {
+          "w": "forces",
+          "t": 68.959
+        },
+        {
+          "w": "you",
+          "t": 69.434
+        },
+        {
+          "w": "to",
+          "t": 69.908
+        },
+        {
+          "w": "handle",
+          "t": 70.382
+        },
+        {
+          "w": "distribution",
+          "t": 70.856
+        },
+        {
+          "w": "shift.",
+          "t": 71.331
+        },
+        {
+          "w": "Streaming",
+          "t": 71.805
+        },
+        {
+          "w": "telemetry",
+          "t": 72.279
+        },
+        {
+          "w": "introduces",
+          "t": 72.753
+        },
+        {
+          "w": "queue",
+          "t": 73.227
+        },
+        {
+          "w": "buffer",
+          "t": 73.702
+        },
+        {
+          "w": "dynamics",
+          "t": 74.176
+        },
+        {
+          "w": "and",
+          "t": 74.65
+        },
+        {
+          "w": "Little's",
+          "t": 75.124
+        },
+        {
+          "w": "Law",
+          "t": 75.599
+        },
+        {
+          "w": "constraints.",
+          "t": 76.073
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "slideId": "s3",
+      "speaker": "Dr. Nova",
+      "text": "In Primary Data Generation, the data collection team possesses direct experimental sovereignty over the sampling mechanism, instrument calibration, and response protocols.",
+      "start": 76.547,
+      "end": 88.049,
+      "words": [
+        {
+          "w": "In",
+          "t": 76.547
+        },
+        {
+          "w": "Primary",
+          "t": 77.095
+        },
+        {
+          "w": "Data",
+          "t": 77.642
+        },
+        {
+          "w": "Generation,",
+          "t": 78.19
+        },
+        {
+          "w": "the",
+          "t": 78.738
+        },
+        {
+          "w": "data",
+          "t": 79.286
+        },
+        {
+          "w": "collection",
+          "t": 79.833
+        },
+        {
+          "w": "team",
+          "t": 80.381
+        },
+        {
+          "w": "possesses",
+          "t": 80.929
+        },
+        {
+          "w": "direct",
+          "t": 81.476
+        },
+        {
+          "w": "experimental",
+          "t": 82.024
+        },
+        {
+          "w": "sovereignty",
+          "t": 82.572
+        },
+        {
+          "w": "over",
+          "t": 83.12
+        },
+        {
+          "w": "the",
+          "t": 83.667
+        },
+        {
+          "w": "sampling",
+          "t": 84.215
+        },
+        {
+          "w": "mechanism,",
+          "t": 84.763
+        },
+        {
+          "w": "instrument",
+          "t": 85.31
+        },
+        {
+          "w": "calibration,",
+          "t": 85.858
+        },
+        {
+          "w": "and",
+          "t": 86.406
+        },
+        {
+          "w": "response",
+          "t": 86.954
+        },
+        {
+          "w": "protocols.",
+          "t": 87.501
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "slideId": "s3",
+      "speaker": "Dr. Nova",
+      "text": "Because observations are sampled directly from the true target distribution P_target, the empirical loss is an unbiased estimator of true expected generalization risk, meaning the expectation of the empirical loss equals the true risk. However, marginal cost scales linearly with sample size.",
+      "start": 88.049,
+      "end": 107.69,
+      "words": [
+        {
+          "w": "Because",
+          "t": 88.049
+        },
+        {
+          "w": "observations",
+          "t": 88.517
+        },
+        {
+          "w": "are",
+          "t": 88.984
+        },
+        {
+          "w": "sampled",
+          "t": 89.452
+        },
+        {
+          "w": "directly",
+          "t": 89.92
+        },
+        {
+          "w": "from",
+          "t": 90.387
+        },
+        {
+          "w": "the",
+          "t": 90.855
+        },
+        {
+          "w": "true",
+          "t": 91.323
+        },
+        {
+          "w": "target",
+          "t": 91.79
+        },
+        {
+          "w": "distribution",
+          "t": 92.258
+        },
+        {
+          "w": "P_target,",
+          "t": 92.725
+        },
+        {
+          "w": "the",
+          "t": 93.193
+        },
+        {
+          "w": "empirical",
+          "t": 93.661
+        },
+        {
+          "w": "loss",
+          "t": 94.128
+        },
+        {
+          "w": "is",
+          "t": 94.596
+        },
+        {
+          "w": "an",
+          "t": 95.064
+        },
+        {
+          "w": "unbiased",
+          "t": 95.531
+        },
+        {
+          "w": "estimator",
+          "t": 95.999
+        },
+        {
+          "w": "of",
+          "t": 96.467
+        },
+        {
+          "w": "true",
+          "t": 96.934
+        },
+        {
+          "w": "expected",
+          "t": 97.402
+        },
+        {
+          "w": "generalization",
+          "t": 97.87
+        },
+        {
+          "w": "risk,",
+          "t": 98.337
+        },
+        {
+          "w": "meaning",
+          "t": 98.805
+        },
+        {
+          "w": "the",
+          "t": 99.272
+        },
+        {
+          "w": "expectation",
+          "t": 99.74
+        },
+        {
+          "w": "of",
+          "t": 100.208
+        },
+        {
+          "w": "the",
+          "t": 100.675
+        },
+        {
+          "w": "empirical",
+          "t": 101.143
+        },
+        {
+          "w": "loss",
+          "t": 101.611
+        },
+        {
+          "w": "equals",
+          "t": 102.078
+        },
+        {
+          "w": "the",
+          "t": 102.546
+        },
+        {
+          "w": "true",
+          "t": 103.014
+        },
+        {
+          "w": "risk.",
+          "t": 103.481
+        },
+        {
+          "w": "However,",
+          "t": 103.949
+        },
+        {
+          "w": "marginal",
+          "t": 104.416
+        },
+        {
+          "w": "cost",
+          "t": 104.884
+        },
+        {
+          "w": "scales",
+          "t": 105.352
+        },
+        {
+          "w": "linearly",
+          "t": 105.819
+        },
+        {
+          "w": "with",
+          "t": 106.287
+        },
+        {
+          "w": "sample",
+          "t": 106.755
+        },
+        {
+          "w": "size.",
+          "t": 107.222
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "slideId": "s4",
+      "speaker": "Dr. Nova",
+      "text": "Secondary data repurposes external records gathered for different objectives, such as hospital insurance billing codes or public web scrapes. While acquisition cost approaches zero, the source distribution Q of X differs from target distribution P of X.",
+      "start": 107.69,
+      "end": 124.708,
+      "words": [
+        {
+          "w": "Secondary",
+          "t": 107.69
+        },
+        {
+          "w": "data",
+          "t": 108.15
+        },
+        {
+          "w": "repurposes",
+          "t": 108.61
+        },
+        {
+          "w": "external",
+          "t": 109.07
+        },
+        {
+          "w": "records",
+          "t": 109.53
+        },
+        {
+          "w": "gathered",
+          "t": 109.99
+        },
+        {
+          "w": "for",
+          "t": 110.45
+        },
+        {
+          "w": "different",
+          "t": 110.91
+        },
+        {
+          "w": "objectives,",
+          "t": 111.37
+        },
+        {
+          "w": "such",
+          "t": 111.83
+        },
+        {
+          "w": "as",
+          "t": 112.289
+        },
+        {
+          "w": "hospital",
+          "t": 112.749
+        },
+        {
+          "w": "insurance",
+          "t": 113.209
+        },
+        {
+          "w": "billing",
+          "t": 113.669
+        },
+        {
+          "w": "codes",
+          "t": 114.129
+        },
+        {
+          "w": "or",
+          "t": 114.589
+        },
+        {
+          "w": "public",
+          "t": 115.049
+        },
+        {
+          "w": "web",
+          "t": 115.509
+        },
+        {
+          "w": "scrapes.",
+          "t": 115.969
+        },
+        {
+          "w": "While",
+          "t": 116.429
+        },
+        {
+          "w": "acquisition",
+          "t": 116.889
+        },
+        {
+          "w": "cost",
+          "t": 117.349
+        },
+        {
+          "w": "approaches",
+          "t": 117.809
+        },
+        {
+          "w": "zero,",
+          "t": 118.269
+        },
+        {
+          "w": "the",
+          "t": 118.729
+        },
+        {
+          "w": "source",
+          "t": 119.189
+        },
+        {
+          "w": "distribution",
+          "t": 119.649
+        },
+        {
+          "w": "Q",
+          "t": 120.109
+        },
+        {
+          "w": "of",
+          "t": 120.568
+        },
+        {
+          "w": "X",
+          "t": 121.028
+        },
+        {
+          "w": "differs",
+          "t": 121.488
+        },
+        {
+          "w": "from",
+          "t": 121.948
+        },
+        {
+          "w": "target",
+          "t": 122.408
+        },
+        {
+          "w": "distribution",
+          "t": 122.868
+        },
+        {
+          "w": "P",
+          "t": 123.328
+        },
+        {
+          "w": "of",
+          "t": 123.788
+        },
+        {
+          "w": "X.",
+          "t": 124.248
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "slideId": "s4",
+      "speaker": "Dr. Nova",
+      "text": "Under the Covariate Shift assumption, the conditional concept mapping Q of Y given X equals P of Y given X, but the input feature marginals diverge. To reconstruct unbiased target risk, we must re-weight each observation by the Radon-Nikodym density ratio, w of x equals P of x over Q of x.",
+      "start": 124.708,
+      "end": 144.215,
+      "words": [
+        {
+          "w": "Under",
+          "t": 124.708
+        },
+        {
+          "w": "the",
+          "t": 125.083
+        },
+        {
+          "w": "Covariate",
+          "t": 125.458
+        },
+        {
+          "w": "Shift",
+          "t": 125.833
+        },
+        {
+          "w": "assumption,",
+          "t": 126.209
+        },
+        {
+          "w": "the",
+          "t": 126.584
+        },
+        {
+          "w": "conditional",
+          "t": 126.959
+        },
+        {
+          "w": "concept",
+          "t": 127.334
+        },
+        {
+          "w": "mapping",
+          "t": 127.709
+        },
+        {
+          "w": "Q",
+          "t": 128.084
+        },
+        {
+          "w": "of",
+          "t": 128.459
+        },
+        {
+          "w": "Y",
+          "t": 128.834
+        },
+        {
+          "w": "given",
+          "t": 129.21
+        },
+        {
+          "w": "X",
+          "t": 129.585
+        },
+        {
+          "w": "equals",
+          "t": 129.96
+        },
+        {
+          "w": "P",
+          "t": 130.335
+        },
+        {
+          "w": "of",
+          "t": 130.71
+        },
+        {
+          "w": "Y",
+          "t": 131.085
+        },
+        {
+          "w": "given",
+          "t": 131.46
+        },
+        {
+          "w": "X,",
+          "t": 131.836
+        },
+        {
+          "w": "but",
+          "t": 132.211
+        },
+        {
+          "w": "the",
+          "t": 132.586
+        },
+        {
+          "w": "input",
+          "t": 132.961
+        },
+        {
+          "w": "feature",
+          "t": 133.336
+        },
+        {
+          "w": "marginals",
+          "t": 133.711
+        },
+        {
+          "w": "diverge.",
+          "t": 134.086
+        },
+        {
+          "w": "To",
+          "t": 134.462
+        },
+        {
+          "w": "reconstruct",
+          "t": 134.837
+        },
+        {
+          "w": "unbiased",
+          "t": 135.212
+        },
+        {
+          "w": "target",
+          "t": 135.587
+        },
+        {
+          "w": "risk,",
+          "t": 135.962
+        },
+        {
+          "w": "we",
+          "t": 136.337
+        },
+        {
+          "w": "must",
+          "t": 136.712
+        },
+        {
+          "w": "re-weight",
+          "t": 137.087
+        },
+        {
+          "w": "each",
+          "t": 137.463
+        },
+        {
+          "w": "observation",
+          "t": 137.838
+        },
+        {
+          "w": "by",
+          "t": 138.213
+        },
+        {
+          "w": "the",
+          "t": 138.588
+        },
+        {
+          "w": "Radon-Nikodym",
+          "t": 138.963
+        },
+        {
+          "w": "density",
+          "t": 139.338
+        },
+        {
+          "w": "ratio,",
+          "t": 139.713
+        },
+        {
+          "w": "w",
+          "t": 140.089
+        },
+        {
+          "w": "of",
+          "t": 140.464
+        },
+        {
+          "w": "x",
+          "t": 140.839
+        },
+        {
+          "w": "equals",
+          "t": 141.214
+        },
+        {
+          "w": "P",
+          "t": 141.589
+        },
+        {
+          "w": "of",
+          "t": 141.964
+        },
+        {
+          "w": "x",
+          "t": 142.339
+        },
+        {
+          "w": "over",
+          "t": 142.714
+        },
+        {
+          "w": "Q",
+          "t": 143.09
+        },
+        {
+          "w": "of",
+          "t": 143.465
+        },
+        {
+          "w": "x.",
+          "t": 143.84
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "slideId": "s5",
+      "speaker": "Dr. Nova",
+      "text": "When we re-weight secondary data using importance weights, our statistical degrees of freedom degrade. Kish and Sugiyama proved that the effective sample size, n sub eff, depends inversely on the variance of the density ratios.",
+      "start": 144.215,
+      "end": 159.484,
+      "words": [
+        {
+          "w": "When",
+          "t": 144.215
+        },
+        {
+          "w": "we",
+          "t": 144.651
+        },
+        {
+          "w": "re-weight",
+          "t": 145.088
+        },
+        {
+          "w": "secondary",
+          "t": 145.524
+        },
+        {
+          "w": "data",
+          "t": 145.96
+        },
+        {
+          "w": "using",
+          "t": 146.396
+        },
+        {
+          "w": "importance",
+          "t": 146.833
+        },
+        {
+          "w": "weights,",
+          "t": 147.269
+        },
+        {
+          "w": "our",
+          "t": 147.705
+        },
+        {
+          "w": "statistical",
+          "t": 148.141
+        },
+        {
+          "w": "degrees",
+          "t": 148.578
+        },
+        {
+          "w": "of",
+          "t": 149.014
+        },
+        {
+          "w": "freedom",
+          "t": 149.45
+        },
+        {
+          "w": "degrade.",
+          "t": 149.886
+        },
+        {
+          "w": "Kish",
+          "t": 150.323
+        },
+        {
+          "w": "and",
+          "t": 150.759
+        },
+        {
+          "w": "Sugiyama",
+          "t": 151.195
+        },
+        {
+          "w": "proved",
+          "t": 151.631
+        },
+        {
+          "w": "that",
+          "t": 152.068
+        },
+        {
+          "w": "the",
+          "t": 152.504
+        },
+        {
+          "w": "effective",
+          "t": 152.94
+        },
+        {
+          "w": "sample",
+          "t": 153.376
+        },
+        {
+          "w": "size,",
+          "t": 153.813
+        },
+        {
+          "w": "n",
+          "t": 154.249
+        },
+        {
+          "w": "sub",
+          "t": 154.685
+        },
+        {
+          "w": "eff,",
+          "t": 155.121
+        },
+        {
+          "w": "depends",
+          "t": 155.558
+        },
+        {
+          "w": "inversely",
+          "t": 155.994
+        },
+        {
+          "w": "on",
+          "t": 156.43
+        },
+        {
+          "w": "the",
+          "t": 156.866
+        },
+        {
+          "w": "variance",
+          "t": 157.303
+        },
+        {
+          "w": "of",
+          "t": 157.739
+        },
+        {
+          "w": "the",
+          "t": 158.175
+        },
+        {
+          "w": "density",
+          "t": 158.611
+        },
+        {
+          "w": "ratios.",
+          "t": 159.048
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "slideId": "s5",
+      "speaker": "Dr. Nova",
+      "text": "The analytical formula is n divided by one plus the variance of w of X under Q. If the variance of weights is 3.0, a nominal dataset of one thousand samples carries the statistical power of only two hundred and fifty independent samples. Seventy-five percent of your nominal sample is lost.",
+      "start": 159.484,
+      "end": 178.991,
+      "words": [
+        {
+          "w": "The",
+          "t": 159.484
+        },
+        {
+          "w": "analytical",
+          "t": 159.866
+        },
+        {
+          "w": "formula",
+          "t": 160.249
+        },
+        {
+          "w": "is",
+          "t": 160.631
+        },
+        {
+          "w": "n",
+          "t": 161.014
+        },
+        {
+          "w": "divided",
+          "t": 161.396
+        },
+        {
+          "w": "by",
+          "t": 161.779
+        },
+        {
+          "w": "one",
+          "t": 162.161
+        },
+        {
+          "w": "plus",
+          "t": 162.544
+        },
+        {
+          "w": "the",
+          "t": 162.926
+        },
+        {
+          "w": "variance",
+          "t": 163.309
+        },
+        {
+          "w": "of",
+          "t": 163.691
+        },
+        {
+          "w": "w",
+          "t": 164.074
+        },
+        {
+          "w": "of",
+          "t": 164.456
+        },
+        {
+          "w": "X",
+          "t": 164.839
+        },
+        {
+          "w": "under",
+          "t": 165.221
+        },
+        {
+          "w": "Q.",
+          "t": 165.604
+        },
+        {
+          "w": "If",
+          "t": 165.986
+        },
+        {
+          "w": "the",
+          "t": 166.369
+        },
+        {
+          "w": "variance",
+          "t": 166.751
+        },
+        {
+          "w": "of",
+          "t": 167.134
+        },
+        {
+          "w": "weights",
+          "t": 167.516
+        },
+        {
+          "w": "is",
+          "t": 167.899
+        },
+        {
+          "w": "3.0,",
+          "t": 168.281
+        },
+        {
+          "w": "a",
+          "t": 168.664
+        },
+        {
+          "w": "nominal",
+          "t": 169.046
+        },
+        {
+          "w": "dataset",
+          "t": 169.429
+        },
+        {
+          "w": "of",
+          "t": 169.811
+        },
+        {
+          "w": "one",
+          "t": 170.194
+        },
+        {
+          "w": "thousand",
+          "t": 170.576
+        },
+        {
+          "w": "samples",
+          "t": 170.959
+        },
+        {
+          "w": "carries",
+          "t": 171.341
+        },
+        {
+          "w": "the",
+          "t": 171.724
+        },
+        {
+          "w": "statistical",
+          "t": 172.106
+        },
+        {
+          "w": "power",
+          "t": 172.489
+        },
+        {
+          "w": "of",
+          "t": 172.871
+        },
+        {
+          "w": "only",
+          "t": 173.254
+        },
+        {
+          "w": "two",
+          "t": 173.636
+        },
+        {
+          "w": "hundred",
+          "t": 174.019
+        },
+        {
+          "w": "and",
+          "t": 174.401
+        },
+        {
+          "w": "fifty",
+          "t": 174.784
+        },
+        {
+          "w": "independent",
+          "t": 175.166
+        },
+        {
+          "w": "samples.",
+          "t": 175.549
+        },
+        {
+          "w": "Seventy-five",
+          "t": 175.931
+        },
+        {
+          "w": "percent",
+          "t": 176.314
+        },
+        {
+          "w": "of",
+          "t": 176.696
+        },
+        {
+          "w": "your",
+          "t": 177.079
+        },
+        {
+          "w": "nominal",
+          "t": 177.461
+        },
+        {
+          "w": "sample",
+          "t": 177.844
+        },
+        {
+          "w": "is",
+          "t": 178.226
+        },
+        {
+          "w": "lost.",
+          "t": 178.609
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "slideId": "s6",
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 1. Here, you can adjust the source and target distribution means, nominal secondary sample size, and empirical weight variance. Watch how the Kish-Sugiyama effective sample size dynamically calculates in real time.",
+      "start": 178.991,
+      "end": 195.202,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 178.991
+        },
+        {
+          "w": "to",
+          "t": 179.454
+        },
+        {
+          "w": "Interactive",
+          "t": 179.917
+        },
+        {
+          "w": "Lab",
+          "t": 180.381
+        },
+        {
+          "w": "1.",
+          "t": 180.844
+        },
+        {
+          "w": "Here,",
+          "t": 181.307
+        },
+        {
+          "w": "you",
+          "t": 181.77
+        },
+        {
+          "w": "can",
+          "t": 182.233
+        },
+        {
+          "w": "adjust",
+          "t": 182.696
+        },
+        {
+          "w": "the",
+          "t": 183.16
+        },
+        {
+          "w": "source",
+          "t": 183.623
+        },
+        {
+          "w": "and",
+          "t": 184.086
+        },
+        {
+          "w": "target",
+          "t": 184.549
+        },
+        {
+          "w": "distribution",
+          "t": 185.012
+        },
+        {
+          "w": "means,",
+          "t": 185.475
+        },
+        {
+          "w": "nominal",
+          "t": 185.939
+        },
+        {
+          "w": "secondary",
+          "t": 186.402
+        },
+        {
+          "w": "sample",
+          "t": 186.865
+        },
+        {
+          "w": "size,",
+          "t": 187.328
+        },
+        {
+          "w": "and",
+          "t": 187.791
+        },
+        {
+          "w": "empirical",
+          "t": 188.254
+        },
+        {
+          "w": "weight",
+          "t": 188.718
+        },
+        {
+          "w": "variance.",
+          "t": 189.181
+        },
+        {
+          "w": "Watch",
+          "t": 189.644
+        },
+        {
+          "w": "how",
+          "t": 190.107
+        },
+        {
+          "w": "the",
+          "t": 190.57
+        },
+        {
+          "w": "Kish-Sugiyama",
+          "t": 191.033
+        },
+        {
+          "w": "effective",
+          "t": 191.497
+        },
+        {
+          "w": "sample",
+          "t": 191.96
+        },
+        {
+          "w": "size",
+          "t": 192.423
+        },
+        {
+          "w": "dynamically",
+          "t": 192.886
+        },
+        {
+          "w": "calculates",
+          "t": 193.349
+        },
+        {
+          "w": "in",
+          "t": 193.812
+        },
+        {
+          "w": "real",
+          "t": 194.276
+        },
+        {
+          "w": "time.",
+          "t": 194.739
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "slideId": "s7",
+      "speaker": "Dr. Nova",
+      "text": "Let us verify your comprehension with Active Checkpoint 1. A secondary dataset contains one thousand records. The empirical density ratio variance is 3.0. Calculate the exact Kish-Sugiyama effective sample size.",
+      "start": 195.202,
+      "end": 209.395,
+      "words": [
+        {
+          "w": "Let",
+          "t": 195.202
+        },
+        {
+          "w": "us",
+          "t": 195.675
+        },
+        {
+          "w": "verify",
+          "t": 196.148
+        },
+        {
+          "w": "your",
+          "t": 196.621
+        },
+        {
+          "w": "comprehension",
+          "t": 197.094
+        },
+        {
+          "w": "with",
+          "t": 197.567
+        },
+        {
+          "w": "Active",
+          "t": 198.041
+        },
+        {
+          "w": "Checkpoint",
+          "t": 198.514
+        },
+        {
+          "w": "1.",
+          "t": 198.987
+        },
+        {
+          "w": "A",
+          "t": 199.46
+        },
+        {
+          "w": "secondary",
+          "t": 199.933
+        },
+        {
+          "w": "dataset",
+          "t": 200.406
+        },
+        {
+          "w": "contains",
+          "t": 200.879
+        },
+        {
+          "w": "one",
+          "t": 201.352
+        },
+        {
+          "w": "thousand",
+          "t": 201.825
+        },
+        {
+          "w": "records.",
+          "t": 202.298
+        },
+        {
+          "w": "The",
+          "t": 202.772
+        },
+        {
+          "w": "empirical",
+          "t": 203.245
+        },
+        {
+          "w": "density",
+          "t": 203.718
+        },
+        {
+          "w": "ratio",
+          "t": 204.191
+        },
+        {
+          "w": "variance",
+          "t": 204.664
+        },
+        {
+          "w": "is",
+          "t": 205.137
+        },
+        {
+          "w": "3.0.",
+          "t": 205.61
+        },
+        {
+          "w": "Calculate",
+          "t": 206.083
+        },
+        {
+          "w": "the",
+          "t": 206.556
+        },
+        {
+          "w": "exact",
+          "t": 207.03
+        },
+        {
+          "w": "Kish-Sugiyama",
+          "t": 207.503
+        },
+        {
+          "w": "effective",
+          "t": 207.976
+        },
+        {
+          "w": "sample",
+          "t": 208.449
+        },
+        {
+          "w": "size.",
+          "t": 208.922
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "slideId": "s8",
+      "speaker": "Dr. Nova",
+      "text": "Now we transition along the temporal velocity axis to real-time streaming telemetry. In streaming architectures, records arrive continuously at rate lambda from unbounded sources such as IoT sensors or financial tickers.",
+      "start": 209.395,
+      "end": 224.193,
+      "words": [
+        {
+          "w": "Now",
+          "t": 209.395
+        },
+        {
+          "w": "we",
+          "t": 209.872
+        },
+        {
+          "w": "transition",
+          "t": 210.35
+        },
+        {
+          "w": "along",
+          "t": 210.827
+        },
+        {
+          "w": "the",
+          "t": 211.304
+        },
+        {
+          "w": "temporal",
+          "t": 211.782
+        },
+        {
+          "w": "velocity",
+          "t": 212.259
+        },
+        {
+          "w": "axis",
+          "t": 212.736
+        },
+        {
+          "w": "to",
+          "t": 213.214
+        },
+        {
+          "w": "real-time",
+          "t": 213.691
+        },
+        {
+          "w": "streaming",
+          "t": 214.169
+        },
+        {
+          "w": "telemetry.",
+          "t": 214.646
+        },
+        {
+          "w": "In",
+          "t": 215.123
+        },
+        {
+          "w": "streaming",
+          "t": 215.601
+        },
+        {
+          "w": "architectures,",
+          "t": 216.078
+        },
+        {
+          "w": "records",
+          "t": 216.555
+        },
+        {
+          "w": "arrive",
+          "t": 217.033
+        },
+        {
+          "w": "continuously",
+          "t": 217.51
+        },
+        {
+          "w": "at",
+          "t": 217.987
+        },
+        {
+          "w": "rate",
+          "t": 218.465
+        },
+        {
+          "w": "lambda",
+          "t": 218.942
+        },
+        {
+          "w": "from",
+          "t": 219.419
+        },
+        {
+          "w": "unbounded",
+          "t": 219.897
+        },
+        {
+          "w": "sources",
+          "t": 220.374
+        },
+        {
+          "w": "such",
+          "t": 220.852
+        },
+        {
+          "w": "as",
+          "t": 221.329
+        },
+        {
+          "w": "IoT",
+          "t": 221.806
+        },
+        {
+          "w": "sensors",
+          "t": 222.284
+        },
+        {
+          "w": "or",
+          "t": 222.761
+        },
+        {
+          "w": "financial",
+          "t": 223.238
+        },
+        {
+          "w": "tickers.",
+          "t": 223.716
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "slideId": "s8",
+      "speaker": "Dr. Nova",
+      "text": "Event arrivals follow a Poisson process, where inter-arrival times are exponentially distributed. Because the total population N approaches infinity, standard offline uniform sampling is impossible, necessitating online reservoir sampling and temporal sliding windows.",
+      "start": 224.193,
+      "end": 242.22,
+      "words": [
+        {
+          "w": "Event",
+          "t": 224.193
+        },
+        {
+          "w": "arrivals",
+          "t": 224.739
+        },
+        {
+          "w": "follow",
+          "t": 225.286
+        },
+        {
+          "w": "a",
+          "t": 225.832
+        },
+        {
+          "w": "Poisson",
+          "t": 226.378
+        },
+        {
+          "w": "process,",
+          "t": 226.924
+        },
+        {
+          "w": "where",
+          "t": 227.471
+        },
+        {
+          "w": "inter-arrival",
+          "t": 228.017
+        },
+        {
+          "w": "times",
+          "t": 228.563
+        },
+        {
+          "w": "are",
+          "t": 229.109
+        },
+        {
+          "w": "exponentially",
+          "t": 229.656
+        },
+        {
+          "w": "distributed.",
+          "t": 230.202
+        },
+        {
+          "w": "Because",
+          "t": 230.748
+        },
+        {
+          "w": "the",
+          "t": 231.295
+        },
+        {
+          "w": "total",
+          "t": 231.841
+        },
+        {
+          "w": "population",
+          "t": 232.387
+        },
+        {
+          "w": "N",
+          "t": 232.933
+        },
+        {
+          "w": "approaches",
+          "t": 233.48
+        },
+        {
+          "w": "infinity,",
+          "t": 234.026
+        },
+        {
+          "w": "standard",
+          "t": 234.572
+        },
+        {
+          "w": "offline",
+          "t": 235.118
+        },
+        {
+          "w": "uniform",
+          "t": 235.665
+        },
+        {
+          "w": "sampling",
+          "t": 236.211
+        },
+        {
+          "w": "is",
+          "t": 236.757
+        },
+        {
+          "w": "impossible,",
+          "t": 237.304
+        },
+        {
+          "w": "necessitating",
+          "t": 237.85
+        },
+        {
+          "w": "online",
+          "t": 238.396
+        },
+        {
+          "w": "reservoir",
+          "t": 238.942
+        },
+        {
+          "w": "sampling",
+          "t": 239.489
+        },
+        {
+          "w": "and",
+          "t": 240.035
+        },
+        {
+          "w": "temporal",
+          "t": 240.581
+        },
+        {
+          "w": "sliding",
+          "t": 241.127
+        },
+        {
+          "w": "windows.",
+          "t": 241.674
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "slideId": "s9",
+      "speaker": "Dr. Nova",
+      "text": "To prevent streaming pipelines from crashing under load, we govern queue buffers using Little's Law, proven by John Little in 1961. The steady-state average number of items in the system, L, equals arrival rate lambda multiplied by average residency latency W.",
+      "start": 242.22,
+      "end": 259.709,
+      "words": [
+        {
+          "w": "To",
+          "t": 242.22
+        },
+        {
+          "w": "prevent",
+          "t": 242.647
+        },
+        {
+          "w": "streaming",
+          "t": 243.073
+        },
+        {
+          "w": "pipelines",
+          "t": 243.5
+        },
+        {
+          "w": "from",
+          "t": 243.926
+        },
+        {
+          "w": "crashing",
+          "t": 244.353
+        },
+        {
+          "w": "under",
+          "t": 244.779
+        },
+        {
+          "w": "load,",
+          "t": 245.206
+        },
+        {
+          "w": "we",
+          "t": 245.632
+        },
+        {
+          "w": "govern",
+          "t": 246.059
+        },
+        {
+          "w": "queue",
+          "t": 246.486
+        },
+        {
+          "w": "buffers",
+          "t": 246.912
+        },
+        {
+          "w": "using",
+          "t": 247.339
+        },
+        {
+          "w": "Little's",
+          "t": 247.765
+        },
+        {
+          "w": "Law,",
+          "t": 248.192
+        },
+        {
+          "w": "proven",
+          "t": 248.618
+        },
+        {
+          "w": "by",
+          "t": 249.045
+        },
+        {
+          "w": "John",
+          "t": 249.472
+        },
+        {
+          "w": "Little",
+          "t": 249.898
+        },
+        {
+          "w": "in",
+          "t": 250.325
+        },
+        {
+          "w": "1961.",
+          "t": 250.751
+        },
+        {
+          "w": "The",
+          "t": 251.178
+        },
+        {
+          "w": "steady-state",
+          "t": 251.604
+        },
+        {
+          "w": "average",
+          "t": 252.031
+        },
+        {
+          "w": "number",
+          "t": 252.457
+        },
+        {
+          "w": "of",
+          "t": 252.884
+        },
+        {
+          "w": "items",
+          "t": 253.311
+        },
+        {
+          "w": "in",
+          "t": 253.737
+        },
+        {
+          "w": "the",
+          "t": 254.164
+        },
+        {
+          "w": "system,",
+          "t": 254.59
+        },
+        {
+          "w": "L,",
+          "t": 255.017
+        },
+        {
+          "w": "equals",
+          "t": 255.443
+        },
+        {
+          "w": "arrival",
+          "t": 255.87
+        },
+        {
+          "w": "rate",
+          "t": 256.297
+        },
+        {
+          "w": "lambda",
+          "t": 256.723
+        },
+        {
+          "w": "multiplied",
+          "t": 257.15
+        },
+        {
+          "w": "by",
+          "t": 257.576
+        },
+        {
+          "w": "average",
+          "t": 258.003
+        },
+        {
+          "w": "residency",
+          "t": 258.429
+        },
+        {
+          "w": "latency",
+          "t": 258.856
+        },
+        {
+          "w": "W.",
+          "t": 259.282
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "slideId": "s9",
+      "speaker": "Dr. Nova",
+      "text": "In an M/M/1 queue with worker service rate mu, traffic intensity rho equals lambda divided by mu. Stability requires rho to be strictly less than 1. If arrival rate lambda equals or exceeds service rate mu, queue depth diverges to infinity, causing buffer exhaustion and dropped packets.",
+      "start": 259.709,
+      "end": 279.014,
+      "words": [
+        {
+          "w": "In",
+          "t": 259.709
+        },
+        {
+          "w": "an",
+          "t": 260.12
+        },
+        {
+          "w": "M/M/1",
+          "t": 260.53
+        },
+        {
+          "w": "queue",
+          "t": 260.941
+        },
+        {
+          "w": "with",
+          "t": 261.352
+        },
+        {
+          "w": "worker",
+          "t": 261.763
+        },
+        {
+          "w": "service",
+          "t": 262.173
+        },
+        {
+          "w": "rate",
+          "t": 262.584
+        },
+        {
+          "w": "mu,",
+          "t": 262.995
+        },
+        {
+          "w": "traffic",
+          "t": 263.406
+        },
+        {
+          "w": "intensity",
+          "t": 263.816
+        },
+        {
+          "w": "rho",
+          "t": 264.227
+        },
+        {
+          "w": "equals",
+          "t": 264.638
+        },
+        {
+          "w": "lambda",
+          "t": 265.049
+        },
+        {
+          "w": "divided",
+          "t": 265.459
+        },
+        {
+          "w": "by",
+          "t": 265.87
+        },
+        {
+          "w": "mu.",
+          "t": 266.281
+        },
+        {
+          "w": "Stability",
+          "t": 266.692
+        },
+        {
+          "w": "requires",
+          "t": 267.102
+        },
+        {
+          "w": "rho",
+          "t": 267.513
+        },
+        {
+          "w": "to",
+          "t": 267.924
+        },
+        {
+          "w": "be",
+          "t": 268.335
+        },
+        {
+          "w": "strictly",
+          "t": 268.745
+        },
+        {
+          "w": "less",
+          "t": 269.156
+        },
+        {
+          "w": "than",
+          "t": 269.567
+        },
+        {
+          "w": "1.",
+          "t": 269.978
+        },
+        {
+          "w": "If",
+          "t": 270.388
+        },
+        {
+          "w": "arrival",
+          "t": 270.799
+        },
+        {
+          "w": "rate",
+          "t": 271.21
+        },
+        {
+          "w": "lambda",
+          "t": 271.621
+        },
+        {
+          "w": "equals",
+          "t": 272.031
+        },
+        {
+          "w": "or",
+          "t": 272.442
+        },
+        {
+          "w": "exceeds",
+          "t": 272.853
+        },
+        {
+          "w": "service",
+          "t": 273.264
+        },
+        {
+          "w": "rate",
+          "t": 273.674
+        },
+        {
+          "w": "mu,",
+          "t": 274.085
+        },
+        {
+          "w": "queue",
+          "t": 274.496
+        },
+        {
+          "w": "depth",
+          "t": 274.907
+        },
+        {
+          "w": "diverges",
+          "t": 275.317
+        },
+        {
+          "w": "to",
+          "t": 275.728
+        },
+        {
+          "w": "infinity,",
+          "t": 276.139
+        },
+        {
+          "w": "causing",
+          "t": 276.55
+        },
+        {
+          "w": "buffer",
+          "t": 276.96
+        },
+        {
+          "w": "exhaustion",
+          "t": 277.371
+        },
+        {
+          "w": "and",
+          "t": 277.782
+        },
+        {
+          "w": "dropped",
+          "t": 278.193
+        },
+        {
+          "w": "packets.",
+          "t": 278.603
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "slideId": "s10",
+      "speaker": "Dr. Nova",
+      "text": "Here we synthesize the operational trade-offs across all three data source modalities into an engineering decision matrix.",
+      "start": 279.014,
+      "end": 287.22,
+      "words": [
+        {
+          "w": "Here",
+          "t": 279.014
+        },
+        {
+          "w": "we",
+          "t": 279.497
+        },
+        {
+          "w": "synthesize",
+          "t": 279.979
+        },
+        {
+          "w": "the",
+          "t": 280.462
+        },
+        {
+          "w": "operational",
+          "t": 280.945
+        },
+        {
+          "w": "trade-offs",
+          "t": 281.428
+        },
+        {
+          "w": "across",
+          "t": 281.91
+        },
+        {
+          "w": "all",
+          "t": 282.393
+        },
+        {
+          "w": "three",
+          "t": 282.876
+        },
+        {
+          "w": "data",
+          "t": 283.358
+        },
+        {
+          "w": "source",
+          "t": 283.841
+        },
+        {
+          "w": "modalities",
+          "t": 284.324
+        },
+        {
+          "w": "into",
+          "t": 284.806
+        },
+        {
+          "w": "an",
+          "t": 285.289
+        },
+        {
+          "w": "engineering",
+          "t": 285.772
+        },
+        {
+          "w": "decision",
+          "t": 286.255
+        },
+        {
+          "w": "matrix.",
+          "t": 286.737
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "slideId": "s10",
+      "speaker": "Dr. Nova",
+      "text": "Notice that no source dominates unconditionally. Primary generation maximizes sampling control and minimizes covariate shift, but incurs high marginal cost. Secondary data reduces cost, but introduces schema friction and licensing complexity. Streaming requires active backpressure engineering.",
+      "start": 287.22,
+      "end": 306.996,
+      "words": [
+        {
+          "w": "Notice",
+          "t": 287.22
+        },
+        {
+          "w": "that",
+          "t": 287.769
+        },
+        {
+          "w": "no",
+          "t": 288.319
+        },
+        {
+          "w": "source",
+          "t": 288.868
+        },
+        {
+          "w": "dominates",
+          "t": 289.417
+        },
+        {
+          "w": "unconditionally.",
+          "t": 289.967
+        },
+        {
+          "w": "Primary",
+          "t": 290.516
+        },
+        {
+          "w": "generation",
+          "t": 291.065
+        },
+        {
+          "w": "maximizes",
+          "t": 291.615
+        },
+        {
+          "w": "sampling",
+          "t": 292.164
+        },
+        {
+          "w": "control",
+          "t": 292.713
+        },
+        {
+          "w": "and",
+          "t": 293.263
+        },
+        {
+          "w": "minimizes",
+          "t": 293.812
+        },
+        {
+          "w": "covariate",
+          "t": 294.361
+        },
+        {
+          "w": "shift,",
+          "t": 294.911
+        },
+        {
+          "w": "but",
+          "t": 295.46
+        },
+        {
+          "w": "incurs",
+          "t": 296.009
+        },
+        {
+          "w": "high",
+          "t": 296.559
+        },
+        {
+          "w": "marginal",
+          "t": 297.108
+        },
+        {
+          "w": "cost.",
+          "t": 297.657
+        },
+        {
+          "w": "Secondary",
+          "t": 298.207
+        },
+        {
+          "w": "data",
+          "t": 298.756
+        },
+        {
+          "w": "reduces",
+          "t": 299.305
+        },
+        {
+          "w": "cost,",
+          "t": 299.855
+        },
+        {
+          "w": "but",
+          "t": 300.404
+        },
+        {
+          "w": "introduces",
+          "t": 300.953
+        },
+        {
+          "w": "schema",
+          "t": 301.503
+        },
+        {
+          "w": "friction",
+          "t": 302.052
+        },
+        {
+          "w": "and",
+          "t": 302.601
+        },
+        {
+          "w": "licensing",
+          "t": 303.151
+        },
+        {
+          "w": "complexity.",
+          "t": 303.7
+        },
+        {
+          "w": "Streaming",
+          "t": 304.249
+        },
+        {
+          "w": "requires",
+          "t": 304.799
+        },
+        {
+          "w": "active",
+          "t": 305.348
+        },
+        {
+          "w": "backpressure",
+          "t": 305.897
+        },
+        {
+          "w": "engineering.",
+          "t": 306.447
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "slideId": "s11",
+      "speaker": "Dr. Nova",
+      "text": "In production machine learning systems, streaming ingestion pipelines are decoupled into partitioned event brokers like Apache Kafka, schema validation worker pools, and automated dead-letter queues.",
+      "start": 306.996,
+      "end": 320.382,
+      "words": [
+        {
+          "w": "In",
+          "t": 306.996
+        },
+        {
+          "w": "production",
+          "t": 307.531
+        },
+        {
+          "w": "machine",
+          "t": 308.067
+        },
+        {
+          "w": "learning",
+          "t": 308.602
+        },
+        {
+          "w": "systems,",
+          "t": 309.138
+        },
+        {
+          "w": "streaming",
+          "t": 309.673
+        },
+        {
+          "w": "ingestion",
+          "t": 310.209
+        },
+        {
+          "w": "pipelines",
+          "t": 310.744
+        },
+        {
+          "w": "are",
+          "t": 311.28
+        },
+        {
+          "w": "decoupled",
+          "t": 311.815
+        },
+        {
+          "w": "into",
+          "t": 312.35
+        },
+        {
+          "w": "partitioned",
+          "t": 312.886
+        },
+        {
+          "w": "event",
+          "t": 313.421
+        },
+        {
+          "w": "brokers",
+          "t": 313.957
+        },
+        {
+          "w": "like",
+          "t": 314.492
+        },
+        {
+          "w": "Apache",
+          "t": 315.028
+        },
+        {
+          "w": "Kafka,",
+          "t": 315.563
+        },
+        {
+          "w": "schema",
+          "t": 316.098
+        },
+        {
+          "w": "validation",
+          "t": 316.634
+        },
+        {
+          "w": "worker",
+          "t": 317.169
+        },
+        {
+          "w": "pools,",
+          "t": 317.705
+        },
+        {
+          "w": "and",
+          "t": 318.24
+        },
+        {
+          "w": "automated",
+          "t": 318.776
+        },
+        {
+          "w": "dead-letter",
+          "t": 319.311
+        },
+        {
+          "w": "queues.",
+          "t": 319.847
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "slideId": "s11",
+      "speaker": "Dr. Nova",
+      "text": "When malformed records or schema violations arrive, they are diverted into a Dead-Letter Queue rather than crashing the consumer group. If traffic intensity exceeds 0.85, backpressure controllers dynamically scale the worker pool.",
+      "start": 320.382,
+      "end": 335.853,
+      "words": [
+        {
+          "w": "When",
+          "t": 320.382
+        },
+        {
+          "w": "malformed",
+          "t": 320.865
+        },
+        {
+          "w": "records",
+          "t": 321.349
+        },
+        {
+          "w": "or",
+          "t": 321.832
+        },
+        {
+          "w": "schema",
+          "t": 322.316
+        },
+        {
+          "w": "violations",
+          "t": 322.799
+        },
+        {
+          "w": "arrive,",
+          "t": 323.283
+        },
+        {
+          "w": "they",
+          "t": 323.766
+        },
+        {
+          "w": "are",
+          "t": 324.25
+        },
+        {
+          "w": "diverted",
+          "t": 324.733
+        },
+        {
+          "w": "into",
+          "t": 325.217
+        },
+        {
+          "w": "a",
+          "t": 325.7
+        },
+        {
+          "w": "Dead-Letter",
+          "t": 326.184
+        },
+        {
+          "w": "Queue",
+          "t": 326.667
+        },
+        {
+          "w": "rather",
+          "t": 327.151
+        },
+        {
+          "w": "than",
+          "t": 327.634
+        },
+        {
+          "w": "crashing",
+          "t": 328.118
+        },
+        {
+          "w": "the",
+          "t": 328.601
+        },
+        {
+          "w": "consumer",
+          "t": 329.084
+        },
+        {
+          "w": "group.",
+          "t": 329.568
+        },
+        {
+          "w": "If",
+          "t": 330.051
+        },
+        {
+          "w": "traffic",
+          "t": 330.535
+        },
+        {
+          "w": "intensity",
+          "t": 331.018
+        },
+        {
+          "w": "exceeds",
+          "t": 331.502
+        },
+        {
+          "w": "0.85,",
+          "t": 331.985
+        },
+        {
+          "w": "backpressure",
+          "t": 332.469
+        },
+        {
+          "w": "controllers",
+          "t": 332.952
+        },
+        {
+          "w": "dynamically",
+          "t": 333.436
+        },
+        {
+          "w": "scale",
+          "t": 333.919
+        },
+        {
+          "w": "the",
+          "t": 334.403
+        },
+        {
+          "w": "worker",
+          "t": 334.886
+        },
+        {
+          "w": "pool.",
+          "t": 335.37
+        }
+      ]
+    },
+    {
+      "slide": 12,
+      "slideId": "s12",
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 2. Here, you can adjust arrival rate lambda and worker processing rate mu in real time. Watch how traffic intensity rho, residency latency W, and buffer occupancy L respond dynamically.",
+      "start": 335.853,
+      "end": 350.113,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 335.853
+        },
+        {
+          "w": "to",
+          "t": 336.272
+        },
+        {
+          "w": "Interactive",
+          "t": 336.692
+        },
+        {
+          "w": "Lab",
+          "t": 337.111
+        },
+        {
+          "w": "2.",
+          "t": 337.531
+        },
+        {
+          "w": "Here,",
+          "t": 337.95
+        },
+        {
+          "w": "you",
+          "t": 338.369
+        },
+        {
+          "w": "can",
+          "t": 338.789
+        },
+        {
+          "w": "adjust",
+          "t": 339.208
+        },
+        {
+          "w": "arrival",
+          "t": 339.628
+        },
+        {
+          "w": "rate",
+          "t": 340.047
+        },
+        {
+          "w": "lambda",
+          "t": 340.467
+        },
+        {
+          "w": "and",
+          "t": 340.886
+        },
+        {
+          "w": "worker",
+          "t": 341.305
+        },
+        {
+          "w": "processing",
+          "t": 341.725
+        },
+        {
+          "w": "rate",
+          "t": 342.144
+        },
+        {
+          "w": "mu",
+          "t": 342.564
+        },
+        {
+          "w": "in",
+          "t": 342.983
+        },
+        {
+          "w": "real",
+          "t": 343.402
+        },
+        {
+          "w": "time.",
+          "t": 343.822
+        },
+        {
+          "w": "Watch",
+          "t": 344.241
+        },
+        {
+          "w": "how",
+          "t": 344.661
+        },
+        {
+          "w": "traffic",
+          "t": 345.08
+        },
+        {
+          "w": "intensity",
+          "t": 345.499
+        },
+        {
+          "w": "rho,",
+          "t": 345.919
+        },
+        {
+          "w": "residency",
+          "t": 346.338
+        },
+        {
+          "w": "latency",
+          "t": 346.758
+        },
+        {
+          "w": "W,",
+          "t": 347.177
+        },
+        {
+          "w": "and",
+          "t": 347.597
+        },
+        {
+          "w": "buffer",
+          "t": 348.016
+        },
+        {
+          "w": "occupancy",
+          "t": 348.435
+        },
+        {
+          "w": "L",
+          "t": 348.855
+        },
+        {
+          "w": "respond",
+          "t": 349.274
+        },
+        {
+          "w": "dynamically.",
+          "t": 349.694
+        }
+      ]
+    },
+    {
+      "slide": 13,
+      "slideId": "s13",
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 2. An IoT sensor broker receives packets at arrival rate lambda equals two thousand packets per second. Average processing latency W is forty milliseconds. If buffer capacity is 120 packets, calculate steady-state occupancy L and determine stability.",
+      "start": 350.113,
+      "end": 368.745,
+      "words": [
+        {
+          "w": "Time",
+          "t": 350.113
+        },
+        {
+          "w": "for",
+          "t": 350.567
+        },
+        {
+          "w": "Active",
+          "t": 351.022
+        },
+        {
+          "w": "Checkpoint",
+          "t": 351.476
+        },
+        {
+          "w": "2.",
+          "t": 351.931
+        },
+        {
+          "w": "An",
+          "t": 352.385
+        },
+        {
+          "w": "IoT",
+          "t": 352.84
+        },
+        {
+          "w": "sensor",
+          "t": 353.294
+        },
+        {
+          "w": "broker",
+          "t": 353.749
+        },
+        {
+          "w": "receives",
+          "t": 354.203
+        },
+        {
+          "w": "packets",
+          "t": 354.657
+        },
+        {
+          "w": "at",
+          "t": 355.112
+        },
+        {
+          "w": "arrival",
+          "t": 355.566
+        },
+        {
+          "w": "rate",
+          "t": 356.021
+        },
+        {
+          "w": "lambda",
+          "t": 356.475
+        },
+        {
+          "w": "equals",
+          "t": 356.93
+        },
+        {
+          "w": "two",
+          "t": 357.384
+        },
+        {
+          "w": "thousand",
+          "t": 357.838
+        },
+        {
+          "w": "packets",
+          "t": 358.293
+        },
+        {
+          "w": "per",
+          "t": 358.747
+        },
+        {
+          "w": "second.",
+          "t": 359.202
+        },
+        {
+          "w": "Average",
+          "t": 359.656
+        },
+        {
+          "w": "processing",
+          "t": 360.111
+        },
+        {
+          "w": "latency",
+          "t": 360.565
+        },
+        {
+          "w": "W",
+          "t": 361.02
+        },
+        {
+          "w": "is",
+          "t": 361.474
+        },
+        {
+          "w": "forty",
+          "t": 361.928
+        },
+        {
+          "w": "milliseconds.",
+          "t": 362.383
+        },
+        {
+          "w": "If",
+          "t": 362.837
+        },
+        {
+          "w": "buffer",
+          "t": 363.292
+        },
+        {
+          "w": "capacity",
+          "t": 363.746
+        },
+        {
+          "w": "is",
+          "t": 364.201
+        },
+        {
+          "w": "120",
+          "t": 364.655
+        },
+        {
+          "w": "packets,",
+          "t": 365.109
+        },
+        {
+          "w": "calculate",
+          "t": 365.564
+        },
+        {
+          "w": "steady-state",
+          "t": 366.018
+        },
+        {
+          "w": "occupancy",
+          "t": 366.473
+        },
+        {
+          "w": "L",
+          "t": 366.927
+        },
+        {
+          "w": "and",
+          "t": 367.382
+        },
+        {
+          "w": "determine",
+          "t": 367.836
+        },
+        {
+          "w": "stability.",
+          "t": 368.291
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "slideId": "s14",
+      "speaker": "Dr. Nova",
+      "text": "Consider this landmark cardiovascular risk study analyzing 120,000 patient cohorts. Researchers initially ingested secondary insurance billing claims because they were immediately available at near-zero marginal cost.",
+      "start": 368.745,
+      "end": 383.341,
+      "words": [
+        {
+          "w": "Consider",
+          "t": 368.745
+        },
+        {
+          "w": "this",
+          "t": 369.306
+        },
+        {
+          "w": "landmark",
+          "t": 369.868
+        },
+        {
+          "w": "cardiovascular",
+          "t": 370.429
+        },
+        {
+          "w": "risk",
+          "t": 370.991
+        },
+        {
+          "w": "study",
+          "t": 371.552
+        },
+        {
+          "w": "analyzing",
+          "t": 372.113
+        },
+        {
+          "w": "120,000",
+          "t": 372.675
+        },
+        {
+          "w": "patient",
+          "t": 373.236
+        },
+        {
+          "w": "cohorts.",
+          "t": 373.797
+        },
+        {
+          "w": "Researchers",
+          "t": 374.359
+        },
+        {
+          "w": "initially",
+          "t": 374.92
+        },
+        {
+          "w": "ingested",
+          "t": 375.482
+        },
+        {
+          "w": "secondary",
+          "t": 376.043
+        },
+        {
+          "w": "insurance",
+          "t": 376.604
+        },
+        {
+          "w": "billing",
+          "t": 377.166
+        },
+        {
+          "w": "claims",
+          "t": 377.727
+        },
+        {
+          "w": "because",
+          "t": 378.289
+        },
+        {
+          "w": "they",
+          "t": 378.85
+        },
+        {
+          "w": "were",
+          "t": 379.411
+        },
+        {
+          "w": "immediately",
+          "t": 379.973
+        },
+        {
+          "w": "available",
+          "t": 380.534
+        },
+        {
+          "w": "at",
+          "t": 381.095
+        },
+        {
+          "w": "near-zero",
+          "t": 381.657
+        },
+        {
+          "w": "marginal",
+          "t": 382.218
+        },
+        {
+          "w": "cost.",
+          "t": 382.78
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "slideId": "s14",
+      "speaker": "Dr. Nova",
+      "text": "However, billing codes indicated reimbursement categories rather than underlying physiological pathology, causing severe covariate shift. By collecting a prospective primary cohort of 10,000 patients and computing density ratios, they re-weighted the secondary data, preserving 92% of statistical power while slashing costs by 78%.",
+      "start": 383.341,
+      "end": 405.606,
+      "words": [
+        {
+          "w": "However,",
+          "t": 383.341
+        },
+        {
+          "w": "billing",
+          "t": 383.859
+        },
+        {
+          "w": "codes",
+          "t": 384.377
+        },
+        {
+          "w": "indicated",
+          "t": 384.894
+        },
+        {
+          "w": "reimbursement",
+          "t": 385.412
+        },
+        {
+          "w": "categories",
+          "t": 385.93
+        },
+        {
+          "w": "rather",
+          "t": 386.448
+        },
+        {
+          "w": "than",
+          "t": 386.966
+        },
+        {
+          "w": "underlying",
+          "t": 387.483
+        },
+        {
+          "w": "physiological",
+          "t": 388.001
+        },
+        {
+          "w": "pathology,",
+          "t": 388.519
+        },
+        {
+          "w": "causing",
+          "t": 389.037
+        },
+        {
+          "w": "severe",
+          "t": 389.554
+        },
+        {
+          "w": "covariate",
+          "t": 390.072
+        },
+        {
+          "w": "shift.",
+          "t": 390.59
+        },
+        {
+          "w": "By",
+          "t": 391.108
+        },
+        {
+          "w": "collecting",
+          "t": 391.626
+        },
+        {
+          "w": "a",
+          "t": 392.143
+        },
+        {
+          "w": "prospective",
+          "t": 392.661
+        },
+        {
+          "w": "primary",
+          "t": 393.179
+        },
+        {
+          "w": "cohort",
+          "t": 393.697
+        },
+        {
+          "w": "of",
+          "t": 394.215
+        },
+        {
+          "w": "10,000",
+          "t": 394.732
+        },
+        {
+          "w": "patients",
+          "t": 395.25
+        },
+        {
+          "w": "and",
+          "t": 395.768
+        },
+        {
+          "w": "computing",
+          "t": 396.286
+        },
+        {
+          "w": "density",
+          "t": 396.804
+        },
+        {
+          "w": "ratios,",
+          "t": 397.321
+        },
+        {
+          "w": "they",
+          "t": 397.839
+        },
+        {
+          "w": "re-weighted",
+          "t": 398.357
+        },
+        {
+          "w": "the",
+          "t": 398.875
+        },
+        {
+          "w": "secondary",
+          "t": 399.393
+        },
+        {
+          "w": "data,",
+          "t": 399.91
+        },
+        {
+          "w": "preserving",
+          "t": 400.428
+        },
+        {
+          "w": "92%",
+          "t": 400.946
+        },
+        {
+          "w": "of",
+          "t": 401.464
+        },
+        {
+          "w": "statistical",
+          "t": 401.981
+        },
+        {
+          "w": "power",
+          "t": 402.499
+        },
+        {
+          "w": "while",
+          "t": 403.017
+        },
+        {
+          "w": "slashing",
+          "t": 403.535
+        },
+        {
+          "w": "costs",
+          "t": 404.053
+        },
+        {
+          "w": "by",
+          "t": 404.57
+        },
+        {
+          "w": "78%.",
+          "t": 405.088
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "slideId": "s15",
+      "speaker": "Dr. Nova",
+      "text": "Slide 15 provides an executable discrete-event simulation of our streaming ingestion pipeline in Python. It models Poisson inter-arrival intervals, single-worker departure dynamics, and verifies Little's Law with automated assertions.",
+      "start": 405.606,
+      "end": 421.346,
+      "words": [
+        {
+          "w": "Slide",
+          "t": 405.606
+        },
+        {
+          "w": "15",
+          "t": 406.149
+        },
+        {
+          "w": "provides",
+          "t": 406.692
+        },
+        {
+          "w": "an",
+          "t": 407.234
+        },
+        {
+          "w": "executable",
+          "t": 407.777
+        },
+        {
+          "w": "discrete-event",
+          "t": 408.32
+        },
+        {
+          "w": "simulation",
+          "t": 408.863
+        },
+        {
+          "w": "of",
+          "t": 409.405
+        },
+        {
+          "w": "our",
+          "t": 409.948
+        },
+        {
+          "w": "streaming",
+          "t": 410.491
+        },
+        {
+          "w": "ingestion",
+          "t": 411.034
+        },
+        {
+          "w": "pipeline",
+          "t": 411.576
+        },
+        {
+          "w": "in",
+          "t": 412.119
+        },
+        {
+          "w": "Python.",
+          "t": 412.662
+        },
+        {
+          "w": "It",
+          "t": 413.205
+        },
+        {
+          "w": "models",
+          "t": 413.747
+        },
+        {
+          "w": "Poisson",
+          "t": 414.29
+        },
+        {
+          "w": "inter-arrival",
+          "t": 414.833
+        },
+        {
+          "w": "intervals,",
+          "t": 415.376
+        },
+        {
+          "w": "single-worker",
+          "t": 415.918
+        },
+        {
+          "w": "departure",
+          "t": 416.461
+        },
+        {
+          "w": "dynamics,",
+          "t": 417.004
+        },
+        {
+          "w": "and",
+          "t": 417.547
+        },
+        {
+          "w": "verifies",
+          "t": 418.089
+        },
+        {
+          "w": "Little's",
+          "t": 418.632
+        },
+        {
+          "w": "Law",
+          "t": 419.175
+        },
+        {
+          "w": "with",
+          "t": 419.718
+        },
+        {
+          "w": "automated",
+          "t": 420.26
+        },
+        {
+          "w": "assertions.",
+          "t": 420.803
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "slideId": "s15",
+      "speaker": "Dr. Nova",
+      "text": "Notice the automated checks at the bottom: we assert that traffic intensity rho is strictly less than 1.0, and verify that empirical latency W aligns with theoretical M/M/1 queuing within expected sampling tolerances.",
+      "start": 421.346,
+      "end": 435.942,
+      "words": [
+        {
+          "w": "Notice",
+          "t": 421.346
+        },
+        {
+          "w": "the",
+          "t": 421.788
+        },
+        {
+          "w": "automated",
+          "t": 422.231
+        },
+        {
+          "w": "checks",
+          "t": 422.673
+        },
+        {
+          "w": "at",
+          "t": 423.115
+        },
+        {
+          "w": "the",
+          "t": 423.558
+        },
+        {
+          "w": "bottom:",
+          "t": 424.0
+        },
+        {
+          "w": "we",
+          "t": 424.442
+        },
+        {
+          "w": "assert",
+          "t": 424.884
+        },
+        {
+          "w": "that",
+          "t": 425.327
+        },
+        {
+          "w": "traffic",
+          "t": 425.769
+        },
+        {
+          "w": "intensity",
+          "t": 426.211
+        },
+        {
+          "w": "rho",
+          "t": 426.654
+        },
+        {
+          "w": "is",
+          "t": 427.096
+        },
+        {
+          "w": "strictly",
+          "t": 427.538
+        },
+        {
+          "w": "less",
+          "t": 427.981
+        },
+        {
+          "w": "than",
+          "t": 428.423
+        },
+        {
+          "w": "1.0,",
+          "t": 428.865
+        },
+        {
+          "w": "and",
+          "t": 429.307
+        },
+        {
+          "w": "verify",
+          "t": 429.75
+        },
+        {
+          "w": "that",
+          "t": 430.192
+        },
+        {
+          "w": "empirical",
+          "t": 430.634
+        },
+        {
+          "w": "latency",
+          "t": 431.077
+        },
+        {
+          "w": "W",
+          "t": 431.519
+        },
+        {
+          "w": "aligns",
+          "t": 431.961
+        },
+        {
+          "w": "with",
+          "t": 432.404
+        },
+        {
+          "w": "theoretical",
+          "t": 432.846
+        },
+        {
+          "w": "M/M/1",
+          "t": 433.288
+        },
+        {
+          "w": "queuing",
+          "t": 433.73
+        },
+        {
+          "w": "within",
+          "t": 434.173
+        },
+        {
+          "w": "expected",
+          "t": 434.615
+        },
+        {
+          "w": "sampling",
+          "t": 435.057
+        },
+        {
+          "w": "tolerances.",
+          "t": 435.5
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "slideId": "s16",
+      "speaker": "Dr. Nova",
+      "text": "Congratulations on completing Lesson 2.2. Today, we established the mathematical and architectural foundations of data sourcing: primary generation for unbiased experimental ground truth, secondary repurposing calibrated via importance density ratios, and streaming telemetry sized via Little's Law.",
+      "start": 435.942,
+      "end": 456.054,
+      "words": [
+        {
+          "w": "Congratulations",
+          "t": 435.942
+        },
+        {
+          "w": "on",
+          "t": 436.486
+        },
+        {
+          "w": "completing",
+          "t": 437.029
+        },
+        {
+          "w": "Lesson",
+          "t": 437.573
+        },
+        {
+          "w": "2.2.",
+          "t": 438.116
+        },
+        {
+          "w": "Today,",
+          "t": 438.66
+        },
+        {
+          "w": "we",
+          "t": 439.203
+        },
+        {
+          "w": "established",
+          "t": 439.747
+        },
+        {
+          "w": "the",
+          "t": 440.291
+        },
+        {
+          "w": "mathematical",
+          "t": 440.834
+        },
+        {
+          "w": "and",
+          "t": 441.378
+        },
+        {
+          "w": "architectural",
+          "t": 441.921
+        },
+        {
+          "w": "foundations",
+          "t": 442.465
+        },
+        {
+          "w": "of",
+          "t": 443.008
+        },
+        {
+          "w": "data",
+          "t": 443.552
+        },
+        {
+          "w": "sourcing:",
+          "t": 444.096
+        },
+        {
+          "w": "primary",
+          "t": 444.639
+        },
+        {
+          "w": "generation",
+          "t": 445.183
+        },
+        {
+          "w": "for",
+          "t": 445.726
+        },
+        {
+          "w": "unbiased",
+          "t": 446.27
+        },
+        {
+          "w": "experimental",
+          "t": 446.813
+        },
+        {
+          "w": "ground",
+          "t": 447.357
+        },
+        {
+          "w": "truth,",
+          "t": 447.9
+        },
+        {
+          "w": "secondary",
+          "t": 448.444
+        },
+        {
+          "w": "repurposing",
+          "t": 448.988
+        },
+        {
+          "w": "calibrated",
+          "t": 449.531
+        },
+        {
+          "w": "via",
+          "t": 450.075
+        },
+        {
+          "w": "importance",
+          "t": 450.618
+        },
+        {
+          "w": "density",
+          "t": 451.162
+        },
+        {
+          "w": "ratios,",
+          "t": 451.705
+        },
+        {
+          "w": "and",
+          "t": 452.249
+        },
+        {
+          "w": "streaming",
+          "t": 452.793
+        },
+        {
+          "w": "telemetry",
+          "t": 453.336
+        },
+        {
+          "w": "sized",
+          "t": 453.88
+        },
+        {
+          "w": "via",
+          "t": 454.423
+        },
+        {
+          "w": "Little's",
+          "t": 454.967
+        },
+        {
+          "w": "Law.",
+          "t": 455.51
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "slideId": "s16",
+      "speaker": "Dr. Nova",
+      "text": "In Lesson 2.3, we transition from high-level source strategies to concrete acquisition instruments: designing psychometrically sound questionnaires, web scraping protocols, and automated API crawlers. Outstanding work today.",
+      "start": 456.054,
+      "end": 471.12,
+      "words": [
+        {
+          "w": "In",
+          "t": 456.054
+        },
+        {
+          "w": "Lesson",
+          "t": 456.612
+        },
+        {
+          "w": "2.3,",
+          "t": 457.17
+        },
+        {
+          "w": "we",
+          "t": 457.728
+        },
+        {
+          "w": "transition",
+          "t": 458.286
+        },
+        {
+          "w": "from",
+          "t": 458.844
+        },
+        {
+          "w": "high-level",
+          "t": 459.402
+        },
+        {
+          "w": "source",
+          "t": 459.96
+        },
+        {
+          "w": "strategies",
+          "t": 460.518
+        },
+        {
+          "w": "to",
+          "t": 461.076
+        },
+        {
+          "w": "concrete",
+          "t": 461.634
+        },
+        {
+          "w": "acquisition",
+          "t": 462.192
+        },
+        {
+          "w": "instruments:",
+          "t": 462.75
+        },
+        {
+          "w": "designing",
+          "t": 463.308
+        },
+        {
+          "w": "psychometrically",
+          "t": 463.866
+        },
+        {
+          "w": "sound",
+          "t": 464.424
+        },
+        {
+          "w": "questionnaires,",
+          "t": 464.982
+        },
+        {
+          "w": "web",
+          "t": 465.54
+        },
+        {
+          "w": "scraping",
+          "t": 466.098
+        },
+        {
+          "w": "protocols,",
+          "t": 466.656
+        },
+        {
+          "w": "and",
+          "t": 467.214
+        },
+        {
+          "w": "automated",
+          "t": 467.772
+        },
+        {
+          "w": "API",
+          "t": 468.33
+        },
+        {
+          "w": "crawlers.",
+          "t": 468.888
+        },
+        {
+          "w": "Outstanding",
+          "t": 469.446
+        },
+        {
+          "w": "work",
+          "t": 470.004
+        },
+        {
+          "w": "today.",
+          "t": 470.562
         }
       ]
     }

@@ -35958,5 +35958,22923 @@ window.LESSON_TIMINGS = {
         "end": 661.69
       }
     ]
+  },
+  "ch4_p1_solo": {
+    "duration": 608.788,
+    "sentences": [
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Track 4, Lesson 4.1 of Dataset Fundamentals: Introduction to Data Annotation, Taxonomies, and the Label-Quality Bound. Where earlier tracks established raw physical data acquisition and ethical constraints, Track 4 addresses the critical crucible of supervised learning: converting uncurated raw records into verified semantic ground truth.",
+        "start": 0.0,
+        "end": 22.728,
+        "words": [
+          {
+            "w": "Welcome",
+            "t": 0.0
+          },
+          {
+            "w": "to",
+            "t": 0.484
+          },
+          {
+            "w": "Track",
+            "t": 0.967
+          },
+          {
+            "w": "4,",
+            "t": 1.451
+          },
+          {
+            "w": "Lesson",
+            "t": 1.934
+          },
+          {
+            "w": "4.1",
+            "t": 2.418
+          },
+          {
+            "w": "of",
+            "t": 2.901
+          },
+          {
+            "w": "Dataset",
+            "t": 3.385
+          },
+          {
+            "w": "Fundamentals:",
+            "t": 3.869
+          },
+          {
+            "w": "Introduction",
+            "t": 4.352
+          },
+          {
+            "w": "to",
+            "t": 4.836
+          },
+          {
+            "w": "Data",
+            "t": 5.319
+          },
+          {
+            "w": "Annotation,",
+            "t": 5.803
+          },
+          {
+            "w": "Taxonomies,",
+            "t": 6.286
+          },
+          {
+            "w": "and",
+            "t": 6.77
+          },
+          {
+            "w": "the",
+            "t": 7.254
+          },
+          {
+            "w": "Label-Quality",
+            "t": 7.737
+          },
+          {
+            "w": "Bound.",
+            "t": 8.221
+          },
+          {
+            "w": "Where",
+            "t": 8.704
+          },
+          {
+            "w": "earlier",
+            "t": 9.188
+          },
+          {
+            "w": "tracks",
+            "t": 9.671
+          },
+          {
+            "w": "established",
+            "t": 10.155
+          },
+          {
+            "w": "raw",
+            "t": 10.639
+          },
+          {
+            "w": "physical",
+            "t": 11.122
+          },
+          {
+            "w": "data",
+            "t": 11.606
+          },
+          {
+            "w": "acquisition",
+            "t": 12.089
+          },
+          {
+            "w": "and",
+            "t": 12.573
+          },
+          {
+            "w": "ethical",
+            "t": 13.057
+          },
+          {
+            "w": "constraints,",
+            "t": 13.54
+          },
+          {
+            "w": "Track",
+            "t": 14.024
+          },
+          {
+            "w": "4",
+            "t": 14.507
+          },
+          {
+            "w": "addresses",
+            "t": 14.991
+          },
+          {
+            "w": "the",
+            "t": 15.474
+          },
+          {
+            "w": "critical",
+            "t": 15.958
+          },
+          {
+            "w": "crucible",
+            "t": 16.442
+          },
+          {
+            "w": "of",
+            "t": 16.925
+          },
+          {
+            "w": "supervised",
+            "t": 17.409
+          },
+          {
+            "w": "learning:",
+            "t": 17.892
+          },
+          {
+            "w": "converting",
+            "t": 18.376
+          },
+          {
+            "w": "uncurated",
+            "t": 18.859
+          },
+          {
+            "w": "raw",
+            "t": 19.343
+          },
+          {
+            "w": "records",
+            "t": 19.827
+          },
+          {
+            "w": "into",
+            "t": 20.31
+          },
+          {
+            "w": "verified",
+            "t": 20.794
+          },
+          {
+            "w": "semantic",
+            "t": 21.277
+          },
+          {
+            "w": "ground",
+            "t": 21.761
+          },
+          {
+            "w": "truth.",
+            "t": 22.244
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "In modern data-centric machine learning, model architectures are largely standardized. Empirical performance is overwhelmingly governed not by neural capacity, but by label noise, taxonomic ambiguity, annotator subjectivity, and inter-rater disagreement. Today, we formalize PAC learnability under label noise, derive effective sample size degradation, analyze asymmetric noise transition matrices, and establish production quality gates.",
+        "start": 23.078,
+        "end": 51.734,
+        "words": [
+          {
+            "w": "In",
+            "t": 23.078
+          },
+          {
+            "w": "modern",
+            "t": 23.619
+          },
+          {
+            "w": "data-centric",
+            "t": 24.159
+          },
+          {
+            "w": "machine",
+            "t": 24.7
+          },
+          {
+            "w": "learning,",
+            "t": 25.241
+          },
+          {
+            "w": "model",
+            "t": 25.781
+          },
+          {
+            "w": "architectures",
+            "t": 26.322
+          },
+          {
+            "w": "are",
+            "t": 26.863
+          },
+          {
+            "w": "largely",
+            "t": 27.403
+          },
+          {
+            "w": "standardized.",
+            "t": 27.944
+          },
+          {
+            "w": "Empirical",
+            "t": 28.485
+          },
+          {
+            "w": "performance",
+            "t": 29.025
+          },
+          {
+            "w": "is",
+            "t": 29.566
+          },
+          {
+            "w": "overwhelmingly",
+            "t": 30.107
+          },
+          {
+            "w": "governed",
+            "t": 30.648
+          },
+          {
+            "w": "not",
+            "t": 31.188
+          },
+          {
+            "w": "by",
+            "t": 31.729
+          },
+          {
+            "w": "neural",
+            "t": 32.27
+          },
+          {
+            "w": "capacity,",
+            "t": 32.81
+          },
+          {
+            "w": "but",
+            "t": 33.351
+          },
+          {
+            "w": "by",
+            "t": 33.892
+          },
+          {
+            "w": "label",
+            "t": 34.432
+          },
+          {
+            "w": "noise,",
+            "t": 34.973
+          },
+          {
+            "w": "taxonomic",
+            "t": 35.514
+          },
+          {
+            "w": "ambiguity,",
+            "t": 36.054
+          },
+          {
+            "w": "annotator",
+            "t": 36.595
+          },
+          {
+            "w": "subjectivity,",
+            "t": 37.136
+          },
+          {
+            "w": "and",
+            "t": 37.676
+          },
+          {
+            "w": "inter-rater",
+            "t": 38.217
+          },
+          {
+            "w": "disagreement.",
+            "t": 38.758
+          },
+          {
+            "w": "Today,",
+            "t": 39.298
+          },
+          {
+            "w": "we",
+            "t": 39.839
+          },
+          {
+            "w": "formalize",
+            "t": 40.38
+          },
+          {
+            "w": "PAC",
+            "t": 40.92
+          },
+          {
+            "w": "learnability",
+            "t": 41.461
+          },
+          {
+            "w": "under",
+            "t": 42.002
+          },
+          {
+            "w": "label",
+            "t": 42.542
+          },
+          {
+            "w": "noise,",
+            "t": 43.083
+          },
+          {
+            "w": "derive",
+            "t": 43.624
+          },
+          {
+            "w": "effective",
+            "t": 44.164
+          },
+          {
+            "w": "sample",
+            "t": 44.705
+          },
+          {
+            "w": "size",
+            "t": 45.246
+          },
+          {
+            "w": "degradation,",
+            "t": 45.787
+          },
+          {
+            "w": "analyze",
+            "t": 46.327
+          },
+          {
+            "w": "asymmetric",
+            "t": 46.868
+          },
+          {
+            "w": "noise",
+            "t": 47.409
+          },
+          {
+            "w": "transition",
+            "t": 47.949
+          },
+          {
+            "w": "matrices,",
+            "t": 48.49
+          },
+          {
+            "w": "and",
+            "t": 49.031
+          },
+          {
+            "w": "establish",
+            "t": 49.571
+          },
+          {
+            "w": "production",
+            "t": 50.112
+          },
+          {
+            "w": "quality",
+            "t": 50.653
+          },
+          {
+            "w": "gates.",
+            "t": 51.193
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "For two decades, machine learning focused on model architectures: moving from linear models to SVMs, then to convolutional networks and massive Transformers. But empirical research by Russell, Northcutt, and Kolesnikov revealed a startling reality: across production tasks, architecture performance has saturated.",
+        "start": 52.484,
+        "end": 72.548,
+        "words": [
+          {
+            "w": "For",
+            "t": 52.484
+          },
+          {
+            "w": "two",
+            "t": 52.973
+          },
+          {
+            "w": "decades,",
+            "t": 53.463
+          },
+          {
+            "w": "machine",
+            "t": 53.952
+          },
+          {
+            "w": "learning",
+            "t": 54.441
+          },
+          {
+            "w": "focused",
+            "t": 54.931
+          },
+          {
+            "w": "on",
+            "t": 55.42
+          },
+          {
+            "w": "model",
+            "t": 55.91
+          },
+          {
+            "w": "architectures:",
+            "t": 56.399
+          },
+          {
+            "w": "moving",
+            "t": 56.888
+          },
+          {
+            "w": "from",
+            "t": 57.378
+          },
+          {
+            "w": "linear",
+            "t": 57.867
+          },
+          {
+            "w": "models",
+            "t": 58.356
+          },
+          {
+            "w": "to",
+            "t": 58.846
+          },
+          {
+            "w": "SVMs,",
+            "t": 59.335
+          },
+          {
+            "w": "then",
+            "t": 59.824
+          },
+          {
+            "w": "to",
+            "t": 60.314
+          },
+          {
+            "w": "convolutional",
+            "t": 60.803
+          },
+          {
+            "w": "networks",
+            "t": 61.293
+          },
+          {
+            "w": "and",
+            "t": 61.782
+          },
+          {
+            "w": "massive",
+            "t": 62.271
+          },
+          {
+            "w": "Transformers.",
+            "t": 62.761
+          },
+          {
+            "w": "But",
+            "t": 63.25
+          },
+          {
+            "w": "empirical",
+            "t": 63.739
+          },
+          {
+            "w": "research",
+            "t": 64.229
+          },
+          {
+            "w": "by",
+            "t": 64.718
+          },
+          {
+            "w": "Russell,",
+            "t": 65.208
+          },
+          {
+            "w": "Northcutt,",
+            "t": 65.697
+          },
+          {
+            "w": "and",
+            "t": 66.186
+          },
+          {
+            "w": "Kolesnikov",
+            "t": 66.676
+          },
+          {
+            "w": "revealed",
+            "t": 67.165
+          },
+          {
+            "w": "a",
+            "t": 67.654
+          },
+          {
+            "w": "startling",
+            "t": 68.144
+          },
+          {
+            "w": "reality:",
+            "t": 68.633
+          },
+          {
+            "w": "across",
+            "t": 69.122
+          },
+          {
+            "w": "production",
+            "t": 69.612
+          },
+          {
+            "w": "tasks,",
+            "t": 70.101
+          },
+          {
+            "w": "architecture",
+            "t": 70.591
+          },
+          {
+            "w": "performance",
+            "t": 71.08
+          },
+          {
+            "w": "has",
+            "t": 71.569
+          },
+          {
+            "w": "saturated.",
+            "t": 72.059
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Holding model architecture constant while systematically auditing and cleaning dataset annotations yields up to ten times greater accuracy gains than weeks spent running hyperparameter sweeps. In data-centric AI, our objective is to engineer the dataset itself into an unambiguous mathematical oracle.",
+        "start": 72.898,
+        "end": 90.946,
+        "words": [
+          {
+            "w": "Holding",
+            "t": 72.898
+          },
+          {
+            "w": "model",
+            "t": 73.338
+          },
+          {
+            "w": "architecture",
+            "t": 73.778
+          },
+          {
+            "w": "constant",
+            "t": 74.219
+          },
+          {
+            "w": "while",
+            "t": 74.659
+          },
+          {
+            "w": "systematically",
+            "t": 75.099
+          },
+          {
+            "w": "auditing",
+            "t": 75.539
+          },
+          {
+            "w": "and",
+            "t": 75.979
+          },
+          {
+            "w": "cleaning",
+            "t": 76.42
+          },
+          {
+            "w": "dataset",
+            "t": 76.86
+          },
+          {
+            "w": "annotations",
+            "t": 77.3
+          },
+          {
+            "w": "yields",
+            "t": 77.74
+          },
+          {
+            "w": "up",
+            "t": 78.18
+          },
+          {
+            "w": "to",
+            "t": 78.621
+          },
+          {
+            "w": "ten",
+            "t": 79.061
+          },
+          {
+            "w": "times",
+            "t": 79.501
+          },
+          {
+            "w": "greater",
+            "t": 79.941
+          },
+          {
+            "w": "accuracy",
+            "t": 80.381
+          },
+          {
+            "w": "gains",
+            "t": 80.822
+          },
+          {
+            "w": "than",
+            "t": 81.262
+          },
+          {
+            "w": "weeks",
+            "t": 81.702
+          },
+          {
+            "w": "spent",
+            "t": 82.142
+          },
+          {
+            "w": "running",
+            "t": 82.582
+          },
+          {
+            "w": "hyperparameter",
+            "t": 83.022
+          },
+          {
+            "w": "sweeps.",
+            "t": 83.463
+          },
+          {
+            "w": "In",
+            "t": 83.903
+          },
+          {
+            "w": "data-centric",
+            "t": 84.343
+          },
+          {
+            "w": "AI,",
+            "t": 84.783
+          },
+          {
+            "w": "our",
+            "t": 85.223
+          },
+          {
+            "w": "objective",
+            "t": 85.664
+          },
+          {
+            "w": "is",
+            "t": 86.104
+          },
+          {
+            "w": "to",
+            "t": 86.544
+          },
+          {
+            "w": "engineer",
+            "t": 86.984
+          },
+          {
+            "w": "the",
+            "t": 87.424
+          },
+          {
+            "w": "dataset",
+            "t": 87.865
+          },
+          {
+            "w": "itself",
+            "t": 88.305
+          },
+          {
+            "w": "into",
+            "t": 88.745
+          },
+          {
+            "w": "an",
+            "t": 89.185
+          },
+          {
+            "w": "unambiguous",
+            "t": 89.625
+          },
+          {
+            "w": "mathematical",
+            "t": 90.066
+          },
+          {
+            "w": "oracle.",
+            "t": 90.506
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "Let us formalize the corruption process. In Probably Approximately Correct (PAC) learning, training pairs are drawn from distribution D with true concept y. In practice, an imperfect annotation channel flips each true label with error rate eta, where eta is strictly less than one-half.",
+        "start": 91.696,
+        "end": 110.752,
+        "words": [
+          {
+            "w": "Let",
+            "t": 91.696
+          },
+          {
+            "w": "us",
+            "t": 92.129
+          },
+          {
+            "w": "formalize",
+            "t": 92.562
+          },
+          {
+            "w": "the",
+            "t": 92.995
+          },
+          {
+            "w": "corruption",
+            "t": 93.428
+          },
+          {
+            "w": "process.",
+            "t": 93.861
+          },
+          {
+            "w": "In",
+            "t": 94.295
+          },
+          {
+            "w": "Probably",
+            "t": 94.728
+          },
+          {
+            "w": "Approximately",
+            "t": 95.161
+          },
+          {
+            "w": "Correct",
+            "t": 95.594
+          },
+          {
+            "w": "(PAC)",
+            "t": 96.027
+          },
+          {
+            "w": "learning,",
+            "t": 96.46
+          },
+          {
+            "w": "training",
+            "t": 96.893
+          },
+          {
+            "w": "pairs",
+            "t": 97.326
+          },
+          {
+            "w": "are",
+            "t": 97.759
+          },
+          {
+            "w": "drawn",
+            "t": 98.192
+          },
+          {
+            "w": "from",
+            "t": 98.625
+          },
+          {
+            "w": "distribution",
+            "t": 99.059
+          },
+          {
+            "w": "D",
+            "t": 99.492
+          },
+          {
+            "w": "with",
+            "t": 99.925
+          },
+          {
+            "w": "true",
+            "t": 100.358
+          },
+          {
+            "w": "concept",
+            "t": 100.791
+          },
+          {
+            "w": "y.",
+            "t": 101.224
+          },
+          {
+            "w": "In",
+            "t": 101.657
+          },
+          {
+            "w": "practice,",
+            "t": 102.09
+          },
+          {
+            "w": "an",
+            "t": 102.523
+          },
+          {
+            "w": "imperfect",
+            "t": 102.956
+          },
+          {
+            "w": "annotation",
+            "t": 103.389
+          },
+          {
+            "w": "channel",
+            "t": 103.823
+          },
+          {
+            "w": "flips",
+            "t": 104.256
+          },
+          {
+            "w": "each",
+            "t": 104.689
+          },
+          {
+            "w": "true",
+            "t": 105.122
+          },
+          {
+            "w": "label",
+            "t": 105.555
+          },
+          {
+            "w": "with",
+            "t": 105.988
+          },
+          {
+            "w": "error",
+            "t": 106.421
+          },
+          {
+            "w": "rate",
+            "t": 106.854
+          },
+          {
+            "w": "eta,",
+            "t": 107.287
+          },
+          {
+            "w": "where",
+            "t": 107.72
+          },
+          {
+            "w": "eta",
+            "t": 108.153
+          },
+          {
+            "w": "is",
+            "t": 108.587
+          },
+          {
+            "w": "strictly",
+            "t": 109.02
+          },
+          {
+            "w": "less",
+            "t": 109.453
+          },
+          {
+            "w": "than",
+            "t": 109.886
+          },
+          {
+            "w": "one-half.",
+            "t": 110.319
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "Under symmetric noise, the observed risk of a hypothesis h expands linearly: R sub eta of h equals 1 minus 2 eta times the true risk R of h, plus eta. Solving for the true underlying risk reveals the exact noise penalty denominator: 1 minus 2 eta. As eta approaches one-half, the true signal vanishes completely.",
+        "start": 111.102,
+        "end": 134.022,
+        "words": [
+          {
+            "w": "Under",
+            "t": 111.102
+          },
+          {
+            "w": "symmetric",
+            "t": 111.511
+          },
+          {
+            "w": "noise,",
+            "t": 111.921
+          },
+          {
+            "w": "the",
+            "t": 112.33
+          },
+          {
+            "w": "observed",
+            "t": 112.739
+          },
+          {
+            "w": "risk",
+            "t": 113.148
+          },
+          {
+            "w": "of",
+            "t": 113.558
+          },
+          {
+            "w": "a",
+            "t": 113.967
+          },
+          {
+            "w": "hypothesis",
+            "t": 114.376
+          },
+          {
+            "w": "h",
+            "t": 114.786
+          },
+          {
+            "w": "expands",
+            "t": 115.195
+          },
+          {
+            "w": "linearly:",
+            "t": 115.604
+          },
+          {
+            "w": "R",
+            "t": 116.013
+          },
+          {
+            "w": "sub",
+            "t": 116.423
+          },
+          {
+            "w": "eta",
+            "t": 116.832
+          },
+          {
+            "w": "of",
+            "t": 117.241
+          },
+          {
+            "w": "h",
+            "t": 117.651
+          },
+          {
+            "w": "equals",
+            "t": 118.06
+          },
+          {
+            "w": "1",
+            "t": 118.469
+          },
+          {
+            "w": "minus",
+            "t": 118.878
+          },
+          {
+            "w": "2",
+            "t": 119.288
+          },
+          {
+            "w": "eta",
+            "t": 119.697
+          },
+          {
+            "w": "times",
+            "t": 120.106
+          },
+          {
+            "w": "the",
+            "t": 120.516
+          },
+          {
+            "w": "true",
+            "t": 120.925
+          },
+          {
+            "w": "risk",
+            "t": 121.334
+          },
+          {
+            "w": "R",
+            "t": 121.743
+          },
+          {
+            "w": "of",
+            "t": 122.153
+          },
+          {
+            "w": "h,",
+            "t": 122.562
+          },
+          {
+            "w": "plus",
+            "t": 122.971
+          },
+          {
+            "w": "eta.",
+            "t": 123.381
+          },
+          {
+            "w": "Solving",
+            "t": 123.79
+          },
+          {
+            "w": "for",
+            "t": 124.199
+          },
+          {
+            "w": "the",
+            "t": 124.608
+          },
+          {
+            "w": "true",
+            "t": 125.018
+          },
+          {
+            "w": "underlying",
+            "t": 125.427
+          },
+          {
+            "w": "risk",
+            "t": 125.836
+          },
+          {
+            "w": "reveals",
+            "t": 126.246
+          },
+          {
+            "w": "the",
+            "t": 126.655
+          },
+          {
+            "w": "exact",
+            "t": 127.064
+          },
+          {
+            "w": "noise",
+            "t": 127.473
+          },
+          {
+            "w": "penalty",
+            "t": 127.883
+          },
+          {
+            "w": "denominator:",
+            "t": 128.292
+          },
+          {
+            "w": "1",
+            "t": 128.701
+          },
+          {
+            "w": "minus",
+            "t": 129.111
+          },
+          {
+            "w": "2",
+            "t": 129.52
+          },
+          {
+            "w": "eta.",
+            "t": 129.929
+          },
+          {
+            "w": "As",
+            "t": 130.338
+          },
+          {
+            "w": "eta",
+            "t": 130.748
+          },
+          {
+            "w": "approaches",
+            "t": 131.157
+          },
+          {
+            "w": "one-half,",
+            "t": 131.566
+          },
+          {
+            "w": "the",
+            "t": 131.976
+          },
+          {
+            "w": "true",
+            "t": 132.385
+          },
+          {
+            "w": "signal",
+            "t": 132.794
+          },
+          {
+            "w": "vanishes",
+            "t": 133.203
+          },
+          {
+            "w": "completely.",
+            "t": 133.613
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Angluin and Laird proved that to guarantee risk bound epsilon with confidence 1 minus delta under noise rate eta, the required sample size m scales with 1 over 1 minus 2 eta squared. This gives us the foundational equation for Effective Dataset Size: N eff equals nominal size N times 1 minus 2 eta squared.",
+        "start": 134.772,
+        "end": 155.484,
+        "words": [
+          {
+            "w": "Angluin",
+            "t": 134.772
+          },
+          {
+            "w": "and",
+            "t": 135.149
+          },
+          {
+            "w": "Laird",
+            "t": 135.525
+          },
+          {
+            "w": "proved",
+            "t": 135.902
+          },
+          {
+            "w": "that",
+            "t": 136.278
+          },
+          {
+            "w": "to",
+            "t": 136.655
+          },
+          {
+            "w": "guarantee",
+            "t": 137.031
+          },
+          {
+            "w": "risk",
+            "t": 137.408
+          },
+          {
+            "w": "bound",
+            "t": 137.785
+          },
+          {
+            "w": "epsilon",
+            "t": 138.161
+          },
+          {
+            "w": "with",
+            "t": 138.538
+          },
+          {
+            "w": "confidence",
+            "t": 138.914
+          },
+          {
+            "w": "1",
+            "t": 139.291
+          },
+          {
+            "w": "minus",
+            "t": 139.668
+          },
+          {
+            "w": "delta",
+            "t": 140.044
+          },
+          {
+            "w": "under",
+            "t": 140.421
+          },
+          {
+            "w": "noise",
+            "t": 140.797
+          },
+          {
+            "w": "rate",
+            "t": 141.174
+          },
+          {
+            "w": "eta,",
+            "t": 141.55
+          },
+          {
+            "w": "the",
+            "t": 141.927
+          },
+          {
+            "w": "required",
+            "t": 142.304
+          },
+          {
+            "w": "sample",
+            "t": 142.68
+          },
+          {
+            "w": "size",
+            "t": 143.057
+          },
+          {
+            "w": "m",
+            "t": 143.433
+          },
+          {
+            "w": "scales",
+            "t": 143.81
+          },
+          {
+            "w": "with",
+            "t": 144.187
+          },
+          {
+            "w": "1",
+            "t": 144.563
+          },
+          {
+            "w": "over",
+            "t": 144.94
+          },
+          {
+            "w": "1",
+            "t": 145.316
+          },
+          {
+            "w": "minus",
+            "t": 145.693
+          },
+          {
+            "w": "2",
+            "t": 146.069
+          },
+          {
+            "w": "eta",
+            "t": 146.446
+          },
+          {
+            "w": "squared.",
+            "t": 146.823
+          },
+          {
+            "w": "This",
+            "t": 147.199
+          },
+          {
+            "w": "gives",
+            "t": 147.576
+          },
+          {
+            "w": "us",
+            "t": 147.952
+          },
+          {
+            "w": "the",
+            "t": 148.329
+          },
+          {
+            "w": "foundational",
+            "t": 148.706
+          },
+          {
+            "w": "equation",
+            "t": 149.082
+          },
+          {
+            "w": "for",
+            "t": 149.459
+          },
+          {
+            "w": "Effective",
+            "t": 149.835
+          },
+          {
+            "w": "Dataset",
+            "t": 150.212
+          },
+          {
+            "w": "Size:",
+            "t": 150.588
+          },
+          {
+            "w": "N",
+            "t": 150.965
+          },
+          {
+            "w": "eff",
+            "t": 151.342
+          },
+          {
+            "w": "equals",
+            "t": 151.718
+          },
+          {
+            "w": "nominal",
+            "t": 152.095
+          },
+          {
+            "w": "size",
+            "t": 152.471
+          },
+          {
+            "w": "N",
+            "t": 152.848
+          },
+          {
+            "w": "times",
+            "t": 153.225
+          },
+          {
+            "w": "1",
+            "t": 153.601
+          },
+          {
+            "w": "minus",
+            "t": 153.978
+          },
+          {
+            "w": "2",
+            "t": 154.354
+          },
+          {
+            "w": "eta",
+            "t": 154.731
+          },
+          {
+            "w": "squared.",
+            "t": 155.107
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Consider the profound economic consequence. If your annotator pool has a 20% error rate, 1 minus 2 times 0.20 squared is 0.36! Your five thousand record dataset carries the statistical power of only eighteen hundred clean records. At 35% error, effective power collapses to 9%, requiring an eleven-fold data expansion to compensate.",
+        "start": 155.834,
+        "end": 181.562,
+        "words": [
+          {
+            "w": "Consider",
+            "t": 155.834
+          },
+          {
+            "w": "the",
+            "t": 156.329
+          },
+          {
+            "w": "profound",
+            "t": 156.824
+          },
+          {
+            "w": "economic",
+            "t": 157.318
+          },
+          {
+            "w": "consequence.",
+            "t": 157.813
+          },
+          {
+            "w": "If",
+            "t": 158.308
+          },
+          {
+            "w": "your",
+            "t": 158.803
+          },
+          {
+            "w": "annotator",
+            "t": 159.297
+          },
+          {
+            "w": "pool",
+            "t": 159.792
+          },
+          {
+            "w": "has",
+            "t": 160.287
+          },
+          {
+            "w": "a",
+            "t": 160.782
+          },
+          {
+            "w": "20%",
+            "t": 161.276
+          },
+          {
+            "w": "error",
+            "t": 161.771
+          },
+          {
+            "w": "rate,",
+            "t": 162.266
+          },
+          {
+            "w": "1",
+            "t": 162.761
+          },
+          {
+            "w": "minus",
+            "t": 163.256
+          },
+          {
+            "w": "2",
+            "t": 163.75
+          },
+          {
+            "w": "times",
+            "t": 164.245
+          },
+          {
+            "w": "0.20",
+            "t": 164.74
+          },
+          {
+            "w": "squared",
+            "t": 165.235
+          },
+          {
+            "w": "is",
+            "t": 165.729
+          },
+          {
+            "w": "0.36!",
+            "t": 166.224
+          },
+          {
+            "w": "Your",
+            "t": 166.719
+          },
+          {
+            "w": "five",
+            "t": 167.214
+          },
+          {
+            "w": "thousand",
+            "t": 167.708
+          },
+          {
+            "w": "record",
+            "t": 168.203
+          },
+          {
+            "w": "dataset",
+            "t": 168.698
+          },
+          {
+            "w": "carries",
+            "t": 169.193
+          },
+          {
+            "w": "the",
+            "t": 169.688
+          },
+          {
+            "w": "statistical",
+            "t": 170.182
+          },
+          {
+            "w": "power",
+            "t": 170.677
+          },
+          {
+            "w": "of",
+            "t": 171.172
+          },
+          {
+            "w": "only",
+            "t": 171.667
+          },
+          {
+            "w": "eighteen",
+            "t": 172.161
+          },
+          {
+            "w": "hundred",
+            "t": 172.656
+          },
+          {
+            "w": "clean",
+            "t": 173.151
+          },
+          {
+            "w": "records.",
+            "t": 173.646
+          },
+          {
+            "w": "At",
+            "t": 174.14
+          },
+          {
+            "w": "35%",
+            "t": 174.635
+          },
+          {
+            "w": "error,",
+            "t": 175.13
+          },
+          {
+            "w": "effective",
+            "t": 175.625
+          },
+          {
+            "w": "power",
+            "t": 176.12
+          },
+          {
+            "w": "collapses",
+            "t": 176.614
+          },
+          {
+            "w": "to",
+            "t": 177.109
+          },
+          {
+            "w": "9%,",
+            "t": 177.604
+          },
+          {
+            "w": "requiring",
+            "t": 178.099
+          },
+          {
+            "w": "an",
+            "t": 178.593
+          },
+          {
+            "w": "eleven-fold",
+            "t": 179.088
+          },
+          {
+            "w": "data",
+            "t": 179.583
+          },
+          {
+            "w": "expansion",
+            "t": 180.078
+          },
+          {
+            "w": "to",
+            "t": 180.572
+          },
+          {
+            "w": "compensate.",
+            "t": 181.067
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "In production multi-class datasets, annotation error is never symmetric. Annotators frequently confuse visually adjacent classes like Husky and Wolf, while almost never confusing a Wolf with an Airplane. We represent this via the Class-Conditional Noise Transition Matrix T.",
+        "start": 182.312,
+        "end": 199.976,
+        "words": [
+          {
+            "w": "In",
+            "t": 182.312
+          },
+          {
+            "w": "production",
+            "t": 182.777
+          },
+          {
+            "w": "multi-class",
+            "t": 183.242
+          },
+          {
+            "w": "datasets,",
+            "t": 183.707
+          },
+          {
+            "w": "annotation",
+            "t": 184.171
+          },
+          {
+            "w": "error",
+            "t": 184.636
+          },
+          {
+            "w": "is",
+            "t": 185.101
+          },
+          {
+            "w": "never",
+            "t": 185.566
+          },
+          {
+            "w": "symmetric.",
+            "t": 186.031
+          },
+          {
+            "w": "Annotators",
+            "t": 186.496
+          },
+          {
+            "w": "frequently",
+            "t": 186.96
+          },
+          {
+            "w": "confuse",
+            "t": 187.425
+          },
+          {
+            "w": "visually",
+            "t": 187.89
+          },
+          {
+            "w": "adjacent",
+            "t": 188.355
+          },
+          {
+            "w": "classes",
+            "t": 188.82
+          },
+          {
+            "w": "like",
+            "t": 189.285
+          },
+          {
+            "w": "Husky",
+            "t": 189.749
+          },
+          {
+            "w": "and",
+            "t": 190.214
+          },
+          {
+            "w": "Wolf,",
+            "t": 190.679
+          },
+          {
+            "w": "while",
+            "t": 191.144
+          },
+          {
+            "w": "almost",
+            "t": 191.609
+          },
+          {
+            "w": "never",
+            "t": 192.074
+          },
+          {
+            "w": "confusing",
+            "t": 192.539
+          },
+          {
+            "w": "a",
+            "t": 193.003
+          },
+          {
+            "w": "Wolf",
+            "t": 193.468
+          },
+          {
+            "w": "with",
+            "t": 193.933
+          },
+          {
+            "w": "an",
+            "t": 194.398
+          },
+          {
+            "w": "Airplane.",
+            "t": 194.863
+          },
+          {
+            "w": "We",
+            "t": 195.328
+          },
+          {
+            "w": "represent",
+            "t": 195.792
+          },
+          {
+            "w": "this",
+            "t": 196.257
+          },
+          {
+            "w": "via",
+            "t": 196.722
+          },
+          {
+            "w": "the",
+            "t": 197.187
+          },
+          {
+            "w": "Class-Conditional",
+            "t": 197.652
+          },
+          {
+            "w": "Noise",
+            "t": 198.117
+          },
+          {
+            "w": "Transition",
+            "t": 198.581
+          },
+          {
+            "w": "Matrix",
+            "t": 199.046
+          },
+          {
+            "w": "T.",
+            "t": 199.511
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "Natarajan and colleagues proved in NeurIPS 2013 that when T is invertible, we can multiply the raw loss vector by T inverse. Taking the expectation over the noisy observation channel cancels out the noise matrix, yielding a mathematically unbiased estimator of clean generalization risk.",
+        "start": 200.326,
+        "end": 218.806,
+        "words": [
+          {
+            "w": "Natarajan",
+            "t": 200.326
+          },
+          {
+            "w": "and",
+            "t": 200.746
+          },
+          {
+            "w": "colleagues",
+            "t": 201.166
+          },
+          {
+            "w": "proved",
+            "t": 201.586
+          },
+          {
+            "w": "in",
+            "t": 202.006
+          },
+          {
+            "w": "NeurIPS",
+            "t": 202.426
+          },
+          {
+            "w": "2013",
+            "t": 202.846
+          },
+          {
+            "w": "that",
+            "t": 203.266
+          },
+          {
+            "w": "when",
+            "t": 203.686
+          },
+          {
+            "w": "T",
+            "t": 204.106
+          },
+          {
+            "w": "is",
+            "t": 204.526
+          },
+          {
+            "w": "invertible,",
+            "t": 204.946
+          },
+          {
+            "w": "we",
+            "t": 205.366
+          },
+          {
+            "w": "can",
+            "t": 205.786
+          },
+          {
+            "w": "multiply",
+            "t": 206.206
+          },
+          {
+            "w": "the",
+            "t": 206.626
+          },
+          {
+            "w": "raw",
+            "t": 207.046
+          },
+          {
+            "w": "loss",
+            "t": 207.466
+          },
+          {
+            "w": "vector",
+            "t": 207.886
+          },
+          {
+            "w": "by",
+            "t": 208.306
+          },
+          {
+            "w": "T",
+            "t": 208.726
+          },
+          {
+            "w": "inverse.",
+            "t": 209.146
+          },
+          {
+            "w": "Taking",
+            "t": 209.566
+          },
+          {
+            "w": "the",
+            "t": 209.986
+          },
+          {
+            "w": "expectation",
+            "t": 210.406
+          },
+          {
+            "w": "over",
+            "t": 210.826
+          },
+          {
+            "w": "the",
+            "t": 211.246
+          },
+          {
+            "w": "noisy",
+            "t": 211.666
+          },
+          {
+            "w": "observation",
+            "t": 212.086
+          },
+          {
+            "w": "channel",
+            "t": 212.506
+          },
+          {
+            "w": "cancels",
+            "t": 212.926
+          },
+          {
+            "w": "out",
+            "t": 213.346
+          },
+          {
+            "w": "the",
+            "t": 213.766
+          },
+          {
+            "w": "noise",
+            "t": 214.186
+          },
+          {
+            "w": "matrix,",
+            "t": 214.606
+          },
+          {
+            "w": "yielding",
+            "t": 215.026
+          },
+          {
+            "w": "a",
+            "t": 215.446
+          },
+          {
+            "w": "mathematically",
+            "t": 215.866
+          },
+          {
+            "w": "unbiased",
+            "t": 216.286
+          },
+          {
+            "w": "estimator",
+            "t": 216.706
+          },
+          {
+            "w": "of",
+            "t": 217.126
+          },
+          {
+            "w": "clean",
+            "t": 217.546
+          },
+          {
+            "w": "generalization",
+            "t": 217.966
+          },
+          {
+            "w": "risk.",
+            "t": 218.386
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "Welcome to our first interactive lab! In the simulator directly below our speaker stage, you can experiment in real time with nominal dataset size N, annotator error rate eta, and quality filtering strategies.",
+        "start": 219.556,
+        "end": 233.38,
+        "words": [
+          {
+            "w": "Welcome",
+            "t": 219.556
+          },
+          {
+            "w": "to",
+            "t": 219.975
+          },
+          {
+            "w": "our",
+            "t": 220.394
+          },
+          {
+            "w": "first",
+            "t": 220.813
+          },
+          {
+            "w": "interactive",
+            "t": 221.232
+          },
+          {
+            "w": "lab!",
+            "t": 221.651
+          },
+          {
+            "w": "In",
+            "t": 222.069
+          },
+          {
+            "w": "the",
+            "t": 222.488
+          },
+          {
+            "w": "simulator",
+            "t": 222.907
+          },
+          {
+            "w": "directly",
+            "t": 223.326
+          },
+          {
+            "w": "below",
+            "t": 223.745
+          },
+          {
+            "w": "our",
+            "t": 224.164
+          },
+          {
+            "w": "speaker",
+            "t": 224.583
+          },
+          {
+            "w": "stage,",
+            "t": 225.002
+          },
+          {
+            "w": "you",
+            "t": 225.421
+          },
+          {
+            "w": "can",
+            "t": 225.84
+          },
+          {
+            "w": "experiment",
+            "t": 226.259
+          },
+          {
+            "w": "in",
+            "t": 226.677
+          },
+          {
+            "w": "real",
+            "t": 227.096
+          },
+          {
+            "w": "time",
+            "t": 227.515
+          },
+          {
+            "w": "with",
+            "t": 227.934
+          },
+          {
+            "w": "nominal",
+            "t": 228.353
+          },
+          {
+            "w": "dataset",
+            "t": 228.772
+          },
+          {
+            "w": "size",
+            "t": 229.191
+          },
+          {
+            "w": "N,",
+            "t": 229.61
+          },
+          {
+            "w": "annotator",
+            "t": 230.029
+          },
+          {
+            "w": "error",
+            "t": 230.448
+          },
+          {
+            "w": "rate",
+            "t": 230.867
+          },
+          {
+            "w": "eta,",
+            "t": 231.285
+          },
+          {
+            "w": "and",
+            "t": 231.704
+          },
+          {
+            "w": "quality",
+            "t": 232.123
+          },
+          {
+            "w": "filtering",
+            "t": 232.542
+          },
+          {
+            "w": "strategies.",
+            "t": 232.961
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "Notice how dragging the error rate past 20% causes the sample complexity multiplier to expand dramatically, and observe how Confident Learning prunes self-inconsistent labels to restore effective statistical power. Try interacting with the controls now!",
+        "start": 233.73,
+        "end": 249.282,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 233.73
+          },
+          {
+            "w": "how",
+            "t": 234.174
+          },
+          {
+            "w": "dragging",
+            "t": 234.619
+          },
+          {
+            "w": "the",
+            "t": 235.063
+          },
+          {
+            "w": "error",
+            "t": 235.507
+          },
+          {
+            "w": "rate",
+            "t": 235.952
+          },
+          {
+            "w": "past",
+            "t": 236.396
+          },
+          {
+            "w": "20%",
+            "t": 236.84
+          },
+          {
+            "w": "causes",
+            "t": 237.285
+          },
+          {
+            "w": "the",
+            "t": 237.729
+          },
+          {
+            "w": "sample",
+            "t": 238.173
+          },
+          {
+            "w": "complexity",
+            "t": 238.618
+          },
+          {
+            "w": "multiplier",
+            "t": 239.062
+          },
+          {
+            "w": "to",
+            "t": 239.506
+          },
+          {
+            "w": "expand",
+            "t": 239.951
+          },
+          {
+            "w": "dramatically,",
+            "t": 240.395
+          },
+          {
+            "w": "and",
+            "t": 240.839
+          },
+          {
+            "w": "observe",
+            "t": 241.284
+          },
+          {
+            "w": "how",
+            "t": 241.728
+          },
+          {
+            "w": "Confident",
+            "t": 242.173
+          },
+          {
+            "w": "Learning",
+            "t": 242.617
+          },
+          {
+            "w": "prunes",
+            "t": 243.061
+          },
+          {
+            "w": "self-inconsistent",
+            "t": 243.506
+          },
+          {
+            "w": "labels",
+            "t": 243.95
+          },
+          {
+            "w": "to",
+            "t": 244.394
+          },
+          {
+            "w": "restore",
+            "t": 244.839
+          },
+          {
+            "w": "effective",
+            "t": 245.283
+          },
+          {
+            "w": "statistical",
+            "t": 245.727
+          },
+          {
+            "w": "power.",
+            "t": 246.172
+          },
+          {
+            "w": "Try",
+            "t": 246.616
+          },
+          {
+            "w": "interacting",
+            "t": 247.06
+          },
+          {
+            "w": "with",
+            "t": 247.505
+          },
+          {
+            "w": "the",
+            "t": 247.949
+          },
+          {
+            "w": "controls",
+            "t": 248.393
+          },
+          {
+            "w": "now!",
+            "t": 248.838
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "Time for our first active checkpoint! An autonomous perception engineering team contracts a crowd workforce with a 30% error rate. If the team requires the statistical power of 10,000 gold-standard annotations, how many crowdsourced annotations must they collect? Select Option A, B, or C above me!",
+        "start": 250.032,
+        "end": 270.696,
+        "words": [
+          {
+            "w": "Time",
+            "t": 250.032
+          },
+          {
+            "w": "for",
+            "t": 250.481
+          },
+          {
+            "w": "our",
+            "t": 250.93
+          },
+          {
+            "w": "first",
+            "t": 251.38
+          },
+          {
+            "w": "active",
+            "t": 251.829
+          },
+          {
+            "w": "checkpoint!",
+            "t": 252.278
+          },
+          {
+            "w": "An",
+            "t": 252.727
+          },
+          {
+            "w": "autonomous",
+            "t": 253.177
+          },
+          {
+            "w": "perception",
+            "t": 253.626
+          },
+          {
+            "w": "engineering",
+            "t": 254.075
+          },
+          {
+            "w": "team",
+            "t": 254.524
+          },
+          {
+            "w": "contracts",
+            "t": 254.973
+          },
+          {
+            "w": "a",
+            "t": 255.423
+          },
+          {
+            "w": "crowd",
+            "t": 255.872
+          },
+          {
+            "w": "workforce",
+            "t": 256.321
+          },
+          {
+            "w": "with",
+            "t": 256.77
+          },
+          {
+            "w": "a",
+            "t": 257.219
+          },
+          {
+            "w": "30%",
+            "t": 257.669
+          },
+          {
+            "w": "error",
+            "t": 258.118
+          },
+          {
+            "w": "rate.",
+            "t": 258.567
+          },
+          {
+            "w": "If",
+            "t": 259.016
+          },
+          {
+            "w": "the",
+            "t": 259.466
+          },
+          {
+            "w": "team",
+            "t": 259.915
+          },
+          {
+            "w": "requires",
+            "t": 260.364
+          },
+          {
+            "w": "the",
+            "t": 260.813
+          },
+          {
+            "w": "statistical",
+            "t": 261.262
+          },
+          {
+            "w": "power",
+            "t": 261.712
+          },
+          {
+            "w": "of",
+            "t": 262.161
+          },
+          {
+            "w": "10,000",
+            "t": 262.61
+          },
+          {
+            "w": "gold-standard",
+            "t": 263.059
+          },
+          {
+            "w": "annotations,",
+            "t": 263.509
+          },
+          {
+            "w": "how",
+            "t": 263.958
+          },
+          {
+            "w": "many",
+            "t": 264.407
+          },
+          {
+            "w": "crowdsourced",
+            "t": 264.856
+          },
+          {
+            "w": "annotations",
+            "t": 265.305
+          },
+          {
+            "w": "must",
+            "t": 265.755
+          },
+          {
+            "w": "they",
+            "t": 266.204
+          },
+          {
+            "w": "collect?",
+            "t": 266.653
+          },
+          {
+            "w": "Select",
+            "t": 267.102
+          },
+          {
+            "w": "Option",
+            "t": 267.551
+          },
+          {
+            "w": "A,",
+            "t": 268.001
+          },
+          {
+            "w": "B,",
+            "t": 268.45
+          },
+          {
+            "w": "or",
+            "t": 268.899
+          },
+          {
+            "w": "C",
+            "t": 269.348
+          },
+          {
+            "w": "above",
+            "t": 269.798
+          },
+          {
+            "w": "me!",
+            "t": 270.247
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Data annotation is not monolithic. The mathematical target space transforms fundamentally depending on data modality: from discrete probability simplexes in document classification, to sequence token offsets in Named Entity Recognition, to continuous geometric manifolds in vision and point clouds.",
+        "start": 271.446,
+        "end": 290.382,
+        "words": [
+          {
+            "w": "Data",
+            "t": 271.446
+          },
+          {
+            "w": "annotation",
+            "t": 271.932
+          },
+          {
+            "w": "is",
+            "t": 272.417
+          },
+          {
+            "w": "not",
+            "t": 272.903
+          },
+          {
+            "w": "monolithic.",
+            "t": 273.388
+          },
+          {
+            "w": "The",
+            "t": 273.874
+          },
+          {
+            "w": "mathematical",
+            "t": 274.359
+          },
+          {
+            "w": "target",
+            "t": 274.845
+          },
+          {
+            "w": "space",
+            "t": 275.33
+          },
+          {
+            "w": "transforms",
+            "t": 275.816
+          },
+          {
+            "w": "fundamentally",
+            "t": 276.301
+          },
+          {
+            "w": "depending",
+            "t": 276.787
+          },
+          {
+            "w": "on",
+            "t": 277.272
+          },
+          {
+            "w": "data",
+            "t": 277.758
+          },
+          {
+            "w": "modality:",
+            "t": 278.244
+          },
+          {
+            "w": "from",
+            "t": 278.729
+          },
+          {
+            "w": "discrete",
+            "t": 279.215
+          },
+          {
+            "w": "probability",
+            "t": 279.7
+          },
+          {
+            "w": "simplexes",
+            "t": 280.186
+          },
+          {
+            "w": "in",
+            "t": 280.671
+          },
+          {
+            "w": "document",
+            "t": 281.157
+          },
+          {
+            "w": "classification,",
+            "t": 281.642
+          },
+          {
+            "w": "to",
+            "t": 282.128
+          },
+          {
+            "w": "sequence",
+            "t": 282.613
+          },
+          {
+            "w": "token",
+            "t": 283.099
+          },
+          {
+            "w": "offsets",
+            "t": 283.584
+          },
+          {
+            "w": "in",
+            "t": 284.07
+          },
+          {
+            "w": "Named",
+            "t": 284.556
+          },
+          {
+            "w": "Entity",
+            "t": 285.041
+          },
+          {
+            "w": "Recognition,",
+            "t": 285.527
+          },
+          {
+            "w": "to",
+            "t": 286.012
+          },
+          {
+            "w": "continuous",
+            "t": 286.498
+          },
+          {
+            "w": "geometric",
+            "t": 286.983
+          },
+          {
+            "w": "manifolds",
+            "t": 287.469
+          },
+          {
+            "w": "in",
+            "t": 287.954
+          },
+          {
+            "w": "vision",
+            "t": 288.44
+          },
+          {
+            "w": "and",
+            "t": 288.925
+          },
+          {
+            "w": "point",
+            "t": 289.411
+          },
+          {
+            "w": "clouds.",
+            "t": 289.896
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "In computer vision, targets span bounding boxes in R 4, dense pixel masks in H by W, and 3D oriented LiDAR bounding boxes with seven degrees of freedom. In audio, annotators tag time-frequency spectrogram boxes, and in video, multi-object tracking requires spatio-temporal tubelets with identity permanence.",
+        "start": 290.732,
+        "end": 311.876,
+        "words": [
+          {
+            "w": "In",
+            "t": 290.732
+          },
+          {
+            "w": "computer",
+            "t": 291.192
+          },
+          {
+            "w": "vision,",
+            "t": 291.651
+          },
+          {
+            "w": "targets",
+            "t": 292.111
+          },
+          {
+            "w": "span",
+            "t": 292.571
+          },
+          {
+            "w": "bounding",
+            "t": 293.03
+          },
+          {
+            "w": "boxes",
+            "t": 293.49
+          },
+          {
+            "w": "in",
+            "t": 293.95
+          },
+          {
+            "w": "R",
+            "t": 294.409
+          },
+          {
+            "w": "4,",
+            "t": 294.869
+          },
+          {
+            "w": "dense",
+            "t": 295.329
+          },
+          {
+            "w": "pixel",
+            "t": 295.788
+          },
+          {
+            "w": "masks",
+            "t": 296.248
+          },
+          {
+            "w": "in",
+            "t": 296.707
+          },
+          {
+            "w": "H",
+            "t": 297.167
+          },
+          {
+            "w": "by",
+            "t": 297.627
+          },
+          {
+            "w": "W,",
+            "t": 298.086
+          },
+          {
+            "w": "and",
+            "t": 298.546
+          },
+          {
+            "w": "3D",
+            "t": 299.006
+          },
+          {
+            "w": "oriented",
+            "t": 299.465
+          },
+          {
+            "w": "LiDAR",
+            "t": 299.925
+          },
+          {
+            "w": "bounding",
+            "t": 300.385
+          },
+          {
+            "w": "boxes",
+            "t": 300.844
+          },
+          {
+            "w": "with",
+            "t": 301.304
+          },
+          {
+            "w": "seven",
+            "t": 301.764
+          },
+          {
+            "w": "degrees",
+            "t": 302.223
+          },
+          {
+            "w": "of",
+            "t": 302.683
+          },
+          {
+            "w": "freedom.",
+            "t": 303.143
+          },
+          {
+            "w": "In",
+            "t": 303.602
+          },
+          {
+            "w": "audio,",
+            "t": 304.062
+          },
+          {
+            "w": "annotators",
+            "t": 304.522
+          },
+          {
+            "w": "tag",
+            "t": 304.981
+          },
+          {
+            "w": "time-frequency",
+            "t": 305.441
+          },
+          {
+            "w": "spectrogram",
+            "t": 305.901
+          },
+          {
+            "w": "boxes,",
+            "t": 306.36
+          },
+          {
+            "w": "and",
+            "t": 306.82
+          },
+          {
+            "w": "in",
+            "t": 307.279
+          },
+          {
+            "w": "video,",
+            "t": 307.739
+          },
+          {
+            "w": "multi-object",
+            "t": 308.199
+          },
+          {
+            "w": "tracking",
+            "t": 308.658
+          },
+          {
+            "w": "requires",
+            "t": 309.118
+          },
+          {
+            "w": "spatio-temporal",
+            "t": 309.578
+          },
+          {
+            "w": "tubelets",
+            "t": 310.037
+          },
+          {
+            "w": "with",
+            "t": 310.497
+          },
+          {
+            "w": "identity",
+            "t": 310.957
+          },
+          {
+            "w": "permanence.",
+            "t": 311.416
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "Table 4.1 in our curriculum formalizes the structural taxonomies, standardized file serializations, and verification metrics across all primary modalities. In text, we rely on CoNLL-2003 and JSONL span offsets verified via Cohen's kappa and Exact Span F1.",
+        "start": 312.626,
+        "end": 331.682,
+        "words": [
+          {
+            "w": "Table",
+            "t": 312.626
+          },
+          {
+            "w": "4.1",
+            "t": 313.141
+          },
+          {
+            "w": "in",
+            "t": 313.656
+          },
+          {
+            "w": "our",
+            "t": 314.171
+          },
+          {
+            "w": "curriculum",
+            "t": 314.686
+          },
+          {
+            "w": "formalizes",
+            "t": 315.201
+          },
+          {
+            "w": "the",
+            "t": 315.716
+          },
+          {
+            "w": "structural",
+            "t": 316.231
+          },
+          {
+            "w": "taxonomies,",
+            "t": 316.746
+          },
+          {
+            "w": "standardized",
+            "t": 317.261
+          },
+          {
+            "w": "file",
+            "t": 317.776
+          },
+          {
+            "w": "serializations,",
+            "t": 318.291
+          },
+          {
+            "w": "and",
+            "t": 318.806
+          },
+          {
+            "w": "verification",
+            "t": 319.321
+          },
+          {
+            "w": "metrics",
+            "t": 319.836
+          },
+          {
+            "w": "across",
+            "t": 320.351
+          },
+          {
+            "w": "all",
+            "t": 320.866
+          },
+          {
+            "w": "primary",
+            "t": 321.381
+          },
+          {
+            "w": "modalities.",
+            "t": 321.896
+          },
+          {
+            "w": "In",
+            "t": 322.412
+          },
+          {
+            "w": "text,",
+            "t": 322.927
+          },
+          {
+            "w": "we",
+            "t": 323.442
+          },
+          {
+            "w": "rely",
+            "t": 323.957
+          },
+          {
+            "w": "on",
+            "t": 324.472
+          },
+          {
+            "w": "CoNLL-2003",
+            "t": 324.987
+          },
+          {
+            "w": "and",
+            "t": 325.502
+          },
+          {
+            "w": "JSONL",
+            "t": 326.017
+          },
+          {
+            "w": "span",
+            "t": 326.532
+          },
+          {
+            "w": "offsets",
+            "t": 327.047
+          },
+          {
+            "w": "verified",
+            "t": 327.562
+          },
+          {
+            "w": "via",
+            "t": 328.077
+          },
+          {
+            "w": "Cohen's",
+            "t": 328.592
+          },
+          {
+            "w": "kappa",
+            "t": 329.107
+          },
+          {
+            "w": "and",
+            "t": 329.622
+          },
+          {
+            "w": "Exact",
+            "t": 330.137
+          },
+          {
+            "w": "Span",
+            "t": 330.652
+          },
+          {
+            "w": "F1.",
+            "t": 331.167
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "In computer vision, standard formats include MS COCO JSON, Pascal VOC XML, and YOLO normalized text coordinates, evaluated with Intersection over Union thresholds. In 3D autonomy, KITTI and nuScenes JSON serialize 7-DoF boxes evaluated with 3D IoU at 0.70. Production pipelines must enforce these invariants automatically.",
+        "start": 332.032,
+        "end": 357.688,
+        "words": [
+          {
+            "w": "In",
+            "t": 332.032
+          },
+          {
+            "w": "computer",
+            "t": 332.59
+          },
+          {
+            "w": "vision,",
+            "t": 333.147
+          },
+          {
+            "w": "standard",
+            "t": 333.705
+          },
+          {
+            "w": "formats",
+            "t": 334.263
+          },
+          {
+            "w": "include",
+            "t": 334.821
+          },
+          {
+            "w": "MS",
+            "t": 335.378
+          },
+          {
+            "w": "COCO",
+            "t": 335.936
+          },
+          {
+            "w": "JSON,",
+            "t": 336.494
+          },
+          {
+            "w": "Pascal",
+            "t": 337.052
+          },
+          {
+            "w": "VOC",
+            "t": 337.609
+          },
+          {
+            "w": "XML,",
+            "t": 338.167
+          },
+          {
+            "w": "and",
+            "t": 338.725
+          },
+          {
+            "w": "YOLO",
+            "t": 339.283
+          },
+          {
+            "w": "normalized",
+            "t": 339.84
+          },
+          {
+            "w": "text",
+            "t": 340.398
+          },
+          {
+            "w": "coordinates,",
+            "t": 340.956
+          },
+          {
+            "w": "evaluated",
+            "t": 341.514
+          },
+          {
+            "w": "with",
+            "t": 342.071
+          },
+          {
+            "w": "Intersection",
+            "t": 342.629
+          },
+          {
+            "w": "over",
+            "t": 343.187
+          },
+          {
+            "w": "Union",
+            "t": 343.745
+          },
+          {
+            "w": "thresholds.",
+            "t": 344.302
+          },
+          {
+            "w": "In",
+            "t": 344.86
+          },
+          {
+            "w": "3D",
+            "t": 345.418
+          },
+          {
+            "w": "autonomy,",
+            "t": 345.975
+          },
+          {
+            "w": "KITTI",
+            "t": 346.533
+          },
+          {
+            "w": "and",
+            "t": 347.091
+          },
+          {
+            "w": "nuScenes",
+            "t": 347.649
+          },
+          {
+            "w": "JSON",
+            "t": 348.206
+          },
+          {
+            "w": "serialize",
+            "t": 348.764
+          },
+          {
+            "w": "7-DoF",
+            "t": 349.322
+          },
+          {
+            "w": "boxes",
+            "t": 349.88
+          },
+          {
+            "w": "evaluated",
+            "t": 350.437
+          },
+          {
+            "w": "with",
+            "t": 350.995
+          },
+          {
+            "w": "3D",
+            "t": 351.553
+          },
+          {
+            "w": "IoU",
+            "t": 352.111
+          },
+          {
+            "w": "at",
+            "t": 352.668
+          },
+          {
+            "w": "0.70.",
+            "t": 353.226
+          },
+          {
+            "w": "Production",
+            "t": 353.784
+          },
+          {
+            "w": "pipelines",
+            "t": 354.342
+          },
+          {
+            "w": "must",
+            "t": 354.899
+          },
+          {
+            "w": "enforce",
+            "t": 355.457
+          },
+          {
+            "w": "these",
+            "t": 356.015
+          },
+          {
+            "w": "invariants",
+            "t": 356.573
+          },
+          {
+            "w": "automatically.",
+            "t": 357.13
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "An industrial annotation pipeline cannot rely on worker goodwill. It must enforce strict statistical gates at every phase. We divide this into nine systematic stages, starting with guideline and gold rubric design, followed by a 500-sample pilot batch evaluated with Cohen's kappa.",
+        "start": 358.438,
+        "end": 377.062,
+        "words": [
+          {
+            "w": "An",
+            "t": 358.438
+          },
+          {
+            "w": "industrial",
+            "t": 358.881
+          },
+          {
+            "w": "annotation",
+            "t": 359.325
+          },
+          {
+            "w": "pipeline",
+            "t": 359.768
+          },
+          {
+            "w": "cannot",
+            "t": 360.212
+          },
+          {
+            "w": "rely",
+            "t": 360.655
+          },
+          {
+            "w": "on",
+            "t": 361.099
+          },
+          {
+            "w": "worker",
+            "t": 361.542
+          },
+          {
+            "w": "goodwill.",
+            "t": 361.985
+          },
+          {
+            "w": "It",
+            "t": 362.429
+          },
+          {
+            "w": "must",
+            "t": 362.872
+          },
+          {
+            "w": "enforce",
+            "t": 363.316
+          },
+          {
+            "w": "strict",
+            "t": 363.759
+          },
+          {
+            "w": "statistical",
+            "t": 364.203
+          },
+          {
+            "w": "gates",
+            "t": 364.646
+          },
+          {
+            "w": "at",
+            "t": 365.089
+          },
+          {
+            "w": "every",
+            "t": 365.533
+          },
+          {
+            "w": "phase.",
+            "t": 365.976
+          },
+          {
+            "w": "We",
+            "t": 366.42
+          },
+          {
+            "w": "divide",
+            "t": 366.863
+          },
+          {
+            "w": "this",
+            "t": 367.307
+          },
+          {
+            "w": "into",
+            "t": 367.75
+          },
+          {
+            "w": "nine",
+            "t": 368.193
+          },
+          {
+            "w": "systematic",
+            "t": 368.637
+          },
+          {
+            "w": "stages,",
+            "t": 369.08
+          },
+          {
+            "w": "starting",
+            "t": 369.524
+          },
+          {
+            "w": "with",
+            "t": 369.967
+          },
+          {
+            "w": "guideline",
+            "t": 370.411
+          },
+          {
+            "w": "and",
+            "t": 370.854
+          },
+          {
+            "w": "gold",
+            "t": 371.297
+          },
+          {
+            "w": "rubric",
+            "t": 371.741
+          },
+          {
+            "w": "design,",
+            "t": 372.184
+          },
+          {
+            "w": "followed",
+            "t": 372.628
+          },
+          {
+            "w": "by",
+            "t": 373.071
+          },
+          {
+            "w": "a",
+            "t": 373.515
+          },
+          {
+            "w": "500-sample",
+            "t": 373.958
+          },
+          {
+            "w": "pilot",
+            "t": 374.401
+          },
+          {
+            "w": "batch",
+            "t": 374.845
+          },
+          {
+            "w": "evaluated",
+            "t": 375.288
+          },
+          {
+            "w": "with",
+            "t": 375.732
+          },
+          {
+            "w": "Cohen's",
+            "t": 376.175
+          },
+          {
+            "w": "kappa.",
+            "t": 376.619
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Production batches enforce redundant three-worker queues injected with ten percent synthetic honeypots. Workers falling below ninety percent accuracy are automatically evicted. Responses are synthesized via Dawid-Skene consensus inference, routing ambiguous disagreements to senior domain adjudicators.",
+        "start": 377.412,
+        "end": 396.492,
+        "words": [
+          {
+            "w": "Production",
+            "t": 377.412
+          },
+          {
+            "w": "batches",
+            "t": 377.957
+          },
+          {
+            "w": "enforce",
+            "t": 378.502
+          },
+          {
+            "w": "redundant",
+            "t": 379.047
+          },
+          {
+            "w": "three-worker",
+            "t": 379.593
+          },
+          {
+            "w": "queues",
+            "t": 380.138
+          },
+          {
+            "w": "injected",
+            "t": 380.683
+          },
+          {
+            "w": "with",
+            "t": 381.228
+          },
+          {
+            "w": "ten",
+            "t": 381.773
+          },
+          {
+            "w": "percent",
+            "t": 382.318
+          },
+          {
+            "w": "synthetic",
+            "t": 382.863
+          },
+          {
+            "w": "honeypots.",
+            "t": 383.409
+          },
+          {
+            "w": "Workers",
+            "t": 383.954
+          },
+          {
+            "w": "falling",
+            "t": 384.499
+          },
+          {
+            "w": "below",
+            "t": 385.044
+          },
+          {
+            "w": "ninety",
+            "t": 385.589
+          },
+          {
+            "w": "percent",
+            "t": 386.134
+          },
+          {
+            "w": "accuracy",
+            "t": 386.679
+          },
+          {
+            "w": "are",
+            "t": 387.225
+          },
+          {
+            "w": "automatically",
+            "t": 387.77
+          },
+          {
+            "w": "evicted.",
+            "t": 388.315
+          },
+          {
+            "w": "Responses",
+            "t": 388.86
+          },
+          {
+            "w": "are",
+            "t": 389.405
+          },
+          {
+            "w": "synthesized",
+            "t": 389.95
+          },
+          {
+            "w": "via",
+            "t": 390.495
+          },
+          {
+            "w": "Dawid-Skene",
+            "t": 391.041
+          },
+          {
+            "w": "consensus",
+            "t": 391.586
+          },
+          {
+            "w": "inference,",
+            "t": 392.131
+          },
+          {
+            "w": "routing",
+            "t": 392.676
+          },
+          {
+            "w": "ambiguous",
+            "t": 393.221
+          },
+          {
+            "w": "disagreements",
+            "t": 393.766
+          },
+          {
+            "w": "to",
+            "t": 394.311
+          },
+          {
+            "w": "senior",
+            "t": 394.857
+          },
+          {
+            "w": "domain",
+            "t": 395.402
+          },
+          {
+            "w": "adjudicators.",
+            "t": 395.947
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "Let us examine the statistical engine powering Stage 6 and 7. Synthetic honeypots are gold-standard tasks disguised identically to raw data. If an annotator's rolling accuracy on honeypots drops below ninety percent, their access is revoked and all completed tasks are automatically returned to the queue.",
+        "start": 397.242,
+        "end": 416.778,
+        "words": [
+          {
+            "w": "Let",
+            "t": 397.242
+          },
+          {
+            "w": "us",
+            "t": 397.667
+          },
+          {
+            "w": "examine",
+            "t": 398.091
+          },
+          {
+            "w": "the",
+            "t": 398.516
+          },
+          {
+            "w": "statistical",
+            "t": 398.941
+          },
+          {
+            "w": "engine",
+            "t": 399.365
+          },
+          {
+            "w": "powering",
+            "t": 399.79
+          },
+          {
+            "w": "Stage",
+            "t": 400.215
+          },
+          {
+            "w": "6",
+            "t": 400.64
+          },
+          {
+            "w": "and",
+            "t": 401.064
+          },
+          {
+            "w": "7.",
+            "t": 401.489
+          },
+          {
+            "w": "Synthetic",
+            "t": 401.914
+          },
+          {
+            "w": "honeypots",
+            "t": 402.338
+          },
+          {
+            "w": "are",
+            "t": 402.763
+          },
+          {
+            "w": "gold-standard",
+            "t": 403.188
+          },
+          {
+            "w": "tasks",
+            "t": 403.612
+          },
+          {
+            "w": "disguised",
+            "t": 404.037
+          },
+          {
+            "w": "identically",
+            "t": 404.462
+          },
+          {
+            "w": "to",
+            "t": 404.887
+          },
+          {
+            "w": "raw",
+            "t": 405.311
+          },
+          {
+            "w": "data.",
+            "t": 405.736
+          },
+          {
+            "w": "If",
+            "t": 406.161
+          },
+          {
+            "w": "an",
+            "t": 406.585
+          },
+          {
+            "w": "annotator's",
+            "t": 407.01
+          },
+          {
+            "w": "rolling",
+            "t": 407.435
+          },
+          {
+            "w": "accuracy",
+            "t": 407.859
+          },
+          {
+            "w": "on",
+            "t": 408.284
+          },
+          {
+            "w": "honeypots",
+            "t": 408.709
+          },
+          {
+            "w": "drops",
+            "t": 409.133
+          },
+          {
+            "w": "below",
+            "t": 409.558
+          },
+          {
+            "w": "ninety",
+            "t": 409.983
+          },
+          {
+            "w": "percent,",
+            "t": 410.408
+          },
+          {
+            "w": "their",
+            "t": 410.832
+          },
+          {
+            "w": "access",
+            "t": 411.257
+          },
+          {
+            "w": "is",
+            "t": 411.682
+          },
+          {
+            "w": "revoked",
+            "t": 412.106
+          },
+          {
+            "w": "and",
+            "t": 412.531
+          },
+          {
+            "w": "all",
+            "t": 412.956
+          },
+          {
+            "w": "completed",
+            "t": 413.38
+          },
+          {
+            "w": "tasks",
+            "t": 413.805
+          },
+          {
+            "w": "are",
+            "t": 414.23
+          },
+          {
+            "w": "automatically",
+            "t": 414.655
+          },
+          {
+            "w": "returned",
+            "t": 415.079
+          },
+          {
+            "w": "to",
+            "t": 415.504
+          },
+          {
+            "w": "the",
+            "t": 415.929
+          },
+          {
+            "w": "queue.",
+            "t": 416.353
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "Furthermore, naive majority voting is dangerously flawed when annotators share cognitive biases. The Dawid-Skene algorithm uses Expectation-Maximization to jointly infer each worker's individual error rate and the true latent class, dynamically upweighting reliable workers while downweighting noise.",
+        "start": 417.128,
+        "end": 435.536,
+        "words": [
+          {
+            "w": "Furthermore,",
+            "t": 417.128
+          },
+          {
+            "w": "naive",
+            "t": 417.626
+          },
+          {
+            "w": "majority",
+            "t": 418.123
+          },
+          {
+            "w": "voting",
+            "t": 418.621
+          },
+          {
+            "w": "is",
+            "t": 419.118
+          },
+          {
+            "w": "dangerously",
+            "t": 419.616
+          },
+          {
+            "w": "flawed",
+            "t": 420.113
+          },
+          {
+            "w": "when",
+            "t": 420.611
+          },
+          {
+            "w": "annotators",
+            "t": 421.108
+          },
+          {
+            "w": "share",
+            "t": 421.606
+          },
+          {
+            "w": "cognitive",
+            "t": 422.103
+          },
+          {
+            "w": "biases.",
+            "t": 422.601
+          },
+          {
+            "w": "The",
+            "t": 423.098
+          },
+          {
+            "w": "Dawid-Skene",
+            "t": 423.596
+          },
+          {
+            "w": "algorithm",
+            "t": 424.093
+          },
+          {
+            "w": "uses",
+            "t": 424.591
+          },
+          {
+            "w": "Expectation-Maximization",
+            "t": 425.088
+          },
+          {
+            "w": "to",
+            "t": 425.586
+          },
+          {
+            "w": "jointly",
+            "t": 426.083
+          },
+          {
+            "w": "infer",
+            "t": 426.581
+          },
+          {
+            "w": "each",
+            "t": 427.078
+          },
+          {
+            "w": "worker's",
+            "t": 427.576
+          },
+          {
+            "w": "individual",
+            "t": 428.073
+          },
+          {
+            "w": "error",
+            "t": 428.571
+          },
+          {
+            "w": "rate",
+            "t": 429.068
+          },
+          {
+            "w": "and",
+            "t": 429.566
+          },
+          {
+            "w": "the",
+            "t": 430.063
+          },
+          {
+            "w": "true",
+            "t": 430.561
+          },
+          {
+            "w": "latent",
+            "t": 431.058
+          },
+          {
+            "w": "class,",
+            "t": 431.556
+          },
+          {
+            "w": "dynamically",
+            "t": 432.053
+          },
+          {
+            "w": "upweighting",
+            "t": 432.551
+          },
+          {
+            "w": "reliable",
+            "t": 433.048
+          },
+          {
+            "w": "workers",
+            "t": 433.546
+          },
+          {
+            "w": "while",
+            "t": 434.043
+          },
+          {
+            "w": "downweighting",
+            "t": 434.541
+          },
+          {
+            "w": "noise.",
+            "t": 435.038
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "Welcome to our second interactive workbench! Here you can manipulate asymmetric noise transition parameters T zero-one and T one-zero. Observe how directional confusion skews apparent class prevalence and how the Natarajan inverse operator restores unbiased risk gradients.",
+        "start": 436.286,
+        "end": 453.254,
+        "words": [
+          {
+            "w": "Welcome",
+            "t": 436.286
+          },
+          {
+            "w": "to",
+            "t": 436.745
+          },
+          {
+            "w": "our",
+            "t": 437.203
+          },
+          {
+            "w": "second",
+            "t": 437.662
+          },
+          {
+            "w": "interactive",
+            "t": 438.12
+          },
+          {
+            "w": "workbench!",
+            "t": 438.579
+          },
+          {
+            "w": "Here",
+            "t": 439.038
+          },
+          {
+            "w": "you",
+            "t": 439.496
+          },
+          {
+            "w": "can",
+            "t": 439.955
+          },
+          {
+            "w": "manipulate",
+            "t": 440.413
+          },
+          {
+            "w": "asymmetric",
+            "t": 440.872
+          },
+          {
+            "w": "noise",
+            "t": 441.331
+          },
+          {
+            "w": "transition",
+            "t": 441.789
+          },
+          {
+            "w": "parameters",
+            "t": 442.248
+          },
+          {
+            "w": "T",
+            "t": 442.706
+          },
+          {
+            "w": "zero-one",
+            "t": 443.165
+          },
+          {
+            "w": "and",
+            "t": 443.624
+          },
+          {
+            "w": "T",
+            "t": 444.082
+          },
+          {
+            "w": "one-zero.",
+            "t": 444.541
+          },
+          {
+            "w": "Observe",
+            "t": 444.999
+          },
+          {
+            "w": "how",
+            "t": 445.458
+          },
+          {
+            "w": "directional",
+            "t": 445.916
+          },
+          {
+            "w": "confusion",
+            "t": 446.375
+          },
+          {
+            "w": "skews",
+            "t": 446.834
+          },
+          {
+            "w": "apparent",
+            "t": 447.292
+          },
+          {
+            "w": "class",
+            "t": 447.751
+          },
+          {
+            "w": "prevalence",
+            "t": 448.209
+          },
+          {
+            "w": "and",
+            "t": 448.668
+          },
+          {
+            "w": "how",
+            "t": 449.127
+          },
+          {
+            "w": "the",
+            "t": 449.585
+          },
+          {
+            "w": "Natarajan",
+            "t": 450.044
+          },
+          {
+            "w": "inverse",
+            "t": 450.502
+          },
+          {
+            "w": "operator",
+            "t": 450.961
+          },
+          {
+            "w": "restores",
+            "t": 451.42
+          },
+          {
+            "w": "unbiased",
+            "t": 451.878
+          },
+          {
+            "w": "risk",
+            "t": 452.337
+          },
+          {
+            "w": "gradients.",
+            "t": 452.795
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "Notice that if the sum of confusion rates approaches one, the determinant approaches zero, causing the inverse operator to explode into high variance. Try exploring the sliders directly below us now!",
+        "start": 453.604,
+        "end": 465.868,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 453.604
+          },
+          {
+            "w": "that",
+            "t": 454.0
+          },
+          {
+            "w": "if",
+            "t": 454.395
+          },
+          {
+            "w": "the",
+            "t": 454.791
+          },
+          {
+            "w": "sum",
+            "t": 455.186
+          },
+          {
+            "w": "of",
+            "t": 455.582
+          },
+          {
+            "w": "confusion",
+            "t": 455.978
+          },
+          {
+            "w": "rates",
+            "t": 456.373
+          },
+          {
+            "w": "approaches",
+            "t": 456.769
+          },
+          {
+            "w": "one,",
+            "t": 457.165
+          },
+          {
+            "w": "the",
+            "t": 457.56
+          },
+          {
+            "w": "determinant",
+            "t": 457.956
+          },
+          {
+            "w": "approaches",
+            "t": 458.351
+          },
+          {
+            "w": "zero,",
+            "t": 458.747
+          },
+          {
+            "w": "causing",
+            "t": 459.143
+          },
+          {
+            "w": "the",
+            "t": 459.538
+          },
+          {
+            "w": "inverse",
+            "t": 459.934
+          },
+          {
+            "w": "operator",
+            "t": 460.329
+          },
+          {
+            "w": "to",
+            "t": 460.725
+          },
+          {
+            "w": "explode",
+            "t": 461.121
+          },
+          {
+            "w": "into",
+            "t": 461.516
+          },
+          {
+            "w": "high",
+            "t": 461.912
+          },
+          {
+            "w": "variance.",
+            "t": 462.307
+          },
+          {
+            "w": "Try",
+            "t": 462.703
+          },
+          {
+            "w": "exploring",
+            "t": 463.099
+          },
+          {
+            "w": "the",
+            "t": 463.494
+          },
+          {
+            "w": "sliders",
+            "t": 463.89
+          },
+          {
+            "w": "directly",
+            "t": 464.286
+          },
+          {
+            "w": "below",
+            "t": 464.681
+          },
+          {
+            "w": "us",
+            "t": 465.077
+          },
+          {
+            "w": "now!",
+            "t": 465.472
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "Here is our second active checkpoint: In a clinical oncology dataset, annotators mislabel Melanoma as Benign Nevus with probability 0.25, but never mislabel Nevus as Melanoma. Why does training with standard Cross-Entropy fail catastrophically, and how does Natarajan's inverse transition operator fix it? Select Option A, B, or C above me!",
+        "start": 466.618,
+        "end": 489.682,
+        "words": [
+          {
+            "w": "Here",
+            "t": 466.618
+          },
+          {
+            "w": "is",
+            "t": 467.07
+          },
+          {
+            "w": "our",
+            "t": 467.522
+          },
+          {
+            "w": "second",
+            "t": 467.975
+          },
+          {
+            "w": "active",
+            "t": 468.427
+          },
+          {
+            "w": "checkpoint:",
+            "t": 468.879
+          },
+          {
+            "w": "In",
+            "t": 469.331
+          },
+          {
+            "w": "a",
+            "t": 469.784
+          },
+          {
+            "w": "clinical",
+            "t": 470.236
+          },
+          {
+            "w": "oncology",
+            "t": 470.688
+          },
+          {
+            "w": "dataset,",
+            "t": 471.14
+          },
+          {
+            "w": "annotators",
+            "t": 471.593
+          },
+          {
+            "w": "mislabel",
+            "t": 472.045
+          },
+          {
+            "w": "Melanoma",
+            "t": 472.497
+          },
+          {
+            "w": "as",
+            "t": 472.949
+          },
+          {
+            "w": "Benign",
+            "t": 473.402
+          },
+          {
+            "w": "Nevus",
+            "t": 473.854
+          },
+          {
+            "w": "with",
+            "t": 474.306
+          },
+          {
+            "w": "probability",
+            "t": 474.758
+          },
+          {
+            "w": "0.25,",
+            "t": 475.21
+          },
+          {
+            "w": "but",
+            "t": 475.663
+          },
+          {
+            "w": "never",
+            "t": 476.115
+          },
+          {
+            "w": "mislabel",
+            "t": 476.567
+          },
+          {
+            "w": "Nevus",
+            "t": 477.019
+          },
+          {
+            "w": "as",
+            "t": 477.472
+          },
+          {
+            "w": "Melanoma.",
+            "t": 477.924
+          },
+          {
+            "w": "Why",
+            "t": 478.376
+          },
+          {
+            "w": "does",
+            "t": 478.828
+          },
+          {
+            "w": "training",
+            "t": 479.281
+          },
+          {
+            "w": "with",
+            "t": 479.733
+          },
+          {
+            "w": "standard",
+            "t": 480.185
+          },
+          {
+            "w": "Cross-Entropy",
+            "t": 480.637
+          },
+          {
+            "w": "fail",
+            "t": 481.09
+          },
+          {
+            "w": "catastrophically,",
+            "t": 481.542
+          },
+          {
+            "w": "and",
+            "t": 481.994
+          },
+          {
+            "w": "how",
+            "t": 482.446
+          },
+          {
+            "w": "does",
+            "t": 482.898
+          },
+          {
+            "w": "Natarajan's",
+            "t": 483.351
+          },
+          {
+            "w": "inverse",
+            "t": 483.803
+          },
+          {
+            "w": "transition",
+            "t": 484.255
+          },
+          {
+            "w": "operator",
+            "t": 484.707
+          },
+          {
+            "w": "fix",
+            "t": 485.16
+          },
+          {
+            "w": "it?",
+            "t": 485.612
+          },
+          {
+            "w": "Select",
+            "t": 486.064
+          },
+          {
+            "w": "Option",
+            "t": 486.516
+          },
+          {
+            "w": "A,",
+            "t": 486.969
+          },
+          {
+            "w": "B,",
+            "t": 487.421
+          },
+          {
+            "w": "or",
+            "t": 487.873
+          },
+          {
+            "w": "C",
+            "t": 488.325
+          },
+          {
+            "w": "above",
+            "t": 488.778
+          },
+          {
+            "w": "me!",
+            "t": 489.23
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "To appreciate why annotation engineering is mission-critical, examine two landmark case studies. In NeurIPS 2021, Northcutt, Athalye, and Mueller algorithmically audited the test sets of ten premier machine learning benchmarks using Confident Learning.",
+        "start": 490.432,
+        "end": 506.992,
+        "words": [
+          {
+            "w": "To",
+            "t": 490.432
+          },
+          {
+            "w": "appreciate",
+            "t": 490.934
+          },
+          {
+            "w": "why",
+            "t": 491.436
+          },
+          {
+            "w": "annotation",
+            "t": 491.937
+          },
+          {
+            "w": "engineering",
+            "t": 492.439
+          },
+          {
+            "w": "is",
+            "t": 492.941
+          },
+          {
+            "w": "mission-critical,",
+            "t": 493.443
+          },
+          {
+            "w": "examine",
+            "t": 493.945
+          },
+          {
+            "w": "two",
+            "t": 494.447
+          },
+          {
+            "w": "landmark",
+            "t": 494.948
+          },
+          {
+            "w": "case",
+            "t": 495.45
+          },
+          {
+            "w": "studies.",
+            "t": 495.952
+          },
+          {
+            "w": "In",
+            "t": 496.454
+          },
+          {
+            "w": "NeurIPS",
+            "t": 496.956
+          },
+          {
+            "w": "2021,",
+            "t": 497.457
+          },
+          {
+            "w": "Northcutt,",
+            "t": 497.959
+          },
+          {
+            "w": "Athalye,",
+            "t": 498.461
+          },
+          {
+            "w": "and",
+            "t": 498.963
+          },
+          {
+            "w": "Mueller",
+            "t": 499.465
+          },
+          {
+            "w": "algorithmically",
+            "t": 499.967
+          },
+          {
+            "w": "audited",
+            "t": 500.468
+          },
+          {
+            "w": "the",
+            "t": 500.97
+          },
+          {
+            "w": "test",
+            "t": 501.472
+          },
+          {
+            "w": "sets",
+            "t": 501.974
+          },
+          {
+            "w": "of",
+            "t": 502.476
+          },
+          {
+            "w": "ten",
+            "t": 502.977
+          },
+          {
+            "w": "premier",
+            "t": 503.479
+          },
+          {
+            "w": "machine",
+            "t": 503.981
+          },
+          {
+            "w": "learning",
+            "t": 504.483
+          },
+          {
+            "w": "benchmarks",
+            "t": 504.985
+          },
+          {
+            "w": "using",
+            "t": 505.487
+          },
+          {
+            "w": "Confident",
+            "t": 505.988
+          },
+          {
+            "w": "Learning.",
+            "t": 506.49
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "They uncovered that nearly 6% of ImageNet validation images and over 10% of QuickDraw test labels are outright erroneous. Even more sobering is the 2018 Uber ATG fatal crash in Tempe, Arizona, where an autonomous vehicle's label ontology strictly partitioned Pedestrians and Bicycles into disjoint classes, with no category for a pedestrian wheeling a bicycle. The classifier oscillated wildly, suppressing emergency braking.",
+        "start": 507.342,
+        "end": 535.59,
+        "words": [
+          {
+            "w": "They",
+            "t": 507.342
+          },
+          {
+            "w": "uncovered",
+            "t": 507.798
+          },
+          {
+            "w": "that",
+            "t": 508.253
+          },
+          {
+            "w": "nearly",
+            "t": 508.709
+          },
+          {
+            "w": "6%",
+            "t": 509.164
+          },
+          {
+            "w": "of",
+            "t": 509.62
+          },
+          {
+            "w": "ImageNet",
+            "t": 510.076
+          },
+          {
+            "w": "validation",
+            "t": 510.531
+          },
+          {
+            "w": "images",
+            "t": 510.987
+          },
+          {
+            "w": "and",
+            "t": 511.443
+          },
+          {
+            "w": "over",
+            "t": 511.898
+          },
+          {
+            "w": "10%",
+            "t": 512.354
+          },
+          {
+            "w": "of",
+            "t": 512.809
+          },
+          {
+            "w": "QuickDraw",
+            "t": 513.265
+          },
+          {
+            "w": "test",
+            "t": 513.721
+          },
+          {
+            "w": "labels",
+            "t": 514.176
+          },
+          {
+            "w": "are",
+            "t": 514.632
+          },
+          {
+            "w": "outright",
+            "t": 515.087
+          },
+          {
+            "w": "erroneous.",
+            "t": 515.543
+          },
+          {
+            "w": "Even",
+            "t": 515.999
+          },
+          {
+            "w": "more",
+            "t": 516.454
+          },
+          {
+            "w": "sobering",
+            "t": 516.91
+          },
+          {
+            "w": "is",
+            "t": 517.365
+          },
+          {
+            "w": "the",
+            "t": 517.821
+          },
+          {
+            "w": "2018",
+            "t": 518.277
+          },
+          {
+            "w": "Uber",
+            "t": 518.732
+          },
+          {
+            "w": "ATG",
+            "t": 519.188
+          },
+          {
+            "w": "fatal",
+            "t": 519.644
+          },
+          {
+            "w": "crash",
+            "t": 520.099
+          },
+          {
+            "w": "in",
+            "t": 520.555
+          },
+          {
+            "w": "Tempe,",
+            "t": 521.01
+          },
+          {
+            "w": "Arizona,",
+            "t": 521.466
+          },
+          {
+            "w": "where",
+            "t": 521.922
+          },
+          {
+            "w": "an",
+            "t": 522.377
+          },
+          {
+            "w": "autonomous",
+            "t": 522.833
+          },
+          {
+            "w": "vehicle's",
+            "t": 523.288
+          },
+          {
+            "w": "label",
+            "t": 523.744
+          },
+          {
+            "w": "ontology",
+            "t": 524.2
+          },
+          {
+            "w": "strictly",
+            "t": 524.655
+          },
+          {
+            "w": "partitioned",
+            "t": 525.111
+          },
+          {
+            "w": "Pedestrians",
+            "t": 525.567
+          },
+          {
+            "w": "and",
+            "t": 526.022
+          },
+          {
+            "w": "Bicycles",
+            "t": 526.478
+          },
+          {
+            "w": "into",
+            "t": 526.933
+          },
+          {
+            "w": "disjoint",
+            "t": 527.389
+          },
+          {
+            "w": "classes,",
+            "t": 527.845
+          },
+          {
+            "w": "with",
+            "t": 528.3
+          },
+          {
+            "w": "no",
+            "t": 528.756
+          },
+          {
+            "w": "category",
+            "t": 529.211
+          },
+          {
+            "w": "for",
+            "t": 529.667
+          },
+          {
+            "w": "a",
+            "t": 530.123
+          },
+          {
+            "w": "pedestrian",
+            "t": 530.578
+          },
+          {
+            "w": "wheeling",
+            "t": 531.034
+          },
+          {
+            "w": "a",
+            "t": 531.489
+          },
+          {
+            "w": "bicycle.",
+            "t": 531.945
+          },
+          {
+            "w": "The",
+            "t": 532.401
+          },
+          {
+            "w": "classifier",
+            "t": 532.856
+          },
+          {
+            "w": "oscillated",
+            "t": 533.312
+          },
+          {
+            "w": "wildly,",
+            "t": 533.768
+          },
+          {
+            "w": "suppressing",
+            "t": 534.223
+          },
+          {
+            "w": "emergency",
+            "t": 534.679
+          },
+          {
+            "w": "braking.",
+            "t": 535.134
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "To operationalize these principles, Section 7 of our documentation provides a production Python module using Pydantic V2. The LabelQualityEngine calculates Angluin-Laird sample complexity, estimates class-conditional thresholds, and prunes confident label errors.",
+        "start": 536.34,
+        "end": 553.284,
+        "words": [
+          {
+            "w": "To",
+            "t": 536.34
+          },
+          {
+            "w": "operationalize",
+            "t": 536.887
+          },
+          {
+            "w": "these",
+            "t": 537.433
+          },
+          {
+            "w": "principles,",
+            "t": 537.98
+          },
+          {
+            "w": "Section",
+            "t": 538.526
+          },
+          {
+            "w": "7",
+            "t": 539.073
+          },
+          {
+            "w": "of",
+            "t": 539.619
+          },
+          {
+            "w": "our",
+            "t": 540.166
+          },
+          {
+            "w": "documentation",
+            "t": 540.713
+          },
+          {
+            "w": "provides",
+            "t": 541.259
+          },
+          {
+            "w": "a",
+            "t": 541.806
+          },
+          {
+            "w": "production",
+            "t": 542.352
+          },
+          {
+            "w": "Python",
+            "t": 542.899
+          },
+          {
+            "w": "module",
+            "t": 543.446
+          },
+          {
+            "w": "using",
+            "t": 543.992
+          },
+          {
+            "w": "Pydantic",
+            "t": 544.539
+          },
+          {
+            "w": "V2.",
+            "t": 545.085
+          },
+          {
+            "w": "The",
+            "t": 545.632
+          },
+          {
+            "w": "LabelQualityEngine",
+            "t": 546.178
+          },
+          {
+            "w": "calculates",
+            "t": 546.725
+          },
+          {
+            "w": "Angluin-Laird",
+            "t": 547.272
+          },
+          {
+            "w": "sample",
+            "t": 547.818
+          },
+          {
+            "w": "complexity,",
+            "t": 548.365
+          },
+          {
+            "w": "estimates",
+            "t": 548.911
+          },
+          {
+            "w": "class-conditional",
+            "t": 549.458
+          },
+          {
+            "w": "thresholds,",
+            "t": 550.005
+          },
+          {
+            "w": "and",
+            "t": 550.551
+          },
+          {
+            "w": "prunes",
+            "t": 551.098
+          },
+          {
+            "w": "confident",
+            "t": 551.644
+          },
+          {
+            "w": "label",
+            "t": 552.191
+          },
+          {
+            "w": "errors.",
+            "t": 552.737
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Notice the automated assertion test suite at the bottom of the module. Incorporating these mathematical assertions directly into your automated CI/CD pipeline guarantees that any annotation batch with an error rate exceeding forty percent fails the build before polluting training stores.",
+        "start": 553.634,
+        "end": 570.77,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 553.634
+          },
+          {
+            "w": "the",
+            "t": 554.052
+          },
+          {
+            "w": "automated",
+            "t": 554.47
+          },
+          {
+            "w": "assertion",
+            "t": 554.888
+          },
+          {
+            "w": "test",
+            "t": 555.306
+          },
+          {
+            "w": "suite",
+            "t": 555.724
+          },
+          {
+            "w": "at",
+            "t": 556.142
+          },
+          {
+            "w": "the",
+            "t": 556.56
+          },
+          {
+            "w": "bottom",
+            "t": 556.978
+          },
+          {
+            "w": "of",
+            "t": 557.396
+          },
+          {
+            "w": "the",
+            "t": 557.814
+          },
+          {
+            "w": "module.",
+            "t": 558.231
+          },
+          {
+            "w": "Incorporating",
+            "t": 558.649
+          },
+          {
+            "w": "these",
+            "t": 559.067
+          },
+          {
+            "w": "mathematical",
+            "t": 559.485
+          },
+          {
+            "w": "assertions",
+            "t": 559.903
+          },
+          {
+            "w": "directly",
+            "t": 560.321
+          },
+          {
+            "w": "into",
+            "t": 560.739
+          },
+          {
+            "w": "your",
+            "t": 561.157
+          },
+          {
+            "w": "automated",
+            "t": 561.575
+          },
+          {
+            "w": "CI/CD",
+            "t": 561.993
+          },
+          {
+            "w": "pipeline",
+            "t": 562.411
+          },
+          {
+            "w": "guarantees",
+            "t": 562.829
+          },
+          {
+            "w": "that",
+            "t": 563.247
+          },
+          {
+            "w": "any",
+            "t": 563.665
+          },
+          {
+            "w": "annotation",
+            "t": 564.083
+          },
+          {
+            "w": "batch",
+            "t": 564.501
+          },
+          {
+            "w": "with",
+            "t": 564.919
+          },
+          {
+            "w": "an",
+            "t": 565.337
+          },
+          {
+            "w": "error",
+            "t": 565.755
+          },
+          {
+            "w": "rate",
+            "t": 566.173
+          },
+          {
+            "w": "exceeding",
+            "t": 566.59
+          },
+          {
+            "w": "forty",
+            "t": 567.008
+          },
+          {
+            "w": "percent",
+            "t": 567.426
+          },
+          {
+            "w": "fails",
+            "t": 567.844
+          },
+          {
+            "w": "the",
+            "t": 568.262
+          },
+          {
+            "w": "build",
+            "t": 568.68
+          },
+          {
+            "w": "before",
+            "t": 569.098
+          },
+          {
+            "w": "polluting",
+            "t": 569.516
+          },
+          {
+            "w": "training",
+            "t": 569.934
+          },
+          {
+            "w": "stores.",
+            "t": 570.352
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "Congratulations on completing Lesson 4.1! We have established four immutable laws of data annotation: First, label noise imposes a quadratic sample complexity penalty via 1 minus 2 eta squared. Second, benchmark datasets are fallible and require continuous auditing.",
+        "start": 571.52,
+        "end": 590.168,
+        "words": [
+          {
+            "w": "Congratulations",
+            "t": 571.52
+          },
+          {
+            "w": "on",
+            "t": 572.011
+          },
+          {
+            "w": "completing",
+            "t": 572.501
+          },
+          {
+            "w": "Lesson",
+            "t": 572.992
+          },
+          {
+            "w": "4.1!",
+            "t": 573.483
+          },
+          {
+            "w": "We",
+            "t": 573.974
+          },
+          {
+            "w": "have",
+            "t": 574.464
+          },
+          {
+            "w": "established",
+            "t": 574.955
+          },
+          {
+            "w": "four",
+            "t": 575.446
+          },
+          {
+            "w": "immutable",
+            "t": 575.937
+          },
+          {
+            "w": "laws",
+            "t": 576.427
+          },
+          {
+            "w": "of",
+            "t": 576.918
+          },
+          {
+            "w": "data",
+            "t": 577.409
+          },
+          {
+            "w": "annotation:",
+            "t": 577.9
+          },
+          {
+            "w": "First,",
+            "t": 578.39
+          },
+          {
+            "w": "label",
+            "t": 578.881
+          },
+          {
+            "w": "noise",
+            "t": 579.372
+          },
+          {
+            "w": "imposes",
+            "t": 579.863
+          },
+          {
+            "w": "a",
+            "t": 580.353
+          },
+          {
+            "w": "quadratic",
+            "t": 580.844
+          },
+          {
+            "w": "sample",
+            "t": 581.335
+          },
+          {
+            "w": "complexity",
+            "t": 581.825
+          },
+          {
+            "w": "penalty",
+            "t": 582.316
+          },
+          {
+            "w": "via",
+            "t": 582.807
+          },
+          {
+            "w": "1",
+            "t": 583.298
+          },
+          {
+            "w": "minus",
+            "t": 583.788
+          },
+          {
+            "w": "2",
+            "t": 584.279
+          },
+          {
+            "w": "eta",
+            "t": 584.77
+          },
+          {
+            "w": "squared.",
+            "t": 585.261
+          },
+          {
+            "w": "Second,",
+            "t": 585.751
+          },
+          {
+            "w": "benchmark",
+            "t": 586.242
+          },
+          {
+            "w": "datasets",
+            "t": 586.733
+          },
+          {
+            "w": "are",
+            "t": 587.224
+          },
+          {
+            "w": "fallible",
+            "t": 587.714
+          },
+          {
+            "w": "and",
+            "t": 588.205
+          },
+          {
+            "w": "require",
+            "t": 588.696
+          },
+          {
+            "w": "continuous",
+            "t": 589.187
+          },
+          {
+            "w": "auditing.",
+            "t": 589.677
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "Third, calibrate class thresholds before pruning noisy labels using Confident Learning. And fourth, taxonomies must account for composite edge cases to avoid perception collapse. In Lesson 4.2, we dive into production workflows for Text and Image annotation.",
+        "start": 590.518,
+        "end": 608.038,
+        "words": [
+          {
+            "w": "Third,",
+            "t": 590.518
+          },
+          {
+            "w": "calibrate",
+            "t": 590.992
+          },
+          {
+            "w": "class",
+            "t": 591.465
+          },
+          {
+            "w": "thresholds",
+            "t": 591.939
+          },
+          {
+            "w": "before",
+            "t": 592.412
+          },
+          {
+            "w": "pruning",
+            "t": 592.886
+          },
+          {
+            "w": "noisy",
+            "t": 593.359
+          },
+          {
+            "w": "labels",
+            "t": 593.833
+          },
+          {
+            "w": "using",
+            "t": 594.306
+          },
+          {
+            "w": "Confident",
+            "t": 594.78
+          },
+          {
+            "w": "Learning.",
+            "t": 595.253
+          },
+          {
+            "w": "And",
+            "t": 595.727
+          },
+          {
+            "w": "fourth,",
+            "t": 596.2
+          },
+          {
+            "w": "taxonomies",
+            "t": 596.674
+          },
+          {
+            "w": "must",
+            "t": 597.147
+          },
+          {
+            "w": "account",
+            "t": 597.621
+          },
+          {
+            "w": "for",
+            "t": 598.094
+          },
+          {
+            "w": "composite",
+            "t": 598.568
+          },
+          {
+            "w": "edge",
+            "t": 599.041
+          },
+          {
+            "w": "cases",
+            "t": 599.515
+          },
+          {
+            "w": "to",
+            "t": 599.988
+          },
+          {
+            "w": "avoid",
+            "t": 600.462
+          },
+          {
+            "w": "perception",
+            "t": 600.935
+          },
+          {
+            "w": "collapse.",
+            "t": 601.409
+          },
+          {
+            "w": "In",
+            "t": 601.882
+          },
+          {
+            "w": "Lesson",
+            "t": 602.356
+          },
+          {
+            "w": "4.2,",
+            "t": 602.829
+          },
+          {
+            "w": "we",
+            "t": 603.303
+          },
+          {
+            "w": "dive",
+            "t": 603.776
+          },
+          {
+            "w": "into",
+            "t": 604.25
+          },
+          {
+            "w": "production",
+            "t": 604.723
+          },
+          {
+            "w": "workflows",
+            "t": 605.197
+          },
+          {
+            "w": "for",
+            "t": 605.67
+          },
+          {
+            "w": "Text",
+            "t": 606.144
+          },
+          {
+            "w": "and",
+            "t": 606.617
+          },
+          {
+            "w": "Image",
+            "t": 607.091
+          },
+          {
+            "w": "annotation.",
+            "t": 607.564
+          }
+        ]
+      }
+    ]
+  },
+  "ch4_p1_duo": {
+    "duration": 683.176,
+    "sentences": [
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Lesson 4.1, Kaito! Today we tackle what is arguably the single most decisive factor in applied artificial intelligence: transforming raw bits into supervised ground truth.",
+        "start": 0.0,
+        "end": 12.576,
+        "words": [
+          {
+            "w": "Welcome",
+            "t": 0.0
+          },
+          {
+            "w": "to",
+            "t": 0.466
+          },
+          {
+            "w": "Lesson",
+            "t": 0.932
+          },
+          {
+            "w": "4.1,",
+            "t": 1.397
+          },
+          {
+            "w": "Kaito!",
+            "t": 1.863
+          },
+          {
+            "w": "Today",
+            "t": 2.329
+          },
+          {
+            "w": "we",
+            "t": 2.795
+          },
+          {
+            "w": "tackle",
+            "t": 3.26
+          },
+          {
+            "w": "what",
+            "t": 3.726
+          },
+          {
+            "w": "is",
+            "t": 4.192
+          },
+          {
+            "w": "arguably",
+            "t": 4.658
+          },
+          {
+            "w": "the",
+            "t": 5.124
+          },
+          {
+            "w": "single",
+            "t": 5.589
+          },
+          {
+            "w": "most",
+            "t": 6.055
+          },
+          {
+            "w": "decisive",
+            "t": 6.521
+          },
+          {
+            "w": "factor",
+            "t": 6.987
+          },
+          {
+            "w": "in",
+            "t": 7.452
+          },
+          {
+            "w": "applied",
+            "t": 7.918
+          },
+          {
+            "w": "artificial",
+            "t": 8.384
+          },
+          {
+            "w": "intelligence:",
+            "t": 8.85
+          },
+          {
+            "w": "transforming",
+            "t": 9.316
+          },
+          {
+            "w": "raw",
+            "t": 9.781
+          },
+          {
+            "w": "bits",
+            "t": 10.247
+          },
+          {
+            "w": "into",
+            "t": 10.713
+          },
+          {
+            "w": "supervised",
+            "t": 11.179
+          },
+          {
+            "w": "ground",
+            "t": 11.644
+          },
+          {
+            "w": "truth.",
+            "t": 12.11
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Kaito",
+        "text": "Most engineers think modern deep learning solved everything, Dr. Nova! They assume if an image classifier fails, you just scale up a Vision Transformer or add attention layers.",
+        "start": 12.926,
+        "end": 23.822,
+        "words": [
+          {
+            "w": "Most",
+            "t": 12.926
+          },
+          {
+            "w": "engineers",
+            "t": 13.315
+          },
+          {
+            "w": "think",
+            "t": 13.704
+          },
+          {
+            "w": "modern",
+            "t": 14.093
+          },
+          {
+            "w": "deep",
+            "t": 14.483
+          },
+          {
+            "w": "learning",
+            "t": 14.872
+          },
+          {
+            "w": "solved",
+            "t": 15.261
+          },
+          {
+            "w": "everything,",
+            "t": 15.65
+          },
+          {
+            "w": "Dr.",
+            "t": 16.039
+          },
+          {
+            "w": "Nova!",
+            "t": 16.428
+          },
+          {
+            "w": "They",
+            "t": 16.817
+          },
+          {
+            "w": "assume",
+            "t": 17.207
+          },
+          {
+            "w": "if",
+            "t": 17.596
+          },
+          {
+            "w": "an",
+            "t": 17.985
+          },
+          {
+            "w": "image",
+            "t": 18.374
+          },
+          {
+            "w": "classifier",
+            "t": 18.763
+          },
+          {
+            "w": "fails,",
+            "t": 19.152
+          },
+          {
+            "w": "you",
+            "t": 19.541
+          },
+          {
+            "w": "just",
+            "t": 19.931
+          },
+          {
+            "w": "scale",
+            "t": 20.32
+          },
+          {
+            "w": "up",
+            "t": 20.709
+          },
+          {
+            "w": "a",
+            "t": 21.098
+          },
+          {
+            "w": "Vision",
+            "t": 21.487
+          },
+          {
+            "w": "Transformer",
+            "t": 21.876
+          },
+          {
+            "w": "or",
+            "t": 22.265
+          },
+          {
+            "w": "add",
+            "t": 22.655
+          },
+          {
+            "w": "attention",
+            "t": 23.044
+          },
+          {
+            "w": "layers.",
+            "t": 23.433
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "That is the classical model-centric illusion. As Northcutt and Angluin proved mathematically, if your labels contain systematic noise, scaling model capacity only causes the network to overfit to corrupt crowd mistakes with higher statistical confidence!",
+        "start": 24.172,
+        "end": 39.772,
+        "words": [
+          {
+            "w": "That",
+            "t": 24.172
+          },
+          {
+            "w": "is",
+            "t": 24.618
+          },
+          {
+            "w": "the",
+            "t": 25.063
+          },
+          {
+            "w": "classical",
+            "t": 25.509
+          },
+          {
+            "w": "model-centric",
+            "t": 25.955
+          },
+          {
+            "w": "illusion.",
+            "t": 26.401
+          },
+          {
+            "w": "As",
+            "t": 26.846
+          },
+          {
+            "w": "Northcutt",
+            "t": 27.292
+          },
+          {
+            "w": "and",
+            "t": 27.738
+          },
+          {
+            "w": "Angluin",
+            "t": 28.183
+          },
+          {
+            "w": "proved",
+            "t": 28.629
+          },
+          {
+            "w": "mathematically,",
+            "t": 29.075
+          },
+          {
+            "w": "if",
+            "t": 29.521
+          },
+          {
+            "w": "your",
+            "t": 29.966
+          },
+          {
+            "w": "labels",
+            "t": 30.412
+          },
+          {
+            "w": "contain",
+            "t": 30.858
+          },
+          {
+            "w": "systematic",
+            "t": 31.303
+          },
+          {
+            "w": "noise,",
+            "t": 31.749
+          },
+          {
+            "w": "scaling",
+            "t": 32.195
+          },
+          {
+            "w": "model",
+            "t": 32.641
+          },
+          {
+            "w": "capacity",
+            "t": 33.086
+          },
+          {
+            "w": "only",
+            "t": 33.532
+          },
+          {
+            "w": "causes",
+            "t": 33.978
+          },
+          {
+            "w": "the",
+            "t": 34.423
+          },
+          {
+            "w": "network",
+            "t": 34.869
+          },
+          {
+            "w": "to",
+            "t": 35.315
+          },
+          {
+            "w": "overfit",
+            "t": 35.761
+          },
+          {
+            "w": "to",
+            "t": 36.206
+          },
+          {
+            "w": "corrupt",
+            "t": 36.652
+          },
+          {
+            "w": "crowd",
+            "t": 37.098
+          },
+          {
+            "w": "mistakes",
+            "t": 37.543
+          },
+          {
+            "w": "with",
+            "t": 37.989
+          },
+          {
+            "w": "higher",
+            "t": 38.435
+          },
+          {
+            "w": "statistical",
+            "t": 38.881
+          },
+          {
+            "w": "confidence!",
+            "t": 39.326
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Kaito",
+        "text": "So ground truth labels aren't an afterthought—they define the mathematical upper bound on what any learning algorithm can ever achieve!",
+        "start": 40.122,
+        "end": 47.466,
+        "words": [
+          {
+            "w": "So",
+            "t": 40.122
+          },
+          {
+            "w": "ground",
+            "t": 40.489
+          },
+          {
+            "w": "truth",
+            "t": 40.856
+          },
+          {
+            "w": "labels",
+            "t": 41.224
+          },
+          {
+            "w": "aren't",
+            "t": 41.591
+          },
+          {
+            "w": "an",
+            "t": 41.958
+          },
+          {
+            "w": "afterthought—they",
+            "t": 42.325
+          },
+          {
+            "w": "define",
+            "t": 42.692
+          },
+          {
+            "w": "the",
+            "t": 43.06
+          },
+          {
+            "w": "mathematical",
+            "t": 43.427
+          },
+          {
+            "w": "upper",
+            "t": 43.794
+          },
+          {
+            "w": "bound",
+            "t": 44.161
+          },
+          {
+            "w": "on",
+            "t": 44.528
+          },
+          {
+            "w": "what",
+            "t": 44.896
+          },
+          {
+            "w": "any",
+            "t": 45.263
+          },
+          {
+            "w": "learning",
+            "t": 45.63
+          },
+          {
+            "w": "algorithm",
+            "t": 45.997
+          },
+          {
+            "w": "can",
+            "t": 46.364
+          },
+          {
+            "w": "ever",
+            "t": 46.732
+          },
+          {
+            "w": "achieve!",
+            "t": 47.099
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, I spent three weeks tuning a ResNet-50 on our client's defect classification dataset, but accuracy was stuck at 82%. What did you do to jump it to 94% in two days?",
+        "start": 48.216,
+        "end": 60.72,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 48.216
+          },
+          {
+            "w": "Nova,",
+            "t": 48.595
+          },
+          {
+            "w": "I",
+            "t": 48.974
+          },
+          {
+            "w": "spent",
+            "t": 49.353
+          },
+          {
+            "w": "three",
+            "t": 49.732
+          },
+          {
+            "w": "weeks",
+            "t": 50.111
+          },
+          {
+            "w": "tuning",
+            "t": 50.489
+          },
+          {
+            "w": "a",
+            "t": 50.868
+          },
+          {
+            "w": "ResNet-50",
+            "t": 51.247
+          },
+          {
+            "w": "on",
+            "t": 51.626
+          },
+          {
+            "w": "our",
+            "t": 52.005
+          },
+          {
+            "w": "client's",
+            "t": 52.384
+          },
+          {
+            "w": "defect",
+            "t": 52.763
+          },
+          {
+            "w": "classification",
+            "t": 53.142
+          },
+          {
+            "w": "dataset,",
+            "t": 53.521
+          },
+          {
+            "w": "but",
+            "t": 53.9
+          },
+          {
+            "w": "accuracy",
+            "t": 54.279
+          },
+          {
+            "w": "was",
+            "t": 54.657
+          },
+          {
+            "w": "stuck",
+            "t": 55.036
+          },
+          {
+            "w": "at",
+            "t": 55.415
+          },
+          {
+            "w": "82%.",
+            "t": 55.794
+          },
+          {
+            "w": "What",
+            "t": 56.173
+          },
+          {
+            "w": "did",
+            "t": 56.552
+          },
+          {
+            "w": "you",
+            "t": 56.931
+          },
+          {
+            "w": "do",
+            "t": 57.31
+          },
+          {
+            "w": "to",
+            "t": 57.689
+          },
+          {
+            "w": "jump",
+            "t": 58.068
+          },
+          {
+            "w": "it",
+            "t": 58.447
+          },
+          {
+            "w": "to",
+            "t": 58.825
+          },
+          {
+            "w": "94%",
+            "t": 59.204
+          },
+          {
+            "w": "in",
+            "t": 59.583
+          },
+          {
+            "w": "two",
+            "t": 59.962
+          },
+          {
+            "w": "days?",
+            "t": 60.341
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "I inspected the confusion matrix and discovered that thirty percent of the images labeled as 'surface scratch' were actually 'casting porosity'! Your deep network was wasting capacity trying to find features that could satisfy contradictory labels.",
+        "start": 61.07,
+        "end": 75.35,
+        "words": [
+          {
+            "w": "I",
+            "t": 61.07
+          },
+          {
+            "w": "inspected",
+            "t": 61.467
+          },
+          {
+            "w": "the",
+            "t": 61.863
+          },
+          {
+            "w": "confusion",
+            "t": 62.26
+          },
+          {
+            "w": "matrix",
+            "t": 62.657
+          },
+          {
+            "w": "and",
+            "t": 63.053
+          },
+          {
+            "w": "discovered",
+            "t": 63.45
+          },
+          {
+            "w": "that",
+            "t": 63.847
+          },
+          {
+            "w": "thirty",
+            "t": 64.243
+          },
+          {
+            "w": "percent",
+            "t": 64.64
+          },
+          {
+            "w": "of",
+            "t": 65.037
+          },
+          {
+            "w": "the",
+            "t": 65.433
+          },
+          {
+            "w": "images",
+            "t": 65.83
+          },
+          {
+            "w": "labeled",
+            "t": 66.227
+          },
+          {
+            "w": "as",
+            "t": 66.623
+          },
+          {
+            "w": "'surface",
+            "t": 67.02
+          },
+          {
+            "w": "scratch'",
+            "t": 67.417
+          },
+          {
+            "w": "were",
+            "t": 67.813
+          },
+          {
+            "w": "actually",
+            "t": 68.21
+          },
+          {
+            "w": "'casting",
+            "t": 68.607
+          },
+          {
+            "w": "porosity'!",
+            "t": 69.003
+          },
+          {
+            "w": "Your",
+            "t": 69.4
+          },
+          {
+            "w": "deep",
+            "t": 69.797
+          },
+          {
+            "w": "network",
+            "t": 70.193
+          },
+          {
+            "w": "was",
+            "t": 70.59
+          },
+          {
+            "w": "wasting",
+            "t": 70.987
+          },
+          {
+            "w": "capacity",
+            "t": 71.383
+          },
+          {
+            "w": "trying",
+            "t": 71.78
+          },
+          {
+            "w": "to",
+            "t": 72.177
+          },
+          {
+            "w": "find",
+            "t": 72.573
+          },
+          {
+            "w": "features",
+            "t": 72.97
+          },
+          {
+            "w": "that",
+            "t": 73.367
+          },
+          {
+            "w": "could",
+            "t": 73.763
+          },
+          {
+            "w": "satisfy",
+            "t": 74.16
+          },
+          {
+            "w": "contradictory",
+            "t": 74.557
+          },
+          {
+            "w": "labels.",
+            "t": 74.953
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Kaito",
+        "text": "So the network wasn't failing to learn—it was faithfully memorizing human mistakes!",
+        "start": 75.7,
+        "end": 81.004,
+        "words": [
+          {
+            "w": "So",
+            "t": 75.7
+          },
+          {
+            "w": "the",
+            "t": 76.142
+          },
+          {
+            "w": "network",
+            "t": 76.584
+          },
+          {
+            "w": "wasn't",
+            "t": 77.026
+          },
+          {
+            "w": "failing",
+            "t": 77.468
+          },
+          {
+            "w": "to",
+            "t": 77.91
+          },
+          {
+            "w": "learn—it",
+            "t": 78.352
+          },
+          {
+            "w": "was",
+            "t": 78.794
+          },
+          {
+            "w": "faithfully",
+            "t": 79.236
+          },
+          {
+            "w": "memorizing",
+            "t": 79.678
+          },
+          {
+            "w": "human",
+            "t": 80.12
+          },
+          {
+            "w": "mistakes!",
+            "t": 80.562
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Once we disambiguated the annotation guidelines and re-labeled the boundary examples, even a simple baseline model achieved 94% with zero hyperparameter tuning.",
+        "start": 81.354,
+        "end": 93.594,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 81.354
+          },
+          {
+            "w": "Once",
+            "t": 81.886
+          },
+          {
+            "w": "we",
+            "t": 82.418
+          },
+          {
+            "w": "disambiguated",
+            "t": 82.951
+          },
+          {
+            "w": "the",
+            "t": 83.483
+          },
+          {
+            "w": "annotation",
+            "t": 84.015
+          },
+          {
+            "w": "guidelines",
+            "t": 84.547
+          },
+          {
+            "w": "and",
+            "t": 85.079
+          },
+          {
+            "w": "re-labeled",
+            "t": 85.611
+          },
+          {
+            "w": "the",
+            "t": 86.144
+          },
+          {
+            "w": "boundary",
+            "t": 86.676
+          },
+          {
+            "w": "examples,",
+            "t": 87.208
+          },
+          {
+            "w": "even",
+            "t": 87.74
+          },
+          {
+            "w": "a",
+            "t": 88.272
+          },
+          {
+            "w": "simple",
+            "t": 88.804
+          },
+          {
+            "w": "baseline",
+            "t": 89.337
+          },
+          {
+            "w": "model",
+            "t": 89.869
+          },
+          {
+            "w": "achieved",
+            "t": 90.401
+          },
+          {
+            "w": "94%",
+            "t": 90.933
+          },
+          {
+            "w": "with",
+            "t": 91.465
+          },
+          {
+            "w": "zero",
+            "t": 91.997
+          },
+          {
+            "w": "hyperparameter",
+            "t": 92.53
+          },
+          {
+            "w": "tuning.",
+            "t": 93.062
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why is the condition strictly eta less than 0.50? What if a crowd workforce has a 55% error rate?",
+        "start": 94.344,
+        "end": 103.584,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 94.344
+          },
+          {
+            "w": "Nova,",
+            "t": 94.784
+          },
+          {
+            "w": "why",
+            "t": 95.224
+          },
+          {
+            "w": "is",
+            "t": 95.664
+          },
+          {
+            "w": "the",
+            "t": 96.104
+          },
+          {
+            "w": "condition",
+            "t": 96.544
+          },
+          {
+            "w": "strictly",
+            "t": 96.984
+          },
+          {
+            "w": "eta",
+            "t": 97.424
+          },
+          {
+            "w": "less",
+            "t": 97.864
+          },
+          {
+            "w": "than",
+            "t": 98.304
+          },
+          {
+            "w": "0.50?",
+            "t": 98.744
+          },
+          {
+            "w": "What",
+            "t": 99.184
+          },
+          {
+            "w": "if",
+            "t": 99.624
+          },
+          {
+            "w": "a",
+            "t": 100.064
+          },
+          {
+            "w": "crowd",
+            "t": 100.504
+          },
+          {
+            "w": "workforce",
+            "t": 100.944
+          },
+          {
+            "w": "has",
+            "t": 101.384
+          },
+          {
+            "w": "a",
+            "t": 101.824
+          },
+          {
+            "w": "55%",
+            "t": 102.264
+          },
+          {
+            "w": "error",
+            "t": 102.704
+          },
+          {
+            "w": "rate?",
+            "t": 103.144
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "If eta exceeds 0.50, the noise channel inverts! The labels actually contain signal—you could simply invert every single label and achieve a 45% error rate. But at exactly eta equals 0.50, the channel carries zero mutual information.",
+        "start": 103.934,
+        "end": 122.678,
+        "words": [
+          {
+            "w": "If",
+            "t": 103.934
+          },
+          {
+            "w": "eta",
+            "t": 104.441
+          },
+          {
+            "w": "exceeds",
+            "t": 104.947
+          },
+          {
+            "w": "0.50,",
+            "t": 105.454
+          },
+          {
+            "w": "the",
+            "t": 105.96
+          },
+          {
+            "w": "noise",
+            "t": 106.467
+          },
+          {
+            "w": "channel",
+            "t": 106.974
+          },
+          {
+            "w": "inverts!",
+            "t": 107.48
+          },
+          {
+            "w": "The",
+            "t": 107.987
+          },
+          {
+            "w": "labels",
+            "t": 108.493
+          },
+          {
+            "w": "actually",
+            "t": 109.0
+          },
+          {
+            "w": "contain",
+            "t": 109.507
+          },
+          {
+            "w": "signal—you",
+            "t": 110.013
+          },
+          {
+            "w": "could",
+            "t": 110.52
+          },
+          {
+            "w": "simply",
+            "t": 111.026
+          },
+          {
+            "w": "invert",
+            "t": 111.533
+          },
+          {
+            "w": "every",
+            "t": 112.04
+          },
+          {
+            "w": "single",
+            "t": 112.546
+          },
+          {
+            "w": "label",
+            "t": 113.053
+          },
+          {
+            "w": "and",
+            "t": 113.559
+          },
+          {
+            "w": "achieve",
+            "t": 114.066
+          },
+          {
+            "w": "a",
+            "t": 114.572
+          },
+          {
+            "w": "45%",
+            "t": 115.079
+          },
+          {
+            "w": "error",
+            "t": 115.586
+          },
+          {
+            "w": "rate.",
+            "t": 116.092
+          },
+          {
+            "w": "But",
+            "t": 116.599
+          },
+          {
+            "w": "at",
+            "t": 117.105
+          },
+          {
+            "w": "exactly",
+            "t": 117.612
+          },
+          {
+            "w": "eta",
+            "t": 118.119
+          },
+          {
+            "w": "equals",
+            "t": 118.625
+          },
+          {
+            "w": "0.50,",
+            "t": 119.132
+          },
+          {
+            "w": "the",
+            "t": 119.638
+          },
+          {
+            "w": "channel",
+            "t": 120.145
+          },
+          {
+            "w": "carries",
+            "t": 120.652
+          },
+          {
+            "w": "zero",
+            "t": 121.158
+          },
+          {
+            "w": "mutual",
+            "t": 121.665
+          },
+          {
+            "w": "information.",
+            "t": 122.171
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Kaito",
+        "text": "Look at that formula for true risk: R of h equals R sub eta minus eta divided by 1 minus 2 eta. As eta gets close to 0.50, dividing by a tiny decimal makes the variance explode!",
+        "start": 123.028,
+        "end": 136.66,
+        "words": [
+          {
+            "w": "Look",
+            "t": 123.028
+          },
+          {
+            "w": "at",
+            "t": 123.396
+          },
+          {
+            "w": "that",
+            "t": 123.765
+          },
+          {
+            "w": "formula",
+            "t": 124.133
+          },
+          {
+            "w": "for",
+            "t": 124.502
+          },
+          {
+            "w": "true",
+            "t": 124.87
+          },
+          {
+            "w": "risk:",
+            "t": 125.239
+          },
+          {
+            "w": "R",
+            "t": 125.607
+          },
+          {
+            "w": "of",
+            "t": 125.975
+          },
+          {
+            "w": "h",
+            "t": 126.344
+          },
+          {
+            "w": "equals",
+            "t": 126.712
+          },
+          {
+            "w": "R",
+            "t": 127.081
+          },
+          {
+            "w": "sub",
+            "t": 127.449
+          },
+          {
+            "w": "eta",
+            "t": 127.818
+          },
+          {
+            "w": "minus",
+            "t": 128.186
+          },
+          {
+            "w": "eta",
+            "t": 128.554
+          },
+          {
+            "w": "divided",
+            "t": 128.923
+          },
+          {
+            "w": "by",
+            "t": 129.291
+          },
+          {
+            "w": "1",
+            "t": 129.66
+          },
+          {
+            "w": "minus",
+            "t": 130.028
+          },
+          {
+            "w": "2",
+            "t": 130.397
+          },
+          {
+            "w": "eta.",
+            "t": 130.765
+          },
+          {
+            "w": "As",
+            "t": 131.134
+          },
+          {
+            "w": "eta",
+            "t": 131.502
+          },
+          {
+            "w": "gets",
+            "t": 131.87
+          },
+          {
+            "w": "close",
+            "t": 132.239
+          },
+          {
+            "w": "to",
+            "t": 132.607
+          },
+          {
+            "w": "0.50,",
+            "t": 132.976
+          },
+          {
+            "w": "dividing",
+            "t": 133.344
+          },
+          {
+            "w": "by",
+            "t": 133.713
+          },
+          {
+            "w": "a",
+            "t": 134.081
+          },
+          {
+            "w": "tiny",
+            "t": 134.449
+          },
+          {
+            "w": "decimal",
+            "t": 134.818
+          },
+          {
+            "w": "makes",
+            "t": 135.186
+          },
+          {
+            "w": "the",
+            "t": 135.555
+          },
+          {
+            "w": "variance",
+            "t": 135.923
+          },
+          {
+            "w": "explode!",
+            "t": 136.292
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "Exactly! That mathematical denominator is where sample complexity explodes. Let us see how that directly destroys effective dataset size.",
+        "start": 137.01,
+        "end": 147.354,
+        "words": [
+          {
+            "w": "Exactly!",
+            "t": 137.01
+          },
+          {
+            "w": "That",
+            "t": 137.554
+          },
+          {
+            "w": "mathematical",
+            "t": 138.099
+          },
+          {
+            "w": "denominator",
+            "t": 138.643
+          },
+          {
+            "w": "is",
+            "t": 139.188
+          },
+          {
+            "w": "where",
+            "t": 139.732
+          },
+          {
+            "w": "sample",
+            "t": 140.277
+          },
+          {
+            "w": "complexity",
+            "t": 140.821
+          },
+          {
+            "w": "explodes.",
+            "t": 141.365
+          },
+          {
+            "w": "Let",
+            "t": 141.91
+          },
+          {
+            "w": "us",
+            "t": 142.454
+          },
+          {
+            "w": "see",
+            "t": 142.999
+          },
+          {
+            "w": "how",
+            "t": 143.543
+          },
+          {
+            "w": "that",
+            "t": 144.087
+          },
+          {
+            "w": "directly",
+            "t": 144.632
+          },
+          {
+            "w": "destroys",
+            "t": 145.176
+          },
+          {
+            "w": "effective",
+            "t": 145.721
+          },
+          {
+            "w": "dataset",
+            "t": 146.265
+          },
+          {
+            "w": "size.",
+            "t": 146.81
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Kaito",
+        "text": "Wait, Nova! Look at that table: at 20% label noise, you retain only 36% of your data's statistical power? That means 64% of your dataset budget is flushed straight down the drain!",
+        "start": 148.104,
+        "end": 162.048,
+        "words": [
+          {
+            "w": "Wait,",
+            "t": 148.104
+          },
+          {
+            "w": "Nova!",
+            "t": 148.54
+          },
+          {
+            "w": "Look",
+            "t": 148.976
+          },
+          {
+            "w": "at",
+            "t": 149.411
+          },
+          {
+            "w": "that",
+            "t": 149.847
+          },
+          {
+            "w": "table:",
+            "t": 150.283
+          },
+          {
+            "w": "at",
+            "t": 150.719
+          },
+          {
+            "w": "20%",
+            "t": 151.154
+          },
+          {
+            "w": "label",
+            "t": 151.59
+          },
+          {
+            "w": "noise,",
+            "t": 152.026
+          },
+          {
+            "w": "you",
+            "t": 152.462
+          },
+          {
+            "w": "retain",
+            "t": 152.897
+          },
+          {
+            "w": "only",
+            "t": 153.333
+          },
+          {
+            "w": "36%",
+            "t": 153.769
+          },
+          {
+            "w": "of",
+            "t": 154.205
+          },
+          {
+            "w": "your",
+            "t": 154.64
+          },
+          {
+            "w": "data's",
+            "t": 155.076
+          },
+          {
+            "w": "statistical",
+            "t": 155.512
+          },
+          {
+            "w": "power?",
+            "t": 155.948
+          },
+          {
+            "w": "That",
+            "t": 156.383
+          },
+          {
+            "w": "means",
+            "t": 156.819
+          },
+          {
+            "w": "64%",
+            "t": 157.255
+          },
+          {
+            "w": "of",
+            "t": 157.691
+          },
+          {
+            "w": "your",
+            "t": 158.126
+          },
+          {
+            "w": "dataset",
+            "t": 158.562
+          },
+          {
+            "w": "budget",
+            "t": 158.998
+          },
+          {
+            "w": "is",
+            "t": 159.434
+          },
+          {
+            "w": "flushed",
+            "t": 159.869
+          },
+          {
+            "w": "straight",
+            "t": 160.305
+          },
+          {
+            "w": "down",
+            "t": 160.741
+          },
+          {
+            "w": "the",
+            "t": 161.177
+          },
+          {
+            "w": "drain!",
+            "t": 161.612
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "And it gets catastrophic as noise creeps higher. At a 35% error rate, you retain only nine percent power. To get the same model confidence as 10,000 clean annotations, you would need to collect over 111,000 noisy samples!",
+        "start": 162.398,
+        "end": 178.646,
+        "words": [
+          {
+            "w": "And",
+            "t": 162.398
+          },
+          {
+            "w": "it",
+            "t": 162.826
+          },
+          {
+            "w": "gets",
+            "t": 163.253
+          },
+          {
+            "w": "catastrophic",
+            "t": 163.681
+          },
+          {
+            "w": "as",
+            "t": 164.108
+          },
+          {
+            "w": "noise",
+            "t": 164.536
+          },
+          {
+            "w": "creeps",
+            "t": 164.963
+          },
+          {
+            "w": "higher.",
+            "t": 165.391
+          },
+          {
+            "w": "At",
+            "t": 165.819
+          },
+          {
+            "w": "a",
+            "t": 166.246
+          },
+          {
+            "w": "35%",
+            "t": 166.674
+          },
+          {
+            "w": "error",
+            "t": 167.101
+          },
+          {
+            "w": "rate,",
+            "t": 167.529
+          },
+          {
+            "w": "you",
+            "t": 167.957
+          },
+          {
+            "w": "retain",
+            "t": 168.384
+          },
+          {
+            "w": "only",
+            "t": 168.812
+          },
+          {
+            "w": "nine",
+            "t": 169.239
+          },
+          {
+            "w": "percent",
+            "t": 169.667
+          },
+          {
+            "w": "power.",
+            "t": 170.094
+          },
+          {
+            "w": "To",
+            "t": 170.522
+          },
+          {
+            "w": "get",
+            "t": 170.95
+          },
+          {
+            "w": "the",
+            "t": 171.377
+          },
+          {
+            "w": "same",
+            "t": 171.805
+          },
+          {
+            "w": "model",
+            "t": 172.232
+          },
+          {
+            "w": "confidence",
+            "t": 172.66
+          },
+          {
+            "w": "as",
+            "t": 173.087
+          },
+          {
+            "w": "10,000",
+            "t": 173.515
+          },
+          {
+            "w": "clean",
+            "t": 173.943
+          },
+          {
+            "w": "annotations,",
+            "t": 174.37
+          },
+          {
+            "w": "you",
+            "t": 174.798
+          },
+          {
+            "w": "would",
+            "t": 175.225
+          },
+          {
+            "w": "need",
+            "t": 175.653
+          },
+          {
+            "w": "to",
+            "t": 176.081
+          },
+          {
+            "w": "collect",
+            "t": 176.508
+          },
+          {
+            "w": "over",
+            "t": 176.936
+          },
+          {
+            "w": "111,000",
+            "t": 177.363
+          },
+          {
+            "w": "noisy",
+            "t": 177.791
+          },
+          {
+            "w": "samples!",
+            "t": 178.218
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Kaito",
+        "text": "So product managers who say 'let us just hire cheaper annotators and collect more data' are committing a multi-million dollar mathematical blunder!",
+        "start": 178.996,
+        "end": 187.42,
+        "words": [
+          {
+            "w": "So",
+            "t": 178.996
+          },
+          {
+            "w": "product",
+            "t": 179.379
+          },
+          {
+            "w": "managers",
+            "t": 179.762
+          },
+          {
+            "w": "who",
+            "t": 180.145
+          },
+          {
+            "w": "say",
+            "t": 180.528
+          },
+          {
+            "w": "'let",
+            "t": 180.911
+          },
+          {
+            "w": "us",
+            "t": 181.293
+          },
+          {
+            "w": "just",
+            "t": 181.676
+          },
+          {
+            "w": "hire",
+            "t": 182.059
+          },
+          {
+            "w": "cheaper",
+            "t": 182.442
+          },
+          {
+            "w": "annotators",
+            "t": 182.825
+          },
+          {
+            "w": "and",
+            "t": 183.208
+          },
+          {
+            "w": "collect",
+            "t": 183.591
+          },
+          {
+            "w": "more",
+            "t": 183.974
+          },
+          {
+            "w": "data'",
+            "t": 184.357
+          },
+          {
+            "w": "are",
+            "t": 184.74
+          },
+          {
+            "w": "committing",
+            "t": 185.123
+          },
+          {
+            "w": "a",
+            "t": 185.505
+          },
+          {
+            "w": "multi-million",
+            "t": 185.888
+          },
+          {
+            "w": "dollar",
+            "t": 186.271
+          },
+          {
+            "w": "mathematical",
+            "t": 186.654
+          },
+          {
+            "w": "blunder!",
+            "t": 187.037
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. You cannot out-scale quadratic sample complexity collapse with volume. You must clean the annotation channel.",
+        "start": 187.77,
+        "end": 196.674,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 187.77
+          },
+          {
+            "w": "You",
+            "t": 188.327
+          },
+          {
+            "w": "cannot",
+            "t": 188.883
+          },
+          {
+            "w": "out-scale",
+            "t": 189.44
+          },
+          {
+            "w": "quadratic",
+            "t": 189.996
+          },
+          {
+            "w": "sample",
+            "t": 190.553
+          },
+          {
+            "w": "complexity",
+            "t": 191.109
+          },
+          {
+            "w": "collapse",
+            "t": 191.666
+          },
+          {
+            "w": "with",
+            "t": 192.222
+          },
+          {
+            "w": "volume.",
+            "t": 192.779
+          },
+          {
+            "w": "You",
+            "t": 193.335
+          },
+          {
+            "w": "must",
+            "t": 193.892
+          },
+          {
+            "w": "clean",
+            "t": 194.448
+          },
+          {
+            "w": "the",
+            "t": 195.005
+          },
+          {
+            "w": "annotation",
+            "t": 195.561
+          },
+          {
+            "w": "channel.",
+            "t": 196.118
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, this theorem sounds almost magical. You are saying that even if my dataset has corrupt, asymmetric labels, I can still train a neural network to converge to the clean Bayes-optimal classifier without re-labeling everything?",
+        "start": 197.424,
+        "end": 211.008,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 197.424
+          },
+          {
+            "w": "Nova,",
+            "t": 197.801
+          },
+          {
+            "w": "this",
+            "t": 198.179
+          },
+          {
+            "w": "theorem",
+            "t": 198.556
+          },
+          {
+            "w": "sounds",
+            "t": 198.933
+          },
+          {
+            "w": "almost",
+            "t": 199.311
+          },
+          {
+            "w": "magical.",
+            "t": 199.688
+          },
+          {
+            "w": "You",
+            "t": 200.065
+          },
+          {
+            "w": "are",
+            "t": 200.443
+          },
+          {
+            "w": "saying",
+            "t": 200.82
+          },
+          {
+            "w": "that",
+            "t": 201.197
+          },
+          {
+            "w": "even",
+            "t": 201.575
+          },
+          {
+            "w": "if",
+            "t": 201.952
+          },
+          {
+            "w": "my",
+            "t": 202.329
+          },
+          {
+            "w": "dataset",
+            "t": 202.707
+          },
+          {
+            "w": "has",
+            "t": 203.084
+          },
+          {
+            "w": "corrupt,",
+            "t": 203.461
+          },
+          {
+            "w": "asymmetric",
+            "t": 203.839
+          },
+          {
+            "w": "labels,",
+            "t": 204.216
+          },
+          {
+            "w": "I",
+            "t": 204.593
+          },
+          {
+            "w": "can",
+            "t": 204.971
+          },
+          {
+            "w": "still",
+            "t": 205.348
+          },
+          {
+            "w": "train",
+            "t": 205.725
+          },
+          {
+            "w": "a",
+            "t": 206.103
+          },
+          {
+            "w": "neural",
+            "t": 206.48
+          },
+          {
+            "w": "network",
+            "t": 206.857
+          },
+          {
+            "w": "to",
+            "t": 207.235
+          },
+          {
+            "w": "converge",
+            "t": 207.612
+          },
+          {
+            "w": "to",
+            "t": 207.989
+          },
+          {
+            "w": "the",
+            "t": 208.367
+          },
+          {
+            "w": "clean",
+            "t": 208.744
+          },
+          {
+            "w": "Bayes-optimal",
+            "t": 209.121
+          },
+          {
+            "w": "classifier",
+            "t": 209.499
+          },
+          {
+            "w": "without",
+            "t": 209.876
+          },
+          {
+            "w": "re-labeling",
+            "t": 210.253
+          },
+          {
+            "w": "everything?",
+            "t": 210.631
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "Yes, provided the transition matrix T is non-singular! Because expectation is linear, multiplying the loss by T inverse exactly cancels the noise transition in expectation. The gradient steps point toward the clean distribution.",
+        "start": 211.358,
+        "end": 226.934,
+        "words": [
+          {
+            "w": "Yes,",
+            "t": 211.358
+          },
+          {
+            "w": "provided",
+            "t": 211.83
+          },
+          {
+            "w": "the",
+            "t": 212.302
+          },
+          {
+            "w": "transition",
+            "t": 212.774
+          },
+          {
+            "w": "matrix",
+            "t": 213.246
+          },
+          {
+            "w": "T",
+            "t": 213.718
+          },
+          {
+            "w": "is",
+            "t": 214.19
+          },
+          {
+            "w": "non-singular!",
+            "t": 214.662
+          },
+          {
+            "w": "Because",
+            "t": 215.134
+          },
+          {
+            "w": "expectation",
+            "t": 215.606
+          },
+          {
+            "w": "is",
+            "t": 216.078
+          },
+          {
+            "w": "linear,",
+            "t": 216.55
+          },
+          {
+            "w": "multiplying",
+            "t": 217.022
+          },
+          {
+            "w": "the",
+            "t": 217.494
+          },
+          {
+            "w": "loss",
+            "t": 217.966
+          },
+          {
+            "w": "by",
+            "t": 218.438
+          },
+          {
+            "w": "T",
+            "t": 218.91
+          },
+          {
+            "w": "inverse",
+            "t": 219.382
+          },
+          {
+            "w": "exactly",
+            "t": 219.854
+          },
+          {
+            "w": "cancels",
+            "t": 220.326
+          },
+          {
+            "w": "the",
+            "t": 220.798
+          },
+          {
+            "w": "noise",
+            "t": 221.27
+          },
+          {
+            "w": "transition",
+            "t": 221.742
+          },
+          {
+            "w": "in",
+            "t": 222.214
+          },
+          {
+            "w": "expectation.",
+            "t": 222.686
+          },
+          {
+            "w": "The",
+            "t": 223.158
+          },
+          {
+            "w": "gradient",
+            "t": 223.63
+          },
+          {
+            "w": "steps",
+            "t": 224.102
+          },
+          {
+            "w": "point",
+            "t": 224.574
+          },
+          {
+            "w": "toward",
+            "t": 225.046
+          },
+          {
+            "w": "the",
+            "t": 225.518
+          },
+          {
+            "w": "clean",
+            "t": 225.99
+          },
+          {
+            "w": "distribution.",
+            "t": 226.462
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Kaito",
+        "text": "What is the catch? There has to be a trade-off!",
+        "start": 227.284,
+        "end": 231.628,
+        "words": [
+          {
+            "w": "What",
+            "t": 227.284
+          },
+          {
+            "w": "is",
+            "t": 227.718
+          },
+          {
+            "w": "the",
+            "t": 228.153
+          },
+          {
+            "w": "catch?",
+            "t": 228.587
+          },
+          {
+            "w": "There",
+            "t": 229.022
+          },
+          {
+            "w": "has",
+            "t": 229.456
+          },
+          {
+            "w": "to",
+            "t": 229.89
+          },
+          {
+            "w": "be",
+            "t": 230.325
+          },
+          {
+            "w": "a",
+            "t": 230.759
+          },
+          {
+            "w": "trade-off!",
+            "t": 231.194
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "The catch is gradient variance. While the gradients are unbiased in expectation, individual mini-batch updates exhibit higher variance. That is why estimating T accurately is essential.",
+        "start": 231.978,
+        "end": 244.818,
+        "words": [
+          {
+            "w": "The",
+            "t": 231.978
+          },
+          {
+            "w": "catch",
+            "t": 232.472
+          },
+          {
+            "w": "is",
+            "t": 232.966
+          },
+          {
+            "w": "gradient",
+            "t": 233.46
+          },
+          {
+            "w": "variance.",
+            "t": 233.953
+          },
+          {
+            "w": "While",
+            "t": 234.447
+          },
+          {
+            "w": "the",
+            "t": 234.941
+          },
+          {
+            "w": "gradients",
+            "t": 235.435
+          },
+          {
+            "w": "are",
+            "t": 235.929
+          },
+          {
+            "w": "unbiased",
+            "t": 236.423
+          },
+          {
+            "w": "in",
+            "t": 236.916
+          },
+          {
+            "w": "expectation,",
+            "t": 237.41
+          },
+          {
+            "w": "individual",
+            "t": 237.904
+          },
+          {
+            "w": "mini-batch",
+            "t": 238.398
+          },
+          {
+            "w": "updates",
+            "t": 238.892
+          },
+          {
+            "w": "exhibit",
+            "t": 239.386
+          },
+          {
+            "w": "higher",
+            "t": 239.88
+          },
+          {
+            "w": "variance.",
+            "t": 240.373
+          },
+          {
+            "w": "That",
+            "t": 240.867
+          },
+          {
+            "w": "is",
+            "t": 241.361
+          },
+          {
+            "w": "why",
+            "t": 241.855
+          },
+          {
+            "w": "estimating",
+            "t": 242.349
+          },
+          {
+            "w": "T",
+            "t": 242.843
+          },
+          {
+            "w": "accurately",
+            "t": 243.336
+          },
+          {
+            "w": "is",
+            "t": 243.83
+          },
+          {
+            "w": "essential.",
+            "t": 244.324
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, our speaker stage has traveled down to dock inside the Label Noise Studio! Look at the controls right below us!",
+        "start": 245.568,
+        "end": 253.848,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 245.568
+          },
+          {
+            "w": "Nova,",
+            "t": 245.944
+          },
+          {
+            "w": "our",
+            "t": 246.321
+          },
+          {
+            "w": "speaker",
+            "t": 246.697
+          },
+          {
+            "w": "stage",
+            "t": 247.073
+          },
+          {
+            "w": "has",
+            "t": 247.45
+          },
+          {
+            "w": "traveled",
+            "t": 247.826
+          },
+          {
+            "w": "down",
+            "t": 248.203
+          },
+          {
+            "w": "to",
+            "t": 248.579
+          },
+          {
+            "w": "dock",
+            "t": 248.955
+          },
+          {
+            "w": "inside",
+            "t": 249.332
+          },
+          {
+            "w": "the",
+            "t": 249.708
+          },
+          {
+            "w": "Label",
+            "t": 250.084
+          },
+          {
+            "w": "Noise",
+            "t": 250.461
+          },
+          {
+            "w": "Studio!",
+            "t": 250.837
+          },
+          {
+            "w": "Look",
+            "t": 251.213
+          },
+          {
+            "w": "at",
+            "t": 251.59
+          },
+          {
+            "w": "the",
+            "t": 251.966
+          },
+          {
+            "w": "controls",
+            "t": 252.343
+          },
+          {
+            "w": "right",
+            "t": 252.719
+          },
+          {
+            "w": "below",
+            "t": 253.095
+          },
+          {
+            "w": "us!",
+            "t": 253.472
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "Drag the error rate slider from 5% to 30%, Kaito. Notice how the Effective Sample Size gauge plunges from four thousand records down to just eighteen hundred!",
+        "start": 254.198,
+        "end": 265.358,
+        "words": [
+          {
+            "w": "Drag",
+            "t": 254.198
+          },
+          {
+            "w": "the",
+            "t": 254.611
+          },
+          {
+            "w": "error",
+            "t": 255.025
+          },
+          {
+            "w": "rate",
+            "t": 255.438
+          },
+          {
+            "w": "slider",
+            "t": 255.851
+          },
+          {
+            "w": "from",
+            "t": 256.265
+          },
+          {
+            "w": "5%",
+            "t": 256.678
+          },
+          {
+            "w": "to",
+            "t": 257.091
+          },
+          {
+            "w": "30%,",
+            "t": 257.505
+          },
+          {
+            "w": "Kaito.",
+            "t": 257.918
+          },
+          {
+            "w": "Notice",
+            "t": 258.331
+          },
+          {
+            "w": "how",
+            "t": 258.745
+          },
+          {
+            "w": "the",
+            "t": 259.158
+          },
+          {
+            "w": "Effective",
+            "t": 259.571
+          },
+          {
+            "w": "Sample",
+            "t": 259.985
+          },
+          {
+            "w": "Size",
+            "t": 260.398
+          },
+          {
+            "w": "gauge",
+            "t": 260.811
+          },
+          {
+            "w": "plunges",
+            "t": 261.225
+          },
+          {
+            "w": "from",
+            "t": 261.638
+          },
+          {
+            "w": "four",
+            "t": 262.051
+          },
+          {
+            "w": "thousand",
+            "t": 262.465
+          },
+          {
+            "w": "records",
+            "t": 262.878
+          },
+          {
+            "w": "down",
+            "t": 263.291
+          },
+          {
+            "w": "to",
+            "t": 263.705
+          },
+          {
+            "w": "just",
+            "t": 264.118
+          },
+          {
+            "w": "eighteen",
+            "t": 264.531
+          },
+          {
+            "w": "hundred!",
+            "t": 264.945
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Kaito",
+        "text": "And when I switch the strategy dropdown to Confident Learning, it prunes the high-loss mislabeled records and projected test accuracy jumps from 85% back to 91%!",
+        "start": 265.708,
+        "end": 275.62,
+        "words": [
+          {
+            "w": "And",
+            "t": 265.708
+          },
+          {
+            "w": "when",
+            "t": 266.089
+          },
+          {
+            "w": "I",
+            "t": 266.47
+          },
+          {
+            "w": "switch",
+            "t": 266.852
+          },
+          {
+            "w": "the",
+            "t": 267.233
+          },
+          {
+            "w": "strategy",
+            "t": 267.614
+          },
+          {
+            "w": "dropdown",
+            "t": 267.995
+          },
+          {
+            "w": "to",
+            "t": 268.377
+          },
+          {
+            "w": "Confident",
+            "t": 268.758
+          },
+          {
+            "w": "Learning,",
+            "t": 269.139
+          },
+          {
+            "w": "it",
+            "t": 269.52
+          },
+          {
+            "w": "prunes",
+            "t": 269.902
+          },
+          {
+            "w": "the",
+            "t": 270.283
+          },
+          {
+            "w": "high-loss",
+            "t": 270.664
+          },
+          {
+            "w": "mislabeled",
+            "t": 271.045
+          },
+          {
+            "w": "records",
+            "t": 271.426
+          },
+          {
+            "w": "and",
+            "t": 271.808
+          },
+          {
+            "w": "projected",
+            "t": 272.189
+          },
+          {
+            "w": "test",
+            "t": 272.57
+          },
+          {
+            "w": "accuracy",
+            "t": 272.951
+          },
+          {
+            "w": "jumps",
+            "t": 273.333
+          },
+          {
+            "w": "from",
+            "t": 273.714
+          },
+          {
+            "w": "85%",
+            "t": 274.095
+          },
+          {
+            "w": "back",
+            "t": 274.476
+          },
+          {
+            "w": "to",
+            "t": 274.858
+          },
+          {
+            "w": "91%!",
+            "t": 275.239
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "That is the power of automated label quality auditing. Let our learners experiment with the parameters directly below us.",
+        "start": 275.97,
+        "end": 283.866,
+        "words": [
+          {
+            "w": "That",
+            "t": 275.97
+          },
+          {
+            "w": "is",
+            "t": 276.386
+          },
+          {
+            "w": "the",
+            "t": 276.801
+          },
+          {
+            "w": "power",
+            "t": 277.217
+          },
+          {
+            "w": "of",
+            "t": 277.632
+          },
+          {
+            "w": "automated",
+            "t": 278.048
+          },
+          {
+            "w": "label",
+            "t": 278.463
+          },
+          {
+            "w": "quality",
+            "t": 278.879
+          },
+          {
+            "w": "auditing.",
+            "t": 279.295
+          },
+          {
+            "w": "Let",
+            "t": 279.71
+          },
+          {
+            "w": "our",
+            "t": 280.126
+          },
+          {
+            "w": "learners",
+            "t": 280.541
+          },
+          {
+            "w": "experiment",
+            "t": 280.957
+          },
+          {
+            "w": "with",
+            "t": 281.373
+          },
+          {
+            "w": "the",
+            "t": 281.788
+          },
+          {
+            "w": "parameters",
+            "t": 282.204
+          },
+          {
+            "w": "directly",
+            "t": 282.619
+          },
+          {
+            "w": "below",
+            "t": 283.035
+          },
+          {
+            "w": "us.",
+            "t": 283.45
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Kaito",
+        "text": "A crowd workforce with a thirty percent error rate, and we need the statistical power of ten thousand gold records!",
+        "start": 284.616,
+        "end": 291.264,
+        "words": [
+          {
+            "w": "A",
+            "t": 284.616
+          },
+          {
+            "w": "crowd",
+            "t": 284.948
+          },
+          {
+            "w": "workforce",
+            "t": 285.281
+          },
+          {
+            "w": "with",
+            "t": 285.613
+          },
+          {
+            "w": "a",
+            "t": 285.946
+          },
+          {
+            "w": "thirty",
+            "t": 286.278
+          },
+          {
+            "w": "percent",
+            "t": 286.61
+          },
+          {
+            "w": "error",
+            "t": 286.943
+          },
+          {
+            "w": "rate,",
+            "t": 287.275
+          },
+          {
+            "w": "and",
+            "t": 287.608
+          },
+          {
+            "w": "we",
+            "t": 287.94
+          },
+          {
+            "w": "need",
+            "t": 288.272
+          },
+          {
+            "w": "the",
+            "t": 288.605
+          },
+          {
+            "w": "statistical",
+            "t": 288.937
+          },
+          {
+            "w": "power",
+            "t": 289.27
+          },
+          {
+            "w": "of",
+            "t": 289.602
+          },
+          {
+            "w": "ten",
+            "t": 289.934
+          },
+          {
+            "w": "thousand",
+            "t": 290.267
+          },
+          {
+            "w": "gold",
+            "t": 290.599
+          },
+          {
+            "w": "records!",
+            "t": 290.932
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "Remember, Kaito: sample complexity scales with the square of 1 minus 2 eta, not 1 minus eta! Let us see if our engineers can calculate the exact required sample size. Select Option A, B, or C above me!",
+        "start": 291.614,
+        "end": 307.646,
+        "words": [
+          {
+            "w": "Remember,",
+            "t": 291.614
+          },
+          {
+            "w": "Kaito:",
+            "t": 292.036
+          },
+          {
+            "w": "sample",
+            "t": 292.458
+          },
+          {
+            "w": "complexity",
+            "t": 292.88
+          },
+          {
+            "w": "scales",
+            "t": 293.302
+          },
+          {
+            "w": "with",
+            "t": 293.723
+          },
+          {
+            "w": "the",
+            "t": 294.145
+          },
+          {
+            "w": "square",
+            "t": 294.567
+          },
+          {
+            "w": "of",
+            "t": 294.989
+          },
+          {
+            "w": "1",
+            "t": 295.411
+          },
+          {
+            "w": "minus",
+            "t": 295.833
+          },
+          {
+            "w": "2",
+            "t": 296.255
+          },
+          {
+            "w": "eta,",
+            "t": 296.677
+          },
+          {
+            "w": "not",
+            "t": 297.099
+          },
+          {
+            "w": "1",
+            "t": 297.521
+          },
+          {
+            "w": "minus",
+            "t": 297.942
+          },
+          {
+            "w": "eta!",
+            "t": 298.364
+          },
+          {
+            "w": "Let",
+            "t": 298.786
+          },
+          {
+            "w": "us",
+            "t": 299.208
+          },
+          {
+            "w": "see",
+            "t": 299.63
+          },
+          {
+            "w": "if",
+            "t": 300.052
+          },
+          {
+            "w": "our",
+            "t": 300.474
+          },
+          {
+            "w": "engineers",
+            "t": 300.896
+          },
+          {
+            "w": "can",
+            "t": 301.318
+          },
+          {
+            "w": "calculate",
+            "t": 301.739
+          },
+          {
+            "w": "the",
+            "t": 302.161
+          },
+          {
+            "w": "exact",
+            "t": 302.583
+          },
+          {
+            "w": "required",
+            "t": 303.005
+          },
+          {
+            "w": "sample",
+            "t": 303.427
+          },
+          {
+            "w": "size.",
+            "t": 303.849
+          },
+          {
+            "w": "Select",
+            "t": 304.271
+          },
+          {
+            "w": "Option",
+            "t": 304.693
+          },
+          {
+            "w": "A,",
+            "t": 305.115
+          },
+          {
+            "w": "B,",
+            "t": 305.537
+          },
+          {
+            "w": "or",
+            "t": 305.958
+          },
+          {
+            "w": "C",
+            "t": 306.38
+          },
+          {
+            "w": "above",
+            "t": 306.802
+          },
+          {
+            "w": "me!",
+            "t": 307.224
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, I used to think annotation was just drawing boxes or clicking tags. But looking at this breakdown, the mathematical output spaces are completely different!",
+        "start": 308.396,
+        "end": 318.884,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 308.396
+          },
+          {
+            "w": "Nova,",
+            "t": 308.799
+          },
+          {
+            "w": "I",
+            "t": 309.203
+          },
+          {
+            "w": "used",
+            "t": 309.606
+          },
+          {
+            "w": "to",
+            "t": 310.01
+          },
+          {
+            "w": "think",
+            "t": 310.413
+          },
+          {
+            "w": "annotation",
+            "t": 310.816
+          },
+          {
+            "w": "was",
+            "t": 311.22
+          },
+          {
+            "w": "just",
+            "t": 311.623
+          },
+          {
+            "w": "drawing",
+            "t": 312.026
+          },
+          {
+            "w": "boxes",
+            "t": 312.43
+          },
+          {
+            "w": "or",
+            "t": 312.833
+          },
+          {
+            "w": "clicking",
+            "t": 313.237
+          },
+          {
+            "w": "tags.",
+            "t": 313.64
+          },
+          {
+            "w": "But",
+            "t": 314.043
+          },
+          {
+            "w": "looking",
+            "t": 314.447
+          },
+          {
+            "w": "at",
+            "t": 314.85
+          },
+          {
+            "w": "this",
+            "t": 315.254
+          },
+          {
+            "w": "breakdown,",
+            "t": 315.657
+          },
+          {
+            "w": "the",
+            "t": 316.06
+          },
+          {
+            "w": "mathematical",
+            "t": 316.464
+          },
+          {
+            "w": "output",
+            "t": 316.867
+          },
+          {
+            "w": "spaces",
+            "t": 317.27
+          },
+          {
+            "w": "are",
+            "t": 317.674
+          },
+          {
+            "w": "completely",
+            "t": 318.077
+          },
+          {
+            "w": "different!",
+            "t": 318.481
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Indeed! Tagging a text span in Named Entity Recognition is a discrete combinatorial sequence optimization problem, whereas drawing a 3D bounding box for LiDAR perception operates over continuous SE(3) Lie group rotations and continuous spatial coordinates.",
+        "start": 319.234,
+        "end": 336.538,
+        "words": [
+          {
+            "w": "Indeed!",
+            "t": 319.234
+          },
+          {
+            "w": "Tagging",
+            "t": 319.715
+          },
+          {
+            "w": "a",
+            "t": 320.195
+          },
+          {
+            "w": "text",
+            "t": 320.676
+          },
+          {
+            "w": "span",
+            "t": 321.157
+          },
+          {
+            "w": "in",
+            "t": 321.637
+          },
+          {
+            "w": "Named",
+            "t": 322.118
+          },
+          {
+            "w": "Entity",
+            "t": 322.599
+          },
+          {
+            "w": "Recognition",
+            "t": 323.079
+          },
+          {
+            "w": "is",
+            "t": 323.56
+          },
+          {
+            "w": "a",
+            "t": 324.041
+          },
+          {
+            "w": "discrete",
+            "t": 324.521
+          },
+          {
+            "w": "combinatorial",
+            "t": 325.002
+          },
+          {
+            "w": "sequence",
+            "t": 325.483
+          },
+          {
+            "w": "optimization",
+            "t": 325.963
+          },
+          {
+            "w": "problem,",
+            "t": 326.444
+          },
+          {
+            "w": "whereas",
+            "t": 326.925
+          },
+          {
+            "w": "drawing",
+            "t": 327.405
+          },
+          {
+            "w": "a",
+            "t": 327.886
+          },
+          {
+            "w": "3D",
+            "t": 328.367
+          },
+          {
+            "w": "bounding",
+            "t": 328.847
+          },
+          {
+            "w": "box",
+            "t": 329.328
+          },
+          {
+            "w": "for",
+            "t": 329.809
+          },
+          {
+            "w": "LiDAR",
+            "t": 330.289
+          },
+          {
+            "w": "perception",
+            "t": 330.77
+          },
+          {
+            "w": "operates",
+            "t": 331.251
+          },
+          {
+            "w": "over",
+            "t": 331.731
+          },
+          {
+            "w": "continuous",
+            "t": 332.212
+          },
+          {
+            "w": "SE(3)",
+            "t": 332.693
+          },
+          {
+            "w": "Lie",
+            "t": 333.173
+          },
+          {
+            "w": "group",
+            "t": 333.654
+          },
+          {
+            "w": "rotations",
+            "t": 334.135
+          },
+          {
+            "w": "and",
+            "t": 334.615
+          },
+          {
+            "w": "continuous",
+            "t": 335.096
+          },
+          {
+            "w": "spatial",
+            "t": 335.577
+          },
+          {
+            "w": "coordinates.",
+            "t": 336.057
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Kaito",
+        "text": "And in video, you aren't just labeling an object per frame—you must maintain identity tracking across occlusion boundaries!",
+        "start": 336.888,
+        "end": 343.872,
+        "words": [
+          {
+            "w": "And",
+            "t": 336.888
+          },
+          {
+            "w": "in",
+            "t": 337.276
+          },
+          {
+            "w": "video,",
+            "t": 337.664
+          },
+          {
+            "w": "you",
+            "t": 338.052
+          },
+          {
+            "w": "aren't",
+            "t": 338.44
+          },
+          {
+            "w": "just",
+            "t": 338.828
+          },
+          {
+            "w": "labeling",
+            "t": 339.216
+          },
+          {
+            "w": "an",
+            "t": 339.604
+          },
+          {
+            "w": "object",
+            "t": 339.992
+          },
+          {
+            "w": "per",
+            "t": 340.38
+          },
+          {
+            "w": "frame—you",
+            "t": 340.768
+          },
+          {
+            "w": "must",
+            "t": 341.156
+          },
+          {
+            "w": "maintain",
+            "t": 341.544
+          },
+          {
+            "w": "identity",
+            "t": 341.932
+          },
+          {
+            "w": "tracking",
+            "t": 342.32
+          },
+          {
+            "w": "across",
+            "t": 342.708
+          },
+          {
+            "w": "occlusion",
+            "t": 343.096
+          },
+          {
+            "w": "boundaries!",
+            "t": 343.484
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Every modality requires its own serialization format and strict mathematical invariants.",
+        "start": 344.222,
+        "end": 351.782,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 344.222
+          },
+          {
+            "w": "Every",
+            "t": 344.852
+          },
+          {
+            "w": "modality",
+            "t": 345.482
+          },
+          {
+            "w": "requires",
+            "t": 346.112
+          },
+          {
+            "w": "its",
+            "t": 346.742
+          },
+          {
+            "w": "own",
+            "t": 347.372
+          },
+          {
+            "w": "serialization",
+            "t": 348.002
+          },
+          {
+            "w": "format",
+            "t": 348.632
+          },
+          {
+            "w": "and",
+            "t": 349.262
+          },
+          {
+            "w": "strict",
+            "t": 349.892
+          },
+          {
+            "w": "mathematical",
+            "t": 350.522
+          },
+          {
+            "w": "invariants.",
+            "t": 351.152
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, I see teams converting between COCO JSON, Pascal VOC XML, and YOLO text formats with quick Python scripts. What can go wrong?",
+        "start": 352.532,
+        "end": 362.396,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 352.532
+          },
+          {
+            "w": "Nova,",
+            "t": 352.943
+          },
+          {
+            "w": "I",
+            "t": 353.354
+          },
+          {
+            "w": "see",
+            "t": 353.765
+          },
+          {
+            "w": "teams",
+            "t": 354.176
+          },
+          {
+            "w": "converting",
+            "t": 354.587
+          },
+          {
+            "w": "between",
+            "t": 354.998
+          },
+          {
+            "w": "COCO",
+            "t": 355.409
+          },
+          {
+            "w": "JSON,",
+            "t": 355.82
+          },
+          {
+            "w": "Pascal",
+            "t": 356.231
+          },
+          {
+            "w": "VOC",
+            "t": 356.642
+          },
+          {
+            "w": "XML,",
+            "t": 357.053
+          },
+          {
+            "w": "and",
+            "t": 357.464
+          },
+          {
+            "w": "YOLO",
+            "t": 357.875
+          },
+          {
+            "w": "text",
+            "t": 358.286
+          },
+          {
+            "w": "formats",
+            "t": 358.697
+          },
+          {
+            "w": "with",
+            "t": 359.108
+          },
+          {
+            "w": "quick",
+            "t": 359.519
+          },
+          {
+            "w": "Python",
+            "t": 359.93
+          },
+          {
+            "w": "scripts.",
+            "t": 360.341
+          },
+          {
+            "w": "What",
+            "t": 360.752
+          },
+          {
+            "w": "can",
+            "t": 361.163
+          },
+          {
+            "w": "go",
+            "t": 361.574
+          },
+          {
+            "w": "wrong?",
+            "t": 361.985
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "Coordinate normalization bugs! In COCO, bounding boxes are specified as top-left corner x, y, followed by width and height in absolute pixels. In YOLO, they are center x, center y, width, and height normalized between 0 and 1. A single coordinate inversion corrupts your entire training ground truth!",
+        "start": 362.746,
+        "end": 384.994,
+        "words": [
+          {
+            "w": "Coordinate",
+            "t": 362.746
+          },
+          {
+            "w": "normalization",
+            "t": 363.209
+          },
+          {
+            "w": "bugs!",
+            "t": 363.673
+          },
+          {
+            "w": "In",
+            "t": 364.136
+          },
+          {
+            "w": "COCO,",
+            "t": 364.6
+          },
+          {
+            "w": "bounding",
+            "t": 365.063
+          },
+          {
+            "w": "boxes",
+            "t": 365.527
+          },
+          {
+            "w": "are",
+            "t": 365.99
+          },
+          {
+            "w": "specified",
+            "t": 366.454
+          },
+          {
+            "w": "as",
+            "t": 366.917
+          },
+          {
+            "w": "top-left",
+            "t": 367.381
+          },
+          {
+            "w": "corner",
+            "t": 367.844
+          },
+          {
+            "w": "x,",
+            "t": 368.308
+          },
+          {
+            "w": "y,",
+            "t": 368.772
+          },
+          {
+            "w": "followed",
+            "t": 369.235
+          },
+          {
+            "w": "by",
+            "t": 369.698
+          },
+          {
+            "w": "width",
+            "t": 370.162
+          },
+          {
+            "w": "and",
+            "t": 370.625
+          },
+          {
+            "w": "height",
+            "t": 371.089
+          },
+          {
+            "w": "in",
+            "t": 371.553
+          },
+          {
+            "w": "absolute",
+            "t": 372.016
+          },
+          {
+            "w": "pixels.",
+            "t": 372.479
+          },
+          {
+            "w": "In",
+            "t": 372.943
+          },
+          {
+            "w": "YOLO,",
+            "t": 373.406
+          },
+          {
+            "w": "they",
+            "t": 373.87
+          },
+          {
+            "w": "are",
+            "t": 374.333
+          },
+          {
+            "w": "center",
+            "t": 374.797
+          },
+          {
+            "w": "x,",
+            "t": 375.26
+          },
+          {
+            "w": "center",
+            "t": 375.724
+          },
+          {
+            "w": "y,",
+            "t": 376.188
+          },
+          {
+            "w": "width,",
+            "t": 376.651
+          },
+          {
+            "w": "and",
+            "t": 377.114
+          },
+          {
+            "w": "height",
+            "t": 377.578
+          },
+          {
+            "w": "normalized",
+            "t": 378.041
+          },
+          {
+            "w": "between",
+            "t": 378.505
+          },
+          {
+            "w": "0",
+            "t": 378.969
+          },
+          {
+            "w": "and",
+            "t": 379.432
+          },
+          {
+            "w": "1.",
+            "t": 379.895
+          },
+          {
+            "w": "A",
+            "t": 380.359
+          },
+          {
+            "w": "single",
+            "t": 380.822
+          },
+          {
+            "w": "coordinate",
+            "t": 381.286
+          },
+          {
+            "w": "inversion",
+            "t": 381.75
+          },
+          {
+            "w": "corrupts",
+            "t": 382.213
+          },
+          {
+            "w": "your",
+            "t": 382.676
+          },
+          {
+            "w": "entire",
+            "t": 383.14
+          },
+          {
+            "w": "training",
+            "t": 383.603
+          },
+          {
+            "w": "ground",
+            "t": 384.067
+          },
+          {
+            "w": "truth!",
+            "t": 384.53
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Kaito",
+        "text": "And in segmentation, off-by-one errors when decoding Run-Length Encoded masks shift your boundary masks by a pixel row!",
+        "start": 385.344,
+        "end": 392.544,
+        "words": [
+          {
+            "w": "And",
+            "t": 385.344
+          },
+          {
+            "w": "in",
+            "t": 385.744
+          },
+          {
+            "w": "segmentation,",
+            "t": 386.144
+          },
+          {
+            "w": "off-by-one",
+            "t": 386.544
+          },
+          {
+            "w": "errors",
+            "t": 386.944
+          },
+          {
+            "w": "when",
+            "t": 387.344
+          },
+          {
+            "w": "decoding",
+            "t": 387.744
+          },
+          {
+            "w": "Run-Length",
+            "t": 388.144
+          },
+          {
+            "w": "Encoded",
+            "t": 388.544
+          },
+          {
+            "w": "masks",
+            "t": 388.944
+          },
+          {
+            "w": "shift",
+            "t": 389.344
+          },
+          {
+            "w": "your",
+            "t": 389.744
+          },
+          {
+            "w": "boundary",
+            "t": 390.144
+          },
+          {
+            "w": "masks",
+            "t": 390.544
+          },
+          {
+            "w": "by",
+            "t": 390.944
+          },
+          {
+            "w": "a",
+            "t": 391.344
+          },
+          {
+            "w": "pixel",
+            "t": 391.744
+          },
+          {
+            "w": "row!",
+            "t": 392.144
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Automated schema validation and IoU invariance checks must run continuously in CI/CD.",
+        "start": 392.894,
+        "end": 401.342,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 392.894
+          },
+          {
+            "w": "Automated",
+            "t": 393.544
+          },
+          {
+            "w": "schema",
+            "t": 394.194
+          },
+          {
+            "w": "validation",
+            "t": 394.844
+          },
+          {
+            "w": "and",
+            "t": 395.493
+          },
+          {
+            "w": "IoU",
+            "t": 396.143
+          },
+          {
+            "w": "invariance",
+            "t": 396.793
+          },
+          {
+            "w": "checks",
+            "t": 397.443
+          },
+          {
+            "w": "must",
+            "t": 398.093
+          },
+          {
+            "w": "run",
+            "t": 398.743
+          },
+          {
+            "w": "continuously",
+            "t": 399.392
+          },
+          {
+            "w": "in",
+            "t": 400.042
+          },
+          {
+            "w": "CI/CD.",
+            "t": 400.692
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, look at Stage 3: why do you stop the entire pipeline if the pilot batch Cohen's kappa is below 0.75?",
+        "start": 402.092,
+        "end": 409.892,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 402.092
+          },
+          {
+            "w": "Nova,",
+            "t": 402.447
+          },
+          {
+            "w": "look",
+            "t": 402.801
+          },
+          {
+            "w": "at",
+            "t": 403.156
+          },
+          {
+            "w": "Stage",
+            "t": 403.51
+          },
+          {
+            "w": "3:",
+            "t": 403.865
+          },
+          {
+            "w": "why",
+            "t": 404.219
+          },
+          {
+            "w": "do",
+            "t": 404.574
+          },
+          {
+            "w": "you",
+            "t": 404.928
+          },
+          {
+            "w": "stop",
+            "t": 405.283
+          },
+          {
+            "w": "the",
+            "t": 405.637
+          },
+          {
+            "w": "entire",
+            "t": 405.992
+          },
+          {
+            "w": "pipeline",
+            "t": 406.347
+          },
+          {
+            "w": "if",
+            "t": 406.701
+          },
+          {
+            "w": "the",
+            "t": 407.056
+          },
+          {
+            "w": "pilot",
+            "t": 407.41
+          },
+          {
+            "w": "batch",
+            "t": 407.765
+          },
+          {
+            "w": "Cohen's",
+            "t": 408.119
+          },
+          {
+            "w": "kappa",
+            "t": 408.474
+          },
+          {
+            "w": "is",
+            "t": 408.828
+          },
+          {
+            "w": "below",
+            "t": 409.183
+          },
+          {
+            "w": "0.75?",
+            "t": 409.537
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Because an inter-annotator agreement kappa below 0.75 proves that your human instructions are ambiguous! If two trained workers cannot agree on the gold rubric for 500 samples, spending $50,000 to annotate 100,000 samples will only generate expensive noise.",
+        "start": 410.242,
+        "end": 428.098,
+        "words": [
+          {
+            "w": "Because",
+            "t": 410.242
+          },
+          {
+            "w": "an",
+            "t": 410.712
+          },
+          {
+            "w": "inter-annotator",
+            "t": 411.182
+          },
+          {
+            "w": "agreement",
+            "t": 411.652
+          },
+          {
+            "w": "kappa",
+            "t": 412.122
+          },
+          {
+            "w": "below",
+            "t": 412.591
+          },
+          {
+            "w": "0.75",
+            "t": 413.061
+          },
+          {
+            "w": "proves",
+            "t": 413.531
+          },
+          {
+            "w": "that",
+            "t": 414.001
+          },
+          {
+            "w": "your",
+            "t": 414.471
+          },
+          {
+            "w": "human",
+            "t": 414.941
+          },
+          {
+            "w": "instructions",
+            "t": 415.411
+          },
+          {
+            "w": "are",
+            "t": 415.881
+          },
+          {
+            "w": "ambiguous!",
+            "t": 416.351
+          },
+          {
+            "w": "If",
+            "t": 416.821
+          },
+          {
+            "w": "two",
+            "t": 417.29
+          },
+          {
+            "w": "trained",
+            "t": 417.76
+          },
+          {
+            "w": "workers",
+            "t": 418.23
+          },
+          {
+            "w": "cannot",
+            "t": 418.7
+          },
+          {
+            "w": "agree",
+            "t": 419.17
+          },
+          {
+            "w": "on",
+            "t": 419.64
+          },
+          {
+            "w": "the",
+            "t": 420.11
+          },
+          {
+            "w": "gold",
+            "t": 420.58
+          },
+          {
+            "w": "rubric",
+            "t": 421.05
+          },
+          {
+            "w": "for",
+            "t": 421.519
+          },
+          {
+            "w": "500",
+            "t": 421.989
+          },
+          {
+            "w": "samples,",
+            "t": 422.459
+          },
+          {
+            "w": "spending",
+            "t": 422.929
+          },
+          {
+            "w": "$50,000",
+            "t": 423.399
+          },
+          {
+            "w": "to",
+            "t": 423.869
+          },
+          {
+            "w": "annotate",
+            "t": 424.339
+          },
+          {
+            "w": "100,000",
+            "t": 424.809
+          },
+          {
+            "w": "samples",
+            "t": 425.279
+          },
+          {
+            "w": "will",
+            "t": 425.749
+          },
+          {
+            "w": "only",
+            "t": 426.218
+          },
+          {
+            "w": "generate",
+            "t": 426.688
+          },
+          {
+            "w": "expensive",
+            "t": 427.158
+          },
+          {
+            "w": "noise.",
+            "t": 427.628
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Kaito",
+        "text": "And the ten percent synthetic honeypots catch lazy annotators who just spam the default button!",
+        "start": 428.448,
+        "end": 434.304,
+        "words": [
+          {
+            "w": "And",
+            "t": 428.448
+          },
+          {
+            "w": "the",
+            "t": 428.838
+          },
+          {
+            "w": "ten",
+            "t": 429.229
+          },
+          {
+            "w": "percent",
+            "t": 429.619
+          },
+          {
+            "w": "synthetic",
+            "t": 430.01
+          },
+          {
+            "w": "honeypots",
+            "t": 430.4
+          },
+          {
+            "w": "catch",
+            "t": 430.79
+          },
+          {
+            "w": "lazy",
+            "t": 431.181
+          },
+          {
+            "w": "annotators",
+            "t": 431.571
+          },
+          {
+            "w": "who",
+            "t": 431.962
+          },
+          {
+            "w": "just",
+            "t": 432.352
+          },
+          {
+            "w": "spam",
+            "t": 432.742
+          },
+          {
+            "w": "the",
+            "t": 433.133
+          },
+          {
+            "w": "default",
+            "t": 433.523
+          },
+          {
+            "w": "button!",
+            "t": 433.914
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Automated eviction gates protect dataset integrity long before labels reach downstream training sets.",
+        "start": 434.654,
+        "end": 442.766,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 434.654
+          },
+          {
+            "w": "Automated",
+            "t": 435.233
+          },
+          {
+            "w": "eviction",
+            "t": 435.813
+          },
+          {
+            "w": "gates",
+            "t": 436.392
+          },
+          {
+            "w": "protect",
+            "t": 436.972
+          },
+          {
+            "w": "dataset",
+            "t": 437.551
+          },
+          {
+            "w": "integrity",
+            "t": 438.131
+          },
+          {
+            "w": "long",
+            "t": 438.71
+          },
+          {
+            "w": "before",
+            "t": 439.289
+          },
+          {
+            "w": "labels",
+            "t": 439.869
+          },
+          {
+            "w": "reach",
+            "t": 440.448
+          },
+          {
+            "w": "downstream",
+            "t": 441.028
+          },
+          {
+            "w": "training",
+            "t": 441.607
+          },
+          {
+            "w": "sets.",
+            "t": 442.187
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why isn't three-worker majority vote enough? If two out of three workers pick Class A, shouldn't we just trust Class A?",
+        "start": 443.516,
+        "end": 452.108,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 443.516
+          },
+          {
+            "w": "Nova,",
+            "t": 443.89
+          },
+          {
+            "w": "why",
+            "t": 444.263
+          },
+          {
+            "w": "isn't",
+            "t": 444.637
+          },
+          {
+            "w": "three-worker",
+            "t": 445.01
+          },
+          {
+            "w": "majority",
+            "t": 445.384
+          },
+          {
+            "w": "vote",
+            "t": 445.757
+          },
+          {
+            "w": "enough?",
+            "t": 446.131
+          },
+          {
+            "w": "If",
+            "t": 446.505
+          },
+          {
+            "w": "two",
+            "t": 446.878
+          },
+          {
+            "w": "out",
+            "t": 447.252
+          },
+          {
+            "w": "of",
+            "t": 447.625
+          },
+          {
+            "w": "three",
+            "t": 447.999
+          },
+          {
+            "w": "workers",
+            "t": 448.372
+          },
+          {
+            "w": "pick",
+            "t": 448.746
+          },
+          {
+            "w": "Class",
+            "t": 449.119
+          },
+          {
+            "w": "A,",
+            "t": 449.493
+          },
+          {
+            "w": "shouldn't",
+            "t": 449.867
+          },
+          {
+            "w": "we",
+            "t": 450.24
+          },
+          {
+            "w": "just",
+            "t": 450.614
+          },
+          {
+            "w": "trust",
+            "t": 450.987
+          },
+          {
+            "w": "Class",
+            "t": 451.361
+          },
+          {
+            "w": "A?",
+            "t": 451.734
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "What if two of those workers are rushed crowdsourced clickers who always pick the most frequent class, while the third worker is a certified radiologist who spots an early-stage malignancy? Majority vote picks the wrong answer!",
+        "start": 452.458,
+        "end": 465.562,
+        "words": [
+          {
+            "w": "What",
+            "t": 452.458
+          },
+          {
+            "w": "if",
+            "t": 452.822
+          },
+          {
+            "w": "two",
+            "t": 453.186
+          },
+          {
+            "w": "of",
+            "t": 453.55
+          },
+          {
+            "w": "those",
+            "t": 453.914
+          },
+          {
+            "w": "workers",
+            "t": 454.278
+          },
+          {
+            "w": "are",
+            "t": 454.642
+          },
+          {
+            "w": "rushed",
+            "t": 455.006
+          },
+          {
+            "w": "crowdsourced",
+            "t": 455.37
+          },
+          {
+            "w": "clickers",
+            "t": 455.734
+          },
+          {
+            "w": "who",
+            "t": 456.098
+          },
+          {
+            "w": "always",
+            "t": 456.462
+          },
+          {
+            "w": "pick",
+            "t": 456.826
+          },
+          {
+            "w": "the",
+            "t": 457.19
+          },
+          {
+            "w": "most",
+            "t": 457.554
+          },
+          {
+            "w": "frequent",
+            "t": 457.918
+          },
+          {
+            "w": "class,",
+            "t": 458.282
+          },
+          {
+            "w": "while",
+            "t": 458.646
+          },
+          {
+            "w": "the",
+            "t": 459.01
+          },
+          {
+            "w": "third",
+            "t": 459.374
+          },
+          {
+            "w": "worker",
+            "t": 459.738
+          },
+          {
+            "w": "is",
+            "t": 460.102
+          },
+          {
+            "w": "a",
+            "t": 460.466
+          },
+          {
+            "w": "certified",
+            "t": 460.83
+          },
+          {
+            "w": "radiologist",
+            "t": 461.194
+          },
+          {
+            "w": "who",
+            "t": 461.558
+          },
+          {
+            "w": "spots",
+            "t": 461.922
+          },
+          {
+            "w": "an",
+            "t": 462.286
+          },
+          {
+            "w": "early-stage",
+            "t": 462.65
+          },
+          {
+            "w": "malignancy?",
+            "t": 463.014
+          },
+          {
+            "w": "Majority",
+            "t": 463.378
+          },
+          {
+            "w": "vote",
+            "t": 463.742
+          },
+          {
+            "w": "picks",
+            "t": 464.106
+          },
+          {
+            "w": "the",
+            "t": 464.47
+          },
+          {
+            "w": "wrong",
+            "t": 464.834
+          },
+          {
+            "w": "answer!",
+            "t": 465.198
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Kaito",
+        "text": "And Dawid-Skene discovers that the radiologist has a 99% track record on honeypots, so it weights their vote over the other two combined!",
+        "start": 465.912,
+        "end": 474.144,
+        "words": [
+          {
+            "w": "And",
+            "t": 465.912
+          },
+          {
+            "w": "Dawid-Skene",
+            "t": 466.27
+          },
+          {
+            "w": "discovers",
+            "t": 466.628
+          },
+          {
+            "w": "that",
+            "t": 466.986
+          },
+          {
+            "w": "the",
+            "t": 467.344
+          },
+          {
+            "w": "radiologist",
+            "t": 467.702
+          },
+          {
+            "w": "has",
+            "t": 468.059
+          },
+          {
+            "w": "a",
+            "t": 468.417
+          },
+          {
+            "w": "99%",
+            "t": 468.775
+          },
+          {
+            "w": "track",
+            "t": 469.133
+          },
+          {
+            "w": "record",
+            "t": 469.491
+          },
+          {
+            "w": "on",
+            "t": 469.849
+          },
+          {
+            "w": "honeypots,",
+            "t": 470.207
+          },
+          {
+            "w": "so",
+            "t": 470.565
+          },
+          {
+            "w": "it",
+            "t": 470.923
+          },
+          {
+            "w": "weights",
+            "t": 471.281
+          },
+          {
+            "w": "their",
+            "t": 471.639
+          },
+          {
+            "w": "vote",
+            "t": 471.997
+          },
+          {
+            "w": "over",
+            "t": 472.354
+          },
+          {
+            "w": "the",
+            "t": 472.712
+          },
+          {
+            "w": "other",
+            "t": 473.07
+          },
+          {
+            "w": "two",
+            "t": 473.428
+          },
+          {
+            "w": "combined!",
+            "t": 473.786
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Consensus is not about headcount; it is about statistical reliability.",
+        "start": 474.494,
+        "end": 481.094,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 474.494
+          },
+          {
+            "w": "Consensus",
+            "t": 475.094
+          },
+          {
+            "w": "is",
+            "t": 475.694
+          },
+          {
+            "w": "not",
+            "t": 476.294
+          },
+          {
+            "w": "about",
+            "t": 476.894
+          },
+          {
+            "w": "headcount;",
+            "t": 477.494
+          },
+          {
+            "w": "it",
+            "t": 478.094
+          },
+          {
+            "w": "is",
+            "t": 478.694
+          },
+          {
+            "w": "about",
+            "t": 479.294
+          },
+          {
+            "w": "statistical",
+            "t": 479.894
+          },
+          {
+            "w": "reliability.",
+            "t": 480.494
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, our speaker stage has traveled down to the Transition Matrix Workbench! Look at how the matrix determinant changes when I drag T zero-one to 0.40!",
+        "start": 481.844,
+        "end": 492.836,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 481.844
+          },
+          {
+            "w": "Nova,",
+            "t": 482.251
+          },
+          {
+            "w": "our",
+            "t": 482.658
+          },
+          {
+            "w": "speaker",
+            "t": 483.065
+          },
+          {
+            "w": "stage",
+            "t": 483.472
+          },
+          {
+            "w": "has",
+            "t": 483.88
+          },
+          {
+            "w": "traveled",
+            "t": 484.287
+          },
+          {
+            "w": "down",
+            "t": 484.694
+          },
+          {
+            "w": "to",
+            "t": 485.101
+          },
+          {
+            "w": "the",
+            "t": 485.508
+          },
+          {
+            "w": "Transition",
+            "t": 485.915
+          },
+          {
+            "w": "Matrix",
+            "t": 486.322
+          },
+          {
+            "w": "Workbench!",
+            "t": 486.729
+          },
+          {
+            "w": "Look",
+            "t": 487.136
+          },
+          {
+            "w": "at",
+            "t": 487.544
+          },
+          {
+            "w": "how",
+            "t": 487.951
+          },
+          {
+            "w": "the",
+            "t": 488.358
+          },
+          {
+            "w": "matrix",
+            "t": 488.765
+          },
+          {
+            "w": "determinant",
+            "t": 489.172
+          },
+          {
+            "w": "changes",
+            "t": 489.579
+          },
+          {
+            "w": "when",
+            "t": 489.986
+          },
+          {
+            "w": "I",
+            "t": 490.393
+          },
+          {
+            "w": "drag",
+            "t": 490.8
+          },
+          {
+            "w": "T",
+            "t": 491.208
+          },
+          {
+            "w": "zero-one",
+            "t": 491.615
+          },
+          {
+            "w": "to",
+            "t": 492.022
+          },
+          {
+            "w": "0.40!",
+            "t": 492.429
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "When T zero-one is 0.40 and T one-zero is 0.30, the determinant drops to 0.30. The inverse matrix elements grow larger, amplifying gradient variance during backpropagation.",
+        "start": 493.186,
+        "end": 507.85,
+        "words": [
+          {
+            "w": "When",
+            "t": 493.186
+          },
+          {
+            "w": "T",
+            "t": 493.75
+          },
+          {
+            "w": "zero-one",
+            "t": 494.314
+          },
+          {
+            "w": "is",
+            "t": 494.878
+          },
+          {
+            "w": "0.40",
+            "t": 495.442
+          },
+          {
+            "w": "and",
+            "t": 496.006
+          },
+          {
+            "w": "T",
+            "t": 496.57
+          },
+          {
+            "w": "one-zero",
+            "t": 497.134
+          },
+          {
+            "w": "is",
+            "t": 497.698
+          },
+          {
+            "w": "0.30,",
+            "t": 498.262
+          },
+          {
+            "w": "the",
+            "t": 498.826
+          },
+          {
+            "w": "determinant",
+            "t": 499.39
+          },
+          {
+            "w": "drops",
+            "t": 499.954
+          },
+          {
+            "w": "to",
+            "t": 500.518
+          },
+          {
+            "w": "0.30.",
+            "t": 501.082
+          },
+          {
+            "w": "The",
+            "t": 501.646
+          },
+          {
+            "w": "inverse",
+            "t": 502.21
+          },
+          {
+            "w": "matrix",
+            "t": 502.774
+          },
+          {
+            "w": "elements",
+            "t": 503.338
+          },
+          {
+            "w": "grow",
+            "t": 503.902
+          },
+          {
+            "w": "larger,",
+            "t": 504.466
+          },
+          {
+            "w": "amplifying",
+            "t": 505.03
+          },
+          {
+            "w": "gradient",
+            "t": 505.594
+          },
+          {
+            "w": "variance",
+            "t": 506.158
+          },
+          {
+            "w": "during",
+            "t": 506.722
+          },
+          {
+            "w": "backpropagation.",
+            "t": 507.286
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Kaito",
+        "text": "And if T zero-one plus T one-zero equals 1.0, the determinant collapses to exactly zero—the matrix cannot be inverted!",
+        "start": 508.2,
+        "end": 516.432,
+        "words": [
+          {
+            "w": "And",
+            "t": 508.2
+          },
+          {
+            "w": "if",
+            "t": 508.633
+          },
+          {
+            "w": "T",
+            "t": 509.067
+          },
+          {
+            "w": "zero-one",
+            "t": 509.5
+          },
+          {
+            "w": "plus",
+            "t": 509.933
+          },
+          {
+            "w": "T",
+            "t": 510.366
+          },
+          {
+            "w": "one-zero",
+            "t": 510.8
+          },
+          {
+            "w": "equals",
+            "t": 511.233
+          },
+          {
+            "w": "1.0,",
+            "t": 511.666
+          },
+          {
+            "w": "the",
+            "t": 512.099
+          },
+          {
+            "w": "determinant",
+            "t": 512.533
+          },
+          {
+            "w": "collapses",
+            "t": 512.966
+          },
+          {
+            "w": "to",
+            "t": 513.399
+          },
+          {
+            "w": "exactly",
+            "t": 513.832
+          },
+          {
+            "w": "zero—the",
+            "t": 514.266
+          },
+          {
+            "w": "matrix",
+            "t": 514.699
+          },
+          {
+            "w": "cannot",
+            "t": 515.132
+          },
+          {
+            "w": "be",
+            "t": 515.565
+          },
+          {
+            "w": "inverted!",
+            "t": 515.999
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "That is the singular boundary of information theory. Let our learners explore the controls directly below us.",
+        "start": 516.782,
+        "end": 524.054,
+        "words": [
+          {
+            "w": "That",
+            "t": 516.782
+          },
+          {
+            "w": "is",
+            "t": 517.21
+          },
+          {
+            "w": "the",
+            "t": 517.638
+          },
+          {
+            "w": "singular",
+            "t": 518.065
+          },
+          {
+            "w": "boundary",
+            "t": 518.493
+          },
+          {
+            "w": "of",
+            "t": 518.921
+          },
+          {
+            "w": "information",
+            "t": 519.349
+          },
+          {
+            "w": "theory.",
+            "t": 519.776
+          },
+          {
+            "w": "Let",
+            "t": 520.204
+          },
+          {
+            "w": "our",
+            "t": 520.632
+          },
+          {
+            "w": "learners",
+            "t": 521.06
+          },
+          {
+            "w": "explore",
+            "t": 521.487
+          },
+          {
+            "w": "the",
+            "t": 521.915
+          },
+          {
+            "w": "controls",
+            "t": 522.343
+          },
+          {
+            "w": "directly",
+            "t": 522.771
+          },
+          {
+            "w": "below",
+            "t": 523.198
+          },
+          {
+            "w": "us.",
+            "t": 523.626
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, a clinical dermatology model that confuses melanoma for benign moles 25% of the time, but never the reverse!",
+        "start": 524.804,
+        "end": 533.18,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 524.804
+          },
+          {
+            "w": "Nova,",
+            "t": 525.223
+          },
+          {
+            "w": "a",
+            "t": 525.642
+          },
+          {
+            "w": "clinical",
+            "t": 526.06
+          },
+          {
+            "w": "dermatology",
+            "t": 526.479
+          },
+          {
+            "w": "model",
+            "t": 526.898
+          },
+          {
+            "w": "that",
+            "t": 527.317
+          },
+          {
+            "w": "confuses",
+            "t": 527.736
+          },
+          {
+            "w": "melanoma",
+            "t": 528.154
+          },
+          {
+            "w": "for",
+            "t": 528.573
+          },
+          {
+            "w": "benign",
+            "t": 528.992
+          },
+          {
+            "w": "moles",
+            "t": 529.411
+          },
+          {
+            "w": "25%",
+            "t": 529.83
+          },
+          {
+            "w": "of",
+            "t": 530.248
+          },
+          {
+            "w": "the",
+            "t": 530.667
+          },
+          {
+            "w": "time,",
+            "t": 531.086
+          },
+          {
+            "w": "but",
+            "t": 531.505
+          },
+          {
+            "w": "never",
+            "t": 531.924
+          },
+          {
+            "w": "the",
+            "t": 532.342
+          },
+          {
+            "w": "reverse!",
+            "t": 532.761
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "Directional label noise is lethal in healthcare, Kaito. Let us challenge our learners: select Option A, B, or C above me to determine why standard empirical risk fails and how T inverse corrects the gradients!",
+        "start": 533.53,
+        "end": 547.426,
+        "words": [
+          {
+            "w": "Directional",
+            "t": 533.53
+          },
+          {
+            "w": "label",
+            "t": 533.927
+          },
+          {
+            "w": "noise",
+            "t": 534.324
+          },
+          {
+            "w": "is",
+            "t": 534.721
+          },
+          {
+            "w": "lethal",
+            "t": 535.118
+          },
+          {
+            "w": "in",
+            "t": 535.515
+          },
+          {
+            "w": "healthcare,",
+            "t": 535.912
+          },
+          {
+            "w": "Kaito.",
+            "t": 536.309
+          },
+          {
+            "w": "Let",
+            "t": 536.706
+          },
+          {
+            "w": "us",
+            "t": 537.103
+          },
+          {
+            "w": "challenge",
+            "t": 537.5
+          },
+          {
+            "w": "our",
+            "t": 537.897
+          },
+          {
+            "w": "learners:",
+            "t": 538.294
+          },
+          {
+            "w": "select",
+            "t": 538.691
+          },
+          {
+            "w": "Option",
+            "t": 539.088
+          },
+          {
+            "w": "A,",
+            "t": 539.485
+          },
+          {
+            "w": "B,",
+            "t": 539.882
+          },
+          {
+            "w": "or",
+            "t": 540.279
+          },
+          {
+            "w": "C",
+            "t": 540.677
+          },
+          {
+            "w": "above",
+            "t": 541.074
+          },
+          {
+            "w": "me",
+            "t": 541.471
+          },
+          {
+            "w": "to",
+            "t": 541.868
+          },
+          {
+            "w": "determine",
+            "t": 542.265
+          },
+          {
+            "w": "why",
+            "t": 542.662
+          },
+          {
+            "w": "standard",
+            "t": 543.059
+          },
+          {
+            "w": "empirical",
+            "t": 543.456
+          },
+          {
+            "w": "risk",
+            "t": 543.853
+          },
+          {
+            "w": "fails",
+            "t": 544.25
+          },
+          {
+            "w": "and",
+            "t": 544.647
+          },
+          {
+            "w": "how",
+            "t": 545.044
+          },
+          {
+            "w": "T",
+            "t": 545.441
+          },
+          {
+            "w": "inverse",
+            "t": 545.838
+          },
+          {
+            "w": "corrects",
+            "t": 546.235
+          },
+          {
+            "w": "the",
+            "t": 546.632
+          },
+          {
+            "w": "gradients!",
+            "t": 547.029
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, the Uber ATG case study is chilling. The perception system failed not because the LiDAR or cameras malfunctioned, but because the annotation ontology assumed pedestrians and bicycles were strictly disjoint!",
+        "start": 548.176,
+        "end": 561.592,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 548.176
+          },
+          {
+            "w": "Nova,",
+            "t": 548.595
+          },
+          {
+            "w": "the",
+            "t": 549.014
+          },
+          {
+            "w": "Uber",
+            "t": 549.434
+          },
+          {
+            "w": "ATG",
+            "t": 549.853
+          },
+          {
+            "w": "case",
+            "t": 550.272
+          },
+          {
+            "w": "study",
+            "t": 550.692
+          },
+          {
+            "w": "is",
+            "t": 551.111
+          },
+          {
+            "w": "chilling.",
+            "t": 551.53
+          },
+          {
+            "w": "The",
+            "t": 551.949
+          },
+          {
+            "w": "perception",
+            "t": 552.369
+          },
+          {
+            "w": "system",
+            "t": 552.788
+          },
+          {
+            "w": "failed",
+            "t": 553.207
+          },
+          {
+            "w": "not",
+            "t": 553.626
+          },
+          {
+            "w": "because",
+            "t": 554.046
+          },
+          {
+            "w": "the",
+            "t": 554.465
+          },
+          {
+            "w": "LiDAR",
+            "t": 554.884
+          },
+          {
+            "w": "or",
+            "t": 555.303
+          },
+          {
+            "w": "cameras",
+            "t": 555.723
+          },
+          {
+            "w": "malfunctioned,",
+            "t": 556.142
+          },
+          {
+            "w": "but",
+            "t": 556.561
+          },
+          {
+            "w": "because",
+            "t": 556.98
+          },
+          {
+            "w": "the",
+            "t": 557.399
+          },
+          {
+            "w": "annotation",
+            "t": 557.819
+          },
+          {
+            "w": "ontology",
+            "t": 558.238
+          },
+          {
+            "w": "assumed",
+            "t": 558.657
+          },
+          {
+            "w": "pedestrians",
+            "t": 559.077
+          },
+          {
+            "w": "and",
+            "t": 559.496
+          },
+          {
+            "w": "bicycles",
+            "t": 559.915
+          },
+          {
+            "w": "were",
+            "t": 560.334
+          },
+          {
+            "w": "strictly",
+            "t": 560.754
+          },
+          {
+            "w": "disjoint!",
+            "t": 561.173
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Elaine Herzberg was pushing a bicycle laden with shopping bags. Because the training data had zero annotations of that composite edge case, the classifier flipped between Vehicle, Bicycle, and Unknown Obstacle on every frame, repeatedly resetting the velocity tracking state.",
+        "start": 561.942,
+        "end": 580.806,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 561.942
+          },
+          {
+            "w": "Elaine",
+            "t": 562.402
+          },
+          {
+            "w": "Herzberg",
+            "t": 562.862
+          },
+          {
+            "w": "was",
+            "t": 563.322
+          },
+          {
+            "w": "pushing",
+            "t": 563.782
+          },
+          {
+            "w": "a",
+            "t": 564.242
+          },
+          {
+            "w": "bicycle",
+            "t": 564.703
+          },
+          {
+            "w": "laden",
+            "t": 565.163
+          },
+          {
+            "w": "with",
+            "t": 565.623
+          },
+          {
+            "w": "shopping",
+            "t": 566.083
+          },
+          {
+            "w": "bags.",
+            "t": 566.543
+          },
+          {
+            "w": "Because",
+            "t": 567.003
+          },
+          {
+            "w": "the",
+            "t": 567.463
+          },
+          {
+            "w": "training",
+            "t": 567.923
+          },
+          {
+            "w": "data",
+            "t": 568.383
+          },
+          {
+            "w": "had",
+            "t": 568.843
+          },
+          {
+            "w": "zero",
+            "t": 569.304
+          },
+          {
+            "w": "annotations",
+            "t": 569.764
+          },
+          {
+            "w": "of",
+            "t": 570.224
+          },
+          {
+            "w": "that",
+            "t": 570.684
+          },
+          {
+            "w": "composite",
+            "t": 571.144
+          },
+          {
+            "w": "edge",
+            "t": 571.604
+          },
+          {
+            "w": "case,",
+            "t": 572.064
+          },
+          {
+            "w": "the",
+            "t": 572.524
+          },
+          {
+            "w": "classifier",
+            "t": 572.984
+          },
+          {
+            "w": "flipped",
+            "t": 573.444
+          },
+          {
+            "w": "between",
+            "t": 573.905
+          },
+          {
+            "w": "Vehicle,",
+            "t": 574.365
+          },
+          {
+            "w": "Bicycle,",
+            "t": 574.825
+          },
+          {
+            "w": "and",
+            "t": 575.285
+          },
+          {
+            "w": "Unknown",
+            "t": 575.745
+          },
+          {
+            "w": "Obstacle",
+            "t": 576.205
+          },
+          {
+            "w": "on",
+            "t": 576.665
+          },
+          {
+            "w": "every",
+            "t": 577.125
+          },
+          {
+            "w": "frame,",
+            "t": 577.585
+          },
+          {
+            "w": "repeatedly",
+            "t": 578.045
+          },
+          {
+            "w": "resetting",
+            "t": 578.506
+          },
+          {
+            "w": "the",
+            "t": 578.966
+          },
+          {
+            "w": "velocity",
+            "t": 579.426
+          },
+          {
+            "w": "tracking",
+            "t": 579.886
+          },
+          {
+            "w": "state.",
+            "t": 580.346
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Kaito",
+        "text": "And in benchmark datasets like ImageNet, researchers have been competing over fractions of a percent when nearly six percent of the test labels are wrong!",
+        "start": 581.156,
+        "end": 589.652,
+        "words": [
+          {
+            "w": "And",
+            "t": 581.156
+          },
+          {
+            "w": "in",
+            "t": 581.496
+          },
+          {
+            "w": "benchmark",
+            "t": 581.836
+          },
+          {
+            "w": "datasets",
+            "t": 582.176
+          },
+          {
+            "w": "like",
+            "t": 582.515
+          },
+          {
+            "w": "ImageNet,",
+            "t": 582.855
+          },
+          {
+            "w": "researchers",
+            "t": 583.195
+          },
+          {
+            "w": "have",
+            "t": 583.535
+          },
+          {
+            "w": "been",
+            "t": 583.875
+          },
+          {
+            "w": "competing",
+            "t": 584.215
+          },
+          {
+            "w": "over",
+            "t": 584.554
+          },
+          {
+            "w": "fractions",
+            "t": 584.894
+          },
+          {
+            "w": "of",
+            "t": 585.234
+          },
+          {
+            "w": "a",
+            "t": 585.574
+          },
+          {
+            "w": "percent",
+            "t": 585.914
+          },
+          {
+            "w": "when",
+            "t": 586.254
+          },
+          {
+            "w": "nearly",
+            "t": 586.593
+          },
+          {
+            "w": "six",
+            "t": 586.933
+          },
+          {
+            "w": "percent",
+            "t": 587.273
+          },
+          {
+            "w": "of",
+            "t": 587.613
+          },
+          {
+            "w": "the",
+            "t": 587.953
+          },
+          {
+            "w": "test",
+            "t": 588.293
+          },
+          {
+            "w": "labels",
+            "t": 588.632
+          },
+          {
+            "w": "are",
+            "t": 588.972
+          },
+          {
+            "w": "wrong!",
+            "t": 589.312
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "Indeed. Clean, exhaustive annotation taxonomies are an engineering prerequisite for safe, reliable machine learning.",
+        "start": 590.002,
+        "end": 598.666,
+        "words": [
+          {
+            "w": "Indeed.",
+            "t": 590.002
+          },
+          {
+            "w": "Clean,",
+            "t": 590.621
+          },
+          {
+            "w": "exhaustive",
+            "t": 591.24
+          },
+          {
+            "w": "annotation",
+            "t": 591.859
+          },
+          {
+            "w": "taxonomies",
+            "t": 592.477
+          },
+          {
+            "w": "are",
+            "t": 593.096
+          },
+          {
+            "w": "an",
+            "t": 593.715
+          },
+          {
+            "w": "engineering",
+            "t": 594.334
+          },
+          {
+            "w": "prerequisite",
+            "t": 594.953
+          },
+          {
+            "w": "for",
+            "t": 595.572
+          },
+          {
+            "w": "safe,",
+            "t": 596.191
+          },
+          {
+            "w": "reliable",
+            "t": 596.809
+          },
+          {
+            "w": "machine",
+            "t": 597.428
+          },
+          {
+            "w": "learning.",
+            "t": 598.047
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Kaito",
+        "text": "Dr. Nova, putting Pydantic V2 assertions right into CI/CD means our continuous integration pipeline will automatically halt if someone uploads an annotation batch with too much label noise!",
+        "start": 599.416,
+        "end": 610.528,
+        "words": [
+          {
+            "w": "Dr.",
+            "t": 599.416
+          },
+          {
+            "w": "Nova,",
+            "t": 599.813
+          },
+          {
+            "w": "putting",
+            "t": 600.21
+          },
+          {
+            "w": "Pydantic",
+            "t": 600.607
+          },
+          {
+            "w": "V2",
+            "t": 601.003
+          },
+          {
+            "w": "assertions",
+            "t": 601.4
+          },
+          {
+            "w": "right",
+            "t": 601.797
+          },
+          {
+            "w": "into",
+            "t": 602.194
+          },
+          {
+            "w": "CI/CD",
+            "t": 602.591
+          },
+          {
+            "w": "means",
+            "t": 602.988
+          },
+          {
+            "w": "our",
+            "t": 603.385
+          },
+          {
+            "w": "continuous",
+            "t": 603.781
+          },
+          {
+            "w": "integration",
+            "t": 604.178
+          },
+          {
+            "w": "pipeline",
+            "t": 604.575
+          },
+          {
+            "w": "will",
+            "t": 604.972
+          },
+          {
+            "w": "automatically",
+            "t": 605.369
+          },
+          {
+            "w": "halt",
+            "t": 605.766
+          },
+          {
+            "w": "if",
+            "t": 606.163
+          },
+          {
+            "w": "someone",
+            "t": 606.559
+          },
+          {
+            "w": "uploads",
+            "t": 606.956
+          },
+          {
+            "w": "an",
+            "t": 607.353
+          },
+          {
+            "w": "annotation",
+            "t": 607.75
+          },
+          {
+            "w": "batch",
+            "t": 608.147
+          },
+          {
+            "w": "with",
+            "t": 608.544
+          },
+          {
+            "w": "too",
+            "t": 608.941
+          },
+          {
+            "w": "much",
+            "t": 609.337
+          },
+          {
+            "w": "label",
+            "t": 609.734
+          },
+          {
+            "w": "noise!",
+            "t": 610.131
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Just as software engineers would never deploy code that fails unit tests, machine learning engineers must never deploy datasets that fail statistical noise and PAC learnability bounds.",
+        "start": 610.878,
+        "end": 623.502,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 610.878
+          },
+          {
+            "w": "Just",
+            "t": 611.329
+          },
+          {
+            "w": "as",
+            "t": 611.78
+          },
+          {
+            "w": "software",
+            "t": 612.231
+          },
+          {
+            "w": "engineers",
+            "t": 612.681
+          },
+          {
+            "w": "would",
+            "t": 613.132
+          },
+          {
+            "w": "never",
+            "t": 613.583
+          },
+          {
+            "w": "deploy",
+            "t": 614.034
+          },
+          {
+            "w": "code",
+            "t": 614.485
+          },
+          {
+            "w": "that",
+            "t": 614.936
+          },
+          {
+            "w": "fails",
+            "t": 615.387
+          },
+          {
+            "w": "unit",
+            "t": 615.837
+          },
+          {
+            "w": "tests,",
+            "t": 616.288
+          },
+          {
+            "w": "machine",
+            "t": 616.739
+          },
+          {
+            "w": "learning",
+            "t": 617.19
+          },
+          {
+            "w": "engineers",
+            "t": 617.641
+          },
+          {
+            "w": "must",
+            "t": 618.092
+          },
+          {
+            "w": "never",
+            "t": 618.543
+          },
+          {
+            "w": "deploy",
+            "t": 618.993
+          },
+          {
+            "w": "datasets",
+            "t": 619.444
+          },
+          {
+            "w": "that",
+            "t": 619.895
+          },
+          {
+            "w": "fail",
+            "t": 620.346
+          },
+          {
+            "w": "statistical",
+            "t": 620.797
+          },
+          {
+            "w": "noise",
+            "t": 621.248
+          },
+          {
+            "w": "and",
+            "t": 621.699
+          },
+          {
+            "w": "PAC",
+            "t": 622.149
+          },
+          {
+            "w": "learnability",
+            "t": 622.6
+          },
+          {
+            "w": "bounds.",
+            "t": 623.051
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Kaito",
+        "text": "And the Confident Learning pruning function flags exactly which sample IDs are corrupt so human experts can re-inspect them!",
+        "start": 623.852,
+        "end": 631.1,
+        "words": [
+          {
+            "w": "And",
+            "t": 623.852
+          },
+          {
+            "w": "the",
+            "t": 624.233
+          },
+          {
+            "w": "Confident",
+            "t": 624.615
+          },
+          {
+            "w": "Learning",
+            "t": 624.996
+          },
+          {
+            "w": "pruning",
+            "t": 625.378
+          },
+          {
+            "w": "function",
+            "t": 625.759
+          },
+          {
+            "w": "flags",
+            "t": 626.141
+          },
+          {
+            "w": "exactly",
+            "t": 626.522
+          },
+          {
+            "w": "which",
+            "t": 626.904
+          },
+          {
+            "w": "sample",
+            "t": 627.285
+          },
+          {
+            "w": "IDs",
+            "t": 627.667
+          },
+          {
+            "w": "are",
+            "t": 628.048
+          },
+          {
+            "w": "corrupt",
+            "t": 628.43
+          },
+          {
+            "w": "so",
+            "t": 628.811
+          },
+          {
+            "w": "human",
+            "t": 629.193
+          },
+          {
+            "w": "experts",
+            "t": 629.574
+          },
+          {
+            "w": "can",
+            "t": 629.956
+          },
+          {
+            "w": "re-inspect",
+            "t": 630.337
+          },
+          {
+            "w": "them!",
+            "t": 630.719
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "That is the epitome of reliable data engineering.",
+        "start": 631.45,
+        "end": 634.954,
+        "words": [
+          {
+            "w": "That",
+            "t": 631.45
+          },
+          {
+            "w": "is",
+            "t": 631.888
+          },
+          {
+            "w": "the",
+            "t": 632.326
+          },
+          {
+            "w": "epitome",
+            "t": 632.764
+          },
+          {
+            "w": "of",
+            "t": 633.202
+          },
+          {
+            "w": "reliable",
+            "t": 633.64
+          },
+          {
+            "w": "data",
+            "t": 634.078
+          },
+          {
+            "w": "engineering.",
+            "t": 634.516
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Kaito",
+        "text": "What an incredible masterclass, Dr. Nova! I will never look at a training dataset the same way again. The math behind the quadratic noise penalty and asymmetric transitions completely transforms how we should spend our engineering budgets.",
+        "start": 635.704,
+        "end": 650.656,
+        "words": [
+          {
+            "w": "What",
+            "t": 635.704
+          },
+          {
+            "w": "an",
+            "t": 636.108
+          },
+          {
+            "w": "incredible",
+            "t": 636.512
+          },
+          {
+            "w": "masterclass,",
+            "t": 636.916
+          },
+          {
+            "w": "Dr.",
+            "t": 637.32
+          },
+          {
+            "w": "Nova!",
+            "t": 637.725
+          },
+          {
+            "w": "I",
+            "t": 638.129
+          },
+          {
+            "w": "will",
+            "t": 638.533
+          },
+          {
+            "w": "never",
+            "t": 638.937
+          },
+          {
+            "w": "look",
+            "t": 639.341
+          },
+          {
+            "w": "at",
+            "t": 639.745
+          },
+          {
+            "w": "a",
+            "t": 640.149
+          },
+          {
+            "w": "training",
+            "t": 640.553
+          },
+          {
+            "w": "dataset",
+            "t": 640.957
+          },
+          {
+            "w": "the",
+            "t": 641.362
+          },
+          {
+            "w": "same",
+            "t": 641.766
+          },
+          {
+            "w": "way",
+            "t": 642.17
+          },
+          {
+            "w": "again.",
+            "t": 642.574
+          },
+          {
+            "w": "The",
+            "t": 642.978
+          },
+          {
+            "w": "math",
+            "t": 643.382
+          },
+          {
+            "w": "behind",
+            "t": 643.786
+          },
+          {
+            "w": "the",
+            "t": 644.19
+          },
+          {
+            "w": "quadratic",
+            "t": 644.594
+          },
+          {
+            "w": "noise",
+            "t": 644.998
+          },
+          {
+            "w": "penalty",
+            "t": 645.403
+          },
+          {
+            "w": "and",
+            "t": 645.807
+          },
+          {
+            "w": "asymmetric",
+            "t": 646.211
+          },
+          {
+            "w": "transitions",
+            "t": 646.615
+          },
+          {
+            "w": "completely",
+            "t": 647.019
+          },
+          {
+            "w": "transforms",
+            "t": 647.423
+          },
+          {
+            "w": "how",
+            "t": 647.827
+          },
+          {
+            "w": "we",
+            "t": 648.231
+          },
+          {
+            "w": "should",
+            "t": 648.635
+          },
+          {
+            "w": "spend",
+            "t": 649.04
+          },
+          {
+            "w": "our",
+            "t": 649.444
+          },
+          {
+            "w": "engineering",
+            "t": 649.848
+          },
+          {
+            "w": "budgets.",
+            "t": 650.252
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "It is the defining difference between hobbyist deep learning and mission-critical engineering, Kaito. When your ground truth is mathematically verified, downstream models become reliable, robust, and safe.",
+        "start": 651.006,
+        "end": 663.894,
+        "words": [
+          {
+            "w": "It",
+            "t": 651.006
+          },
+          {
+            "w": "is",
+            "t": 651.483
+          },
+          {
+            "w": "the",
+            "t": 651.961
+          },
+          {
+            "w": "defining",
+            "t": 652.438
+          },
+          {
+            "w": "difference",
+            "t": 652.915
+          },
+          {
+            "w": "between",
+            "t": 653.393
+          },
+          {
+            "w": "hobbyist",
+            "t": 653.87
+          },
+          {
+            "w": "deep",
+            "t": 654.347
+          },
+          {
+            "w": "learning",
+            "t": 654.825
+          },
+          {
+            "w": "and",
+            "t": 655.302
+          },
+          {
+            "w": "mission-critical",
+            "t": 655.779
+          },
+          {
+            "w": "engineering,",
+            "t": 656.257
+          },
+          {
+            "w": "Kaito.",
+            "t": 656.734
+          },
+          {
+            "w": "When",
+            "t": 657.211
+          },
+          {
+            "w": "your",
+            "t": 657.689
+          },
+          {
+            "w": "ground",
+            "t": 658.166
+          },
+          {
+            "w": "truth",
+            "t": 658.643
+          },
+          {
+            "w": "is",
+            "t": 659.121
+          },
+          {
+            "w": "mathematically",
+            "t": 659.598
+          },
+          {
+            "w": "verified,",
+            "t": 660.075
+          },
+          {
+            "w": "downstream",
+            "t": 660.553
+          },
+          {
+            "w": "models",
+            "t": 661.03
+          },
+          {
+            "w": "become",
+            "t": 661.507
+          },
+          {
+            "w": "reliable,",
+            "t": 661.985
+          },
+          {
+            "w": "robust,",
+            "t": 662.462
+          },
+          {
+            "w": "and",
+            "t": 662.939
+          },
+          {
+            "w": "safe.",
+            "t": 663.417
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Kaito",
+        "text": "What is waiting for us in Lesson 4.2?",
+        "start": 664.244,
+        "end": 667.652,
+        "words": [
+          {
+            "w": "What",
+            "t": 664.244
+          },
+          {
+            "w": "is",
+            "t": 664.67
+          },
+          {
+            "w": "waiting",
+            "t": 665.096
+          },
+          {
+            "w": "for",
+            "t": 665.522
+          },
+          {
+            "w": "us",
+            "t": 665.948
+          },
+          {
+            "w": "in",
+            "t": 666.374
+          },
+          {
+            "w": "Lesson",
+            "t": 666.8
+          },
+          {
+            "w": "4.2?",
+            "t": 667.226
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "In Lesson 4.2, we operationalize these principles into concrete workflows for text and image annotation: spans, bounding boxes, segmentation masks, and active learning queues. Let us move forward!",
+        "start": 668.002,
+        "end": 682.426,
+        "words": [
+          {
+            "w": "In",
+            "t": 668.002
+          },
+          {
+            "w": "Lesson",
+            "t": 668.517
+          },
+          {
+            "w": "4.2,",
+            "t": 669.032
+          },
+          {
+            "w": "we",
+            "t": 669.547
+          },
+          {
+            "w": "operationalize",
+            "t": 670.063
+          },
+          {
+            "w": "these",
+            "t": 670.578
+          },
+          {
+            "w": "principles",
+            "t": 671.093
+          },
+          {
+            "w": "into",
+            "t": 671.608
+          },
+          {
+            "w": "concrete",
+            "t": 672.123
+          },
+          {
+            "w": "workflows",
+            "t": 672.638
+          },
+          {
+            "w": "for",
+            "t": 673.153
+          },
+          {
+            "w": "text",
+            "t": 673.669
+          },
+          {
+            "w": "and",
+            "t": 674.184
+          },
+          {
+            "w": "image",
+            "t": 674.699
+          },
+          {
+            "w": "annotation:",
+            "t": 675.214
+          },
+          {
+            "w": "spans,",
+            "t": 675.729
+          },
+          {
+            "w": "bounding",
+            "t": 676.244
+          },
+          {
+            "w": "boxes,",
+            "t": 676.759
+          },
+          {
+            "w": "segmentation",
+            "t": 677.275
+          },
+          {
+            "w": "masks,",
+            "t": 677.79
+          },
+          {
+            "w": "and",
+            "t": 678.305
+          },
+          {
+            "w": "active",
+            "t": 678.82
+          },
+          {
+            "w": "learning",
+            "t": 679.335
+          },
+          {
+            "w": "queues.",
+            "t": 679.85
+          },
+          {
+            "w": "Let",
+            "t": 680.365
+          },
+          {
+            "w": "us",
+            "t": 680.881
+          },
+          {
+            "w": "move",
+            "t": 681.396
+          },
+          {
+            "w": "forward!",
+            "t": 681.911
+          }
+        ]
+      }
+    ]
+  },
+  "ch2_p2_solo": {
+    "duration": 471.12,
+    "sentences": [
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Track 2, Lesson 2.2 of Dataset Fundamentals: Data Sources, Primary Generation, Secondary Repurposing, and Real-Time Streaming Ingestion. In production machine learning, the fundamental determinant of generalization is not algorithmic complexity, but source provenance and ingestion stability.",
+        "start": 0.0,
+        "end": 20.381,
+        "words": [
+          {
+            "w": "Welcome",
+            "t": 0.0
+          },
+          {
+            "w": "to",
+            "t": 0.536
+          },
+          {
+            "w": "Track",
+            "t": 1.073
+          },
+          {
+            "w": "2,",
+            "t": 1.609
+          },
+          {
+            "w": "Lesson",
+            "t": 2.145
+          },
+          {
+            "w": "2.2",
+            "t": 2.682
+          },
+          {
+            "w": "of",
+            "t": 3.218
+          },
+          {
+            "w": "Dataset",
+            "t": 3.754
+          },
+          {
+            "w": "Fundamentals:",
+            "t": 4.291
+          },
+          {
+            "w": "Data",
+            "t": 4.827
+          },
+          {
+            "w": "Sources,",
+            "t": 5.363
+          },
+          {
+            "w": "Primary",
+            "t": 5.9
+          },
+          {
+            "w": "Generation,",
+            "t": 6.436
+          },
+          {
+            "w": "Secondary",
+            "t": 6.972
+          },
+          {
+            "w": "Repurposing,",
+            "t": 7.509
+          },
+          {
+            "w": "and",
+            "t": 8.045
+          },
+          {
+            "w": "Real-Time",
+            "t": 8.581
+          },
+          {
+            "w": "Streaming",
+            "t": 9.118
+          },
+          {
+            "w": "Ingestion.",
+            "t": 9.654
+          },
+          {
+            "w": "In",
+            "t": 10.191
+          },
+          {
+            "w": "production",
+            "t": 10.727
+          },
+          {
+            "w": "machine",
+            "t": 11.263
+          },
+          {
+            "w": "learning,",
+            "t": 11.8
+          },
+          {
+            "w": "the",
+            "t": 12.336
+          },
+          {
+            "w": "fundamental",
+            "t": 12.872
+          },
+          {
+            "w": "determinant",
+            "t": 13.409
+          },
+          {
+            "w": "of",
+            "t": 13.945
+          },
+          {
+            "w": "generalization",
+            "t": 14.481
+          },
+          {
+            "w": "is",
+            "t": 15.018
+          },
+          {
+            "w": "not",
+            "t": 15.554
+          },
+          {
+            "w": "algorithmic",
+            "t": 16.09
+          },
+          {
+            "w": "complexity,",
+            "t": 16.627
+          },
+          {
+            "w": "but",
+            "t": 17.163
+          },
+          {
+            "w": "source",
+            "t": 17.699
+          },
+          {
+            "w": "provenance",
+            "t": 18.236
+          },
+          {
+            "w": "and",
+            "t": 18.772
+          },
+          {
+            "w": "ingestion",
+            "t": 19.308
+          },
+          {
+            "w": "stability.",
+            "t": 19.845
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Today, we formalize the orthogonal axes of Provenance Authority and Temporal Velocity. We derive covariate shift importance weighting, the Kish-Sugiyama effective sample size penalty, Little's Law for queue stability, and production streaming pipelines with dead-letter queues. Let us dive in.",
+        "start": 20.381,
+        "end": 40.089,
+        "words": [
+          {
+            "w": "Today,",
+            "t": 20.381
+          },
+          {
+            "w": "we",
+            "t": 20.874
+          },
+          {
+            "w": "formalize",
+            "t": 21.366
+          },
+          {
+            "w": "the",
+            "t": 21.859
+          },
+          {
+            "w": "orthogonal",
+            "t": 22.352
+          },
+          {
+            "w": "axes",
+            "t": 22.845
+          },
+          {
+            "w": "of",
+            "t": 23.337
+          },
+          {
+            "w": "Provenance",
+            "t": 23.83
+          },
+          {
+            "w": "Authority",
+            "t": 24.323
+          },
+          {
+            "w": "and",
+            "t": 24.815
+          },
+          {
+            "w": "Temporal",
+            "t": 25.308
+          },
+          {
+            "w": "Velocity.",
+            "t": 25.801
+          },
+          {
+            "w": "We",
+            "t": 26.293
+          },
+          {
+            "w": "derive",
+            "t": 26.786
+          },
+          {
+            "w": "covariate",
+            "t": 27.279
+          },
+          {
+            "w": "shift",
+            "t": 27.771
+          },
+          {
+            "w": "importance",
+            "t": 28.264
+          },
+          {
+            "w": "weighting,",
+            "t": 28.757
+          },
+          {
+            "w": "the",
+            "t": 29.25
+          },
+          {
+            "w": "Kish-Sugiyama",
+            "t": 29.742
+          },
+          {
+            "w": "effective",
+            "t": 30.235
+          },
+          {
+            "w": "sample",
+            "t": 30.728
+          },
+          {
+            "w": "size",
+            "t": 31.22
+          },
+          {
+            "w": "penalty,",
+            "t": 31.713
+          },
+          {
+            "w": "Little's",
+            "t": 32.206
+          },
+          {
+            "w": "Law",
+            "t": 32.698
+          },
+          {
+            "w": "for",
+            "t": 33.191
+          },
+          {
+            "w": "queue",
+            "t": 33.684
+          },
+          {
+            "w": "stability,",
+            "t": 34.177
+          },
+          {
+            "w": "and",
+            "t": 34.669
+          },
+          {
+            "w": "production",
+            "t": 35.162
+          },
+          {
+            "w": "streaming",
+            "t": 35.655
+          },
+          {
+            "w": "pipelines",
+            "t": 36.147
+          },
+          {
+            "w": "with",
+            "t": 36.64
+          },
+          {
+            "w": "dead-letter",
+            "t": 37.133
+          },
+          {
+            "w": "queues.",
+            "t": 37.626
+          },
+          {
+            "w": "Let",
+            "t": 38.118
+          },
+          {
+            "w": "us",
+            "t": 38.611
+          },
+          {
+            "w": "dive",
+            "t": 39.104
+          },
+          {
+            "w": "in.",
+            "t": 39.596
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Every dataset source is governed by two orthogonal engineering axes: Provenance Authority, which dictates whether you control the sampling distribution, and Temporal Velocity, which dictates whether records arrive in static batches or an unbounded live stream.",
+        "start": 40.089,
+        "end": 57.578,
+        "words": [
+          {
+            "w": "Every",
+            "t": 40.089
+          },
+          {
+            "w": "dataset",
+            "t": 40.575
+          },
+          {
+            "w": "source",
+            "t": 41.061
+          },
+          {
+            "w": "is",
+            "t": 41.546
+          },
+          {
+            "w": "governed",
+            "t": 42.032
+          },
+          {
+            "w": "by",
+            "t": 42.518
+          },
+          {
+            "w": "two",
+            "t": 43.004
+          },
+          {
+            "w": "orthogonal",
+            "t": 43.49
+          },
+          {
+            "w": "engineering",
+            "t": 43.975
+          },
+          {
+            "w": "axes:",
+            "t": 44.461
+          },
+          {
+            "w": "Provenance",
+            "t": 44.947
+          },
+          {
+            "w": "Authority,",
+            "t": 45.433
+          },
+          {
+            "w": "which",
+            "t": 45.919
+          },
+          {
+            "w": "dictates",
+            "t": 46.404
+          },
+          {
+            "w": "whether",
+            "t": 46.89
+          },
+          {
+            "w": "you",
+            "t": 47.376
+          },
+          {
+            "w": "control",
+            "t": 47.862
+          },
+          {
+            "w": "the",
+            "t": 48.348
+          },
+          {
+            "w": "sampling",
+            "t": 48.834
+          },
+          {
+            "w": "distribution,",
+            "t": 49.319
+          },
+          {
+            "w": "and",
+            "t": 49.805
+          },
+          {
+            "w": "Temporal",
+            "t": 50.291
+          },
+          {
+            "w": "Velocity,",
+            "t": 50.777
+          },
+          {
+            "w": "which",
+            "t": 51.263
+          },
+          {
+            "w": "dictates",
+            "t": 51.748
+          },
+          {
+            "w": "whether",
+            "t": 52.234
+          },
+          {
+            "w": "records",
+            "t": 52.72
+          },
+          {
+            "w": "arrive",
+            "t": 53.206
+          },
+          {
+            "w": "in",
+            "t": 53.692
+          },
+          {
+            "w": "static",
+            "t": 54.177
+          },
+          {
+            "w": "batches",
+            "t": 54.663
+          },
+          {
+            "w": "or",
+            "t": 55.149
+          },
+          {
+            "w": "an",
+            "t": 55.635
+          },
+          {
+            "w": "unbounded",
+            "t": 56.121
+          },
+          {
+            "w": "live",
+            "t": 56.606
+          },
+          {
+            "w": "stream.",
+            "t": 57.092
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Primary data guarantees that the observed distribution matches the target population, but at high marginal cost. Secondary data is nearly free to acquire, but forces you to handle distribution shift. Streaming telemetry introduces queue buffer dynamics and Little's Law constraints.",
+        "start": 57.578,
+        "end": 76.547,
+        "words": [
+          {
+            "w": "Primary",
+            "t": 57.578
+          },
+          {
+            "w": "data",
+            "t": 58.052
+          },
+          {
+            "w": "guarantees",
+            "t": 58.526
+          },
+          {
+            "w": "that",
+            "t": 59.001
+          },
+          {
+            "w": "the",
+            "t": 59.475
+          },
+          {
+            "w": "observed",
+            "t": 59.949
+          },
+          {
+            "w": "distribution",
+            "t": 60.423
+          },
+          {
+            "w": "matches",
+            "t": 60.898
+          },
+          {
+            "w": "the",
+            "t": 61.372
+          },
+          {
+            "w": "target",
+            "t": 61.846
+          },
+          {
+            "w": "population,",
+            "t": 62.32
+          },
+          {
+            "w": "but",
+            "t": 62.794
+          },
+          {
+            "w": "at",
+            "t": 63.269
+          },
+          {
+            "w": "high",
+            "t": 63.743
+          },
+          {
+            "w": "marginal",
+            "t": 64.217
+          },
+          {
+            "w": "cost.",
+            "t": 64.691
+          },
+          {
+            "w": "Secondary",
+            "t": 65.166
+          },
+          {
+            "w": "data",
+            "t": 65.64
+          },
+          {
+            "w": "is",
+            "t": 66.114
+          },
+          {
+            "w": "nearly",
+            "t": 66.588
+          },
+          {
+            "w": "free",
+            "t": 67.062
+          },
+          {
+            "w": "to",
+            "t": 67.537
+          },
+          {
+            "w": "acquire,",
+            "t": 68.011
+          },
+          {
+            "w": "but",
+            "t": 68.485
+          },
+          {
+            "w": "forces",
+            "t": 68.959
+          },
+          {
+            "w": "you",
+            "t": 69.434
+          },
+          {
+            "w": "to",
+            "t": 69.908
+          },
+          {
+            "w": "handle",
+            "t": 70.382
+          },
+          {
+            "w": "distribution",
+            "t": 70.856
+          },
+          {
+            "w": "shift.",
+            "t": 71.331
+          },
+          {
+            "w": "Streaming",
+            "t": 71.805
+          },
+          {
+            "w": "telemetry",
+            "t": 72.279
+          },
+          {
+            "w": "introduces",
+            "t": 72.753
+          },
+          {
+            "w": "queue",
+            "t": 73.227
+          },
+          {
+            "w": "buffer",
+            "t": 73.702
+          },
+          {
+            "w": "dynamics",
+            "t": 74.176
+          },
+          {
+            "w": "and",
+            "t": 74.65
+          },
+          {
+            "w": "Little's",
+            "t": 75.124
+          },
+          {
+            "w": "Law",
+            "t": 75.599
+          },
+          {
+            "w": "constraints.",
+            "t": 76.073
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "In Primary Data Generation, the data collection team possesses direct experimental sovereignty over the sampling mechanism, instrument calibration, and response protocols.",
+        "start": 76.547,
+        "end": 88.049,
+        "words": [
+          {
+            "w": "In",
+            "t": 76.547
+          },
+          {
+            "w": "Primary",
+            "t": 77.095
+          },
+          {
+            "w": "Data",
+            "t": 77.642
+          },
+          {
+            "w": "Generation,",
+            "t": 78.19
+          },
+          {
+            "w": "the",
+            "t": 78.738
+          },
+          {
+            "w": "data",
+            "t": 79.286
+          },
+          {
+            "w": "collection",
+            "t": 79.833
+          },
+          {
+            "w": "team",
+            "t": 80.381
+          },
+          {
+            "w": "possesses",
+            "t": 80.929
+          },
+          {
+            "w": "direct",
+            "t": 81.476
+          },
+          {
+            "w": "experimental",
+            "t": 82.024
+          },
+          {
+            "w": "sovereignty",
+            "t": 82.572
+          },
+          {
+            "w": "over",
+            "t": 83.12
+          },
+          {
+            "w": "the",
+            "t": 83.667
+          },
+          {
+            "w": "sampling",
+            "t": 84.215
+          },
+          {
+            "w": "mechanism,",
+            "t": 84.763
+          },
+          {
+            "w": "instrument",
+            "t": 85.31
+          },
+          {
+            "w": "calibration,",
+            "t": 85.858
+          },
+          {
+            "w": "and",
+            "t": 86.406
+          },
+          {
+            "w": "response",
+            "t": 86.954
+          },
+          {
+            "w": "protocols.",
+            "t": 87.501
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "Because observations are sampled directly from the true target distribution P_target, the empirical loss is an unbiased estimator of true expected generalization risk, meaning the expectation of the empirical loss equals the true risk. However, marginal cost scales linearly with sample size.",
+        "start": 88.049,
+        "end": 107.69,
+        "words": [
+          {
+            "w": "Because",
+            "t": 88.049
+          },
+          {
+            "w": "observations",
+            "t": 88.517
+          },
+          {
+            "w": "are",
+            "t": 88.984
+          },
+          {
+            "w": "sampled",
+            "t": 89.452
+          },
+          {
+            "w": "directly",
+            "t": 89.92
+          },
+          {
+            "w": "from",
+            "t": 90.387
+          },
+          {
+            "w": "the",
+            "t": 90.855
+          },
+          {
+            "w": "true",
+            "t": 91.323
+          },
+          {
+            "w": "target",
+            "t": 91.79
+          },
+          {
+            "w": "distribution",
+            "t": 92.258
+          },
+          {
+            "w": "P_target,",
+            "t": 92.725
+          },
+          {
+            "w": "the",
+            "t": 93.193
+          },
+          {
+            "w": "empirical",
+            "t": 93.661
+          },
+          {
+            "w": "loss",
+            "t": 94.128
+          },
+          {
+            "w": "is",
+            "t": 94.596
+          },
+          {
+            "w": "an",
+            "t": 95.064
+          },
+          {
+            "w": "unbiased",
+            "t": 95.531
+          },
+          {
+            "w": "estimator",
+            "t": 95.999
+          },
+          {
+            "w": "of",
+            "t": 96.467
+          },
+          {
+            "w": "true",
+            "t": 96.934
+          },
+          {
+            "w": "expected",
+            "t": 97.402
+          },
+          {
+            "w": "generalization",
+            "t": 97.87
+          },
+          {
+            "w": "risk,",
+            "t": 98.337
+          },
+          {
+            "w": "meaning",
+            "t": 98.805
+          },
+          {
+            "w": "the",
+            "t": 99.272
+          },
+          {
+            "w": "expectation",
+            "t": 99.74
+          },
+          {
+            "w": "of",
+            "t": 100.208
+          },
+          {
+            "w": "the",
+            "t": 100.675
+          },
+          {
+            "w": "empirical",
+            "t": 101.143
+          },
+          {
+            "w": "loss",
+            "t": 101.611
+          },
+          {
+            "w": "equals",
+            "t": 102.078
+          },
+          {
+            "w": "the",
+            "t": 102.546
+          },
+          {
+            "w": "true",
+            "t": 103.014
+          },
+          {
+            "w": "risk.",
+            "t": 103.481
+          },
+          {
+            "w": "However,",
+            "t": 103.949
+          },
+          {
+            "w": "marginal",
+            "t": 104.416
+          },
+          {
+            "w": "cost",
+            "t": 104.884
+          },
+          {
+            "w": "scales",
+            "t": 105.352
+          },
+          {
+            "w": "linearly",
+            "t": 105.819
+          },
+          {
+            "w": "with",
+            "t": 106.287
+          },
+          {
+            "w": "sample",
+            "t": 106.755
+          },
+          {
+            "w": "size.",
+            "t": 107.222
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Secondary data repurposes external records gathered for different objectives, such as hospital insurance billing codes or public web scrapes. While acquisition cost approaches zero, the source distribution Q of X differs from target distribution P of X.",
+        "start": 107.69,
+        "end": 124.708,
+        "words": [
+          {
+            "w": "Secondary",
+            "t": 107.69
+          },
+          {
+            "w": "data",
+            "t": 108.15
+          },
+          {
+            "w": "repurposes",
+            "t": 108.61
+          },
+          {
+            "w": "external",
+            "t": 109.07
+          },
+          {
+            "w": "records",
+            "t": 109.53
+          },
+          {
+            "w": "gathered",
+            "t": 109.99
+          },
+          {
+            "w": "for",
+            "t": 110.45
+          },
+          {
+            "w": "different",
+            "t": 110.91
+          },
+          {
+            "w": "objectives,",
+            "t": 111.37
+          },
+          {
+            "w": "such",
+            "t": 111.83
+          },
+          {
+            "w": "as",
+            "t": 112.289
+          },
+          {
+            "w": "hospital",
+            "t": 112.749
+          },
+          {
+            "w": "insurance",
+            "t": 113.209
+          },
+          {
+            "w": "billing",
+            "t": 113.669
+          },
+          {
+            "w": "codes",
+            "t": 114.129
+          },
+          {
+            "w": "or",
+            "t": 114.589
+          },
+          {
+            "w": "public",
+            "t": 115.049
+          },
+          {
+            "w": "web",
+            "t": 115.509
+          },
+          {
+            "w": "scrapes.",
+            "t": 115.969
+          },
+          {
+            "w": "While",
+            "t": 116.429
+          },
+          {
+            "w": "acquisition",
+            "t": 116.889
+          },
+          {
+            "w": "cost",
+            "t": 117.349
+          },
+          {
+            "w": "approaches",
+            "t": 117.809
+          },
+          {
+            "w": "zero,",
+            "t": 118.269
+          },
+          {
+            "w": "the",
+            "t": 118.729
+          },
+          {
+            "w": "source",
+            "t": 119.189
+          },
+          {
+            "w": "distribution",
+            "t": 119.649
+          },
+          {
+            "w": "Q",
+            "t": 120.109
+          },
+          {
+            "w": "of",
+            "t": 120.568
+          },
+          {
+            "w": "X",
+            "t": 121.028
+          },
+          {
+            "w": "differs",
+            "t": 121.488
+          },
+          {
+            "w": "from",
+            "t": 121.948
+          },
+          {
+            "w": "target",
+            "t": 122.408
+          },
+          {
+            "w": "distribution",
+            "t": 122.868
+          },
+          {
+            "w": "P",
+            "t": 123.328
+          },
+          {
+            "w": "of",
+            "t": 123.788
+          },
+          {
+            "w": "X.",
+            "t": 124.248
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Under the Covariate Shift assumption, the conditional concept mapping Q of Y given X equals P of Y given X, but the input feature marginals diverge. To reconstruct unbiased target risk, we must re-weight each observation by the Radon-Nikodym density ratio, w of x equals P of x over Q of x.",
+        "start": 124.708,
+        "end": 144.215,
+        "words": [
+          {
+            "w": "Under",
+            "t": 124.708
+          },
+          {
+            "w": "the",
+            "t": 125.083
+          },
+          {
+            "w": "Covariate",
+            "t": 125.458
+          },
+          {
+            "w": "Shift",
+            "t": 125.833
+          },
+          {
+            "w": "assumption,",
+            "t": 126.209
+          },
+          {
+            "w": "the",
+            "t": 126.584
+          },
+          {
+            "w": "conditional",
+            "t": 126.959
+          },
+          {
+            "w": "concept",
+            "t": 127.334
+          },
+          {
+            "w": "mapping",
+            "t": 127.709
+          },
+          {
+            "w": "Q",
+            "t": 128.084
+          },
+          {
+            "w": "of",
+            "t": 128.459
+          },
+          {
+            "w": "Y",
+            "t": 128.834
+          },
+          {
+            "w": "given",
+            "t": 129.21
+          },
+          {
+            "w": "X",
+            "t": 129.585
+          },
+          {
+            "w": "equals",
+            "t": 129.96
+          },
+          {
+            "w": "P",
+            "t": 130.335
+          },
+          {
+            "w": "of",
+            "t": 130.71
+          },
+          {
+            "w": "Y",
+            "t": 131.085
+          },
+          {
+            "w": "given",
+            "t": 131.46
+          },
+          {
+            "w": "X,",
+            "t": 131.836
+          },
+          {
+            "w": "but",
+            "t": 132.211
+          },
+          {
+            "w": "the",
+            "t": 132.586
+          },
+          {
+            "w": "input",
+            "t": 132.961
+          },
+          {
+            "w": "feature",
+            "t": 133.336
+          },
+          {
+            "w": "marginals",
+            "t": 133.711
+          },
+          {
+            "w": "diverge.",
+            "t": 134.086
+          },
+          {
+            "w": "To",
+            "t": 134.462
+          },
+          {
+            "w": "reconstruct",
+            "t": 134.837
+          },
+          {
+            "w": "unbiased",
+            "t": 135.212
+          },
+          {
+            "w": "target",
+            "t": 135.587
+          },
+          {
+            "w": "risk,",
+            "t": 135.962
+          },
+          {
+            "w": "we",
+            "t": 136.337
+          },
+          {
+            "w": "must",
+            "t": 136.712
+          },
+          {
+            "w": "re-weight",
+            "t": 137.087
+          },
+          {
+            "w": "each",
+            "t": 137.463
+          },
+          {
+            "w": "observation",
+            "t": 137.838
+          },
+          {
+            "w": "by",
+            "t": 138.213
+          },
+          {
+            "w": "the",
+            "t": 138.588
+          },
+          {
+            "w": "Radon-Nikodym",
+            "t": 138.963
+          },
+          {
+            "w": "density",
+            "t": 139.338
+          },
+          {
+            "w": "ratio,",
+            "t": 139.713
+          },
+          {
+            "w": "w",
+            "t": 140.089
+          },
+          {
+            "w": "of",
+            "t": 140.464
+          },
+          {
+            "w": "x",
+            "t": 140.839
+          },
+          {
+            "w": "equals",
+            "t": 141.214
+          },
+          {
+            "w": "P",
+            "t": 141.589
+          },
+          {
+            "w": "of",
+            "t": 141.964
+          },
+          {
+            "w": "x",
+            "t": 142.339
+          },
+          {
+            "w": "over",
+            "t": 142.714
+          },
+          {
+            "w": "Q",
+            "t": 143.09
+          },
+          {
+            "w": "of",
+            "t": 143.465
+          },
+          {
+            "w": "x.",
+            "t": 143.84
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "When we re-weight secondary data using importance weights, our statistical degrees of freedom degrade. Kish and Sugiyama proved that the effective sample size, n sub eff, depends inversely on the variance of the density ratios.",
+        "start": 144.215,
+        "end": 159.484,
+        "words": [
+          {
+            "w": "When",
+            "t": 144.215
+          },
+          {
+            "w": "we",
+            "t": 144.651
+          },
+          {
+            "w": "re-weight",
+            "t": 145.088
+          },
+          {
+            "w": "secondary",
+            "t": 145.524
+          },
+          {
+            "w": "data",
+            "t": 145.96
+          },
+          {
+            "w": "using",
+            "t": 146.396
+          },
+          {
+            "w": "importance",
+            "t": 146.833
+          },
+          {
+            "w": "weights,",
+            "t": 147.269
+          },
+          {
+            "w": "our",
+            "t": 147.705
+          },
+          {
+            "w": "statistical",
+            "t": 148.141
+          },
+          {
+            "w": "degrees",
+            "t": 148.578
+          },
+          {
+            "w": "of",
+            "t": 149.014
+          },
+          {
+            "w": "freedom",
+            "t": 149.45
+          },
+          {
+            "w": "degrade.",
+            "t": 149.886
+          },
+          {
+            "w": "Kish",
+            "t": 150.323
+          },
+          {
+            "w": "and",
+            "t": 150.759
+          },
+          {
+            "w": "Sugiyama",
+            "t": 151.195
+          },
+          {
+            "w": "proved",
+            "t": 151.631
+          },
+          {
+            "w": "that",
+            "t": 152.068
+          },
+          {
+            "w": "the",
+            "t": 152.504
+          },
+          {
+            "w": "effective",
+            "t": 152.94
+          },
+          {
+            "w": "sample",
+            "t": 153.376
+          },
+          {
+            "w": "size,",
+            "t": 153.813
+          },
+          {
+            "w": "n",
+            "t": 154.249
+          },
+          {
+            "w": "sub",
+            "t": 154.685
+          },
+          {
+            "w": "eff,",
+            "t": 155.121
+          },
+          {
+            "w": "depends",
+            "t": 155.558
+          },
+          {
+            "w": "inversely",
+            "t": 155.994
+          },
+          {
+            "w": "on",
+            "t": 156.43
+          },
+          {
+            "w": "the",
+            "t": 156.866
+          },
+          {
+            "w": "variance",
+            "t": 157.303
+          },
+          {
+            "w": "of",
+            "t": 157.739
+          },
+          {
+            "w": "the",
+            "t": 158.175
+          },
+          {
+            "w": "density",
+            "t": 158.611
+          },
+          {
+            "w": "ratios.",
+            "t": 159.048
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "The analytical formula is n divided by one plus the variance of w of X under Q. If the variance of weights is 3.0, a nominal dataset of one thousand samples carries the statistical power of only two hundred and fifty independent samples. Seventy-five percent of your nominal sample is lost.",
+        "start": 159.484,
+        "end": 178.991,
+        "words": [
+          {
+            "w": "The",
+            "t": 159.484
+          },
+          {
+            "w": "analytical",
+            "t": 159.866
+          },
+          {
+            "w": "formula",
+            "t": 160.249
+          },
+          {
+            "w": "is",
+            "t": 160.631
+          },
+          {
+            "w": "n",
+            "t": 161.014
+          },
+          {
+            "w": "divided",
+            "t": 161.396
+          },
+          {
+            "w": "by",
+            "t": 161.779
+          },
+          {
+            "w": "one",
+            "t": 162.161
+          },
+          {
+            "w": "plus",
+            "t": 162.544
+          },
+          {
+            "w": "the",
+            "t": 162.926
+          },
+          {
+            "w": "variance",
+            "t": 163.309
+          },
+          {
+            "w": "of",
+            "t": 163.691
+          },
+          {
+            "w": "w",
+            "t": 164.074
+          },
+          {
+            "w": "of",
+            "t": 164.456
+          },
+          {
+            "w": "X",
+            "t": 164.839
+          },
+          {
+            "w": "under",
+            "t": 165.221
+          },
+          {
+            "w": "Q.",
+            "t": 165.604
+          },
+          {
+            "w": "If",
+            "t": 165.986
+          },
+          {
+            "w": "the",
+            "t": 166.369
+          },
+          {
+            "w": "variance",
+            "t": 166.751
+          },
+          {
+            "w": "of",
+            "t": 167.134
+          },
+          {
+            "w": "weights",
+            "t": 167.516
+          },
+          {
+            "w": "is",
+            "t": 167.899
+          },
+          {
+            "w": "3.0,",
+            "t": 168.281
+          },
+          {
+            "w": "a",
+            "t": 168.664
+          },
+          {
+            "w": "nominal",
+            "t": 169.046
+          },
+          {
+            "w": "dataset",
+            "t": 169.429
+          },
+          {
+            "w": "of",
+            "t": 169.811
+          },
+          {
+            "w": "one",
+            "t": 170.194
+          },
+          {
+            "w": "thousand",
+            "t": 170.576
+          },
+          {
+            "w": "samples",
+            "t": 170.959
+          },
+          {
+            "w": "carries",
+            "t": 171.341
+          },
+          {
+            "w": "the",
+            "t": 171.724
+          },
+          {
+            "w": "statistical",
+            "t": 172.106
+          },
+          {
+            "w": "power",
+            "t": 172.489
+          },
+          {
+            "w": "of",
+            "t": 172.871
+          },
+          {
+            "w": "only",
+            "t": 173.254
+          },
+          {
+            "w": "two",
+            "t": 173.636
+          },
+          {
+            "w": "hundred",
+            "t": 174.019
+          },
+          {
+            "w": "and",
+            "t": 174.401
+          },
+          {
+            "w": "fifty",
+            "t": 174.784
+          },
+          {
+            "w": "independent",
+            "t": 175.166
+          },
+          {
+            "w": "samples.",
+            "t": 175.549
+          },
+          {
+            "w": "Seventy-five",
+            "t": 175.931
+          },
+          {
+            "w": "percent",
+            "t": 176.314
+          },
+          {
+            "w": "of",
+            "t": 176.696
+          },
+          {
+            "w": "your",
+            "t": 177.079
+          },
+          {
+            "w": "nominal",
+            "t": 177.461
+          },
+          {
+            "w": "sample",
+            "t": 177.844
+          },
+          {
+            "w": "is",
+            "t": 178.226
+          },
+          {
+            "w": "lost.",
+            "t": 178.609
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Interactive Lab 1. Here, you can adjust the source and target distribution means, nominal secondary sample size, and empirical weight variance. Watch how the Kish-Sugiyama effective sample size dynamically calculates in real time.",
+        "start": 178.991,
+        "end": 195.202,
+        "words": [
+          {
+            "w": "Welcome",
+            "t": 178.991
+          },
+          {
+            "w": "to",
+            "t": 179.454
+          },
+          {
+            "w": "Interactive",
+            "t": 179.917
+          },
+          {
+            "w": "Lab",
+            "t": 180.381
+          },
+          {
+            "w": "1.",
+            "t": 180.844
+          },
+          {
+            "w": "Here,",
+            "t": 181.307
+          },
+          {
+            "w": "you",
+            "t": 181.77
+          },
+          {
+            "w": "can",
+            "t": 182.233
+          },
+          {
+            "w": "adjust",
+            "t": 182.696
+          },
+          {
+            "w": "the",
+            "t": 183.16
+          },
+          {
+            "w": "source",
+            "t": 183.623
+          },
+          {
+            "w": "and",
+            "t": 184.086
+          },
+          {
+            "w": "target",
+            "t": 184.549
+          },
+          {
+            "w": "distribution",
+            "t": 185.012
+          },
+          {
+            "w": "means,",
+            "t": 185.475
+          },
+          {
+            "w": "nominal",
+            "t": 185.939
+          },
+          {
+            "w": "secondary",
+            "t": 186.402
+          },
+          {
+            "w": "sample",
+            "t": 186.865
+          },
+          {
+            "w": "size,",
+            "t": 187.328
+          },
+          {
+            "w": "and",
+            "t": 187.791
+          },
+          {
+            "w": "empirical",
+            "t": 188.254
+          },
+          {
+            "w": "weight",
+            "t": 188.718
+          },
+          {
+            "w": "variance.",
+            "t": 189.181
+          },
+          {
+            "w": "Watch",
+            "t": 189.644
+          },
+          {
+            "w": "how",
+            "t": 190.107
+          },
+          {
+            "w": "the",
+            "t": 190.57
+          },
+          {
+            "w": "Kish-Sugiyama",
+            "t": 191.033
+          },
+          {
+            "w": "effective",
+            "t": 191.497
+          },
+          {
+            "w": "sample",
+            "t": 191.96
+          },
+          {
+            "w": "size",
+            "t": 192.423
+          },
+          {
+            "w": "dynamically",
+            "t": 192.886
+          },
+          {
+            "w": "calculates",
+            "t": 193.349
+          },
+          {
+            "w": "in",
+            "t": 193.812
+          },
+          {
+            "w": "real",
+            "t": 194.276
+          },
+          {
+            "w": "time.",
+            "t": 194.739
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "Let us verify your comprehension with Active Checkpoint 1. A secondary dataset contains one thousand records. The empirical density ratio variance is 3.0. Calculate the exact Kish-Sugiyama effective sample size.",
+        "start": 195.202,
+        "end": 209.395,
+        "words": [
+          {
+            "w": "Let",
+            "t": 195.202
+          },
+          {
+            "w": "us",
+            "t": 195.675
+          },
+          {
+            "w": "verify",
+            "t": 196.148
+          },
+          {
+            "w": "your",
+            "t": 196.621
+          },
+          {
+            "w": "comprehension",
+            "t": 197.094
+          },
+          {
+            "w": "with",
+            "t": 197.567
+          },
+          {
+            "w": "Active",
+            "t": 198.041
+          },
+          {
+            "w": "Checkpoint",
+            "t": 198.514
+          },
+          {
+            "w": "1.",
+            "t": 198.987
+          },
+          {
+            "w": "A",
+            "t": 199.46
+          },
+          {
+            "w": "secondary",
+            "t": 199.933
+          },
+          {
+            "w": "dataset",
+            "t": 200.406
+          },
+          {
+            "w": "contains",
+            "t": 200.879
+          },
+          {
+            "w": "one",
+            "t": 201.352
+          },
+          {
+            "w": "thousand",
+            "t": 201.825
+          },
+          {
+            "w": "records.",
+            "t": 202.298
+          },
+          {
+            "w": "The",
+            "t": 202.772
+          },
+          {
+            "w": "empirical",
+            "t": 203.245
+          },
+          {
+            "w": "density",
+            "t": 203.718
+          },
+          {
+            "w": "ratio",
+            "t": 204.191
+          },
+          {
+            "w": "variance",
+            "t": 204.664
+          },
+          {
+            "w": "is",
+            "t": 205.137
+          },
+          {
+            "w": "3.0.",
+            "t": 205.61
+          },
+          {
+            "w": "Calculate",
+            "t": 206.083
+          },
+          {
+            "w": "the",
+            "t": 206.556
+          },
+          {
+            "w": "exact",
+            "t": 207.03
+          },
+          {
+            "w": "Kish-Sugiyama",
+            "t": 207.503
+          },
+          {
+            "w": "effective",
+            "t": 207.976
+          },
+          {
+            "w": "sample",
+            "t": 208.449
+          },
+          {
+            "w": "size.",
+            "t": 208.922
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Now we transition along the temporal velocity axis to real-time streaming telemetry. In streaming architectures, records arrive continuously at rate lambda from unbounded sources such as IoT sensors or financial tickers.",
+        "start": 209.395,
+        "end": 224.193,
+        "words": [
+          {
+            "w": "Now",
+            "t": 209.395
+          },
+          {
+            "w": "we",
+            "t": 209.872
+          },
+          {
+            "w": "transition",
+            "t": 210.35
+          },
+          {
+            "w": "along",
+            "t": 210.827
+          },
+          {
+            "w": "the",
+            "t": 211.304
+          },
+          {
+            "w": "temporal",
+            "t": 211.782
+          },
+          {
+            "w": "velocity",
+            "t": 212.259
+          },
+          {
+            "w": "axis",
+            "t": 212.736
+          },
+          {
+            "w": "to",
+            "t": 213.214
+          },
+          {
+            "w": "real-time",
+            "t": 213.691
+          },
+          {
+            "w": "streaming",
+            "t": 214.169
+          },
+          {
+            "w": "telemetry.",
+            "t": 214.646
+          },
+          {
+            "w": "In",
+            "t": 215.123
+          },
+          {
+            "w": "streaming",
+            "t": 215.601
+          },
+          {
+            "w": "architectures,",
+            "t": 216.078
+          },
+          {
+            "w": "records",
+            "t": 216.555
+          },
+          {
+            "w": "arrive",
+            "t": 217.033
+          },
+          {
+            "w": "continuously",
+            "t": 217.51
+          },
+          {
+            "w": "at",
+            "t": 217.987
+          },
+          {
+            "w": "rate",
+            "t": 218.465
+          },
+          {
+            "w": "lambda",
+            "t": 218.942
+          },
+          {
+            "w": "from",
+            "t": 219.419
+          },
+          {
+            "w": "unbounded",
+            "t": 219.897
+          },
+          {
+            "w": "sources",
+            "t": 220.374
+          },
+          {
+            "w": "such",
+            "t": 220.852
+          },
+          {
+            "w": "as",
+            "t": 221.329
+          },
+          {
+            "w": "IoT",
+            "t": 221.806
+          },
+          {
+            "w": "sensors",
+            "t": 222.284
+          },
+          {
+            "w": "or",
+            "t": 222.761
+          },
+          {
+            "w": "financial",
+            "t": 223.238
+          },
+          {
+            "w": "tickers.",
+            "t": 223.716
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Event arrivals follow a Poisson process, where inter-arrival times are exponentially distributed. Because the total population N approaches infinity, standard offline uniform sampling is impossible, necessitating online reservoir sampling and temporal sliding windows.",
+        "start": 224.193,
+        "end": 242.22,
+        "words": [
+          {
+            "w": "Event",
+            "t": 224.193
+          },
+          {
+            "w": "arrivals",
+            "t": 224.739
+          },
+          {
+            "w": "follow",
+            "t": 225.286
+          },
+          {
+            "w": "a",
+            "t": 225.832
+          },
+          {
+            "w": "Poisson",
+            "t": 226.378
+          },
+          {
+            "w": "process,",
+            "t": 226.924
+          },
+          {
+            "w": "where",
+            "t": 227.471
+          },
+          {
+            "w": "inter-arrival",
+            "t": 228.017
+          },
+          {
+            "w": "times",
+            "t": 228.563
+          },
+          {
+            "w": "are",
+            "t": 229.109
+          },
+          {
+            "w": "exponentially",
+            "t": 229.656
+          },
+          {
+            "w": "distributed.",
+            "t": 230.202
+          },
+          {
+            "w": "Because",
+            "t": 230.748
+          },
+          {
+            "w": "the",
+            "t": 231.295
+          },
+          {
+            "w": "total",
+            "t": 231.841
+          },
+          {
+            "w": "population",
+            "t": 232.387
+          },
+          {
+            "w": "N",
+            "t": 232.933
+          },
+          {
+            "w": "approaches",
+            "t": 233.48
+          },
+          {
+            "w": "infinity,",
+            "t": 234.026
+          },
+          {
+            "w": "standard",
+            "t": 234.572
+          },
+          {
+            "w": "offline",
+            "t": 235.118
+          },
+          {
+            "w": "uniform",
+            "t": 235.665
+          },
+          {
+            "w": "sampling",
+            "t": 236.211
+          },
+          {
+            "w": "is",
+            "t": 236.757
+          },
+          {
+            "w": "impossible,",
+            "t": 237.304
+          },
+          {
+            "w": "necessitating",
+            "t": 237.85
+          },
+          {
+            "w": "online",
+            "t": 238.396
+          },
+          {
+            "w": "reservoir",
+            "t": 238.942
+          },
+          {
+            "w": "sampling",
+            "t": 239.489
+          },
+          {
+            "w": "and",
+            "t": 240.035
+          },
+          {
+            "w": "temporal",
+            "t": 240.581
+          },
+          {
+            "w": "sliding",
+            "t": 241.127
+          },
+          {
+            "w": "windows.",
+            "t": 241.674
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "To prevent streaming pipelines from crashing under load, we govern queue buffers using Little's Law, proven by John Little in 1961. The steady-state average number of items in the system, L, equals arrival rate lambda multiplied by average residency latency W.",
+        "start": 242.22,
+        "end": 259.709,
+        "words": [
+          {
+            "w": "To",
+            "t": 242.22
+          },
+          {
+            "w": "prevent",
+            "t": 242.647
+          },
+          {
+            "w": "streaming",
+            "t": 243.073
+          },
+          {
+            "w": "pipelines",
+            "t": 243.5
+          },
+          {
+            "w": "from",
+            "t": 243.926
+          },
+          {
+            "w": "crashing",
+            "t": 244.353
+          },
+          {
+            "w": "under",
+            "t": 244.779
+          },
+          {
+            "w": "load,",
+            "t": 245.206
+          },
+          {
+            "w": "we",
+            "t": 245.632
+          },
+          {
+            "w": "govern",
+            "t": 246.059
+          },
+          {
+            "w": "queue",
+            "t": 246.486
+          },
+          {
+            "w": "buffers",
+            "t": 246.912
+          },
+          {
+            "w": "using",
+            "t": 247.339
+          },
+          {
+            "w": "Little's",
+            "t": 247.765
+          },
+          {
+            "w": "Law,",
+            "t": 248.192
+          },
+          {
+            "w": "proven",
+            "t": 248.618
+          },
+          {
+            "w": "by",
+            "t": 249.045
+          },
+          {
+            "w": "John",
+            "t": 249.472
+          },
+          {
+            "w": "Little",
+            "t": 249.898
+          },
+          {
+            "w": "in",
+            "t": 250.325
+          },
+          {
+            "w": "1961.",
+            "t": 250.751
+          },
+          {
+            "w": "The",
+            "t": 251.178
+          },
+          {
+            "w": "steady-state",
+            "t": 251.604
+          },
+          {
+            "w": "average",
+            "t": 252.031
+          },
+          {
+            "w": "number",
+            "t": 252.457
+          },
+          {
+            "w": "of",
+            "t": 252.884
+          },
+          {
+            "w": "items",
+            "t": 253.311
+          },
+          {
+            "w": "in",
+            "t": 253.737
+          },
+          {
+            "w": "the",
+            "t": 254.164
+          },
+          {
+            "w": "system,",
+            "t": 254.59
+          },
+          {
+            "w": "L,",
+            "t": 255.017
+          },
+          {
+            "w": "equals",
+            "t": 255.443
+          },
+          {
+            "w": "arrival",
+            "t": 255.87
+          },
+          {
+            "w": "rate",
+            "t": 256.297
+          },
+          {
+            "w": "lambda",
+            "t": 256.723
+          },
+          {
+            "w": "multiplied",
+            "t": 257.15
+          },
+          {
+            "w": "by",
+            "t": 257.576
+          },
+          {
+            "w": "average",
+            "t": 258.003
+          },
+          {
+            "w": "residency",
+            "t": 258.429
+          },
+          {
+            "w": "latency",
+            "t": 258.856
+          },
+          {
+            "w": "W.",
+            "t": 259.282
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "In an M/M/1 queue with worker service rate mu, traffic intensity rho equals lambda divided by mu. Stability requires rho to be strictly less than 1. If arrival rate lambda equals or exceeds service rate mu, queue depth diverges to infinity, causing buffer exhaustion and dropped packets.",
+        "start": 259.709,
+        "end": 279.014,
+        "words": [
+          {
+            "w": "In",
+            "t": 259.709
+          },
+          {
+            "w": "an",
+            "t": 260.12
+          },
+          {
+            "w": "M/M/1",
+            "t": 260.53
+          },
+          {
+            "w": "queue",
+            "t": 260.941
+          },
+          {
+            "w": "with",
+            "t": 261.352
+          },
+          {
+            "w": "worker",
+            "t": 261.763
+          },
+          {
+            "w": "service",
+            "t": 262.173
+          },
+          {
+            "w": "rate",
+            "t": 262.584
+          },
+          {
+            "w": "mu,",
+            "t": 262.995
+          },
+          {
+            "w": "traffic",
+            "t": 263.406
+          },
+          {
+            "w": "intensity",
+            "t": 263.816
+          },
+          {
+            "w": "rho",
+            "t": 264.227
+          },
+          {
+            "w": "equals",
+            "t": 264.638
+          },
+          {
+            "w": "lambda",
+            "t": 265.049
+          },
+          {
+            "w": "divided",
+            "t": 265.459
+          },
+          {
+            "w": "by",
+            "t": 265.87
+          },
+          {
+            "w": "mu.",
+            "t": 266.281
+          },
+          {
+            "w": "Stability",
+            "t": 266.692
+          },
+          {
+            "w": "requires",
+            "t": 267.102
+          },
+          {
+            "w": "rho",
+            "t": 267.513
+          },
+          {
+            "w": "to",
+            "t": 267.924
+          },
+          {
+            "w": "be",
+            "t": 268.335
+          },
+          {
+            "w": "strictly",
+            "t": 268.745
+          },
+          {
+            "w": "less",
+            "t": 269.156
+          },
+          {
+            "w": "than",
+            "t": 269.567
+          },
+          {
+            "w": "1.",
+            "t": 269.978
+          },
+          {
+            "w": "If",
+            "t": 270.388
+          },
+          {
+            "w": "arrival",
+            "t": 270.799
+          },
+          {
+            "w": "rate",
+            "t": 271.21
+          },
+          {
+            "w": "lambda",
+            "t": 271.621
+          },
+          {
+            "w": "equals",
+            "t": 272.031
+          },
+          {
+            "w": "or",
+            "t": 272.442
+          },
+          {
+            "w": "exceeds",
+            "t": 272.853
+          },
+          {
+            "w": "service",
+            "t": 273.264
+          },
+          {
+            "w": "rate",
+            "t": 273.674
+          },
+          {
+            "w": "mu,",
+            "t": 274.085
+          },
+          {
+            "w": "queue",
+            "t": 274.496
+          },
+          {
+            "w": "depth",
+            "t": 274.907
+          },
+          {
+            "w": "diverges",
+            "t": 275.317
+          },
+          {
+            "w": "to",
+            "t": 275.728
+          },
+          {
+            "w": "infinity,",
+            "t": 276.139
+          },
+          {
+            "w": "causing",
+            "t": 276.55
+          },
+          {
+            "w": "buffer",
+            "t": 276.96
+          },
+          {
+            "w": "exhaustion",
+            "t": 277.371
+          },
+          {
+            "w": "and",
+            "t": 277.782
+          },
+          {
+            "w": "dropped",
+            "t": 278.193
+          },
+          {
+            "w": "packets.",
+            "t": 278.603
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Here we synthesize the operational trade-offs across all three data source modalities into an engineering decision matrix.",
+        "start": 279.014,
+        "end": 287.22,
+        "words": [
+          {
+            "w": "Here",
+            "t": 279.014
+          },
+          {
+            "w": "we",
+            "t": 279.497
+          },
+          {
+            "w": "synthesize",
+            "t": 279.979
+          },
+          {
+            "w": "the",
+            "t": 280.462
+          },
+          {
+            "w": "operational",
+            "t": 280.945
+          },
+          {
+            "w": "trade-offs",
+            "t": 281.428
+          },
+          {
+            "w": "across",
+            "t": 281.91
+          },
+          {
+            "w": "all",
+            "t": 282.393
+          },
+          {
+            "w": "three",
+            "t": 282.876
+          },
+          {
+            "w": "data",
+            "t": 283.358
+          },
+          {
+            "w": "source",
+            "t": 283.841
+          },
+          {
+            "w": "modalities",
+            "t": 284.324
+          },
+          {
+            "w": "into",
+            "t": 284.806
+          },
+          {
+            "w": "an",
+            "t": 285.289
+          },
+          {
+            "w": "engineering",
+            "t": 285.772
+          },
+          {
+            "w": "decision",
+            "t": 286.255
+          },
+          {
+            "w": "matrix.",
+            "t": 286.737
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Notice that no source dominates unconditionally. Primary generation maximizes sampling control and minimizes covariate shift, but incurs high marginal cost. Secondary data reduces cost, but introduces schema friction and licensing complexity. Streaming requires active backpressure engineering.",
+        "start": 287.22,
+        "end": 306.996,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 287.22
+          },
+          {
+            "w": "that",
+            "t": 287.769
+          },
+          {
+            "w": "no",
+            "t": 288.319
+          },
+          {
+            "w": "source",
+            "t": 288.868
+          },
+          {
+            "w": "dominates",
+            "t": 289.417
+          },
+          {
+            "w": "unconditionally.",
+            "t": 289.967
+          },
+          {
+            "w": "Primary",
+            "t": 290.516
+          },
+          {
+            "w": "generation",
+            "t": 291.065
+          },
+          {
+            "w": "maximizes",
+            "t": 291.615
+          },
+          {
+            "w": "sampling",
+            "t": 292.164
+          },
+          {
+            "w": "control",
+            "t": 292.713
+          },
+          {
+            "w": "and",
+            "t": 293.263
+          },
+          {
+            "w": "minimizes",
+            "t": 293.812
+          },
+          {
+            "w": "covariate",
+            "t": 294.361
+          },
+          {
+            "w": "shift,",
+            "t": 294.911
+          },
+          {
+            "w": "but",
+            "t": 295.46
+          },
+          {
+            "w": "incurs",
+            "t": 296.009
+          },
+          {
+            "w": "high",
+            "t": 296.559
+          },
+          {
+            "w": "marginal",
+            "t": 297.108
+          },
+          {
+            "w": "cost.",
+            "t": 297.657
+          },
+          {
+            "w": "Secondary",
+            "t": 298.207
+          },
+          {
+            "w": "data",
+            "t": 298.756
+          },
+          {
+            "w": "reduces",
+            "t": 299.305
+          },
+          {
+            "w": "cost,",
+            "t": 299.855
+          },
+          {
+            "w": "but",
+            "t": 300.404
+          },
+          {
+            "w": "introduces",
+            "t": 300.953
+          },
+          {
+            "w": "schema",
+            "t": 301.503
+          },
+          {
+            "w": "friction",
+            "t": 302.052
+          },
+          {
+            "w": "and",
+            "t": 302.601
+          },
+          {
+            "w": "licensing",
+            "t": 303.151
+          },
+          {
+            "w": "complexity.",
+            "t": 303.7
+          },
+          {
+            "w": "Streaming",
+            "t": 304.249
+          },
+          {
+            "w": "requires",
+            "t": 304.799
+          },
+          {
+            "w": "active",
+            "t": 305.348
+          },
+          {
+            "w": "backpressure",
+            "t": 305.897
+          },
+          {
+            "w": "engineering.",
+            "t": 306.447
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "In production machine learning systems, streaming ingestion pipelines are decoupled into partitioned event brokers like Apache Kafka, schema validation worker pools, and automated dead-letter queues.",
+        "start": 306.996,
+        "end": 320.382,
+        "words": [
+          {
+            "w": "In",
+            "t": 306.996
+          },
+          {
+            "w": "production",
+            "t": 307.531
+          },
+          {
+            "w": "machine",
+            "t": 308.067
+          },
+          {
+            "w": "learning",
+            "t": 308.602
+          },
+          {
+            "w": "systems,",
+            "t": 309.138
+          },
+          {
+            "w": "streaming",
+            "t": 309.673
+          },
+          {
+            "w": "ingestion",
+            "t": 310.209
+          },
+          {
+            "w": "pipelines",
+            "t": 310.744
+          },
+          {
+            "w": "are",
+            "t": 311.28
+          },
+          {
+            "w": "decoupled",
+            "t": 311.815
+          },
+          {
+            "w": "into",
+            "t": 312.35
+          },
+          {
+            "w": "partitioned",
+            "t": 312.886
+          },
+          {
+            "w": "event",
+            "t": 313.421
+          },
+          {
+            "w": "brokers",
+            "t": 313.957
+          },
+          {
+            "w": "like",
+            "t": 314.492
+          },
+          {
+            "w": "Apache",
+            "t": 315.028
+          },
+          {
+            "w": "Kafka,",
+            "t": 315.563
+          },
+          {
+            "w": "schema",
+            "t": 316.098
+          },
+          {
+            "w": "validation",
+            "t": 316.634
+          },
+          {
+            "w": "worker",
+            "t": 317.169
+          },
+          {
+            "w": "pools,",
+            "t": 317.705
+          },
+          {
+            "w": "and",
+            "t": 318.24
+          },
+          {
+            "w": "automated",
+            "t": 318.776
+          },
+          {
+            "w": "dead-letter",
+            "t": 319.311
+          },
+          {
+            "w": "queues.",
+            "t": 319.847
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "When malformed records or schema violations arrive, they are diverted into a Dead-Letter Queue rather than crashing the consumer group. If traffic intensity exceeds 0.85, backpressure controllers dynamically scale the worker pool.",
+        "start": 320.382,
+        "end": 335.853,
+        "words": [
+          {
+            "w": "When",
+            "t": 320.382
+          },
+          {
+            "w": "malformed",
+            "t": 320.865
+          },
+          {
+            "w": "records",
+            "t": 321.349
+          },
+          {
+            "w": "or",
+            "t": 321.832
+          },
+          {
+            "w": "schema",
+            "t": 322.316
+          },
+          {
+            "w": "violations",
+            "t": 322.799
+          },
+          {
+            "w": "arrive,",
+            "t": 323.283
+          },
+          {
+            "w": "they",
+            "t": 323.766
+          },
+          {
+            "w": "are",
+            "t": 324.25
+          },
+          {
+            "w": "diverted",
+            "t": 324.733
+          },
+          {
+            "w": "into",
+            "t": 325.217
+          },
+          {
+            "w": "a",
+            "t": 325.7
+          },
+          {
+            "w": "Dead-Letter",
+            "t": 326.184
+          },
+          {
+            "w": "Queue",
+            "t": 326.667
+          },
+          {
+            "w": "rather",
+            "t": 327.151
+          },
+          {
+            "w": "than",
+            "t": 327.634
+          },
+          {
+            "w": "crashing",
+            "t": 328.118
+          },
+          {
+            "w": "the",
+            "t": 328.601
+          },
+          {
+            "w": "consumer",
+            "t": 329.084
+          },
+          {
+            "w": "group.",
+            "t": 329.568
+          },
+          {
+            "w": "If",
+            "t": 330.051
+          },
+          {
+            "w": "traffic",
+            "t": 330.535
+          },
+          {
+            "w": "intensity",
+            "t": 331.018
+          },
+          {
+            "w": "exceeds",
+            "t": 331.502
+          },
+          {
+            "w": "0.85,",
+            "t": 331.985
+          },
+          {
+            "w": "backpressure",
+            "t": 332.469
+          },
+          {
+            "w": "controllers",
+            "t": 332.952
+          },
+          {
+            "w": "dynamically",
+            "t": 333.436
+          },
+          {
+            "w": "scale",
+            "t": 333.919
+          },
+          {
+            "w": "the",
+            "t": 334.403
+          },
+          {
+            "w": "worker",
+            "t": 334.886
+          },
+          {
+            "w": "pool.",
+            "t": 335.37
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Interactive Lab 2. Here, you can adjust arrival rate lambda and worker processing rate mu in real time. Watch how traffic intensity rho, residency latency W, and buffer occupancy L respond dynamically.",
+        "start": 335.853,
+        "end": 350.113,
+        "words": [
+          {
+            "w": "Welcome",
+            "t": 335.853
+          },
+          {
+            "w": "to",
+            "t": 336.272
+          },
+          {
+            "w": "Interactive",
+            "t": 336.692
+          },
+          {
+            "w": "Lab",
+            "t": 337.111
+          },
+          {
+            "w": "2.",
+            "t": 337.531
+          },
+          {
+            "w": "Here,",
+            "t": 337.95
+          },
+          {
+            "w": "you",
+            "t": 338.369
+          },
+          {
+            "w": "can",
+            "t": 338.789
+          },
+          {
+            "w": "adjust",
+            "t": 339.208
+          },
+          {
+            "w": "arrival",
+            "t": 339.628
+          },
+          {
+            "w": "rate",
+            "t": 340.047
+          },
+          {
+            "w": "lambda",
+            "t": 340.467
+          },
+          {
+            "w": "and",
+            "t": 340.886
+          },
+          {
+            "w": "worker",
+            "t": 341.305
+          },
+          {
+            "w": "processing",
+            "t": 341.725
+          },
+          {
+            "w": "rate",
+            "t": 342.144
+          },
+          {
+            "w": "mu",
+            "t": 342.564
+          },
+          {
+            "w": "in",
+            "t": 342.983
+          },
+          {
+            "w": "real",
+            "t": 343.402
+          },
+          {
+            "w": "time.",
+            "t": 343.822
+          },
+          {
+            "w": "Watch",
+            "t": 344.241
+          },
+          {
+            "w": "how",
+            "t": 344.661
+          },
+          {
+            "w": "traffic",
+            "t": 345.08
+          },
+          {
+            "w": "intensity",
+            "t": 345.499
+          },
+          {
+            "w": "rho,",
+            "t": 345.919
+          },
+          {
+            "w": "residency",
+            "t": 346.338
+          },
+          {
+            "w": "latency",
+            "t": 346.758
+          },
+          {
+            "w": "W,",
+            "t": 347.177
+          },
+          {
+            "w": "and",
+            "t": 347.597
+          },
+          {
+            "w": "buffer",
+            "t": 348.016
+          },
+          {
+            "w": "occupancy",
+            "t": 348.435
+          },
+          {
+            "w": "L",
+            "t": 348.855
+          },
+          {
+            "w": "respond",
+            "t": 349.274
+          },
+          {
+            "w": "dynamically.",
+            "t": 349.694
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "Time for Active Checkpoint 2. An IoT sensor broker receives packets at arrival rate lambda equals two thousand packets per second. Average processing latency W is forty milliseconds. If buffer capacity is 120 packets, calculate steady-state occupancy L and determine stability.",
+        "start": 350.113,
+        "end": 368.745,
+        "words": [
+          {
+            "w": "Time",
+            "t": 350.113
+          },
+          {
+            "w": "for",
+            "t": 350.567
+          },
+          {
+            "w": "Active",
+            "t": 351.022
+          },
+          {
+            "w": "Checkpoint",
+            "t": 351.476
+          },
+          {
+            "w": "2.",
+            "t": 351.931
+          },
+          {
+            "w": "An",
+            "t": 352.385
+          },
+          {
+            "w": "IoT",
+            "t": 352.84
+          },
+          {
+            "w": "sensor",
+            "t": 353.294
+          },
+          {
+            "w": "broker",
+            "t": 353.749
+          },
+          {
+            "w": "receives",
+            "t": 354.203
+          },
+          {
+            "w": "packets",
+            "t": 354.657
+          },
+          {
+            "w": "at",
+            "t": 355.112
+          },
+          {
+            "w": "arrival",
+            "t": 355.566
+          },
+          {
+            "w": "rate",
+            "t": 356.021
+          },
+          {
+            "w": "lambda",
+            "t": 356.475
+          },
+          {
+            "w": "equals",
+            "t": 356.93
+          },
+          {
+            "w": "two",
+            "t": 357.384
+          },
+          {
+            "w": "thousand",
+            "t": 357.838
+          },
+          {
+            "w": "packets",
+            "t": 358.293
+          },
+          {
+            "w": "per",
+            "t": 358.747
+          },
+          {
+            "w": "second.",
+            "t": 359.202
+          },
+          {
+            "w": "Average",
+            "t": 359.656
+          },
+          {
+            "w": "processing",
+            "t": 360.111
+          },
+          {
+            "w": "latency",
+            "t": 360.565
+          },
+          {
+            "w": "W",
+            "t": 361.02
+          },
+          {
+            "w": "is",
+            "t": 361.474
+          },
+          {
+            "w": "forty",
+            "t": 361.928
+          },
+          {
+            "w": "milliseconds.",
+            "t": 362.383
+          },
+          {
+            "w": "If",
+            "t": 362.837
+          },
+          {
+            "w": "buffer",
+            "t": 363.292
+          },
+          {
+            "w": "capacity",
+            "t": 363.746
+          },
+          {
+            "w": "is",
+            "t": 364.201
+          },
+          {
+            "w": "120",
+            "t": 364.655
+          },
+          {
+            "w": "packets,",
+            "t": 365.109
+          },
+          {
+            "w": "calculate",
+            "t": 365.564
+          },
+          {
+            "w": "steady-state",
+            "t": 366.018
+          },
+          {
+            "w": "occupancy",
+            "t": 366.473
+          },
+          {
+            "w": "L",
+            "t": 366.927
+          },
+          {
+            "w": "and",
+            "t": 367.382
+          },
+          {
+            "w": "determine",
+            "t": 367.836
+          },
+          {
+            "w": "stability.",
+            "t": 368.291
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "Consider this landmark cardiovascular risk study analyzing 120,000 patient cohorts. Researchers initially ingested secondary insurance billing claims because they were immediately available at near-zero marginal cost.",
+        "start": 368.745,
+        "end": 383.341,
+        "words": [
+          {
+            "w": "Consider",
+            "t": 368.745
+          },
+          {
+            "w": "this",
+            "t": 369.306
+          },
+          {
+            "w": "landmark",
+            "t": 369.868
+          },
+          {
+            "w": "cardiovascular",
+            "t": 370.429
+          },
+          {
+            "w": "risk",
+            "t": 370.991
+          },
+          {
+            "w": "study",
+            "t": 371.552
+          },
+          {
+            "w": "analyzing",
+            "t": 372.113
+          },
+          {
+            "w": "120,000",
+            "t": 372.675
+          },
+          {
+            "w": "patient",
+            "t": 373.236
+          },
+          {
+            "w": "cohorts.",
+            "t": 373.797
+          },
+          {
+            "w": "Researchers",
+            "t": 374.359
+          },
+          {
+            "w": "initially",
+            "t": 374.92
+          },
+          {
+            "w": "ingested",
+            "t": 375.482
+          },
+          {
+            "w": "secondary",
+            "t": 376.043
+          },
+          {
+            "w": "insurance",
+            "t": 376.604
+          },
+          {
+            "w": "billing",
+            "t": 377.166
+          },
+          {
+            "w": "claims",
+            "t": 377.727
+          },
+          {
+            "w": "because",
+            "t": 378.289
+          },
+          {
+            "w": "they",
+            "t": 378.85
+          },
+          {
+            "w": "were",
+            "t": 379.411
+          },
+          {
+            "w": "immediately",
+            "t": 379.973
+          },
+          {
+            "w": "available",
+            "t": 380.534
+          },
+          {
+            "w": "at",
+            "t": 381.095
+          },
+          {
+            "w": "near-zero",
+            "t": 381.657
+          },
+          {
+            "w": "marginal",
+            "t": 382.218
+          },
+          {
+            "w": "cost.",
+            "t": 382.78
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "However, billing codes indicated reimbursement categories rather than underlying physiological pathology, causing severe covariate shift. By collecting a prospective primary cohort of 10,000 patients and computing density ratios, they re-weighted the secondary data, preserving 92% of statistical power while slashing costs by 78%.",
+        "start": 383.341,
+        "end": 405.606,
+        "words": [
+          {
+            "w": "However,",
+            "t": 383.341
+          },
+          {
+            "w": "billing",
+            "t": 383.859
+          },
+          {
+            "w": "codes",
+            "t": 384.377
+          },
+          {
+            "w": "indicated",
+            "t": 384.894
+          },
+          {
+            "w": "reimbursement",
+            "t": 385.412
+          },
+          {
+            "w": "categories",
+            "t": 385.93
+          },
+          {
+            "w": "rather",
+            "t": 386.448
+          },
+          {
+            "w": "than",
+            "t": 386.966
+          },
+          {
+            "w": "underlying",
+            "t": 387.483
+          },
+          {
+            "w": "physiological",
+            "t": 388.001
+          },
+          {
+            "w": "pathology,",
+            "t": 388.519
+          },
+          {
+            "w": "causing",
+            "t": 389.037
+          },
+          {
+            "w": "severe",
+            "t": 389.554
+          },
+          {
+            "w": "covariate",
+            "t": 390.072
+          },
+          {
+            "w": "shift.",
+            "t": 390.59
+          },
+          {
+            "w": "By",
+            "t": 391.108
+          },
+          {
+            "w": "collecting",
+            "t": 391.626
+          },
+          {
+            "w": "a",
+            "t": 392.143
+          },
+          {
+            "w": "prospective",
+            "t": 392.661
+          },
+          {
+            "w": "primary",
+            "t": 393.179
+          },
+          {
+            "w": "cohort",
+            "t": 393.697
+          },
+          {
+            "w": "of",
+            "t": 394.215
+          },
+          {
+            "w": "10,000",
+            "t": 394.732
+          },
+          {
+            "w": "patients",
+            "t": 395.25
+          },
+          {
+            "w": "and",
+            "t": 395.768
+          },
+          {
+            "w": "computing",
+            "t": 396.286
+          },
+          {
+            "w": "density",
+            "t": 396.804
+          },
+          {
+            "w": "ratios,",
+            "t": 397.321
+          },
+          {
+            "w": "they",
+            "t": 397.839
+          },
+          {
+            "w": "re-weighted",
+            "t": 398.357
+          },
+          {
+            "w": "the",
+            "t": 398.875
+          },
+          {
+            "w": "secondary",
+            "t": 399.393
+          },
+          {
+            "w": "data,",
+            "t": 399.91
+          },
+          {
+            "w": "preserving",
+            "t": 400.428
+          },
+          {
+            "w": "92%",
+            "t": 400.946
+          },
+          {
+            "w": "of",
+            "t": 401.464
+          },
+          {
+            "w": "statistical",
+            "t": 401.981
+          },
+          {
+            "w": "power",
+            "t": 402.499
+          },
+          {
+            "w": "while",
+            "t": 403.017
+          },
+          {
+            "w": "slashing",
+            "t": 403.535
+          },
+          {
+            "w": "costs",
+            "t": 404.053
+          },
+          {
+            "w": "by",
+            "t": 404.57
+          },
+          {
+            "w": "78%.",
+            "t": 405.088
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Slide 15 provides an executable discrete-event simulation of our streaming ingestion pipeline in Python. It models Poisson inter-arrival intervals, single-worker departure dynamics, and verifies Little's Law with automated assertions.",
+        "start": 405.606,
+        "end": 421.346,
+        "words": [
+          {
+            "w": "Slide",
+            "t": 405.606
+          },
+          {
+            "w": "15",
+            "t": 406.149
+          },
+          {
+            "w": "provides",
+            "t": 406.692
+          },
+          {
+            "w": "an",
+            "t": 407.234
+          },
+          {
+            "w": "executable",
+            "t": 407.777
+          },
+          {
+            "w": "discrete-event",
+            "t": 408.32
+          },
+          {
+            "w": "simulation",
+            "t": 408.863
+          },
+          {
+            "w": "of",
+            "t": 409.405
+          },
+          {
+            "w": "our",
+            "t": 409.948
+          },
+          {
+            "w": "streaming",
+            "t": 410.491
+          },
+          {
+            "w": "ingestion",
+            "t": 411.034
+          },
+          {
+            "w": "pipeline",
+            "t": 411.576
+          },
+          {
+            "w": "in",
+            "t": 412.119
+          },
+          {
+            "w": "Python.",
+            "t": 412.662
+          },
+          {
+            "w": "It",
+            "t": 413.205
+          },
+          {
+            "w": "models",
+            "t": 413.747
+          },
+          {
+            "w": "Poisson",
+            "t": 414.29
+          },
+          {
+            "w": "inter-arrival",
+            "t": 414.833
+          },
+          {
+            "w": "intervals,",
+            "t": 415.376
+          },
+          {
+            "w": "single-worker",
+            "t": 415.918
+          },
+          {
+            "w": "departure",
+            "t": 416.461
+          },
+          {
+            "w": "dynamics,",
+            "t": 417.004
+          },
+          {
+            "w": "and",
+            "t": 417.547
+          },
+          {
+            "w": "verifies",
+            "t": 418.089
+          },
+          {
+            "w": "Little's",
+            "t": 418.632
+          },
+          {
+            "w": "Law",
+            "t": 419.175
+          },
+          {
+            "w": "with",
+            "t": 419.718
+          },
+          {
+            "w": "automated",
+            "t": 420.26
+          },
+          {
+            "w": "assertions.",
+            "t": 420.803
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Notice the automated checks at the bottom: we assert that traffic intensity rho is strictly less than 1.0, and verify that empirical latency W aligns with theoretical M/M/1 queuing within expected sampling tolerances.",
+        "start": 421.346,
+        "end": 435.942,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 421.346
+          },
+          {
+            "w": "the",
+            "t": 421.788
+          },
+          {
+            "w": "automated",
+            "t": 422.231
+          },
+          {
+            "w": "checks",
+            "t": 422.673
+          },
+          {
+            "w": "at",
+            "t": 423.115
+          },
+          {
+            "w": "the",
+            "t": 423.558
+          },
+          {
+            "w": "bottom:",
+            "t": 424.0
+          },
+          {
+            "w": "we",
+            "t": 424.442
+          },
+          {
+            "w": "assert",
+            "t": 424.884
+          },
+          {
+            "w": "that",
+            "t": 425.327
+          },
+          {
+            "w": "traffic",
+            "t": 425.769
+          },
+          {
+            "w": "intensity",
+            "t": 426.211
+          },
+          {
+            "w": "rho",
+            "t": 426.654
+          },
+          {
+            "w": "is",
+            "t": 427.096
+          },
+          {
+            "w": "strictly",
+            "t": 427.538
+          },
+          {
+            "w": "less",
+            "t": 427.981
+          },
+          {
+            "w": "than",
+            "t": 428.423
+          },
+          {
+            "w": "1.0,",
+            "t": 428.865
+          },
+          {
+            "w": "and",
+            "t": 429.307
+          },
+          {
+            "w": "verify",
+            "t": 429.75
+          },
+          {
+            "w": "that",
+            "t": 430.192
+          },
+          {
+            "w": "empirical",
+            "t": 430.634
+          },
+          {
+            "w": "latency",
+            "t": 431.077
+          },
+          {
+            "w": "W",
+            "t": 431.519
+          },
+          {
+            "w": "aligns",
+            "t": 431.961
+          },
+          {
+            "w": "with",
+            "t": 432.404
+          },
+          {
+            "w": "theoretical",
+            "t": 432.846
+          },
+          {
+            "w": "M/M/1",
+            "t": 433.288
+          },
+          {
+            "w": "queuing",
+            "t": 433.73
+          },
+          {
+            "w": "within",
+            "t": 434.173
+          },
+          {
+            "w": "expected",
+            "t": 434.615
+          },
+          {
+            "w": "sampling",
+            "t": 435.057
+          },
+          {
+            "w": "tolerances.",
+            "t": 435.5
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "Congratulations on completing Lesson 2.2. Today, we established the mathematical and architectural foundations of data sourcing: primary generation for unbiased experimental ground truth, secondary repurposing calibrated via importance density ratios, and streaming telemetry sized via Little's Law.",
+        "start": 435.942,
+        "end": 456.054,
+        "words": [
+          {
+            "w": "Congratulations",
+            "t": 435.942
+          },
+          {
+            "w": "on",
+            "t": 436.486
+          },
+          {
+            "w": "completing",
+            "t": 437.029
+          },
+          {
+            "w": "Lesson",
+            "t": 437.573
+          },
+          {
+            "w": "2.2.",
+            "t": 438.116
+          },
+          {
+            "w": "Today,",
+            "t": 438.66
+          },
+          {
+            "w": "we",
+            "t": 439.203
+          },
+          {
+            "w": "established",
+            "t": 439.747
+          },
+          {
+            "w": "the",
+            "t": 440.291
+          },
+          {
+            "w": "mathematical",
+            "t": 440.834
+          },
+          {
+            "w": "and",
+            "t": 441.378
+          },
+          {
+            "w": "architectural",
+            "t": 441.921
+          },
+          {
+            "w": "foundations",
+            "t": 442.465
+          },
+          {
+            "w": "of",
+            "t": 443.008
+          },
+          {
+            "w": "data",
+            "t": 443.552
+          },
+          {
+            "w": "sourcing:",
+            "t": 444.096
+          },
+          {
+            "w": "primary",
+            "t": 444.639
+          },
+          {
+            "w": "generation",
+            "t": 445.183
+          },
+          {
+            "w": "for",
+            "t": 445.726
+          },
+          {
+            "w": "unbiased",
+            "t": 446.27
+          },
+          {
+            "w": "experimental",
+            "t": 446.813
+          },
+          {
+            "w": "ground",
+            "t": 447.357
+          },
+          {
+            "w": "truth,",
+            "t": 447.9
+          },
+          {
+            "w": "secondary",
+            "t": 448.444
+          },
+          {
+            "w": "repurposing",
+            "t": 448.988
+          },
+          {
+            "w": "calibrated",
+            "t": 449.531
+          },
+          {
+            "w": "via",
+            "t": 450.075
+          },
+          {
+            "w": "importance",
+            "t": 450.618
+          },
+          {
+            "w": "density",
+            "t": 451.162
+          },
+          {
+            "w": "ratios,",
+            "t": 451.705
+          },
+          {
+            "w": "and",
+            "t": 452.249
+          },
+          {
+            "w": "streaming",
+            "t": 452.793
+          },
+          {
+            "w": "telemetry",
+            "t": 453.336
+          },
+          {
+            "w": "sized",
+            "t": 453.88
+          },
+          {
+            "w": "via",
+            "t": 454.423
+          },
+          {
+            "w": "Little's",
+            "t": 454.967
+          },
+          {
+            "w": "Law.",
+            "t": 455.51
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "In Lesson 2.3, we transition from high-level source strategies to concrete acquisition instruments: designing psychometrically sound questionnaires, web scraping protocols, and automated API crawlers. Outstanding work today.",
+        "start": 456.054,
+        "end": 471.12,
+        "words": [
+          {
+            "w": "In",
+            "t": 456.054
+          },
+          {
+            "w": "Lesson",
+            "t": 456.612
+          },
+          {
+            "w": "2.3,",
+            "t": 457.17
+          },
+          {
+            "w": "we",
+            "t": 457.728
+          },
+          {
+            "w": "transition",
+            "t": 458.286
+          },
+          {
+            "w": "from",
+            "t": 458.844
+          },
+          {
+            "w": "high-level",
+            "t": 459.402
+          },
+          {
+            "w": "source",
+            "t": 459.96
+          },
+          {
+            "w": "strategies",
+            "t": 460.518
+          },
+          {
+            "w": "to",
+            "t": 461.076
+          },
+          {
+            "w": "concrete",
+            "t": 461.634
+          },
+          {
+            "w": "acquisition",
+            "t": 462.192
+          },
+          {
+            "w": "instruments:",
+            "t": 462.75
+          },
+          {
+            "w": "designing",
+            "t": 463.308
+          },
+          {
+            "w": "psychometrically",
+            "t": 463.866
+          },
+          {
+            "w": "sound",
+            "t": 464.424
+          },
+          {
+            "w": "questionnaires,",
+            "t": 464.982
+          },
+          {
+            "w": "web",
+            "t": 465.54
+          },
+          {
+            "w": "scraping",
+            "t": 466.098
+          },
+          {
+            "w": "protocols,",
+            "t": 466.656
+          },
+          {
+            "w": "and",
+            "t": 467.214
+          },
+          {
+            "w": "automated",
+            "t": 467.772
+          },
+          {
+            "w": "API",
+            "t": 468.33
+          },
+          {
+            "w": "crawlers.",
+            "t": 468.888
+          },
+          {
+            "w": "Outstanding",
+            "t": 469.446
+          },
+          {
+            "w": "work",
+            "t": 470.004
+          },
+          {
+            "w": "today.",
+            "t": 470.562
+          }
+        ]
+      }
+    ]
+  },
+  "ch2_p2_duo": {
+    "duration": 604.608,
+    "sentences": [
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Lesson 2.2, Kaito! Today we explore where production datasets actually originate: primary collection, secondary repurposed registries, and real-time streaming telemetry.",
+        "start": 0.0,
+        "end": 12.817,
+        "words": [
+          {
+            "w": "Welcome",
+            "t": 0.0
+          },
+          {
+            "w": "to",
+            "t": 0.583
+          },
+          {
+            "w": "Lesson",
+            "t": 1.165
+          },
+          {
+            "w": "2.2,",
+            "t": 1.748
+          },
+          {
+            "w": "Kaito!",
+            "t": 2.33
+          },
+          {
+            "w": "Today",
+            "t": 2.913
+          },
+          {
+            "w": "we",
+            "t": 3.496
+          },
+          {
+            "w": "explore",
+            "t": 4.078
+          },
+          {
+            "w": "where",
+            "t": 4.661
+          },
+          {
+            "w": "production",
+            "t": 5.243
+          },
+          {
+            "w": "datasets",
+            "t": 5.826
+          },
+          {
+            "w": "actually",
+            "t": 6.408
+          },
+          {
+            "w": "originate:",
+            "t": 6.991
+          },
+          {
+            "w": "primary",
+            "t": 7.574
+          },
+          {
+            "w": "collection,",
+            "t": 8.156
+          },
+          {
+            "w": "secondary",
+            "t": 8.739
+          },
+          {
+            "w": "repurposed",
+            "t": 9.321
+          },
+          {
+            "w": "registries,",
+            "t": 9.904
+          },
+          {
+            "w": "and",
+            "t": 10.487
+          },
+          {
+            "w": "real-time",
+            "t": 11.069
+          },
+          {
+            "w": "streaming",
+            "t": 11.652
+          },
+          {
+            "w": "telemetry.",
+            "t": 12.234
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Kaito",
+        "text": "Most teams just scrape secondary web data because it is cheap and fast, Nova. But then their models crash in production because of hidden distribution shifts!",
+        "start": 12.817,
+        "end": 24.068,
+        "words": [
+          {
+            "w": "Most",
+            "t": 12.817
+          },
+          {
+            "w": "teams",
+            "t": 13.25
+          },
+          {
+            "w": "just",
+            "t": 13.682
+          },
+          {
+            "w": "scrape",
+            "t": 14.115
+          },
+          {
+            "w": "secondary",
+            "t": 14.548
+          },
+          {
+            "w": "web",
+            "t": 14.981
+          },
+          {
+            "w": "data",
+            "t": 15.413
+          },
+          {
+            "w": "because",
+            "t": 15.846
+          },
+          {
+            "w": "it",
+            "t": 16.279
+          },
+          {
+            "w": "is",
+            "t": 16.712
+          },
+          {
+            "w": "cheap",
+            "t": 17.144
+          },
+          {
+            "w": "and",
+            "t": 17.577
+          },
+          {
+            "w": "fast,",
+            "t": 18.01
+          },
+          {
+            "w": "Nova.",
+            "t": 18.443
+          },
+          {
+            "w": "But",
+            "t": 18.875
+          },
+          {
+            "w": "then",
+            "t": 19.308
+          },
+          {
+            "w": "their",
+            "t": 19.741
+          },
+          {
+            "w": "models",
+            "t": 20.173
+          },
+          {
+            "w": "crash",
+            "t": 20.606
+          },
+          {
+            "w": "in",
+            "t": 21.039
+          },
+          {
+            "w": "production",
+            "t": 21.472
+          },
+          {
+            "w": "because",
+            "t": 21.904
+          },
+          {
+            "w": "of",
+            "t": 22.337
+          },
+          {
+            "w": "hidden",
+            "t": 22.77
+          },
+          {
+            "w": "distribution",
+            "t": 23.203
+          },
+          {
+            "w": "shifts!",
+            "t": 23.635
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Today we will prove mathematically how density ratio variance reduces effective sample size under covariate shift, and why streaming systems require Little's Law to prevent buffer overflows.",
+        "start": 24.068,
+        "end": 38.238,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 24.068
+          },
+          {
+            "w": "Today",
+            "t": 24.574
+          },
+          {
+            "w": "we",
+            "t": 25.08
+          },
+          {
+            "w": "will",
+            "t": 25.586
+          },
+          {
+            "w": "prove",
+            "t": 26.092
+          },
+          {
+            "w": "mathematically",
+            "t": 26.598
+          },
+          {
+            "w": "how",
+            "t": 27.104
+          },
+          {
+            "w": "density",
+            "t": 27.611
+          },
+          {
+            "w": "ratio",
+            "t": 28.117
+          },
+          {
+            "w": "variance",
+            "t": 28.623
+          },
+          {
+            "w": "reduces",
+            "t": 29.129
+          },
+          {
+            "w": "effective",
+            "t": 29.635
+          },
+          {
+            "w": "sample",
+            "t": 30.141
+          },
+          {
+            "w": "size",
+            "t": 30.647
+          },
+          {
+            "w": "under",
+            "t": 31.153
+          },
+          {
+            "w": "covariate",
+            "t": 31.659
+          },
+          {
+            "w": "shift,",
+            "t": 32.165
+          },
+          {
+            "w": "and",
+            "t": 32.671
+          },
+          {
+            "w": "why",
+            "t": 33.177
+          },
+          {
+            "w": "streaming",
+            "t": 33.683
+          },
+          {
+            "w": "systems",
+            "t": 34.189
+          },
+          {
+            "w": "require",
+            "t": 34.695
+          },
+          {
+            "w": "Little's",
+            "t": 35.202
+          },
+          {
+            "w": "Law",
+            "t": 35.708
+          },
+          {
+            "w": "to",
+            "t": 36.214
+          },
+          {
+            "w": "prevent",
+            "t": 36.72
+          },
+          {
+            "w": "buffer",
+            "t": 37.226
+          },
+          {
+            "w": "overflows.",
+            "t": 37.732
+          }
+        ]
+      },
+      {
+        "slide": 1,
+        "slideId": "s1",
+        "speaker": "Kaito",
+        "text": "Let us see the trade-offs and the formal queueing dynamics!",
+        "start": 38.238,
+        "end": 42.439,
+        "words": [
+          {
+            "w": "Let",
+            "t": 38.238
+          },
+          {
+            "w": "us",
+            "t": 38.658
+          },
+          {
+            "w": "see",
+            "t": 39.078
+          },
+          {
+            "w": "the",
+            "t": 39.498
+          },
+          {
+            "w": "trade-offs",
+            "t": 39.918
+          },
+          {
+            "w": "and",
+            "t": 40.338
+          },
+          {
+            "w": "the",
+            "t": 40.759
+          },
+          {
+            "w": "formal",
+            "t": 41.179
+          },
+          {
+            "w": "queueing",
+            "t": 41.599
+          },
+          {
+            "w": "dynamics!",
+            "t": 42.019
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Observe this taxonomy, Kaito. We have partitioned data sourcing into three core modalities: Primary generation, Secondary repurposing, and Real-Time streaming telemetry.",
+        "start": 42.439,
+        "end": 54.473,
+        "words": [
+          {
+            "w": "Observe",
+            "t": 42.439
+          },
+          {
+            "w": "this",
+            "t": 43.012
+          },
+          {
+            "w": "taxonomy,",
+            "t": 43.585
+          },
+          {
+            "w": "Kaito.",
+            "t": 44.158
+          },
+          {
+            "w": "We",
+            "t": 44.731
+          },
+          {
+            "w": "have",
+            "t": 45.304
+          },
+          {
+            "w": "partitioned",
+            "t": 45.877
+          },
+          {
+            "w": "data",
+            "t": 46.45
+          },
+          {
+            "w": "sourcing",
+            "t": 47.023
+          },
+          {
+            "w": "into",
+            "t": 47.596
+          },
+          {
+            "w": "three",
+            "t": 48.169
+          },
+          {
+            "w": "core",
+            "t": 48.743
+          },
+          {
+            "w": "modalities:",
+            "t": 49.316
+          },
+          {
+            "w": "Primary",
+            "t": 49.889
+          },
+          {
+            "w": "generation,",
+            "t": 50.462
+          },
+          {
+            "w": "Secondary",
+            "t": 51.035
+          },
+          {
+            "w": "repurposing,",
+            "t": 51.608
+          },
+          {
+            "w": "and",
+            "t": 52.181
+          },
+          {
+            "w": "Real-Time",
+            "t": 52.754
+          },
+          {
+            "w": "streaming",
+            "t": 53.327
+          },
+          {
+            "w": "telemetry.",
+            "t": 53.9
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Kaito",
+        "text": "Notice how primary data gives us pristine probability distributions because we design the sampling frame, but the costs scale linearly with every sample!",
+        "start": 54.473,
+        "end": 65.367,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 54.473
+          },
+          {
+            "w": "how",
+            "t": 54.947
+          },
+          {
+            "w": "primary",
+            "t": 55.42
+          },
+          {
+            "w": "data",
+            "t": 55.894
+          },
+          {
+            "w": "gives",
+            "t": 56.368
+          },
+          {
+            "w": "us",
+            "t": 56.841
+          },
+          {
+            "w": "pristine",
+            "t": 57.315
+          },
+          {
+            "w": "probability",
+            "t": 57.789
+          },
+          {
+            "w": "distributions",
+            "t": 58.262
+          },
+          {
+            "w": "because",
+            "t": 58.736
+          },
+          {
+            "w": "we",
+            "t": 59.21
+          },
+          {
+            "w": "design",
+            "t": 59.683
+          },
+          {
+            "w": "the",
+            "t": 60.157
+          },
+          {
+            "w": "sampling",
+            "t": 60.63
+          },
+          {
+            "w": "frame,",
+            "t": 61.104
+          },
+          {
+            "w": "but",
+            "t": 61.578
+          },
+          {
+            "w": "the",
+            "t": 62.051
+          },
+          {
+            "w": "costs",
+            "t": 62.525
+          },
+          {
+            "w": "scale",
+            "t": 62.999
+          },
+          {
+            "w": "linearly",
+            "t": 63.472
+          },
+          {
+            "w": "with",
+            "t": 63.946
+          },
+          {
+            "w": "every",
+            "t": 64.42
+          },
+          {
+            "w": "sample!",
+            "t": 64.893
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Secondary data drastically reduces marginal cost, but the source distribution Q of X differs from the deployment distribution P. If we don't re-weight, our models will learn observational artifacts.",
+        "start": 65.367,
+        "end": 80.249,
+        "words": [
+          {
+            "w": "Precisely.",
+            "t": 65.367
+          },
+          {
+            "w": "Secondary",
+            "t": 65.863
+          },
+          {
+            "w": "data",
+            "t": 66.359
+          },
+          {
+            "w": "drastically",
+            "t": 66.855
+          },
+          {
+            "w": "reduces",
+            "t": 67.351
+          },
+          {
+            "w": "marginal",
+            "t": 67.847
+          },
+          {
+            "w": "cost,",
+            "t": 68.343
+          },
+          {
+            "w": "but",
+            "t": 68.839
+          },
+          {
+            "w": "the",
+            "t": 69.336
+          },
+          {
+            "w": "source",
+            "t": 69.832
+          },
+          {
+            "w": "distribution",
+            "t": 70.328
+          },
+          {
+            "w": "Q",
+            "t": 70.824
+          },
+          {
+            "w": "of",
+            "t": 71.32
+          },
+          {
+            "w": "X",
+            "t": 71.816
+          },
+          {
+            "w": "differs",
+            "t": 72.312
+          },
+          {
+            "w": "from",
+            "t": 72.808
+          },
+          {
+            "w": "the",
+            "t": 73.304
+          },
+          {
+            "w": "deployment",
+            "t": 73.8
+          },
+          {
+            "w": "distribution",
+            "t": 74.296
+          },
+          {
+            "w": "P.",
+            "t": 74.792
+          },
+          {
+            "w": "If",
+            "t": 75.288
+          },
+          {
+            "w": "we",
+            "t": 75.784
+          },
+          {
+            "w": "don't",
+            "t": 76.28
+          },
+          {
+            "w": "re-weight,",
+            "t": 76.777
+          },
+          {
+            "w": "our",
+            "t": 77.273
+          },
+          {
+            "w": "models",
+            "t": 77.769
+          },
+          {
+            "w": "will",
+            "t": 78.265
+          },
+          {
+            "w": "learn",
+            "t": 78.761
+          },
+          {
+            "w": "observational",
+            "t": 79.257
+          },
+          {
+            "w": "artifacts.",
+            "t": 79.753
+          }
+        ]
+      },
+      {
+        "slide": 2,
+        "slideId": "s2",
+        "speaker": "Kaito",
+        "text": "And streaming telemetry brings Poisson arrival bursts! If the arrival rate exceeds worker service capacity, the buffer explodes under Little's Law.",
+        "start": 80.249,
+        "end": 90.716,
+        "words": [
+          {
+            "w": "And",
+            "t": 80.249
+          },
+          {
+            "w": "streaming",
+            "t": 80.747
+          },
+          {
+            "w": "telemetry",
+            "t": 81.246
+          },
+          {
+            "w": "brings",
+            "t": 81.744
+          },
+          {
+            "w": "Poisson",
+            "t": 82.243
+          },
+          {
+            "w": "arrival",
+            "t": 82.741
+          },
+          {
+            "w": "bursts!",
+            "t": 83.24
+          },
+          {
+            "w": "If",
+            "t": 83.738
+          },
+          {
+            "w": "the",
+            "t": 84.236
+          },
+          {
+            "w": "arrival",
+            "t": 84.735
+          },
+          {
+            "w": "rate",
+            "t": 85.233
+          },
+          {
+            "w": "exceeds",
+            "t": 85.732
+          },
+          {
+            "w": "worker",
+            "t": 86.23
+          },
+          {
+            "w": "service",
+            "t": 86.729
+          },
+          {
+            "w": "capacity,",
+            "t": 87.227
+          },
+          {
+            "w": "the",
+            "t": 87.725
+          },
+          {
+            "w": "buffer",
+            "t": 88.224
+          },
+          {
+            "w": "explodes",
+            "t": 88.722
+          },
+          {
+            "w": "under",
+            "t": 89.221
+          },
+          {
+            "w": "Little's",
+            "t": 89.719
+          },
+          {
+            "w": "Law.",
+            "t": 90.218
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "When we collect primary data, Kaito, we enforce absolute experimental control. Every feature is measured by calibrated instruments on subjects sampled directly from P_target.",
+        "start": 90.716,
+        "end": 103.106,
+        "words": [
+          {
+            "w": "When",
+            "t": 90.716
+          },
+          {
+            "w": "we",
+            "t": 91.232
+          },
+          {
+            "w": "collect",
+            "t": 91.748
+          },
+          {
+            "w": "primary",
+            "t": 92.265
+          },
+          {
+            "w": "data,",
+            "t": 92.781
+          },
+          {
+            "w": "Kaito,",
+            "t": 93.297
+          },
+          {
+            "w": "we",
+            "t": 93.813
+          },
+          {
+            "w": "enforce",
+            "t": 94.33
+          },
+          {
+            "w": "absolute",
+            "t": 94.846
+          },
+          {
+            "w": "experimental",
+            "t": 95.362
+          },
+          {
+            "w": "control.",
+            "t": 95.878
+          },
+          {
+            "w": "Every",
+            "t": 96.395
+          },
+          {
+            "w": "feature",
+            "t": 96.911
+          },
+          {
+            "w": "is",
+            "t": 97.427
+          },
+          {
+            "w": "measured",
+            "t": 97.944
+          },
+          {
+            "w": "by",
+            "t": 98.46
+          },
+          {
+            "w": "calibrated",
+            "t": 98.976
+          },
+          {
+            "w": "instruments",
+            "t": 99.492
+          },
+          {
+            "w": "on",
+            "t": 100.008
+          },
+          {
+            "w": "subjects",
+            "t": 100.525
+          },
+          {
+            "w": "sampled",
+            "t": 101.041
+          },
+          {
+            "w": "directly",
+            "t": 101.557
+          },
+          {
+            "w": "from",
+            "t": 102.073
+          },
+          {
+            "w": "P_target.",
+            "t": 102.59
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Kaito",
+        "text": "Which means our empirical training loss is an unbiased estimator of true deployment risk! No covariate shift, no missing variables, no mystery.",
+        "start": 103.106,
+        "end": 113.288,
+        "words": [
+          {
+            "w": "Which",
+            "t": 103.106
+          },
+          {
+            "w": "means",
+            "t": 103.569
+          },
+          {
+            "w": "our",
+            "t": 104.032
+          },
+          {
+            "w": "empirical",
+            "t": 104.494
+          },
+          {
+            "w": "training",
+            "t": 104.957
+          },
+          {
+            "w": "loss",
+            "t": 105.42
+          },
+          {
+            "w": "is",
+            "t": 105.883
+          },
+          {
+            "w": "an",
+            "t": 106.346
+          },
+          {
+            "w": "unbiased",
+            "t": 106.809
+          },
+          {
+            "w": "estimator",
+            "t": 107.271
+          },
+          {
+            "w": "of",
+            "t": 107.734
+          },
+          {
+            "w": "true",
+            "t": 108.197
+          },
+          {
+            "w": "deployment",
+            "t": 108.66
+          },
+          {
+            "w": "risk!",
+            "t": 109.123
+          },
+          {
+            "w": "No",
+            "t": 109.585
+          },
+          {
+            "w": "covariate",
+            "t": 110.048
+          },
+          {
+            "w": "shift,",
+            "t": 110.511
+          },
+          {
+            "w": "no",
+            "t": 110.974
+          },
+          {
+            "w": "missing",
+            "t": 111.437
+          },
+          {
+            "w": "variables,",
+            "t": 111.9
+          },
+          {
+            "w": "no",
+            "t": 112.362
+          },
+          {
+            "w": "mystery.",
+            "t": 112.825
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Dr. Nova",
+        "text": "True, but notice the economic equation below: the total cost scales linearly with every single participant. In medical imaging or clinical registries, you can easily burn millions of dollars before gathering ten thousand records.",
+        "start": 113.288,
+        "end": 129.594,
+        "words": [
+          {
+            "w": "True,",
+            "t": 113.288
+          },
+          {
+            "w": "but",
+            "t": 113.768
+          },
+          {
+            "w": "notice",
+            "t": 114.247
+          },
+          {
+            "w": "the",
+            "t": 114.727
+          },
+          {
+            "w": "economic",
+            "t": 115.206
+          },
+          {
+            "w": "equation",
+            "t": 115.686
+          },
+          {
+            "w": "below:",
+            "t": 116.166
+          },
+          {
+            "w": "the",
+            "t": 116.645
+          },
+          {
+            "w": "total",
+            "t": 117.125
+          },
+          {
+            "w": "cost",
+            "t": 117.604
+          },
+          {
+            "w": "scales",
+            "t": 118.084
+          },
+          {
+            "w": "linearly",
+            "t": 118.563
+          },
+          {
+            "w": "with",
+            "t": 119.043
+          },
+          {
+            "w": "every",
+            "t": 119.523
+          },
+          {
+            "w": "single",
+            "t": 120.002
+          },
+          {
+            "w": "participant.",
+            "t": 120.482
+          },
+          {
+            "w": "In",
+            "t": 120.961
+          },
+          {
+            "w": "medical",
+            "t": 121.441
+          },
+          {
+            "w": "imaging",
+            "t": 121.921
+          },
+          {
+            "w": "or",
+            "t": 122.4
+          },
+          {
+            "w": "clinical",
+            "t": 122.88
+          },
+          {
+            "w": "registries,",
+            "t": 123.359
+          },
+          {
+            "w": "you",
+            "t": 123.839
+          },
+          {
+            "w": "can",
+            "t": 124.319
+          },
+          {
+            "w": "easily",
+            "t": 124.798
+          },
+          {
+            "w": "burn",
+            "t": 125.278
+          },
+          {
+            "w": "millions",
+            "t": 125.757
+          },
+          {
+            "w": "of",
+            "t": 126.237
+          },
+          {
+            "w": "dollars",
+            "t": 126.716
+          },
+          {
+            "w": "before",
+            "t": 127.196
+          },
+          {
+            "w": "gathering",
+            "t": 127.676
+          },
+          {
+            "w": "ten",
+            "t": 128.155
+          },
+          {
+            "w": "thousand",
+            "t": 128.635
+          },
+          {
+            "w": "records.",
+            "t": 129.114
+          }
+        ]
+      },
+      {
+        "slide": 3,
+        "slideId": "s3",
+        "speaker": "Kaito",
+        "text": "Which explains why companies are so eager to cut corners and ingest secondary datasets!",
+        "start": 129.594,
+        "end": 135.789,
+        "words": [
+          {
+            "w": "Which",
+            "t": 129.594
+          },
+          {
+            "w": "explains",
+            "t": 130.036
+          },
+          {
+            "w": "why",
+            "t": 130.479
+          },
+          {
+            "w": "companies",
+            "t": 130.921
+          },
+          {
+            "w": "are",
+            "t": 131.364
+          },
+          {
+            "w": "so",
+            "t": 131.806
+          },
+          {
+            "w": "eager",
+            "t": 132.249
+          },
+          {
+            "w": "to",
+            "t": 132.691
+          },
+          {
+            "w": "cut",
+            "t": 133.134
+          },
+          {
+            "w": "corners",
+            "t": 133.576
+          },
+          {
+            "w": "and",
+            "t": 134.019
+          },
+          {
+            "w": "ingest",
+            "t": 134.462
+          },
+          {
+            "w": "secondary",
+            "t": 134.904
+          },
+          {
+            "w": "datasets!",
+            "t": 135.346
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Here is the critical distinction, Kaito: when you ingest secondary data, you are drawing from distribution Q, not your target distribution P.",
+        "start": 135.789,
+        "end": 145.829,
+        "words": [
+          {
+            "w": "Here",
+            "t": 135.789
+          },
+          {
+            "w": "is",
+            "t": 136.245
+          },
+          {
+            "w": "the",
+            "t": 136.702
+          },
+          {
+            "w": "critical",
+            "t": 137.158
+          },
+          {
+            "w": "distinction,",
+            "t": 137.614
+          },
+          {
+            "w": "Kaito:",
+            "t": 138.071
+          },
+          {
+            "w": "when",
+            "t": 138.527
+          },
+          {
+            "w": "you",
+            "t": 138.984
+          },
+          {
+            "w": "ingest",
+            "t": 139.44
+          },
+          {
+            "w": "secondary",
+            "t": 139.896
+          },
+          {
+            "w": "data,",
+            "t": 140.353
+          },
+          {
+            "w": "you",
+            "t": 140.809
+          },
+          {
+            "w": "are",
+            "t": 141.265
+          },
+          {
+            "w": "drawing",
+            "t": 141.722
+          },
+          {
+            "w": "from",
+            "t": 142.178
+          },
+          {
+            "w": "distribution",
+            "t": 142.634
+          },
+          {
+            "w": "Q,",
+            "t": 143.091
+          },
+          {
+            "w": "not",
+            "t": 143.547
+          },
+          {
+            "w": "your",
+            "t": 144.004
+          },
+          {
+            "w": "target",
+            "t": 144.46
+          },
+          {
+            "w": "distribution",
+            "t": 144.916
+          },
+          {
+            "w": "P.",
+            "t": 145.373
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Kaito",
+        "text": "Right! Like using insurance billing claims to train a disease diagnostic model. The billing codes reflect reimbursement policies, not clinical reality!",
+        "start": 145.829,
+        "end": 156.581,
+        "words": [
+          {
+            "w": "Right!",
+            "t": 145.829
+          },
+          {
+            "w": "Like",
+            "t": 146.341
+          },
+          {
+            "w": "using",
+            "t": 146.853
+          },
+          {
+            "w": "insurance",
+            "t": 147.365
+          },
+          {
+            "w": "billing",
+            "t": 147.877
+          },
+          {
+            "w": "claims",
+            "t": 148.389
+          },
+          {
+            "w": "to",
+            "t": 148.901
+          },
+          {
+            "w": "train",
+            "t": 149.413
+          },
+          {
+            "w": "a",
+            "t": 149.925
+          },
+          {
+            "w": "disease",
+            "t": 150.437
+          },
+          {
+            "w": "diagnostic",
+            "t": 150.949
+          },
+          {
+            "w": "model.",
+            "t": 151.461
+          },
+          {
+            "w": "The",
+            "t": 151.973
+          },
+          {
+            "w": "billing",
+            "t": 152.485
+          },
+          {
+            "w": "codes",
+            "t": 152.997
+          },
+          {
+            "w": "reflect",
+            "t": 153.509
+          },
+          {
+            "w": "reimbursement",
+            "t": 154.021
+          },
+          {
+            "w": "policies,",
+            "t": 154.533
+          },
+          {
+            "w": "not",
+            "t": 155.045
+          },
+          {
+            "w": "clinical",
+            "t": 155.557
+          },
+          {
+            "w": "reality!",
+            "t": 156.069
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. To fix this, we apply importance sampling: we calculate the density ratio w of x equals P of x divided by Q of x, and weight each secondary loss term accordingly.",
+        "start": 156.581,
+        "end": 168.757,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 156.581
+          },
+          {
+            "w": "To",
+            "t": 156.962
+          },
+          {
+            "w": "fix",
+            "t": 157.342
+          },
+          {
+            "w": "this,",
+            "t": 157.722
+          },
+          {
+            "w": "we",
+            "t": 158.103
+          },
+          {
+            "w": "apply",
+            "t": 158.483
+          },
+          {
+            "w": "importance",
+            "t": 158.864
+          },
+          {
+            "w": "sampling:",
+            "t": 159.244
+          },
+          {
+            "w": "we",
+            "t": 159.625
+          },
+          {
+            "w": "calculate",
+            "t": 160.005
+          },
+          {
+            "w": "the",
+            "t": 160.386
+          },
+          {
+            "w": "density",
+            "t": 160.767
+          },
+          {
+            "w": "ratio",
+            "t": 161.147
+          },
+          {
+            "w": "w",
+            "t": 161.528
+          },
+          {
+            "w": "of",
+            "t": 161.908
+          },
+          {
+            "w": "x",
+            "t": 162.288
+          },
+          {
+            "w": "equals",
+            "t": 162.669
+          },
+          {
+            "w": "P",
+            "t": 163.049
+          },
+          {
+            "w": "of",
+            "t": 163.43
+          },
+          {
+            "w": "x",
+            "t": 163.81
+          },
+          {
+            "w": "divided",
+            "t": 164.191
+          },
+          {
+            "w": "by",
+            "t": 164.571
+          },
+          {
+            "w": "Q",
+            "t": 164.952
+          },
+          {
+            "w": "of",
+            "t": 165.333
+          },
+          {
+            "w": "x,",
+            "t": 165.713
+          },
+          {
+            "w": "and",
+            "t": 166.094
+          },
+          {
+            "w": "weight",
+            "t": 166.474
+          },
+          {
+            "w": "each",
+            "t": 166.855
+          },
+          {
+            "w": "secondary",
+            "t": 167.235
+          },
+          {
+            "w": "loss",
+            "t": 167.615
+          },
+          {
+            "w": "term",
+            "t": 167.996
+          },
+          {
+            "w": "accordingly.",
+            "t": 168.376
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Kaito",
+        "text": "Wait, Nova, what happens if Q of x is near zero? Doesn't the weight explode to infinity and destabilize our gradient updates?",
+        "start": 168.757,
+        "end": 177.658,
+        "words": [
+          {
+            "w": "Wait,",
+            "t": 168.757
+          },
+          {
+            "w": "Nova,",
+            "t": 169.162
+          },
+          {
+            "w": "what",
+            "t": 169.566
+          },
+          {
+            "w": "happens",
+            "t": 169.971
+          },
+          {
+            "w": "if",
+            "t": 170.375
+          },
+          {
+            "w": "Q",
+            "t": 170.78
+          },
+          {
+            "w": "of",
+            "t": 171.185
+          },
+          {
+            "w": "x",
+            "t": 171.589
+          },
+          {
+            "w": "is",
+            "t": 171.994
+          },
+          {
+            "w": "near",
+            "t": 172.398
+          },
+          {
+            "w": "zero?",
+            "t": 172.803
+          },
+          {
+            "w": "Doesn't",
+            "t": 173.207
+          },
+          {
+            "w": "the",
+            "t": 173.612
+          },
+          {
+            "w": "weight",
+            "t": 174.017
+          },
+          {
+            "w": "explode",
+            "t": 174.421
+          },
+          {
+            "w": "to",
+            "t": 174.826
+          },
+          {
+            "w": "infinity",
+            "t": 175.23
+          },
+          {
+            "w": "and",
+            "t": 175.635
+          },
+          {
+            "w": "destabilize",
+            "t": 176.04
+          },
+          {
+            "w": "our",
+            "t": 176.444
+          },
+          {
+            "w": "gradient",
+            "t": 176.849
+          },
+          {
+            "w": "updates?",
+            "t": 177.253
+          }
+        ]
+      },
+      {
+        "slide": 4,
+        "slideId": "s4",
+        "speaker": "Dr. Nova",
+        "text": "Indeed it does! That exact weight explosion is why Kish and Sugiyama proved that high density ratio variance destroys effective sample size. Let us see the math on the next slide.",
+        "start": 177.658,
+        "end": 190.404,
+        "words": [
+          {
+            "w": "Indeed",
+            "t": 177.658
+          },
+          {
+            "w": "it",
+            "t": 178.069
+          },
+          {
+            "w": "does!",
+            "t": 178.48
+          },
+          {
+            "w": "That",
+            "t": 178.891
+          },
+          {
+            "w": "exact",
+            "t": 179.303
+          },
+          {
+            "w": "weight",
+            "t": 179.714
+          },
+          {
+            "w": "explosion",
+            "t": 180.125
+          },
+          {
+            "w": "is",
+            "t": 180.536
+          },
+          {
+            "w": "why",
+            "t": 180.947
+          },
+          {
+            "w": "Kish",
+            "t": 181.358
+          },
+          {
+            "w": "and",
+            "t": 181.77
+          },
+          {
+            "w": "Sugiyama",
+            "t": 182.181
+          },
+          {
+            "w": "proved",
+            "t": 182.592
+          },
+          {
+            "w": "that",
+            "t": 183.003
+          },
+          {
+            "w": "high",
+            "t": 183.414
+          },
+          {
+            "w": "density",
+            "t": 183.825
+          },
+          {
+            "w": "ratio",
+            "t": 184.237
+          },
+          {
+            "w": "variance",
+            "t": 184.648
+          },
+          {
+            "w": "destroys",
+            "t": 185.059
+          },
+          {
+            "w": "effective",
+            "t": 185.47
+          },
+          {
+            "w": "sample",
+            "t": 185.881
+          },
+          {
+            "w": "size.",
+            "t": 186.292
+          },
+          {
+            "w": "Let",
+            "t": 186.704
+          },
+          {
+            "w": "us",
+            "t": 187.115
+          },
+          {
+            "w": "see",
+            "t": 187.526
+          },
+          {
+            "w": "the",
+            "t": 187.937
+          },
+          {
+            "w": "math",
+            "t": 188.348
+          },
+          {
+            "w": "on",
+            "t": 188.759
+          },
+          {
+            "w": "the",
+            "t": 189.171
+          },
+          {
+            "w": "next",
+            "t": 189.582
+          },
+          {
+            "w": "slide.",
+            "t": 189.993
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "Look closely at this theorem, Kaito: n sub eff equals n divided by one plus the variance of w of X.",
+        "start": 190.404,
+        "end": 197.453,
+        "words": [
+          {
+            "w": "Look",
+            "t": 190.404
+          },
+          {
+            "w": "closely",
+            "t": 190.74
+          },
+          {
+            "w": "at",
+            "t": 191.075
+          },
+          {
+            "w": "this",
+            "t": 191.411
+          },
+          {
+            "w": "theorem,",
+            "t": 191.747
+          },
+          {
+            "w": "Kaito:",
+            "t": 192.082
+          },
+          {
+            "w": "n",
+            "t": 192.418
+          },
+          {
+            "w": "sub",
+            "t": 192.754
+          },
+          {
+            "w": "eff",
+            "t": 193.089
+          },
+          {
+            "w": "equals",
+            "t": 193.425
+          },
+          {
+            "w": "n",
+            "t": 193.761
+          },
+          {
+            "w": "divided",
+            "t": 194.096
+          },
+          {
+            "w": "by",
+            "t": 194.432
+          },
+          {
+            "w": "one",
+            "t": 194.768
+          },
+          {
+            "w": "plus",
+            "t": 195.103
+          },
+          {
+            "w": "the",
+            "t": 195.439
+          },
+          {
+            "w": "variance",
+            "t": 195.775
+          },
+          {
+            "w": "of",
+            "t": 196.11
+          },
+          {
+            "w": "w",
+            "t": 196.446
+          },
+          {
+            "w": "of",
+            "t": 196.782
+          },
+          {
+            "w": "X.",
+            "t": 197.117
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Kaito",
+        "text": "Whoa. That means if our importance weights fluctuate widely with variance equal to 3, our 1,000 samples shrink to only 250 effective samples!",
+        "start": 197.453,
+        "end": 207.493,
+        "words": [
+          {
+            "w": "Whoa.",
+            "t": 197.453
+          },
+          {
+            "w": "That",
+            "t": 197.89
+          },
+          {
+            "w": "means",
+            "t": 198.326
+          },
+          {
+            "w": "if",
+            "t": 198.763
+          },
+          {
+            "w": "our",
+            "t": 199.199
+          },
+          {
+            "w": "importance",
+            "t": 199.636
+          },
+          {
+            "w": "weights",
+            "t": 200.072
+          },
+          {
+            "w": "fluctuate",
+            "t": 200.509
+          },
+          {
+            "w": "widely",
+            "t": 200.945
+          },
+          {
+            "w": "with",
+            "t": 201.382
+          },
+          {
+            "w": "variance",
+            "t": 201.818
+          },
+          {
+            "w": "equal",
+            "t": 202.255
+          },
+          {
+            "w": "to",
+            "t": 202.691
+          },
+          {
+            "w": "3,",
+            "t": 203.128
+          },
+          {
+            "w": "our",
+            "t": 203.564
+          },
+          {
+            "w": "1,000",
+            "t": 204.001
+          },
+          {
+            "w": "samples",
+            "t": 204.437
+          },
+          {
+            "w": "shrink",
+            "t": 204.874
+          },
+          {
+            "w": "to",
+            "t": 205.31
+          },
+          {
+            "w": "only",
+            "t": 205.747
+          },
+          {
+            "w": "250",
+            "t": 206.183
+          },
+          {
+            "w": "effective",
+            "t": 206.62
+          },
+          {
+            "w": "samples!",
+            "t": 207.056
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. You think you have a huge secondary dataset with great statistical power, but mathematically, seventy-five percent of that data is vaporized by weight variance.",
+        "start": 207.493,
+        "end": 219.527,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 207.493
+          },
+          {
+            "w": "You",
+            "t": 207.974
+          },
+          {
+            "w": "think",
+            "t": 208.456
+          },
+          {
+            "w": "you",
+            "t": 208.937
+          },
+          {
+            "w": "have",
+            "t": 209.418
+          },
+          {
+            "w": "a",
+            "t": 209.9
+          },
+          {
+            "w": "huge",
+            "t": 210.381
+          },
+          {
+            "w": "secondary",
+            "t": 210.863
+          },
+          {
+            "w": "dataset",
+            "t": 211.344
+          },
+          {
+            "w": "with",
+            "t": 211.825
+          },
+          {
+            "w": "great",
+            "t": 212.307
+          },
+          {
+            "w": "statistical",
+            "t": 212.788
+          },
+          {
+            "w": "power,",
+            "t": 213.269
+          },
+          {
+            "w": "but",
+            "t": 213.751
+          },
+          {
+            "w": "mathematically,",
+            "t": 214.232
+          },
+          {
+            "w": "seventy-five",
+            "t": 214.713
+          },
+          {
+            "w": "percent",
+            "t": 215.195
+          },
+          {
+            "w": "of",
+            "t": 215.676
+          },
+          {
+            "w": "that",
+            "t": 216.157
+          },
+          {
+            "w": "data",
+            "t": 216.639
+          },
+          {
+            "w": "is",
+            "t": 217.12
+          },
+          {
+            "w": "vaporized",
+            "t": 217.602
+          },
+          {
+            "w": "by",
+            "t": 218.083
+          },
+          {
+            "w": "weight",
+            "t": 218.564
+          },
+          {
+            "w": "variance.",
+            "t": 219.046
+          }
+        ]
+      },
+      {
+        "slide": 5,
+        "slideId": "s5",
+        "speaker": "Kaito",
+        "text": "And if the shift is severe with variance of 9, you lose ninety percent of your effective data! Let's test this in the simulator next.",
+        "start": 219.527,
+        "end": 228.997,
+        "words": [
+          {
+            "w": "And",
+            "t": 219.527
+          },
+          {
+            "w": "if",
+            "t": 219.906
+          },
+          {
+            "w": "the",
+            "t": 220.285
+          },
+          {
+            "w": "shift",
+            "t": 220.663
+          },
+          {
+            "w": "is",
+            "t": 221.042
+          },
+          {
+            "w": "severe",
+            "t": 221.421
+          },
+          {
+            "w": "with",
+            "t": 221.8
+          },
+          {
+            "w": "variance",
+            "t": 222.179
+          },
+          {
+            "w": "of",
+            "t": 222.557
+          },
+          {
+            "w": "9,",
+            "t": 222.936
+          },
+          {
+            "w": "you",
+            "t": 223.315
+          },
+          {
+            "w": "lose",
+            "t": 223.694
+          },
+          {
+            "w": "ninety",
+            "t": 224.073
+          },
+          {
+            "w": "percent",
+            "t": 224.451
+          },
+          {
+            "w": "of",
+            "t": 224.83
+          },
+          {
+            "w": "your",
+            "t": 225.209
+          },
+          {
+            "w": "effective",
+            "t": 225.588
+          },
+          {
+            "w": "data!",
+            "t": 225.967
+          },
+          {
+            "w": "Let's",
+            "t": 226.345
+          },
+          {
+            "w": "test",
+            "t": 226.724
+          },
+          {
+            "w": "this",
+            "t": 227.103
+          },
+          {
+            "w": "in",
+            "t": 227.482
+          },
+          {
+            "w": "the",
+            "t": 227.861
+          },
+          {
+            "w": "simulator",
+            "t": 228.239
+          },
+          {
+            "w": "next.",
+            "t": 228.618
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Dr. Nova",
+        "text": "Time for our first live workbench, Kaito! Let us experiment with real-time covariate shift and density ratio variance.",
+        "start": 228.997,
+        "end": 237.399,
+        "words": [
+          {
+            "w": "Time",
+            "t": 228.997
+          },
+          {
+            "w": "for",
+            "t": 229.464
+          },
+          {
+            "w": "our",
+            "t": 229.931
+          },
+          {
+            "w": "first",
+            "t": 230.397
+          },
+          {
+            "w": "live",
+            "t": 230.864
+          },
+          {
+            "w": "workbench,",
+            "t": 231.331
+          },
+          {
+            "w": "Kaito!",
+            "t": 231.798
+          },
+          {
+            "w": "Let",
+            "t": 232.264
+          },
+          {
+            "w": "us",
+            "t": 232.731
+          },
+          {
+            "w": "experiment",
+            "t": 233.198
+          },
+          {
+            "w": "with",
+            "t": 233.665
+          },
+          {
+            "w": "real-time",
+            "t": 234.132
+          },
+          {
+            "w": "covariate",
+            "t": 234.598
+          },
+          {
+            "w": "shift",
+            "t": 235.065
+          },
+          {
+            "w": "and",
+            "t": 235.532
+          },
+          {
+            "w": "density",
+            "t": 235.999
+          },
+          {
+            "w": "ratio",
+            "t": 236.465
+          },
+          {
+            "w": "variance.",
+            "t": 236.932
+          }
+        ]
+      },
+      {
+        "slide": 6,
+        "slideId": "s6",
+        "speaker": "Kaito",
+        "text": "Awesome! I am dragging the Weight Variance slider up to 4.0... and look, our 1,000 secondary samples drop to just 200 effective samples! An eighty percent information penalty!",
+        "start": 237.399,
+        "end": 249.86,
+        "words": [
+          {
+            "w": "Awesome!",
+            "t": 237.399
+          },
+          {
+            "w": "I",
+            "t": 237.844
+          },
+          {
+            "w": "am",
+            "t": 238.289
+          },
+          {
+            "w": "dragging",
+            "t": 238.734
+          },
+          {
+            "w": "the",
+            "t": 239.179
+          },
+          {
+            "w": "Weight",
+            "t": 239.624
+          },
+          {
+            "w": "Variance",
+            "t": 240.069
+          },
+          {
+            "w": "slider",
+            "t": 240.514
+          },
+          {
+            "w": "up",
+            "t": 240.959
+          },
+          {
+            "w": "to",
+            "t": 241.404
+          },
+          {
+            "w": "4.0...",
+            "t": 241.849
+          },
+          {
+            "w": "and",
+            "t": 242.294
+          },
+          {
+            "w": "look,",
+            "t": 242.739
+          },
+          {
+            "w": "our",
+            "t": 243.184
+          },
+          {
+            "w": "1,000",
+            "t": 243.63
+          },
+          {
+            "w": "secondary",
+            "t": 244.075
+          },
+          {
+            "w": "samples",
+            "t": 244.52
+          },
+          {
+            "w": "drop",
+            "t": 244.965
+          },
+          {
+            "w": "to",
+            "t": 245.41
+          },
+          {
+            "w": "just",
+            "t": 245.855
+          },
+          {
+            "w": "200",
+            "t": 246.3
+          },
+          {
+            "w": "effective",
+            "t": 246.745
+          },
+          {
+            "w": "samples!",
+            "t": 247.19
+          },
+          {
+            "w": "An",
+            "t": 247.635
+          },
+          {
+            "w": "eighty",
+            "t": 248.08
+          },
+          {
+            "w": "percent",
+            "t": 248.525
+          },
+          {
+            "w": "information",
+            "t": 248.97
+          },
+          {
+            "w": "penalty!",
+            "t": 249.415
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Dr. Nova",
+        "text": "Here is a practical engineering challenge from our curriculum, Kaito: an ingested dataset of one thousand samples with a density ratio variance of 3.0.",
+        "start": 249.86,
+        "end": 260.612,
+        "words": [
+          {
+            "w": "Here",
+            "t": 249.86
+          },
+          {
+            "w": "is",
+            "t": 250.308
+          },
+          {
+            "w": "a",
+            "t": 250.756
+          },
+          {
+            "w": "practical",
+            "t": 251.204
+          },
+          {
+            "w": "engineering",
+            "t": 251.652
+          },
+          {
+            "w": "challenge",
+            "t": 252.1
+          },
+          {
+            "w": "from",
+            "t": 252.548
+          },
+          {
+            "w": "our",
+            "t": 252.996
+          },
+          {
+            "w": "curriculum,",
+            "t": 253.444
+          },
+          {
+            "w": "Kaito:",
+            "t": 253.892
+          },
+          {
+            "w": "an",
+            "t": 254.34
+          },
+          {
+            "w": "ingested",
+            "t": 254.788
+          },
+          {
+            "w": "dataset",
+            "t": 255.236
+          },
+          {
+            "w": "of",
+            "t": 255.684
+          },
+          {
+            "w": "one",
+            "t": 256.132
+          },
+          {
+            "w": "thousand",
+            "t": 256.58
+          },
+          {
+            "w": "samples",
+            "t": 257.028
+          },
+          {
+            "w": "with",
+            "t": 257.476
+          },
+          {
+            "w": "a",
+            "t": 257.924
+          },
+          {
+            "w": "density",
+            "t": 258.372
+          },
+          {
+            "w": "ratio",
+            "t": 258.82
+          },
+          {
+            "w": "variance",
+            "t": 259.268
+          },
+          {
+            "w": "of",
+            "t": 259.716
+          },
+          {
+            "w": "3.0.",
+            "t": 260.164
+          }
+        ]
+      },
+      {
+        "slide": 7,
+        "slideId": "s7",
+        "speaker": "Kaito",
+        "text": "Let me apply the Kish formula: n divided by 1 plus variance... 1,000 divided by 4... That gives exactly 250 samples! Let us see if our students get it right!",
+        "start": 260.612,
+        "end": 271.791,
+        "words": [
+          {
+            "w": "Let",
+            "t": 260.612
+          },
+          {
+            "w": "me",
+            "t": 260.985
+          },
+          {
+            "w": "apply",
+            "t": 261.357
+          },
+          {
+            "w": "the",
+            "t": 261.73
+          },
+          {
+            "w": "Kish",
+            "t": 262.103
+          },
+          {
+            "w": "formula:",
+            "t": 262.475
+          },
+          {
+            "w": "n",
+            "t": 262.848
+          },
+          {
+            "w": "divided",
+            "t": 263.22
+          },
+          {
+            "w": "by",
+            "t": 263.593
+          },
+          {
+            "w": "1",
+            "t": 263.966
+          },
+          {
+            "w": "plus",
+            "t": 264.338
+          },
+          {
+            "w": "variance...",
+            "t": 264.711
+          },
+          {
+            "w": "1,000",
+            "t": 265.084
+          },
+          {
+            "w": "divided",
+            "t": 265.456
+          },
+          {
+            "w": "by",
+            "t": 265.829
+          },
+          {
+            "w": "4...",
+            "t": 266.202
+          },
+          {
+            "w": "That",
+            "t": 266.574
+          },
+          {
+            "w": "gives",
+            "t": 266.947
+          },
+          {
+            "w": "exactly",
+            "t": 267.319
+          },
+          {
+            "w": "250",
+            "t": 267.692
+          },
+          {
+            "w": "samples!",
+            "t": 268.065
+          },
+          {
+            "w": "Let",
+            "t": 268.437
+          },
+          {
+            "w": "us",
+            "t": 268.81
+          },
+          {
+            "w": "see",
+            "t": 269.183
+          },
+          {
+            "w": "if",
+            "t": 269.555
+          },
+          {
+            "w": "our",
+            "t": 269.928
+          },
+          {
+            "w": "students",
+            "t": 270.3
+          },
+          {
+            "w": "get",
+            "t": 270.673
+          },
+          {
+            "w": "it",
+            "t": 271.046
+          },
+          {
+            "w": "right!",
+            "t": 271.418
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "Now we move to streaming telemetry, Kaito! Think Kafka clusters and IoT sensor brokers handling millions of packets per second.",
+        "start": 271.791,
+        "end": 280.834,
+        "words": [
+          {
+            "w": "Now",
+            "t": 271.791
+          },
+          {
+            "w": "we",
+            "t": 272.243
+          },
+          {
+            "w": "move",
+            "t": 272.695
+          },
+          {
+            "w": "to",
+            "t": 273.147
+          },
+          {
+            "w": "streaming",
+            "t": 273.6
+          },
+          {
+            "w": "telemetry,",
+            "t": 274.052
+          },
+          {
+            "w": "Kaito!",
+            "t": 274.504
+          },
+          {
+            "w": "Think",
+            "t": 274.956
+          },
+          {
+            "w": "Kafka",
+            "t": 275.408
+          },
+          {
+            "w": "clusters",
+            "t": 275.86
+          },
+          {
+            "w": "and",
+            "t": 276.312
+          },
+          {
+            "w": "IoT",
+            "t": 276.765
+          },
+          {
+            "w": "sensor",
+            "t": 277.217
+          },
+          {
+            "w": "brokers",
+            "t": 277.669
+          },
+          {
+            "w": "handling",
+            "t": 278.121
+          },
+          {
+            "w": "millions",
+            "t": 278.573
+          },
+          {
+            "w": "of",
+            "t": 279.025
+          },
+          {
+            "w": "packets",
+            "t": 279.478
+          },
+          {
+            "w": "per",
+            "t": 279.93
+          },
+          {
+            "w": "second.",
+            "t": 280.382
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Kaito",
+        "text": "And unlike batch databases, the stream never ends! We don't have a fixed N, so how do we sample uniformly?",
+        "start": 280.834,
+        "end": 288.382,
+        "words": [
+          {
+            "w": "And",
+            "t": 280.834
+          },
+          {
+            "w": "unlike",
+            "t": 281.211
+          },
+          {
+            "w": "batch",
+            "t": 281.589
+          },
+          {
+            "w": "databases,",
+            "t": 281.966
+          },
+          {
+            "w": "the",
+            "t": 282.344
+          },
+          {
+            "w": "stream",
+            "t": 282.721
+          },
+          {
+            "w": "never",
+            "t": 283.098
+          },
+          {
+            "w": "ends!",
+            "t": 283.476
+          },
+          {
+            "w": "We",
+            "t": 283.853
+          },
+          {
+            "w": "don't",
+            "t": 284.231
+          },
+          {
+            "w": "have",
+            "t": 284.608
+          },
+          {
+            "w": "a",
+            "t": 284.985
+          },
+          {
+            "w": "fixed",
+            "t": 285.363
+          },
+          {
+            "w": "N,",
+            "t": 285.74
+          },
+          {
+            "w": "so",
+            "t": 286.118
+          },
+          {
+            "w": "how",
+            "t": 286.495
+          },
+          {
+            "w": "do",
+            "t": 286.872
+          },
+          {
+            "w": "we",
+            "t": 287.25
+          },
+          {
+            "w": "sample",
+            "t": 287.627
+          },
+          {
+            "w": "uniformly?",
+            "t": 288.005
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Dr. Nova",
+        "text": "We use online algorithms like Vitter's reservoir sampling, or sliding temporal windows. Each event arrives according to a Poisson process with rate lambda.",
+        "start": 288.382,
+        "end": 299.419,
+        "words": [
+          {
+            "w": "We",
+            "t": 288.382
+          },
+          {
+            "w": "use",
+            "t": 288.862
+          },
+          {
+            "w": "online",
+            "t": 289.342
+          },
+          {
+            "w": "algorithms",
+            "t": 289.822
+          },
+          {
+            "w": "like",
+            "t": 290.301
+          },
+          {
+            "w": "Vitter's",
+            "t": 290.781
+          },
+          {
+            "w": "reservoir",
+            "t": 291.261
+          },
+          {
+            "w": "sampling,",
+            "t": 291.741
+          },
+          {
+            "w": "or",
+            "t": 292.221
+          },
+          {
+            "w": "sliding",
+            "t": 292.701
+          },
+          {
+            "w": "temporal",
+            "t": 293.181
+          },
+          {
+            "w": "windows.",
+            "t": 293.661
+          },
+          {
+            "w": "Each",
+            "t": 294.14
+          },
+          {
+            "w": "event",
+            "t": 294.62
+          },
+          {
+            "w": "arrives",
+            "t": 295.1
+          },
+          {
+            "w": "according",
+            "t": 295.58
+          },
+          {
+            "w": "to",
+            "t": 296.06
+          },
+          {
+            "w": "a",
+            "t": 296.54
+          },
+          {
+            "w": "Poisson",
+            "t": 297.02
+          },
+          {
+            "w": "process",
+            "t": 297.5
+          },
+          {
+            "w": "with",
+            "t": 297.979
+          },
+          {
+            "w": "rate",
+            "t": 298.459
+          },
+          {
+            "w": "lambda.",
+            "t": 298.939
+          }
+        ]
+      },
+      {
+        "slide": 8,
+        "slideId": "s8",
+        "speaker": "Kaito",
+        "text": "And because inter-arrival times are exponential, arrivals cluster into sudden bursts that can choke our ingest workers!",
+        "start": 299.419,
+        "end": 307.892,
+        "words": [
+          {
+            "w": "And",
+            "t": 299.419
+          },
+          {
+            "w": "because",
+            "t": 299.917
+          },
+          {
+            "w": "inter-arrival",
+            "t": 300.416
+          },
+          {
+            "w": "times",
+            "t": 300.914
+          },
+          {
+            "w": "are",
+            "t": 301.413
+          },
+          {
+            "w": "exponential,",
+            "t": 301.911
+          },
+          {
+            "w": "arrivals",
+            "t": 302.409
+          },
+          {
+            "w": "cluster",
+            "t": 302.908
+          },
+          {
+            "w": "into",
+            "t": 303.406
+          },
+          {
+            "w": "sudden",
+            "t": 303.905
+          },
+          {
+            "w": "bursts",
+            "t": 304.403
+          },
+          {
+            "w": "that",
+            "t": 304.902
+          },
+          {
+            "w": "can",
+            "t": 305.4
+          },
+          {
+            "w": "choke",
+            "t": 305.898
+          },
+          {
+            "w": "our",
+            "t": 306.397
+          },
+          {
+            "w": "ingest",
+            "t": 306.895
+          },
+          {
+            "w": "workers!",
+            "t": 307.394
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "This is one of the most elegant equations in computer science, Kaito: Little's Law. L equals lambda times W.",
+        "start": 307.892,
+        "end": 315.582,
+        "words": [
+          {
+            "w": "This",
+            "t": 307.892
+          },
+          {
+            "w": "is",
+            "t": 308.297
+          },
+          {
+            "w": "one",
+            "t": 308.701
+          },
+          {
+            "w": "of",
+            "t": 309.106
+          },
+          {
+            "w": "the",
+            "t": 309.511
+          },
+          {
+            "w": "most",
+            "t": 309.916
+          },
+          {
+            "w": "elegant",
+            "t": 310.32
+          },
+          {
+            "w": "equations",
+            "t": 310.725
+          },
+          {
+            "w": "in",
+            "t": 311.13
+          },
+          {
+            "w": "computer",
+            "t": 311.535
+          },
+          {
+            "w": "science,",
+            "t": 311.939
+          },
+          {
+            "w": "Kaito:",
+            "t": 312.344
+          },
+          {
+            "w": "Little's",
+            "t": 312.749
+          },
+          {
+            "w": "Law.",
+            "t": 313.154
+          },
+          {
+            "w": "L",
+            "t": 313.558
+          },
+          {
+            "w": "equals",
+            "t": 313.963
+          },
+          {
+            "w": "lambda",
+            "t": 314.368
+          },
+          {
+            "w": "times",
+            "t": 314.773
+          },
+          {
+            "w": "W.",
+            "t": 315.177
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Kaito",
+        "text": "Mean buffer depth equals arrival rate multiplied by latency! So if our pipeline takes 40 milliseconds per packet and we get 2,000 packets a second, we have an average of 80 packets sitting in memory!",
+        "start": 315.582,
+        "end": 329.752,
+        "words": [
+          {
+            "w": "Mean",
+            "t": 315.582
+          },
+          {
+            "w": "buffer",
+            "t": 315.987
+          },
+          {
+            "w": "depth",
+            "t": 316.392
+          },
+          {
+            "w": "equals",
+            "t": 316.797
+          },
+          {
+            "w": "arrival",
+            "t": 317.201
+          },
+          {
+            "w": "rate",
+            "t": 317.606
+          },
+          {
+            "w": "multiplied",
+            "t": 318.011
+          },
+          {
+            "w": "by",
+            "t": 318.416
+          },
+          {
+            "w": "latency!",
+            "t": 318.821
+          },
+          {
+            "w": "So",
+            "t": 319.226
+          },
+          {
+            "w": "if",
+            "t": 319.631
+          },
+          {
+            "w": "our",
+            "t": 320.035
+          },
+          {
+            "w": "pipeline",
+            "t": 320.44
+          },
+          {
+            "w": "takes",
+            "t": 320.845
+          },
+          {
+            "w": "40",
+            "t": 321.25
+          },
+          {
+            "w": "milliseconds",
+            "t": 321.655
+          },
+          {
+            "w": "per",
+            "t": 322.06
+          },
+          {
+            "w": "packet",
+            "t": 322.465
+          },
+          {
+            "w": "and",
+            "t": 322.869
+          },
+          {
+            "w": "we",
+            "t": 323.274
+          },
+          {
+            "w": "get",
+            "t": 323.679
+          },
+          {
+            "w": "2,000",
+            "t": 324.084
+          },
+          {
+            "w": "packets",
+            "t": 324.489
+          },
+          {
+            "w": "a",
+            "t": 324.894
+          },
+          {
+            "w": "second,",
+            "t": 325.299
+          },
+          {
+            "w": "we",
+            "t": 325.703
+          },
+          {
+            "w": "have",
+            "t": 326.108
+          },
+          {
+            "w": "an",
+            "t": 326.513
+          },
+          {
+            "w": "average",
+            "t": 326.918
+          },
+          {
+            "w": "of",
+            "t": 327.323
+          },
+          {
+            "w": "80",
+            "t": 327.728
+          },
+          {
+            "w": "packets",
+            "t": 328.133
+          },
+          {
+            "w": "sitting",
+            "t": 328.537
+          },
+          {
+            "w": "in",
+            "t": 328.942
+          },
+          {
+            "w": "memory!",
+            "t": 329.347
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. And notice the traffic intensity ratio, rho equals lambda over mu. It must stay strictly below 1.0.",
+        "start": 329.752,
+        "end": 337.442,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 329.752
+          },
+          {
+            "w": "And",
+            "t": 330.179
+          },
+          {
+            "w": "notice",
+            "t": 330.606
+          },
+          {
+            "w": "the",
+            "t": 331.034
+          },
+          {
+            "w": "traffic",
+            "t": 331.461
+          },
+          {
+            "w": "intensity",
+            "t": 331.888
+          },
+          {
+            "w": "ratio,",
+            "t": 332.315
+          },
+          {
+            "w": "rho",
+            "t": 332.743
+          },
+          {
+            "w": "equals",
+            "t": 333.17
+          },
+          {
+            "w": "lambda",
+            "t": 333.597
+          },
+          {
+            "w": "over",
+            "t": 334.024
+          },
+          {
+            "w": "mu.",
+            "t": 334.451
+          },
+          {
+            "w": "It",
+            "t": 334.879
+          },
+          {
+            "w": "must",
+            "t": 335.306
+          },
+          {
+            "w": "stay",
+            "t": 335.733
+          },
+          {
+            "w": "strictly",
+            "t": 336.16
+          },
+          {
+            "w": "below",
+            "t": 336.588
+          },
+          {
+            "w": "1.0.",
+            "t": 337.015
+          }
+        ]
+      },
+      {
+        "slide": 9,
+        "slideId": "s9",
+        "speaker": "Kaito",
+        "text": "If lambda hits mu, rho equals 1, and the denominator goes to zero! The queue length explodes to infinity! That is how streaming pipelines crash overnight.",
+        "start": 337.442,
+        "end": 348.408,
+        "words": [
+          {
+            "w": "If",
+            "t": 337.442
+          },
+          {
+            "w": "lambda",
+            "t": 337.864
+          },
+          {
+            "w": "hits",
+            "t": 338.286
+          },
+          {
+            "w": "mu,",
+            "t": 338.707
+          },
+          {
+            "w": "rho",
+            "t": 339.129
+          },
+          {
+            "w": "equals",
+            "t": 339.551
+          },
+          {
+            "w": "1,",
+            "t": 339.973
+          },
+          {
+            "w": "and",
+            "t": 340.394
+          },
+          {
+            "w": "the",
+            "t": 340.816
+          },
+          {
+            "w": "denominator",
+            "t": 341.238
+          },
+          {
+            "w": "goes",
+            "t": 341.66
+          },
+          {
+            "w": "to",
+            "t": 342.081
+          },
+          {
+            "w": "zero!",
+            "t": 342.503
+          },
+          {
+            "w": "The",
+            "t": 342.925
+          },
+          {
+            "w": "queue",
+            "t": 343.347
+          },
+          {
+            "w": "length",
+            "t": 343.769
+          },
+          {
+            "w": "explodes",
+            "t": 344.19
+          },
+          {
+            "w": "to",
+            "t": 344.612
+          },
+          {
+            "w": "infinity!",
+            "t": 345.034
+          },
+          {
+            "w": "That",
+            "t": 345.456
+          },
+          {
+            "w": "is",
+            "t": 345.877
+          },
+          {
+            "w": "how",
+            "t": 346.299
+          },
+          {
+            "w": "streaming",
+            "t": 346.721
+          },
+          {
+            "w": "pipelines",
+            "t": 347.143
+          },
+          {
+            "w": "crash",
+            "t": 347.564
+          },
+          {
+            "w": "overnight.",
+            "t": 347.986
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Review this matrix carefully, Kaito. Every architectural decision is an engineering compromise between experimental control, cost, and latency.",
+        "start": 348.408,
+        "end": 358.59,
+        "words": [
+          {
+            "w": "Review",
+            "t": 348.408
+          },
+          {
+            "w": "this",
+            "t": 348.974
+          },
+          {
+            "w": "matrix",
+            "t": 349.539
+          },
+          {
+            "w": "carefully,",
+            "t": 350.105
+          },
+          {
+            "w": "Kaito.",
+            "t": 350.671
+          },
+          {
+            "w": "Every",
+            "t": 351.236
+          },
+          {
+            "w": "architectural",
+            "t": 351.802
+          },
+          {
+            "w": "decision",
+            "t": 352.368
+          },
+          {
+            "w": "is",
+            "t": 352.933
+          },
+          {
+            "w": "an",
+            "t": 353.499
+          },
+          {
+            "w": "engineering",
+            "t": 354.065
+          },
+          {
+            "w": "compromise",
+            "t": 354.63
+          },
+          {
+            "w": "between",
+            "t": 355.196
+          },
+          {
+            "w": "experimental",
+            "t": 355.762
+          },
+          {
+            "w": "control,",
+            "t": 356.327
+          },
+          {
+            "w": "cost,",
+            "t": 356.893
+          },
+          {
+            "w": "and",
+            "t": 357.459
+          },
+          {
+            "w": "latency.",
+            "t": 358.024
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Kaito",
+        "text": "Look at the cost row: primary is expensive, secondary is almost free! But look at the covariate shift row right below it: secondary shift is severe, while primary is minimal.",
+        "start": 358.59,
+        "end": 370.98,
+        "words": [
+          {
+            "w": "Look",
+            "t": 358.59
+          },
+          {
+            "w": "at",
+            "t": 359.003
+          },
+          {
+            "w": "the",
+            "t": 359.416
+          },
+          {
+            "w": "cost",
+            "t": 359.829
+          },
+          {
+            "w": "row:",
+            "t": 360.242
+          },
+          {
+            "w": "primary",
+            "t": 360.655
+          },
+          {
+            "w": "is",
+            "t": 361.068
+          },
+          {
+            "w": "expensive,",
+            "t": 361.481
+          },
+          {
+            "w": "secondary",
+            "t": 361.894
+          },
+          {
+            "w": "is",
+            "t": 362.307
+          },
+          {
+            "w": "almost",
+            "t": 362.72
+          },
+          {
+            "w": "free!",
+            "t": 363.133
+          },
+          {
+            "w": "But",
+            "t": 363.546
+          },
+          {
+            "w": "look",
+            "t": 363.959
+          },
+          {
+            "w": "at",
+            "t": 364.372
+          },
+          {
+            "w": "the",
+            "t": 364.785
+          },
+          {
+            "w": "covariate",
+            "t": 365.198
+          },
+          {
+            "w": "shift",
+            "t": 365.611
+          },
+          {
+            "w": "row",
+            "t": 366.024
+          },
+          {
+            "w": "right",
+            "t": 366.437
+          },
+          {
+            "w": "below",
+            "t": 366.85
+          },
+          {
+            "w": "it:",
+            "t": 367.263
+          },
+          {
+            "w": "secondary",
+            "t": 367.676
+          },
+          {
+            "w": "shift",
+            "t": 368.089
+          },
+          {
+            "w": "is",
+            "t": 368.502
+          },
+          {
+            "w": "severe,",
+            "t": 368.915
+          },
+          {
+            "w": "while",
+            "t": 369.328
+          },
+          {
+            "w": "primary",
+            "t": 369.741
+          },
+          {
+            "w": "is",
+            "t": 370.154
+          },
+          {
+            "w": "minimal.",
+            "t": 370.567
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. You pay for secondary data not with money at acquisition time, but with statistical variance and modeling complexity down the road.",
+        "start": 370.98,
+        "end": 380.949,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 370.98
+          },
+          {
+            "w": "You",
+            "t": 371.433
+          },
+          {
+            "w": "pay",
+            "t": 371.886
+          },
+          {
+            "w": "for",
+            "t": 372.339
+          },
+          {
+            "w": "secondary",
+            "t": 372.793
+          },
+          {
+            "w": "data",
+            "t": 373.246
+          },
+          {
+            "w": "not",
+            "t": 373.699
+          },
+          {
+            "w": "with",
+            "t": 374.152
+          },
+          {
+            "w": "money",
+            "t": 374.605
+          },
+          {
+            "w": "at",
+            "t": 375.058
+          },
+          {
+            "w": "acquisition",
+            "t": 375.511
+          },
+          {
+            "w": "time,",
+            "t": 375.965
+          },
+          {
+            "w": "but",
+            "t": 376.418
+          },
+          {
+            "w": "with",
+            "t": 376.871
+          },
+          {
+            "w": "statistical",
+            "t": 377.324
+          },
+          {
+            "w": "variance",
+            "t": 377.777
+          },
+          {
+            "w": "and",
+            "t": 378.23
+          },
+          {
+            "w": "modeling",
+            "t": 378.683
+          },
+          {
+            "w": "complexity",
+            "t": 379.136
+          },
+          {
+            "w": "down",
+            "t": 379.59
+          },
+          {
+            "w": "the",
+            "t": 380.043
+          },
+          {
+            "w": "road.",
+            "t": 380.496
+          }
+        ]
+      },
+      {
+        "slide": 10,
+        "slideId": "s10",
+        "speaker": "Kaito",
+        "text": "And streaming telemetry introduces dynamic schema evolution and real-time scrubbing requirements. A complete engineering balance!",
+        "start": 380.949,
+        "end": 390.135,
+        "words": [
+          {
+            "w": "And",
+            "t": 380.949
+          },
+          {
+            "w": "streaming",
+            "t": 381.561
+          },
+          {
+            "w": "telemetry",
+            "t": 382.174
+          },
+          {
+            "w": "introduces",
+            "t": 382.786
+          },
+          {
+            "w": "dynamic",
+            "t": 383.399
+          },
+          {
+            "w": "schema",
+            "t": 384.011
+          },
+          {
+            "w": "evolution",
+            "t": 384.623
+          },
+          {
+            "w": "and",
+            "t": 385.236
+          },
+          {
+            "w": "real-time",
+            "t": 385.848
+          },
+          {
+            "w": "scrubbing",
+            "t": 386.461
+          },
+          {
+            "w": "requirements.",
+            "t": 387.073
+          },
+          {
+            "w": "A",
+            "t": 387.685
+          },
+          {
+            "w": "complete",
+            "t": 388.298
+          },
+          {
+            "w": "engineering",
+            "t": 388.91
+          },
+          {
+            "w": "balance!",
+            "t": 389.523
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "Notice how the real-time pipeline is constructed, Kaito: producers push events into a partitioned Kafka broker, and consumer workers validate schemas before writing to the Lakehouse.",
+        "start": 390.135,
+        "end": 403.094,
+        "words": [
+          {
+            "w": "Notice",
+            "t": 390.135
+          },
+          {
+            "w": "how",
+            "t": 390.633
+          },
+          {
+            "w": "the",
+            "t": 391.132
+          },
+          {
+            "w": "real-time",
+            "t": 391.63
+          },
+          {
+            "w": "pipeline",
+            "t": 392.129
+          },
+          {
+            "w": "is",
+            "t": 392.627
+          },
+          {
+            "w": "constructed,",
+            "t": 393.126
+          },
+          {
+            "w": "Kaito:",
+            "t": 393.624
+          },
+          {
+            "w": "producers",
+            "t": 394.122
+          },
+          {
+            "w": "push",
+            "t": 394.621
+          },
+          {
+            "w": "events",
+            "t": 395.119
+          },
+          {
+            "w": "into",
+            "t": 395.618
+          },
+          {
+            "w": "a",
+            "t": 396.116
+          },
+          {
+            "w": "partitioned",
+            "t": 396.615
+          },
+          {
+            "w": "Kafka",
+            "t": 397.113
+          },
+          {
+            "w": "broker,",
+            "t": 397.611
+          },
+          {
+            "w": "and",
+            "t": 398.11
+          },
+          {
+            "w": "consumer",
+            "t": 398.608
+          },
+          {
+            "w": "workers",
+            "t": 399.107
+          },
+          {
+            "w": "validate",
+            "t": 399.605
+          },
+          {
+            "w": "schemas",
+            "t": 400.103
+          },
+          {
+            "w": "before",
+            "t": 400.602
+          },
+          {
+            "w": "writing",
+            "t": 401.1
+          },
+          {
+            "w": "to",
+            "t": 401.599
+          },
+          {
+            "w": "the",
+            "t": 402.097
+          },
+          {
+            "w": "Lakehouse.",
+            "t": 402.596
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Kaito",
+        "text": "And if an incoming JSON payload has broken schema or unparsed types, it doesn't crash the entire pipeline! It diverts straight into the Dead-Letter Queue!",
+        "start": 403.094,
+        "end": 414.06,
+        "words": [
+          {
+            "w": "And",
+            "t": 403.094
+          },
+          {
+            "w": "if",
+            "t": 403.533
+          },
+          {
+            "w": "an",
+            "t": 403.971
+          },
+          {
+            "w": "incoming",
+            "t": 404.41
+          },
+          {
+            "w": "JSON",
+            "t": 404.849
+          },
+          {
+            "w": "payload",
+            "t": 405.287
+          },
+          {
+            "w": "has",
+            "t": 405.726
+          },
+          {
+            "w": "broken",
+            "t": 406.164
+          },
+          {
+            "w": "schema",
+            "t": 406.603
+          },
+          {
+            "w": "or",
+            "t": 407.042
+          },
+          {
+            "w": "unparsed",
+            "t": 407.48
+          },
+          {
+            "w": "types,",
+            "t": 407.919
+          },
+          {
+            "w": "it",
+            "t": 408.358
+          },
+          {
+            "w": "doesn't",
+            "t": 408.796
+          },
+          {
+            "w": "crash",
+            "t": 409.235
+          },
+          {
+            "w": "the",
+            "t": 409.674
+          },
+          {
+            "w": "entire",
+            "t": 410.112
+          },
+          {
+            "w": "pipeline!",
+            "t": 410.551
+          },
+          {
+            "w": "It",
+            "t": 410.99
+          },
+          {
+            "w": "diverts",
+            "t": 411.428
+          },
+          {
+            "w": "straight",
+            "t": 411.867
+          },
+          {
+            "w": "into",
+            "t": 412.305
+          },
+          {
+            "w": "the",
+            "t": 412.744
+          },
+          {
+            "w": "Dead-Letter",
+            "t": 413.183
+          },
+          {
+            "w": "Queue!",
+            "t": 413.621
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Furthermore, when traffic intensity rho exceeds 0.85, the workers send a backpressure signal back to the API gateway to throttle ingestion rate lambda.",
+        "start": 414.06,
+        "end": 425.453,
+        "words": [
+          {
+            "w": "Exactly.",
+            "t": 414.06
+          },
+          {
+            "w": "Furthermore,",
+            "t": 414.535
+          },
+          {
+            "w": "when",
+            "t": 415.009
+          },
+          {
+            "w": "traffic",
+            "t": 415.484
+          },
+          {
+            "w": "intensity",
+            "t": 415.959
+          },
+          {
+            "w": "rho",
+            "t": 416.434
+          },
+          {
+            "w": "exceeds",
+            "t": 416.908
+          },
+          {
+            "w": "0.85,",
+            "t": 417.383
+          },
+          {
+            "w": "the",
+            "t": 417.858
+          },
+          {
+            "w": "workers",
+            "t": 418.332
+          },
+          {
+            "w": "send",
+            "t": 418.807
+          },
+          {
+            "w": "a",
+            "t": 419.282
+          },
+          {
+            "w": "backpressure",
+            "t": 419.756
+          },
+          {
+            "w": "signal",
+            "t": 420.231
+          },
+          {
+            "w": "back",
+            "t": 420.706
+          },
+          {
+            "w": "to",
+            "t": 421.181
+          },
+          {
+            "w": "the",
+            "t": 421.655
+          },
+          {
+            "w": "API",
+            "t": 422.13
+          },
+          {
+            "w": "gateway",
+            "t": 422.605
+          },
+          {
+            "w": "to",
+            "t": 423.079
+          },
+          {
+            "w": "throttle",
+            "t": 423.554
+          },
+          {
+            "w": "ingestion",
+            "t": 424.029
+          },
+          {
+            "w": "rate",
+            "t": 424.504
+          },
+          {
+            "w": "lambda.",
+            "t": 424.978
+          }
+        ]
+      },
+      {
+        "slide": 11,
+        "slideId": "s11",
+        "speaker": "Kaito",
+        "text": "Keeping the queue stable under Little's Law! Let's simulate this directly in our next interactive lab.",
+        "start": 425.453,
+        "end": 432.716,
+        "words": [
+          {
+            "w": "Keeping",
+            "t": 425.453
+          },
+          {
+            "w": "the",
+            "t": 425.907
+          },
+          {
+            "w": "queue",
+            "t": 426.361
+          },
+          {
+            "w": "stable",
+            "t": 426.815
+          },
+          {
+            "w": "under",
+            "t": 427.269
+          },
+          {
+            "w": "Little's",
+            "t": 427.723
+          },
+          {
+            "w": "Law!",
+            "t": 428.177
+          },
+          {
+            "w": "Let's",
+            "t": 428.631
+          },
+          {
+            "w": "simulate",
+            "t": 429.084
+          },
+          {
+            "w": "this",
+            "t": 429.538
+          },
+          {
+            "w": "directly",
+            "t": 429.992
+          },
+          {
+            "w": "in",
+            "t": 430.446
+          },
+          {
+            "w": "our",
+            "t": 430.9
+          },
+          {
+            "w": "next",
+            "t": 431.354
+          },
+          {
+            "w": "interactive",
+            "t": 431.808
+          },
+          {
+            "w": "lab.",
+            "t": 432.262
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Dr. Nova",
+        "text": "Let us explore queue stability live, Kaito! Watch what happens as arrival rate lambda approaches service rate mu.",
+        "start": 432.716,
+        "end": 440.762,
+        "words": [
+          {
+            "w": "Let",
+            "t": 432.716
+          },
+          {
+            "w": "us",
+            "t": 433.163
+          },
+          {
+            "w": "explore",
+            "t": 433.61
+          },
+          {
+            "w": "queue",
+            "t": 434.057
+          },
+          {
+            "w": "stability",
+            "t": 434.504
+          },
+          {
+            "w": "live,",
+            "t": 434.951
+          },
+          {
+            "w": "Kaito!",
+            "t": 435.398
+          },
+          {
+            "w": "Watch",
+            "t": 435.845
+          },
+          {
+            "w": "what",
+            "t": 436.292
+          },
+          {
+            "w": "happens",
+            "t": 436.739
+          },
+          {
+            "w": "as",
+            "t": 437.186
+          },
+          {
+            "w": "arrival",
+            "t": 437.633
+          },
+          {
+            "w": "rate",
+            "t": 438.08
+          },
+          {
+            "w": "lambda",
+            "t": 438.527
+          },
+          {
+            "w": "approaches",
+            "t": 438.974
+          },
+          {
+            "w": "service",
+            "t": 439.421
+          },
+          {
+            "w": "rate",
+            "t": 439.868
+          },
+          {
+            "w": "mu.",
+            "t": 440.315
+          }
+        ]
+      },
+      {
+        "slide": 12,
+        "slideId": "s12",
+        "speaker": "Kaito",
+        "text": "Let me push lambda up to 135 with mu at 140... Whoa! Traffic intensity hit 0.96! Latency jumped to 200 milliseconds and the buffer fill meter turned bright red! We are on the verge of total buffer overflow!",
+        "start": 440.762,
+        "end": 455.43,
+        "words": [
+          {
+            "w": "Let",
+            "t": 440.762
+          },
+          {
+            "w": "me",
+            "t": 441.148
+          },
+          {
+            "w": "push",
+            "t": 441.534
+          },
+          {
+            "w": "lambda",
+            "t": 441.92
+          },
+          {
+            "w": "up",
+            "t": 442.306
+          },
+          {
+            "w": "to",
+            "t": 442.692
+          },
+          {
+            "w": "135",
+            "t": 443.078
+          },
+          {
+            "w": "with",
+            "t": 443.464
+          },
+          {
+            "w": "mu",
+            "t": 443.85
+          },
+          {
+            "w": "at",
+            "t": 444.236
+          },
+          {
+            "w": "140...",
+            "t": 444.622
+          },
+          {
+            "w": "Whoa!",
+            "t": 445.008
+          },
+          {
+            "w": "Traffic",
+            "t": 445.394
+          },
+          {
+            "w": "intensity",
+            "t": 445.78
+          },
+          {
+            "w": "hit",
+            "t": 446.166
+          },
+          {
+            "w": "0.96!",
+            "t": 446.552
+          },
+          {
+            "w": "Latency",
+            "t": 446.938
+          },
+          {
+            "w": "jumped",
+            "t": 447.324
+          },
+          {
+            "w": "to",
+            "t": 447.71
+          },
+          {
+            "w": "200",
+            "t": 448.096
+          },
+          {
+            "w": "milliseconds",
+            "t": 448.482
+          },
+          {
+            "w": "and",
+            "t": 448.868
+          },
+          {
+            "w": "the",
+            "t": 449.254
+          },
+          {
+            "w": "buffer",
+            "t": 449.64
+          },
+          {
+            "w": "fill",
+            "t": 450.026
+          },
+          {
+            "w": "meter",
+            "t": 450.412
+          },
+          {
+            "w": "turned",
+            "t": 450.798
+          },
+          {
+            "w": "bright",
+            "t": 451.184
+          },
+          {
+            "w": "red!",
+            "t": 451.57
+          },
+          {
+            "w": "We",
+            "t": 451.956
+          },
+          {
+            "w": "are",
+            "t": 452.342
+          },
+          {
+            "w": "on",
+            "t": 452.728
+          },
+          {
+            "w": "the",
+            "t": 453.114
+          },
+          {
+            "w": "verge",
+            "t": 453.5
+          },
+          {
+            "w": "of",
+            "t": 453.886
+          },
+          {
+            "w": "total",
+            "t": 454.272
+          },
+          {
+            "w": "buffer",
+            "t": 454.658
+          },
+          {
+            "w": "overflow!",
+            "t": 455.044
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Dr. Nova",
+        "text": "Here is an operational sizing scenario from the curriculum, Kaito: lambda is 2,000 packets per second, latency W is 0.040 seconds, and the buffer holds 120 packets.",
+        "start": 455.43,
+        "end": 467.108,
+        "words": [
+          {
+            "w": "Here",
+            "t": 455.43
+          },
+          {
+            "w": "is",
+            "t": 455.863
+          },
+          {
+            "w": "an",
+            "t": 456.295
+          },
+          {
+            "w": "operational",
+            "t": 456.728
+          },
+          {
+            "w": "sizing",
+            "t": 457.16
+          },
+          {
+            "w": "scenario",
+            "t": 457.593
+          },
+          {
+            "w": "from",
+            "t": 458.025
+          },
+          {
+            "w": "the",
+            "t": 458.458
+          },
+          {
+            "w": "curriculum,",
+            "t": 458.89
+          },
+          {
+            "w": "Kaito:",
+            "t": 459.323
+          },
+          {
+            "w": "lambda",
+            "t": 459.755
+          },
+          {
+            "w": "is",
+            "t": 460.188
+          },
+          {
+            "w": "2,000",
+            "t": 460.62
+          },
+          {
+            "w": "packets",
+            "t": 461.053
+          },
+          {
+            "w": "per",
+            "t": 461.485
+          },
+          {
+            "w": "second,",
+            "t": 461.918
+          },
+          {
+            "w": "latency",
+            "t": 462.35
+          },
+          {
+            "w": "W",
+            "t": 462.783
+          },
+          {
+            "w": "is",
+            "t": 463.215
+          },
+          {
+            "w": "0.040",
+            "t": 463.648
+          },
+          {
+            "w": "seconds,",
+            "t": 464.08
+          },
+          {
+            "w": "and",
+            "t": 464.513
+          },
+          {
+            "w": "the",
+            "t": 464.945
+          },
+          {
+            "w": "buffer",
+            "t": 465.378
+          },
+          {
+            "w": "holds",
+            "t": 465.81
+          },
+          {
+            "w": "120",
+            "t": 466.243
+          },
+          {
+            "w": "packets.",
+            "t": 466.675
+          }
+        ]
+      },
+      {
+        "slide": 13,
+        "slideId": "s13",
+        "speaker": "Kaito",
+        "text": "Let's multiply arrival rate by latency: 2,000 times 0.040 gives an average occupancy L of 80 packets! Since 80 is under 120, the buffer handles steady-state traffic!",
+        "start": 467.108,
+        "end": 478.857,
+        "words": [
+          {
+            "w": "Let's",
+            "t": 467.108
+          },
+          {
+            "w": "multiply",
+            "t": 467.543
+          },
+          {
+            "w": "arrival",
+            "t": 467.978
+          },
+          {
+            "w": "rate",
+            "t": 468.413
+          },
+          {
+            "w": "by",
+            "t": 468.849
+          },
+          {
+            "w": "latency:",
+            "t": 469.284
+          },
+          {
+            "w": "2,000",
+            "t": 469.719
+          },
+          {
+            "w": "times",
+            "t": 470.154
+          },
+          {
+            "w": "0.040",
+            "t": 470.589
+          },
+          {
+            "w": "gives",
+            "t": 471.024
+          },
+          {
+            "w": "an",
+            "t": 471.459
+          },
+          {
+            "w": "average",
+            "t": 471.895
+          },
+          {
+            "w": "occupancy",
+            "t": 472.33
+          },
+          {
+            "w": "L",
+            "t": 472.765
+          },
+          {
+            "w": "of",
+            "t": 473.2
+          },
+          {
+            "w": "80",
+            "t": 473.635
+          },
+          {
+            "w": "packets!",
+            "t": 474.07
+          },
+          {
+            "w": "Since",
+            "t": 474.506
+          },
+          {
+            "w": "80",
+            "t": 474.941
+          },
+          {
+            "w": "is",
+            "t": 475.376
+          },
+          {
+            "w": "under",
+            "t": 475.811
+          },
+          {
+            "w": "120,",
+            "t": 476.246
+          },
+          {
+            "w": "the",
+            "t": 476.681
+          },
+          {
+            "w": "buffer",
+            "t": 477.116
+          },
+          {
+            "w": "handles",
+            "t": 477.552
+          },
+          {
+            "w": "steady-state",
+            "t": 477.987
+          },
+          {
+            "w": "traffic!",
+            "t": 478.422
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "This cardiovascular case study demonstrates the power of hybrid data sourcing, Kaito. The researchers had 120,000 secondary EHR records, but the billing codes were hopelessly biased.",
+        "start": 478.857,
+        "end": 491.816,
+        "words": [
+          {
+            "w": "This",
+            "t": 478.857
+          },
+          {
+            "w": "cardiovascular",
+            "t": 479.355
+          },
+          {
+            "w": "case",
+            "t": 479.854
+          },
+          {
+            "w": "study",
+            "t": 480.352
+          },
+          {
+            "w": "demonstrates",
+            "t": 480.851
+          },
+          {
+            "w": "the",
+            "t": 481.349
+          },
+          {
+            "w": "power",
+            "t": 481.848
+          },
+          {
+            "w": "of",
+            "t": 482.346
+          },
+          {
+            "w": "hybrid",
+            "t": 482.844
+          },
+          {
+            "w": "data",
+            "t": 483.343
+          },
+          {
+            "w": "sourcing,",
+            "t": 483.841
+          },
+          {
+            "w": "Kaito.",
+            "t": 484.34
+          },
+          {
+            "w": "The",
+            "t": 484.838
+          },
+          {
+            "w": "researchers",
+            "t": 485.337
+          },
+          {
+            "w": "had",
+            "t": 485.835
+          },
+          {
+            "w": "120,000",
+            "t": 486.333
+          },
+          {
+            "w": "secondary",
+            "t": 486.832
+          },
+          {
+            "w": "EHR",
+            "t": 487.33
+          },
+          {
+            "w": "records,",
+            "t": 487.829
+          },
+          {
+            "w": "but",
+            "t": 488.327
+          },
+          {
+            "w": "the",
+            "t": 488.825
+          },
+          {
+            "w": "billing",
+            "t": 489.324
+          },
+          {
+            "w": "codes",
+            "t": 489.822
+          },
+          {
+            "w": "were",
+            "t": 490.321
+          },
+          {
+            "w": "hopelessly",
+            "t": 490.819
+          },
+          {
+            "w": "biased.",
+            "t": 491.318
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Kaito",
+        "text": "Because sicker patients get tested more often, so the model learned test frequency rather than cardiac pathology! A classic secondary data trap.",
+        "start": 491.816,
+        "end": 502.07,
+        "words": [
+          {
+            "w": "Because",
+            "t": 491.816
+          },
+          {
+            "w": "sicker",
+            "t": 492.282
+          },
+          {
+            "w": "patients",
+            "t": 492.748
+          },
+          {
+            "w": "get",
+            "t": 493.214
+          },
+          {
+            "w": "tested",
+            "t": 493.68
+          },
+          {
+            "w": "more",
+            "t": 494.146
+          },
+          {
+            "w": "often,",
+            "t": 494.613
+          },
+          {
+            "w": "so",
+            "t": 495.079
+          },
+          {
+            "w": "the",
+            "t": 495.545
+          },
+          {
+            "w": "model",
+            "t": 496.011
+          },
+          {
+            "w": "learned",
+            "t": 496.477
+          },
+          {
+            "w": "test",
+            "t": 496.943
+          },
+          {
+            "w": "frequency",
+            "t": 497.409
+          },
+          {
+            "w": "rather",
+            "t": 497.875
+          },
+          {
+            "w": "than",
+            "t": 498.341
+          },
+          {
+            "w": "cardiac",
+            "t": 498.807
+          },
+          {
+            "w": "pathology!",
+            "t": 499.273
+          },
+          {
+            "w": "A",
+            "t": 499.74
+          },
+          {
+            "w": "classic",
+            "t": 500.206
+          },
+          {
+            "w": "secondary",
+            "t": 500.672
+          },
+          {
+            "w": "data",
+            "t": 501.138
+          },
+          {
+            "w": "trap.",
+            "t": 501.604
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Dr. Nova",
+        "text": "Right. So instead of spending millions to gather 120,000 primary patients, they recruited just 10,000 primary subjects and used importance density ratios to re-weight the secondary cohort.",
+        "start": 502.07,
+        "end": 515.457,
+        "words": [
+          {
+            "w": "Right.",
+            "t": 502.07
+          },
+          {
+            "w": "So",
+            "t": 502.566
+          },
+          {
+            "w": "instead",
+            "t": 503.062
+          },
+          {
+            "w": "of",
+            "t": 503.557
+          },
+          {
+            "w": "spending",
+            "t": 504.053
+          },
+          {
+            "w": "millions",
+            "t": 504.549
+          },
+          {
+            "w": "to",
+            "t": 505.045
+          },
+          {
+            "w": "gather",
+            "t": 505.541
+          },
+          {
+            "w": "120,000",
+            "t": 506.037
+          },
+          {
+            "w": "primary",
+            "t": 506.532
+          },
+          {
+            "w": "patients,",
+            "t": 507.028
+          },
+          {
+            "w": "they",
+            "t": 507.524
+          },
+          {
+            "w": "recruited",
+            "t": 508.02
+          },
+          {
+            "w": "just",
+            "t": 508.516
+          },
+          {
+            "w": "10,000",
+            "t": 509.011
+          },
+          {
+            "w": "primary",
+            "t": 509.507
+          },
+          {
+            "w": "subjects",
+            "t": 510.003
+          },
+          {
+            "w": "and",
+            "t": 510.499
+          },
+          {
+            "w": "used",
+            "t": 510.995
+          },
+          {
+            "w": "importance",
+            "t": 511.49
+          },
+          {
+            "w": "density",
+            "t": 511.986
+          },
+          {
+            "w": "ratios",
+            "t": 512.482
+          },
+          {
+            "w": "to",
+            "t": 512.978
+          },
+          {
+            "w": "re-weight",
+            "t": 513.474
+          },
+          {
+            "w": "the",
+            "t": 513.97
+          },
+          {
+            "w": "secondary",
+            "t": 514.465
+          },
+          {
+            "w": "cohort.",
+            "t": 514.961
+          }
+        ]
+      },
+      {
+        "slide": 14,
+        "slideId": "s14",
+        "speaker": "Kaito",
+        "text": "And it worked! They saved 78% on collection costs while keeping 92% of the statistical power! That is how elite ML engineers bridge theory and budget.",
+        "start": 515.457,
+        "end": 526.138,
+        "words": [
+          {
+            "w": "And",
+            "t": 515.457
+          },
+          {
+            "w": "it",
+            "t": 515.868
+          },
+          {
+            "w": "worked!",
+            "t": 516.279
+          },
+          {
+            "w": "They",
+            "t": 516.689
+          },
+          {
+            "w": "saved",
+            "t": 517.1
+          },
+          {
+            "w": "78%",
+            "t": 517.511
+          },
+          {
+            "w": "on",
+            "t": 517.922
+          },
+          {
+            "w": "collection",
+            "t": 518.333
+          },
+          {
+            "w": "costs",
+            "t": 518.743
+          },
+          {
+            "w": "while",
+            "t": 519.154
+          },
+          {
+            "w": "keeping",
+            "t": 519.565
+          },
+          {
+            "w": "92%",
+            "t": 519.976
+          },
+          {
+            "w": "of",
+            "t": 520.387
+          },
+          {
+            "w": "the",
+            "t": 520.798
+          },
+          {
+            "w": "statistical",
+            "t": 521.208
+          },
+          {
+            "w": "power!",
+            "t": 521.619
+          },
+          {
+            "w": "That",
+            "t": 522.03
+          },
+          {
+            "w": "is",
+            "t": 522.441
+          },
+          {
+            "w": "how",
+            "t": 522.852
+          },
+          {
+            "w": "elite",
+            "t": 523.262
+          },
+          {
+            "w": "ML",
+            "t": 523.673
+          },
+          {
+            "w": "engineers",
+            "t": 524.084
+          },
+          {
+            "w": "bridge",
+            "t": 524.495
+          },
+          {
+            "w": "theory",
+            "t": 524.906
+          },
+          {
+            "w": "and",
+            "t": 525.316
+          },
+          {
+            "w": "budget.",
+            "t": 525.727
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Slide 15 is our production Python implementation, Kaito. Notice how clean the discrete event loop is: arrivals and service times are drawn directly from exponential distributions.",
+        "start": 526.138,
+        "end": 538.884,
+        "words": [
+          {
+            "w": "Slide",
+            "t": 526.138
+          },
+          {
+            "w": "15",
+            "t": 526.628
+          },
+          {
+            "w": "is",
+            "t": 527.118
+          },
+          {
+            "w": "our",
+            "t": 527.609
+          },
+          {
+            "w": "production",
+            "t": 528.099
+          },
+          {
+            "w": "Python",
+            "t": 528.589
+          },
+          {
+            "w": "implementation,",
+            "t": 529.079
+          },
+          {
+            "w": "Kaito.",
+            "t": 529.57
+          },
+          {
+            "w": "Notice",
+            "t": 530.06
+          },
+          {
+            "w": "how",
+            "t": 530.55
+          },
+          {
+            "w": "clean",
+            "t": 531.04
+          },
+          {
+            "w": "the",
+            "t": 531.531
+          },
+          {
+            "w": "discrete",
+            "t": 532.021
+          },
+          {
+            "w": "event",
+            "t": 532.511
+          },
+          {
+            "w": "loop",
+            "t": 533.001
+          },
+          {
+            "w": "is:",
+            "t": 533.491
+          },
+          {
+            "w": "arrivals",
+            "t": 533.982
+          },
+          {
+            "w": "and",
+            "t": 534.472
+          },
+          {
+            "w": "service",
+            "t": 534.962
+          },
+          {
+            "w": "times",
+            "t": 535.452
+          },
+          {
+            "w": "are",
+            "t": 535.943
+          },
+          {
+            "w": "drawn",
+            "t": 536.433
+          },
+          {
+            "w": "directly",
+            "t": 536.923
+          },
+          {
+            "w": "from",
+            "t": 537.413
+          },
+          {
+            "w": "exponential",
+            "t": 537.904
+          },
+          {
+            "w": "distributions.",
+            "t": 538.394
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Kaito",
+        "text": "And the assertions at the bottom: first, verifying that traffic intensity rho is strictly less than 1.0, and second, asserting that empirical latency W matches theoretical Little's Law!",
+        "start": 538.884,
+        "end": 552.057,
+        "words": [
+          {
+            "w": "And",
+            "t": 538.884
+          },
+          {
+            "w": "the",
+            "t": 539.354
+          },
+          {
+            "w": "assertions",
+            "t": 539.825
+          },
+          {
+            "w": "at",
+            "t": 540.295
+          },
+          {
+            "w": "the",
+            "t": 540.766
+          },
+          {
+            "w": "bottom:",
+            "t": 541.236
+          },
+          {
+            "w": "first,",
+            "t": 541.707
+          },
+          {
+            "w": "verifying",
+            "t": 542.177
+          },
+          {
+            "w": "that",
+            "t": 542.648
+          },
+          {
+            "w": "traffic",
+            "t": 543.118
+          },
+          {
+            "w": "intensity",
+            "t": 543.589
+          },
+          {
+            "w": "rho",
+            "t": 544.059
+          },
+          {
+            "w": "is",
+            "t": 544.53
+          },
+          {
+            "w": "strictly",
+            "t": 545.0
+          },
+          {
+            "w": "less",
+            "t": 545.471
+          },
+          {
+            "w": "than",
+            "t": 545.941
+          },
+          {
+            "w": "1.0,",
+            "t": 546.411
+          },
+          {
+            "w": "and",
+            "t": 546.882
+          },
+          {
+            "w": "second,",
+            "t": 547.352
+          },
+          {
+            "w": "asserting",
+            "t": 547.823
+          },
+          {
+            "w": "that",
+            "t": 548.293
+          },
+          {
+            "w": "empirical",
+            "t": 548.764
+          },
+          {
+            "w": "latency",
+            "t": 549.234
+          },
+          {
+            "w": "W",
+            "t": 549.705
+          },
+          {
+            "w": "matches",
+            "t": 550.175
+          },
+          {
+            "w": "theoretical",
+            "t": 550.646
+          },
+          {
+            "w": "Little's",
+            "t": 551.116
+          },
+          {
+            "w": "Law!",
+            "t": 551.587
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Dr. Nova",
+        "text": "Yes! In production ingestion pipelines, automated unit tests like this run in CI/CD to prevent deployment of under-provisioned worker pools before launch.",
+        "start": 552.057,
+        "end": 563.023,
+        "words": [
+          {
+            "w": "Yes!",
+            "t": 552.057
+          },
+          {
+            "w": "In",
+            "t": 552.555
+          },
+          {
+            "w": "production",
+            "t": 553.054
+          },
+          {
+            "w": "ingestion",
+            "t": 553.552
+          },
+          {
+            "w": "pipelines,",
+            "t": 554.051
+          },
+          {
+            "w": "automated",
+            "t": 554.549
+          },
+          {
+            "w": "unit",
+            "t": 555.048
+          },
+          {
+            "w": "tests",
+            "t": 555.546
+          },
+          {
+            "w": "like",
+            "t": 556.045
+          },
+          {
+            "w": "this",
+            "t": 556.543
+          },
+          {
+            "w": "run",
+            "t": 557.042
+          },
+          {
+            "w": "in",
+            "t": 557.54
+          },
+          {
+            "w": "CI/CD",
+            "t": 558.038
+          },
+          {
+            "w": "to",
+            "t": 558.537
+          },
+          {
+            "w": "prevent",
+            "t": 559.035
+          },
+          {
+            "w": "deployment",
+            "t": 559.534
+          },
+          {
+            "w": "of",
+            "t": 560.032
+          },
+          {
+            "w": "under-provisioned",
+            "t": 560.531
+          },
+          {
+            "w": "worker",
+            "t": 561.029
+          },
+          {
+            "w": "pools",
+            "t": 561.528
+          },
+          {
+            "w": "before",
+            "t": 562.026
+          },
+          {
+            "w": "launch.",
+            "t": 562.525
+          }
+        ]
+      },
+      {
+        "slide": 15,
+        "slideId": "s15",
+        "speaker": "Kaito",
+        "text": "Unit tests protecting our Little's Law stability! Love it.",
+        "start": 563.023,
+        "end": 567.153,
+        "words": [
+          {
+            "w": "Unit",
+            "t": 563.023
+          },
+          {
+            "w": "tests",
+            "t": 563.482
+          },
+          {
+            "w": "protecting",
+            "t": 563.941
+          },
+          {
+            "w": "our",
+            "t": 564.4
+          },
+          {
+            "w": "Little's",
+            "t": 564.859
+          },
+          {
+            "w": "Law",
+            "t": 565.317
+          },
+          {
+            "w": "stability!",
+            "t": 565.776
+          },
+          {
+            "w": "Love",
+            "t": 566.235
+          },
+          {
+            "w": "it.",
+            "t": 566.694
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "Outstanding work today, Kaito! We have formalized the three primary sources of modern datasets and their core mathematical constraints.",
+        "start": 567.153,
+        "end": 576.766,
+        "words": [
+          {
+            "w": "Outstanding",
+            "t": 567.153
+          },
+          {
+            "w": "work",
+            "t": 567.659
+          },
+          {
+            "w": "today,",
+            "t": 568.165
+          },
+          {
+            "w": "Kaito!",
+            "t": 568.671
+          },
+          {
+            "w": "We",
+            "t": 569.177
+          },
+          {
+            "w": "have",
+            "t": 569.683
+          },
+          {
+            "w": "formalized",
+            "t": 570.189
+          },
+          {
+            "w": "the",
+            "t": 570.695
+          },
+          {
+            "w": "three",
+            "t": 571.201
+          },
+          {
+            "w": "primary",
+            "t": 571.707
+          },
+          {
+            "w": "sources",
+            "t": 572.212
+          },
+          {
+            "w": "of",
+            "t": 572.718
+          },
+          {
+            "w": "modern",
+            "t": 573.224
+          },
+          {
+            "w": "datasets",
+            "t": 573.73
+          },
+          {
+            "w": "and",
+            "t": 574.236
+          },
+          {
+            "w": "their",
+            "t": 574.742
+          },
+          {
+            "w": "core",
+            "t": 575.248
+          },
+          {
+            "w": "mathematical",
+            "t": 575.754
+          },
+          {
+            "w": "constraints.",
+            "t": 576.26
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Kaito",
+        "text": "From density ratio re-weighting under covariate shift, to Little's Law queue stability and dead-letter queues in streaming pipelines! A complete masterclass.",
+        "start": 576.766,
+        "end": 587.945,
+        "words": [
+          {
+            "w": "From",
+            "t": 576.766
+          },
+          {
+            "w": "density",
+            "t": 577.298
+          },
+          {
+            "w": "ratio",
+            "t": 577.831
+          },
+          {
+            "w": "re-weighting",
+            "t": 578.363
+          },
+          {
+            "w": "under",
+            "t": 578.895
+          },
+          {
+            "w": "covariate",
+            "t": 579.428
+          },
+          {
+            "w": "shift,",
+            "t": 579.96
+          },
+          {
+            "w": "to",
+            "t": 580.492
+          },
+          {
+            "w": "Little's",
+            "t": 581.025
+          },
+          {
+            "w": "Law",
+            "t": 581.557
+          },
+          {
+            "w": "queue",
+            "t": 582.089
+          },
+          {
+            "w": "stability",
+            "t": 582.622
+          },
+          {
+            "w": "and",
+            "t": 583.154
+          },
+          {
+            "w": "dead-letter",
+            "t": 583.686
+          },
+          {
+            "w": "queues",
+            "t": 584.219
+          },
+          {
+            "w": "in",
+            "t": 584.751
+          },
+          {
+            "w": "streaming",
+            "t": 585.283
+          },
+          {
+            "w": "pipelines!",
+            "t": 585.816
+          },
+          {
+            "w": "A",
+            "t": 586.348
+          },
+          {
+            "w": "complete",
+            "t": 586.88
+          },
+          {
+            "w": "masterclass.",
+            "t": 587.413
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Dr. Nova",
+        "text": "In Lesson 2.3, we take these strategies and build active instruments: psychometric survey design, automated web scraping bots, and API pagination.",
+        "start": 587.945,
+        "end": 598.341,
+        "words": [
+          {
+            "w": "In",
+            "t": 587.945
+          },
+          {
+            "w": "Lesson",
+            "t": 588.44
+          },
+          {
+            "w": "2.3,",
+            "t": 588.935
+          },
+          {
+            "w": "we",
+            "t": 589.43
+          },
+          {
+            "w": "take",
+            "t": 589.925
+          },
+          {
+            "w": "these",
+            "t": 590.42
+          },
+          {
+            "w": "strategies",
+            "t": 590.915
+          },
+          {
+            "w": "and",
+            "t": 591.41
+          },
+          {
+            "w": "build",
+            "t": 591.905
+          },
+          {
+            "w": "active",
+            "t": 592.4
+          },
+          {
+            "w": "instruments:",
+            "t": 592.895
+          },
+          {
+            "w": "psychometric",
+            "t": 593.391
+          },
+          {
+            "w": "survey",
+            "t": 593.886
+          },
+          {
+            "w": "design,",
+            "t": 594.381
+          },
+          {
+            "w": "automated",
+            "t": 594.876
+          },
+          {
+            "w": "web",
+            "t": 595.371
+          },
+          {
+            "w": "scraping",
+            "t": 595.866
+          },
+          {
+            "w": "bots,",
+            "t": 596.361
+          },
+          {
+            "w": "and",
+            "t": 596.856
+          },
+          {
+            "w": "API",
+            "t": 597.351
+          },
+          {
+            "w": "pagination.",
+            "t": 597.846
+          }
+        ]
+      },
+      {
+        "slide": 16,
+        "slideId": "s16",
+        "speaker": "Kaito",
+        "text": "I cannot wait to start scraping and designing questionnaires. See you all in Lesson 2.3!",
+        "start": 598.341,
+        "end": 604.608,
+        "words": [
+          {
+            "w": "I",
+            "t": 598.341
+          },
+          {
+            "w": "cannot",
+            "t": 598.759
+          },
+          {
+            "w": "wait",
+            "t": 599.177
+          },
+          {
+            "w": "to",
+            "t": 599.594
+          },
+          {
+            "w": "start",
+            "t": 600.012
+          },
+          {
+            "w": "scraping",
+            "t": 600.43
+          },
+          {
+            "w": "and",
+            "t": 600.848
+          },
+          {
+            "w": "designing",
+            "t": 601.266
+          },
+          {
+            "w": "questionnaires.",
+            "t": 601.683
+          },
+          {
+            "w": "See",
+            "t": 602.101
+          },
+          {
+            "w": "you",
+            "t": 602.519
+          },
+          {
+            "w": "all",
+            "t": 602.937
+          },
+          {
+            "w": "in",
+            "t": 603.355
+          },
+          {
+            "w": "Lesson",
+            "t": 603.772
+          },
+          {
+            "w": "2.3!",
+            "t": 604.19
+          }
+        ]
+      }
+    ]
+  },
+  "ch1_p5_solo": {
+    "duration": 623.806,
+    "sentences": [
+      {
+        "slideIndex": 0,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Lesson 1.5 of Dataset Fundamentals: Exploring a Dataset and First-Pass Diagnostics. Before a single loss function is minimized, and before any neural architecture is initialized, an elite data scientist performs forensic statistical reconnaissance on raw data.",
+        "start": 0.0,
+        "end": 17.688
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Grounding our curriculum in Section 1.4 and Chapter 6 of the Springer Nature monograph, today we operationalize John Tukey's foundational philosophy of Exploratory Data Analysis. We construct a 4-tier quantitative inspection framework covering shape invariants, four distributional moments, Tukey non-parametric outlier fences, Simpson's Paradox confounder reversals, and high-throughput diagnostic profiling with Polars.",
+        "start": 18.038,
+        "end": 44.534
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Exploratory Data Analysis was first formalized by Princeton statistician John Tukey in 1977. Tukey argued that data analysis must begin with detective work—letting the data suggest hypotheses rather than imposing rigid mathematical models from the outset.",
+        "start": 45.284,
+        "end": 62.516
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "In modern production machine learning, EDA serves as an epistemological gatekeeper. As highlighted by Sculley and co-authors at NeurIPS, machine learning systems carry enormous hidden technical debt. Without deep exploratory audits, models quietly memorize collection changes, default sentinel values, and sensor drift, resulting in models that pass laboratory cross-validation but collapse catastrophically in deployment.",
+        "start": 62.866,
+        "end": 89.482
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "The first tier of our diagnostic framework evaluates shape, memory profile, and typing invariants. We quantify total rows N, total columns M, and the global matrix sparsity ratio S, defined as the total number of null entries divided by N times M.",
+        "start": 90.232,
+        "end": 106.792
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Crucially, an engineer must distinguish between physical storage types and semantic mathematical types. If postal zip codes or store identifier numbers are ingested as 64-bit floats, mathematical routines will compute useless means, variances, and regression slopes across categorical keys. In Tier 1, we cast every column to its true semantic representation.",
+        "start": 107.142,
+        "end": 131.07
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "In Tier 2, we profile the probability density of every continuous feature through its first four statistical moments. The first moment is the sample mean mu, measuring central tendency. The second central moment is variance sigma-squared, measuring spread.",
+        "start": 131.82,
+        "end": 148.068
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "The third standardized moment is skewness gamma-one, which measures distributional asymmetry. The fourth standardized moment is excess kurtosis gamma-two, which measures tail heaviness and extreme event risk. In Gaussian distributions, skewness and excess kurtosis are exactly zero. Any significant departure indicates non-normality.",
+        "start": 148.418,
+        "end": 170.474
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "When skewness gamma-one exceeds positive one, the distribution possesses a severe right tail. This is universal in real-world human data: personal income, real estate prices, web server latencies, and insurance claims are almost always log-normally distributed.",
+        "start": 171.224,
+        "end": 187.664
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "In right-skewed data, the sample mean is dragged upward by the extreme tail, making the mean substantially greater than the median. Reporting the mean gives a wildly misleading view of typical behavior. Furthermore, linear models trained directly on raw skewed inputs suffer severe gradient instability, mandating logarithmic transformations like log of x plus one.",
+        "start": 188.014,
+        "end": 210.19
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Many practitioners detect outliers by calculating the mean plus or minus three standard deviations. In non-normal distributions, this practice is catastrophically flawed because the outliers themselves inflate both the mean and standard deviation, masking extreme anomalies!",
+        "start": 210.94,
+        "end": 228.028
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "John Tukey replaced standard deviation with the Interquartile Range, defined as Q3 minus Q1. We construct two objective thresholds: the Inner Fences at 1.5 times IQR, and the Outer Fences at 3.0 times IQR. Values beyond the outer fence represent extreme statistical anomalies that must be audited for provenance errors.",
+        "start": 228.378,
+        "end": 251.202
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Active Recall Checkpoint 1! A predictive maintenance data scientist builds a model to forecast wind turbine gearbox failures forty-eight hours in advance. One engineered feature is oil_filter_replacement_count_next_7_days, which achieves an astonishing 0.99 ROC-AUC during five-fold cross-validation. But when deployed live, model performance collapses to near random chance at 0.52 ROC-AUC. What occurred? Select your answer on the slide!",
+        "start": 251.952,
+        "end": 286.416
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Tier 4 evaluates dependencies between pairs of features. The classic Pearson correlation coefficient measures strictly linear relationships. However, in modern machine learning, features frequently exhibit nonlinear monotonic relationships—such as exponential cost curves or logarithmic response functions.",
+        "start": 287.166,
+        "end": 307.11
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "For nonlinear relationships, Pearson correlation severely underestimates association. We deploy the Spearman rank correlation coefficient, which evaluates the Pearson correlation over the ordinal ranks of the variables. Spearman is immune to monotonic transformations and completely impervious to extreme outliers.",
+        "start": 307.46,
+        "end": 327.26
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Perhaps the most dangerous statistical trap in exploratory data analysis is Simpson's Paradox. This occurs when an apparent correlation across an aggregate dataset completely reverses its sign when records are disaggregated into sub-populations.",
+        "start": 328.01,
+        "end": 343.034
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Consider a clinical trial evaluating drug dosage versus patient recovery. Across the aggregate dataset, higher dosage correlates with lower recovery (r = -0.62). But when stratified by illness severity, higher dosage yields higher recovery in both mild patients (r = +0.78) and severe patients (r = +0.81)! The aggregate negative trend was entirely an artifact of confounding: physicians gave higher doses to sicker patients.",
+        "start": 343.384,
+        "end": 375.376
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "We have docked at the Distribution Profiler and Transformation Lab! Look at the control selectors above me: you can toggle between Right-Skewed household incomes, Symmetric Gaussian adult heights, and a Bimodal multi-cluster mixture.",
+        "start": 376.126,
+        "end": 390.118
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Notice the reference dashed lines on the histogram: in the raw skewed distribution, the red dashed line for sample mean is pulled far to the right of the green line for median. Now select Logarithmic Normalization—watch how the distribution collapses into a symmetric Gaussian bell and eliminates Tukey outliers!",
+        "start": 390.468,
+        "end": 408.852
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "A critical objective of exploratory data analysis is understanding the data collection topology to prevent cross-validation leakage. In introductory machine learning courses, students use random k-fold cross-validation. But in real-world systems, random splitting frequently causes catastrophic data leakage.",
+        "start": 409.602,
+        "end": 429.018
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "If your dataset is time-series, random splitting samples future events into the training fold to predict past test events—a fatal temporal lookahead violation. You must deploy Rolling Window Walk-Forward splits. Similarly, if multiple records belong to the same customer or patient, random splitting leaks identity features across folds, mandating GroupKFold.",
+        "start": 429.368,
+        "end": 451.976
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "When plotting datasets with more than fifty thousand observations, standard scatter plots break down completely due to visual overplotting. When thousands of points render on top of each other, dense regions appear identical to moderate regions, creating visual saturation.",
+        "start": 452.726,
+        "end": 469.214
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "As demonstrated by Battle and Heer in their study of exploratory visual analysis, elite practitioners deploy density-preserving visualization methods. We use hexagonal binning, alpha transparency blending, and two-dimensional kernel density estimation contours to reveal the true underlying bivariate probability density.",
+        "start": 469.564,
+        "end": 488.812
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Active Recall Checkpoint 2! In a hospital chest X-ray classification dataset containing one hundred thousand scans from twenty-five thousand unique patients, each patient has an average of four sequential radiographs taken over several months. Why is standard random i.i.d. train-test splitting catastrophic for evaluating model generalization? Make your choice on the slide!",
+        "start": 489.562,
+        "end": 513.13
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Historically, exploratory data analysis was bottlenecked by single-threaded, row-heavy libraries. In Pandas, running descriptive statistics across a twenty-gigabyte table often crashed Jupyter notebooks with out-of-memory errors.",
+        "start": 513.88,
+        "end": 528.376
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Modern high-performance data engineering leverages Polars and DuckDB. Built from the ground up on Apache Arrow in Rust and C++, these engines compute statistical moments, null matrices, and quantile fences in parallel across multi-core CPUs using vectorized SIMD instructions without copying data into Python memory.",
+        "start": 528.726,
+        "end": 549.246
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Let us examine production code that implements an automated First-Pass Diagnostic Profiler using Polars. Notice how we compute null counts, sample means, medians, standard deviations, standardized skewness, and Tukey outlier counts.",
+        "start": 549.996,
+        "end": 565.668
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Every column profile is evaluated in parallel. When a column is numeric, we compute quantiles Q1 and Q3, construct the IQR fences, and filter extreme outliers without ever converting data to Python lists or slow dictionaries.",
+        "start": 566.018,
+        "end": 581.858
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 0,
+        "speaker": "Dr. Nova",
+        "text": "Congratulations on completing Lesson 1.5: Exploring a Dataset and First-Pass Diagnostics. We have formalized Tukey's exploratory philosophy, mastered the 4-tier diagnostic framework, derived formulas for four statistical moments, deployed Tukey outlier fences, exposed Simpson's Paradox, and avoided cross-validation leakage.",
+        "start": 582.608,
+        "end": 605.0
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "In Lesson 1.6, we explore how clean, profiled datasets are mobilized across real-world industry settings in Machine Learning, Statistical Modeling, and Enterprise Decision Systems. Join us as we examine how datasets drive production value across technology, finance, and healthcare!",
+        "start": 605.35,
+        "end": 623.806
+      }
+    ]
+  },
+  "ch1_p5_duo": {
+    "duration": 656.002,
+    "sentences": [
+      {
+        "slideIndex": 0,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, in competitive data science tournaments, people often just immediately run automated machine learning pipelines or gradient boosting trees on the raw CSV. Why is that considered bad practice in production engineering?",
+        "start": 0.0,
+        "end": 13.608
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Because a machine learning algorithm is a blind pattern optimizer, Kaito! It cannot distinguish between a genuine physical law and an unrecorded database glitch—such as an engineering system that fills missing temperatures with minus nine hundred ninety-nine.",
+        "start": 13.958,
+        "end": 29.294
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "So if minus nine-nine-nine appears in thirty percent of records, the tree splits on that exact arbitrary number and memorizes a phantom correlation!",
+        "start": 29.644,
+        "end": 38.044
+      },
+      {
+        "slideIndex": 0,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. That is what Google researchers famously termed Hidden Technical Debt in Machine Learning. Exploratory Data Analysis is your forensic defense against fitting models to collection artifacts.",
+        "start": 38.394,
+        "end": 51.522
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, John Tukey wrote that 'finding the question is often more important than finding the answer.' How does that apply to an ML engineer looking at ten gigabytes of Parquet files?",
+        "start": 52.272,
+        "end": 63.312
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "It means before asking 'which neural network gets the lowest cross-entropy loss,' you must first ask: 'how was this data collected? What is missing? Why does this column have a bimodal distribution? Did an upstream ETL job change its definition last month?'",
+        "start": 63.662,
+        "end": 80.558
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "So EDA is about discovering what questions the dataset can honestly answer, and discovering where its blind spots lie!",
+        "start": 80.908,
+        "end": 88.036
+      },
+      {
+        "slideIndex": 1,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Precisely formulated, Kaito. EDA is data-centric inquiry at its purest.",
+        "start": 88.386,
+        "end": 94.794
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, look at that physical versus semantic typing trap! A Pandas or CSV parser frequently infers zip code or user ID as a floating point number because of missing values!",
+        "start": 95.544,
+        "end": 107.112
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Exactly, Kaito! In older Pandas versions, any integer column with a null value was automatically coerced to a float64. Then a linear regression model treats user ID 1002 as being exactly twice the magnitude of user ID 501!",
+        "start": 107.462,
+        "end": 125.318
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "That completely ruins the mathematical inductive bias of the model! That is why Tier 1 schema verification is non-negotiable.",
+        "start": 125.668,
+        "end": 134.188
+      },
+      {
+        "slideIndex": 2,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Spot on. Never let a parser decide your semantic data types.",
+        "start": 134.538,
+        "end": 139.842
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why do we need all four moments? Isn't mean and standard deviation enough to describe a continuous column?",
+        "start": 140.592,
+        "end": 148.608
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Only if your data is perfectly Gaussian, Kaito! Two completely different distributions can have the exact same mean of fifty and standard deviation of ten, yet one is a symmetric bell curve and the other is heavily right-skewed with extreme black-swan spikes!",
+        "start": 148.958,
+        "end": 164.558
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And the skewness and kurtosis instantly tell us whether the data violates Gaussian assumptions!",
+        "start": 164.908,
+        "end": 170.596
+      },
+      {
+        "slideIndex": 3,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. When kurtosis is high, extreme events occur far more frequently than a normal curve predicts, which is fatal for financial risk and anomaly detection models.",
+        "start": 170.946,
+        "end": 182.178
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, look at that income example. If a politician or company announces 'our average customer earns over one million dollars,' but the median is only fifty thousand, they are exploiting the mathematical flaw of the mean!",
+        "start": 182.928,
+        "end": 196.2
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Precisely, Kaito. The mean is fragile; a single high-net-worth individual pulls the mean up by orders of magnitude. The median is robust because it depends on the middle rank, completely unaffected by extreme tail values.",
+        "start": 196.55,
+        "end": 211.382
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And when we apply log of x plus one, the billionaire's influence is compressed from one hundred million down to eighteen point four!",
+        "start": 211.732,
+        "end": 219.028
+      },
+      {
+        "slideIndex": 4,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Logarithmic transforms linearize exponential phenomena, allowing standard gradient descent algorithms to converge reliably without gradient explosion.",
+        "start": 219.378,
+        "end": 230.154
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, that point about three standard deviations failing due to the masking effect is profound. If an outlier is massive, it expands the standard deviation so much that the outlier hides inside its own inflated three-sigma boundary!",
+        "start": 230.904,
+        "end": 244.752
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Exactly, Kaito! That is known in statistics as outlier masking. Because Tukey's IQR relies strictly on rank percentiles Q1 and Q3, an extreme outlier cannot change the 25th or 75th percentiles. The fences remain completely immovable.",
+        "start": 245.102,
+        "end": 263.606
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "So Tukey's non-parametric fences catch the anomalies that standard deviation completely fails to detect!",
+        "start": 263.956,
+        "end": 270.604
+      },
+      {
+        "slideIndex": 5,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Spot on. Robust statistics protects the analyst from self-deception.",
+        "start": 270.954,
+        "end": 276.81
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Look closely at the feature name: 'oil_filter_replacement_count_next_7_days.' At time t-zero when making a real-time prediction, do we know what happens in the next seven days?",
+        "start": 277.56,
+        "end": 291.36
+      },
+      {
+        "slideIndex": 6,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Of course not! Review the concepts of lookahead target leakage we covered. Click your answer on the checkpoint card below to test your retention!",
+        "start": 291.71,
+        "end": 301.406
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, if a feature has an exponential relationship with the target, Pearson correlation might give only point seven, while Spearman gives a perfect one point zero!",
+        "start": 302.156,
+        "end": 311.78
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Precisely! Because Pearson penalizes the curvature of the exponential, mistaking non-linearity for noise. A decision tree or neural network handles non-linear monotonic relationships effortlessly, so discarding a feature based on low Pearson correlation is a massive mistake!",
+        "start": 312.13,
+        "end": 329.89
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "So during feature selection, we should check both Pearson and Spearman to avoid throwing away powerful non-linear predictors!",
+        "start": 330.24,
+        "end": 337.32
+      },
+      {
+        "slideIndex": 7,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Spot on. Pairwise EDA requires multiple lenses.",
+        "start": 337.67,
+        "end": 342.734
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, this is terrifying! If a data scientist simply trains an unstratified model on the raw table, the model will learn that giving more medication kills patients!",
+        "start": 343.484,
+        "end": 354.164
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Yes, Kaito! And in an automated clinical decision support system, the algorithm would recommend withholding life-saving medication from the sickest patients. That is why Judea Pearl emphasizes causal DAGs and stratified exploratory profiling.",
+        "start": 354.514,
+        "end": 371.218
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "So during EDA, whenever we see a counterintuitive correlation, the first thing we must do is stratify across potential confounding covariates!",
+        "start": 371.568,
+        "end": 379.872
+      },
+      {
+        "slideIndex": 8,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Stratified slicing is the antidote to Simpson's Paradox.",
+        "start": 380.222,
+        "end": 386.126
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, look at the canvas! When Right-Skewed is selected on Raw Scale, the mean is over one hundred thousand dollars, while the median is only eighty-seven thousand, and skewness is positive one point four!",
+        "start": 386.876,
+        "end": 399.212
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Exactly, Kaito. Now switch the Mathematical Transform selector to 'Logarithmic Normalization: log(x + 1)'. Look at what happens to the histogram!",
+        "start": 399.562,
+        "end": 411.178
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "The red and green dashed lines snap together! Skewness drops to near zero, and the Tukey outlier count drops to zero! That visually proves why log transforms are so powerful.",
+        "start": 411.528,
+        "end": 423.648
+      },
+      {
+        "slideIndex": 9,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Try testing the Bimodal mixture next to see why single-mean statistics fail on multi-cluster populations.",
+        "start": 423.998,
+        "end": 432.446
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, so if an e-commerce model achieves ninety-eight percent accuracy in cross-validation, but fifty percent when deployed live, the culprit is almost always data leakage during splitting?",
+        "start": 433.196,
+        "end": 443.972
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Nine times out of ten, Kaito! If random splitting placed purchases from the exact same user on Tuesday into the training set and on Wednesday into the test set, the model doesn't generalize—it just memorizes that specific user's shopping basket!",
+        "start": 444.322,
+        "end": 459.754
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And in production, when a brand-new user arrives, the model has never seen them before and completely collapses!",
+        "start": 460.104,
+        "end": 466.824
+      },
+      {
+        "slideIndex": 10,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Cross-validation must rigorously simulate the real-world operational reality of inference time.",
+        "start": 467.174,
+        "end": 474.638
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, I remember plotting a million rows in Matplotlib once. My browser froze, and when it finally rendered, it was just a solid blue rectangle!",
+        "start": 475.388,
+        "end": 485.228
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "A classic beginner mistake, Kaito! Rendering one million SVG or canvas elements melts client hardware and provides zero statistical insight. Hexagonal binning aggregates points into a few hundred hexagonal counters in O(N) time.",
+        "start": 485.578,
+        "end": 501.85
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And the visual rendering stays crisp, fast, and accurately depicts point density across multiple orders of magnitude!",
+        "start": 502.2,
+        "end": 509.376
+      },
+      {
+        "slideIndex": 11,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Exactly. Visual scalability is a core engineering requirement for big data exploration.",
+        "start": 509.726,
+        "end": 516.59
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Twenty-five thousand patients, but one hundred thousand scans! If you do random splitting, what happens to scans belonging to the exact same patient?",
+        "start": 517.34,
+        "end": 526.988
+      },
+      {
+        "slideIndex": 12,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Review how deep vision models learn patient-specific markers like pacemaker shapes, bone density, or jewelry. Select the correct option below to analyze the clinical hazard!",
+        "start": 527.338,
+        "end": 538.546
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, the difference is night and day! Computing quantiles and skewness across fifty million rows takes five minutes in Pandas, but only two seconds in Polars!",
+        "start": 539.296,
+        "end": 549.712
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Exactly, Kaito! Because Polars writes zero intermediate Python objects. It compiles the descriptive statistics directly into a vectorized Arrow execution plan executed in parallel Rust.",
+        "start": 550.062,
+        "end": 563.598
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And that means we can run deep forensic EDA on massive production tables without waiting for hours or crashing our development machines!",
+        "start": 563.948,
+        "end": 571.46
+      },
+      {
+        "slideIndex": 13,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Fast profiling means thorough profiling.",
+        "start": 571.81,
+        "end": 576.754
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, this script encapsulates everything we covered today: null ratios, central moments, standardized skewness, and Tukey outlier counts all computed cleanly in Polars!",
+        "start": 577.504,
+        "end": 587.776
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "Indeed, Kaito. By running this function as an automated step in your CI CD pipeline or Airflow DAG, your team automatically flags skewed distributions, sentinel null values, and extreme outliers before any model training runs.",
+        "start": 588.126,
+        "end": 603.942
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "Defensive EDA converted into automated software engineering!",
+        "start": 604.292,
+        "end": 608.804
+      },
+      {
+        "slideIndex": 14,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "That is the standard of excellence in Data-Centric AI.",
+        "start": 609.154,
+        "end": 612.802
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 0,
+        "speaker": "Kaito",
+        "text": "Dr. Nova, what an eye-opening lecture! Learning how the mean can be fooled by skewness, how standard deviation masks outliers, and how Simpson's Paradox can completely reverse a medical trial has forever changed how I look at datasets.",
+        "start": 613.552,
+        "end": 627.712
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 1,
+        "speaker": "Dr. Nova",
+        "text": "That is the mark of a true data scientist, Kaito. Modeling is easy; understanding the true generative process and topology of your data is where the real intelligence lives.",
+        "start": 628.062,
+        "end": 639.126
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 2,
+        "speaker": "Kaito",
+        "text": "And in Lesson 1.6, we will see how these carefully profiled datasets are mobilized in production modeling and industry systems!",
+        "start": 639.476,
+        "end": 647.276
+      },
+      {
+        "slideIndex": 15,
+        "turnIndex": 3,
+        "speaker": "Dr. Nova",
+        "text": "Precisely. Join us in Lesson 1.6 to explore real-world dataset mobilization across enterprise industries!",
+        "start": 647.626,
+        "end": 656.002
+      }
+    ]
+  },
+  "ch1_p6": {
+    "solo": [
+      0.0,
+      46.406,
+      95.932,
+      145.266,
+      195.8,
+      241.582,
+      288.54,
+      311.652,
+      360.29,
+      416.128,
+      463.47,
+      511.556,
+      557.914,
+      584.122,
+      627.312,
+      667.19
+    ],
+    "duo": [
+      0.0,
+      35.966,
+      70.204,
+      102.138,
+      136.76,
+      168.43,
+      200.676,
+      230.258,
+      257.344,
+      291.246,
+      321.428,
+      355.234,
+      388.416,
+      415.646,
+      442.516,
+      473.442
+    ]
   }
 };

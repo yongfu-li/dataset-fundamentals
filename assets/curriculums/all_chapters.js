@@ -1,4 +1,4 @@
-var ALL_CURRICULUM = {
+window.curriculum = {
   "ch1_p1": {
     "chapter": 1,
     "part": 1,
@@ -4360,304 +4360,658 @@ var ALL_CURRICULUM = {
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 1.5. Today we examine exploring a dataset & first-pass diagnostics, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 1: Foundations</span>\n    <span>•</span>\n    <span>Lesson 1.5</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Exploring a Dataset &amp; First-Pass Diagnostics\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into exploring a dataset &amp; first-pass diagnostics with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Exploring a Dataset & First-Pass Diagnostics",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 1.5?"
+              "text": "Welcome to Lesson 1.5 of Dataset Fundamentals: Exploring a Dataset and First-Pass Diagnostics. Before a single loss function is minimized, and before any neural architecture is initialized, an elite data scientist performs forensic statistical reconnaissance on raw data."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 1.5. Today we examine exploring a dataset & first-pass diagnostics, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "Grounding our curriculum in Section 1.4 and Chapter 6 of the Springer Nature monograph, today we operationalize John Tukey's foundational philosophy of Exploratory Data Analysis. We construct a 4-tier quantitative inspection framework covering shape invariants, four distributional moments, Tukey non-parametric outlier fences, Simpson's Paradox confounder reversals, and high-throughput diagnostic profiling with Polars."
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 1: Foundations</span>\n    <span>•</span>\n    <span>Lesson 1.5</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Exploring a Dataset &amp; First-Pass Diagnostics\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into exploring a dataset &amp; first-pass diagnostics with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 1: Foundations of Data-Centric AI</span>\n    <span>•</span>\n    <span>Lesson 1.5</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Exploring a Dataset &amp; First-Pass Diagnostics\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Forensic statistical profiling, distributional moments, outlier fences, and cross-validation hygiene prior to machine learning modeling.\n  </p>\n  <div class=\"grid grid-cols-2 md:grid-cols-4 gap-3 pt-3 text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Tier 1 &amp; 2</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Shape &amp; 4 Moments</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Mean, variance, standardized skewness, and kurtosis.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Tier 3</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Tukey Outlier Fences</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Non-parametric IQR boundaries: inner and outer thresholds.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#c2410c] text-[10px] uppercase\">Pathology</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Simpson's Paradox</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Confounder reversals and sub-population stratification.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#15803d] text-[10px] uppercase\">Production</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Polars Profiler</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Vectorized sub-millisecond first-pass diagnostic auditing.</div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Why Modelers Must Do Forensic EDA",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, in competitive data science tournaments, people often just immediately run automated machine learning pipelines or gradient boosting trees on the raw CSV. Why is that considered bad practice in production engineering?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because a machine learning algorithm is a blind pattern optimizer, Kaito! It cannot distinguish between a genuine physical law and an unrecorded database glitch—such as an engineering system that fills missing temperatures with minus nine hundred ninety-nine."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So if minus nine-nine-nine appears in thirty percent of records, the tree splits on that exact arbitrary number and memorizes a phantom correlation!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. That is what Google researchers famously termed Hidden Technical Debt in Machine Learning. Exploratory Data Analysis is your forensic defense against fitting models to collection artifacts."
+            }
+          ],
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 1: Foundations of Data-Centric AI</span>\n    <span>•</span>\n    <span>Lesson 1.5</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Exploring a Dataset &amp; First-Pass Diagnostics\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Forensic statistical profiling, distributional moments, outlier fences, and cross-validation hygiene prior to machine learning modeling.\n  </p>\n  <div class=\"grid grid-cols-2 md:grid-cols-4 gap-3 pt-3 text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Tier 1 &amp; 2</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Shape &amp; 4 Moments</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Mean, variance, standardized skewness, and kurtosis.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Tier 3</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Tukey Outlier Fences</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Non-parametric IQR boundaries: inner and outer thresholds.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#c2410c] text-[10px] uppercase\">Pathology</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Simpson's Paradox</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Confounder reversals and sub-population stratification.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#15803d] text-[10px] uppercase\">Production</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Polars Profiler</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Vectorized sub-millisecond first-pass diagnostic auditing.</div>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s2",
-        "title": "The Epistemological Role of EDA",
-        "type": "figure",
+        "title": "The Epistemological Role of EDA & Hidden Technical Debt",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
           "title": "The Epistemological Role of EDA",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Epistemological Role of EDA. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Raw[\"Raw Dataset Influx\"] --> Step1[\"1. Shape & Memory Audit<br/>(Dimensions, Dtypes, Footprint)\"]\n    Step1 --> Step2[\"2. Missingness Profiling<br/>(Null ratios, co-occurrence)\"]\n    Step2 --> Step3[\"3. Univariate Distributions<br/>(Moments: Mean, Skew, Kurtosis)\"]\n    Step3 --> Step4[\"4. Multimodal Anomaly Fences<br/>(Tukey IQR, Mahalanobis Distance)\"]\n    Step4 --> Step5[\"5. Bivariate Associations<br/>(Pearson, Spearman, Mutual Info)\"]\n    Step5 --> Clean[\"Directed Cleaning<br/>(Interventions in Track 5)\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw blue;\n    class Step1,Step2,Step3,Step4,Step5 amber;\n    class Clean green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">When exploring a new dataset, profile summary metrics both globally and stratified across key operational segments (e.g., mobile vs desktop, geographic region). Unstratified global metrics obscure localized data corruption and Simpson&#x27;s Paradox rever</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">In modern computational</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">data science, exploratory data analysis is executed through high-performance columnar data structures in Python (McKinney, 2010) and structured visual exploration strategies (Battle, 2019).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Exploratory Data Analysis</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">(EDA) is the foundational forensic phase of empirical research.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">First formalized</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">by John Tukey (1977), EDA rejects the naive assumption that datasets arrive ready for formal mathematical modeling (Tukey, 1977).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Instead, EDA systematically</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">surfaces latent distributional anomalies, measurement artifacts, unrecorded collection changes, and collinear dependencies before any loss function is defined.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Epistemological Role of EDA",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for the epistemological role of eda, how does the architectural flow enforce system stability?"
+              "text": "Exploratory Data Analysis was first formalized by Princeton statistician John Tukey in 1977. Tukey argued that data analysis must begin with detective work—letting the data suggest hypotheses rather than imposing rigid mathematical models from the outset."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "In modern production machine learning, EDA serves as an epistemological gatekeeper. As highlighted by Sculley and co-authors at NeurIPS, machine learning systems carry enormous hidden technical debt. Without deep exploratory audits, models quietly memorize collection changes, default sentinel values, and sensor drift, resulting in models that pass laboratory cross-validation but collapse catastrophically in deployment."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Raw[\"Raw Dataset Influx\"] --> Step1[\"1. Shape & Memory Audit<br/>(Dimensions, Dtypes, Footprint)\"]\n    Step1 --> Step2[\"2. Missingness Profiling<br/>(Null ratios, co-occurrence)\"]\n    Step2 --> Step3[\"3. Univariate Distributions<br/>(Moments: Mean, Skew, Kurtosis)\"]\n    Step3 --> Step4[\"4. Multimodal Anomaly Fences<br/>(Tukey IQR, Mahalanobis Distance)\"]\n    Step4 --> Step5[\"5. Bivariate Associations<br/>(Pearson, Spearman, Mutual Info)\"]\n    Step5 --> Clean[\"Directed Cleaning<br/>(Interventions in Track 5)\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw blue;\n    class Step1,Step2,Step3,Step4,Step5 amber;\n    class Clean green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">When exploring a new dataset, profile summary metrics both globally and stratified across key operational segments (e.g., mobile vs desktop, geographic region). Unstratified global metrics obscure localized data corruption and Simpson&#x27;s Paradox rever</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">In modern computational</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">data science, exploratory data analysis is executed through high-performance columnar data structures in Python (McKinney, 2010) and structured visual exploration strategies (Battle, 2019).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Exploratory Data Analysis</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">(EDA) is the foundational forensic phase of empirical research.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">First formalized</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">by John Tukey (1977), EDA rejects the naive assumption that datasets arrive ready for formal mathematical modeling (Tukey, 1977).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Instead, EDA systematically</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">surfaces latent distributional anomalies, measurement artifacts, unrecorded collection changes, and collinear dependencies before any loss function is defined.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Epistemological Foundation of EDA</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Tukey (1977), Sculley (2015)</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n      <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">Confirmatory Data Analysis (CDA)</strong>\n        <p class=\"text-[#334155] font-sans\">\n          Evaluates pre-specified hypotheses via formal significance tests ($p$-values, confidence intervals). Requires strict distributional assumptions.\n        </p>\n      </div>\n      <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Exploratory Data Analysis (EDA)</strong>\n        <p class=\"text-[#334155] font-sans\">\n          Statistical detective work: surfaces unrecorded collection anomalies, multi-modal clusters, severe skewness, and data leakage before modeling.\n        </p>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs\">\n      <strong class=\"text-[#c2410c] block mb-1\">The High Cost of Skipping EDA: Technical Debt in ML</strong>\n      <ul class=\"list-disc pl-4 space-y-1 text-[#334155] font-sans text-[11px]\">\n        <li><strong>Silent Sentinel Imputation:</strong> Legacy database flags (`-999`, `9999`, `1970-01-01`) treated as real continuous numbers.</li>\n        <li><strong>Survivor Selection Bias:</strong> Analyzing only customers who completed purchase funnels, masking drop-off causes.</li>\n        <li><strong>Distributional Covariate Shift:</strong> Training on pre-pandemic retail regimes that have zero validity today.</li>\n      </ul>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Epistemological EDA",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, John Tukey wrote that 'finding the question is often more important than finding the answer.' How does that apply to an ML engineer looking at ten gigabytes of Parquet files?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "It means before asking 'which neural network gets the lowest cross-entropy loss,' you must first ask: 'how was this data collected? What is missing? Why does this column have a bimodal distribution? Did an upstream ETL job change its definition last month?'"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So EDA is about discovering what questions the dataset can honestly answer, and discovering where its blind spots lie!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely formulated, Kaito. EDA is data-centric inquiry at its purest."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Epistemological Foundation of EDA</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Tukey (1977), Sculley (2015)</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n      <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">Confirmatory Data Analysis (CDA)</strong>\n        <p class=\"text-[#334155] font-sans\">\n          Evaluates pre-specified hypotheses via formal significance tests ($p$-values, confidence intervals). Requires strict distributional assumptions.\n        </p>\n      </div>\n      <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Exploratory Data Analysis (EDA)</strong>\n        <p class=\"text-[#334155] font-sans\">\n          Statistical detective work: surfaces unrecorded collection anomalies, multi-modal clusters, severe skewness, and data leakage before modeling.\n        </p>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs\">\n      <strong class=\"text-[#c2410c] block mb-1\">The High Cost of Skipping EDA: Technical Debt in ML</strong>\n      <ul class=\"list-disc pl-4 space-y-1 text-[#334155] font-sans text-[11px]\">\n        <li><strong>Silent Sentinel Imputation:</strong> Legacy database flags (`-999`, `9999`, `1970-01-01`) treated as real continuous numbers.</li>\n        <li><strong>Survivor Selection Bias:</strong> Analyzing only customers who completed purchase funnels, masking drop-off causes.</li>\n        <li><strong>Distributional Covariate Shift:</strong> Training on pre-pandemic retail regimes that have zero validity today.</li>\n      </ul>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s3",
-        "title": "The 4-Tier Diagnostic Inspection Framework: Shape, Memory, and Typing Invariants",
-        "type": "bullets",
+        "title": "Tier 1: Shape, Memory & Typing Invariants (Sparsity & Footprint)",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The 4-Tier Diagnostic Inspection Framework: Shape, Memory, and Typing Invariants",
+          "title": "Tier 1: Shape, Memory & Typing Invariants",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The 4-Tier Diagnostic Inspection Framework: Shape, Memory, and Typing Invariants. In production engineering, this principle establishes reliability and reproducibility. Total records $N$, total attributes $M$, and the matrix sparsity ratio $S = \\frac{\\#\\text{Nulls}}{N \\cdot M}$."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Volume &amp; Sparsity</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Total records $N$, total attributes $M$, and the matrix sparsity ratio $S = \\frac{\\#\\text{Nulls}}{N \\cdot M}$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Storage Profile</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">In-memory byte footprint versus on-disk serialized size.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Physical vs Semantic Typing</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Distinguishing low-cardinality integers from true continuous quantities (e.g., zip codes stored as floats).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The 4-Tier Diagnostic Inspection Framework: Shape, Memory, and Typing Invariants",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what makes the 4-tier diagnostic inspection framework: shape, memory, and typing invariants essential for robust machine learning?"
+              "text": "The first tier of our diagnostic framework evaluates shape, memory profile, and typing invariants. We quantify total rows N, total columns M, and the global matrix sparsity ratio S, defined as the total number of null entries divided by N times M."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "In production engineering, this principle establishes reliability and reproducibility. Total records $N$, total attributes $M$, and the matrix sparsity ratio $S = \\frac{\\#\\text{Nulls}}{N \\cdot M}$."
+              "text": "Crucially, an engineer must distinguish between physical storage types and semantic mathematical types. If postal zip codes or store identifier numbers are ingested as 64-bit floats, mathematical routines will compute useless means, variances, and regression slopes across categorical keys. In Tier 1, we cast every column to its true semantic representation."
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Volume &amp; Sparsity</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Total records $N$, total attributes $M$, and the matrix sparsity ratio $S = \\frac{\\#\\text{Nulls}}{N \\cdot M}$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Storage Profile</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">In-memory byte footprint versus on-disk serialized size.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Physical vs Semantic Typing</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Distinguishing low-cardinality integers from true continuous quantities (e.g., zip codes stored as floats).</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Tier 1 Diagnostic Metrics</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.4.1</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#f0fbfd] rounded-xl border border-[#151b20] text-center\">\n        <strong class=\"text-[#0e7490] block mb-1\">Matrix Sparsity Ratio</strong>\n        <div class=\"text-sm font-black text-[#151b20] my-1\">\n          $$S = \\frac{\\sum_{i=1}^N \\sum_{j=1}^M \\mathbf{1}_{\\{x_{ij} = \\text{NULL}\\}}}{N \\cdot M}$$\n        </div>\n        <span class=\"text-[10px] text-[#475569] font-sans\">Threshold: $S > 0.40$ mandates sparse matrix serialization (CSR/CSC).</span>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20] text-center\">\n        <strong class=\"text-[#15803d] block mb-1\">Memory Amplification</strong>\n        <div class=\"text-sm font-black text-[#151b20] my-1\">\n          $$\\kappa = \\frac{\\text{RAM Size (Bytes)}}{\\text{Disk Size (Bytes)}}$$\n        </div>\n        <span class=\"text-[10px] text-[#475569] font-sans\">Uncompressed text/CSV expands 4x-10x in RAM due to pointer overhead.</span>\n      </div>\n\n      <div class=\"p-3 bg-[#fffaf0] rounded-xl border border-[#151b20] text-center\">\n        <strong class=\"text-[#b45309] block mb-1\">Cardinality Ratio</strong>\n        <div class=\"text-sm font-black text-[#151b20] my-1\">\n          $$C_j = \\frac{|\\text{Unique}(A_j)|}{N}$$\n        </div>\n        <span class=\"text-[10px] text-[#475569] font-sans\">$C_j \\ll 0.05$ indicates categorical encoding; $C_j \\approx 1.0$ indicates primary key.</span>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs\">\n      <strong class=\"text-[#151b20] block mb-1\">Physical vs. Semantic Typing Trap</strong>\n      <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2 text-[11px]\">\n        <div class=\"p-2 bg-[#ffd8ce] rounded border border-[#151b20]\">\n          <span class=\"text-[#c2410c] font-bold\">Physical Storage Type:</span><br/>\n          <code>zip_code: Float64</code> (e.g. <code>90210.0</code>)<br/>\n          <span class=\"text-[#334155] font-sans\">Algorithms compute average zip code ($54120.3$), generating semantic gibberish!</span>\n        </div>\n        <div class=\"p-2 bg-[#e7f4c8] rounded border border-[#151b20]\">\n          <span class=\"text-[#15803d] font-bold\">True Semantic Type:</span><br/>\n          <code>zip_code: Categorical / Utf8</code> (e.g. <code>\"90210\"</code>)<br/>\n          <span class=\"text-[#334155] font-sans\">Forces one-hot, target, or entity embeddings without false continuous assumptions.</span>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Zip Code Trap",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at that physical versus semantic typing trap! A Pandas or CSV parser frequently infers zip code or user ID as a floating point number because of missing values!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly, Kaito! In older Pandas versions, any integer column with a null value was automatically coerced to a float64. Then a linear regression model treats user ID 1002 as being exactly twice the magnitude of user ID 501!"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "That completely ruins the mathematical inductive bias of the model! That is why Tier 1 schema verification is non-negotiable."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Spot on. Never let a parser decide your semantic data types."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Tier 1 Diagnostic Metrics</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.4.1</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#f0fbfd] rounded-xl border border-[#151b20] text-center\">\n        <strong class=\"text-[#0e7490] block mb-1\">Matrix Sparsity Ratio</strong>\n        <div class=\"text-sm font-black text-[#151b20] my-1\">\n          $$S = \\frac{\\sum_{i=1}^N \\sum_{j=1}^M \\mathbf{1}_{\\{x_{ij} = \\text{NULL}\\}}}{N \\cdot M}$$\n        </div>\n        <span class=\"text-[10px] text-[#475569] font-sans\">Threshold: $S > 0.40$ mandates sparse matrix serialization (CSR/CSC).</span>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20] text-center\">\n        <strong class=\"text-[#15803d] block mb-1\">Memory Amplification</strong>\n        <div class=\"text-sm font-black text-[#151b20] my-1\">\n          $$\\kappa = \\frac{\\text{RAM Size (Bytes)}}{\\text{Disk Size (Bytes)}}$$\n        </div>\n        <span class=\"text-[10px] text-[#475569] font-sans\">Uncompressed text/CSV expands 4x-10x in RAM due to pointer overhead.</span>\n      </div>\n\n      <div class=\"p-3 bg-[#fffaf0] rounded-xl border border-[#151b20] text-center\">\n        <strong class=\"text-[#b45309] block mb-1\">Cardinality Ratio</strong>\n        <div class=\"text-sm font-black text-[#151b20] my-1\">\n          $$C_j = \\frac{|\\text{Unique}(A_j)|}{N}$$\n        </div>\n        <span class=\"text-[10px] text-[#475569] font-sans\">$C_j \\ll 0.05$ indicates categorical encoding; $C_j \\approx 1.0$ indicates primary key.</span>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs\">\n      <strong class=\"text-[#151b20] block mb-1\">Physical vs. Semantic Typing Trap</strong>\n      <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2 text-[11px]\">\n        <div class=\"p-2 bg-[#ffd8ce] rounded border border-[#151b20]\">\n          <span class=\"text-[#c2410c] font-bold\">Physical Storage Type:</span><br/>\n          <code>zip_code: Float64</code> (e.g. <code>90210.0</code>)<br/>\n          <span class=\"text-[#334155] font-sans\">Algorithms compute average zip code ($54120.3$), generating semantic gibberish!</span>\n        </div>\n        <div class=\"p-2 bg-[#e7f4c8] rounded border border-[#151b20]\">\n          <span class=\"text-[#15803d] font-bold\">True Semantic Type:</span><br/>\n          <code>zip_code: Categorical / Utf8</code> (e.g. <code>\"90210\"</code>)<br/>\n          <span class=\"text-[#334155] font-sans\">Forces one-hot, target, or entity embeddings without false continuous assumptions.</span>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s4",
-        "title": "Tier 2: Distributional Moments & Asymmetry",
-        "type": "equation",
+        "title": "Tier 2: The Four Distributional Moments (Mean, Variance, Skew, Kurtosis)",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Tier 2: Distributional Moments & Asymmetry",
+          "title": "Tier 2: The Four Distributional Moments",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Tier 2: Distributional Moments & Asymmetry. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\gamma_1 = \\frac{1}{N} \\sum_{i=1}^N \\left(\\frac{x_i - \\mu}{\\sigma}\\right)^3$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\gamma_2 = \\frac{1}{N} \\sum_{i=1}^N \\left(\\frac{x_i - \\mu}{\\sigma}\\right)^4 - 3$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Mean (1st Moment)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\mu = \\frac{1}{N} \\sum_{i=1}^N x_i$</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Variance (2nd Central Moment)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\sigma^2 = \\frac{1}{N-1} \\sum_{i=1}^N (x_i - \\mu)^2$</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">$\\gamma_1 = 0$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Symmetric Gaussian bell.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">$\\gamma_1 > +1.0$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Severe positive right-skew (e.g., household incomes, transaction values, network latencies). In right-skewed settings, $\\text{Mean} \\gg \\text{Median}$, mandating non-parametric statistics or log-transformations.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Tier 2: Distributional Moments & Asymmetry",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does tier 2: distributional moments & asymmetry protect our system against silent distribution shift in production?"
+              "text": "In Tier 2, we profile the probability density of every continuous feature through its first four statistical moments. The first moment is the sample mean mu, measuring central tendency. The second central moment is variance sigma-squared, measuring spread."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "The third standardized moment is skewness gamma-one, which measures distributional asymmetry. The fourth standardized moment is excess kurtosis gamma-two, which measures tail heaviness and extreme event risk. In Gaussian distributions, skewness and excess kurtosis are exactly zero. Any significant departure indicates non-normality."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\gamma_1 = \\frac{1}{N} \\sum_{i=1}^N \\left(\\frac{x_i - \\mu}{\\sigma}\\right)^3$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\gamma_2 = \\frac{1}{N} \\sum_{i=1}^N \\left(\\frac{x_i - \\mu}{\\sigma}\\right)^4 - 3$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Mean (1st Moment)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\mu = \\frac{1}{N} \\sum_{i=1}^N x_i$</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Variance (2nd Central Moment)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\sigma^2 = \\frac{1}{N-1} \\sum_{i=1}^N (x_i - \\mu)^2$</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">$\\gamma_1 = 0$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Symmetric Gaussian bell.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">$\\gamma_1 > +1.0$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Severe positive right-skew (e.g., household incomes, transaction values, network latencies). In right-skewed settings, $\\text{Mean} \\gg \\text{Median}$, mandating non-parametric statistics or log-transformations.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">The 4 Standardized Statistical Moments</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.4.2</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#f0fbfd] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">1st Moment: Sample Mean ($\\mu$)</strong>\n        <div class=\"text-center my-1.5 font-bold\">\n          $$\\mu = \\frac{1}{N}\\sum_{i=1}^N x_i$$\n        </div>\n        <span class=\"text-[10px] text-[#334155] font-sans\">Center of mass. Highly sensitive to extreme outlier pulls.</span>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">2nd Central Moment: Variance ($\\sigma^2$)</strong>\n        <div class=\"text-center my-1.5 font-bold\">\n          $$\\sigma^2 = \\frac{1}{N-1}\\sum_{i=1}^N (x_i - \\mu)^2$$\n        </div>\n        <span class=\"text-[10px] text-[#334155] font-sans\">Dispersion around mean. Standard deviation $\\sigma = \\sqrt{\\sigma^2}$.</span>\n      </div>\n\n      <div class=\"p-3 bg-[#fff0b9] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-1\">3rd Moment: Skewness ($\\gamma_1$)</strong>\n        <div class=\"text-center my-1.5 font-bold\">\n          $$\\gamma_1 = \\frac{1}{N}\\sum_{i=1}^N \\left(\\frac{x_i - \\mu}{\\sigma}\\right)^3$$\n        </div>\n        <span class=\"text-[10px] text-[#334155] font-sans\">$\\gamma_1 > 0$: Long right tail; $\\gamma_1 < 0$: Long left tail.</span>\n      </div>\n\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">4th Moment: Excess Kurtosis ($\\gamma_2$)</strong>\n        <div class=\"text-center my-1.5 font-bold\">\n          $$\\gamma_2 = \\frac{1}{N}\\sum_{i=1}^N \\left(\\frac{x_i - \\mu}{\\sigma}\\right)^4 - 3$$\n        </div>\n        <span class=\"text-[10px] text-[#334155] font-sans\">$\\gamma_2 > 0$ (Leptokurtic): Fat tails, elevated black-swan probability.</span>\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Why Moments Matter",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, why do we need all four moments? Isn't mean and standard deviation enough to describe a continuous column?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Only if your data is perfectly Gaussian, Kaito! Two completely different distributions can have the exact same mean of fifty and standard deviation of ten, yet one is a symmetric bell curve and the other is heavily right-skewed with extreme black-swan spikes!"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And the skewness and kurtosis instantly tell us whether the data violates Gaussian assumptions!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. When kurtosis is high, extreme events occur far more frequently than a normal curve predicts, which is fatal for financial risk and anomaly detection models."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">The 4 Standardized Statistical Moments</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.4.2</span>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#f0fbfd] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">1st Moment: Sample Mean ($\\mu$)</strong>\n        <div class=\"text-center my-1.5 font-bold\">\n          $$\\mu = \\frac{1}{N}\\sum_{i=1}^N x_i$$\n        </div>\n        <span class=\"text-[10px] text-[#334155] font-sans\">Center of mass. Highly sensitive to extreme outlier pulls.</span>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">2nd Central Moment: Variance ($\\sigma^2$)</strong>\n        <div class=\"text-center my-1.5 font-bold\">\n          $$\\sigma^2 = \\frac{1}{N-1}\\sum_{i=1}^N (x_i - \\mu)^2$$\n        </div>\n        <span class=\"text-[10px] text-[#334155] font-sans\">Dispersion around mean. Standard deviation $\\sigma = \\sqrt{\\sigma^2}$.</span>\n      </div>\n\n      <div class=\"p-3 bg-[#fff0b9] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-1\">3rd Moment: Skewness ($\\gamma_1$)</strong>\n        <div class=\"text-center my-1.5 font-bold\">\n          $$\\gamma_1 = \\frac{1}{N}\\sum_{i=1}^N \\left(\\frac{x_i - \\mu}{\\sigma}\\right)^3$$\n        </div>\n        <span class=\"text-[10px] text-[#334155] font-sans\">$\\gamma_1 > 0$: Long right tail; $\\gamma_1 < 0$: Long left tail.</span>\n      </div>\n\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">4th Moment: Excess Kurtosis ($\\gamma_2$)</strong>\n        <div class=\"text-center my-1.5 font-bold\">\n          $$\\gamma_2 = \\frac{1}{N}\\sum_{i=1}^N \\left(\\frac{x_i - \\mu}{\\sigma}\\right)^4 - 3$$\n        </div>\n        <span class=\"text-[10px] text-[#334155] font-sans\">$\\gamma_2 > 0$ (Leptokurtic): Fat tails, elevated black-swan probability.</span>\n      </div>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s5",
-        "title": "Tier 3: Outlier Fencing via Tukey's Formulation",
-        "type": "equation",
+        "title": "Skewness & The Non-Parametric Mandate (Mean >> Median & Log Transforms)",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Skewness & The Non-Parametric Mandate",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "When skewness gamma-one exceeds positive one, the distribution possesses a severe right tail. This is universal in real-world human data: personal income, real estate prices, web server latencies, and insurance claims are almost always log-normally distributed."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In right-skewed data, the sample mean is dragged upward by the extreme tail, making the mean substantially greater than the median. Reporting the mean gives a wildly misleading view of typical behavior. Furthermore, linear models trained directly on raw skewed inputs suffer severe gradient instability, mandating logarithmic transformations like log of x plus one."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">The Asymmetry Law: Skewness &amp; Transformations</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.4.2</span>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">Right-Skewed Pathology: $\text{Mean} \\gg \text{Median}$</strong>\n        <p class=\"text-[#334155] font-sans text-[11px] leading-relaxed\">\n          Example: 99 households earn $\\$50{,}000$, 1 billionaire earns $\\$100{,}000{,}000$.<br/>\n          • <strong>Sample Mean ($\\mu$):</strong> $\\$1{,}049{,}500$ (Misleading by 20x!)<br/>\n          • <strong>Sample Median ($Q_2$):</strong> $\\$50{,}000$ (True representative center)\n        </p>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Variance-Stabilizing Log Transform</strong>\n        <div class=\"text-sm font-black text-[#151b20] text-center my-1.5\">\n          $$y = \\log(x + 1) \\quad \\text{or} \\quad y = \\text{Box-Cox}(x; \\lambda)$$\n        </div>\n        <p class=\"text-[#334155] font-sans text-[11px]\">\n          Compresses multi-order magnitude spreads into symmetric bell curves, restoring homoscedasticity for linear models and neural networks.\n        </p>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#fffaf0] border border-[#151b20] font-mono text-xs\">\n      <strong class=\"text-[#b45309] block mb-1\">The Non-Parametric Mandate:</strong>\n      <span class=\"text-[#334155] font-sans text-[11px]\">\n        Whenever $\\gamma_1 > +1.0$ or $\\gamma_2 > +3.0$, abandon Gaussian parametric assumptions ($\\mu, \\sigma$). Report non-parametric medians and Interquartile Ranges ($IQR$), and evaluate rank correlations ($Spearman$).\n      </span>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Median Mandate",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at that income example. If a politician or company announces 'our average customer earns over one million dollars,' but the median is only fifty thousand, they are exploiting the mathematical flaw of the mean!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely, Kaito. The mean is fragile; a single high-net-worth individual pulls the mean up by orders of magnitude. The median is robust because it depends on the middle rank, completely unaffected by extreme tail values."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And when we apply log of x plus one, the billionaire's influence is compressed from one hundred million down to eighteen point four!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Logarithmic transforms linearize exponential phenomena, allowing standard gradient descent algorithms to converge reliably without gradient explosion."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">The Asymmetry Law: Skewness &amp; Transformations</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.4.2</span>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">Right-Skewed Pathology: $\text{Mean} \\gg \text{Median}$</strong>\n        <p class=\"text-[#334155] font-sans text-[11px] leading-relaxed\">\n          Example: 99 households earn $\\$50{,}000$, 1 billionaire earns $\\$100{,}000{,}000$.<br/>\n          • <strong>Sample Mean ($\\mu$):</strong> $\\$1{,}049{,}500$ (Misleading by 20x!)<br/>\n          • <strong>Sample Median ($Q_2$):</strong> $\\$50{,}000$ (True representative center)\n        </p>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Variance-Stabilizing Log Transform</strong>\n        <div class=\"text-sm font-black text-[#151b20] text-center my-1.5\">\n          $$y = \\log(x + 1) \\quad \\text{or} \\quad y = \\text{Box-Cox}(x; \\lambda)$$\n        </div>\n        <p class=\"text-[#334155] font-sans text-[11px]\">\n          Compresses multi-order magnitude spreads into symmetric bell curves, restoring homoscedasticity for linear models and neural networks.\n        </p>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#fffaf0] border border-[#151b20] font-mono text-xs\">\n      <strong class=\"text-[#b45309] block mb-1\">The Non-Parametric Mandate:</strong>\n      <span class=\"text-[#334155] font-sans text-[11px]\">\n        Whenever $\\gamma_1 > +1.0$ or $\\gamma_2 > +3.0$, abandon Gaussian parametric assumptions ($\\mu, \\sigma$). Report non-parametric medians and Interquartile Ranges ($IQR$), and evaluate rank correlations ($Spearman$).\n      </span>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s6",
+        "title": "Tier 3: Outlier Fencing via Tukey's Formulation (Inner vs. Outer Fences)",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
           "title": "Tier 3: Outlier Fencing via Tukey's Formulation",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Tier 3: Outlier Fencing via Tukey's Formulation. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{IQR} = Q_3 - Q_1$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Inner Fences: } [Q_1 - 1.5 \\cdot \\text{IQR}, \\quad Q_3 + 1.5 \\cdot \\text{IQR}]$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Outer Fences: } [Q_1 - 3.0 \\cdot \\text{IQR}, \\quad Q_3 + 3.0 \\cdot \\text{IQR}]$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Rather than relying</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">on Gaussian assumptions ($\\mu \\pm 3\\sigma$), robust EDA utilizes Tukey&#x27;s Non-Parametric Fences: Values transcending the outer fence represent extreme anomalies warranting individual provenance audits.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Tier 3: Outlier Fencing via Tukey's Formulation",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does tier 3: outlier fencing via tukey's formulation protect our system against silent distribution shift in production?"
+              "text": "Many practitioners detect outliers by calculating the mean plus or minus three standard deviations. In non-normal distributions, this practice is catastrophically flawed because the outliers themselves inflate both the mean and standard deviation, masking extreme anomalies!"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "John Tukey replaced standard deviation with the Interquartile Range, defined as Q3 minus Q1. We construct two objective thresholds: the Inner Fences at 1.5 times IQR, and the Outer Fences at 3.0 times IQR. Values beyond the outer fence represent extreme statistical anomalies that must be audited for provenance errors."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{IQR} = Q_3 - Q_1$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Inner Fences: } [Q_1 - 1.5 \\cdot \\text{IQR}, \\quad Q_3 + 1.5 \\cdot \\text{IQR}]$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Outer Fences: } [Q_1 - 3.0 \\cdot \\text{IQR}, \\quad Q_3 + 3.0 \\cdot \\text{IQR}]$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Rather than relying</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">on Gaussian assumptions ($\\mu \\pm 3\\sigma$), robust EDA utilizes Tukey&#x27;s Non-Parametric Fences: Values transcending the outer fence represent extreme anomalies warranting individual provenance audits.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Tukey Non-Parametric Outlier Fences</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Tukey (1977)</span>\n    </div>\n    \n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-center mb-3\">\n      <div class=\"text-xs text-[#0e7490] font-bold mb-1\">Interquartile Range ($IQR$):</div>\n      <div class=\"text-sm font-black text-[#151b20]\">\n        $$\\text{IQR} = Q_3 - Q_1 = F^{-1}(0.75) - F^{-1}(0.25)$$\n      </div>\n      <span class=\"text-[10px] text-[#475569] font-sans\">Spans the middle 50% of the empirical distribution. Resistant to extreme tail contamination.</span>\n    </div>\n\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#fff0b9] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-1\">Mild Outliers: Inner Fences ($1.5 \\times \\text{IQR}$)</strong>\n        <div class=\"text-center font-bold my-1 text-[11px]\">\n          $$[Q_1 - 1.5 \\cdot \\text{IQR}, \\quad Q_3 + 1.5 \\cdot \\text{IQR}]$$\n        </div>\n        <span class=\"text-[10px] text-[#334155] font-sans\">For standard normal data, contains 99.3% of records. Flag for inspection.</span>\n      </div>\n\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">Extreme Outliers: Outer Fences ($3.0 \\times \\text{IQR}$)</strong>\n        <div class=\"text-center font-bold my-1 text-[11px]\">\n          $$[Q_1 - 3.0 \\cdot \\text{IQR}, \\quad Q_3 + 3.0 \\cdot \\text{IQR}]$$\n        </div>\n        <span class=\"text-[10px] text-[#334155] font-sans\">Probability $< 0.0002\\%$ under Gaussian. Flag as definitive measurement errors or fraud.</span>\n      </div>\n    </div>\n\n    <div class=\"p-2.5 rounded-lg bg-[#e7f4c8] border border-[#151b20] font-mono text-[11px] text-[#15803d] font-bold text-center\">\n      ✓ Why Tukey Beats $3\\sigma$: Adding a single $10^6$ outlier inflates $\\sigma$ by 100x, masking the outlier in $\\mu \\pm 3\\sigma$!\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Masking Effect",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, that point about three standard deviations failing due to the masking effect is profound. If an outlier is massive, it expands the standard deviation so much that the outlier hides inside its own inflated three-sigma boundary!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly, Kaito! That is known in statistics as outlier masking. Because Tukey's IQR relies strictly on rank percentiles Q1 and Q3, an extreme outlier cannot change the 25th or 75th percentiles. The fences remain completely immovable."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So Tukey's non-parametric fences catch the anomalies that standard deviation completely fails to detect!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Spot on. Robust statistics protects the analyst from self-deception."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Tukey Non-Parametric Outlier Fences</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Tukey (1977)</span>\n    </div>\n    \n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-center mb-3\">\n      <div class=\"text-xs text-[#0e7490] font-bold mb-1\">Interquartile Range ($IQR$):</div>\n      <div class=\"text-sm font-black text-[#151b20]\">\n        $$\\text{IQR} = Q_3 - Q_1 = F^{-1}(0.75) - F^{-1}(0.25)$$\n      </div>\n      <span class=\"text-[10px] text-[#475569] font-sans\">Spans the middle 50% of the empirical distribution. Resistant to extreme tail contamination.</span>\n    </div>\n\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#fff0b9] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-1\">Mild Outliers: Inner Fences ($1.5 \\times \\text{IQR}$)</strong>\n        <div class=\"text-center font-bold my-1 text-[11px]\">\n          $$[Q_1 - 1.5 \\cdot \\text{IQR}, \\quad Q_3 + 1.5 \\cdot \\text{IQR}]$$\n        </div>\n        <span class=\"text-[10px] text-[#334155] font-sans\">For standard normal data, contains 99.3% of records. Flag for inspection.</span>\n      </div>\n\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">Extreme Outliers: Outer Fences ($3.0 \\times \\text{IQR}$)</strong>\n        <div class=\"text-center font-bold my-1 text-[11px]\">\n          $$[Q_1 - 3.0 \\cdot \\text{IQR}, \\quad Q_3 + 3.0 \\cdot \\text{IQR}]$$\n        </div>\n        <span class=\"text-[10px] text-[#334155] font-sans\">Probability $< 0.0002\\%$ under Gaussian. Flag as definitive measurement errors or fraud.</span>\n      </div>\n    </div>\n\n    <div class=\"p-2.5 rounded-lg bg-[#e7f4c8] border border-[#151b20] font-mono text-[11px] text-[#15803d] font-bold text-center\">\n      ✓ Why Tukey Beats $3\\sigma$: Adding a single $10^6$ outlier inflates $\\sigma$ by 100x, masking the outlier in $\\mu \\pm 3\\sigma$!\n    </div>\n  </div>\n</div>"
         }
       },
       {
-        "id": "s6",
-        "title": "Tier 4: Bivariate Association & Monotonicity",
-        "type": "equation",
+        "id": "s7",
+        "title": "Active Checkpoint 1: Identifying Target Leakage in Feature Engineering",
+        "type": "quiz",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Checkpoint 1: Target Leakage",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Active Recall Checkpoint 1! A predictive maintenance data scientist builds a model to forecast wind turbine gearbox failures forty-eight hours in advance. One engineered feature is oil_filter_replacement_count_next_7_days, which achieves an astonishing 0.99 ROC-AUC during five-fold cross-validation. But when deployed live, model performance collapses to near random chance at 0.52 ROC-AUC. What occurred? Select your answer on the slide!"
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Predictive Maintenance Diagnostic</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Self-Assessment</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-xs mb-3\">\n      <p class=\"font-bold text-[#151b20] mb-2 font-sans\">\n        Scenario: A feature <code>oil_filter_replacement_count_next_7_days</code> yields 0.99 ROC-AUC in 5-fold cross-validation, but plummets to 0.52 ROC-AUC upon live deployment.\n      </p>\n      <div class=\"text-[11px] text-[#475569] font-sans\">\n        What structural data pathology caused this catastrophic failure?\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Checkpoint 1",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look closely at the feature name: 'oil_filter_replacement_count_next_7_days.' At time t-zero when making a real-time prediction, do we know what happens in the next seven days?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Of course not! Review the concepts of lookahead target leakage we covered. Click your answer on the checkpoint card below to test your retention!"
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Predictive Maintenance Diagnostic</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Self-Assessment</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-xs mb-3\">\n      <p class=\"font-bold text-[#151b20] mb-2 font-sans\">\n        Scenario: A feature <code>oil_filter_replacement_count_next_7_days</code> yields 0.99 ROC-AUC in 5-fold cross-validation, but plummets to 0.52 ROC-AUC upon live deployment.\n      </p>\n      <div class=\"text-[11px] text-[#475569] font-sans\">\n        What structural data pathology caused this catastrophic failure?\n      </div>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s8",
+        "title": "Tier 4: Bivariate Association & Monotonicity (Pearson vs. Spearman)",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
           "title": "Tier 4: Bivariate Association & Monotonicity",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Tier 4: Bivariate Association & Monotonicity. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$r_{XY} = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum (x_i - \\bar{x})^2 \\sum (y_i - \\bar{y})^2}}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Spearman Rank Correlation</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">($\\rho_s$): Computes Pearson over ordinal ranks $R(x_i)$, robust to nonlinear monotonic relationships and extreme outliers.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Tier 4: Bivariate Association & Monotonicity",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does tier 4: bivariate association & monotonicity protect our system against silent distribution shift in production?"
+              "text": "Tier 4 evaluates dependencies between pairs of features. The classic Pearson correlation coefficient measures strictly linear relationships. However, in modern machine learning, features frequently exhibit nonlinear monotonic relationships—such as exponential cost curves or logarithmic response functions."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "For nonlinear relationships, Pearson correlation severely underestimates association. We deploy the Spearman rank correlation coefficient, which evaluates the Pearson correlation over the ordinal ranks of the variables. Spearman is immune to monotonic transformations and completely impervious to extreme outliers."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$r_{XY} = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum (x_i - \\bar{x})^2 \\sum (y_i - \\bar{y})^2}}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Spearman Rank Correlation</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">($\\rho_s$): Computes Pearson over ordinal ranks $R(x_i)$, robust to nonlinear monotonic relationships and extreme outliers.</span>\n  </div>\n</div>"
-        }
-      },
-      {
-        "id": "s7",
-        "title": "The Pathological Pitfall: Simpson's Paradox",
-        "type": "figure",
-        "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The Pathological Pitfall: Simpson's Paradox",
-          "turns": [
-            {
-              "speaker": "Dr. Nova",
-              "text": "The Pathological Pitfall: Simpson's Paradox. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    Agg[\"Aggregate Dataset View<br/>Higher Dose → Lower Recovery<br/>(Simpson's Reversal: r = -0.62)\"]\n    \n    Agg -->|\"Disaggregate by Severity\"| Sub1[\"Mild Cohort<br/>Higher Dose → Better Recovery<br/>(Subgroup: r = +0.78)\"]\n    Agg -->|\"Disaggregate by Severity\"| Sub2[\"Severe Cohort<br/>Higher Dose → Better Recovery<br/>(Subgroup: r = +0.81)\"]\n\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Agg amber;\n    class Sub1,Sub2 green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">During exploratory correlation</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">analysis, analysts must beware of Simpson&#x27;s Paradox: a statistical condition where a visible trend across an aggregate dataset completely reverses or vanishes when records are disaggregated into sub-populations: The paradox arises when an unobserved confounding variable (e.g., patient illness severity) influences both the feature (physicians assign higher doses to sicker patients) and the outcome (sicker patients have lower baseline recovery rates).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Identifying confounders early</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is a primary objective of EDA.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Linear vs. Monotonic Correlation Formulations</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.4.3</span>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#f0fbfd] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">Pearson Linear Correlation ($r_{XY}$)</strong>\n        <div class=\"text-center font-bold my-1.5 text-[11px]\">\n          $$r_{XY} = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum (x_i - \\bar{x})^2 \\sum (y_i - \\bar{y})^2}}$$\n        </div>\n        <ul class=\"list-disc pl-4 space-y-1 text-[#334155] font-sans text-[11px]\">\n          <li>Measures strictly linear collinearity.</li>\n          <li>Fails on exponential/power laws ($y = e^x \\implies r < 0.85$).</li>\n          <li>Heavily corrupted by a single outlier point.</li>\n        </ul>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Spearman Rank Correlation ($\\rho_s$)</strong>\n        <div class=\"text-center font-bold my-1.5 text-[11px]\">\n          $$\\rho_s = 1 - \\frac{6 \\sum d_i^2}{N(N^2 - 1)}, \\quad d_i = R(x_i) - R(y_i)$$\n        </div>\n        <ul class=\"list-disc pl-4 space-y-1 text-[#334155] font-sans text-[11px]\">\n          <li>Computes correlation over ordinal ranks $R(x_i)$.</li>\n          <li>Detects any monotonic function ($y = e^x \\implies \\rho_s = 1.0$).</li>\n          <li>Completely invariant to monotone transformations.</li>\n        </ul>\n      </div>\n    </div>\n  </div>\n</div>"
         },
         "duo": {
           "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Pathological Pitfall: Simpson's Paradox",
+          "title": "Socratic Debate: Pearson vs Spearman",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for the pathological pitfall: simpson's paradox, how does the architectural flow enforce system stability?"
+              "text": "Dr. Nova, if a feature has an exponential relationship with the target, Pearson correlation might give only point seven, while Spearman gives a perfect one point zero!"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    Agg[\"Aggregate Dataset View<br/>Higher Dose → Lower Recovery<br/>(Simpson's Reversal: r = -0.62)\"]\n    \n    Agg -->|\"Disaggregate by Severity\"| Sub1[\"Mild Cohort<br/>Higher Dose → Better Recovery<br/>(Subgroup: r = +0.78)\"]\n    Agg -->|\"Disaggregate by Severity\"| Sub2[\"Severe Cohort<br/>Higher Dose → Better Recovery<br/>(Subgroup: r = +0.81)\"]\n\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Agg amber;\n    class Sub1,Sub2 green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">During exploratory correlation</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">analysis, analysts must beware of Simpson&#x27;s Paradox: a statistical condition where a visible trend across an aggregate dataset completely reverses or vanishes when records are disaggregated into sub-populations: The paradox arises when an unobserved confounding variable (e.g., patient illness severity) influences both the feature (physicians assign higher doses to sicker patients) and the outcome (sicker patients have lower baseline recovery rates).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Identifying confounders early</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is a primary objective of EDA.</span>\n  </div>\n</div>"
-        }
-      },
-      {
-        "id": "s8",
-        "title": "Interactive Lab: Distribution Profiler & Transformation Lab",
-        "type": "tool",
-        "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Distribution Profiler & Transformation Lab",
-          "turns": [
-            {
-              "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Distribution Profiler & Transformation Lab. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Distribution Profiler &amp; Transformation Lab</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Experiment with distributional skew, log-transformations, and Tukey outlier detection on a live income dataset:</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Configure parameters&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Distribution Profiler & Transformation Lab",
-          "turns": [
+              "text": "Precisely! Because Pearson penalizes the curvature of the exponential, mistaking non-linearity for noise. A decision tree or neural network handles non-linear monotonic relationships effortlessly, so discarding a feature based on low Pearson correlation is a massive mistake!"
+            },
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the distribution profiler & transformation lab located below this player?"
+              "text": "So during feature selection, we should check both Pearson and Spearman to avoid throwing away powerful non-linear predictors!"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Spot on. Pairwise EDA requires multiple lenses."
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Distribution Profiler &amp; Transformation Lab</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Experiment with distributional skew, log-transformations, and Tukey outlier detection on a live income dataset:</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Configure parameters&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Linear vs. Monotonic Correlation Formulations</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Monograph §1.4.3</span>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#f0fbfd] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">Pearson Linear Correlation ($r_{XY}$)</strong>\n        <div class=\"text-center font-bold my-1.5 text-[11px]\">\n          $$r_{XY} = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum (x_i - \\bar{x})^2 \\sum (y_i - \\bar{y})^2}}$$\n        </div>\n        <ul class=\"list-disc pl-4 space-y-1 text-[#334155] font-sans text-[11px]\">\n          <li>Measures strictly linear collinearity.</li>\n          <li>Fails on exponential/power laws ($y = e^x \\implies r < 0.85$).</li>\n          <li>Heavily corrupted by a single outlier point.</li>\n        </ul>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Spearman Rank Correlation ($\\rho_s$)</strong>\n        <div class=\"text-center font-bold my-1.5 text-[11px]\">\n          $$\\rho_s = 1 - \\frac{6 \\sum d_i^2}{N(N^2 - 1)}, \\quad d_i = R(x_i) - R(y_i)$$\n        </div>\n        <ul class=\"list-disc pl-4 space-y-1 text-[#334155] font-sans text-[11px]\">\n          <li>Computes correlation over ordinal ranks $R(x_i)$.</li>\n          <li>Detects any monotonic function ($y = e^x \\implies \\rho_s = 1.0$).</li>\n          <li>Completely invariant to monotone transformations.</li>\n        </ul>\n      </div>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s9",
-        "title": "Production Engineering Implementation",
-        "type": "code",
+        "title": "The Pathological Pitfall: Simpson's Paradox & Confounder Reversals",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Production Engineering Implementation",
+          "title": "Simpson's Paradox & Confounder Reversals",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Production Engineering Implementation. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code>&quot;&quot;&quot;\nHigh-Throughput Vectorized First-Pass EDA Profiler\nComputes four distributional moments, Tukey fences, and null sparsity ratios.\n&quot;&quot;&quot;\n\nfrom __future__ import annotations\nfrom dataclasses import dataclass\nfrom typing import Dict, Any\nimport numpy as np\nimport polars as pl\n\n@dataclass\nclass ColumnProfile:\n    name: str\n    dtype: str\n    null_count: int\n    null_ratio: float\n    mean: float | None\n    median: float | None\n    std_dev: float | None\n    skewness: float | None\n    iqr: float | None\n    outliers_detected: int\n\ndef run_first_pass_profile(df: pl.DataFrame) -&gt; Dict[str, ColumnProfile]:\n    &quot;&quot;&quot;Generates comprehensive diagnostic profile for every column.&quot;&quot;&quot;\n    total_n = len(df)\n    profiles = {}\n\n    for col_name in df.columns:\n        col = df[col_name]\n        null_c = col.null_count()\n        null_r = null_c / total_n\n\n      </code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Production Engineering Implementation",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Perhaps the most dangerous statistical trap in exploratory data analysis is Simpson's Paradox. This occurs when an apparent correlation across an aggregate dataset completely reverses its sign when records are disaggregated into sub-populations."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Consider a clinical trial evaluating drug dosage versus patient recovery. Across the aggregate dataset, higher dosage correlates with lower recovery (r = -0.62). But when stratified by illness severity, higher dosage yields higher recovery in both mild patients (r = +0.78) and severe patients (r = +0.81)! The aggregate negative trend was entirely an artifact of confounding: physicians gave higher doses to sicker patients."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code>&quot;&quot;&quot;\nHigh-Throughput Vectorized First-Pass EDA Profiler\nComputes four distributional moments, Tukey fences, and null sparsity ratios.\n&quot;&quot;&quot;\n\nfrom __future__ import annotations\nfrom dataclasses import dataclass\nfrom typing import Dict, Any\nimport numpy as np\nimport polars as pl\n\n@dataclass\nclass ColumnProfile:\n    name: str\n    dtype: str\n    null_count: int\n    null_ratio: float\n    mean: float | None\n    median: float | None\n    std_dev: float | None\n    skewness: float | None\n    iqr: float | None\n    outliers_detected: int\n\ndef run_first_pass_profile(df: pl.DataFrame) -&gt; Dict[str, ColumnProfile]:\n    &quot;&quot;&quot;Generates comprehensive diagnostic profile for every column.&quot;&quot;&quot;\n    total_n = len(df)\n    profiles = {}\n\n    for col_name in df.columns:\n        col = df[col_name]\n        null_c = col.null_count()\n        null_r = null_c / total_n\n\n      </code></pre>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Confounder-Driven Statistical Inversion</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Simpson (1951), Pearl (2009)</span>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">1. Aggregate View (Naive Regression)</strong>\n        <div class=\"text-sm font-black text-[#c2410c] text-center my-1\">\n          $$\\text{Corr}(\\text{Dose}, \\text{Recovery}) = -0.62$$\n        </div>\n        <p class=\"text-[#334155] font-sans text-[11px]\">\n          Naive conclusion: Drug is toxic and decreases survival!\n        </p>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">2. Stratified View (Disaggregated)</strong>\n        <div class=\"text-[11px] font-bold text-[#15803d] space-y-1 my-1\">\n          <div>• Mild Illness Cohort: $r = +0.78$</div>\n          <div>• Severe Illness Cohort: $r = +0.81$</div>\n        </div>\n        <p class=\"text-[#334155] font-sans text-[11px]\">\n          True reality: Drug is beneficial in every single patient group!\n        </p>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#fffaf0] border border-[#151b20] font-mono text-xs\">\n      <strong class=\"text-[#b45309] block mb-1\">The Causal Mechanism: Confounding Variable $Z$</strong>\n      <p class=\"text-[#334155] font-sans text-[11px]\">\n        Patient illness severity $Z$ affects both treatment assignment $X$ (doctors prescribe higher doses to critical patients) and recovery outcome $Y$ (critical patients have lower survival). Unstratified global metrics obscure this reality. Always profile stratified subgroups!\n      </p>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Simpson's Reversal",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, this is terrifying! If a data scientist simply trains an unstratified model on the raw table, the model will learn that giving more medication kills patients!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yes, Kaito! And in an automated clinical decision support system, the algorithm would recommend withholding life-saving medication from the sickest patients. That is why Judea Pearl emphasizes causal DAGs and stratified exploratory profiling."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So during EDA, whenever we see a counterintuitive correlation, the first thing we must do is stratify across potential confounding covariates!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Stratified slicing is the antidote to Simpson's Paradox."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Confounder-Driven Statistical Inversion</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Simpson (1951), Pearl (2009)</span>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">1. Aggregate View (Naive Regression)</strong>\n        <div class=\"text-sm font-black text-[#c2410c] text-center my-1\">\n          $$\\text{Corr}(\\text{Dose}, \\text{Recovery}) = -0.62$$\n        </div>\n        <p class=\"text-[#334155] font-sans text-[11px]\">\n          Naive conclusion: Drug is toxic and decreases survival!\n        </p>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">2. Stratified View (Disaggregated)</strong>\n        <div class=\"text-[11px] font-bold text-[#15803d] space-y-1 my-1\">\n          <div>• Mild Illness Cohort: $r = +0.78$</div>\n          <div>• Severe Illness Cohort: $r = +0.81$</div>\n        </div>\n        <p class=\"text-[#334155] font-sans text-[11px]\">\n          True reality: Drug is beneficial in every single patient group!\n        </p>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#fffaf0] border border-[#151b20] font-mono text-xs\">\n      <strong class=\"text-[#b45309] block mb-1\">The Causal Mechanism: Confounding Variable $Z$</strong>\n      <p class=\"text-[#334155] font-sans text-[11px]\">\n        Patient illness severity $Z$ affects both treatment assignment $X$ (doctors prescribe higher doses to critical patients) and recovery outcome $Y$ (critical patients have lower survival). Unstratified global metrics obscure this reality. Always profile stratified subgroups!\n      </p>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s10",
-        "title": "Summary & Next Steps",
-        "type": "bullets",
+        "title": "Interactive Lab: In-Browser Distribution Profiler & Transformation Lab",
+        "type": "tool",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Summary & Next Steps",
+          "title": "Interactive Lab: Distribution Profiler",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Summary & Next Steps. Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Exploratory Data Analysis (EDA)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Why Exploratory Data Analysis (EDA) is essential to avoid fitting models to collection artifacts.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The 4-Tier Diagnostic Framework</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">shape/memory, statistical moments, Tukey outlier fences, and bivariate associations.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Simpson&#x27;s Paradox</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The trap of Simpson&#x27;s Paradox and how confounding covariates reverse apparent correlation trends.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Summary & Next Steps",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the single most vital principle for data engineers to remember from this lesson?"
+              "text": "We have docked at the Distribution Profiler and Transformation Lab! Look at the control selectors above me: you can toggle between Right-Skewed household incomes, Symmetric Gaussian adult heights, and a Bimodal multi-cluster mixture."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
+              "text": "Notice the reference dashed lines on the histogram: in the raw skewed distribution, the red dashed line for sample mean is pulled far to the right of the green line for median. Now select Logarithmic Normalization—watch how the distribution collapses into a symmetric Gaussian bell and eliminates Tukey outliers!"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Exploratory Data Analysis (EDA)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Why Exploratory Data Analysis (EDA) is essential to avoid fitting models to collection artifacts.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The 4-Tier Diagnostic Framework</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">shape/memory, statistical moments, Tukey outlier fences, and bivariate associations.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Simpson&#x27;s Paradox</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The trap of Simpson&#x27;s Paradox and how confounding covariates reverse apparent correlation trends.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">🔬 Interactive Distribution Profiler</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Live Simulator</span>\n    </div>\n    <p class=\"text-xs text-[#151b20]/80 font-sans mb-3\">\n      Observe how distribution archetypes distort central moments and test variance-stabilizing transforms in real time:\n    </p>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Distribution Profiler",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at the canvas! When Right-Skewed is selected on Raw Scale, the mean is over one hundred thousand dollars, while the median is only eighty-seven thousand, and skewness is positive one point four!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly, Kaito. Now switch the Mathematical Transform selector to 'Logarithmic Normalization: log(x + 1)'. Look at what happens to the histogram!"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "The red and green dashed lines snap together! Skewness drops to near zero, and the Tukey outlier count drops to zero! That visually proves why log transforms are so powerful."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Try testing the Bimodal mixture next to see why single-mean statistics fail on multi-cluster populations."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">🔬 Interactive Distribution Profiler</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Live Simulator</span>\n    </div>\n    <p class=\"text-xs text-[#151b20]/80 font-sans mb-3\">\n      Observe how distribution archetypes distort central moments and test variance-stabilizing transforms in real time:\n    </p>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s11",
+        "title": "Cross-Validation Leakage Mechanics: Temporal Walk-Forward & Group Partitioning",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Cross-Validation Leakage Mechanics",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "A critical objective of exploratory data analysis is understanding the data collection topology to prevent cross-validation leakage. In introductory machine learning courses, students use random k-fold cross-validation. But in real-world systems, random splitting frequently causes catastrophic data leakage."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "If your dataset is time-series, random splitting samples future events into the training fold to predict past test events—a fatal temporal lookahead violation. You must deploy Rolling Window Walk-Forward splits. Similarly, if multiple records belong to the same customer or patient, random splitting leaks identity features across folds, mandating GroupKFold."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Data Partitioning &amp; Leakage Topology</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Kaufman et al. (2012)</span>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">Random K-Fold Trap (Naive i.i.d.)</strong>\n        <p class=\"text-[#334155] font-sans text-[11px] leading-relaxed\">\n          Assumes independent and identically distributed samples ($X_i \\perp X_j$).<br/>\n          • <strong>Time Series:</strong> Leaks future trends ($t+1$) to predict past ($t-1$).<br/>\n          • <strong>Multi-record Entities:</strong> Leaks patient/user identity markers.\n        </p>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Topological Partitioning Strategies</strong>\n        <ul class=\"list-disc pl-4 space-y-1 text-[#334155] font-sans text-[11px]\">\n          <li><strong>TimeSeriesSplit (Walk-Forward):</strong> Train strictly on $[0, t]$, test on $(t, t+\\Delta]$. Never look forward.</li>\n          <li><strong>GroupKFold:</strong> Partition strictly by <code>user_id</code> or <code>patient_id</code>. Zero group overlap.</li>\n          <li><strong>StratifiedGroupKFold:</strong> Preserves target class balance while isolating entity groups.</li>\n        </ul>\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Cross-Validation Traps",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, so if an e-commerce model achieves ninety-eight percent accuracy in cross-validation, but fifty percent when deployed live, the culprit is almost always data leakage during splitting?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Nine times out of ten, Kaito! If random splitting placed purchases from the exact same user on Tuesday into the training set and on Wednesday into the test set, the model doesn't generalize—it just memorizes that specific user's shopping basket!"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And in production, when a brand-new user arrives, the model has never seen them before and completely collapses!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Cross-validation must rigorously simulate the real-world operational reality of inference time."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Data Partitioning &amp; Leakage Topology</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Kaufman et al. (2012)</span>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">Random K-Fold Trap (Naive i.i.d.)</strong>\n        <p class=\"text-[#334155] font-sans text-[11px] leading-relaxed\">\n          Assumes independent and identically distributed samples ($X_i \\perp X_j$).<br/>\n          • <strong>Time Series:</strong> Leaks future trends ($t+1$) to predict past ($t-1$).<br/>\n          • <strong>Multi-record Entities:</strong> Leaks patient/user identity markers.\n        </p>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Topological Partitioning Strategies</strong>\n        <ul class=\"list-disc pl-4 space-y-1 text-[#334155] font-sans text-[11px]\">\n          <li><strong>TimeSeriesSplit (Walk-Forward):</strong> Train strictly on $[0, t]$, test on $(t, t+\\Delta]$. Never look forward.</li>\n          <li><strong>GroupKFold:</strong> Partition strictly by <code>user_id</code> or <code>patient_id</code>. Zero group overlap.</li>\n          <li><strong>StratifiedGroupKFold:</strong> Preserves target class balance while isolating entity groups.</li>\n        </ul>\n      </div>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "High-Density Visual Sampling: Hexagonal Binning & KDE Contours",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "High-Density Visual Sampling",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "When plotting datasets with more than fifty thousand observations, standard scatter plots break down completely due to visual overplotting. When thousands of points render on top of each other, dense regions appear identical to moderate regions, creating visual saturation."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "As demonstrated by Battle and Heer in their study of exploratory visual analysis, elite practitioners deploy density-preserving visualization methods. We use hexagonal binning, alpha transparency blending, and two-dimensional kernel density estimation contours to reveal the true underlying bivariate probability density."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Visual Scalability at Scale ($N > 50,000$)</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Battle &amp; Heer (IEEE TVCG 2019)</span>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">The Overplotting Trap</strong>\n        <p class=\"text-[#334155] font-sans text-[11px]\">\n          Raw scatter plots with opaque markers. 100 points and 100,000 points look identical in solid ink blobs, concealing multi-modal clusters and true density peaks.\n        </p>\n      </div>\n\n      <div class=\"p-3 bg-[#c9f3f4] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">Hexagonal Binning</strong>\n        <p class=\"text-[#334155] font-sans text-[11px]\">\n          Partitions 2D coordinate space into regular hexagons. Color intensity represents logarithmic point count: $\\log_{10}(N_{\\text{bin}} + 1)$. Preserves scale without lag.\n        </p>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">2D KDE Contours</strong>\n        <p class=\"text-[#334155] font-sans text-[11px]\">\n          Estimates continuous probability density $\\hat{f}(x, y)$ using Gaussian kernels. Surfaces topological ridges, saddles, and non-linear cluster boundaries.\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Overplotting Trap",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, I remember plotting a million rows in Matplotlib once. My browser froze, and when it finally rendered, it was just a solid blue rectangle!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "A classic beginner mistake, Kaito! Rendering one million SVG or canvas elements melts client hardware and provides zero statistical insight. Hexagonal binning aggregates points into a few hundred hexagonal counters in O(N) time."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And the visual rendering stays crisp, fast, and accurately depicts point density across multiple orders of magnitude!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Visual scalability is a core engineering requirement for big data exploration."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Visual Scalability at Scale ($N > 50,000$)</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Battle &amp; Heer (IEEE TVCG 2019)</span>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 font-mono text-xs mb-3\">\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">The Overplotting Trap</strong>\n        <p class=\"text-[#334155] font-sans text-[11px]\">\n          Raw scatter plots with opaque markers. 100 points and 100,000 points look identical in solid ink blobs, concealing multi-modal clusters and true density peaks.\n        </p>\n      </div>\n\n      <div class=\"p-3 bg-[#c9f3f4] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">Hexagonal Binning</strong>\n        <p class=\"text-[#334155] font-sans text-[11px]\">\n          Partitions 2D coordinate space into regular hexagons. Color intensity represents logarithmic point count: $\\log_{10}(N_{\\text{bin}} + 1)$. Preserves scale without lag.\n        </p>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">2D KDE Contours</strong>\n        <p class=\"text-[#334155] font-sans text-[11px]\">\n          Estimates continuous probability density $\\hat{f}(x, y)$ using Gaussian kernels. Surfaces topological ridges, saddles, and non-linear cluster boundaries.\n        </p>\n      </div>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: Group-Based Splitting vs. Random Splitting (Clinical Vision)",
+        "type": "quiz",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Checkpoint 2: Clinical Vision Partitioning",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Active Recall Checkpoint 2! In a hospital chest X-ray classification dataset containing one hundred thousand scans from twenty-five thousand unique patients, each patient has an average of four sequential radiographs taken over several months. Why is standard random i.i.d. train-test splitting catastrophic for evaluating model generalization? Make your choice on the slide!"
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Clinical Radiograph Scenario</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Self-Assessment</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-xs mb-3\">\n      <p class=\"font-bold text-[#151b20] mb-2 font-sans\">\n        Scenario: A deep convolutional neural network is trained on 100,000 chest radiographs from 25,000 patients (4 scans/patient). The data engineering team performs standard random 80/20 train-test splitting.\n      </p>\n      <div class=\"text-[11px] text-[#475569] font-sans\">\n        Why does this evaluation fail to measure true clinical generalization?\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Checkpoint 2",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Twenty-five thousand patients, but one hundred thousand scans! If you do random splitting, what happens to scans belonging to the exact same patient?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Review how deep vision models learn patient-specific markers like pacemaker shapes, bone density, or jewelry. Select the correct option below to analyze the clinical hazard!"
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Clinical Radiograph Scenario</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Self-Assessment</span>\n    </div>\n    <div class=\"p-3 bg-[#f0fbfd] rounded-lg border border-[#151b20] font-mono text-xs mb-3\">\n      <p class=\"font-bold text-[#151b20] mb-2 font-sans\">\n        Scenario: A deep convolutional neural network is trained on 100,000 chest radiographs from 25,000 patients (4 scans/patient). The data engineering team performs standard random 80/20 train-test splitting.\n      </p>\n      <div class=\"text-[11px] text-[#475569] font-sans\">\n        Why does this evaluation fail to measure true clinical generalization?\n      </div>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Modern Columnar EDA Tooling: Polars, DuckDB & In-Memory Profiles",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Modern Columnar EDA Tooling",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Historically, exploratory data analysis was bottlenecked by single-threaded, row-heavy libraries. In Pandas, running descriptive statistics across a twenty-gigabyte table often crashed Jupyter notebooks with out-of-memory errors."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Modern high-performance data engineering leverages Polars and DuckDB. Built from the ground up on Apache Arrow in Rust and C++, these engines compute statistical moments, null matrices, and quantile fences in parallel across multi-core CPUs using vectorized SIMD instructions without copying data into Python memory."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Next-Generation Columnar EDA Architectures</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">McKinney (2010), Ritchie (2021)</span>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">Legacy Pandas / Single-Core Profiling</strong>\n        <ul class=\"list-disc pl-4 space-y-1 text-[#334155] font-sans text-[11px]\">\n          <li>Python object pointer arrays create 5x-10x memory bloat.</li>\n          <li>GIL restricts moment calculations to a single CPU thread.</li>\n          <li>Full table eager loading crashes on datasets larger than RAM.</li>\n        </ul>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Modern Polars &amp; DuckDB Profiling</strong>\n        <ul class=\"list-disc pl-4 space-y-1 text-[#334155] font-sans text-[11px]\">\n          <li>Zero-copy Apache Arrow contiguous memory buffers in RAM.</li>\n          <li>Work-stealing threadpool executes moment filters across all CPU cores.</li>\n          <li>Out-of-core streaming evaluates multi-GB tables in sub-second times.</li>\n        </ul>\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Speed of Polars",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, the difference is night and day! Computing quantiles and skewness across fifty million rows takes five minutes in Pandas, but only two seconds in Polars!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly, Kaito! Because Polars writes zero intermediate Python objects. It compiles the descriptive statistics directly into a vectorized Arrow execution plan executed in parallel Rust."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And that means we can run deep forensic EDA on massive production tables without waiting for hours or crashing our development machines!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Fast profiling means thorough profiling."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Next-Generation Columnar EDA Architectures</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">McKinney (2010), Ritchie (2021)</span>\n    </div>\n    \n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">Legacy Pandas / Single-Core Profiling</strong>\n        <ul class=\"list-disc pl-4 space-y-1 text-[#334155] font-sans text-[11px]\">\n          <li>Python object pointer arrays create 5x-10x memory bloat.</li>\n          <li>GIL restricts moment calculations to a single CPU thread.</li>\n          <li>Full table eager loading crashes on datasets larger than RAM.</li>\n        </ul>\n      </div>\n\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Modern Polars &amp; DuckDB Profiling</strong>\n        <ul class=\"list-disc pl-4 space-y-1 text-[#334155] font-sans text-[11px]\">\n          <li>Zero-copy Apache Arrow contiguous memory buffers in RAM.</li>\n          <li>Work-stealing threadpool executes moment filters across all CPU cores.</li>\n          <li>Out-of-core streaming evaluates multi-GB tables in sub-second times.</li>\n        </ul>\n      </div>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Engineering Lab: Vectorized First-Pass Profiler in Polars",
+        "type": "code",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Engineering Lab: Polars Profiler",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us examine production code that implements an automated First-Pass Diagnostic Profiler using Polars. Notice how we compute null counts, sample means, medians, standard deviations, standardized skewness, and Tukey outlier counts."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Every column profile is evaluated in parallel. When a column is numeric, we compute quantiles Q1 and Q3, construct the IQR fences, and filter extreme outliers without ever converting data to Python lists or slow dictionaries."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Vectorized Diagnostic Profiling Engine</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#e7f4c8] border border-[#151b20] font-bold text-[#15803d]\">Production Grade</span>\n    </div>\n    <pre class=\"bg-[#f0fbfd] p-3 rounded-xl border-2 border-[#151b20] overflow-x-auto text-[11px] font-mono leading-relaxed text-[#151b20]\"><code>import polars as pl\nfrom dataclasses import dataclass\n\n@dataclass\nclass ColumnProfile:\n    name: str; dtype: str; null_count: int; null_ratio: float\n    mean: float | None; median: float | None; skewness: float | None; outliers: int\n\ndef profile_dataset(df: pl.DataFrame) -> dict[str, ColumnProfile]:\n    total_n = len(df)\n    profiles = {}\n    for name in df.columns:\n        col = df[name]\n        null_c = col.null_count()\n        if col.dtype.is_numeric() and null_c < total_n:\n            clean = col.drop_nulls()\n            m = float(clean.mean())\n            med = float(clean.median())\n            s = float(clean.std()) if len(clean) > 1 else 0.0\n            skew = float(((clean - m) / s).pow(3).mean()) if s > 0 else 0.0\n            \n            # Tukey IQR Outlier Fences\n            q1, q3 = float(clean.quantile(0.25)), float(clean.quantile(0.75))\n            iqr = q3 - q1\n            outlier_c = len(clean.filter((clean < q1 - 1.5*iqr) | (clean > q3 + 1.5*iqr)))\n            \n            profiles[name] = ColumnProfile(name, str(col.dtype), null_c, null_c/total_n, m, med, skew, outlier_c)\n    return profiles</code></pre>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Production Profiler",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, this script encapsulates everything we covered today: null ratios, central moments, standardized skewness, and Tukey outlier counts all computed cleanly in Polars!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Indeed, Kaito. By running this function as an automated step in your CI CD pipeline or Airflow DAG, your team automatically flags skewed distributions, sentinel null values, and extreme outliers before any model training runs."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Defensive EDA converted into automated software engineering!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the standard of excellence in Data-Centric AI."
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-3\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase tracking-wider\">Vectorized Diagnostic Profiling Engine</span>\n      <span class=\"text-[11px] font-mono px-2 py-0.5 rounded bg-[#e7f4c8] border border-[#151b20] font-bold text-[#15803d]\">Production Grade</span>\n    </div>\n    <pre class=\"bg-[#f0fbfd] p-3 rounded-xl border-2 border-[#151b20] overflow-x-auto text-[11px] font-mono leading-relaxed text-[#151b20]\"><code>import polars as pl\nfrom dataclasses import dataclass\n\n@dataclass\nclass ColumnProfile:\n    name: str; dtype: str; null_count: int; null_ratio: float\n    mean: float | None; median: float | None; skewness: float | None; outliers: int\n\ndef profile_dataset(df: pl.DataFrame) -> dict[str, ColumnProfile]:\n    total_n = len(df)\n    profiles = {}\n    for name in df.columns:\n        col = df[name]\n        null_c = col.null_count()\n        if col.dtype.is_numeric() and null_c < total_n:\n            clean = col.drop_nulls()\n            m = float(clean.mean())\n            med = float(clean.median())\n            s = float(clean.std()) if len(clean) > 1 else 0.0\n            skew = float(((clean - m) / s).pow(3).mean()) if s > 0 else 0.0\n            \n            # Tukey IQR Outlier Fences\n            q1, q3 = float(clean.quantile(0.25)), float(clean.quantile(0.75))\n            iqr = q3 - q1\n            outlier_c = len(clean.filter((clean < q1 - 1.5*iqr) | (clean > q3 + 1.5*iqr)))\n            \n            profiles[name] = ColumnProfile(name, str(col.dtype), null_c, null_c/total_n, m, med, skew, outlier_c)\n    return profiles</code></pre>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Capstone Summary, 5 Golden Rules & Forward Transition to Lesson 1.6",
+        "type": "title",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Capstone Summary & Forward Transition",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Congratulations on completing Lesson 1.5: Exploring a Dataset and First-Pass Diagnostics. We have formalized Tukey's exploratory philosophy, mastered the 4-tier diagnostic framework, derived formulas for four statistical moments, deployed Tukey outlier fences, exposed Simpson's Paradox, and avoided cross-validation leakage."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In Lesson 1.6, we explore how clean, profiled datasets are mobilized across real-world industry settings in Machine Learning, Statistical Modeling, and Enterprise Decision Systems. Join us as we examine how datasets drive production value across technology, finance, and healthcare!"
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7]\">\n    <div class=\"flex items-center gap-2 mb-3 pb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"text-xl\">🏆</span>\n      <h3 class=\"font-black text-lg text-[#151b20]\">The 5 Golden Rules of Exploratory Data Analysis</h3>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#f0fbfd] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">1. Verify Semantic Dtypes in Tier 1</strong>\n        <p class=\"text-[#334155] font-sans\">Never allow parser auto-coercion to treat categorical IDs or zip codes as numeric floats.</p>\n      </div>\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">2. Respect Skewness ($\\gamma_1 > 1.0$)</strong>\n        <p class=\"text-[#334155] font-sans\">When Mean >> Median, abandon Gaussian models. Deploy log transforms and report non-parametric medians.</p>\n      </div>\n      <div class=\"p-3 bg-[#fff0b9] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-1\">3. Tukey Fences Over $3\\sigma$ Outliers</strong>\n        <p class=\"text-[#334155] font-sans\">Use IQR-based inner ($1.5\text{IQR}$) and outer ($3.0\text{IQR}$) fences to defeat outlier masking effects.</p>\n      </div>\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">4. Stratify Against Simpson's Paradox</strong>\n        <p class=\"text-[#334155] font-sans\">Always slice bivariate correlations across key confounding covariates to prevent sign reversal errors.</p>\n      </div>\n    </div>\n    <div class=\"mt-4 p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20] font-mono text-xs text-center font-bold text-[#15803d]\">\n      ✓ Rule 5: Partition cross-validation topologically (TimeSeriesSplit or GroupKFold) to prevent leakage.\n    </div>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-3\">\n    <div>\n      <span class=\"font-mono text-xs font-black text-[#b45309] uppercase block\">Up Next in Track 1</span>\n      <h4 class=\"font-black text-sm text-[#151b20]\">Lesson 1.6: Uses of Datasets in Modeling &amp; Industry Applications</h4>\n    </div>\n    <a href=\"../06-uses-of-datasets/\" class=\"inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#151b20] text-[#fffdf7] font-mono text-xs font-bold hover:bg-[#ffc83e] hover:text-[#151b20] transition border-2 border-[#151b20] shadow-[2px_2px_0px_#22bfd7]\">\n      <span>Proceed to Lesson 1.6 →</span>\n    </a>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Lesson 1.5 Synthesis",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, what an eye-opening lecture! Learning how the mean can be fooled by skewness, how standard deviation masks outliers, and how Simpson's Paradox can completely reverse a medical trial has forever changed how I look at datasets."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the mark of a true data scientist, Kaito. Modeling is easy; understanding the true generative process and topology of your data is where the real intelligence lives."
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And in Lesson 1.6, we will see how these carefully profiled datasets are mobilized in production modeling and industry systems!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Join us in Lesson 1.6 to explore real-world dataset mobilization across enterprise industries!"
+            }
+          ],
+          "contentHtml": "<div class=\"space-y-4\">\n  <div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7]\">\n    <div class=\"flex items-center gap-2 mb-3 pb-2 border-b-2 border-[#151b20]/15\">\n      <span class=\"text-xl\">🏆</span>\n      <h3 class=\"font-black text-lg text-[#151b20]\">The 5 Golden Rules of Exploratory Data Analysis</h3>\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n      <div class=\"p-3 bg-[#f0fbfd] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">1. Verify Semantic Dtypes in Tier 1</strong>\n        <p class=\"text-[#334155] font-sans\">Never allow parser auto-coercion to treat categorical IDs or zip codes as numeric floats.</p>\n      </div>\n      <div class=\"p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">2. Respect Skewness ($\\gamma_1 > 1.0$)</strong>\n        <p class=\"text-[#334155] font-sans\">When Mean >> Median, abandon Gaussian models. Deploy log transforms and report non-parametric medians.</p>\n      </div>\n      <div class=\"p-3 bg-[#fff0b9] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block mb-1\">3. Tukey Fences Over $3\\sigma$ Outliers</strong>\n        <p class=\"text-[#334155] font-sans\">Use IQR-based inner ($1.5\text{IQR}$) and outer ($3.0\text{IQR}$) fences to defeat outlier masking effects.</p>\n      </div>\n      <div class=\"p-3 bg-[#ffd8ce] rounded-xl border border-[#151b20]\">\n        <strong class=\"text-[#c2410c] block mb-1\">4. Stratify Against Simpson's Paradox</strong>\n        <p class=\"text-[#334155] font-sans\">Always slice bivariate correlations across key confounding covariates to prevent sign reversal errors.</p>\n      </div>\n    </div>\n    <div class=\"mt-4 p-3 bg-[#e7f4c8] rounded-xl border border-[#151b20] font-mono text-xs text-center font-bold text-[#15803d]\">\n      ✓ Rule 5: Partition cross-validation topologically (TimeSeriesSplit or GroupKFold) to prevent leakage.\n    </div>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-3\">\n    <div>\n      <span class=\"font-mono text-xs font-black text-[#b45309] uppercase block\">Up Next in Track 1</span>\n      <h4 class=\"font-black text-sm text-[#151b20]\">Lesson 1.6: Uses of Datasets in Modeling &amp; Industry Applications</h4>\n    </div>\n    <a href=\"../06-uses-of-datasets/\" class=\"inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#151b20] text-[#fffdf7] font-mono text-xs font-bold hover:bg-[#ffc83e] hover:text-[#151b20] transition border-2 border-[#151b20] shadow-[2px_2px_0px_#22bfd7]\">\n      <span>Proceed to Lesson 1.6 →</span>\n    </a>\n  </div>\n</div>"
         }
       }
     ]
@@ -5000,246 +5354,309 @@ var ALL_CURRICULUM = {
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 1.6. Today we examine uses of datasets in modeling & industry applications, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 1: Foundations</span>\n    <span>•</span>\n    <span>Lesson 1.6</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Uses of Datasets in Modeling &amp; Industry Applications\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into uses of datasets in modeling &amp; industry applications with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Uses of Datasets in Modeling & Industry Applications",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 1.6?"
+              "text": "Welcome to Lesson 1.6 of Dataset Fundamentals: Uses of Datasets in Modeling and Industry Applications. A dataset is never an isolated academic artifact; it is an informational asset engineered to optimize automated operational decisions, allocate capital, or test clinical hypotheses."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 1.6. Today we examine uses of datasets in modeling & industry applications, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "Grounding our analysis in Section 1.5 of the Springer Nature monograph and Vladimir Vapnik's Statistical Learning Theory, today we bridge raw observational data to empirical risk minimization. We explore sectoral decision topologies across finance, healthcare, and autonomy, dissect the three deadly vectors of data leakage, formulate asymmetric financial cost matrices, and master leakage-free production pipelines."
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 1: Foundations</span>\n    <span>•</span>\n    <span>Lesson 1.6</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Uses of Datasets in Modeling &amp; Industry Applications\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into uses of datasets in modeling &amp; industry applications with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 1: Foundations of Data-Centric AI</span>\n    <span>•</span>\n    <span>Lesson 1.6</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Uses of Datasets in Modeling &amp; Industry Applications\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Bridging observational records to empirical risk minimization, asymmetric economic cost matrices, and leakage-free cross-validation architectures.\n  </p>\n  <div class=\"grid grid-cols-2 md:grid-cols-4 gap-3 pt-3 text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Foundation</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Empirical Risk</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Surrogate loss minimization over finite empirical samples.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Hygiene</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Zero Leakage</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Eliminating preprocessing, group, and lookahead leakage.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#c2410c] text-[10px] uppercase\">Economics</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Asymmetric Costs</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Optimizing decision thresholds for maximum economic utility.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#15803d] text-[10px] uppercase\">Production</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Defensive Pipelines</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Strict transformer isolation with Scikit-learn and Polars.</div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Why Datasets Exist to Drive Operational Action",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, in modern machine learning engineering, why do models with ninety-five percent accuracy on test sets constantly fail when deployed into production systems?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because benchmark accuracy completely ignores operational reality, Kaito! First, symmetric loss functions treat false positives and false negatives identically, when in real life their business or clinical costs are wildly asymmetric. Second, subtle data leakage during preprocessing artificially inflates offline test metrics. Today, we bridge data curation directly to decision science."
+            }
+          ],
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 1: Foundations of Data-Centric AI</span>\n    <span>•</span>\n    <span>Lesson 1.6</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Uses of Datasets in Modeling &amp; Industry Applications\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Bridging observational records to empirical risk minimization, asymmetric economic cost matrices, and leakage-free cross-validation architectures.\n  </p>\n  <div class=\"grid grid-cols-2 md:grid-cols-4 gap-3 pt-3 text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Foundation</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Empirical Risk</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Surrogate loss minimization over finite empirical samples.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Hygiene</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Zero Leakage</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Eliminating preprocessing, group, and lookahead leakage.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#c2410c] text-[10px] uppercase\">Economics</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Asymmetric Costs</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Optimizing decision thresholds for maximum economic utility.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#15803d] text-[10px] uppercase\">Production</div>\n      <div class=\"font-black text-[#151b20] text-sm mt-0.5\">Defensive Pipelines</div>\n      <div class=\"text-[#475569] text-[11px] mt-1 font-sans\">Strict transformer isolation with Scikit-learn and Polars.</div>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s2",
         "title": "The Value Creation Cycle: From Records to Action",
-        "type": "equation",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
           "title": "The Value Creation Cycle: From Records to Action",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Value Creation Cycle: From Records to Action. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{R}(f_\\theta) = \\mathbb{E}_{(\\mathbf{x}, y) \\sim \\mathcal{P}} \\Big[ \\mathcal{L}(f_\\theta(\\mathbf{x}), y) \\Big]$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\hat{\\theta} = \\arg\\min_{\\theta} \\left( \\frac{1}{N} \\sum_{i=1}^N \\mathcal{L}(f_\\theta(\\mathbf{x}_i), y_i) + \\lambda \\Omega(\\theta) \\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">In real-world predictive workflows (e.g., fraud, churn, demand forecasting), always partition training, validation, and test sets strictly along the time dimension. Random cross-validation leaks future trends into past predictions, producing fictitio</span>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Value Creation Cycle: From Records to Action",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does the value creation cycle: from records to action protect our system against silent distribution shift in production?"
+              "text": "Every enterprise dataset exists within a closed-loop operational value creation cycle. It begins with raw physical phenomena: web traffic clicks, patient vital signs, or high-frequency financial order book ticks. In Stage Two, sensors and ETL pipelines collect and audit schema invariants."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Stage Three transforms raw attributes into vectorized numerical feature representations. Stage Four performs Empirical Risk Minimization to learn an optimal decision boundary. Crucially, Stage Five executes production interventions: approving a credit line, triggering an ICU sepsis alert, or routing an autonomous vehicle. The resulting operational telemetry feeds directly back into future observations, creating a dynamic closed feedback loop."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{R}(f_\\theta) = \\mathbb{E}_{(\\mathbf{x}, y) \\sim \\mathcal{P}} \\Big[ \\mathcal{L}(f_\\theta(\\mathbf{x}), y) \\Big]$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\hat{\\theta} = \\arg\\min_{\\theta} \\left( \\frac{1}{N} \\sum_{i=1}^N \\mathcal{L}(f_\\theta(\\mathbf{x}_i), y_i) + \\lambda \\Omega(\\theta) \\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">In real-world predictive workflows (e.g., fraud, churn, demand forecasting), always partition training, validation, and test sets strictly along the time dimension. Random cross-validation leaks future trends into past predictions, producing fictitio</span>\n</div>"
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">The Closed-Loop Value Creation Cycle</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">5-Stage Operational Pipeline</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-5 gap-2.5 font-mono text-xs text-center\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex flex-col justify-between\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Stage 1</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Physical Reality</div>\n      <div class=\"text-[#334155] text-[11px] font-sans\">Customers, patients, transactions, lidar sensor returns.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex flex-col justify-between\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Stage 2</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Quality Gate</div>\n      <div class=\"text-[#334155] text-[11px] font-sans\">Schema validation, nullity bounds, defensive type enforcement.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex flex-col justify-between\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Stage 3</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Feature Space</div>\n      <div class=\"text-[#334155] text-[11px] font-sans\">Aggregations, temporal embeddings, entity vectors \\(\\mathbf{x} \\in \\mathbb{R}^d\\).</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex flex-col justify-between\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Stage 4</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Risk Minimization</div>\n      <div class=\"text-[#334155] text-[11px] font-sans\">Empirical loss optimization: \\(\\hat{\\theta} = \\arg\\min_\\theta \\sum \\mathcal{L}\\).</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex flex-col justify-between\">\n      <div class=\"font-bold text-[#15803d] text-[10px] uppercase\">Stage 5</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Action &amp; Telemetry</div>\n      <div class=\"text-[#334155] text-[11px] font-sans\">Execute retention offer, triage patient, closed telemetry feedback.</div>\n    </div>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#f6f0dc] border-2 border-[#151b20] text-xs text-[#151b20] leading-relaxed\">\n    <strong class=\"text-[#0e7490] font-black\">Feedback Invariant:</strong> Machine learning models in production are never passive observers. An automated credit fraud block directly alters fraudster tactics; a marketing retention campaign alters subscriber churn probability. Datasets collected after Stage 5 reflect the model's own historical interventions.\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Telemetry Feedback Trap",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Stage Five has an arrow looping all the way back to Stage One labeled 'Closed-Loop Telemetry'. Why is that feedback arrow so dangerous for machine learning models?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because when models act in production, they alter the very environment they are observing! If a fraud algorithm declines certain merchant categories, future logs contain zero positive transactions from those merchants. If you retrain naively on that new telemetry, you inherit severe survival bias. Datasets must track intervention policies as distinct causal variables."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">The Closed-Loop Value Creation Cycle</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">5-Stage Operational Pipeline</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-5 gap-2.5 font-mono text-xs text-center\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex flex-col justify-between\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Stage 1</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Physical Reality</div>\n      <div class=\"text-[#334155] text-[11px] font-sans\">Customers, patients, transactions, lidar sensor returns.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex flex-col justify-between\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Stage 2</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Quality Gate</div>\n      <div class=\"text-[#334155] text-[11px] font-sans\">Schema validation, nullity bounds, defensive type enforcement.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex flex-col justify-between\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Stage 3</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Feature Space</div>\n      <div class=\"text-[#334155] text-[11px] font-sans\">Aggregations, temporal embeddings, entity vectors \\(\\mathbf{x} \\in \\mathbb{R}^d\\).</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex flex-col justify-between\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Stage 4</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Risk Minimization</div>\n      <div class=\"text-[#334155] text-[11px] font-sans\">Empirical loss optimization: \\(\\hat{\\theta} = \\arg\\min_\\theta \\sum \\mathcal{L}\\).</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex flex-col justify-between\">\n      <div class=\"font-bold text-[#15803d] text-[10px] uppercase\">Stage 5</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Action &amp; Telemetry</div>\n      <div class=\"text-[#334155] text-[11px] font-sans\">Execute retention offer, triage patient, closed telemetry feedback.</div>\n    </div>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#f6f0dc] border-2 border-[#151b20] text-xs text-[#151b20] leading-relaxed\">\n    <strong class=\"text-[#0e7490] font-black\">Feedback Invariant:</strong> Machine learning models in production are never passive observers. An automated credit fraud block directly alters fraudster tactics; a marketing retention campaign alters subscriber churn probability. Datasets collected after Stage 5 reflect the model's own historical interventions.\n  </div>\n</div>"
         }
       },
       {
         "id": "s3",
-        "title": "The Value Creation Cycle: Architecture Flowchart",
-        "type": "figure",
+        "title": "Generalization Risk vs. Empirical Risk Minimization (ERM)",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The Value Creation Cycle: Architecture Flowchart",
+          "title": "Generalization Risk vs. Empirical Risk Minimization (ERM)",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Value Creation Cycle: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    Obs[\"1. Physical Phenomena<br/>(Customers, Patients, Ticks)\"] --> Collect[\"2. Collection & Quality Audit<br/>(Sensors, ETL, Schema Gate)\"]\n    Collect --> Feature[\"3. Feature Representation<br/>(Embeddings, Aggregations)\"]\n    Feature --> Learn[\"4. Empirical Risk Minimization<br/>(f* = argmin L(f(x), y))\"]\n    Learn --> Action[\"5. Production Decision<br/>(Intervene, Alert, Execute)\"]\n    Action -->|\"Closed-Loop Telemetry\"| Obs\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Obs,Collect blue;\n    class Feature,Learn amber;\n    class Action green;</pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Value Creation Cycle: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for the value creation cycle: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "Mathematically, our true scientific objective is minimizing Expected Generalization Risk over the unknown, joint data-generating distribution P. True risk evaluates the expected loss over all possible future inputs x and targets y."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "However, because the true distribution P is strictly inaccessible, machine learning solves an empirical surrogate: Empirical Risk Minimization. Over an observed dataset of size N, we minimize the average sample loss plus a regularizer. According to Vapnik-Chervonenkis learning theory, the generalization gap between empirical risk and true risk is bounded by the square root of VC-dimension divided by sample size N. When upstream dataset sampling is biased or contaminated by leakage, this theoretical bound collapses entirely."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    Obs[\"1. Physical Phenomena<br/>(Customers, Patients, Ticks)\"] --> Collect[\"2. Collection & Quality Audit<br/>(Sensors, ETL, Schema Gate)\"]\n    Collect --> Feature[\"3. Feature Representation<br/>(Embeddings, Aggregations)\"]\n    Feature --> Learn[\"4. Empirical Risk Minimization<br/>(f* = argmin L(f(x), y))\"]\n    Learn --> Action[\"5. Production Decision<br/>(Intervene, Alert, Execute)\"]\n    Action -->|\"Closed-Loop Telemetry\"| Obs\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Obs,Collect blue;\n    class Feature,Learn amber;\n    class Action green;</pre>\n</div>"
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">The Mathematical Surrogate: ERM</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#fff0b9] text-[#b45309] border border-[#151b20]\">Statistical Learning Theory</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"text-xs font-mono font-bold text-[#0e7490] uppercase tracking-wide\">True Generalization Risk (Unobservable)</div>\n      <div class=\"p-3 bg-[#f6f0dc] rounded-lg font-mono text-xs md:text-sm text-[#151b20] border border-[#151b20]/30 text-center\">\n        $$\\mathcal{R}(f_\\theta) = \\mathbb{E}_{(\\mathbf{x}, y) \\sim \\mathcal{P}} \\Big[ \\mathcal{L}(f_\\theta(\\mathbf{x}), y) \\Big]$$\n      </div>\n      <p class=\"text-xs text-[#334155] leading-relaxed\">\n        Expectation taken over the true physical population \\(\\mathcal{P}_{X \\times Y}\\). Because \\(\\mathcal{P}\\) is infinite and unknown, \\(\\mathcal{R}(f_\\theta)\\) cannot be directly computed or optimized.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"text-xs font-mono font-bold text-[#b45309] uppercase tracking-wide\">Empirical Risk Surrogate (Optimized)</div>\n      <div class=\"p-3 bg-[#fff0b9] rounded-lg font-mono text-xs md:text-sm text-[#151b20] border border-[#151b20]/30 text-center\">\n        $$\\hat{\\theta} = \\arg\\min_{\\theta} \\left( \\frac{1}{N} \\sum_{i=1}^N \\mathcal{L}(f_\\theta(\\mathbf{x}_i), y_i) + \\lambda \\Omega(\\theta) \\right)$$\n      </div>\n      <p class=\"text-xs text-[#334155] leading-relaxed\">\n        Computed strictly over finite training instances \\(\\mathcal{D}_N\\). Minimizing \\(\\hat{\\mathcal{R}}\\) guarantees true generalization <em>only</em> if \\(\\mathcal{D}_N\\) is identically and independently distributed without sampling bias.\n      </p>\n    </div>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-xs font-mono\">\n    <span class=\"font-bold text-[#0e7490]\">Vapnik Generalization Error Bound:</span>\n    <span class=\"text-[#151b20] ml-1\">\n      $$\\mathcal{R}(f_{\\hat{\\theta}}) - \\hat{\\mathcal{R}}(f_{\\hat{\\theta}}) \\le \\mathcal{O}\\left(\\sqrt{\\frac{d_{VC} \\ln(2N/d_{VC}) + \\ln(4/\\delta)}{N}}\\right)$$\n    </span>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Optimization Fallacy",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "If empirical risk is just an approximation of true generalization risk, what stops our optimizer from achieving zero empirical loss on the training data while completely failing in the real world?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the fundamental trap of machine learning! Zero empirical loss usually means the model simply memorized the idiosyncratic noise and artifacts of your specific sample. Unless your training dataset accurately reflects the true operational distribution, optimization drives the model toward high-confidence catastrophic failure."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">The Mathematical Surrogate: ERM</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#fff0b9] text-[#b45309] border border-[#151b20]\">Statistical Learning Theory</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"text-xs font-mono font-bold text-[#0e7490] uppercase tracking-wide\">True Generalization Risk (Unobservable)</div>\n      <div class=\"p-3 bg-[#f6f0dc] rounded-lg font-mono text-xs md:text-sm text-[#151b20] border border-[#151b20]/30 text-center\">\n        $$\\mathcal{R}(f_\\theta) = \\mathbb{E}_{(\\mathbf{x}, y) \\sim \\mathcal{P}} \\Big[ \\mathcal{L}(f_\\theta(\\mathbf{x}), y) \\Big]$$\n      </div>\n      <p class=\"text-xs text-[#334155] leading-relaxed\">\n        Expectation taken over the true physical population \\(\\mathcal{P}_{X \\times Y}\\). Because \\(\\mathcal{P}\\) is infinite and unknown, \\(\\mathcal{R}(f_\\theta)\\) cannot be directly computed or optimized.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"text-xs font-mono font-bold text-[#b45309] uppercase tracking-wide\">Empirical Risk Surrogate (Optimized)</div>\n      <div class=\"p-3 bg-[#fff0b9] rounded-lg font-mono text-xs md:text-sm text-[#151b20] border border-[#151b20]/30 text-center\">\n        $$\\hat{\\theta} = \\arg\\min_{\\theta} \\left( \\frac{1}{N} \\sum_{i=1}^N \\mathcal{L}(f_\\theta(\\mathbf{x}_i), y_i) + \\lambda \\Omega(\\theta) \\right)$$\n      </div>\n      <p class=\"text-xs text-[#334155] leading-relaxed\">\n        Computed strictly over finite training instances \\(\\mathcal{D}_N\\). Minimizing \\(\\hat{\\mathcal{R}}\\) guarantees true generalization <em>only</em> if \\(\\mathcal{D}_N\\) is identically and independently distributed without sampling bias.\n      </p>\n    </div>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-xs font-mono\">\n    <span class=\"font-bold text-[#0e7490]\">Vapnik Generalization Error Bound:</span>\n    <span class=\"text-[#151b20] ml-1\">\n      $$\\mathcal{R}(f_{\\hat{\\theta}}) - \\hat{\\mathcal{R}}(f_{\\hat{\\theta}}) \\le \\mathcal{O}\\left(\\sqrt{\\frac{d_{VC} \\ln(2N/d_{VC}) + \\ln(4/\\delta)}{N}}\\right)$$\n    </span>\n  </div>\n</div>"
         }
       },
       {
         "id": "s4",
         "title": "Sectoral Applications & Decision Topologies",
-        "type": "bullets",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
           "title": "Sectoral Applications & Decision Topologies",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Sectoral Applications & Decision Topologies. In production engineering, this principle establishes reliability and reproducibility. Technology | Credit history bureau files, high-frequency transaction streams (Ahmed, 2022) | Binary credit default, unauthorized fraud | Precision-Recall AUC (Extreme Imbalance $1:10^4$) | Fraud loss vs."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">| | Financial</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Technology | Credit history bureau files, high-frequency transaction streams (Ahmed, 2022) | Binary credit default, unauthorized fraud | Precision-Recall AUC (Extreme Imbalance $1:10^4$) | Fraud loss vs.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">customer friction</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">from declined legitimate card transactions.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">| | Enterprise</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">SaaS / Retail | Tabular customer engagement records, support ticket sentiment, clickstream logs | Customer churn event within 90 days (Dou, 2023) | Cost-weighted Binary Log-Loss | Cost of customer retention outreach ($\\$15$) vs.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">net lifetime value</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">loss ($\\$300+$).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Sectoral Applications & Decision Topologies",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what makes sectoral applications & decision topologies essential for robust machine learning?"
+              "text": "As synthesized in Table 1.10 of our monograph, dataset engineering paradigms vary drastically across industry domains. In Healthcare and Biomedicine, electronic health records from MIMIC-IV and bio-acoustic waveforms from SPRSound drive acute mortality triage. Here, evaluation requires patient-level group splits, and false negatives carry fatal consequences."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "In production engineering, this principle establishes reliability and reproducibility. Technology | Credit history bureau files, high-frequency transaction streams (Ahmed, 2022) | Binary credit default, unauthorized fraud | Precision-Recall AUC (Extreme Imbalance $1:10^4$) | Fraud loss vs."
+              "text": "In Financial Technology, high-frequency card transaction streams suffer extreme class imbalance exceeding one in ten thousand. Models must be evaluated using out-of-time temporal holdouts with Precision-Recall AUC at fixed false positive rates. In Autonomous Systems, multimodal LiDAR point clouds and stereo camera video must achieve mean Average Precision under strict twenty-millisecond real-time deadlines."
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">| | Financial</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Technology | Credit history bureau files, high-frequency transaction streams (Ahmed, 2022) | Binary credit default, unauthorized fraud | Precision-Recall AUC (Extreme Imbalance $1:10^4$) | Fraud loss vs.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">customer friction</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">from declined legitimate card transactions.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">| | Enterprise</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">SaaS / Retail | Tabular customer engagement records, support ticket sentiment, clickstream logs | Customer churn event within 90 days (Dou, 2023) | Cost-weighted Binary Log-Loss | Cost of customer retention outreach ($\\$15$) vs.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">net lifetime value</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">loss ($\\$300+$).</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Cross-Industry Decision Topologies (Table 1.10)</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Monograph Synthesis</span>\n  </div>\n\n  <div class=\"overflow-x-auto\">\n    <table class=\"w-full text-left font-sans text-xs border-collapse\">\n      <thead>\n        <tr class=\"bg-[#f6f0dc] border-b-2 border-[#151b20] font-mono text-[11px] text-[#151b20]\">\n          <th class=\"p-2.5\">Domain</th>\n          <th class=\"p-2.5\">Dataset Modality</th>\n          <th class=\"p-2.5\">Operational Target \\(\\mathcal{Y}\\)</th>\n          <th class=\"p-2.5\">Evaluation Protocol</th>\n          <th class=\"p-2.5\">Cost Asymmetry Topology</th>\n        </tr>\n      </thead>\n      <tbody class=\"divide-y divide-[#151b20]/20 font-medium\">\n        <tr class=\"hover:bg-[#fff9e6]\">\n          <td class=\"p-2.5 font-bold text-[#0e7490]\">Healthcare</td>\n          <td class=\"p-2.5 text-[#334155]\">EHR (MIMIC-IV), DICOM, SPRSound audio</td>\n          <td class=\"p-2.5\">ICU mortality, sepsis early warning</td>\n          <td class=\"p-2.5 font-mono text-[11px]\">Group-KFold by Patient ID</td>\n          <td class=\"p-2.5 text-[#b91c1c] font-bold\">FN = Fatal Mortality Risk; FP = Clinical Alarm Fatigue</td>\n        </tr>\n        <tr class=\"hover:bg-[#fff9e6]\">\n          <td class=\"p-2.5 font-bold text-[#0e7490]\">Fintech &amp; Banking</td>\n          <td class=\"p-2.5 text-[#334155]\">High-frequency transaction logs, credit bureau tables</td>\n          <td class=\"p-2.5\">Unauthorized card fraud, credit default</td>\n          <td class=\"p-2.5 font-mono text-[11px]\">Out-of-Time (OOT) Split, PR-AUC</td>\n          <td class=\"p-2.5 text-[#b45309] font-bold\">Imbalance \\(1:10^4\\); FP insults good users; FN = Direct capital theft</td>\n        </tr>\n        <tr class=\"hover:bg-[#fff9e6]\">\n          <td class=\"p-2.5 font-bold text-[#0e7490]\">Enterprise SaaS</td>\n          <td class=\"p-2.5 text-[#334155]\">Usage logs, support tickets, billing event series</td>\n          <td class=\"p-2.5\">90-day subscriber churn event</td>\n          <td class=\"p-2.5 font-mono text-[11px]\">Temporal Rolling Window</td>\n          <td class=\"p-2.5 text-[#047857] font-bold\">Retention outreach (\\(\\$20\\)) vs. Net LTV loss (\\(\\$300+\\))</td>\n        </tr>\n        <tr class=\"hover:bg-[#fff9e6]\">\n          <td class=\"p-2.5 font-bold text-[#0e7490]\">Autonomous Systems</td>\n          <td class=\"p-2.5 text-[#334155]\">3D LiDAR point clouds, RGB video (nuScenes)</td>\n          <td class=\"p-2.5\">3D obstacle boxes, trajectory forecasting</td>\n          <td class=\"p-2.5 font-mono text-[11px]\">Geographically Disjoint Sets</td>\n          <td class=\"p-2.5 text-[#6b21a8] font-bold\">Missed obstacles cause physical collision; \\(&lt;20\\text{ ms}\\) latency deadline</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Cost of a False Alarm vs. Missed Disaster",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Looking at this table, in clinical medicine, a false negative might kill a patient from undetected sepsis, but in banking, rejecting a legitimate customer's card embarrasses them at a grocery store checkout!"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! Every industry possesses a radically unique cost landscape. If a machine learning engineer blindly optimizes for standard accuracy or uses a default 0.5 decision cutoff, they are treating a fatal sepsis failure as having the identical cost to a nuisance false alarm. Dataset evaluation must mirror operational loss."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Cross-Industry Decision Topologies (Table 1.10)</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Monograph Synthesis</span>\n  </div>\n\n  <div class=\"overflow-x-auto\">\n    <table class=\"w-full text-left font-sans text-xs border-collapse\">\n      <thead>\n        <tr class=\"bg-[#f6f0dc] border-b-2 border-[#151b20] font-mono text-[11px] text-[#151b20]\">\n          <th class=\"p-2.5\">Domain</th>\n          <th class=\"p-2.5\">Dataset Modality</th>\n          <th class=\"p-2.5\">Operational Target \\(\\mathcal{Y}\\)</th>\n          <th class=\"p-2.5\">Evaluation Protocol</th>\n          <th class=\"p-2.5\">Cost Asymmetry Topology</th>\n        </tr>\n      </thead>\n      <tbody class=\"divide-y divide-[#151b20]/20 font-medium\">\n        <tr class=\"hover:bg-[#fff9e6]\">\n          <td class=\"p-2.5 font-bold text-[#0e7490]\">Healthcare</td>\n          <td class=\"p-2.5 text-[#334155]\">EHR (MIMIC-IV), DICOM, SPRSound audio</td>\n          <td class=\"p-2.5\">ICU mortality, sepsis early warning</td>\n          <td class=\"p-2.5 font-mono text-[11px]\">Group-KFold by Patient ID</td>\n          <td class=\"p-2.5 text-[#b91c1c] font-bold\">FN = Fatal Mortality Risk; FP = Clinical Alarm Fatigue</td>\n        </tr>\n        <tr class=\"hover:bg-[#fff9e6]\">\n          <td class=\"p-2.5 font-bold text-[#0e7490]\">Fintech &amp; Banking</td>\n          <td class=\"p-2.5 text-[#334155]\">High-frequency transaction logs, credit bureau tables</td>\n          <td class=\"p-2.5\">Unauthorized card fraud, credit default</td>\n          <td class=\"p-2.5 font-mono text-[11px]\">Out-of-Time (OOT) Split, PR-AUC</td>\n          <td class=\"p-2.5 text-[#b45309] font-bold\">Imbalance \\(1:10^4\\); FP insults good users; FN = Direct capital theft</td>\n        </tr>\n        <tr class=\"hover:bg-[#fff9e6]\">\n          <td class=\"p-2.5 font-bold text-[#0e7490]\">Enterprise SaaS</td>\n          <td class=\"p-2.5 text-[#334155]\">Usage logs, support tickets, billing event series</td>\n          <td class=\"p-2.5\">90-day subscriber churn event</td>\n          <td class=\"p-2.5 font-mono text-[11px]\">Temporal Rolling Window</td>\n          <td class=\"p-2.5 text-[#047857] font-bold\">Retention outreach (\\(\\$20\\)) vs. Net LTV loss (\\(\\$300+\\))</td>\n        </tr>\n        <tr class=\"hover:bg-[#fff9e6]\">\n          <td class=\"p-2.5 font-bold text-[#0e7490]\">Autonomous Systems</td>\n          <td class=\"p-2.5 text-[#334155]\">3D LiDAR point clouds, RGB video (nuScenes)</td>\n          <td class=\"p-2.5\">3D obstacle boxes, trajectory forecasting</td>\n          <td class=\"p-2.5 font-mono text-[11px]\">Geographically Disjoint Sets</td>\n          <td class=\"p-2.5 text-[#6b21a8] font-bold\">Missed obstacles cause physical collision; \\(&lt;20\\text{ ms}\\) latency deadline</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>"
         }
       },
       {
         "id": "s5",
-        "title": "The Critical Protocol: Train/Validation/Test Partitioning",
-        "type": "equation",
+        "title": "The Golden Partitioning Protocol: Train/Val/Test",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The Critical Protocol: Train/Validation/Test Partitioning",
+          "title": "The Golden Partitioning Protocol: Train/Val/Test",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Critical Protocol: Train/Validation/Test Partitioning. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{D}_{train} \\cap \\mathcal{D}_{val} = \\emptyset, \\quad \\mathcal{D}_{train} \\cap \\mathcal{D}_{test} = \\emptyset, \\quad \\mathcal{D}_{val} \\cap \\mathcal{D}_{test} = \\emptyset$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Critical Protocol: Train/Validation/Test Partitioning",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does the critical protocol: train/validation/test partitioning protect our system against silent distribution shift in production?"
+              "text": "To obtain completely unbiased estimates of generalization error, dataset engineers enforce strict disjoint partitioning. An empirical sample D must be decomposed into three mutually exclusive subsets whose pairwise intersections are null: training, validation, and test."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "The training partition parameterizes model weights. The validation partition guides hyperparameter tuning, feature selection, and decision threshold calibration. The test partition is sacred: it must be locked in a secure vault and touched exactly once at the conclusion of development. If a team repeatedly evaluates against the test partition during modeling, test set labels leak into design choices, producing optimistic bias."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{D}_{train} \\cap \\mathcal{D}_{val} = \\emptyset, \\quad \\mathcal{D}_{train} \\cap \\mathcal{D}_{test} = \\emptyset, \\quad \\mathcal{D}_{val} \\cap \\mathcal{D}_{test} = \\emptyset$$\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">The Golden Partitioning Invariants</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#ffd8ce] text-[#c2410c] border border-[#151b20]\">Leakage Firewall</span>\n  </div>\n\n  <div class=\"p-3 bg-[#fff0b9] rounded-xl border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono text-xs md:text-sm text-center font-bold text-[#151b20]\">\n    $$\\mathcal{D}_N = \\mathcal{D}_{train} \\cup \\mathcal{D}_{val} \\cup \\mathcal{D}_{test}, \\quad \\mathcal{D}_{train} \\cap \\mathcal{D}_{val} = \\emptyset, \\quad \\mathcal{D}_{train} \\cap \\mathcal{D}_{test} = \\emptyset, \\quad \\mathcal{D}_{val} \\cap \\mathcal{D}_{test} = \\emptyset$$\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#0e7490] text-sm\">1. Training Set (\\(\\approx 70\\%\\))</div>\n      <div class=\"text-[#334155] text-xs mt-1 font-sans\">\n        Estimates model weights \\(\\hat{\\theta}\\). All preprocessing transformers (scalers, imputers, encoders) must be fit <strong>strictly</strong> on this subset.\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#b45309] text-sm\">2. Validation Set (\\(\\approx 15\\%\\))</div>\n      <div class=\"text-[#334155] text-xs mt-1 font-sans\">\n        Guides model architecture selection, tree depth tuning, early stopping, and asymmetric decision threshold calibration \\(\\tau^*\\).\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#c2410c] text-sm\">3. Sacred Test Set (\\(\\approx 15\\%\\))</div>\n      <div class=\"text-[#334155] text-xs mt-1 font-sans\">\n        Evaluated <strong>exactly once</strong> prior to deployment. Never iterate on hyperparameters using test set feedback.\n      </div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Sacred Untouchability of Test Sets",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, if our team checks model accuracy on the test set after every training run to see if our tweaks worked, why is that considered scientific malpractice?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because the human engineering team becomes an optimization algorithm over the test set, Kaito! When you iterate on hyperparameters or select model architectures based on test score feedback, you are effectively training on the test set. The test set loses its statistical independence, guaranteeing that your validation metrics will be falsely inflated."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">The Golden Partitioning Invariants</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#ffd8ce] text-[#c2410c] border border-[#151b20]\">Leakage Firewall</span>\n  </div>\n\n  <div class=\"p-3 bg-[#fff0b9] rounded-xl border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono text-xs md:text-sm text-center font-bold text-[#151b20]\">\n    $$\\mathcal{D}_N = \\mathcal{D}_{train} \\cup \\mathcal{D}_{val} \\cup \\mathcal{D}_{test}, \\quad \\mathcal{D}_{train} \\cap \\mathcal{D}_{val} = \\emptyset, \\quad \\mathcal{D}_{train} \\cap \\mathcal{D}_{test} = \\emptyset, \\quad \\mathcal{D}_{val} \\cap \\mathcal{D}_{test} = \\emptyset$$\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#0e7490] text-sm\">1. Training Set (\\(\\approx 70\\%\\))</div>\n      <div class=\"text-[#334155] text-xs mt-1 font-sans\">\n        Estimates model weights \\(\\hat{\\theta}\\). All preprocessing transformers (scalers, imputers, encoders) must be fit <strong>strictly</strong> on this subset.\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#b45309] text-sm\">2. Validation Set (\\(\\approx 15\\%\\))</div>\n      <div class=\"text-[#334155] text-xs mt-1 font-sans\">\n        Guides model architecture selection, tree depth tuning, early stopping, and asymmetric decision threshold calibration \\(\\tau^*\\).\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#c2410c] text-sm\">3. Sacred Test Set (\\(\\approx 15\\%\\))</div>\n      <div class=\"text-[#334155] text-xs mt-1 font-sans\">\n        Evaluated <strong>exactly once</strong> prior to deployment. Never iterate on hyperparameters using test set feedback.\n      </div>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s6",
-        "title": "The Critical Protocol: Architecture Flowchart",
-        "type": "figure",
+        "title": "The Three Deadly Vectors of Data Leakage",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The Critical Protocol: Architecture Flowchart",
+          "title": "The Three Deadly Vectors of Data Leakage",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Critical Protocol: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    RawData[(\"Curated Dataset D_N (100%)\")] --> Split{\"Partitioning Strategy\"}\n    \n    Split -->|\"Uniform / Stratified\"| Strat[\"Stratified Split (i.i.d.)<br/>Preserves Class Ratio\"]\n    Split -->|\"Temporal Horizon\"| Time[\"Out-of-Time Split<br/>Train: [t0, t1] → Test: [t1, t2]\"]\n    Split -->|\"Group / Cluster\"| Group[\"Grouped Entity Split<br/>Train: A-K → Test: L-Z\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class RawData,Split blue;\n    class Strat green;\n    class Time amber;\n    class Group purple;</pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Critical Protocol: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for the critical protocol: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "Data leakage is the spurious introduction of test or future information into the training pipeline. Following the taxonomy established by Shachar Kaufman and colleagues, leakage manifests along three primary vectors: Preprocessing Leakage, Group Contamination, and Temporal Lookahead."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Preprocessing leakage occurs when standard scaling or target encoding is computed over the entire matrix before splitting. Group contamination occurs when multiple longitudinal records from the same patient or user appear in both train and test partitions. Lookahead leakage occurs when features incorporate future telemetry, such as computing weekly rolling sums with centered windows. All three produce flawless validation benchmarks that instantly disintegrate in production."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    RawData[(\"Curated Dataset D_N (100%)\")] --> Split{\"Partitioning Strategy\"}\n    \n    Split -->|\"Uniform / Stratified\"| Strat[\"Stratified Split (i.i.d.)<br/>Preserves Class Ratio\"]\n    Split -->|\"Temporal Horizon\"| Time[\"Out-of-Time Split<br/>Train: [t0, t1] → Test: [t1, t2]\"]\n    Split -->|\"Group / Cluster\"| Group[\"Grouped Entity Split<br/>Train: A-K → Test: L-Z\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class RawData,Split blue;\n    class Strat green;\n    class Time amber;\n    class Group purple;</pre>\n</div>"
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Taxonomy of Data Leakage (Kaufman et al.)</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#ffd8ce] text-[#c2410c] border border-[#151b20]\">Silent Accuracy Destroyers</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs\">\n    <div class=\"p-3.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex flex-col justify-between\">\n      <div>\n        <div class=\"font-bold text-[#c2410c] text-[10px] uppercase\">Vector 1</div>\n        <div class=\"font-black text-[#151b20] text-sm my-1\">Preprocessing Leakage</div>\n        <p class=\"text-[#334155] text-xs font-sans mt-1 leading-relaxed\">\n          Fitting scalers, imputers, or target encoders on full \\(\\mathcal{D}_N\\):\n          $$\\hat{\\mu}_{global} = \\frac{1}{N}\\sum_{i=1}^N x_i \\quad \\text{vs.} \\quad \\hat{\\mu}_{train}$$\n          Test fold distribution parameters silently bleed into training features.\n        </p>\n      </div>\n      <div class=\"mt-2 pt-2 border-t border-[#151b20]/20 text-[10px] text-[#c2410c] font-bold\">Fix: Scikit-learn Pipeline</div>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex flex-col justify-between\">\n      <div>\n        <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Vector 2</div>\n        <div class=\"font-black text-[#151b20] text-sm my-1\">Entity Contamination</div>\n        <p class=\"text-[#334155] text-xs font-sans mt-1 leading-relaxed\">\n          Random splitting on longitudinal or clustered records:\n          $$\\mathcal{G}_{train} \\cap \\mathcal{G}_{test} \\ne \\emptyset$$\n          Neural networks memorize individual patient anatomy or user IDs rather than generalizable signals.\n        </p>\n      </div>\n      <div class=\"mt-2 pt-2 border-t border-[#151b20]/20 text-[10px] text-[#b45309] font-bold\">Fix: GroupKFold by Entity ID</div>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex flex-col justify-between\">\n      <div>\n        <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Vector 3</div>\n        <div class=\"font-black text-[#151b20] text-sm my-1\">Temporal Lookahead</div>\n        <p class=\"text-[#334155] text-xs font-sans mt-1 leading-relaxed\">\n          Using future events to predict present states:\n          $$\\max(t_{train}) \\ge \\min(t_{test})$$\n          Centering rolling windows (e.g. \\(t-3\\) to \\(t+3\\)) injects ground-truth future telemetry into training rows.\n        </p>\n      </div>\n      <div class=\"mt-2 pt-2 border-t border-[#151b20]/20 text-[10px] text-[#0e7490] font-bold\">Fix: TimeSeriesSplit / Walk-Forward</div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Illusion of Perfection",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, how does a junior data scientist know if their model has suffered from data leakage before they push it into production?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "The classic signature of data leakage is suspiciously flawless validation performance! If your cross-validation ROC-AUC jumps to 0.992 on a notoriously noisy domain like churn or credit fraud, do not celebrate. Inspect your feature definitions for future timestamp bleed, check whether transformers were fit before splitting, and verify that user records were grouped."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Taxonomy of Data Leakage (Kaufman et al.)</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#ffd8ce] text-[#c2410c] border border-[#151b20]\">Silent Accuracy Destroyers</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs\">\n    <div class=\"p-3.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex flex-col justify-between\">\n      <div>\n        <div class=\"font-bold text-[#c2410c] text-[10px] uppercase\">Vector 1</div>\n        <div class=\"font-black text-[#151b20] text-sm my-1\">Preprocessing Leakage</div>\n        <p class=\"text-[#334155] text-xs font-sans mt-1 leading-relaxed\">\n          Fitting scalers, imputers, or target encoders on full \\(\\mathcal{D}_N\\):\n          $$\\hat{\\mu}_{global} = \\frac{1}{N}\\sum_{i=1}^N x_i \\quad \\text{vs.} \\quad \\hat{\\mu}_{train}$$\n          Test fold distribution parameters silently bleed into training features.\n        </p>\n      </div>\n      <div class=\"mt-2 pt-2 border-t border-[#151b20]/20 text-[10px] text-[#c2410c] font-bold\">Fix: Scikit-learn Pipeline</div>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex flex-col justify-between\">\n      <div>\n        <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Vector 2</div>\n        <div class=\"font-black text-[#151b20] text-sm my-1\">Entity Contamination</div>\n        <p class=\"text-[#334155] text-xs font-sans mt-1 leading-relaxed\">\n          Random splitting on longitudinal or clustered records:\n          $$\\mathcal{G}_{train} \\cap \\mathcal{G}_{test} \\ne \\emptyset$$\n          Neural networks memorize individual patient anatomy or user IDs rather than generalizable signals.\n        </p>\n      </div>\n      <div class=\"mt-2 pt-2 border-t border-[#151b20]/20 text-[10px] text-[#b45309] font-bold\">Fix: GroupKFold by Entity ID</div>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex flex-col justify-between\">\n      <div>\n        <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Vector 3</div>\n        <div class=\"font-black text-[#151b20] text-sm my-1\">Temporal Lookahead</div>\n        <p class=\"text-[#334155] text-xs font-sans mt-1 leading-relaxed\">\n          Using future events to predict present states:\n          $$\\max(t_{train}) \\ge \\min(t_{test})$$\n          Centering rolling windows (e.g. \\(t-3\\) to \\(t+3\\)) injects ground-truth future telemetry into training rows.\n        </p>\n      </div>\n      <div class=\"mt-2 pt-2 border-t border-[#151b20]/20 text-[10px] text-[#0e7490] font-bold\">Fix: TimeSeriesSplit / Walk-Forward</div>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s7",
-        "title": "The Three Deadly Data Leakage Vectors",
-        "type": "bullets",
+        "title": "Active Checkpoint 1: The Benchmark Re-Use Fallacy",
+        "type": "quiz",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The Three Deadly Data Leakage Vectors",
+          "title": "Active Checkpoint 1: The Benchmark Re-Use Fallacy",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Three Deadly Data Leakage Vectors. In production engineering, this principle establishes reliability and reproducibility. Computing features using aggregate statistics calculated across the whole dataset (e.g., standardizing using the global mean $\\mu_{global}$ instead of $\\mu_{train}$, or using future purchase events to predict past churn)."
+              "text": "Time for Active Recall Checkpoint 1! In academic benchmark competitions such as ImageNet or GLUE, the test set remains fixed for years while thousands of research labs submit models iteratively. Explain why adaptive overfitting occurs even if no researcher has direct visibility into test set labels. Select the correct mechanism on the slide."
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Temporal Lookahead Leakage</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Computing features using aggregate statistics calculated across the whole dataset (e.g., standardizing using the global mean $\\mu_{global}$ instead of $\\mu_{train}$, or using future purchase events to predict past churn).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Entity Contamination Leakage</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">In healthcare or facial recognition, placing different records from the same patient or subject into both train and test splits. The model memorizes individual anatomical idiosyncrasies rather than learning generalizable pathologies.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Duplicate Record Leakage</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Unidentified exact duplicate records across splits artificially inflate test accuracy while failing in production.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"text-xl\">💡</span>\n      <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Active Checkpoint 1: Benchmark Adaptive Overfitting</h3>\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#ffd8ce] text-[#c2410c] border border-[#151b20]\">Self-Assessment</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f6f0dc] border-2 border-[#151b20] text-xs md:text-sm text-[#151b20] leading-relaxed\">\n    <strong>Scenario:</strong> In static public benchmarks (e.g., ImageNet, GLUE, Kaggle competitions), test set ground-truth labels are sealed. Yet, over years of iterative research papers reporting scalar leaderboard feedback, models exhibit substantial performance degradation when evaluated against fresh replication sets (e.g., ImageNet-v2). What statistical phenomenon causes this degradation?\n  </div>\n\n  <div id=\"quizOptionsContainer\" class=\"space-y-2 font-mono text-xs\">\n    <!-- Rendered dynamically by virtual speaker -->\n  </div>\n</div>"
         },
         "duo": {
           "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Three Deadly Data Leakage Vectors",
+          "title": "Socratic Debate: The Information Leakage of Leaderboards",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, what makes the three deadly data leakage vectors essential for robust machine learning?"
+              "text": "Wait, Dr. Nova! If researchers can't download or inspect the test labels, how can their models possibly overfit to that test set?"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "In production engineering, this principle establishes reliability and reproducibility. Computing features using aggregate statistics calculated across the whole dataset (e.g., standardizing using the global mean $\\mu_{global}$ instead of $\\mu_{train}$, or using future purchase events to predict past churn)."
+              "text": "Think about what the leaderboard returns: a single scalar validation accuracy! When ten thousand researchers make architectural tweaks and keep only the models that boost that scalar number, that feedback acts as an implicit gradient optimization loop over the test set's idiosyncratic noise. Choose the correct answer below!"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Temporal Lookahead Leakage</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Computing features using aggregate statistics calculated across the whole dataset (e.g., standardizing using the global mean $\\mu_{global}$ instead of $\\mu_{train}$, or using future purchase events to predict past churn).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Entity Contamination Leakage</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">In healthcare or facial recognition, placing different records from the same patient or subject into both train and test splits. The model memorizes individual anatomical idiosyncrasies rather than learning generalizable pathologies.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Duplicate Record Leakage</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Unidentified exact duplicate records across splits artificially inflate test accuracy while failing in production.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"text-xl\">💡</span>\n      <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Active Checkpoint 1: Benchmark Adaptive Overfitting</h3>\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#ffd8ce] text-[#c2410c] border border-[#151b20]\">Self-Assessment</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f6f0dc] border-2 border-[#151b20] text-xs md:text-sm text-[#151b20] leading-relaxed\">\n    <strong>Scenario:</strong> In static public benchmarks (e.g., ImageNet, GLUE, Kaggle competitions), test set ground-truth labels are sealed. Yet, over years of iterative research papers reporting scalar leaderboard feedback, models exhibit substantial performance degradation when evaluated against fresh replication sets (e.g., ImageNet-v2). What statistical phenomenon causes this degradation?\n  </div>\n\n  <div id=\"quizOptionsContainer\" class=\"space-y-2 font-mono text-xs\">\n    <!-- Rendered dynamically by virtual speaker -->\n  </div>\n</div>"
         }
       },
       {
         "id": "s8",
-        "title": "End-to-End Case Study: Customer Churn Optimization",
-        "type": "equation",
+        "title": "Asymmetric Cost Matrices & Optimal Decision Thresholds",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "End-to-End Case Study: Customer Churn Optimization",
+          "title": "Asymmetric Cost Matrices & Optimal Decision Thresholds",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "End-to-End Case Study: Customer Churn Optimization. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbf{x} = [\\text{Tenure}, \\text{Complaints}, \\text{MonthlyUsage}, \\Delta\\text{Activity}] \\in \\mathbb{R}^4$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\hat{y} = \\mathbf{1}_{\\{P(y=1 \\mid \\mathbf{x}) \\ge \\tau\\}}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Net Economic Utility} = \\text{TP} \\cdot (LTV \\cdot P_{save} - C_{offer}) - \\text{FP} \\cdot C_{offer} - \\text{FN} \\cdot LTV$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Subscription churn prediction</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">represents the classic enterprise dataset modeling lifecycle (Dou, 2023).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: End-to-End Case Study: Customer Churn Optimization",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does end-to-end case study: customer churn optimization protect our system against silent distribution shift in production?"
+              "text": "In production machine learning, probability predictions are useless without a calibrated decision threshold tau. The standard default threshold of 0.5 is an artifact of symmetric academic toy problems where false positives and false negatives carry identical penalties."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "In commercial and clinical reality, error costs are intensely asymmetric. Let C-sub-FP and C-sub-FN represent the penalties for false positives and false negatives. By setting expected marginal losses equal, we derive the optimal decision threshold tau-star: tau-star equals C-sub-FP minus C-sub-TN divided by the sum of net error penalties. In clinical sepsis triage, missing a patient is fifty times worse than a false alarm, shifting tau-star down to zero point zero eight."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbf{x} = [\\text{Tenure}, \\text{Complaints}, \\text{MonthlyUsage}, \\Delta\\text{Activity}] \\in \\mathbb{R}^4$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\hat{y} = \\mathbf{1}_{\\{P(y=1 \\mid \\mathbf{x}) \\ge \\tau\\}}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Net Economic Utility} = \\text{TP} \\cdot (LTV \\cdot P_{save} - C_{offer}) - \\text{FP} \\cdot C_{offer} - \\text{FN} \\cdot LTV$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Subscription churn prediction</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">represents the classic enterprise dataset modeling lifecycle (Dou, 2023).</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Decision Theory: Why \\(\\tau = 0.5\\) is an Anti-Pattern</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#fff0b9] text-[#b45309] border border-[#151b20]\">Economic Optimization</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"text-xs font-mono font-bold text-[#b45309] uppercase tracking-wide\">The Asymmetric Cost Matrix</div>\n      <table class=\"w-full text-center font-mono text-xs border-collapse mt-2\">\n        <thead>\n          <tr class=\"bg-[#f6f0dc] border border-[#151b20]\">\n            <th class=\"p-2 border border-[#151b20]\">Outcome</th>\n            <th class=\"p-2 border border-[#151b20]\">True Negative (\\(y=0\\))</th>\n            <th class=\"p-2 border border-[#151b20]\">True Positive (\\(y=1\\))</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td class=\"p-2 border border-[#151b20] font-bold bg-[#f6f0dc]\">Pred 0</td>\n            <td class=\"p-2 border border-[#151b20] text-[#15803d] font-bold\">\\(C_{TN} = \\$0\\)</td>\n            <td class=\"p-2 border border-[#151b20] text-[#b91c1c] font-bold\">\\(C_{FN} = \\text{Catastrophic}\\)</td>\n          </tr>\n          <tr>\n            <td class=\"p-2 border border-[#151b20] font-bold bg-[#f6f0dc]\">Pred 1</td>\n            <td class=\"p-2 border border-[#151b20] text-[#b45309] font-bold\">\\(C_{FP} = \\text{Intervention}\\)</td>\n            <td class=\"p-2 border border-[#151b20] text-[#0e7490] font-bold\">\\(C_{TP} = \\text{Saved Value}\\)</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2 flex flex-col justify-between\">\n      <div>\n        <div class=\"text-xs font-mono font-bold text-[#0e7490] uppercase tracking-wide\">Optimal Decision Threshold \\(\\tau^*\\)</div>\n        <div class=\"p-3 bg-[#fffdf7] rounded-lg border-2 border-[#151b20] font-mono text-xs md:text-sm text-center font-bold text-[#151b20] my-2\">\n          $$\\tau^* = \\frac{C_{FP} - C_{TN}}{(C_{FP} - C_{TN}) + (C_{FN} - C_{TP})}$$\n        </div>\n        <p class=\"text-xs text-[#334155] leading-relaxed\">\n          When \\(C_{FN} \\gg C_{FP}\\) (e.g. cancer triage, churn loss), \\(\\tau^* \\ll 0.5\\), prioritizing <strong>Recall</strong>.<br/>\n          When \\(C_{FP} \\gg C_{FN}\\) (e.g. spam blocking, VIP audits), \\(\\tau^* \\gg 0.5\\), prioritizing <strong>Precision</strong>.\n        </p>\n      </div>\n      <div class=\"text-[11px] font-mono font-bold text-[#0e7490]\">Symmetric \\(\\tau=0.5\\) holds only when \\(C_{FP} = C_{FN}\\).</div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Cost of the 0.5 Default",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Every scikit-learn model has a dot-predict method that defaults to 0.5. Are you telling me using dot-predict in production is an anti-pattern?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In production, calling dot-predict without calibrating your threshold is outright dangerous! You should almost always call dot-predict-proba, retrieve calibrated continuous probabilities, and evaluate your operational cost curve to select the profit-maximizing threshold tau-star."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Decision Theory: Why \\(\\tau = 0.5\\) is an Anti-Pattern</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#fff0b9] text-[#b45309] border border-[#151b20]\">Economic Optimization</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"text-xs font-mono font-bold text-[#b45309] uppercase tracking-wide\">The Asymmetric Cost Matrix</div>\n      <table class=\"w-full text-center font-mono text-xs border-collapse mt-2\">\n        <thead>\n          <tr class=\"bg-[#f6f0dc] border border-[#151b20]\">\n            <th class=\"p-2 border border-[#151b20]\">Outcome</th>\n            <th class=\"p-2 border border-[#151b20]\">True Negative (\\(y=0\\))</th>\n            <th class=\"p-2 border border-[#151b20]\">True Positive (\\(y=1\\))</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td class=\"p-2 border border-[#151b20] font-bold bg-[#f6f0dc]\">Pred 0</td>\n            <td class=\"p-2 border border-[#151b20] text-[#15803d] font-bold\">\\(C_{TN} = \\$0\\)</td>\n            <td class=\"p-2 border border-[#151b20] text-[#b91c1c] font-bold\">\\(C_{FN} = \\text{Catastrophic}\\)</td>\n          </tr>\n          <tr>\n            <td class=\"p-2 border border-[#151b20] font-bold bg-[#f6f0dc]\">Pred 1</td>\n            <td class=\"p-2 border border-[#151b20] text-[#b45309] font-bold\">\\(C_{FP} = \\text{Intervention}\\)</td>\n            <td class=\"p-2 border border-[#151b20] text-[#0e7490] font-bold\">\\(C_{TP} = \\text{Saved Value}\\)</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2 flex flex-col justify-between\">\n      <div>\n        <div class=\"text-xs font-mono font-bold text-[#0e7490] uppercase tracking-wide\">Optimal Decision Threshold \\(\\tau^*\\)</div>\n        <div class=\"p-3 bg-[#fffdf7] rounded-lg border-2 border-[#151b20] font-mono text-xs md:text-sm text-center font-bold text-[#151b20] my-2\">\n          $$\\tau^* = \\frac{C_{FP} - C_{TN}}{(C_{FP} - C_{TN}) + (C_{FN} - C_{TP})}$$\n        </div>\n        <p class=\"text-xs text-[#334155] leading-relaxed\">\n          When \\(C_{FN} \\gg C_{FP}\\) (e.g. cancer triage, churn loss), \\(\\tau^* \\ll 0.5\\), prioritizing <strong>Recall</strong>.<br/>\n          When \\(C_{FP} \\gg C_{FN}\\) (e.g. spam blocking, VIP audits), \\(\\tau^* \\gg 0.5\\), prioritizing <strong>Precision</strong>.\n        </p>\n      </div>\n      <div class=\"text-[11px] font-mono font-bold text-[#0e7490]\">Symmetric \\(\\tau=0.5\\) holds only when \\(C_{FP} = C_{FN}\\).</div>\n    </div>\n  </div>\n</div>"
         }
       },
       {
         "id": "s9",
+        "title": "End-to-End Case Study: Customer Churn Economics",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "End-to-End Case Study: Customer Churn Economics",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us ground decision theory in an end-to-end enterprise case study: subscriber churn prediction. Consider five thousand customer records with feature vectors encoding subscription tenure, customer service complaint counts, monthly usage scores, and thirty-day activity change percentages."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "A subscriber is classified as churn-prone if their predicted probability exceeds threshold tau. If flagged, we dispatch a retention offer costing twenty dollars. If they were an actual churner, the offer succeeds with a forty percent save probability, preserving their three hundred dollar lifetime value. If they were not going to churn, we wasted twenty dollars. If we miss a true churner, we suffer the full three hundred dollar loss. Tuning tau to maximize Net Economic Profit yields a peak profit at tau equal to zero point three five, generating thousands more in revenue than default accuracy."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Customer Churn Financial Optimization (Dou et al.)</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Enterprise SaaS Economics</span>\n  </div>\n\n  <div class=\"p-3.5 bg-[#f6f0dc] rounded-xl border-2 border-[#151b20] font-mono text-xs md:text-sm text-[#151b20]\">\n    $$\\text{Net Economic Utility} = \\text{TP} \\cdot (\\text{LTV} \\cdot P_{save} - C_{offer}) - \\text{FP} \\cdot C_{offer} - \\text{FN} \\cdot \\text{LTV}$$\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-4 gap-2.5 font-mono text-xs text-center\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"text-[10px] text-[#0e7490] font-bold uppercase\">Customer Value</div>\n      <div class=\"text-sm font-black text-[#151b20] mt-1\">LTV = $300</div>\n      <div class=\"text-[11px] text-[#334155] font-sans mt-0.5\">Net subscriber lifetime revenue.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"text-[10px] text-[#c2410c] font-bold uppercase\">Intervention Cost</div>\n      <div class=\"text-sm font-black text-[#151b20] mt-1\">C_offer = $20</div>\n      <div class=\"text-[11px] text-[#334155] font-sans mt-0.5\">Outreach discount voucher cost.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"text-[10px] text-[#b45309] font-bold uppercase\">Intervention Efficacy</div>\n      <div class=\"text-sm font-black text-[#151b20] mt-1\">P_save = 40%</div>\n      <div class=\"text-[11px] text-[#334155] font-sans mt-0.5\">Retention offer acceptance rate.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"text-[10px] text-[#15803d] font-bold uppercase\">Optimal Threshold</div>\n      <div class=\"text-sm font-black text-[#151b20] mt-1\">\\(\\tau^* \\approx 0.35\\)</div>\n      <div class=\"text-[11px] text-[#334155] font-sans mt-0.5\">Peak revenue generation point.</div>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Why F1-Score Does Not Equal Revenue",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, if our model achieves its highest F1-score at a threshold of 0.50, why does setting tau to 0.35 generate thousands of dollars more in actual revenue?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because the F1-score treats Precision and Recall with equal harmonic weight! But in our business model, saving a customer is worth one hundred twenty dollars net, while bothering a loyal subscriber with a discount only costs twenty dollars. Lowering the threshold to 0.35 sacrifices some precision to rescue high-value subscribers who would have churned unnoticed."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Customer Churn Financial Optimization (Dou et al.)</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Enterprise SaaS Economics</span>\n  </div>\n\n  <div class=\"p-3.5 bg-[#f6f0dc] rounded-xl border-2 border-[#151b20] font-mono text-xs md:text-sm text-[#151b20]\">\n    $$\\text{Net Economic Utility} = \\text{TP} \\cdot (\\text{LTV} \\cdot P_{save} - C_{offer}) - \\text{FP} \\cdot C_{offer} - \\text{FN} \\cdot \\text{LTV}$$\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-4 gap-2.5 font-mono text-xs text-center\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"text-[10px] text-[#0e7490] font-bold uppercase\">Customer Value</div>\n      <div class=\"text-sm font-black text-[#151b20] mt-1\">LTV = $300</div>\n      <div class=\"text-[11px] text-[#334155] font-sans mt-0.5\">Net subscriber lifetime revenue.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"text-[10px] text-[#c2410c] font-bold uppercase\">Intervention Cost</div>\n      <div class=\"text-sm font-black text-[#151b20] mt-1\">C_offer = $20</div>\n      <div class=\"text-[11px] text-[#334155] font-sans mt-0.5\">Outreach discount voucher cost.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"text-[10px] text-[#b45309] font-bold uppercase\">Intervention Efficacy</div>\n      <div class=\"text-sm font-black text-[#151b20] mt-1\">P_save = 40%</div>\n      <div class=\"text-[11px] text-[#334155] font-sans mt-0.5\">Retention offer acceptance rate.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"text-[10px] text-[#15803d] font-bold uppercase\">Optimal Threshold</div>\n      <div class=\"text-sm font-black text-[#151b20] mt-1\">\\(\\tau^* \\approx 0.35\\)</div>\n      <div class=\"text-[11px] text-[#334155] font-sans mt-0.5\">Peak revenue generation point.</div>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s10",
         "title": "Interactive Lab: Decision Threshold & Cost-Benefit Simulator",
         "type": "tool",
         "solo": {
@@ -5248,87 +5665,235 @@ var ALL_CURRICULUM = {
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Decision Threshold & Cost-Benefit Simulator. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Decision Threshold &amp; Cost-Benefit Simulator</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Experiment with the financial utility equation by tuning the decision classification threshold below:</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Configure parameters&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Decision Threshold & Cost-Benefit Simulator",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the decision threshold & cost-benefit simulator located below this player?"
+              "text": "Welcome to the Interactive Decision Threshold and Cost-Benefit Simulator. Below me, you can tune the classification decision threshold tau from 0.05 to 0.95 and watch how the confusion matrix, Precision, Recall, and Net Economic Utility respond in real time."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Observe the dynamic profit curve on the canvas! Notice that setting tau to the naive default of 0.50 yields an economic profit of approximately five thousand two hundred dollars. But lowering tau to 0.35 increases customer recall, capturing thirty-four churners and elevating net profit to over six thousand two hundred dollars. Explore the business model presets to see how changing LTV alters the optimal threshold."
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Decision Threshold &amp; Cost-Benefit Simulator</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Experiment with the financial utility equation by tuning the decision classification threshold below:</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Configure parameters&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        }
-      },
-      {
-        "id": "s10",
-        "title": "Production Engineering Implementation",
-        "type": "code",
-        "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Production Engineering Implementation",
-          "turns": [
-            {
-              "speaker": "Dr. Nova",
-              "text": "Production Engineering Implementation. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code>&quot;&quot;&quot;\nEnd-to-End Leakage-Free Churn Modeling Pipeline\nDemonstrating stratified temporal splitting, categorical handling,\nRandom Forest training, and financial threshold optimization.\n&quot;&quot;&quot;\n\nfrom __future__ import annotations\nimport numpy as np\nimport polars as pl\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import classification_report, roc_auc_score\n\ndef build_synthetic_churn_data(n_samples: int = 5000) -&gt; pl.DataFrame:\n    &quot;&quot;&quot;Generates synthetic subscriber records with customer behavior.&quot;&quot;&quot;\n    np.random.seed(42)\n    tenure = np.random.randint(1, 60, size=n_samples)\n    complaints = np.random.poisson(lam=1.8, size=n_samples)\n    usage = np.random.normal(loc=50.0, scale=18.0, size=n_samples).clip(0, 100)\n    activity_delta = np.random.normal(loc=-2.0, scale=10.0, size=n_samples)\n\n    # Churn probability depends on</code></pre>\n</div>"
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"text-xl\">⚡</span>\n      <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Interactive Lab: Churn Decision &amp; Profit Workbench</h3>\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Live Simulator</span>\n  </div>\n\n  <div id=\"churnSimContainer\">\n    <!-- Rendered dynamically by virtual speaker -->\n  </div>\n</div>"
         },
         "duo": {
           "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Production Engineering Implementation",
+          "title": "Socratic Debate: Finding the Profit Ridge",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Dr. Nova, look at the canvas profit curve! If I push tau all the way up to 0.80 to get 90% precision, net profit plummets to under two thousand dollars!"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "That is because high precision is financially toxic when false negatives carry severe consequences, Kaito! By demanding extreme certainty before intervening, the model allowed dozens of churners to walk out the door. Slide the threshold back toward 0.35 to see the profit curve peak!"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code>&quot;&quot;&quot;\nEnd-to-End Leakage-Free Churn Modeling Pipeline\nDemonstrating stratified temporal splitting, categorical handling,\nRandom Forest training, and financial threshold optimization.\n&quot;&quot;&quot;\n\nfrom __future__ import annotations\nimport numpy as np\nimport polars as pl\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import classification_report, roc_auc_score\n\ndef build_synthetic_churn_data(n_samples: int = 5000) -&gt; pl.DataFrame:\n    &quot;&quot;&quot;Generates synthetic subscriber records with customer behavior.&quot;&quot;&quot;\n    np.random.seed(42)\n    tenure = np.random.randint(1, 60, size=n_samples)\n    complaints = np.random.poisson(lam=1.8, size=n_samples)\n    usage = np.random.normal(loc=50.0, scale=18.0, size=n_samples).clip(0, 100)\n    activity_delta = np.random.normal(loc=-2.0, scale=10.0, size=n_samples)\n\n    # Churn probability depends on</code></pre>\n</div>"
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"text-xl\">⚡</span>\n      <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Interactive Lab: Churn Decision &amp; Profit Workbench</h3>\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Live Simulator</span>\n  </div>\n\n  <div id=\"churnSimContainer\">\n    <!-- Rendered dynamically by virtual speaker -->\n  </div>\n</div>"
         }
       },
       {
         "id": "s11",
-        "title": "Summary & Next Steps",
-        "type": "bullets",
+        "title": "Evaluating Extreme Class Imbalance: PR-AUC vs. ROC-AUC",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Summary & Next Steps",
+          "title": "Evaluating Extreme Class Imbalance: PR-AUC vs. ROC-AUC",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Summary & Next Steps. Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Value Creation Cycle</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">bridging observational records to empirical risk minimization and operational action.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Why model decision thresholds must reflect asymmetric financial and clinical cost matrices rather than arbitrary default cutoffs.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Data Leakage vectors</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The three fatal Data Leakage vectors (temporal lookahead, subject clustering contamination, duplicate records).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Summary & Next Steps",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the single most vital principle for data engineers to remember from this lesson?"
+              "text": "In production fraud detection, network intrusion monitoring, and rare disease screening, datasets suffer from extreme class rarity, often exceeding one positive in ten thousand negative instances."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
+              "text": "Under such severe imbalance, ROC-AUC is dangerously deceitful. The false positive rate denominator contains the total number of true negatives. When negative instances number in the millions, generating ten thousand false alarms produces a false positive rate under one percent, yielding a glittering ROC-AUC of 0.98. Yet on the operational floor, precision is near zero! Engineering teams must evaluate using Precision-Recall AUC and Average Precision, which ignore true negatives and focus entirely on the minority class."
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Value Creation Cycle</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">bridging observational records to empirical risk minimization and operational action.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Why model decision thresholds must reflect asymmetric financial and clinical cost matrices rather than arbitrary default cutoffs.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Data Leakage vectors</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The three fatal Data Leakage vectors (temporal lookahead, subject clustering contamination, duplicate records).</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">The False Positive Rate Illusion in Rarity (\\(1:10^4\\))</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#ffd8ce] text-[#c2410c] border border-[#151b20]\">Evaluation Trap</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <div class=\"p-4 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"text-xs font-mono font-bold text-[#c2410c] uppercase tracking-wide\">Why ROC-AUC Fails Under Imbalance</div>\n      <div class=\"p-2.5 bg-[#fffdf7] rounded-lg font-mono text-xs border border-[#151b20] text-center\">\n        $$\\text{FPR} = \\frac{\\text{FP}}{\\text{FP} + \\text{TN}} = \\frac{10{,}000}{10{,}000 + 1{,}000{,}000} \\approx 0.0099$$\n      </div>\n      <p class=\"text-xs text-[#334155] leading-relaxed\">\n        With 1M benign transactions, 10,000 false fraud alerts yields an \\(\\text{FPR} &lt; 1\\%\\). The ROC curve looks near-perfect (\\(\\text{AUC} \\approx 0.98\\)), but operational operators are buried under 10,000 bogus cases!\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"text-xs font-mono font-bold text-[#0e7490] uppercase tracking-wide\">The PR-AUC Mandate</div>\n      <div class=\"p-2.5 bg-[#fffdf7] rounded-lg font-mono text-xs border border-[#151b20] text-center\">\n        $$\\text{Precision} = \\frac{\\text{TP}}{\\text{TP} + \\text{FP}}, \\quad \\text{Recall} = \\frac{\\text{TP}}{\\text{TP} + \\text{FN}}$$\n      </div>\n      <p class=\"text-xs text-[#334155] leading-relaxed\">\n        Precision-Recall curves exclude True Negatives (\\(\\text{TN}\\)) completely. Under extreme imbalance, PR-AUC immediately penalizes false positive floods, revealing true operational reliability.\n      </p>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Fraud Alert Flood",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, if our fraud model has a 0.98 ROC-AUC, why is our fraud investigation team complaining that 95% of their alerted accounts are completely innocent customers?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because your team looked at ROC-AUC instead of Precision-Recall curves! In a dataset of ten million transactions where only one thousand are fraudulent, even a tiny false positive rate of one-tenth of a percent generates ten thousand false alarms. Your investigators are drowning in false positives because ROC-AUC hid them behind millions of true negatives!"
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">The False Positive Rate Illusion in Rarity (\\(1:10^4\\))</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#ffd8ce] text-[#c2410c] border border-[#151b20]\">Evaluation Trap</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <div class=\"p-4 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"text-xs font-mono font-bold text-[#c2410c] uppercase tracking-wide\">Why ROC-AUC Fails Under Imbalance</div>\n      <div class=\"p-2.5 bg-[#fffdf7] rounded-lg font-mono text-xs border border-[#151b20] text-center\">\n        $$\\text{FPR} = \\frac{\\text{FP}}{\\text{FP} + \\text{TN}} = \\frac{10{,}000}{10{,}000 + 1{,}000{,}000} \\approx 0.0099$$\n      </div>\n      <p class=\"text-xs text-[#334155] leading-relaxed\">\n        With 1M benign transactions, 10,000 false fraud alerts yields an \\(\\text{FPR} &lt; 1\\%\\). The ROC curve looks near-perfect (\\(\\text{AUC} \\approx 0.98\\)), but operational operators are buried under 10,000 bogus cases!\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"text-xs font-mono font-bold text-[#0e7490] uppercase tracking-wide\">The PR-AUC Mandate</div>\n      <div class=\"p-2.5 bg-[#fffdf7] rounded-lg font-mono text-xs border border-[#151b20] text-center\">\n        $$\\text{Precision} = \\frac{\\text{TP}}{\\text{TP} + \\text{FP}}, \\quad \\text{Recall} = \\frac{\\text{TP}}{\\text{TP} + \\text{FN}}$$\n      </div>\n      <p class=\"text-xs text-[#334155] leading-relaxed\">\n        Precision-Recall curves exclude True Negatives (\\(\\text{TN}\\)) completely. Under extreme imbalance, PR-AUC immediately penalizes false positive floods, revealing true operational reliability.\n      </p>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Clustered Entities & Grouped Cross-Validation",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Clustered Entities & Grouped Cross-Validation",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Real-world tabular and multimodal datasets frequently contain clustered or hierarchical observations: multiple clinical visits per patient, multiple audio utterances per speaker, or multiple device sessions per household."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "The degree of statistical dependence within a cluster is measured by the Intraclass Correlation Coefficient, or ICC. When ICC is greater than zero, random cross-validation violates sample independence. The model memorizes patient anatomy, sensor calibration signatures, or ambient room acoustics, drastically underestimating test variance. To evaluate generalization to unseen patients or devices, dataset engineers must enforce GroupKFold or StratifiedGroupKFold partitioning."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Hierarchical Observations &amp; Intraclass Correlation</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#fff0b9] text-[#b45309] border border-[#151b20]\">Group Independence</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"font-bold text-[#0e7490] text-xs uppercase\">Intraclass Correlation (ICC)</div>\n      <div class=\"p-2.5 bg-[#f6f0dc] rounded-lg border border-[#151b20] text-center font-bold text-sm\">\n        $$\\text{ICC} = \\frac{\\sigma^2_{between}}{\\sigma^2_{between} + \\sigma^2_{within}}$$\n      </div>\n      <p class=\"text-xs text-[#334155] font-sans leading-relaxed\">\n        Measures the proportion of total feature variance attributable to entity identity. When \\(\\text{ICC} &gt; 0\\), samples from the same entity are mathematically correlated, invalidating i.i.d. assumptions.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"font-bold text-[#b45309] text-xs uppercase\">Partitioning Invariant</div>\n      <div class=\"p-2.5 bg-[#fff0b9] rounded-lg border border-[#151b20] text-center font-bold text-sm\">\n        $$\\text{Entities}(\\mathcal{D}_{train}) \\cap \\text{Entities}(\\mathcal{D}_{test}) = \\emptyset$$\n      </div>\n      <p class=\"text-xs text-[#334155] font-sans leading-relaxed\">\n        Mandates that no individual subject, vehicle, or sensor appears in both folds. Forces the model to learn invariant disease or behavior representations rather than memorizing entity fingerprints.\n      </p>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Memorizing Patients vs. Detecting Disease",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "If a hospital has ten scans per patient, and we do a standard random 80/20 train-test split, what is the convolutional neural network actually learning?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "It is learning patient face or bone re-identification, Kaito! The network discovers that a unique pacemaker wire or specific spinal curve belongs to Patient 402, who had pneumonia. It scores ninety-eight percent in testing, but when applied to a new patient in another clinic, accuracy collapses to random chance. You must group split by Patient ID!"
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Hierarchical Observations &amp; Intraclass Correlation</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#fff0b9] text-[#b45309] border border-[#151b20]\">Group Independence</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"font-bold text-[#0e7490] text-xs uppercase\">Intraclass Correlation (ICC)</div>\n      <div class=\"p-2.5 bg-[#f6f0dc] rounded-lg border border-[#151b20] text-center font-bold text-sm\">\n        $$\\text{ICC} = \\frac{\\sigma^2_{between}}{\\sigma^2_{between} + \\sigma^2_{within}}$$\n      </div>\n      <p class=\"text-xs text-[#334155] font-sans leading-relaxed\">\n        Measures the proportion of total feature variance attributable to entity identity. When \\(\\text{ICC} &gt; 0\\), samples from the same entity are mathematically correlated, invalidating i.i.d. assumptions.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2\">\n      <div class=\"font-bold text-[#b45309] text-xs uppercase\">Partitioning Invariant</div>\n      <div class=\"p-2.5 bg-[#fff0b9] rounded-lg border border-[#151b20] text-center font-bold text-sm\">\n        $$\\text{Entities}(\\mathcal{D}_{train}) \\cap \\text{Entities}(\\mathcal{D}_{test}) = \\emptyset$$\n      </div>\n      <p class=\"text-xs text-[#334155] font-sans leading-relaxed\">\n        Mandates that no individual subject, vehicle, or sensor appears in both folds. Forces the model to learn invariant disease or behavior representations rather than memorizing entity fingerprints.\n      </p>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: Diagnosing Adversarial Concept Drift",
+        "type": "quiz",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Checkpoint 2: Diagnosing Adversarial Concept Drift",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Time for Active Recall Checkpoint 2! A credit card fraud detection model trained on historical transactions from January through June experiences a precipitous collapse in precision by October, despite transaction volumes and merchant distributions remaining completely steady. What statistical phenomenon explains this degradation, and what dataset mitigation is required? Select your diagnosis on the card below."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"text-xl\">💡</span>\n      <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Active Checkpoint 2: Temporal Precision Collapse</h3>\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#ffd8ce] text-[#c2410c] border border-[#151b20]\">Self-Assessment</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f6f0dc] border-2 border-[#151b20] text-xs md:text-sm text-[#151b20] leading-relaxed\">\n    <strong>Scenario:</strong> A gradient boosted fraud classifier deployed in July shows steadily deteriorating precision by October (from 82% to 34%), even though total weekly transaction volume and top merchant categories remain identical to the training period. How should the dataset operations team classify and remediate this failure?\n  </div>\n\n  <div id=\"quizOptionsContainer2\" class=\"space-y-2 font-mono text-xs\">\n    <!-- Rendered dynamically by virtual speaker -->\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Adversarial Red Queen",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "If transaction volume and merchant categories didn't change, why did the model suddenly start generating hundreds of false alarms?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because fraudsters are active intelligent adversaries, Kaito! Once their old fraud patterns are blocked, they change transaction sizes, switch IP ranges, and alter their behavior. The conditional probability of fraud given the features shifted. Choose the right diagnostic below!"
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"text-xl\">💡</span>\n      <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Active Checkpoint 2: Temporal Precision Collapse</h3>\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#ffd8ce] text-[#c2410c] border border-[#151b20]\">Self-Assessment</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f6f0dc] border-2 border-[#151b20] text-xs md:text-sm text-[#151b20] leading-relaxed\">\n    <strong>Scenario:</strong> A gradient boosted fraud classifier deployed in July shows steadily deteriorating precision by October (from 82% to 34%), even though total weekly transaction volume and top merchant categories remain identical to the training period. How should the dataset operations team classify and remediate this failure?\n  </div>\n\n  <div id=\"quizOptionsContainer2\" class=\"space-y-2 font-mono text-xs\">\n    <!-- Rendered dynamically by virtual speaker -->\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Temporal Validation: Walk-Forward & Purged Splits",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Temporal Validation: Walk-Forward & Purged Splits",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "When data generation exhibits temporal dynamics, standard k-fold cross-validation is an architectural catastrophe because it samples past data to predict the past while training on the future."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Data engineering pipelines must enforce Out-of-Time walk-forward validation topologies. In an expanding window, the training horizon continuously expands while evaluating strictly on subsequent future blocks. Furthermore, as formulated by Marcos López de Prado, financial and event-driven data requires purging and embargoing: purging removes training records whose forward-looking labels overlap the test period, while embargoing introduces a safety buffer to eliminate serial autocorrelation leakage."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Temporal Validation Topologies (López de Prado)</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Out-of-Time Partitioning</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs\">\n    <div class=\"p-3.5 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Topology 1</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Expanding Walk-Forward</div>\n      <p class=\"text-[#334155] text-xs font-sans mt-1 leading-relaxed\">\n        Anchor \\(t_0\\) is fixed. Training window grows: \\([t_0, t_k] \\to \\text{Test}[t_k, t_{k+1}]\\). Accurately simulates accumulating historical corporate knowledge.\n      </p>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Topology 2</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Sliding Rolling Window</div>\n      <p class=\"text-[#334155] text-xs font-sans mt-1 leading-relaxed\">\n        Constant training window length \\(W\\): \\([t_{k-W}, t_k] \\to \\text{Test}[t_k, t_{k+1}]\\). Forgets obsolete regimes under non-stationary concept drift.\n      </p>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"font-bold text-[#c2410c] text-[10px] uppercase\">Topology 3</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Purged &amp; Embargoed Split</div>\n      <p class=\"text-[#334155] text-xs font-sans mt-1 leading-relaxed\">\n        <strong>Purging:</strong> Removes train rows whose labels span into test windows.<br/>\n        <strong>Embargo:</strong> Adds buffer \\(h\\) post-test to kill autoregressive feedback.\n      </p>\n    </div>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Danger of Random Splits on Time Series",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "What happens if someone ignores walk-forward validation and runs standard tenfold cross-validation on stock market or sensor data?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "You create an omniscient crystal ball model! The model trains on Wednesday's price jump to predict Tuesday's trend, and interpolates between adjacent time ticks. When deployed on Thursday morning where the future is truly unknown, the model crashes instantly. Never split time series randomly!"
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Temporal Validation Topologies (López de Prado)</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Out-of-Time Partitioning</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs\">\n    <div class=\"p-3.5 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Topology 1</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Expanding Walk-Forward</div>\n      <p class=\"text-[#334155] text-xs font-sans mt-1 leading-relaxed\">\n        Anchor \\(t_0\\) is fixed. Training window grows: \\([t_0, t_k] \\to \\text{Test}[t_k, t_{k+1}]\\). Accurately simulates accumulating historical corporate knowledge.\n      </p>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Topology 2</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Sliding Rolling Window</div>\n      <p class=\"text-[#334155] text-xs font-sans mt-1 leading-relaxed\">\n        Constant training window length \\(W\\): \\([t_{k-W}, t_k] \\to \\text{Test}[t_k, t_{k+1}]\\). Forgets obsolete regimes under non-stationary concept drift.\n      </p>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"font-bold text-[#c2410c] text-[10px] uppercase\">Topology 3</div>\n      <div class=\"font-black text-[#151b20] text-sm my-1\">Purged &amp; Embargoed Split</div>\n      <p class=\"text-[#334155] text-xs font-sans mt-1 leading-relaxed\">\n        <strong>Purging:</strong> Removes train rows whose labels span into test windows.<br/>\n        <strong>Embargo:</strong> Adds buffer \\(h\\) post-test to kill autoregressive feedback.\n      </p>\n    </div>\n  </div>\n</div>"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Pipeline: Leakage-Free Scikit-Learn & Polars",
+        "type": "code",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Pipeline: Leakage-Free Scikit-Learn & Polars",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Here is our complete production-grade modeling pipeline. We combine Polars for zero-copy feature preparation with Scikit-learn Pipeline and ColumnTransformer to guarantee absolute leakage isolation."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice how all feature imputation and scaling operations are encapsulated inside the pipeline object. When fit is executed, parameters are estimated strictly on training folds. During cross-validation, the test split is transformed via zero-copy inference. Finally, the script executes a cost-sensitive grid search over decision thresholds, identifying the exact tau-star that maximizes net economic profit."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-3\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Leakage-Free Churn Pipeline &amp; Threshold Search</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#e7f4c8] text-[#15803d] border border-[#151b20]\">Production Python</span>\n  </div>\n\n  <pre class=\"p-3.5 bg-[#f6f0dc] rounded-xl border-2 border-[#151b20] overflow-x-auto font-mono text-[11px] leading-relaxed text-[#151b20]\"><code>import polars as pl\nimport numpy as np\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import TimeSeriesSplit\n\n# 1. Feature Preprocessing Isolation Contract\npreprocessor = ColumnTransformer(transformers=[\n    (\"num\", Pipeline([\n        (\"imputer\", SimpleImputer(strategy=\"median\")),\n        (\"scaler\", StandardScaler())\n    ]), [\"tenure_months\", \"complaints\", \"product_usage_score\", \"activity_delta_pct\"])\n])\n\npipeline = Pipeline(steps=[\n    (\"prep\", preprocessor),\n    (\"model\", RandomForestClassifier(n_estimators=150, max_depth=6, random_state=42))\n])\n\n# 2. Strict Out-of-Time Walk-Forward Partitioning\ntscv = TimeSeriesSplit(n_splits=5)\n# Pipeline guarantees scalers are fit strictly on X_train fold!\n\n# 3. Cost-Sensitive Financial Threshold Search\ndef optimize_threshold(y_true, y_probs, ltv=300, c_offer=20, p_save=0.40):\n    best_tau, best_profit = 0.5, -float(\"inf\")\n    for tau in np.linspace(0.1, 0.9, 33):\n        preds = (y_probs >= tau).astype(int)\n        tp = np.sum((preds == 1) & (y_true == 1))\n        fp = np.sum((preds == 1) & (y_true == 0))\n        profit = (tp * p_save * ltv) - ((tp + fp) * c_offer)\n        if profit > best_profit:\n            best_profit, best_tau = profit, tau\n    return best_tau, best_profit</code></pre>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Architecture of the Pipeline",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "By wrapping our imputer, scaler, and random forest into a single Scikit-learn Pipeline object, do we completely prevent preprocessing data leakage during cross-validation?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yes, absolutely! The Pipeline object guarantees that the imputer and scaler only see the training fold during fit. When evaluating test folds, it transforms them using the training fold's median and variance. That architectural encapsulation is what separates amateur notebooks from production ML engineering."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 md:p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] space-y-3\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-lg md:text-xl font-black text-[#151b20]\">Leakage-Free Churn Pipeline &amp; Threshold Search</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#e7f4c8] text-[#15803d] border border-[#151b20]\">Production Python</span>\n  </div>\n\n  <pre class=\"p-3.5 bg-[#f6f0dc] rounded-xl border-2 border-[#151b20] overflow-x-auto font-mono text-[11px] leading-relaxed text-[#151b20]\"><code>import polars as pl\nimport numpy as np\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import TimeSeriesSplit\n\n# 1. Feature Preprocessing Isolation Contract\npreprocessor = ColumnTransformer(transformers=[\n    (\"num\", Pipeline([\n        (\"imputer\", SimpleImputer(strategy=\"median\")),\n        (\"scaler\", StandardScaler())\n    ]), [\"tenure_months\", \"complaints\", \"product_usage_score\", \"activity_delta_pct\"])\n])\n\npipeline = Pipeline(steps=[\n    (\"prep\", preprocessor),\n    (\"model\", RandomForestClassifier(n_estimators=150, max_depth=6, random_state=42))\n])\n\n# 2. Strict Out-of-Time Walk-Forward Partitioning\ntscv = TimeSeriesSplit(n_splits=5)\n# Pipeline guarantees scalers are fit strictly on X_train fold!\n\n# 3. Cost-Sensitive Financial Threshold Search\ndef optimize_threshold(y_true, y_probs, ltv=300, c_offer=20, p_save=0.40):\n    best_tau, best_profit = 0.5, -float(\"inf\")\n    for tau in np.linspace(0.1, 0.9, 33):\n        preds = (y_probs >= tau).astype(int)\n        tp = np.sum((preds == 1) & (y_true == 1))\n        fp = np.sum((preds == 1) & (y_true == 0))\n        profit = (tp * p_save * ltv) - ((tp + fp) * c_offer)\n        if profit > best_profit:\n            best_profit, best_tau = profit, tau\n    return best_tau, best_profit</code></pre>\n</div>"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Capstone Summary & Forward Transition to Lesson 1.7",
+        "type": "title",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Capstone Summary & Forward Transition to Lesson 1.7",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Congratulations on completing Lesson 1.6! Today we connected dataset curation to operational action: from Empirical Risk Minimization and asymmetric decision theory to eliminating data leakage and configuring walk-forward cross-validation."
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Remember our 5 Golden Rules of Dataset Modeling: One, align decision thresholds with asymmetric cost matrices. Two, encapsulate all transformers in pipelines to eliminate preprocessing leakage. Three, enforce group boundaries for clustered entities. Four, guard against adaptive benchmark overfitting. And five, deploy continuous drift telemetry. In Lesson 1.7, we culminate Track One with Dataset Management, Governance, and Lifecycle Architecture!"
+            }
+          ],
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-xl md:text-2xl font-black text-[#151b20]\">The 5 Golden Rules of Dataset Modeling</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Production Invariants</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-5 gap-2.5 font-mono text-xs text-center\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Rule 1</div>\n      <div class=\"font-black text-[#151b20] text-xs my-1\">Asymmetric Costs</div>\n      <div class=\"text-[#334155] text-[10px] font-sans\">Never deploy default \\(\\tau=0.5\\); optimize \\(\\tau^*\\) for net economic profit.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Rule 2</div>\n      <div class=\"font-black text-[#151b20] text-xs my-1\">Zero Leakage</div>\n      <div class=\"text-[#334155] text-[10px] font-sans\">Fit all imputers, scalers, and encoders strictly on training folds.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#c2410c] text-[10px] uppercase\">Rule 3</div>\n      <div class=\"font-black text-[#151b20] text-xs my-1\">Group Boundaries</div>\n      <div class=\"text-[#334155] text-[10px] font-sans\">Enforce GroupKFold on clustered entities (patients, devices, speakers).</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#15803d] text-[10px] uppercase\">Rule 4</div>\n      <div class=\"font-black text-[#151b20] text-xs my-1\">Temporal Splits</div>\n      <div class=\"text-[#334155] text-[10px] font-sans\">Enforce Out-of-Time walk-forward validation on all time series.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Rule 5</div>\n      <div class=\"font-black text-[#151b20] text-xs my-1\">Drift Telemetry</div>\n      <div class=\"text-[#334155] text-[10px] font-sans\">Continuously monitor \\(P(Y \\mid X)\\) against adversarial concept shift.</div>\n    </div>\n  </div>\n\n  <div class=\"pt-2 p-3.5 rounded-xl bg-[#f6f0dc] border-2 border-[#151b20] flex items-center justify-between flex-wrap gap-2\">\n    <div>\n      <span class=\"font-bold text-xs text-[#151b20]\">Next in Track 1:</span>\n      <span class=\"text-xs text-[#0e7490] font-black ml-1\">Lesson 1.7: Dataset Management, Governance &amp; Lifecycle Architecture</span>\n    </div>\n    <a href=\"virtual-speaker.html?chapter=1&part=7\" class=\"px-3 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] border-2 border-[#151b20] font-mono text-xs font-black shadow-[2px_2px_0px_#151b20] hover:bg-[#fff0b9] transition-all\">\n      Continue to Lesson 1.7 →\n    </a>\n  </div>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Road to Production Governance",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, we have conquered data types, formats, quality dimensions, exploratory profiling, and modeling integration. What remains to complete Track One?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In Lesson 1.7, we examine what holds this entire machine together: Dataset Management and Governance Architecture! We investigate data version control with DVC, regulatory compliance under GDPR and HIPAA, role-based access control, and retention lifecycle policies. See you in Lesson 1.7!"
+            }
+          ],
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] space-y-4\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2\">\n    <h3 class=\"text-xl md:text-2xl font-black text-[#151b20]\">The 5 Golden Rules of Dataset Modeling</h3>\n    <span class=\"px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Production Invariants</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-5 gap-2.5 font-mono text-xs text-center\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Rule 1</div>\n      <div class=\"font-black text-[#151b20] text-xs my-1\">Asymmetric Costs</div>\n      <div class=\"text-[#334155] text-[10px] font-sans\">Never deploy default \\(\\tau=0.5\\); optimize \\(\\tau^*\\) for net economic profit.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#b45309] text-[10px] uppercase\">Rule 2</div>\n      <div class=\"font-black text-[#151b20] text-xs my-1\">Zero Leakage</div>\n      <div class=\"text-[#334155] text-[10px] font-sans\">Fit all imputers, scalers, and encoders strictly on training folds.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#c2410c] text-[10px] uppercase\">Rule 3</div>\n      <div class=\"font-black text-[#151b20] text-xs my-1\">Group Boundaries</div>\n      <div class=\"text-[#334155] text-[10px] font-sans\">Enforce GroupKFold on clustered entities (patients, devices, speakers).</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#15803d] text-[10px] uppercase\">Rule 4</div>\n      <div class=\"font-black text-[#151b20] text-xs my-1\">Temporal Splits</div>\n      <div class=\"text-[#334155] text-[10px] font-sans\">Enforce Out-of-Time walk-forward validation on all time series.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-bold text-[#0e7490] text-[10px] uppercase\">Rule 5</div>\n      <div class=\"font-black text-[#151b20] text-xs my-1\">Drift Telemetry</div>\n      <div class=\"text-[#334155] text-[10px] font-sans\">Continuously monitor \\(P(Y \\mid X)\\) against adversarial concept shift.</div>\n    </div>\n  </div>\n\n  <div class=\"pt-2 p-3.5 rounded-xl bg-[#f6f0dc] border-2 border-[#151b20] flex items-center justify-between flex-wrap gap-2\">\n    <div>\n      <span class=\"font-bold text-xs text-[#151b20]\">Next in Track 1:</span>\n      <span class=\"text-xs text-[#0e7490] font-black ml-1\">Lesson 1.7: Dataset Management, Governance &amp; Lifecycle Architecture</span>\n    </div>\n    <a href=\"virtual-speaker.html?chapter=1&part=7\" class=\"px-3 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] border-2 border-[#151b20] font-mono text-xs font-black shadow-[2px_2px_0px_#151b20] hover:bg-[#fff0b9] transition-all\">\n      Continue to Lesson 1.7 →\n    </a>\n  </div>\n</div>"
         }
       }
     ]
@@ -13678,9 +14243,9 @@ var ALL_CURRICULUM = {
     "chapter": 4,
     "part": 1,
     "key": "ch4_p1",
-    "badge": "◆ TRACK 4 • LESSON 4.1: INTRODUCTION TO DATA ANNOTATION: FOUNDATIONS, TAXONOMIES & THE LABEL-QUALITY BOUND",
-    "index": "Lesson 1 of 10",
-    "lessonTitle": "Introduction to Data Annotation: Foundations, Taxonomies & The Label-Quality Bound",
+    "title": "Introduction to Data Annotation: Foundations, Taxonomies & The Label-Quality Bound",
+    "badge": "16 Masterclass Slides • Socratic Dialogue • Interactive Sandbox",
+    "description": "Formalizing the transition from raw records to verified semantic ground truth. PAC learnability under Random Classification Noise, effective sample size collapse, asymmetric transition matrices, modality taxonomies, and 9-stage quality gates.",
     "slides": [
       {
         "id": "s1",
@@ -13688,277 +14253,736 @@ var ALL_CURRICULUM = {
         "type": "title",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Introduction to Data Annotation: Foundations, Taxonomies & The Label-Quality Bound",
+          "title": "Introduction to Data Annotation: Foundations & Taxonomies",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 4.1. Today we examine introduction to data annotation: foundations, taxonomies & the label-quality bound, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 4: Foundations</span>\n    <span>•</span>\n    <span>Lesson 4.1</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Introduction to Data Annotation: Foundations, Taxonomies &amp; The Label-Quality Bound\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into introduction to data annotation: foundations, taxonomies &amp; the label-quality bound with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Introduction to Data Annotation: Foundations, Taxonomies & The Label-Quality Bound",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 4.1?"
+              "text": "Welcome to Track 4, Lesson 4.1 of Dataset Fundamentals: Introduction to Data Annotation, Taxonomies, and the Label-Quality Bound. Where earlier tracks established raw physical data acquisition and ethical constraints, Track 4 addresses the critical crucible of supervised learning: converting uncurated raw records into verified semantic ground truth.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 4.1. Today we examine introduction to data annotation: foundations, taxonomies & the label-quality bound, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "In modern data-centric machine learning, model architectures are largely standardized. Empirical performance is overwhelmingly governed not by neural capacity, but by label noise, taxonomic ambiguity, annotator subjectivity, and inter-rater disagreement. Today, we formalize PAC learnability under label noise, derive effective sample size degradation, analyze asymmetric noise transition matrices, and establish production quality gates.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 4: Foundations</span>\n    <span>•</span>\n    <span>Lesson 4.1</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Introduction to Data Annotation: Foundations, Taxonomies &amp; The Label-Quality Bound\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into introduction to data annotation: foundations, taxonomies &amp; the label-quality bound with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 4 • Data Annotation &amp; Ground Truth • Lesson 4.1</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Introduction to Data Annotation: Foundations, Taxonomies &amp; The Label-Quality Bound\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Formalizing the transition from raw unstructured records to verified semantic supervision. PAC learnability under Random Classification Noise, asymmetric transition matrices, and modal taxonomies.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. PAC Noise Bound</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Angluin-Laird RCN model: $N_{\\text{eff}} = N(1 - 2\\eta)^2$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Asymmetric Transitions</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Transition matrix $T$, Natarajan unbiased loss $\\ell^* = T^{-1}\\ell$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. Modal Taxonomies</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Text spans, 2D/3D BBoxes, RLE masks, audio event boxes, MOT.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. 9-Stage Lifecycle</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Gold rubrics, synthetic honeypots, Dawid-Skene consensus.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: The Crucial Role of Ground Truth Annotation",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Lesson 4.1, Kaito! Today we tackle what is arguably the single most decisive factor in applied artificial intelligence: transforming raw bits into supervised ground truth.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Most engineers think modern deep learning solved everything, Dr. Nova! They assume if an image classifier fails, you just scale up a Vision Transformer or add attention layers.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the classical model-centric illusion. As Northcutt and Angluin proved mathematically, if your labels contain systematic noise, scaling model capacity only causes the network to overfit to corrupt crowd mistakes with higher statistical confidence!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So ground truth labels aren't an afterthought—they define the mathematical upper bound on what any learning algorithm can ever achieve!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 4 • Data Annotation &amp; Ground Truth • Lesson 4.1</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Introduction to Data Annotation: Foundations, Taxonomies &amp; The Label-Quality Bound\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Formalizing the transition from raw unstructured records to verified semantic supervision. PAC learnability under Random Classification Noise, asymmetric transition matrices, and modal taxonomies.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. PAC Noise Bound</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Angluin-Laird RCN model: $N_{\\text{eff}} = N(1 - 2\\eta)^2$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Asymmetric Transitions</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Transition matrix $T$, Natarajan unbiased loss $\\ell^* = T^{-1}\\ell$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. Modal Taxonomies</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Text spans, 2D/3D BBoxes, RLE masks, audio event boxes, MOT.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. 9-Stage Lifecycle</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Gold rubrics, synthetic honeypots, Dawid-Skene consensus.</span>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s2",
-        "title": "Formal Mathematical Foundations: PAC Learnability Under Label Noise",
-        "type": "equation",
+        "title": "The Data-Centric Paradigm: Semantic Ground Truth vs. Model Capacity",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Formal Mathematical Foundations: PAC Learnability Under Label Noise",
+          "title": "Model-Centric vs. Data-Centric Engineering",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Formal Mathematical Foundations: PAC Learnability Under Label Noise. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$P(\\tilde{y} = -y \\mid x) = \\eta, \\quad \\text{where } \\eta < \\frac{1}{2}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$R_\\eta(h) = (1 - \\eta) R(h) + \\eta (1 - R(h)) = (1 - 2\\eta) R(h) + \\eta$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$R(h) = \\frac{R_\\eta(h) - \\eta}{1 - 2\\eta}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">When data annotation</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is conducted by human annotators or automated heuristics, labels are subject to corrupting noise.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">To achieve</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">a true generalization error bounded by $\\epsilon$ with probability at least $1 - \\delta$, the sample complexity $m$ required from the annotator pool scales quadratically in the inverse signal-to-noise ratio:</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Formal Mathematical Foundations: PAC Learnability Under Label Noise",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does formal mathematical foundations: pac learnability under label noise protect our system against silent distribution shift in production?"
+              "text": "For two decades, machine learning focused on model architectures: moving from linear models to SVMs, then to convolutional networks and massive Transformers. But empirical research by Russell, Northcutt, and Kolesnikov revealed a startling reality: across production tasks, architecture performance has saturated.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Holding model architecture constant while systematically auditing and cleaning dataset annotations yields up to ten times greater accuracy gains than weeks spent running hyperparameter sweeps. In data-centric AI, our objective is to engineer the dataset itself into an unambiguous mathematical oracle.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$P(\\tilde{y} = -y \\mid x) = \\eta, \\quad \\text{where } \\eta < \\frac{1}{2}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$R_\\eta(h) = (1 - \\eta) R(h) + \\eta (1 - R(h)) = (1 - 2\\eta) R(h) + \\eta$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$R(h) = \\frac{R_\\eta(h) - \\eta}{1 - 2\\eta}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">When data annotation</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is conducted by human annotators or automated heuristics, labels are subject to corrupting noise.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">To achieve</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">a true generalization error bounded by $\\epsilon$ with probability at least $1 - \\delta$, the sample complexity $m$ required from the annotator pool scales quadratically in the inverse signal-to-noise ratio:</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      ⚖️ The Paradigm Inversion: Model-Centric vs. Data-Centric Engineering\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#fff0b9] text-[#151b20] border border-[#151b20]\">\n      Russell (2008) • Northcutt (2021)\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <div class=\"p-4 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"flex items-center gap-2 mb-2 font-black text-sm text-[#b91c1c]\">\n        <span>❌ Legacy Model-Centric Approach</span>\n      </div>\n      <p class=\"text-xs text-[#151b20] leading-relaxed mb-3\">\n        Treats the training dataset as static and immutable. Spends hundreds of GPU hours tuning learning rates, optimizers, and model depth to squeeze out minor accuracy gains.\n      </p>\n      <ul class=\"text-[11px] font-mono space-y-1.5 text-[#151b20]/90\">\n        <li>• Overfits to mislabeled crowd noise.</li>\n        <li>• Masks ambiguous label taxonomies.</li>\n        <li>• Diminishing returns beyond parameter scaling.</li>\n      </ul>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"flex items-center gap-2 mb-2 font-black text-sm text-[#0e7490]\">\n        <span>✓ Modern Data-Centric Engineering</span>\n      </div>\n      <p class=\"text-xs text-[#151b20] leading-relaxed mb-3\">\n        Standardizes model architecture. Systematically audits annotation rubrics, measures inter-rater consensus, prunes noisy labels via Confident Learning, and refines boundary edge cases.\n      </p>\n      <ul class=\"text-[11px] font-mono space-y-1.5 text-[#151b20]/90\">\n        <li>• Mathematically bounds true generalization risk.</li>\n        <li>• Restores lost effective sample size ($N_{\\text{eff}}$).</li>\n        <li>• Yields sustainable 5x–10x ROI on engineering effort.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "The Paradigm Shift: From Hyperparameters to Ground Truth",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, I spent three weeks tuning a ResNet-50 on our client's defect classification dataset, but accuracy was stuck at 82%. What did you do to jump it to 94% in two days?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "I inspected the confusion matrix and discovered that thirty percent of the images labeled as 'surface scratch' were actually 'casting porosity'! Your deep network was wasting capacity trying to find features that could satisfy contradictory labels.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So the network wasn't failing to learn—it was faithfully memorizing human mistakes!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Once we disambiguated the annotation guidelines and re-labeled the boundary examples, even a simple baseline model achieved 94% with zero hyperparameter tuning.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      ⚖️ The Paradigm Inversion: Model-Centric vs. Data-Centric Engineering\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#fff0b9] text-[#151b20] border border-[#151b20]\">\n      Russell (2008) • Northcutt (2021)\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <div class=\"p-4 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"flex items-center gap-2 mb-2 font-black text-sm text-[#b91c1c]\">\n        <span>❌ Legacy Model-Centric Approach</span>\n      </div>\n      <p class=\"text-xs text-[#151b20] leading-relaxed mb-3\">\n        Treats the training dataset as static and immutable. Spends hundreds of GPU hours tuning learning rates, optimizers, and model depth to squeeze out minor accuracy gains.\n      </p>\n      <ul class=\"text-[11px] font-mono space-y-1.5 text-[#151b20]/90\">\n        <li>• Overfits to mislabeled crowd noise.</li>\n        <li>• Masks ambiguous label taxonomies.</li>\n        <li>• Diminishing returns beyond parameter scaling.</li>\n      </ul>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"flex items-center gap-2 mb-2 font-black text-sm text-[#0e7490]\">\n        <span>✓ Modern Data-Centric Engineering</span>\n      </div>\n      <p class=\"text-xs text-[#151b20] leading-relaxed mb-3\">\n        Standardizes model architecture. Systematically audits annotation rubrics, measures inter-rater consensus, prunes noisy labels via Confident Learning, and refines boundary edge cases.\n      </p>\n      <ul class=\"text-[11px] font-mono space-y-1.5 text-[#151b20]/90\">\n        <li>• Mathematically bounds true generalization risk.</li>\n        <li>• Restores lost effective sample size ($N_{\\text{eff}}$).</li>\n        <li>• Yields sustainable 5x–10x ROI on engineering effort.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s3",
-        "title": "Effective Sample Size Degradation",
-        "type": "equation",
+        "title": "PAC Learnability Under Label Noise: The Angluin-Laird RCN Model",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Effective Sample Size Degradation",
+          "title": "The Random Classification Noise (RCN) Formulation",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Effective Sample Size Degradation. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$N_{\\text{eff}} = N \\cdot (1 - 2\\eta)^2$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Effective Sample Size Degradation",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does effective sample size degradation protect our system against silent distribution shift in production?"
+              "text": "Let us formalize the corruption process. In Probably Approximately Correct (PAC) learning, training pairs are drawn from distribution D with true concept y. In practice, an imperfect annotation channel flips each true label with error rate eta, where eta is strictly less than one-half.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Under symmetric noise, the observed risk of a hypothesis h expands linearly: R sub eta of h equals 1 minus 2 eta times the true risk R of h, plus eta. Solving for the true underlying risk reveals the exact noise penalty denominator: 1 minus 2 eta. As eta approaches one-half, the true signal vanishes completely.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$N_{\\text{eff}} = N \\cdot (1 - 2\\eta)^2$$\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      📐 Mathematical Formulation: Angluin &amp; Laird (1988) RCN Model\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border border-[#151b20]\">\n      PAC Learnability Bound\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mb-3\">\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#0e7490] mb-1\">1. Bernoulli Corruption Channel</div>\n      <div class=\"text-sm font-mono font-bold text-[#151b20] bg-[#f8fafc] p-2 rounded border border-[#151b20]/20 mb-2\">\n        $$P(\\tilde{y} = -y \\mid x) = \\eta, \\quad \\text{where } \\eta < \\frac{1}{2}$$\n      </div>\n      <p class=\"text-[11px] text-[#475569] leading-snug\">\n        Observed label $\\tilde{y}$ is corrupted by an independent Bernoulli coin flip parameterized by annotator error rate $\\eta$.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#b45309] mb-1\">2. Observed vs. True Risk Expansion</div>\n      <div class=\"text-sm font-mono font-bold text-[#151b20] bg-[#f8fafc] p-2 rounded border border-[#151b20]/20 mb-2\">\n        $$R_\\eta(h) = (1 - 2\\eta) R(h) + \\eta$$\n      </div>\n      <p class=\"text-[11px] text-[#475569] leading-snug\">\n        The observed empirical risk on noisy data is a linear attenuation of the true generalization risk $R(h)$ plus baseline noise $\\eta$.\n      </p>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-lg bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <div class=\"font-mono font-bold text-xs text-[#b91c1c] mb-1\">3. The True Risk Inversion &amp; Critical Singularity ($\\eta \\to 1/2$)</div>\n    <div class=\"text-base font-mono font-black text-[#151b20] text-center my-1\">\n      $$R(h) = \\frac{R_\\eta(h) - \\eta}{1 - 2\\eta}$$\n    </div>\n    <p class=\"text-[11px] text-[#151b20] text-center font-medium\">\n      As annotator error approaches pure random guessing ($\\eta \\to 0.50$), the denominator $(1 - 2\\eta) \\to 0$. True risk becomes <strong>statistically unidentifiable</strong>.\n    </p>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "The Random Classification Noise Channel",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, why is the condition strictly eta less than 0.50? What if a crowd workforce has a 55% error rate?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "If eta exceeds 0.50, the noise channel inverts! The labels actually contain signal—you could simply invert every single label and achieve a 45% error rate. But at exactly eta equals 0.50, the channel carries zero mutual information.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Look at that formula for true risk: R of h equals R sub eta minus eta divided by 1 minus 2 eta. As eta gets close to 0.50, dividing by a tiny decimal makes the variance explode!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! That mathematical denominator is where sample complexity explodes. Let us see how that directly destroys effective dataset size.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      📐 Mathematical Formulation: Angluin &amp; Laird (1988) RCN Model\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border border-[#151b20]\">\n      PAC Learnability Bound\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mb-3\">\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#0e7490] mb-1\">1. Bernoulli Corruption Channel</div>\n      <div class=\"text-sm font-mono font-bold text-[#151b20] bg-[#f8fafc] p-2 rounded border border-[#151b20]/20 mb-2\">\n        $$P(\\tilde{y} = -y \\mid x) = \\eta, \\quad \\text{where } \\eta < \\frac{1}{2}$$\n      </div>\n      <p class=\"text-[11px] text-[#475569] leading-snug\">\n        Observed label $\\tilde{y}$ is corrupted by an independent Bernoulli coin flip parameterized by annotator error rate $\\eta$.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#b45309] mb-1\">2. Observed vs. True Risk Expansion</div>\n      <div class=\"text-sm font-mono font-bold text-[#151b20] bg-[#f8fafc] p-2 rounded border border-[#151b20]/20 mb-2\">\n        $$R_\\eta(h) = (1 - 2\\eta) R(h) + \\eta$$\n      </div>\n      <p class=\"text-[11px] text-[#475569] leading-snug\">\n        The observed empirical risk on noisy data is a linear attenuation of the true generalization risk $R(h)$ plus baseline noise $\\eta$.\n      </p>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-lg bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <div class=\"font-mono font-bold text-xs text-[#b91c1c] mb-1\">3. The True Risk Inversion &amp; Critical Singularity ($\\eta \\to 1/2$)</div>\n    <div class=\"text-base font-mono font-black text-[#151b20] text-center my-1\">\n      $$R(h) = \\frac{R_\\eta(h) - \\eta}{1 - 2\\eta}$$\n    </div>\n    <p class=\"text-[11px] text-[#151b20] text-center font-medium\">\n      As annotator error approaches pure random guessing ($\\eta \\to 0.50$), the denominator $(1 - 2\\eta) \\to 0$. True risk becomes <strong>statistically unidentifiable</strong>.\n    </p>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s4",
-        "title": "Asymmetric Class-Conditional Noise Transition Matrix",
-        "type": "equation",
+        "title": "Quadratic Sample Complexity Explosion & Effective Sample Size (N_eff)",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Asymmetric Class-Conditional Noise Transition Matrix",
+          "title": "The Quadratic Sample Complexity Explosion",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Asymmetric Class-Conditional Noise Transition Matrix. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$T_{i, j} = P(\\tilde{Y} = j \\mid Y^* = i) \\quad \\text{where} \\quad \\sum_{j=1}^K T_{i, j} = 1$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">In enterprise crowdsourced annotation campaigns (Snow, 2008), inject synthetic gold standard control tasks (honeypots with known ground truth) uniformly at a 5–10% rate into annotator queues. Automatically revoke submit permissions from annotators wh</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">In real-world multi-class</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">tasks, noise is rarely symmetric.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Asymmetric Class-Conditional Noise Transition Matrix",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does asymmetric class-conditional noise transition matrix protect our system against silent distribution shift in production?"
+              "text": "Angluin and Laird proved that to guarantee risk bound epsilon with confidence 1 minus delta under noise rate eta, the required sample size m scales with 1 over 1 minus 2 eta squared. This gives us the foundational equation for Effective Dataset Size: N eff equals nominal size N times 1 minus 2 eta squared.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Consider the profound economic consequence. If your annotator pool has a 20% error rate, 1 minus 2 times 0.20 squared is 0.36! Your five thousand record dataset carries the statistical power of only eighteen hundred clean records. At 35% error, effective power collapses to 9%, requiring an eleven-fold data expansion to compensate.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$T_{i, j} = P(\\tilde{Y} = j \\mid Y^* = i) \\quad \\text{where} \\quad \\sum_{j=1}^K T_{i, j} = 1$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">In enterprise crowdsourced annotation campaigns (Snow, 2008), inject synthetic gold standard control tasks (honeypots with known ground truth) uniformly at a 5–10% rate into annotator queues. Automatically revoke submit permissions from annotators wh</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">In real-world multi-class</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">tasks, noise is rarely symmetric.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      ⚡ Sample Complexity &amp; Effective Dataset Size ($N_{\\text{eff}}$)\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#fff0b9] text-[#151b20] border border-[#151b20]\">\n      Angluin &amp; Laird (1988)\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mb-3\">\n    <div class=\"p-3 rounded-lg bg-[#f8fafc] border-2 border-[#151b20]\">\n      <div class=\"text-xs font-mono font-bold text-[#0e7490] mb-1\">Angluin-Laird PAC Sample Complexity Bound</div>\n      <div class=\"text-xs sm:text-sm font-mono font-bold text-[#151b20] bg-white p-2 rounded border border-[#151b20]/20 mb-2\">\n        $$m \\ge \\frac{2}{\\epsilon^2 (1 - 2\\eta)^2} \\left( \\text{VC}(\\mathcal{H}) \\ln \\frac{2e}{\\epsilon} + \\ln \\frac{2}{\\delta} \\right)$$\n      </div>\n      <p class=\"text-[10.5px] text-[#475569]\">\n        Sample requirement scales with the <strong>inverse square</strong> of the signal-to-noise ratio $(1 - 2\\eta)$.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#f8fafc] border-2 border-[#151b20]\">\n      <div class=\"text-xs font-mono font-bold text-[#b45309] mb-1\">Effective Dataset Size Degradation</div>\n      <div class=\"text-xs sm:text-sm font-mono font-bold text-[#151b20] bg-white p-2 rounded border border-[#151b20]/20 mb-2\">\n        $$N_{\\text{eff}} = N \\cdot (1 - 2\\eta)^2$$\n      </div>\n      <p class=\"text-[10.5px] text-[#475569]\">\n        Nominal data size $N$ is penalized by the quadratic factor. Buying cheap noisy annotations is mathematically self-defeating.\n      </p>\n    </div>\n  </div>\n\n  <!-- Degradation Table -->\n  <div class=\"overflow-x-auto\">\n    <table class=\"w-full text-left font-mono text-[11px] border-collapse border border-[#151b20]\">\n      <thead>\n        <tr class=\"bg-[#c9f3f4] text-[#151b20]\">\n          <th class=\"p-1.5 border border-[#151b20]\">Annotator Error $\\eta$</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Signal $(1 - 2\\eta)$</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Power Retained $(1 - 2\\eta)^2$</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Required Data Expansion $(1 - 2\\eta)^{-2}$</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Engineering Assessment</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr class=\"bg-white\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">$\\eta = 0.05$ (5%)</td>\n          <td class=\"p-1.5 border border-[#151b20]\">0.90</td>\n          <td class=\"p-1.5 border border-[#151b20] font-bold text-[#15803d]\">81.0%</td>\n          <td class=\"p-1.5 border border-[#151b20]\">1.23x expansion</td>\n          <td class=\"p-1.5 border border-[#151b20] text-[#15803d]\">Gold Standard Expert Review</td>\n        </tr>\n        <tr class=\"bg-[#fffdf7]\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">$\\eta = 0.15$ (15%)</td>\n          <td class=\"p-1.5 border border-[#151b20]\">0.70</td>\n          <td class=\"p-1.5 border border-[#151b20] font-bold text-[#b45309]\">49.0%</td>\n          <td class=\"p-1.5 border border-[#151b20]\">2.04x expansion</td>\n          <td class=\"p-1.5 border border-[#151b20] text-[#b45309]\">Average Crowdsourced Workforce</td>\n        </tr>\n        <tr class=\"bg-white\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">$\\eta = 0.20$ (20%)</td>\n          <td class=\"p-1.5 border border-[#151b20]\">0.60</td>\n          <td class=\"p-1.5 border border-[#151b20] font-bold text-[#b45309]\">36.0%</td>\n          <td class=\"p-1.5 border border-[#151b20] font-black text-[#dc2626]\">2.78x expansion</td>\n          <td class=\"p-1.5 border border-[#151b20] text-[#dc2626]\">Severe Information Hemorrhage</td>\n        </tr>\n        <tr class=\"bg-[#fee2e2]\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">$\\eta = 0.35$ (35%)</td>\n          <td class=\"p-1.5 border border-[#151b20]\">0.30</td>\n          <td class=\"p-1.5 border border-[#151b20] font-bold text-[#b91c1c]\">9.0%</td>\n          <td class=\"p-1.5 border border-[#151b20] font-black text-[#b91c1c]\">11.11x expansion</td>\n          <td class=\"p-1.5 border border-[#151b20] font-bold text-[#b91c1c]\">Total Learning Collapse</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "The Quadratic Data Expansion Penalty",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait, Nova! Look at that table: at 20% label noise, you retain only 36% of your data's statistical power? That means 64% of your dataset budget is flushed straight down the drain!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And it gets catastrophic as noise creeps higher. At a 35% error rate, you retain only nine percent power. To get the same model confidence as 10,000 clean annotations, you would need to collect over 111,000 noisy samples!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So product managers who say 'let us just hire cheaper annotators and collect more data' are committing a multi-million dollar mathematical blunder!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. You cannot out-scale quadratic sample complexity collapse with volume. You must clean the annotation channel.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      ⚡ Sample Complexity &amp; Effective Dataset Size ($N_{\\text{eff}}$)\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#fff0b9] text-[#151b20] border border-[#151b20]\">\n      Angluin &amp; Laird (1988)\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mb-3\">\n    <div class=\"p-3 rounded-lg bg-[#f8fafc] border-2 border-[#151b20]\">\n      <div class=\"text-xs font-mono font-bold text-[#0e7490] mb-1\">Angluin-Laird PAC Sample Complexity Bound</div>\n      <div class=\"text-xs sm:text-sm font-mono font-bold text-[#151b20] bg-white p-2 rounded border border-[#151b20]/20 mb-2\">\n        $$m \\ge \\frac{2}{\\epsilon^2 (1 - 2\\eta)^2} \\left( \\text{VC}(\\mathcal{H}) \\ln \\frac{2e}{\\epsilon} + \\ln \\frac{2}{\\delta} \\right)$$\n      </div>\n      <p class=\"text-[10.5px] text-[#475569]\">\n        Sample requirement scales with the <strong>inverse square</strong> of the signal-to-noise ratio $(1 - 2\\eta)$.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#f8fafc] border-2 border-[#151b20]\">\n      <div class=\"text-xs font-mono font-bold text-[#b45309] mb-1\">Effective Dataset Size Degradation</div>\n      <div class=\"text-xs sm:text-sm font-mono font-bold text-[#151b20] bg-white p-2 rounded border border-[#151b20]/20 mb-2\">\n        $$N_{\\text{eff}} = N \\cdot (1 - 2\\eta)^2$$\n      </div>\n      <p class=\"text-[10.5px] text-[#475569]\">\n        Nominal data size $N$ is penalized by the quadratic factor. Buying cheap noisy annotations is mathematically self-defeating.\n      </p>\n    </div>\n  </div>\n\n  <!-- Degradation Table -->\n  <div class=\"overflow-x-auto\">\n    <table class=\"w-full text-left font-mono text-[11px] border-collapse border border-[#151b20]\">\n      <thead>\n        <tr class=\"bg-[#c9f3f4] text-[#151b20]\">\n          <th class=\"p-1.5 border border-[#151b20]\">Annotator Error $\\eta$</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Signal $(1 - 2\\eta)$</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Power Retained $(1 - 2\\eta)^2$</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Required Data Expansion $(1 - 2\\eta)^{-2}$</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Engineering Assessment</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr class=\"bg-white\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">$\\eta = 0.05$ (5%)</td>\n          <td class=\"p-1.5 border border-[#151b20]\">0.90</td>\n          <td class=\"p-1.5 border border-[#151b20] font-bold text-[#15803d]\">81.0%</td>\n          <td class=\"p-1.5 border border-[#151b20]\">1.23x expansion</td>\n          <td class=\"p-1.5 border border-[#151b20] text-[#15803d]\">Gold Standard Expert Review</td>\n        </tr>\n        <tr class=\"bg-[#fffdf7]\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">$\\eta = 0.15$ (15%)</td>\n          <td class=\"p-1.5 border border-[#151b20]\">0.70</td>\n          <td class=\"p-1.5 border border-[#151b20] font-bold text-[#b45309]\">49.0%</td>\n          <td class=\"p-1.5 border border-[#151b20]\">2.04x expansion</td>\n          <td class=\"p-1.5 border border-[#151b20] text-[#b45309]\">Average Crowdsourced Workforce</td>\n        </tr>\n        <tr class=\"bg-white\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">$\\eta = 0.20$ (20%)</td>\n          <td class=\"p-1.5 border border-[#151b20]\">0.60</td>\n          <td class=\"p-1.5 border border-[#151b20] font-bold text-[#b45309]\">36.0%</td>\n          <td class=\"p-1.5 border border-[#151b20] font-black text-[#dc2626]\">2.78x expansion</td>\n          <td class=\"p-1.5 border border-[#151b20] text-[#dc2626]\">Severe Information Hemorrhage</td>\n        </tr>\n        <tr class=\"bg-[#fee2e2]\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">$\\eta = 0.35$ (35%)</td>\n          <td class=\"p-1.5 border border-[#151b20]\">0.30</td>\n          <td class=\"p-1.5 border border-[#151b20] font-bold text-[#b91c1c]\">9.0%</td>\n          <td class=\"p-1.5 border border-[#151b20] font-black text-[#b91c1c]\">11.11x expansion</td>\n          <td class=\"p-1.5 border border-[#151b20] font-bold text-[#b91c1c]\">Total Learning Collapse</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s5",
-        "title": "Asymmetric Class-Conditional Noise Transition Matrix: Architecture Flowchart",
-        "type": "figure",
+        "title": "Asymmetric Noise: Class Transition Operator & Unbiased Loss Correction",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Asymmetric Class-Conditional Noise Transition Matrix: Architecture Flowchart",
+          "title": "Asymmetric Noise Transition Matrices & Natarajan Loss Correction",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Asymmetric Class-Conditional Noise Transition Matrix: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Raw[\"Raw Unlabeled Pool X\"] --> Guidelines[\"1. Task Specification & Taxonomy\"]\n    Guidelines --> Pilot[\"2. Pilot Ingestion (N=200)\"]\n    Pilot --> IAA_Check{\"3. Inter-Annotator Agreement κ ≥ 0.75?\"}\n    \n    IAA_Check -- \"No (Refine Guidelines)\" --> Guidelines\n    IAA_Check -- \"Yes (Approved)\" --> Production[\"4. Production Batch Ingestion\"]\n    \n    Production --> Primary[\"5. Multi-Worker Assignment\"]\n    Primary --> Consensus[\"6. Consensus & Dawid-Skene Inference\"]\n    Consensus --> Adjudication[\"7. Expert Exception Queue (Disagreements)\"]\n    Adjudication --> GoldDataset[\"8. Versioned Labeled Dataset D = {(x_i, y_i)}\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw,Production,Primary blue;\n    class Guidelines,Pilot,IAA_Check,Consensus amber;\n    class Adjudication,GoldDataset green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">In real-world multi-class</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">tasks, noise is rarely symmetric.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Asymmetric Class-Conditional Noise Transition Matrix: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for asymmetric class-conditional noise transition matrix: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "In production multi-class datasets, annotation error is never symmetric. Annotators frequently confuse visually adjacent classes like Husky and Wolf, while almost never confusing a Wolf with an Airplane. We represent this via the Class-Conditional Noise Transition Matrix T.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Natarajan and colleagues proved in NeurIPS 2013 that when T is invertible, we can multiply the raw loss vector by T inverse. Taking the expectation over the noisy observation channel cancels out the noise matrix, yielding a mathematically unbiased estimator of clean generalization risk.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Raw[\"Raw Unlabeled Pool X\"] --> Guidelines[\"1. Task Specification & Taxonomy\"]\n    Guidelines --> Pilot[\"2. Pilot Ingestion (N=200)\"]\n    Pilot --> IAA_Check{\"3. Inter-Annotator Agreement κ ≥ 0.75?\"}\n    \n    IAA_Check -- \"No (Refine Guidelines)\" --> Guidelines\n    IAA_Check -- \"Yes (Approved)\" --> Production[\"4. Production Batch Ingestion\"]\n    \n    Production --> Primary[\"5. Multi-Worker Assignment\"]\n    Primary --> Consensus[\"6. Consensus & Dawid-Skene Inference\"]\n    Consensus --> Adjudication[\"7. Expert Exception Queue (Disagreements)\"]\n    Adjudication --> GoldDataset[\"8. Versioned Labeled Dataset D = {(x_i, y_i)}\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw,Production,Primary blue;\n    class Guidelines,Pilot,IAA_Check,Consensus amber;\n    class Adjudication,GoldDataset green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">In real-world multi-class</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">tasks, noise is rarely symmetric.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      🔄 Asymmetric Noise &amp; Unbiased Loss Correction (Natarajan et al., 2013)\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border border-[#151b20]\">\n      $T^{-1}$ Inverse Operator\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mb-3\">\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#0e7490] mb-1\">1. Class-Conditional Transition Matrix $T$</div>\n      <div class=\"text-xs sm:text-sm font-mono font-bold text-[#151b20] bg-[#f8fafc] p-2 rounded border border-[#151b20]/20 mb-2\">\n        $$T_{i, j} = P(\\tilde{Y} = j \\mid Y^* = i), \\quad \\sum_{j=1}^K T_{i,j} = 1$$\n      </div>\n      <p class=\"text-[11px] text-[#475569] leading-snug\">\n        Row $i$ represents true class $i$; column $j$ is observed class $j$. Off-diagonal elements capture directional confusion.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#15803d] mb-1\">2. Natarajan Unbiased Loss Formulation</div>\n      <div class=\"text-xs sm:text-sm font-mono font-bold text-[#151b20] bg-[#f8fafc] p-2 rounded border border-[#151b20]/20 mb-2\">\n        $$\\ell_{\\text{unbiased}}(f(x), \\tilde{y}) = \\sum_{k=1}^K (T^{-1})_{\\tilde{y}, k} \\cdot \\ell(f(x), k)$$\n      </div>\n      <p class=\"text-[11px] text-[#475569] leading-snug\">\n        Re-weights the loss vector by $T^{-1}$. Its expectation satisfies: $\\mathbb{E}_{\\tilde{y} \\mid y}[\\ell_{\\text{unbiased}}] = \\ell(f(x), y)$.\n      </p>\n    </div>\n  </div>\n\n  <pre class=\"mermaid bg-transparent text-center\">\nflowchart LR\n    TrueClass[\"True Class Y* = i\"] --> Matrix[\"Noise Operator T_ij\"]\n    Matrix --> NoisyClass[\"Observed Label Ỹ = j\"]\n    \n    subgraph DeBiasing [\"Unbiased Loss Estimation\"]\n        RawLoss[\"Loss Vector ℓ(f(x))\"] --> InvT[\"T⁻¹ Matrix Multiply\"]\n        InvT --> CorrectedLoss[\"Unbiased Loss: ℓ*(f(x), ỹ)\"]\n    end\n    \n    NoisyClass -.-> DeBiasing\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class TrueClass,NoisyClass blue;\n    class Matrix,InvT amber;\n    class RawLoss,CorrectedLoss green;\n  </pre>\n</div>\n"
+        },
+        "duo": {
+          "title": "Unbiased Learning from Corrupted Channels",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, this theorem sounds almost magical. You are saying that even if my dataset has corrupt, asymmetric labels, I can still train a neural network to converge to the clean Bayes-optimal classifier without re-labeling everything?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yes, provided the transition matrix T is non-singular! Because expectation is linear, multiplying the loss by T inverse exactly cancels the noise transition in expectation. The gradient steps point toward the clean distribution.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "What is the catch? There has to be a trade-off!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "The catch is gradient variance. While the gradients are unbiased in expectation, individual mini-batch updates exhibit higher variance. That is why estimating T accurately is essential.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      🔄 Asymmetric Noise &amp; Unbiased Loss Correction (Natarajan et al., 2013)\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border border-[#151b20]\">\n      $T^{-1}$ Inverse Operator\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mb-3\">\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#0e7490] mb-1\">1. Class-Conditional Transition Matrix $T$</div>\n      <div class=\"text-xs sm:text-sm font-mono font-bold text-[#151b20] bg-[#f8fafc] p-2 rounded border border-[#151b20]/20 mb-2\">\n        $$T_{i, j} = P(\\tilde{Y} = j \\mid Y^* = i), \\quad \\sum_{j=1}^K T_{i,j} = 1$$\n      </div>\n      <p class=\"text-[11px] text-[#475569] leading-snug\">\n        Row $i$ represents true class $i$; column $j$ is observed class $j$. Off-diagonal elements capture directional confusion.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#15803d] mb-1\">2. Natarajan Unbiased Loss Formulation</div>\n      <div class=\"text-xs sm:text-sm font-mono font-bold text-[#151b20] bg-[#f8fafc] p-2 rounded border border-[#151b20]/20 mb-2\">\n        $$\\ell_{\\text{unbiased}}(f(x), \\tilde{y}) = \\sum_{k=1}^K (T^{-1})_{\\tilde{y}, k} \\cdot \\ell(f(x), k)$$\n      </div>\n      <p class=\"text-[11px] text-[#475569] leading-snug\">\n        Re-weights the loss vector by $T^{-1}$. Its expectation satisfies: $\\mathbb{E}_{\\tilde{y} \\mid y}[\\ell_{\\text{unbiased}}] = \\ell(f(x), y)$.\n      </p>\n    </div>\n  </div>\n\n  <pre class=\"mermaid bg-transparent text-center\">\nflowchart LR\n    TrueClass[\"True Class Y* = i\"] --> Matrix[\"Noise Operator T_ij\"]\n    Matrix --> NoisyClass[\"Observed Label Ỹ = j\"]\n    \n    subgraph DeBiasing [\"Unbiased Loss Estimation\"]\n        RawLoss[\"Loss Vector ℓ(f(x))\"] --> InvT[\"T⁻¹ Matrix Multiply\"]\n        InvT --> CorrectedLoss[\"Unbiased Loss: ℓ*(f(x), ỹ)\"]\n    end\n    \n    NoisyClass -.-> DeBiasing\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class TrueClass,NoisyClass blue;\n    class Matrix,InvT amber;\n    class RawLoss,CorrectedLoss green;\n  </pre>\n</div>\n"
         }
       },
       {
         "id": "s6",
-        "title": "Production Python Implementation: Label Noise Simulation & Boundary Degradation",
-        "type": "code",
+        "title": "Interactive Lab: Label Noise & PAC Learnability Studio",
+        "type": "lab",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Production Python Implementation: Label Noise Simulation & Boundary Degradation",
+          "title": "Interactive Laboratory: Label Noise & PAC Learnability Studio",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Production Python Implementation: Label Noise Simulation & Boundary Degradation. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># label_noise_simulation.py\n# Simulates the impact of synthetic label noise on supervised classifier convergence\n# and validates the Angluin-Laird theoretical sample complexity bound.\n\nfrom typing import Tuple, Dict, Any\nimport numpy as np\nfrom sklearn.datasets import make_classification\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score, f1_score\n\ndef inject_symmetric_noise(\n    y: np.ndarray, \n    noise_rate: float, \n    random_seed: int = 42\n) -&gt; np.ndarray:\n    # Injects random Bernoulli label flips at rate eta &lt; 0.50\n    rng = np.random.default_rng(random_seed)\n    y_noisy = y.copy()\n    n_samples = len(y)\n    flip_mask = rng.random(n_samples) &lt; noise_rate\n    y_noisy[flip_mask] = 1 - y_noisy[flip_mask]\n    return y_noisy\n\ndef compute_effective_sample_size(n: int, eta: float) -&gt; float:\n    </code></pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">class-conditional asymmetric label</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">noise, demonstrating why data cleaning and quality control must precede model tuning:</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Production Python Implementation: Label Noise Simulation & Boundary Degradation",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Welcome to our first interactive lab! In the simulator directly below our speaker stage, you can experiment in real time with nominal dataset size N, annotator error rate eta, and quality filtering strategies.",
+              "dock": "sim"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Notice how dragging the error rate past 20% causes the sample complexity multiplier to expand dramatically, and observe how Confident Learning prunes self-inconsistent labels to restore effective statistical power. Try interacting with the controls now!",
+              "dock": "sim"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># label_noise_simulation.py\n# Simulates the impact of synthetic label noise on supervised classifier convergence\n# and validates the Angluin-Laird theoretical sample complexity bound.\n\nfrom typing import Tuple, Dict, Any\nimport numpy as np\nfrom sklearn.datasets import make_classification\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score, f1_score\n\ndef inject_symmetric_noise(\n    y: np.ndarray, \n    noise_rate: float, \n    random_seed: int = 42\n) -&gt; np.ndarray:\n    # Injects random Bernoulli label flips at rate eta &lt; 0.50\n    rng = np.random.default_rng(random_seed)\n    y_noisy = y.copy()\n    n_samples = len(y)\n    flip_mask = rng.random(n_samples) &lt; noise_rate\n    y_noisy[flip_mask] = 1 - y_noisy[flip_mask]\n    return y_noisy\n\ndef compute_effective_sample_size(n: int, eta: float) -&gt; float:\n    </code></pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">class-conditional asymmetric label</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">noise, demonstrating why data cleaning and quality control must precede model tuning:</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2 text-center\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>🔬 Interactive Laboratory • Lab 4.1.1</span>\n  </div>\n  <h2 class=\"text-xl font-black text-[#151b20] tracking-tight mb-1\">\n    Label Noise &amp; PAC Learnability Studio\n  </h2>\n  <p class=\"text-xs text-[#475569] max-w-xl mx-auto mb-3\">\n    Simulate the Angluin-Laird effective sample size degradation ($N_{\\text{eff}}$), test consensus filtering, and observe Confident Learning pruning in the interactive sandbox below.\n  </p>\n  <div class=\"p-3 rounded-lg bg-[#fff0b9] border border-[#151b20] text-[11px] font-mono text-[#151b20] inline-block text-left\">\n    <strong>🎯 Exploration Objectives:</strong><br>\n    1. Set error rate $\\eta = 0.20$ and observe the 2.78x sample complexity penalty.<br>\n    2. Push $\\eta \\ge 0.40$ to witness the critical PAC signal collapse alert.<br>\n    3. Toggle the filtering strategy to <em>Confident Learning</em> to recover statistical power.\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Interactive Lab: Label Noise & PAC Learnability Studio",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, our speaker stage has traveled down to dock inside the Label Noise Studio! Look at the controls right below us!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Drag the error rate slider from 5% to 30%, Kaito. Notice how the Effective Sample Size gauge plunges from four thousand records down to just eighteen hundred!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And when I switch the strategy dropdown to Confident Learning, it prunes the high-loss mislabeled records and projected test accuracy jumps from 85% back to 91%!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the power of automated label quality auditing. Let our learners experiment with the parameters directly below us.",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2 text-center\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>🔬 Interactive Laboratory • Lab 4.1.1</span>\n  </div>\n  <h2 class=\"text-xl font-black text-[#151b20] tracking-tight mb-1\">\n    Label Noise &amp; PAC Learnability Studio\n  </h2>\n  <p class=\"text-xs text-[#475569] max-w-xl mx-auto mb-3\">\n    Simulate the Angluin-Laird effective sample size degradation ($N_{\\text{eff}}$), test consensus filtering, and observe Confident Learning pruning in the interactive sandbox below.\n  </p>\n  <div class=\"p-3 rounded-lg bg-[#fff0b9] border border-[#151b20] text-[11px] font-mono text-[#151b20] inline-block text-left\">\n    <strong>🎯 Exploration Objectives:</strong><br>\n    1. Set error rate $\\eta = 0.20$ and observe the 2.78x sample complexity penalty.<br>\n    2. Push $\\eta \\ge 0.40$ to witness the critical PAC signal collapse alert.<br>\n    3. Toggle the filtering strategy to <em>Confident Learning</em> to recover statistical power.\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s7",
-        "title": "Empirical Case Study: Benchmarking The Pervasiveness of Benchmark Label Errors",
-        "type": "figure",
+        "title": "Active Checkpoint 1: Calculating Required Dataset Expansion Under Noise",
+        "type": "checkpoint",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Empirical Case Study: Benchmarking The Pervasiveness of Benchmark Label Errors",
+          "title": "Active Checkpoint 1: Sample Complexity Explosion",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Empirical Case Study: Benchmarking The Pervasiveness of Benchmark Label Errors. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Time for our first active checkpoint! An autonomous perception engineering team contracts a crowd workforce with a 30% error rate. If the team requires the statistical power of 10,000 gold-standard annotations, how many crowdsourced annotations must they collect? Select Option A, B, or C above me!",
+              "dock": "quiz"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    ImageNet[\"ImageNet Test Set<br/>5.83% Erroneous Labels\"]\n    QuickDraw[\"QuickDraw Test Set<br/>10.12% Erroneous Labels\"]\n    Amazon[\"Amazon Reviews Test Set<br/>4.00% Erroneous Labels\"]\n    CoNLL[\"CoNLL-2003 NER<br/>5.38% Mislabeled Spans\"]\n\n    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n    class ImageNet,QuickDraw,Amazon,CoNLL red;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">ImageNet Validation Set</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Out of 50,000 validation images, at least 2,916 images ($5.83\\%$) contain outright label errors (e.g., images labeled espresso showing a cappuccino, or animals misclassified at the species level).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">QuickDraw</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Over $10.12\\%$ of training examples contained inverted or erroneous strokes due to rushed crowdsourced drawings.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Amazon Customer Reviews</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Over $4.00\\%$ of sentiment labels were mismatched due to sarcasm or inverted star ratings.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#b45309] my-2 text-center\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fff0b9] border border-[#151b20] text-[#b45309] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>💡 Active Checkpoint • Concept Verification 4.1.1</span>\n  </div>\n  <h2 class=\"text-xl font-black text-[#151b20] tracking-tight mb-1\">\n    Diagnostic Recall: Sample Complexity Under 30% Crowd Noise\n  </h2>\n  <p class=\"text-xs text-[#475569] max-w-xl mx-auto mb-2\">\n    Apply the Angluin-Laird Random Classification Noise theorem to calculate the required data acquisition volume.\n  </p>\n</div>\n"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Empirical Case Study: Benchmarking The Pervasiveness of Benchmark Label Errors",
+          "title": "Active Checkpoint 1: Sample Complexity Explosion",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for empirical case study: benchmarking the pervasiveness of benchmark label errors, how does the architectural flow enforce system stability?"
+              "text": "A crowd workforce with a thirty percent error rate, and we need the statistical power of ten thousand gold records!",
+              "dock": "quiz"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Remember, Kaito: sample complexity scales with the square of 1 minus 2 eta, not 1 minus eta! Let us see if our engineers can calculate the exact required sample size. Select Option A, B, or C above me!",
+              "dock": "quiz"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    ImageNet[\"ImageNet Test Set<br/>5.83% Erroneous Labels\"]\n    QuickDraw[\"QuickDraw Test Set<br/>10.12% Erroneous Labels\"]\n    Amazon[\"Amazon Reviews Test Set<br/>4.00% Erroneous Labels\"]\n    CoNLL[\"CoNLL-2003 NER<br/>5.38% Mislabeled Spans\"]\n\n    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n    class ImageNet,QuickDraw,Amazon,CoNLL red;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">ImageNet Validation Set</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Out of 50,000 validation images, at least 2,916 images ($5.83\\%$) contain outright label errors (e.g., images labeled espresso showing a cappuccino, or animals misclassified at the species level).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">QuickDraw</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Over $10.12\\%$ of training examples contained inverted or erroneous strokes due to rushed crowdsourced drawings.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Amazon Customer Reviews</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Over $4.00\\%$ of sentiment labels were mismatched due to sarcasm or inverted star ratings.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#b45309] my-2 text-center\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fff0b9] border border-[#151b20] text-[#b45309] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>💡 Active Checkpoint • Concept Verification 4.1.1</span>\n  </div>\n  <h2 class=\"text-xl font-black text-[#151b20] tracking-tight mb-1\">\n    Diagnostic Recall: Sample Complexity Under 30% Crowd Noise\n  </h2>\n  <p class=\"text-xs text-[#475569] max-w-xl mx-auto mb-2\">\n    Apply the Angluin-Laird Random Classification Noise theorem to calculate the required data acquisition volume.\n  </p>\n</div>\n"
         }
       },
       {
         "id": "s8",
-        "title": "Interactive Lab: Explore Text Annotation Workbench",
-        "type": "tool",
+        "title": "Modality Taxonomies: Mathematical Target Spaces Across Modalities",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Explore Text Annotation Workbench",
+          "title": "Modality Taxonomies: Structural Output Spaces",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Explore Text Annotation Workbench. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Text Annotation Workbench</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Test interactive token classification, entity highlighting, and simulate label noise injection on synthetic text corpora.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Text Annotation Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Explore Text Annotation Workbench",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the explore text annotation workbench located below this player?"
+              "text": "Data annotation is not monolithic. The mathematical target space transforms fundamentally depending on data modality: from discrete probability simplexes in document classification, to sequence token offsets in Named Entity Recognition, to continuous geometric manifolds in vision and point clouds.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "In computer vision, targets span bounding boxes in R 4, dense pixel masks in H by W, and 3D oriented LiDAR bounding boxes with seven degrees of freedom. In audio, annotators tag time-frequency spectrogram boxes, and in video, multi-object tracking requires spatio-temporal tubelets with identity permanence.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Text Annotation Workbench</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Test interactive token classification, entity highlighting, and simulate label noise injection on synthetic text corpora.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Text Annotation Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      🌐 Modality Taxonomies &amp; Mathematical Target Spaces\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border border-[#151b20]\">\n      Topological Spaces\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 mb-3 text-xs font-mono\">\n    <div class=\"p-2.5 rounded-lg bg-[#c9f3f4] border-2 border-[#151b20]\">\n      <div class=\"font-black text-[#0e7490] mb-1\">📝 Natural Language</div>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        • Categorical simplex $\\Delta^{K-1}$<br>\n        • Token spans $[\\text{start}, \\text{end}, \\text{tag}]$<br>\n        • Pairwise preference $y_w \\succ y_l$ (RLHF)\n      </div>\n    </div>\n\n    <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border-2 border-[#151b20]\">\n      <div class=\"font-black text-[#b45309] mb-1\">🖼️ Computer Vision</div>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        • 2D BBox $[x_{\\min}, y_{\\min}, w, h] \\in \\mathbb{R}^4$<br>\n        • Pixel masks $M \\in \\{0, \\dots, K-1\\}^{H \\times W}$<br>\n        • Keypoint coordinates $[x_k, y_k, v_k]$\n      </div>\n    </div>\n\n    <div class=\"p-2.5 rounded-lg bg-[#ffd8ce] border-2 border-[#151b20]\">\n      <div class=\"font-black text-[#b91c1c] mb-1\">📡 3D LiDAR &amp; Audio</div>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        • 3D BBox $[x, y, z, dx, dy, dz, \\theta] \\in \\mathbb{R}^7$<br>\n        • Audio events $[t_1, t_2, f_1, f_2]$<br>\n        • Spectrogram bounding intervals\n      </div>\n    </div>\n\n    <div class=\"p-2.5 rounded-lg bg-[#e7f4c8] border-2 border-[#151b20]\">\n      <div class=\"font-black text-[#15803d] mb-1\">🎥 Video &amp; Multimodal</div>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        • MOT tubelets $\\{[t, \\text{id}, x, y, w, h]\\}$<br>\n        • Visual QA tuples $(q, a, \\text{box})$<br>\n        • Cross-modal grounding graphs\n      </div>\n    </div>\n  </div>\n\n  <pre class=\"mermaid bg-transparent text-center\">\nflowchart LR\n    subgraph Modalities [\"Input Data Modalities\"]\n        Text[\"Natural Language\"]\n        Vision[\"Computer Vision\"]\n        Audio[\"Speech & Acoustics\"]\n        LiDAR[\"3D Point Clouds\"]\n    end\n\n    subgraph Targets [\"Mathematical Target Manifolds\"]\n        T1[\"Discrete Simplex Δ^(K-1)<br>Sequence Token Offsets\"]\n        T2[\"2D BBoxes & Pixel Masks<br>RLE Segmentation Bitmasks\"]\n        T3[\"Time-Frequency Boxes<br>[t_start, t_end, f1, f2]\"]\n        T4[\"3D Oriented Manifolds<br>[x,y,z,dx,dy,dz,θ]\"]\n    end\n\n    Text --> T1\n    Vision --> T2\n    Audio --> T3\n    LiDAR --> T4\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Modalities,Text,Vision,Audio,LiDAR blue;\n    class Targets,T1,T2,T3,T4 amber;\n  </pre>\n</div>\n"
+        },
+        "duo": {
+          "title": "Mapping Modalities to Mathematical Target Spaces",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, I used to think annotation was just drawing boxes or clicking tags. But looking at this breakdown, the mathematical output spaces are completely different!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Indeed! Tagging a text span in Named Entity Recognition is a discrete combinatorial sequence optimization problem, whereas drawing a 3D bounding box for LiDAR perception operates over continuous SE(3) Lie group rotations and continuous spatial coordinates.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And in video, you aren't just labeling an object per frame—you must maintain identity tracking across occlusion boundaries!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Every modality requires its own serialization format and strict mathematical invariants.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      🌐 Modality Taxonomies &amp; Mathematical Target Spaces\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border border-[#151b20]\">\n      Topological Spaces\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 mb-3 text-xs font-mono\">\n    <div class=\"p-2.5 rounded-lg bg-[#c9f3f4] border-2 border-[#151b20]\">\n      <div class=\"font-black text-[#0e7490] mb-1\">📝 Natural Language</div>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        • Categorical simplex $\\Delta^{K-1}$<br>\n        • Token spans $[\\text{start}, \\text{end}, \\text{tag}]$<br>\n        • Pairwise preference $y_w \\succ y_l$ (RLHF)\n      </div>\n    </div>\n\n    <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border-2 border-[#151b20]\">\n      <div class=\"font-black text-[#b45309] mb-1\">🖼️ Computer Vision</div>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        • 2D BBox $[x_{\\min}, y_{\\min}, w, h] \\in \\mathbb{R}^4$<br>\n        • Pixel masks $M \\in \\{0, \\dots, K-1\\}^{H \\times W}$<br>\n        • Keypoint coordinates $[x_k, y_k, v_k]$\n      </div>\n    </div>\n\n    <div class=\"p-2.5 rounded-lg bg-[#ffd8ce] border-2 border-[#151b20]\">\n      <div class=\"font-black text-[#b91c1c] mb-1\">📡 3D LiDAR &amp; Audio</div>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        • 3D BBox $[x, y, z, dx, dy, dz, \\theta] \\in \\mathbb{R}^7$<br>\n        • Audio events $[t_1, t_2, f_1, f_2]$<br>\n        • Spectrogram bounding intervals\n      </div>\n    </div>\n\n    <div class=\"p-2.5 rounded-lg bg-[#e7f4c8] border-2 border-[#151b20]\">\n      <div class=\"font-black text-[#15803d] mb-1\">🎥 Video &amp; Multimodal</div>\n      <div class=\"text-[11px] text-[#151b20] leading-snug\">\n        • MOT tubelets $\\{[t, \\text{id}, x, y, w, h]\\}$<br>\n        • Visual QA tuples $(q, a, \\text{box})$<br>\n        • Cross-modal grounding graphs\n      </div>\n    </div>\n  </div>\n\n  <pre class=\"mermaid bg-transparent text-center\">\nflowchart LR\n    subgraph Modalities [\"Input Data Modalities\"]\n        Text[\"Natural Language\"]\n        Vision[\"Computer Vision\"]\n        Audio[\"Speech & Acoustics\"]\n        LiDAR[\"3D Point Clouds\"]\n    end\n\n    subgraph Targets [\"Mathematical Target Manifolds\"]\n        T1[\"Discrete Simplex Δ^(K-1)<br>Sequence Token Offsets\"]\n        T2[\"2D BBoxes & Pixel Masks<br>RLE Segmentation Bitmasks\"]\n        T3[\"Time-Frequency Boxes<br>[t_start, t_end, f1, f2]\"]\n        T4[\"3D Oriented Manifolds<br>[x,y,z,dx,dy,dz,θ]\"]\n    end\n\n    Text --> T1\n    Vision --> T2\n    Audio --> T3\n    LiDAR --> T4\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Modalities,Text,Vision,Audio,LiDAR blue;\n    class Targets,T1,T2,T3,T4 amber;\n  </pre>\n</div>\n"
         }
       },
       {
         "id": "s9",
-        "title": "Key Engineering Takeaways",
-        "type": "bullets",
+        "title": "Standardized Annotation Formats, Topological Spaces & Quality Invariants",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Key Engineering Takeaways",
+          "title": "Comprehensive Structural Annotation Taxonomy",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Key Engineering Takeaways. Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Label Quality Caps Learning</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Under the RCN model, effective dataset size scales as $N \\cdot (1 - 2\\eta)^2$. Algorithmic optimization cannot compensate for an annotator error rate approaching $\\eta = 0.50$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Modal Output Topologies</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Annotations range from scalar categorical indices to complex continuous manifolds (polygonal boundaries, temporal tubelets, span offset trees).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Benchmark Fallacy</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Never assume canonical datasets are noise-free; standard academic benchmarks contain $3\\% \\text{ to } 10\\%$ mislabeled instances.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Iterative Quality Gates</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Deploy pilot batches with strict inter-annotator agreement gates ($\\kappa \\ge 0.75$) before launching full-scale multi-worker production annotation.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Key Engineering Takeaways",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the single most vital principle for data engineers to remember from this lesson?"
+              "text": "Table 4.1 in our curriculum formalizes the structural taxonomies, standardized file serializations, and verification metrics across all primary modalities. In text, we rely on CoNLL-2003 and JSONL span offsets verified via Cohen's kappa and Exact Span F1.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
+              "text": "In computer vision, standard formats include MS COCO JSON, Pascal VOC XML, and YOLO normalized text coordinates, evaluated with Intersection over Union thresholds. In 3D autonomy, KITTI and nuScenes JSON serialize 7-DoF boxes evaluated with 3D IoU at 0.70. Production pipelines must enforce these invariants automatically.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Label Quality Caps Learning</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Under the RCN model, effective dataset size scales as $N \\cdot (1 - 2\\eta)^2$. Algorithmic optimization cannot compensate for an annotator error rate approaching $\\eta = 0.50$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Modal Output Topologies</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Annotations range from scalar categorical indices to complex continuous manifolds (polygonal boundaries, temporal tubelets, span offset trees).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Benchmark Fallacy</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Never assume canonical datasets are noise-free; standard academic benchmarks contain $3\\% \\text{ to } 10\\%$ mislabeled instances.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Iterative Quality Gates</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Deploy pilot batches with strict inter-annotator agreement gates ($\\kappa \\ge 0.75$) before launching full-scale multi-worker production annotation.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      📋 Table 4.1: Comprehensive Structural Annotation Taxonomy\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#fff0b9] text-[#151b20] border border-[#151b20]\">\n      Industry Standards\n    </span>\n  </div>\n\n  <div class=\"overflow-x-auto\">\n    <table class=\"w-full text-left font-mono text-[10.5px] border-collapse border border-[#151b20]\">\n      <thead>\n        <tr class=\"bg-[#c9f3f4] text-[#151b20]\">\n          <th class=\"p-1.5 border border-[#151b20]\">Modality</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Task Domain</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Target Space</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Standard Serialization</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Quality Verification Metric</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr class=\"bg-white\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Text</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Classification</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Discrete Simplex $\\Delta^{K-1}$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">CSV, JSONL categorical</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Cohen's $\\kappa \\ge 0.75$, Fleiss' $\\kappa$</td>\n        </tr>\n        <tr class=\"bg-[#fffdf7]\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Text</td>\n          <td class=\"p-1.5 border border-[#151b20]\">NER / Entity Spans</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Tag sequence $\\{\\text{B,I,O}\\}^L$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">CoNLL-2003, JSONL offsets</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Exact Span F1, Boundary Precision</td>\n        </tr>\n        <tr class=\"bg-white\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Text</td>\n          <td class=\"p-1.5 border border-[#151b20]\">RLHF / Preference</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Pairwise $y_w \\succ y_l$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">JSONL <code>{chosen, rejected}</code></td>\n          <td class=\"p-1.5 border border-[#151b20]\">Bradley-Terry consistency rate</td>\n        </tr>\n        <tr class=\"bg-[#fffdf7]\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Image</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Object Detection</td>\n          <td class=\"p-1.5 border border-[#151b20]\">2D BBox $[x, y, w, h] \\in \\mathbb{R}^4$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">MS COCO JSON, Pascal VOC, YOLO</td>\n          <td class=\"p-1.5 border border-[#151b20]\">IoU $\\ge 0.50$, mAP@[.50:.95]</td>\n        </tr>\n        <tr class=\"bg-white\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Image</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Segmentation</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Mask $M \\in \\{0..K-1\\}^{H \\times W}$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">RLE Bitmask, PNG index masks</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Mean IoU (mIoU), Boundary F1</td>\n        </tr>\n        <tr class=\"bg-[#fffdf7]\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">LiDAR</td>\n          <td class=\"p-1.5 border border-[#151b20]\">3D Object Detection</td>\n          <td class=\"p-1.5 border border-[#151b20]\">7-DoF Box $[x,y,z,dx,dy,dz,\\theta]$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">KITTI 3D `.txt`, nuScenes JSON</td>\n          <td class=\"p-1.5 border border-[#151b20]\">3D IoU $\\ge 0.70$, Bird's Eye View AP</td>\n        </tr>\n        <tr class=\"bg-white\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Audio</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Event Detection</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Time-frequency $[t_1, t_2, f_1, f_2]$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Audacity `.txt`, AudioSet CSV</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Segment-based F1, Error Rate</td>\n        </tr>\n        <tr class=\"bg-[#fffdf7]\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Video</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Tracking (MOT)</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Tubelets $\\{[t, \\text{id}, x, y, w, h]\\}$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">MOTChallenge CSV format</td>\n          <td class=\"p-1.5 border border-[#151b20]\">MOTA, Higher Order Tracking (HOTA)</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Standard Serializations & Verification Invariants",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, I see teams converting between COCO JSON, Pascal VOC XML, and YOLO text formats with quick Python scripts. What can go wrong?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Coordinate normalization bugs! In COCO, bounding boxes are specified as top-left corner x, y, followed by width and height in absolute pixels. In YOLO, they are center x, center y, width, and height normalized between 0 and 1. A single coordinate inversion corrupts your entire training ground truth!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And in segmentation, off-by-one errors when decoding Run-Length Encoded masks shift your boundary masks by a pixel row!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Automated schema validation and IoU invariance checks must run continuously in CI/CD.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      📋 Table 4.1: Comprehensive Structural Annotation Taxonomy\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#fff0b9] text-[#151b20] border border-[#151b20]\">\n      Industry Standards\n    </span>\n  </div>\n\n  <div class=\"overflow-x-auto\">\n    <table class=\"w-full text-left font-mono text-[10.5px] border-collapse border border-[#151b20]\">\n      <thead>\n        <tr class=\"bg-[#c9f3f4] text-[#151b20]\">\n          <th class=\"p-1.5 border border-[#151b20]\">Modality</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Task Domain</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Target Space</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Standard Serialization</th>\n          <th class=\"p-1.5 border border-[#151b20]\">Quality Verification Metric</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr class=\"bg-white\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Text</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Classification</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Discrete Simplex $\\Delta^{K-1}$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">CSV, JSONL categorical</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Cohen's $\\kappa \\ge 0.75$, Fleiss' $\\kappa$</td>\n        </tr>\n        <tr class=\"bg-[#fffdf7]\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Text</td>\n          <td class=\"p-1.5 border border-[#151b20]\">NER / Entity Spans</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Tag sequence $\\{\\text{B,I,O}\\}^L$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">CoNLL-2003, JSONL offsets</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Exact Span F1, Boundary Precision</td>\n        </tr>\n        <tr class=\"bg-white\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Text</td>\n          <td class=\"p-1.5 border border-[#151b20]\">RLHF / Preference</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Pairwise $y_w \\succ y_l$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">JSONL <code>{chosen, rejected}</code></td>\n          <td class=\"p-1.5 border border-[#151b20]\">Bradley-Terry consistency rate</td>\n        </tr>\n        <tr class=\"bg-[#fffdf7]\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Image</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Object Detection</td>\n          <td class=\"p-1.5 border border-[#151b20]\">2D BBox $[x, y, w, h] \\in \\mathbb{R}^4$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">MS COCO JSON, Pascal VOC, YOLO</td>\n          <td class=\"p-1.5 border border-[#151b20]\">IoU $\\ge 0.50$, mAP@[.50:.95]</td>\n        </tr>\n        <tr class=\"bg-white\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Image</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Segmentation</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Mask $M \\in \\{0..K-1\\}^{H \\times W}$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">RLE Bitmask, PNG index masks</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Mean IoU (mIoU), Boundary F1</td>\n        </tr>\n        <tr class=\"bg-[#fffdf7]\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">LiDAR</td>\n          <td class=\"p-1.5 border border-[#151b20]\">3D Object Detection</td>\n          <td class=\"p-1.5 border border-[#151b20]\">7-DoF Box $[x,y,z,dx,dy,dz,\\theta]$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">KITTI 3D `.txt`, nuScenes JSON</td>\n          <td class=\"p-1.5 border border-[#151b20]\">3D IoU $\\ge 0.70$, Bird's Eye View AP</td>\n        </tr>\n        <tr class=\"bg-white\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Audio</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Event Detection</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Time-frequency $[t_1, t_2, f_1, f_2]$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Audacity `.txt`, AudioSet CSV</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Segment-based F1, Error Rate</td>\n        </tr>\n        <tr class=\"bg-[#fffdf7]\">\n          <td class=\"p-1.5 border border-[#151b20] font-bold\">Video</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Tracking (MOT)</td>\n          <td class=\"p-1.5 border border-[#151b20]\">Tubelets $\\{[t, \\text{id}, x, y, w, h]\\}$</td>\n          <td class=\"p-1.5 border border-[#151b20]\">MOTChallenge CSV format</td>\n          <td class=\"p-1.5 border border-[#151b20]\">MOTA, Higher Order Tracking (HOTA)</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s10",
+        "title": "The 9-Stage Production Lifecycle: Statistical Quality Gates",
+        "type": "concept",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "The 9-Stage Production Annotation Lifecycle",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "An industrial annotation pipeline cannot rely on worker goodwill. It must enforce strict statistical gates at every phase. We divide this into nine systematic stages, starting with guideline and gold rubric design, followed by a 500-sample pilot batch evaluated with Cohen's kappa.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Production batches enforce redundant three-worker queues injected with ten percent synthetic honeypots. Workers falling below ninety percent accuracy are automatically evicted. Responses are synthesized via Dawid-Skene consensus inference, routing ambiguous disagreements to senior domain adjudicators.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[11px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>🔬 Industrial Ground Truth Pipeline: Statistical Gates</span>\n    <span class=\"text-[#475569] text-[9.5px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">9-Stage Protocol</span>\n  </div>\n\n  <pre class=\"mermaid bg-transparent\">\nflowchart TD\n    Raw[\"Raw Unlabeled Pool (N=100,000)\"] --> Guidelines[\"1. Guidelines & Gold Rubric Design\"]\n    Guidelines --> Pilot[\"2. Pilot Batch (N=500)\"]\n    Pilot --> IAA{\"3. Cohen's κ ≥ 0.75?\"}\n    \n    IAA -- \"No (Ambiguous)\" --> Guidelines\n    IAA -- \"Yes (Approved)\" --> Prod[\"4. Production Batching\"]\n    \n    Prod --> Queue[\"5. Redundant 3-Worker Queue\"]\n    Queue --> Honey[\"6. Synthetic Honeypots (10% Gold)\"]\n    Honey --> Eval{\"Worker Precision ≥ 90%?\"}\n    \n    Eval -- \"No (Spammer)\" --> Evict[\"Evict & Requeue\"]\n    Eval -- \"Yes (Qualified)\" --> Dawid[\"7. Dawid-Skene Consensus\"]\n    \n    Dawid --> Margin{\"Ambiguity Margin ≥ 0.30?\"}\n    Margin -- \"Yes (Disagreement)\" --> Adjudicate[\"8. Senior Expert Adjudication\"]\n    Margin -- \"No (Consensus)\" --> Gold[\"9. Versioned Gold Ground Truth\"]\n    Adjudicate --> Gold\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw,Prod,Queue blue;\n    class Guidelines,Pilot,IAA,Honey,Dawid amber;\n    class Adjudicate,Gold green;\n    class Evict,Margin red;\n  </pre>\n</div>\n"
+        },
+        "duo": {
+          "title": "Industrial Gates: Evicting Spammers & Handling Disagreement",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at Stage 3: why do you stop the entire pipeline if the pilot batch Cohen's kappa is below 0.75?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because an inter-annotator agreement kappa below 0.75 proves that your human instructions are ambiguous! If two trained workers cannot agree on the gold rubric for 500 samples, spending $50,000 to annotate 100,000 samples will only generate expensive noise.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And the ten percent synthetic honeypots catch lazy annotators who just spam the default button!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Automated eviction gates protect dataset integrity long before labels reach downstream training sets.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[11px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between\">\n    <span>🔬 Industrial Ground Truth Pipeline: Statistical Gates</span>\n    <span class=\"text-[#475569] text-[9.5px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">9-Stage Protocol</span>\n  </div>\n\n  <pre class=\"mermaid bg-transparent\">\nflowchart TD\n    Raw[\"Raw Unlabeled Pool (N=100,000)\"] --> Guidelines[\"1. Guidelines & Gold Rubric Design\"]\n    Guidelines --> Pilot[\"2. Pilot Batch (N=500)\"]\n    Pilot --> IAA{\"3. Cohen's κ ≥ 0.75?\"}\n    \n    IAA -- \"No (Ambiguous)\" --> Guidelines\n    IAA -- \"Yes (Approved)\" --> Prod[\"4. Production Batching\"]\n    \n    Prod --> Queue[\"5. Redundant 3-Worker Queue\"]\n    Queue --> Honey[\"6. Synthetic Honeypots (10% Gold)\"]\n    Honey --> Eval{\"Worker Precision ≥ 90%?\"}\n    \n    Eval -- \"No (Spammer)\" --> Evict[\"Evict & Requeue\"]\n    Eval -- \"Yes (Qualified)\" --> Dawid[\"7. Dawid-Skene Consensus\"]\n    \n    Dawid --> Margin{\"Ambiguity Margin ≥ 0.30?\"}\n    Margin -- \"Yes (Disagreement)\" --> Adjudicate[\"8. Senior Expert Adjudication\"]\n    Margin -- \"No (Consensus)\" --> Gold[\"9. Versioned Gold Ground Truth\"]\n    Adjudicate --> Gold\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw,Prod,Queue blue;\n    class Guidelines,Pilot,IAA,Honey,Dawid amber;\n    class Adjudicate,Gold green;\n    class Evict,Margin red;\n  </pre>\n</div>\n"
+        }
+      },
+      {
+        "id": "s11",
+        "title": "Quality Telemetry: Synthetic Honeypots & Latent Consensus Inference",
+        "type": "concept",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Honeypots, Eviction & Dawid-Skene Consensus Inference",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us examine the statistical engine powering Stage 6 and 7. Synthetic honeypots are gold-standard tasks disguised identically to raw data. If an annotator's rolling accuracy on honeypots drops below ninety percent, their access is revoked and all completed tasks are automatically returned to the queue.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Furthermore, naive majority voting is dangerously flawed when annotators share cognitive biases. The Dawid-Skene algorithm uses Expectation-Maximization to jointly infer each worker's individual error rate and the true latent class, dynamically upweighting reliable workers while downweighting noise.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      🛡️ In-Flight Telemetry: Honeypots vs. Latent Consensus Inference\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border border-[#151b20]\">\n      Dawid &amp; Skene (1979)\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-xs font-mono text-[#b45309] mb-1.5 flex items-center gap-1.5\">\n        <span>🍯 1. Synthetic Honeypot Injection</span>\n      </div>\n      <p class=\"text-xs text-[#151b20] leading-relaxed mb-2\">\n        A random 10% sample of all queued tasks consists of pre-verified gold standard instances with known ground truth.\n      </p>\n      <div class=\"p-2.5 rounded bg-[#fef2f2] border border-[#151b20] text-[11px] font-mono text-[#991b1b]\">\n        <strong>Eviction Condition:</strong><br>\n        $$\\text{Precision}_{\\text{honey}} < 0.90 \\implies \\text{Evict Worker &amp; Invalidate}$$\n      </div>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-xs font-mono text-[#0e7490] mb-1.5 flex items-center gap-1.5\">\n        <span>⚖️ 2. Dawid-Skene Latent Consensus</span>\n      </div>\n      <p class=\"text-xs text-[#151b20] leading-relaxed mb-2\">\n        Jointly estimates worker confusion matrices $\\pi^{(w)}$ and true class priors $p(y=k)$ via Expectation-Maximization.\n      </p>\n      <div class=\"p-2.5 rounded bg-[#eff6ff] border border-[#151b20] text-[11px] font-mono text-[#1e40af]\">\n        <strong>Adjudication Condition:</strong><br>\n        $$|P(y=k_1) - P(y=k_2)| < 0.30 \\implies \\text{Expert Review}$$\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Why Naive Majority Voting Fails",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, why isn't three-worker majority vote enough? If two out of three workers pick Class A, shouldn't we just trust Class A?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "What if two of those workers are rushed crowdsourced clickers who always pick the most frequent class, while the third worker is a certified radiologist who spots an early-stage malignancy? Majority vote picks the wrong answer!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And Dawid-Skene discovers that the radiologist has a 99% track record on honeypots, so it weights their vote over the other two combined!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Consensus is not about headcount; it is about statistical reliability.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      🛡️ In-Flight Telemetry: Honeypots vs. Latent Consensus Inference\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border border-[#151b20]\">\n      Dawid &amp; Skene (1979)\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-xs font-mono text-[#b45309] mb-1.5 flex items-center gap-1.5\">\n        <span>🍯 1. Synthetic Honeypot Injection</span>\n      </div>\n      <p class=\"text-xs text-[#151b20] leading-relaxed mb-2\">\n        A random 10% sample of all queued tasks consists of pre-verified gold standard instances with known ground truth.\n      </p>\n      <div class=\"p-2.5 rounded bg-[#fef2f2] border border-[#151b20] text-[11px] font-mono text-[#991b1b]\">\n        <strong>Eviction Condition:</strong><br>\n        $$\\text{Precision}_{\\text{honey}} < 0.90 \\implies \\text{Evict Worker &amp; Invalidate}$$\n      </div>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-xs font-mono text-[#0e7490] mb-1.5 flex items-center gap-1.5\">\n        <span>⚖️ 2. Dawid-Skene Latent Consensus</span>\n      </div>\n      <p class=\"text-xs text-[#151b20] leading-relaxed mb-2\">\n        Jointly estimates worker confusion matrices $\\pi^{(w)}$ and true class priors $p(y=k)$ via Expectation-Maximization.\n      </p>\n      <div class=\"p-2.5 rounded bg-[#eff6ff] border border-[#151b20] text-[11px] font-mono text-[#1e40af]\">\n        <strong>Adjudication Condition:</strong><br>\n        $$|P(y=k_1) - P(y=k_2)| < 0.30 \\implies \\text{Expert Review}$$\n      </div>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Interactive Lab: Asymmetric Transition Matrix & Unbiased Loss Workbench",
+        "type": "lab",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Interactive Lab: Asymmetric Transition Matrix Workbench",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to our second interactive workbench! Here you can manipulate asymmetric noise transition parameters T zero-one and T one-zero. Observe how directional confusion skews apparent class prevalence and how the Natarajan inverse operator restores unbiased risk gradients.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice that if the sum of confusion rates approaches one, the determinant approaches zero, causing the inverse operator to explode into high variance. Try exploring the sliders directly below us now!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2 text-center\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>🔬 Interactive Laboratory • Lab 4.1.2</span>\n  </div>\n  <h2 class=\"text-xl font-black text-[#151b20] tracking-tight mb-1\">\n    Asymmetric Transition Matrix &amp; Loss Correction Workbench\n  </h2>\n  <p class=\"text-xs text-[#475569] max-w-xl mx-auto mb-3\">\n    Experiment with directional noise channels ($T_{01}$ vs. $T_{10}$), evaluate matrix invertibility $\\det(T)$, and observe how $T^{-1}$ restores clinical sensitivity.\n  </p>\n  <div class=\"p-3 rounded-lg bg-[#fff0b9] border border-[#151b20] text-[11px] font-mono text-[#151b20] inline-block text-left\">\n    <strong>🎯 Exploration Objectives:</strong><br>\n    1. Set $T_{01} = 0.25$ and $T_{10} = 0.05$ to model clinical oncology false negatives.<br>\n    2. Observe how the apparent prevalence diverges from true latent prevalence.<br>\n    3. Check the condition number and stability gauge of the $T^{-1}$ operator.\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Interactive Lab: Asymmetric Transition Matrix Workbench",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, our speaker stage has traveled down to the Transition Matrix Workbench! Look at how the matrix determinant changes when I drag T zero-one to 0.40!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "When T zero-one is 0.40 and T one-zero is 0.30, the determinant drops to 0.30. The inverse matrix elements grow larger, amplifying gradient variance during backpropagation.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And if T zero-one plus T one-zero equals 1.0, the determinant collapses to exactly zero—the matrix cannot be inverted!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the singular boundary of information theory. Let our learners explore the controls directly below us.",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2 text-center\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>🔬 Interactive Laboratory • Lab 4.1.2</span>\n  </div>\n  <h2 class=\"text-xl font-black text-[#151b20] tracking-tight mb-1\">\n    Asymmetric Transition Matrix &amp; Loss Correction Workbench\n  </h2>\n  <p class=\"text-xs text-[#475569] max-w-xl mx-auto mb-3\">\n    Experiment with directional noise channels ($T_{01}$ vs. $T_{10}$), evaluate matrix invertibility $\\det(T)$, and observe how $T^{-1}$ restores clinical sensitivity.\n  </p>\n  <div class=\"p-3 rounded-lg bg-[#fff0b9] border border-[#151b20] text-[11px] font-mono text-[#151b20] inline-block text-left\">\n    <strong>🎯 Exploration Objectives:</strong><br>\n    1. Set $T_{01} = 0.25$ and $T_{10} = 0.05$ to model clinical oncology false negatives.<br>\n    2. Observe how the apparent prevalence diverges from true latent prevalence.<br>\n    3. Check the condition number and stability gauge of the $T^{-1}$ operator.\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: Clinical Asymmetric Noise in Oncology Tensors",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Checkpoint 2: Clinical Asymmetric Noise",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Here is our second active checkpoint: In a clinical oncology dataset, annotators mislabel Melanoma as Benign Nevus with probability 0.25, but never mislabel Nevus as Melanoma. Why does training with standard Cross-Entropy fail catastrophically, and how does Natarajan's inverse transition operator fix it? Select Option A, B, or C above me!",
+              "dock": "quiz"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#15803d] my-2 text-center\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border border-[#151b20] text-[#15803d] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>💡 Active Checkpoint • Clinical Diagnosis Scenario 4.1.2</span>\n  </div>\n  <h2 class=\"text-xl font-black text-[#151b20] tracking-tight mb-1\">\n    Diagnostic Recall: Clinical Asymmetric Noise &amp; Natarajan Correction\n  </h2>\n  <p class=\"text-xs text-[#475569] max-w-xl mx-auto mb-2\">\n    Evaluate how directional label corruption shifts the empirical risk minimizer away from optimal Bayes sensitivity.\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "title": "Active Checkpoint 2: Clinical Asymmetric Noise",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, a clinical dermatology model that confuses melanoma for benign moles 25% of the time, but never the reverse!",
+              "dock": "quiz"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Directional label noise is lethal in healthcare, Kaito. Let us challenge our learners: select Option A, B, or C above me to determine why standard empirical risk fails and how T inverse corrects the gradients!",
+              "dock": "quiz"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#15803d] my-2 text-center\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border border-[#151b20] text-[#15803d] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>💡 Active Checkpoint • Clinical Diagnosis Scenario 4.1.2</span>\n  </div>\n  <h2 class=\"text-xl font-black text-[#151b20] tracking-tight mb-1\">\n    Diagnostic Recall: Clinical Asymmetric Noise &amp; Natarajan Correction\n  </h2>\n  <p class=\"text-xs text-[#475569] max-w-xl mx-auto mb-2\">\n    Evaluate how directional label corruption shifts the empirical risk minimizer away from optimal Bayes sensitivity.\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Landmark Empirical Case Studies: Benchmark Destabilization & Autonomous Perception Collapse",
+        "type": "concept",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Landmark Empirical Case Studies in Annotation Failure",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To appreciate why annotation engineering is mission-critical, examine two landmark case studies. In NeurIPS 2021, Northcutt, Athalye, and Mueller algorithmically audited the test sets of ten premier machine learning benchmarks using Confident Learning.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "They uncovered that nearly 6% of ImageNet validation images and over 10% of QuickDraw test labels are outright erroneous. Even more sobering is the 2018 Uber ATG fatal crash in Tempe, Arizona, where an autonomous vehicle's label ontology strictly partitioned Pedestrians and Bicycles into disjoint classes, with no category for a pedestrian wheeling a bicycle. The classifier oscillated wildly, suppressing emergency braking.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      🏛️ Landmark Empirical Case Studies: Benchmark Destabilization &amp; Autonomy Collapse\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#ffd8ce] text-[#b91c1c] border border-[#151b20]\">\n      Peer-Reviewed Audits\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <!-- Case Study 1 -->\n    <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"flex items-center gap-1.5 font-black text-xs font-mono text-[#0e7490] mb-1\">\n        <span>📊 1. Benchmark Destabilization</span>\n      </div>\n      <div class=\"text-[10px] font-mono text-[#475569] mb-2 font-bold\">Northcutt et al. (NeurIPS 2021)</div>\n      <ul class=\"text-[11px] text-[#151b20] space-y-1.5 leading-relaxed\">\n        <li>• <strong>ImageNet Validation:</strong> $2{,}916$ images ($5.83\\%$) contain definitive label errors (e.g. <em>espresso</em> labeled as <em>cappuccino</em>).</li>\n        <li>• <strong>QuickDraw Test Set:</strong> $10.12\\%$ erroneous crowd labels.</li>\n        <li>• <strong>CoNLL-2003 NER:</strong> Over $5.38\\%$ span boundary errors.</li>\n        <li>• <strong>Structural Finding:</strong> At $>95\\%$ top-1 accuracy, models stop learning concepts and begin overfitting to benchmark crowd errors!</li>\n      </ul>\n    </div>\n\n    <!-- Case Study 2 -->\n    <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"flex items-center gap-1.5 font-black text-xs font-mono text-[#b91c1c] mb-1\">\n        <span>🚗 2. Autonomous Perception Collapse</span>\n      </div>\n      <div class=\"text-[10px] font-mono text-[#475569] mb-2 font-bold\">Uber ATG Tempe Crash (NTSB 2018)</div>\n      <ul class=\"text-[11px] text-[#151b20] space-y-1.5 leading-relaxed\">\n        <li>• <strong>Ontological Flaw:</strong> Training dataset partitioned objects into disjoint classes: <code>Pedestrian</code>, <code>Bicycle</code>, <code>Other</code>. Zero examples of a pedestrian wheeling a bicycle.</li>\n        <li>• <strong>Classification Oscillation:</strong> Classifier flipped between classes on consecutive frames, resetting tracking velocity vectors.</li>\n        <li>• <strong>Fatal Consequence:</strong> Emergency braking suppressed until 1.2s prior to impact. Non-exhaustive ontologies kill.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "When Annotation Ontologies Cause Real-World Catastrophe",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, the Uber ATG case study is chilling. The perception system failed not because the LiDAR or cameras malfunctioned, but because the annotation ontology assumed pedestrians and bicycles were strictly disjoint!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Elaine Herzberg was pushing a bicycle laden with shopping bags. Because the training data had zero annotations of that composite edge case, the classifier flipped between Vehicle, Bicycle, and Unknown Obstacle on every frame, repeatedly resetting the velocity tracking state.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And in benchmark datasets like ImageNet, researchers have been competing over fractions of a percent when nearly six percent of the test labels are wrong!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Indeed. Clean, exhaustive annotation taxonomies are an engineering prerequisite for safe, reliable machine learning.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      🏛️ Landmark Empirical Case Studies: Benchmark Destabilization &amp; Autonomy Collapse\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#ffd8ce] text-[#b91c1c] border border-[#151b20]\">\n      Peer-Reviewed Audits\n    </span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <!-- Case Study 1 -->\n    <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"flex items-center gap-1.5 font-black text-xs font-mono text-[#0e7490] mb-1\">\n        <span>📊 1. Benchmark Destabilization</span>\n      </div>\n      <div class=\"text-[10px] font-mono text-[#475569] mb-2 font-bold\">Northcutt et al. (NeurIPS 2021)</div>\n      <ul class=\"text-[11px] text-[#151b20] space-y-1.5 leading-relaxed\">\n        <li>• <strong>ImageNet Validation:</strong> $2{,}916$ images ($5.83\\%$) contain definitive label errors (e.g. <em>espresso</em> labeled as <em>cappuccino</em>).</li>\n        <li>• <strong>QuickDraw Test Set:</strong> $10.12\\%$ erroneous crowd labels.</li>\n        <li>• <strong>CoNLL-2003 NER:</strong> Over $5.38\\%$ span boundary errors.</li>\n        <li>• <strong>Structural Finding:</strong> At $>95\\%$ top-1 accuracy, models stop learning concepts and begin overfitting to benchmark crowd errors!</li>\n      </ul>\n    </div>\n\n    <!-- Case Study 2 -->\n    <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"flex items-center gap-1.5 font-black text-xs font-mono text-[#b91c1c] mb-1\">\n        <span>🚗 2. Autonomous Perception Collapse</span>\n      </div>\n      <div class=\"text-[10px] font-mono text-[#475569] mb-2 font-bold\">Uber ATG Tempe Crash (NTSB 2018)</div>\n      <ul class=\"text-[11px] text-[#151b20] space-y-1.5 leading-relaxed\">\n        <li>• <strong>Ontological Flaw:</strong> Training dataset partitioned objects into disjoint classes: <code>Pedestrian</code>, <code>Bicycle</code>, <code>Other</code>. Zero examples of a pedestrian wheeling a bicycle.</li>\n        <li>• <strong>Classification Oscillation:</strong> Classifier flipped between classes on consecutive frames, resetting tracking velocity vectors.</li>\n        <li>• <strong>Fatal Consequence:</strong> Emergency braking suppressed until 1.2s prior to impact. Non-exhaustive ontologies kill.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Implementation: Label Noise Auditor with Pydantic V2 & CI/CD Assertions",
+        "type": "code",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Verification with Pydantic V2",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To operationalize these principles, Section 7 of our documentation provides a production Python module using Pydantic V2. The LabelQualityEngine calculates Angluin-Laird sample complexity, estimates class-conditional thresholds, and prunes confident label errors.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice the automated assertion test suite at the bottom of the module. Incorporating these mathematical assertions directly into your automated CI/CD pipeline guarantees that any annotation batch with an error rate exceeding forty percent fails the build before polluting training stores.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      💻 Production Python: LabelQualityEngine (Pydantic V2)\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#e7f4c8] text-[#15803d] border border-[#151b20]\">\n      CI/CD Quality Gates\n    </span>\n  </div>\n\n  <div class=\"bg-[#1e293b] text-[#f8fafc] p-3 rounded-xl font-mono text-[11px] overflow-x-auto leading-relaxed border-2 border-[#151b20] max-h-[380px] overflow-y-auto\">\n<pre><code><span class=\"text-[#38bdf8]\">from</span> typing <span class=\"text-[#38bdf8]\">import</span> List, Dict, Tuple, Optional\n<span class=\"text-[#38bdf8]\">import</span> numpy <span class=\"text-[#38bdf8]\">as</span> np\n<span class=\"text-[#38bdf8]\">from</span> pydantic <span class=\"text-[#38bdf8]\">import</span> BaseModel, Field, field_validator\n\n<span class=\"text-[#38bdf8]\">class</span> <span class=\"text-[#facc15]\">AnnotationSample</span>(BaseModel):\n    sample_id: str\n    observed_label: int = Field(..., ge=0)\n    true_latent_label: Optional[int] = Field(None, ge=0)\n    model_predicted_probs: List[float]\n\n<span class=\"text-[#38bdf8]\">class</span> <span class=\"text-[#facc15]\">LabelQualityEngine</span>:\n    <span class=\"text-[#94a3b8]\">@classmethod</span>\n    <span class=\"text-[#38bdf8]\">def</span> <span class=\"text-[#4ade80]\">compute_effective_sample_size</span>(cls, n: int, eta: float) -&gt; Tuple[float, float]:\n        <span class=\"text-[#38bdf8]\">if</span> eta &gt;= 0.50: <span class=\"text-[#38bdf8]\">return</span> 0.0, float(<span class=\"text-[#f43f5e]\">\"inf\"</span>)\n        signal = 1.0 - 2.0 * eta\n        n_eff = float(n * (signal ** 2))\n        multiplier = float(1.0 / (signal ** 2))\n        <span class=\"text-[#38bdf8]\">return</span> round(n_eff, 2), round(multiplier, 2)\n\n    <span class=\"text-[#94a3b8]\">@classmethod</span>\n    <span class=\"text-[#38bdf8]\">def</span> <span class=\"text-[#4ade80]\">prune_confident_errors</span>(cls, samples: List[AnnotationSample], thresholds: Dict[int, float]) -&gt; List[str]:\n        flagged = []\n        <span class=\"text-[#38bdf8]\">for</span> s <span class=\"text-[#38bdf8]\">in</span> samples:\n            <span class=\"text-[#38bdf8]\">for</span> c, t_c <span class=\"text-[#38bdf8]\">in</span> thresholds.items():\n                <span class=\"text-[#38bdf8]\">if</span> c != s.observed_label <span class=\"text-[#38bdf8]\">and</span> s.model_predicted_probs[c] &gt;= t_c:\n                    flagged.append(s.sample_id); <span class=\"text-[#38bdf8]\">break</span>\n        <span class=\"text-[#38bdf8]\">return</span> flagged\n\n<span class=\"text-[#94a3b8]\"># Automated CI/CD Assertion Gate</span>\nn_eff, mult = LabelQualityEngine.compute_effective_sample_size(1000, eta=0.20)\n<span class=\"text-[#38bdf8]\">assert</span> abs(n_eff - 360.0) &lt; 1e-2, <span class=\"text-[#f43f5e]\">f\"Expected 360, got {n_eff}\"</span>\n<span class=\"text-[#38bdf8]\">assert</span> abs(mult - 2.78) &lt; 1e-2</code></pre>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Automated Quality Gates in CI/CD",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, putting Pydantic V2 assertions right into CI/CD means our continuous integration pipeline will automatically halt if someone uploads an annotation batch with too much label noise!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Just as software engineers would never deploy code that fails unit tests, machine learning engineers must never deploy datasets that fail statistical noise and PAC learnability bounds.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And the Confident Learning pruning function flags exactly which sample IDs are corrupt so human experts can re-inspect them!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the epitome of reliable data engineering.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <div class=\"font-mono font-black text-xs sm:text-sm text-[#0e7490] uppercase tracking-wide\">\n      💻 Production Python: LabelQualityEngine (Pydantic V2)\n    </div>\n    <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#e7f4c8] text-[#15803d] border border-[#151b20]\">\n      CI/CD Quality Gates\n    </span>\n  </div>\n\n  <div class=\"bg-[#1e293b] text-[#f8fafc] p-3 rounded-xl font-mono text-[11px] overflow-x-auto leading-relaxed border-2 border-[#151b20] max-h-[380px] overflow-y-auto\">\n<pre><code><span class=\"text-[#38bdf8]\">from</span> typing <span class=\"text-[#38bdf8]\">import</span> List, Dict, Tuple, Optional\n<span class=\"text-[#38bdf8]\">import</span> numpy <span class=\"text-[#38bdf8]\">as</span> np\n<span class=\"text-[#38bdf8]\">from</span> pydantic <span class=\"text-[#38bdf8]\">import</span> BaseModel, Field, field_validator\n\n<span class=\"text-[#38bdf8]\">class</span> <span class=\"text-[#facc15]\">AnnotationSample</span>(BaseModel):\n    sample_id: str\n    observed_label: int = Field(..., ge=0)\n    true_latent_label: Optional[int] = Field(None, ge=0)\n    model_predicted_probs: List[float]\n\n<span class=\"text-[#38bdf8]\">class</span> <span class=\"text-[#facc15]\">LabelQualityEngine</span>:\n    <span class=\"text-[#94a3b8]\">@classmethod</span>\n    <span class=\"text-[#38bdf8]\">def</span> <span class=\"text-[#4ade80]\">compute_effective_sample_size</span>(cls, n: int, eta: float) -&gt; Tuple[float, float]:\n        <span class=\"text-[#38bdf8]\">if</span> eta &gt;= 0.50: <span class=\"text-[#38bdf8]\">return</span> 0.0, float(<span class=\"text-[#f43f5e]\">\"inf\"</span>)\n        signal = 1.0 - 2.0 * eta\n        n_eff = float(n * (signal ** 2))\n        multiplier = float(1.0 / (signal ** 2))\n        <span class=\"text-[#38bdf8]\">return</span> round(n_eff, 2), round(multiplier, 2)\n\n    <span class=\"text-[#94a3b8]\">@classmethod</span>\n    <span class=\"text-[#38bdf8]\">def</span> <span class=\"text-[#4ade80]\">prune_confident_errors</span>(cls, samples: List[AnnotationSample], thresholds: Dict[int, float]) -&gt; List[str]:\n        flagged = []\n        <span class=\"text-[#38bdf8]\">for</span> s <span class=\"text-[#38bdf8]\">in</span> samples:\n            <span class=\"text-[#38bdf8]\">for</span> c, t_c <span class=\"text-[#38bdf8]\">in</span> thresholds.items():\n                <span class=\"text-[#38bdf8]\">if</span> c != s.observed_label <span class=\"text-[#38bdf8]\">and</span> s.model_predicted_probs[c] &gt;= t_c:\n                    flagged.append(s.sample_id); <span class=\"text-[#38bdf8]\">break</span>\n        <span class=\"text-[#38bdf8]\">return</span> flagged\n\n<span class=\"text-[#94a3b8]\"># Automated CI/CD Assertion Gate</span>\nn_eff, mult = LabelQualityEngine.compute_effective_sample_size(1000, eta=0.20)\n<span class=\"text-[#38bdf8]\">assert</span> abs(n_eff - 360.0) &lt; 1e-2, <span class=\"text-[#f43f5e]\">f\"Expected 360, got {n_eff}\"</span>\n<span class=\"text-[#38bdf8]\">assert</span> abs(mult - 2.78) &lt; 1e-2</code></pre>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Capstone Synthesis: The 4 Laws of Data Annotation & Path to Lesson 4.2",
+        "type": "summary",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Capstone Synthesis: The 4 Laws of Data Annotation",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Congratulations on completing Lesson 4.1! We have established four immutable laws of data annotation: First, label noise imposes a quadratic sample complexity penalty via 1 minus 2 eta squared. Second, benchmark datasets are fallible and require continuous auditing.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Third, calibrate class thresholds before pruning noisy labels using Confident Learning. And fourth, taxonomies must account for composite edge cases to avoid perception collapse. In Lesson 4.2, we dive into production workflows for Text and Image annotation.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"text-center max-w-2xl mx-auto mb-4\">\n    <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border-2 border-[#151b20] text-[#15803d] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n      <span>🎓 Capstone Mastery • Lesson 4.1 Complete</span>\n    </div>\n    <h2 class=\"text-2xl font-black text-[#151b20] tracking-tight\">\n      The 4 Immutable Laws of Data Annotation\n    </h2>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono mb-4\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. The Quadratic Penalty</strong>\n      <span class=\"text-[#151b20]\">Effective sample size scales as $N(1 - 2\\eta)^2$. You cannot out-scale high error rates with raw volume.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Benchmark Fallibility</strong>\n      <span class=\"text-[#151b20]\">Standard benchmark test sets contain $3\\% \\text{ to } 10\\%$ label errors. Never treat benchmarks as infallible.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. Calibrate Before Pruning</strong>\n      <span class=\"text-[#151b20]\">Deploy Confident Learning class-conditional thresholds ($t_j$) rather than arbitrary global probability cutoffs.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Exhaustive Taxonomies</strong>\n      <span class=\"text-[#151b20]\">Disjoint assumptions cause perception collapse on composite edge cases. Build hierarchical, multi-label ontologies.</span>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#f8fafc] border-2 border-[#151b20] text-center font-mono text-xs\">\n    <span class=\"text-[#475569]\">Ready to build hands-on labeling pipelines?</span>\n    <span class=\"font-bold text-[#0e7490] ml-2\">Next: Lesson 4.2 Text and Image Annotation Workflows →</span>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Capstone Review: Four Golden Laws of Ground Truth",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "What an incredible masterclass, Dr. Nova! I will never look at a training dataset the same way again. The math behind the quadratic noise penalty and asymmetric transitions completely transforms how we should spend our engineering budgets.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "It is the defining difference between hobbyist deep learning and mission-critical engineering, Kaito. When your ground truth is mathematically verified, downstream models become reliable, robust, and safe.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "What is waiting for us in Lesson 4.2?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In Lesson 4.2, we operationalize these principles into concrete workflows for text and image annotation: spans, bounding boxes, segmentation masks, and active learning queues. Let us move forward!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"text-center max-w-2xl mx-auto mb-4\">\n    <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border-2 border-[#151b20] text-[#15803d] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n      <span>🎓 Capstone Mastery • Lesson 4.1 Complete</span>\n    </div>\n    <h2 class=\"text-2xl font-black text-[#151b20] tracking-tight\">\n      The 4 Immutable Laws of Data Annotation\n    </h2>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono mb-4\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. The Quadratic Penalty</strong>\n      <span class=\"text-[#151b20]\">Effective sample size scales as $N(1 - 2\\eta)^2$. You cannot out-scale high error rates with raw volume.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Benchmark Fallibility</strong>\n      <span class=\"text-[#151b20]\">Standard benchmark test sets contain $3\\% \\text{ to } 10\\%$ label errors. Never treat benchmarks as infallible.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. Calibrate Before Pruning</strong>\n      <span class=\"text-[#151b20]\">Deploy Confident Learning class-conditional thresholds ($t_j$) rather than arbitrary global probability cutoffs.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Exhaustive Taxonomies</strong>\n      <span class=\"text-[#151b20]\">Disjoint assumptions cause perception collapse on composite edge cases. Build hierarchical, multi-label ontologies.</span>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#f8fafc] border-2 border-[#151b20] text-center font-mono text-xs\">\n    <span class=\"text-[#475569]\">Ready to build hands-on labeling pipelines?</span>\n    <span class=\"font-bold text-[#0e7490] ml-2\">Next: Lesson 4.2 Text and Image Annotation Workflows →</span>\n  </div>\n</div>\n"
         }
       }
     ]
@@ -13967,9 +14991,9 @@ var ALL_CURRICULUM = {
     "chapter": 4,
     "part": 2,
     "key": "ch4_p2",
-    "badge": "◆ TRACK 4 • LESSON 4.2: TEXT AND IMAGE ANNOTATION: SPATIAL GEOMETRIES, SPAN OFFSETS & STANDARD EXCHANGE FORMATS",
-    "index": "Lesson 2 of 10",
-    "lessonTitle": "Text and Image Annotation: Spatial Geometries, Span Offsets & Standard Exchange Formats",
+    "title": "Text and Image Annotation: Spatial Geometries, Span Offsets & Standard Exchange Formats",
+    "badge": "16 Masterclass Slides • Socratic Dialogue • Interactive Sandbox",
+    "description": "Bridging continuous 2D manifolds and discrete token sequences. Pascal VOC, MS COCO, and YOLO spatial representations, Green's theorem area calculation, GIoU metric optimization, and BIOES sequence invariants.",
     "slides": [
       {
         "id": "s1",
@@ -13977,339 +15001,751 @@ var ALL_CURRICULUM = {
         "type": "title",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Text and Image Annotation: Spatial Geometries, Span Offsets & Standard Exchange Formats",
+          "title": "Text and Image Annotation: Spatial Geometries & Span Offsets",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 4.2. Today we examine text and image annotation: spatial geometries, span offsets & standard exchange formats, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 4: Foundations</span>\n    <span>•</span>\n    <span>Lesson 4.2</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Text and Image Annotation: Spatial Geometries, Span Offsets &amp; Standard Exchange Formats\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into text and image annotation: spatial geometries, span offsets &amp; standard exchange formats with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Text and Image Annotation: Spatial Geometries, Span Offsets & Standard Exchange Formats",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 4.2?"
+              "text": "Welcome to Track 4, Lesson 4.2 of Dataset Fundamentals: Text and Image Annotation: Spatial Geometries, Span Offsets, and Standard Exchange Formats. Text and vision comprise the vast majority of production machine learning workloads. Today, we bridge continuous spatial manifolds and discrete token topologies.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 4.2. Today we examine text and image annotation: spatial geometries, span offsets & standard exchange formats, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "In computer vision, bounding boxes, oriented boxes, polygon contours, and dense run-length encoded bitmasks require exact mathematical coordinate conventions. In natural language processing, continuous Unicode character offsets must be discretized into token-level IOB2 and BIOES sequence tags. An off-by-one error in spatial coordinates or a single character shift in a span directly corrupts backpropagation gradients.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 4: Foundations</span>\n    <span>•</span>\n    <span>Lesson 4.2</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Text and Image Annotation: Spatial Geometries, Span Offsets &amp; Standard Exchange Formats\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into text and image annotation: spatial geometries, span offsets &amp; standard exchange formats with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 4 • Data Annotation &amp; Ground Truth • Lesson 4.2</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Text &amp; Image Annotation: Spatial Geometries, Span Offsets &amp; Exchange Formats\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Bridging continuous 2D manifolds and discrete token sequences. Pascal VOC, MS COCO, and YOLO spatial representations, Green's theorem area calculation, GIoU metric optimization, and BIOES sequence invariants.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Spatial Geometries</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">AABB, OBB, Green's polygon area &amp; COCO Fortran RLE masks.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. IoU Metric Family</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Jaccard IoU, Generalized IoU (GIoU), DIoU, and Boundary IoU.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. Span &amp; Tagging</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Unicode code points, IOB2 vs BIOES, and CRF transition invariants.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Production Engine</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Pydantic V2 schemas, schema assertions, and CI/CD validation gates.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: Spatial Topologies vs. Discrete Text Spans",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Lesson 4.2, Kaito! Today we examine text and image annotation, uncovering the deep geometric and discrete topological foundations that make vision and language models function.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "It always seemed like text and vision were totally separate worlds, Dr. Nova! Vision is pixels and bounding boxes, while text is words and sentences. How do they connect?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Mathematically, both require mapping continuous perceptual inputs onto rigorously defined discrete manifolds. An off-by-one error in a bounding box corner or a one-character drift in an entity span offset creates severe gradient corruption during neural backpropagation.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So whether we're calculating Generalized IoU across bounding boxes or BIOES tagging across subword tokens, precision in exchange formats is what protects our models from garbage gradients!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 4 • Socratic Duo • Lesson 4.2</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Socratic Exploration: Geometries, Offsets &amp; Exchange Invariants\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Join Dr. Nova and Kaito as they explore how continuous pixel coordinates and Unicode character spans are serialized into mathematically consistent machine learning formats.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5 max-w-3xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block text-sm mb-1 font-black\">Dr. Nova's Thesis</strong>\n      <p class=\"text-[#151b20] leading-relaxed\">\n        Spatial bounding coordinates and text span offsets are topological ground truth contracts. Coordinate transposition or token drift injects systematic structural noise into regression loss manifolds.\n      </p>\n    </div>\n    <div class=\"p-4 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block text-sm mb-1 font-black\">Kaito's Inquiry</strong>\n      <p class=\"text-[#151b20] leading-relaxed\">\n        Why do disjoint bounding boxes break standard IoU gradients, why does Green's theorem collapse on figure-8 loops, and why does BIOES consistently beat IOB2 in neural CRF sequence tagging?\n      </p>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s2",
-        "title": "Mathematical Foundations: Spatial Bounding Geometries",
-        "type": "equation",
+        "title": "Spatial Localization Topologies: Continuous Manifolds to Discrete Grids",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Mathematical Foundations: Spatial Bounding Geometries",
+          "title": "Spatial Localization Topologies in Computer Vision",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Mathematical Foundations: Spatial Bounding Geometries. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$B_{\\text{corner}} = [x_{\\min}, y_{\\min}, x_{\\max}, y_{\\max}] \\in \\mathbb{R}^4, \\quad \\text{where } x_{\\max} > x_{\\min}, \\; y_{\\max} > y_{\\min}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$B_{\\text{yolo}} = \\left[\\frac{x_c}{W}, \\frac{y_c}{H}, \\frac{w}{W}, \\frac{h}{H}\\right] \\in [0, 1]^4$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{P} = \\{(x_k, y_k)\\}_{k=1}^V, \\quad (x_{V+1}, y_{V+1}) = (x_1, y_1)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Corner Coordinate Form (Pascal VOC)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">(Everingham, 2010):</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Polygonal Contours</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">A non-convex polygon $\\mathcal{P}$ defined by an ordered sequence of $V$ vertices:</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Mathematical Foundations: Spatial Bounding Geometries",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does mathematical foundations: spatial bounding geometries protect our system against silent distribution shift in production?"
+              "text": "In computer vision, spatial annotations localize visual targets within an image pixel grid. This localization manifests across four distinct topological tiers, balancing geometric expressiveness against annotation cost and storage overhead.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "The first tier is the Axis-Aligned Bounding Box, defined by four parameters. Tier two adds an orientation angle to create the Oriented Bounding Box, essential for aerial imagery and document analysis. Tier three scales to polygonal segmentation with ordered vertex contours, and tier four reaches dense pixel-level bitmasks, capturing non-convex silhouettes.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$B_{\\text{corner}} = [x_{\\min}, y_{\\min}, x_{\\max}, y_{\\max}] \\in \\mathbb{R}^4, \\quad \\text{where } x_{\\max} > x_{\\min}, \\; y_{\\max} > y_{\\min}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$B_{\\text{yolo}} = \\left[\\frac{x_c}{W}, \\frac{y_c}{H}, \\frac{w}{W}, \\frac{h}{H}\\right] \\in [0, 1]^4$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{P} = \\{(x_k, y_k)\\}_{k=1}^V, \\quad (x_{V+1}, y_{V+1}) = (x_1, y_1)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Corner Coordinate Form (Pascal VOC)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">(Everingham, 2010):</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Polygonal Contours</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">A non-convex polygon $\\mathcal{P}$ defined by an ordered sequence of $V$ vertices:</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"p-4 rounded-xl bg-[#f8fafc] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <h3 class=\"font-black text-sm text-[#151b20] uppercase font-mono tracking-wider mb-2\">The 4 Spatial Localization Topologies</h3>\n    <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 font-mono text-xs\">\n      <div class=\"p-3 rounded-lg bg-[#c9f3f4] border-2 border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block text-xs font-black mb-1\">1. Axis-Aligned (AABB)</strong>\n        <p class=\"text-[11px] text-[#151b20]\">4 Parameters: $[x_{\\min}, y_{\\min}, x_{\\max}, y_{\\max}]$. Coarse rectangular envelope; fast annotation ($~5\\text{s/box}$).</p>\n      </div>\n      <div class=\"p-3 rounded-lg bg-[#fff0b9] border-2 border-[#151b20]\">\n        <strong class=\"text-[#b45309] block text-xs font-black mb-1\">2. Oriented (OBB)</strong>\n        <p class=\"text-[11px] text-[#151b20]\">5 Parameters: $[x_c, y_c, w, h, \\theta]$. Critical for overhead drone, satellite, and tilted text OCR.</p>\n      </div>\n      <div class=\"p-3 rounded-lg bg-[#ffd8ce] border-2 border-[#151b20]\">\n        <strong class=\"text-[#b91c1c] block text-xs font-black mb-1\">3. Polygon Contour</strong>\n        <p class=\"text-[11px] text-[#151b20]\">$V$ Vertices: $\\{(x_k, y_k)\\}_{k=1}^V$. Captures complex non-convex object boundaries via ordered planar loops.</p>\n      </div>\n      <div class=\"p-3 rounded-lg bg-[#e7f4c8] border-2 border-[#151b20]\">\n        <strong class=\"text-[#15803d] block text-xs font-black mb-1\">4. Dense Bitmask</strong>\n        <p class=\"text-[11px] text-[#151b20]\">Binary Tensor $M \\in \\{0, 1\\}^{H \\times W}$. Pixel-accurate segmentation; compressed via COCO Column-Major RLE.</p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <h4 class=\"font-bold text-xs uppercase font-mono text-[#0e7490] mb-2\">Topological Tradeoff: Expressiveness vs. Human Ingestion Latency</h4>\n    <div class=\"overflow-x-auto\">\n      <table class=\"w-full text-left font-mono text-xs border-collapse\">\n        <thead>\n          <tr class=\"border-b-2 border-[#151b20] bg-[#f1f5f9] text-[#151b20]\">\n            <th class=\"p-2\">Topology</th>\n            <th class=\"p-2\">Degrees of Freedom</th>\n            <th class=\"p-2\">Human Labor Time</th>\n            <th class=\"p-2\">Failure Mode / Artifact</th>\n          </tr>\n        </thead>\n        <tbody class=\"divide-y divide-[#e2e8f0]\">\n          <tr>\n            <td class=\"p-2 font-bold text-[#0e7490]\">AABB</td>\n            <td class=\"p-2\">4 Floats</td>\n            <td class=\"p-2\">2 - 5 seconds</td>\n            <td class=\"p-2 text-[#b91c1c]\">Excess background noise in elongated rotated objects</td>\n          </tr>\n          <tr>\n            <td class=\"p-2 font-bold text-[#b45309]\">OBB</td>\n            <td class=\"p-2\">5 Floats ($+ \\theta$)</td>\n            <td class=\"p-2\">8 - 15 seconds</td>\n            <td class=\"p-2 text-[#b91c1c]\">Angle periodicity singularity at $\\pm \\pi/2$</td>\n          </tr>\n          <tr>\n            <td class=\"p-2 font-bold text-[#b91c1c]\">Polygonal</td>\n            <td class=\"p-2\">$2V$ Floats ($V \\ge 3$)</td>\n            <td class=\"p-2\">30 - 90 seconds</td>\n            <td class=\"p-2 text-[#b91c1c]\">Hourglass self-intersection; Green's area cancellation</td>\n          </tr>\n          <tr>\n            <td class=\"p-2 font-bold text-[#15803d]\">Dense Mask</td>\n            <td class=\"p-2\">$H \\times W$ Bits</td>\n            <td class=\"p-2\">60 - 300 seconds</td>\n            <td class=\"p-2 text-[#b91c1c]\">Storage explosion without column-major RLE encoding</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Exploration: Why Not Use Dense Masks for Everything?",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "If dense masks give pixel-level precision, Dr. Nova, why don't we just mandate dense pixel masks for every computer vision dataset?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Consider the economics and telemetry, Kaito. Labeling an axis-aligned box takes 3 seconds. Segmenting a dense polygon with 40 vertices takes over a minute. Dense masks take up to 5 minutes per instance!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "That's a hundred-fold increase in labeling cost! For a 100,000-sample autonomous driving dataset, that's the difference between fifty thousand dollars and five million dollars!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. That is why engineering teams select the minimal sufficient topology: AABBs for general object detection, OBBs for overhead remote sensing, and dense polygons only where fine spatial boundaries govern safety.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase mb-2\">\n    <span>The Annotation Economics Frontier</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Minimal Sufficient Geometric Topology</h3>\n  <p class=\"text-xs text-[#475569] leading-relaxed mb-4\">\n    Every step up the topological ladder multiplies human annotation latency exponentially. Data engineers must mathematically balance boundary fidelity against dataset scale.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-lg bg-[#c9f3f4] border-2 border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">AABB: Detection</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Cost: 1x ($3s). Standard for general object detection benchmarks (COCO, Pascal VOC).</span>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#fff0b9] border-2 border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">OBB: Remote Sensing</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Cost: 3x ($12s). Essential when bounding aspect ratio is extreme and rotated (DOTA, satellite).</span>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#ffd8ce] border-2 border-[#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Polygon: Safety Critical</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Cost: 20x ($60s+). Surgical oncology, robotic grasping, autonomous drivable surface segmentation.</span>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s3",
-        "title": "The Jaccard Metric: Intersection over Union (IoU)",
-        "type": "equation",
+        "title": "Coordinate Systems: Pascal VOC, MS COCO & YOLO Normalization",
+        "type": "math",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The Jaccard Metric: Intersection over Union (IoU)",
+          "title": "Coordinate Representation Conventions",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Jaccard Metric: Intersection over Union (IoU). Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{IoU}(A, B) = \\frac{|A \\cap B|}{|A \\cup B|} = \\frac{|A \\cap B|}{|A| + |B| - |A \\cap B|}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Area}(A \\cap B) = \\max\\left(0, \\; \\min(x_2^A, x_2^B) - \\max(x_1^A, x_1^B)\\right) \\times \\max\\left(0, \\; \\min(y_2^A, y_2^B) - \\max(y_1^A, y_1^B)\\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The fundamental agreement</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">metric between a candidate annotation $A$ and ground-truth $B$ is the Intersection over Union (Jaccard Index): For axis-aligned rectangular boxes $A = [x_1^A, y_1^A, x_2^A, y_2^A]$ and $B = [x_1^B, y_1^B, x_2^B, y_2^B]$:</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Jaccard Metric: Intersection over Union (IoU)",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does the jaccard metric: intersection over union (iou) protect our system against silent distribution shift in production?"
+              "text": "Data engineering pipelines frequently break down when moving between computer vision frameworks due to conflicting coordinate representations. Three major standards dominate production architectures.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Pascal VOC uses Corner Form: x-min, y-min, x-max, y-max. MS COCO uses Top-Left Width-Height Form: x-min, y-min, width, height. YOLO normalizes all values into unit floats between 0 and 1 using centroid coordinates: x-center over width, y-center over height, width over image width, and height over image height. Conflating these conventions results in completely distorted loss surfaces.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{IoU}(A, B) = \\frac{|A \\cap B|}{|A \\cup B|} = \\frac{|A \\cap B|}{|A| + |B| - |A \\cap B|}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Area}(A \\cap B) = \\max\\left(0, \\; \\min(x_2^A, x_2^B) - \\max(x_1^A, x_1^B)\\right) \\times \\max\\left(0, \\; \\min(y_2^A, y_2^B) - \\max(y_1^A, y_1^B)\\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The fundamental agreement</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">metric between a candidate annotation $A$ and ground-truth $B$ is the Intersection over Union (Jaccard Index): For axis-aligned rectangular boxes $A = [x_1^A, y_1^A, x_2^A, y_2^A]$ and $B = [x_1^B, y_1^B, x_2^B, y_2^B]$:</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"flex items-center justify-between mb-2\">\n        <strong class=\"text-[#0e7490] font-black text-sm\">Pascal VOC (Corner)</strong>\n        <span class=\"px-2 py-0.5 rounded bg-white border border-[#151b20] text-[10px]\">Absolute Pixels</span>\n      </div>\n      <div class=\"bg-white p-2.5 rounded border border-[#151b20] mb-2 text-center text-xs\">\n        $B_{\\text{corner}} = [x_{\\min}, y_{\\min}, x_{\\max}, y_{\\max}]$\n      </div>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        Invariants: $x_{\\max} > x_{\\min}$ and $y_{\\max} > y_{\\min}$. Used by Torchvision, Faster R-CNN, and SSD models.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"flex items-center justify-between mb-2\">\n        <strong class=\"text-[#b45309] font-black text-sm\">MS COCO (XYWH)</strong>\n        <span class=\"px-2 py-0.5 rounded bg-white border border-[#151b20] text-[10px]\">Top-Left Width-Height</span>\n      </div>\n      <div class=\"bg-white p-2.5 rounded border border-[#151b20] mb-2 text-center text-xs\">\n        $B_{\\text{coco}} = [x_{\\min}, y_{\\min}, w, h]$\n      </div>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        Conversion: $w = x_{\\max} - x_{\\min}$, $h = y_{\\max} - y_{\\min}$. Standard for COCO evaluation APIs and Detectron2.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"flex items-center justify-between mb-2\">\n        <strong class=\"text-[#b91c1c] font-black text-sm\">YOLO (Centroid-Scale)</strong>\n        <span class=\"px-2 py-0.5 rounded bg-white border border-[#151b20] text-[10px]\">Normalized $[0, 1]^4$</span>\n      </div>\n      <div class=\"bg-white p-2.5 rounded border border-[#151b20] mb-2 text-center text-xs\">\n        $B_{\\text{yolo}} = [\\frac{x_c}{W}, \\frac{y_c}{H}, \\frac{w}{W}, \\frac{h}{H}]$\n      </div>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        $x_c = \\frac{x_{\\min} + x_{\\max}}{2}$. Invariant to image downsampling and multi-scale data augmentations.\n      </p>\n    </div>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f8fafc] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono text-xs\">\n    <strong class=\"text-[#b91c1c] block uppercase tracking-wider mb-1\">⚠️ The Coordinate Transposition Catastrophe</strong>\n    <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n      Feeding MS COCO $[x, y, w, h]$ coordinates into a Pascal VOC loss expecting $[x_1, y_1, x_2, y_2]$ interprets width and height as bottom-right coordinates. If $w < x$ or $h < y$, the resulting box has negative area, causing inverted intersection bounding boxes and NaN gradients during backpropagation.\n    </p>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: The Off-By-One Coordinate Trap",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, why do different libraries insist on different bounding box conventions? Couldn't the vision community agree on a single format?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Each format evolved to optimize a different engineering constraint. Pascal VOC wanted fast pixel slicing. COCO wanted instance-centric width and height. YOLO needed resolution-invariant normalized coordinates for multi-scale anchor grids.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And when an engineer inadvertently mixes up COCO's width-height with VOC's maximum coordinates, the regression loss explodes!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. That is why strict schema validation with Pydantic V2 and unit coordinate assertions are mandatory at the ingestion gateway before any tensor training occurs.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffd8ce] border border-[#151b20] text-[#b91c1c] font-mono text-xs font-bold uppercase mb-3\">\n    <span>Production Ingestion Defensive Rule</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Mathematical Conversion Invariants</h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">VOC to COCO Conversion</strong>\n      <code class=\"text-[11px] block bg-[#f1f5f9] p-2 rounded text-[#151b20]\">\n        w = x_max - x_min<br>\n        h = y_max - y_min<br>\n        return [x_min, y_min, w, h]\n      </code>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-bold\">COCO to YOLO Conversion</strong>\n      <code class=\"text-[11px] block bg-[#f1f5f9] p-2 rounded text-[#151b20]\">\n        xc = (x_min + w / 2.0) / img_w<br>\n        yc = (y_min + h / 2.0) / img_h<br>\n        return [xc, yc, w / img_w, h / img_h]\n      </code>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s4",
-        "title": "Generalized Intersection over Union (GIoU)",
-        "type": "equation",
+        "title": "Polygonal Surface Area: Green's Theorem & The Hourglass Cancellation Invariant",
+        "type": "math",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Generalized Intersection over Union (GIoU)",
+          "title": "Polygonal Surface Area via Green's Theorem",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Generalized Intersection over Union (GIoU). Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{GIoU}(A, B) = \\text{IoU}(A, B) - \\frac{|C \\setminus (A \\cup B)|}{|C|} \\in [-1, 1]$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">(Rezatofighi, 2019) introduced</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">GIoU by incorporating the minimal convex enclosing box $C$:</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Generalized Intersection over Union (GIoU)",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does generalized intersection over union (giou) protect our system against silent distribution shift in production?"
+              "text": "For fine-grained segmentation, objects are annotated as ordered polygonal vertex contours. To calculate polygon area analytically, computational geometry relies on Green's Theorem in the plane, known as the Surveyor's formula.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Green's Theorem calculates signed area. A counter-clockwise loop yields positive area, while a clockwise loop yields negative area. Crucially, if an annotator draws an hourglass self-intersecting contour resembling a figure-8, the opposing lobes cancel each other out identically, resulting in an area calculation of zero. Ingestion pipelines must enforce the Jordan Curve Theorem to reject self-intersecting loops.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{GIoU}(A, B) = \\text{IoU}(A, B) - \\frac{|C \\setminus (A \\cup B)|}{|C|} \\in [-1, 1]$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">(Rezatofighi, 2019) introduced</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">GIoU by incorporating the minimal convex enclosing box $C$:</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-3\">\n      <h3 class=\"font-black text-sm font-mono text-[#151b20] uppercase\">Green's Theorem in the Plane (Surveyor's Formula)</h3>\n      <span class=\"px-2.5 py-0.5 rounded-full bg-[#c9f3f4] border border-[#151b20] font-mono text-[10px] text-[#0e7490] font-bold\">Deterministic Area</span>\n    </div>\n    <div class=\"bg-[#f8fafc] p-3 rounded-lg border-2 border-[#151b20] text-center font-mono text-sm mb-3\">\n      $$\\text{Area}(\\mathcal{P}) = \\frac{1}{2} \\left| \\sum_{k=1}^V (x_k y_{k+1} - x_{k+1} y_k) \\right|$$\n    </div>\n    <p class=\"text-xs text-[#475569] leading-relaxed\">\n      Where $\\mathcal{P} = \\{(x_k, y_k)\\}_{k=1}^V$ is an ordered sequence of 2D vertices with implicit closing edge $(x_{V+1}, y_{V+1}) \\equiv (x_1, y_1)$.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block font-black text-xs uppercase mb-1\">✓ Non-Self-Intersecting Contour</strong>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        When vertices follow a strict counter-clockwise (CCW) trajectory, the signed line integral evaluates to $+ \\text{Area}_{\\text{true}}$. The Jordan Curve Theorem guarantees a strictly defined interior and exterior.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block font-black text-xs uppercase mb-1\">⚠️ The Hourglass (Figure-8) Cancellation</strong>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        If an annotator crosses edges, loop $A$ is traversed CCW ($+25\\text{ px}^2$) while loop $B$ is traversed CW ($-25\\text{ px}^2$). The sum vanishes identically: $|(+25) + (-25)| = 0.0$, corrupting downstream area-weighted training loss!\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Exploration: The Mystery of the Vanishing Polygon",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait, Dr. Nova! Are you saying an annotator can draw a polygon with hundreds of pixels inside it, but the computer computes an area of exactly zero?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yes, Kaito! Because Green's theorem relies on line integrals around a oriented closed boundary. If the polygon self-intersects like a figure eight, one loop has positive circulation and the other has negative circulation.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And because they have equal and opposite signed areas, they cancel out to zero! How do production systems prevent this?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Production annotation tools run edge-intersection segment checks in real time. If any non-consecutive edges intersect, the tool forbids submission until the annotator uncrosses the vertices.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffd8ce] border border-[#151b20] text-[#b91c1c] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Geometric Proof &amp; Invariant</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Why Hourglass Contours Collapse</h3>\n  <div class=\"p-3 bg-[#f8fafc] rounded-lg border border-[#151b20] font-mono text-xs space-y-2\">\n    <div class=\"text-[#0e7490] font-bold\">Hourglass Vertices: $\\mathcal{P} = [(0,0), (10,10), (10,0), (0,10)]$</div>\n    <div class=\"text-[#475569]\">Lobe 1 (Left CCW): Area Contribution = $+25.0$</div>\n    <div class=\"text-[#475569]\">Lobe 2 (Right CW): Area Contribution = $-25.0$</div>\n    <div class=\"text-[#b91c1c] font-bold\">Sum: $0.5 \\times |25.0 - 25.0| = 0.0 \\implies \\text{Collapsed Area}$</div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s5",
-        "title": "Run-Length Encoding (RLE) Bitmask Compression",
-        "type": "equation",
+        "title": "The Overlap Metric Hierarchy: Standard IoU, GIoU, DIoU & Boundary IoU",
+        "type": "math",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Run-Length Encoding (RLE) Bitmask Compression",
+          "title": "The Intersection over Union (IoU) Metric Hierarchy",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Run-Length Encoding (RLE) Bitmask Compression. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{RLE}(M) = [c_0, c_1, c_2, \\dots, c_m] \\quad \\text{where} \\quad \\sum_{j=0}^m c_j = H \\times W$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">For aerial imagery and autonomous driving object detection, avoid axis-aligned bounding boxes (AABB) when objects are tilted or densely packed (e.g., parked vehicles, shipping containers). Use Oriented Bounding Boxes (OBB): this reduces empty backgro</span>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Run-Length Encoding (RLE) Bitmask Compression",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does run-length encoding (rle) bitmask compression protect our system against silent distribution shift in production?"
+              "text": "Evaluating spatial localization agreement between predicted bounding boxes and annotated ground truth relies on the Jaccard Index family. Standard IoU calculates intersection area divided by union area.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "However, standard IoU suffers from a fatal flaw: when two bounding boxes do not intersect, their overlap is zero. This creates a vanishing gradient where backpropagation receives no signal to move the boxes together. Rezatofighi et al. solved this with Generalized IoU, which penalizes the empty space inside the minimal enclosing convex box C, providing a smooth optimization gradient even across non-overlapping geometries.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{RLE}(M) = [c_0, c_1, c_2, \\dots, c_m] \\quad \\text{where} \\quad \\sum_{j=0}^m c_j = H \\times W$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">For aerial imagery and autonomous driving object detection, avoid axis-aligned bounding boxes (AABB) when objects are tilted or densely packed (e.g., parked vehicles, shipping containers). Use Oriented Bounding Boxes (OBB): this reduces empty backgro</span>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"flex items-center justify-between mb-2\">\n        <strong class=\"text-[#0e7490] font-black text-sm\">1. Standard Jaccard IoU</strong>\n        <span class=\"px-2 py-0.5 rounded bg-white border border-[#151b20] text-[10px]\">Range $[0, 1]$</span>\n      </div>\n      <div class=\"bg-white p-2.5 rounded border border-[#151b20] mb-2 text-center text-xs\">\n        $$\\text{IoU}(A, B) = \\frac{|A \\cap B|}{|A \\cup B|} = \\frac{|A \\cap B|}{|A| + |B| - |A \\cap B|}$$\n      </div>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        Limitation: When $|A \\cap B| = 0$, $\\text{IoU} \\equiv 0$. The derivative vanishes ($\\nabla \\text{IoU} = 0$), halting gradient-based regression.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"flex items-center justify-between mb-2\">\n        <strong class=\"text-[#b45309] font-black text-sm\">2. Generalized IoU (GIoU)</strong>\n        <span class=\"px-2 py-0.5 rounded bg-white border border-[#151b20] text-[10px]\">Range $[-1, 1]$</span>\n      </div>\n      <div class=\"bg-white p-2.5 rounded border border-[#151b20] mb-2 text-center text-xs\">\n        $$\\text{GIoU}(A, B) = \\text{IoU}(A, B) - \\frac{|C \\setminus (A \\cup B)|}{|C|}$$\n      </div>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        Where $C$ is the minimal convex enclosing box. If disjoint, $\\text{GIoU} < 0$. As $A$ approaches $B$, $\\text{GIoU}$ rises smoothly to $0$, providing continuous gradients!\n      </p>\n    </div>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f8fafc] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono text-xs\">\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3\">\n      <div>\n        <strong class=\"text-[#b91c1c] block mb-1\">3. Distance IoU (DIoU)</strong>\n        <span class=\"text-[11px] text-[#475569]\">Adds normalized centroid euclidean distance penalty: $\\text{DIoU} = \\text{IoU} - \\frac{\\rho^2(b_A, b_B)}{c^2}$. Faster convergence than GIoU.</span>\n      </div>\n      <div>\n        <strong class=\"text-[#15803d] block mb-1\">4. Boundary IoU (Cheng et al., 2021)</strong>\n        <span class=\"text-[11px] text-[#475569]\">Evaluates pixel agreement strictly within a $d$-pixel contour band around boundaries, eliminating interior mask bias.</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Exploration: The Vanishing Gradient Problem",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Why is the gradient zero when two bounding boxes are disjoint, Dr. Nova? If box A is ten pixels away from box B, isn't that better than being five hundred pixels away?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Visually, yes! But mathematically, standard IoU only evaluates the intersection. If the intersection is zero at distance 10 and zero at distance 500, the derivative with respect to position is identically zero!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So an optimizer has no idea which direction to move box A to make it intersect box B!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! By subtracting the proportion of empty space inside the smallest enclosing rectangle C, Generalized IoU turns distance into an optimization slope, pulling disjoint predictions toward ground truth.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase mb-2\">\n    <span>The Gradient Mechanics</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Standard IoU vs. GIoU in Disjoint Scenarios</h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border border-[#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-bold\">Standard IoU</strong>\n      <p class=\"text-[11px] text-[#151b20]\">$\\text{IoU} = 0.0$ everywhere when disjoint.<br>$\\frac{\\partial \\text{IoU}}{\\partial x} = 0.0 \\implies \\text{Vanishing Gradient}$</p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-bold\">Generalized IoU</strong>\n      <p class=\"text-[11px] text-[#151b20]\">$\\text{GIoU} = -\\frac{|C \\setminus (A \\cup B)|}{|C|} < 0$.<br>$\\frac{\\partial \\text{GIoU}}{\\partial x} \\ne 0.0 \\implies \\text{Continuous Optimization}$</p>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s6",
-        "title": "Run-Length Encoding (RLE) Bitmask Compression: Architecture Flowchart",
-        "type": "figure",
+        "title": "Interactive Lab: 2D Spatial Geometry & IoU / GIoU Studio",
+        "type": "interactive",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Run-Length Encoding (RLE) Bitmask Compression: Architecture Flowchart",
+          "title": "Interactive Studio: Spatial Bounding Geometries & IoU",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Run-Length Encoding (RLE) Bitmask Compression: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    subgraph CV [\"Computer Vision Localization Levels\"]\n        BBox[\"1. Bounding Box (AABB)<br/>4 Parameters [x, y, w, h]\"] --> OBB[\"2. Oriented Bounding Box (OBB)<br/>5 Parameters [x, y, w, h, θ]\"]\n        OBB --> Poly[\"3. Polygonal Segmentation<br/>V Vertices {(x_i, y_i)}\"]\n        Poly --> Mask[\"4. Dense Pixel Mask (RLE)<br/>Binary Bitmask H x W\"]\n    end\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class BBox,OBB blue;\n    class Poly amber;\n    class Mask green;</pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Run-Length Encoding (RLE) Bitmask Compression: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for run-length encoding (rle) bitmask compression: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "Welcome to the 2D Spatial Geometry and IoU Studio. In this interactive workbench, you can adjust the coordinates of Ground Truth Box A and Prediction Box B on a 400 by 240 canvas.",
+              "dock": "sim"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Observe the live calculation of Jaccard IoU, Generalized IoU, and intersection area. Drag Box B away until it no longer touches Box A. Notice how standard IoU collapses to zero, while Generalized IoU becomes negative, penalizing the empty space inside the dashed enclosing box C.",
+              "dock": "sim"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    subgraph CV [\"Computer Vision Localization Levels\"]\n        BBox[\"1. Bounding Box (AABB)<br/>4 Parameters [x, y, w, h]\"] --> OBB[\"2. Oriented Bounding Box (OBB)<br/>5 Parameters [x, y, w, h, θ]\"]\n        OBB --> Poly[\"3. Polygonal Segmentation<br/>V Vertices {(x_i, y_i)}\"]\n        Poly --> Mask[\"4. Dense Pixel Mask (RLE)<br/>Binary Bitmask H x W\"]\n    end\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class BBox,OBB blue;\n    class Poly amber;\n    class Mask green;</pre>\n</div>"
+          "contentHtml": "\n<div id=\"spatialSimContainer\" class=\"my-2\">\n  <!-- Dynamic widget injected by virtual-speaker engine -->\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Lab: Experimenting with Bounding Box Overlaps",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, let's test our bounding box overlap intuition in the spatial simulator!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "I'm moving Prediction Box B completely outside of Ground Truth Box A! Look at that: standard IoU dropped to zero instantly, but GIoU is negative point two!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice the dashed purple rectangle C that encloses both boxes. The larger that empty gap between them, the more negative GIoU becomes, creating an attractive gradient pulling Box B back into Box A.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And when I slide them so they overlap past fifty percent, the Pascal VOC badge turns green with PASS!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div id=\"spatialSimContainer\" class=\"my-2\">\n  <!-- Dynamic widget injected by virtual-speaker engine -->\n</div>\n"
         }
       },
       {
         "id": "s7",
-        "title": "Text Annotation Foundations: Exact Span Match F1 Formulation",
-        "type": "equation",
+        "title": "Active Checkpoint 1: Disjoint Bounding Boxes & Optimization Gradients",
+        "type": "checkpoint",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Text Annotation Foundations: Exact Span Match F1 Formulation",
+          "title": "Active Checkpoint 1: Disjoint Bounding Boxes",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Text Annotation Foundations: Exact Span Match F1 Formulation. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Precision} = \\frac{|\\hat{\\mathcal{S}} \\cap \\mathcal{S}^*|}{|\\hat{\\mathcal{S}}|}, \\quad \\text{Recall} = \\frac{|\\hat{\\mathcal{S}} \\cap \\mathcal{S}^*|}{|\\mathcal{S}^*|}, \\quad F_1 = \\frac{2 \\cdot \\text{Precision} \\cdot \\text{Recall}}{\\text{Precision} + \\text{Recall}}$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Text Annotation Foundations: Exact Span Match F1 Formulation",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does text annotation foundations: exact span match f1 formulation protect our system against silent distribution shift in production?"
+              "text": "Time for our first active knowledge checkpoint. Let's analyze a real-world scenario from autonomous driving perception to verify your understanding of spatial overlap metrics.",
+              "dock": "checkpoint"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Consider two bounding boxes separated by 300 pixels with zero intersection. What happens to standard IoU versus Generalized IoU during backpropagation? Select the correct option.",
+              "dock": "checkpoint"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Precision} = \\frac{|\\hat{\\mathcal{S}} \\cap \\mathcal{S}^*|}{|\\hat{\\mathcal{S}}|}, \\quad \\text{Recall} = \\frac{|\\hat{\\mathcal{S}} \\cap \\mathcal{S}^*|}{|\\mathcal{S}^*|}, \\quad F_1 = \\frac{2 \\cdot \\text{Precision} \\cdot \\text{Recall}}{\\text{Precision} + \\text{Recall}}$$\n  </div>\n</div>"
+          "contentHtml": "\n<div id=\"checkpoint1Container\" class=\"my-2\">\n  <!-- Dynamic quiz injected by virtual-speaker engine -->\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Checkpoint: Disjoint Bounding Box Optimization",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, let's challenge our engineers with an active checkpoint on bounding box gradients!",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "I'm ready! If two boxes don't touch at all, does standard IoU completely break down, and how does Generalized IoU save the model?",
+              "dock": "checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div id=\"checkpoint1Container\" class=\"my-2\">\n  <!-- Dynamic quiz injected by virtual-speaker engine -->\n</div>\n"
         }
       },
       {
         "id": "s8",
-        "title": "Text Annotation Foundations: Architecture Flowchart",
-        "type": "figure",
+        "title": "Dense Bitmasks & Column-Major COCO RLE Compression",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Text Annotation Foundations: Architecture Flowchart",
+          "title": "Dense Bitmasks & Column-Major COCO RLE Compression",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Text Annotation Foundations: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Raw[\"Raw Text: 'Patient prescribed 50mg Atenolol orally.'\"] --> Tokenize[\"Tokenization Engine (BPE / WordPiece)\"]\n    Tokenize --> Tagging[\"IOB2 Sequence Tagging\"]\n    \n    Tagging --> T1[\"Token: '50mg' -> B-DOSAGE [20:24]\"]\n    Tagging --> T2[\"Token: 'Atenolol' -> B-DRUG [25:33]\"]\n    Tagging --> T3[\"Token: 'orally' -> B-ROUTE [34:40]\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw,Tokenize blue;\n    class Tagging,T1,T2,T3 green;</pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Text Annotation Foundations: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for text annotation foundations: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "When segmenting fine-grained objects like pedestrians or surgical instruments, storing raw binary masks as boolean matrices creates massive storage bottlenecks. The MS COCO standard serializes binary masks using Column-Major Run-Length Encoding.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Column-major encoding, or Fortran order F, traverses down columns rather than across rows. A sequence of run-lengths alternates between background zeros and foreground ones. This delivers over 95% compression for sparse masks. However, beware: flattening with NumPy's default row-major order transposes the mask upon COCO decoding, completely destroying spatial ground truth.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Raw[\"Raw Text: 'Patient prescribed 50mg Atenolol orally.'\"] --> Tokenize[\"Tokenization Engine (BPE / WordPiece)\"]\n    Tokenize --> Tagging[\"IOB2 Sequence Tagging\"]\n    \n    Tagging --> T1[\"Token: '50mg' -> B-DOSAGE [20:24]\"]\n    Tagging --> T2[\"Token: 'Atenolol' -> B-DRUG [25:33]\"]\n    Tagging --> T3[\"Token: 'orally' -> B-ROUTE [34:40]\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw,Tokenize blue;\n    class Tagging,T1,T2,T3 green;</pre>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-3\">\n      <h3 class=\"font-black text-sm font-mono text-[#151b20] uppercase\">MS COCO Column-Major Run-Length Encoding (RLE)</h3>\n      <span class=\"px-2.5 py-0.5 rounded-full bg-[#e7f4c8] border border-[#151b20] font-mono text-[10px] text-[#15803d] font-bold\">&gt;95% Compression</span>\n    </div>\n    <div class=\"bg-[#f8fafc] p-3 rounded-lg border-2 border-[#151b20] text-center font-mono text-sm mb-3\">\n      $$\\text{RLE}(M) = [c_0, c_1, c_2, \\dots, c_m], \\quad \\text{where } \\sum_{j=0}^m c_j = H \\times W$$\n    </div>\n    <p class=\"text-xs text-[#475569] leading-relaxed\">\n      Where $c_0$ is the initial run of background ($0$) pixels, $c_1$ is the subsequent run of foreground ($1$) pixels, and traversal proceeds column by column down the image matrix (Fortran order <code>'F'</code>).\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block font-black text-xs uppercase mb-1\">Column-Major ('F') Traversal</strong>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        Scans vertically down column $0$, then column $1$, to column $W-1$. Compactly encodes vertical biological structures and upright objects with minimal state flips.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block font-black text-xs uppercase mb-1\">⚠️ The Row-Major Ingestion Trap</strong>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        If NumPy's default C-order (row-major) is used during encoding, COCO decoders (e.g., <code>pycocotools</code>) reconstruct a <strong>transposed and sheared mask</strong>, collapsing IoU evaluation to $0.0$!\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Exploration: The Transposed Mask Catastrophe",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Why does COCO use Column-Major Fortran order instead of standard row-major C order, Dr. Nova?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Historically, MATLAB used column-major arrays, and early computer vision benchmarks originated in MATLAB environments. The COCO API cemented column-major RLE as the immutable global standard.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So if someone writes Python code using `mask.flatten()` without specifying `order='F'`, NumPy uses row-major C-order by default!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! The runs are stored across rows, but COCO decodes them down columns. The decoded mask is completely transposed across the diagonal, ruining your ground truth annotations without raising an error.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffd8ce] border border-[#151b20] text-[#b91c1c] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Critical Invariant</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Always Enforce Fortran Order 'F'</h3>\n  <div class=\"p-3 bg-[#f8fafc] rounded-lg border border-[#151b20] font-mono text-xs\">\n    <div class=\"text-[#b91c1c] font-bold\">❌ Dangerous Default:</div>\n    <code class=\"text-[11px] block text-[#475569] mb-2\">flat_mask = binary_mask.flatten()  # Defaults to C-order (row-major)!</code>\n    <div class=\"text-[#15803d] font-bold\">✓ Production Safe Standard:</div>\n    <code class=\"text-[11px] block text-[#15803d]\">flat_mask = binary_mask.flatten(order=\"F\")  # Mandatory COCO compliance!</code>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s9",
-        "title": "Python Verification: IoU, Green's Area & RLE Encoder",
-        "type": "code",
+        "title": "Text Annotation: Character Code-Point Spans to Token Boundaries",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Python Verification: IoU, Green's Area & RLE Encoder",
+          "title": "Text Annotation Foundations: Character Spans to Tokens",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Python Verification: IoU, Green's Area & RLE Encoder. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># spatial_text_geometry.py\n# Computes Green&#x27;s theorem area, IoU, and RLE bitmask compression\n\nfrom typing import List, Tuple, Dict\nimport numpy as np\n\ndef compute_polygon_area(vertices: List[Tuple[float, float]]) -&gt; float:\n    # Computes spatial area via Green&#x27;s theorem in the plane (Surveyor&#x27;s formula)\n    n = len(vertices)\n    if n &lt; 3:\n        return 0.0\n    area = 0.0\n    for i in range(n):\n        x_i, y_i = vertices[i]\n        x_next, y_next = vertices[(i + 1) % n]\n        area += x_i * y_next - x_next * y_i\n    return float(0.5 * abs(area))\n\ndef compute_box_iou(box_a: List[float], box_b: List[float]) -&gt; float:\n    # Computes Jaccard IoU between two [x1, y1, x2, y2] bounding boxes\n    x1 = max(box_a[0], box_b[0])\n    y1 = max(box_a[1], box_b[1])\n    x2 = min(box_a[2], box_b[2])\n    y2 = min(box_a[3], box_b[3])\n    \n    inter_w = max</code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Python Verification: IoU, Green's Area & RLE Encoder",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Now let us turn to natural language processing. In modern NLP annotation, ground truth entities and relations are originally annotated as character-level start and end code-point offsets in the raw Unicode string.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "However, neural models do not process character strings directly; they process subword tokens produced by Byte-Pair Encoding or WordPiece tokenizers. A fundamental challenge in NLP data engineering is mapping continuous character spans onto discrete token boundaries without partial token splits or off-by-one boundary drift.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># spatial_text_geometry.py\n# Computes Green&#x27;s theorem area, IoU, and RLE bitmask compression\n\nfrom typing import List, Tuple, Dict\nimport numpy as np\n\ndef compute_polygon_area(vertices: List[Tuple[float, float]]) -&gt; float:\n    # Computes spatial area via Green&#x27;s theorem in the plane (Surveyor&#x27;s formula)\n    n = len(vertices)\n    if n &lt; 3:\n        return 0.0\n    area = 0.0\n    for i in range(n):\n        x_i, y_i = vertices[i]\n        x_next, y_next = vertices[(i + 1) % n]\n        area += x_i * y_next - x_next * y_i\n    return float(0.5 * abs(area))\n\ndef compute_box_iou(box_a: List[float], box_b: List[float]) -&gt; float:\n    # Computes Jaccard IoU between two [x1, y1, x2, y2] bounding boxes\n    x1 = max(box_a[0], box_b[0])\n    y1 = max(box_a[1], box_b[1])\n    x2 = min(box_a[2], box_b[2])\n    y2 = min(box_a[3], box_b[3])\n    \n    inter_w = max</code></pre>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <h3 class=\"font-black text-sm font-mono text-[#151b20] uppercase mb-2\">The Text Annotation Mapping Pipeline</h3>\n    <div class=\"p-3 bg-[#f8fafc] rounded-lg border-2 border-[#151b20] font-mono text-xs space-y-2\">\n      <div class=\"flex items-center gap-2\">\n        <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] border border-[#151b20] font-bold text-[#0e7490]\">1. Raw Unicode String</span>\n        <span class=\"text-[#151b20]\">\"Apple Inc. acquired Beats for $3B in Cupertino.\"</span>\n      </div>\n      <div class=\"flex items-center gap-2\">\n        <span class=\"px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-bold text-[#b45309]\">2. Character Spans</span>\n        <span class=\"text-[#151b20]\">[0:10, 'ORG'], [20:25, 'ORG'], [44:53, 'LOC']</span>\n      </div>\n      <div class=\"flex items-center gap-2\">\n        <span class=\"px-2 py-0.5 rounded bg-[#ffd8ce] border border-[#151b20] font-bold text-[#b91c1c]\">3. Subword Tokenizer</span>\n        <span class=\"text-[#151b20]\">['Apple', 'Inc', '.', 'acquired', 'Beats', 'for', '$', '3', '##B', 'in', 'Cupertino', '.']</span>\n      </div>\n      <div class=\"flex items-center gap-2\">\n        <span class=\"px-2 py-0.5 rounded bg-[#e7f4c8] border border-[#151b20] font-bold text-[#15803d]\">4. Sequence Tags</span>\n        <span class=\"text-[#151b20]\">['B-ORG', 'E-ORG', 'O', 'O', 'S-ORG', 'O', 'O', 'O', 'O', 'O', 'S-LOC', 'O']</span>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#f8fafc] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">Unicode Code Points vs. Bytes</strong>\n      <p class=\"text-[11px] text-[#475569] leading-snug\">\n        Always index character spans by Python <code>str</code> code-points, not UTF-8 byte lengths. Multi-byte characters (emojis, accented glyphs, non-Latin scripts) drift offsets by 2 to 4 bytes per character.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#f8fafc] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-bold\">Subword Token Fragmentation</strong>\n      <p class=\"text-[11px] text-[#475569] leading-snug\">\n        When an entity span covers only part of a subword token (e.g. medical affixes like 'interleukin'), annotation ingestion must expand to the complete token boundary to preserve tokenizer integrity.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Exploration: The Unicode Code Point Trap",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "What happens if an NLP dataset stores character offsets measured in UTF-8 bytes instead of Unicode characters, Dr. Nova?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In plain English ASCII, bytes and characters are identical. But the moment you encounter an accented character like é or an emoji, a single character occupies two to four bytes!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And from that point onward, every single subsequent entity span in the document is shifted by two or four characters, cutting words in half!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. That is the classical Unicode byte-offset drift bug. Standardizing on Python Unicode code-point indexing is a mandatory requirement for multilingual ground truth.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Multilingual Ground Truth Invariant</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Unicode Character vs. Byte Offsets</h3>\n  <div class=\"p-3 bg-[#f8fafc] rounded-lg border border-[#151b20] font-mono text-xs space-y-2\">\n    <div class=\"text-[#0e7490] font-bold\">Sentence: \"Café in Paris\"</div>\n    <div class=\"text-[#475569]\">Character Offsets: 'Paris' starts at char index 8</div>\n    <div class=\"text-[#b91c1c]\">UTF-8 Byte Offsets: 'Café' has 5 bytes ('é' is 2 bytes) &rarr; 'Paris' starts at byte 9!</div>\n    <div class=\"text-[#15803d] font-bold\">Rule: Always serialize text offsets as Unicode code points!</div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s10",
-        "title": "Interactive Lab: Explore Image Annotation Studio",
-        "type": "tool",
+        "title": "Sequence Tagging Schemes: IOB2 vs. BIOES & Structural Invariants",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Explore Image Annotation Studio",
+          "title": "Sequence Tagging Schemes: IOB2 vs. BIOES",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Explore Image Annotation Studio. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Image Annotation Studio</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Draw 2D bounding boxes, polygon masks, and keypoint annotations, and compute real-time IoU overlap metrics.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Image Annotation Studio →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Explore Image Annotation Studio",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the explore image annotation studio located below this player?"
+              "text": "Once character spans are aligned to tokens, sequence models represent entities using discrete token tagging schemes. Two standards predominate: IOB2, also called BIO, and BIOES, also known as BILOU.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "IOB2 uses three prefixes: B for Begin, I for Inside, and O for Outside. BIOES adds two critical tags: E for End of a multi-token entity, and S for a Single-token entity. In neural models with Conditional Random Field decoders, BIOES enforces rigid transition matrices that forbid invalid jumps, consistently improving span extraction F1 by half to one full point.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Image Annotation Studio</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Draw 2D bounding boxes, polygon masks, and keypoint annotations, and compute real-time IoU overlap metrics.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Image Annotation Studio →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#fdf4ff] border-2 border-[#86198f] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"flex items-center justify-between mb-2\">\n        <strong class=\"text-[#86198f] font-black text-sm\">IOB2 (BIO) Scheme</strong>\n        <span class=\"px-2 py-0.5 rounded bg-white border border-[#86198f] text-[10px]\">3 Prefixes</span>\n      </div>\n      <ul class=\"space-y-1.5 text-[11px] text-[#701a75]\">\n        <li>• <code>B-Tag</code>: First token of any entity span.</li>\n        <li>• <code>I-Tag</code>: Subsequent tokens inside the entity span.</li>\n        <li>• <code>O</code>: Non-entity tokens.</li>\n      </ul>\n      <div class=\"mt-3 p-2 bg-white rounded border border-[#86198f] text-[10px] text-[#475569]\">\n        <strong>Ambiguity:</strong> Cannot distinguish if a <code>B-Tag</code> is a singleton entity or the start of a multi-token entity without looking ahead.\n      </div>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#ecfeff] border-2 border-[#0891b2] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"flex items-center justify-between mb-2\">\n        <strong class=\"text-[#0891b2] font-black text-sm\">BIOES (BILOU) Scheme</strong>\n        <span class=\"px-2 py-0.5 rounded bg-white border border-[#0891b2] text-[10px]\">5 Prefixes</span>\n      </div>\n      <ul class=\"space-y-1.5 text-[11px] text-[#0e7490]\">\n        <li>• <code>B-Tag</code>: Beginning of a multi-token entity.</li>\n        <li>• <code>I-Tag</code>: Internal token inside a multi-token entity.</li>\n        <li>• <code>E-Tag</code>: Final token ending a multi-token entity.</li>\n        <li>• <code>S-Tag</code>: Singleton entity consisting of exactly 1 token.</li>\n        <li>• <code>O</code>: Outside tokens.</li>\n      </ul>\n      <div class=\"mt-3 p-2 bg-white rounded border border-[#0891b2] text-[10px] text-[#0e7490] font-bold\">\n        <strong>Advantage:</strong> Enforces explicit CRF structural closure; forbids <code>B-Tag</code> directly jumping to <code>O</code>.\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono text-xs\">\n    <h4 class=\"font-bold text-xs uppercase text-[#151b20] mb-1\">CRF Transition Invariant Enforcement</h4>\n    <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n      In a Linear-Chain CRF decoder, transition score matrix $A_{i,j}$ assigns $-\\infty$ to illegal transitions. Under BIOES, transitions like $S\\text{-ORG} \\to I\\text{-ORG}$ or $B\\text{-ORG} \\to O$ are structurally impossible, eliminating $15\\% \\text{ to } 30\\%$ of false positive span errors.\n    </p>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Debate: The Singleton Entity Dilemma",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Why does having a separate S-tag for single tokens make such a big difference in BIOES, Dr. Nova?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Think about what happens under IOB2. If a sentence has the single token 'Paris', it gets labeled B-LOC. If another sentence has 'New York City', 'New' also gets labeled B-LOC.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So under IOB2, the model sees B-LOC and doesn't know if the entity has ended or if it should expect more tokens!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! BIOES labels 'Paris' as S-LOC, meaning single-token entity. The CRF decoder immediately knows the entity is closed and will not erroneously merge it into subsequent tokens.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ecfeff] border border-[#151b20] text-[#0891b2] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Architectural Proof</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">IOB2 vs. BIOES Sequence Demonstration</h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#86198f] block mb-1\">IOB2 Scheme</strong>\n      <div class=\"text-[11px] text-[#475569] space-y-1\">\n        Apple: <code>B-ORG</code><br>\n        Inc.: <code>I-ORG</code><br>\n        in: <code>O</code><br>\n        Paris: <code>B-LOC</code> (Ambiguous!)\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#0891b2] block mb-1\">BIOES Scheme</strong>\n      <div class=\"text-[11px] text-[#0e7490] space-y-1\">\n        Apple: <code>B-ORG</code><br>\n        Inc.: <code>E-ORG</code> (Closed)<br>\n        in: <code>O</code><br>\n        Paris: <code>S-LOC</code> (Explicit Singleton!)\n      </div>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s11",
-        "title": "Key Engineering Takeaways",
-        "type": "bullets",
+        "title": "Exact Match F1 Formulation & Token Boundary Drift in Clinical NLP",
+        "type": "math",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Key Engineering Takeaways",
+          "title": "Exact Match F1 Formulation & Token Boundary Drift",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Key Engineering Takeaways. Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Topological Coordinate Consistency</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Never mix Pascal VOC [x1, y1, x2, y2] (Everingham, 2010) with YOLO normalized [xc, yc, w, h] without validation assertions, applying tools like LabelMe (Russell, 2008) and evaluating with Boundary IoU (Cheng, 2021).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Deterministic Polygon Area</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Apply Green&#x27;s Theorem to verify non-self-intersecting vertex coordinates during ingestion.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Exact Unicode Offsets</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">In NLP annotation, calculate span offsets against raw unicode code-points rather than regex word splits to prevent alignment drift.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">COCO RLE Compression</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Store high-resolution segmentation masks as column-major RLEs to reduce cloud database footprint by $> 90\\%$.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Key Engineering Takeaways",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the single most vital principle for data engineers to remember from this lesson?"
+              "text": "Evaluating named entity recognition models uses the exact match F1 evaluation metric established by CoNLL. Under this rigorous standard, a predicted entity span is a True Positive if and only if both start and end character boundaries and the entity type match ground truth identically.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
+              "text": "Partial overlaps receive zero credit. If ground truth is 'New York City' and the model predicts 'New York', you receive one False Positive and one False Negative. In clinical NLP, Gururangan et al. discovered that over fourteen percent of inter-annotator disagreements stemmed entirely from token boundary drift on hyphens and medical affixes rather than genuine semantic disagreement.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Topological Coordinate Consistency</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Never mix Pascal VOC [x1, y1, x2, y2] (Everingham, 2010) with YOLO normalized [xc, yc, w, h] without validation assertions, applying tools like LabelMe (Russell, 2008) and evaluating with Boundary IoU (Cheng, 2021).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Deterministic Polygon Area</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Apply Green&#x27;s Theorem to verify non-self-intersecting vertex coordinates during ingestion.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Exact Unicode Offsets</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">In NLP annotation, calculate span offsets against raw unicode code-points rather than regex word splits to prevent alignment drift.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">COCO RLE Compression</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Store high-resolution segmentation masks as column-major RLEs to reduce cloud database footprint by $> 90\\%$.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between mb-3\">\n      <h3 class=\"font-black text-sm font-mono text-[#151b20] uppercase\">CoNLL Exact Span Match Evaluation Formulation</h3>\n      <span class=\"px-2.5 py-0.5 rounded-full bg-[#c9f3f4] border border-[#151b20] font-mono text-[10px] text-[#0e7490] font-bold\">Zero-Credit Overlap Rule</span>\n    </div>\n    <div class=\"bg-[#f8fafc] p-3 rounded-lg border-2 border-[#151b20] text-center font-mono text-sm mb-3\">\n      $$\\text{Precision} = \\frac{|\\hat{\\mathcal{S}} \\cap \\mathcal{S}^*|}{|\\hat{\\mathcal{S}}|}, \\quad \\text{Recall} = \\frac{|\\hat{\\mathcal{S}} \\cap \\mathcal{S}^*|}{|\\mathcal{S}^*|}, \\quad F_1 = \\frac{2 \\cdot \\text{Precision} \\cdot \\text{Recall}}{\\text{Precision} + \\text{Recall}}$$\n    </div>\n    <p class=\"text-xs text-[#475569] leading-relaxed\">\n      Where $\\hat{\\mathcal{S}} = \\{(\\hat{s}_{\\text{start}}, \\hat{s}_{\\text{end}}, \\hat{c})\\}$ is the set of predicted entity tuples and $\\mathcal{S}^*$ is the ground-truth set. A predicted span is a True Positive $\\iff$ start offset, end offset, and class label match identically.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs\">\n    <div class=\"p-4 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block font-black text-xs uppercase mb-1\">The Partial Overlap Penalty</strong>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        Ground Truth: <code>[0:13, 'New York City']</code><br>\n        Prediction: <code>[0:8, 'New York']</code><br>\n        <strong>Score:</strong> Precision = $0.0$, Recall = $0.0$, $F_1 = 0.0$! A single token boundary shift converts what could be a near-perfect match into a double error.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block font-black text-xs uppercase mb-1\">Clinical Boundary Drift Finding</strong>\n      <p class=\"text-[11px] text-[#151b20] leading-snug\">\n        Gururangan et al. (2020) audited clinical pathology datasets (MIMIC-III): <strong>$14.2\\%$ of annotator disagreements</strong> were pure tokenization drift around hyphens (e.g. <em>'IL-6 receptor'</em> vs <em>'IL-6 receptor alpha'</em>).\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Exploration: The Zero-Credit Rule in NLP",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Zero credit for partial overlap seems brutal, Dr. Nova! If a model identifies 'New York' instead of 'New York City', it got two out of three words right!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In academic benchmark evaluation, exact match is non-negotiable. If you gave partial credit, models would learn to predict sprawling, oversized entity spans that swallow whole sentences to maximize recall.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And that would ruin downstream knowledge graphs or clinical record extraction! But what about the clinical boundary drift issue?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is why annotation guidelines must provide explicit syntactical rules for punctuation, prepositions, and chemical suffixes. Clear guidelines eliminate fourteen percent of crowd disagreements immediately.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffd8ce] border border-[#151b20] text-[#b91c1c] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Evaluation Rigor</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Why Exact Match Protects Knowledge Graphs</h3>\n  <div class=\"p-3 bg-[#f8fafc] rounded-lg border border-[#151b20] font-mono text-xs space-y-2\">\n    <div class=\"text-[#0e7490] font-bold\">Query: Link Entity to Wikidata</div>\n    <div class=\"text-[#475569]\">Predicted: 'Apple' &rarr; Could be fruit (Q89) or corporation (Q312)</div>\n    <div class=\"text-[#15803d]\">Exact Match: 'Apple Inc.' &rarr; Unambiguously resolved to Apple Inc. (Q312)</div>\n    <div class=\"text-[#b91c1c] font-bold\">Rule: Exact span boundaries are required for deterministic entity resolution!</div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Interactive Lab: NLP Span Offsets & IOB2/BIOES Tagging Workbench",
+        "type": "interactive",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Interactive Workbench: NLP Spans & BIOES Tagging",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to the NLP Span and Sequence Tagging Workbench. In this interactive environment, you can inspect how continuous character offsets decompose into discrete token sequences.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Select different sentence presets or inspect the token boundaries. Notice the direct contrast between IOB2 and BIOES tag assignments. See how BIOES isolates singleton entities with S tags and multi-token endings with E tags, enforcing structural invariants across the sequence.",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div id=\"spanSimContainer\" class=\"my-2\">\n  <!-- Dynamic widget injected by virtual-speaker engine -->\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Lab: Examining Token Tagging Invariants",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, explore the NLP Span Tagging Workbench! Test how different sentence structures convert between IOB2 and BIOES.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Look at the Beats Electronics entity, Dr. Nova! In IOB2 it's B-ORG followed by I-ORG. But in BIOES, Beats is B-ORG and Electronics is E-ORG!",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And look at California at the end of the sentence. In IOB2 it is labeled B-LOC, but in BIOES it is explicitly labeled S-LOC as a singleton entity.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "That makes it completely unambiguous! The CRF decoder knows California cannot have any trailing I-LOC tokens because it's an S-tag!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div id=\"spanSimContainer\" class=\"my-2\">\n  <!-- Dynamic widget injected by virtual-speaker engine -->\n</div>\n"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: Sequence Tagging Structural Invariants & The IOB2 Trap",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Checkpoint 2: Sequence Tagging Invariants",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us test your mastery of sequence labeling invariants with our second active checkpoint. Consider how an entity tagger processes a single-token entity.",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Why does upgrading from the IOB2 scheme to the BIOES scheme improve model robustness and span extraction F1 in downstream CRF decoders? Select the mathematically sound option.",
+              "dock": "checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div id=\"checkpoint2Container\" class=\"my-2\">\n  <!-- Dynamic quiz injected by virtual-speaker engine -->\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Checkpoint: Decoding the BIOES Advantage",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kaito, let's challenge our engineers to articulate exactly why BIOES outperforms IOB2 in neural sequence decoding!",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "It's all about structural transition constraints in the decoder matrix! Let's see if our learners can identify the exact mathematical mechanism.",
+              "dock": "checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div id=\"checkpoint2Container\" class=\"my-2\">\n  <!-- Dynamic quiz injected by virtual-speaker engine -->\n</div>\n"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Landmark Empirical Case Studies: Boundary IoU & Clinical Token Drift",
+        "type": "concept",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Landmark Empirical Case Studies in Multi-Modal Annotation",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To appreciate why these mathematical invariants matter in production, let us examine two landmark empirical case studies from computer vision and natural language processing.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "First, Cheng et al.'s CVPR 2021 study on MS COCO demonstrated that standard Mask IoU is severely biased toward large object interiors. A five-pixel error on a large vehicle reduced IoU by less than one percent, concealing terrible boundary localization. Second, Gururangan et al. analyzed clinical NER in oncology records, proving that fourteen percent of crowd disagreement was pure token boundary drift on hyphens and medical abbreviations.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-4 my-2\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center gap-2 mb-2\">\n      <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] border border-[#151b20] font-mono text-xs font-bold text-[#0e7490]\">CASE STUDY 1</span>\n      <h3 class=\"font-black text-sm text-[#151b20]\">MS COCO &amp; The Boundary IoU Metric Realignment (Cheng et al., CVPR 2021)</h3>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs\">\n      <div class=\"p-2.5 rounded bg-[#f8fafc] border border-[#151b20]\">\n        <strong class=\"text-[#b91c1c] block mb-1\">The Interior Bias Flaw</strong>\n        <p class=\"text-[11px] text-[#475569]\">Mask IoU measures overall area overlap. For large objects ($>96^2\\text{ px}$), boundary errors of 5 to 10 pixels affect $<1\\%$ of total mask area.</p>\n      </div>\n      <div class=\"p-2.5 rounded bg-[#f8fafc] border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">The Boundary Metric</strong>\n        <p class=\"text-[11px] text-[#475569]\">Cheng et al. introduced Boundary IoU, evaluating pixels strictly within a $d$-pixel band around polygon edges.</p>\n      </div>\n      <div class=\"p-2.5 rounded bg-[#f8fafc] border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Industry Impact</strong>\n        <p class=\"text-[11px] text-[#475569]\">Forced computer vision benchmarks to adopt fine polygon contours and active contour decoders for safety-critical robotics.</p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center gap-2 mb-2\">\n      <span class=\"px-2 py-0.5 rounded bg-[#ffd8ce] border border-[#151b20] font-mono text-xs font-bold text-[#b91c1c]\">CASE STUDY 2</span>\n      <h3 class=\"font-black text-sm text-[#151b20]\">BioNLP Clinical NER Boundary Drift (Gururangan et al., 2020)</h3>\n    </div>\n    <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs\">\n      <div class=\"p-2.5 rounded bg-[#f8fafc] border border-[#151b20]\">\n        <strong class=\"text-[#b91c1c] block mb-1\">Pathology Disagreement</strong>\n        <p class=\"text-[11px] text-[#475569]\">EHR pathology notes exhibited high inter-annotator disagreement on disease and chemical names.</p>\n      </div>\n      <div class=\"p-2.5 rounded bg-[#f8fafc] border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block mb-1\">Root Cause Analysis</strong>\n        <p class=\"text-[11px] text-[#475569]\"><strong>$14.2\\%$ of all conflicts</strong> were pure hyphenation boundary drift (e.g. <em>'interleukin-6'</em> vs <em>'interleukin 6'</em>).</p>\n      </div>\n      <div class=\"p-2.5 rounded bg-[#f8fafc] border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block mb-1\">Guideline Standardization</strong>\n        <p class=\"text-[11px] text-[#475569]\">Standardizing character code-point offsets and affix rules restored agreement without discarding expensive domain data.</p>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Discussion: Lessons from MS COCO and BioNLP",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "The MS COCO finding blew my mind, Dr. Nova! SOTA instance segmentation models looked amazing on paper with 45 AP, but their actual boundary contours were jagged and blurry!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is because standard Mask IoU rewarded predicting the massive interior of an object while giving almost zero penalty for jagged 5-pixel boundary errors on the periphery.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And in autonomous robotics, a 5-pixel boundary error could be the difference between clearing a curb and puncturing a tire!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. Both Boundary IoU in vision and exact code-point standardization in BioNLP prove the fundamental axiom: your evaluation metric and exchange format dictate your model's real-world behavior.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Core Engineering Takeaway</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">Metrics Dictate Model Behavior</h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Vision: Boundary IoU</strong>\n      <p class=\"text-[11px] text-[#475569]\">Replaces interior-biased Mask IoU with contour band evaluation, penalizing jagged boundaries in robotics.</p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">NLP: Code-Point Standardization</strong>\n      <p class=\"text-[11px] text-[#475569]\">Replaces ambiguous token-split strings with deterministic Unicode code points, eliminating 14% of annotation conflicts.</p>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Implementation: Spatial Geometry & Text Span Engine with Pydantic V2",
+        "type": "code",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Implementation: Spatial Geometry & Text Span Engine",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us inspect the production Python verification engine. Using Pydantic V2, we define validated schemas for 2D Bounding Boxes and Text Entity Spans, ensuring coordinate validity and format conversions at the ingestion gate.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "The SpatialTextAnnotationEngine implements Green's theorem for polygon area, calculates standard IoU and Generalized IoU with minimal enclosing boxes, encodes binary masks into column-major COCO RLE using Fortran order, and maps character offsets to BIOES sequence tags. This engine runs inside CI/CD pipelines to block corrupt submissions automatically.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3 my-2\">\n  <div class=\"p-4 rounded-xl bg-[#151b20] text-[#f8fafc] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20]\">\n    <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-gray-700 text-[11px] text-gray-400\">\n      <span>spatial_text_annotation_engine.py (Pydantic V2)</span>\n      <span class=\"text-[#22bfd7]\">Production CI/CD Engine</span>\n    </div>\n    <pre class=\"leading-relaxed\"><code><span class=\"text-[#22bfd7]\">class</span> <span class=\"text-[#ffc83e]\">SpatialTextAnnotationEngine</span>:\n    <span class=\"text-gray-400\">@classmethod</span>\n    <span class=\"text-[#22bfd7]\">def</span> <span class=\"text-[#ffc83e]\">compute_polygon_area</span>(cls, vertices: List[Tuple[float, float]]) -> float:\n        <span class=\"text-gray-400\"># Green's theorem (Surveyor's formula) for planar polygon area</span>\n        n = len(vertices)\n        <span class=\"text-[#22bfd7]\">if</span> n < 3: <span class=\"text-[#22bfd7]\">return</span> 0.0\n        signed_area = sum(vertices[i][0] * vertices[(i+1)%n][1] - \n                          vertices[(i+1)%n][0] * vertices[i][1] <span class=\"text-[#22bfd7]\">for</span> i <span class=\"text-[#22bfd7]\">in</span> range(n))\n        <span class=\"text-[#22bfd7]\">return</span> 0.5 * abs(signed_area)\n\n    <span class=\"text-gray-400\">@classmethod</span>\n    <span class=\"text-[#22bfd7]\">def</span> <span class=\"text-[#ffc83e]\">compute_box_iou</span>(cls, b1: BoundingBox2D, b2: BoundingBox2D) -> Tuple[float, float]:\n        <span class=\"text-gray-400\"># Calculates Standard Jaccard IoU and Generalized IoU (GIoU)</span>\n        inter_area = max(0.0, min(b1.x_max, b2.x_max) - max(b1.x_min, b2.x_min)) * \\\n                     max(0.0, min(b1.y_max, b2.y_max) - max(b1.y_min, b2.y_min))\n        union_area = b1.area + b2.area - inter_area\n        iou = inter_area / union_area <span class=\"text-[#22bfd7]\">if</span> union_area > 0 <span class=\"text-[#22bfd7]\">else</span> 0.0\n\n        <span class=\"text-gray-400\"># Minimal Convex Enclosing Box C for GIoU</span>\n        area_c = (max(b1.x_max, b2.x_max) - min(b1.x_min, b2.x_min)) * \\\n                 (max(b1.y_max, b2.y_max) - min(b1.y_min, b2.y_min))\n        giou = iou - ((area_c - union_area) / area_c) <span class=\"text-[#22bfd7]\">if</span> area_c > 0 <span class=\"text-[#22bfd7]\">else</span> iou\n        <span class=\"text-[#22bfd7]\">return</span> round(iou, 4), round(giou, 4)\n\n    <span class=\"text-gray-400\">@classmethod</span>\n    <span class=\"text-[#22bfd7]\">def</span> <span class=\"text-[#ffc83e]\">encode_coco_rle</span>(cls, mask: np.ndarray) -> List[int]:\n        <span class=\"text-gray-400\"># Column-Major Fortran order 'F' encoding</span>\n        flat = mask.flatten(order=<span class=\"text-[#e7f4c8]\">\"F\"</span>)\n        <span class=\"text-gray-400\"># Counts consecutive background/foreground pixels</span>\n        ...</code></pre>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Exploration: The CI/CD Quality Gate",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Putting this Python engine right inside our automated data ingestion CI/CD pipeline prevents bad data from ever reaching disk!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. If an annotator submits an hourglass polygon that cancels to zero area, the Green's theorem check raises an assertion error immediately.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And if an NLP dataset has character offsets that split a subword token, the BIOES alignment check catches it before training begins!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the core tenet of Data-Centric AI: automate validation at the ingestion boundary so model training never wastes compute on mathematically invalid annotations.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border border-[#151b20] text-[#15803d] font-mono text-xs font-bold uppercase mb-2\">\n    <span>Automated CI/CD Quality Assertions</span>\n  </div>\n  <h3 class=\"font-black text-base text-[#151b20] mb-2\">The 4 Gate Assertions</h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Gate 1: Coordinate Integrity</strong>\n      <code class=\"text-[11px] text-[#475569]\">assert x_max > x_min and y_max > y_min</code>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">Gate 2: Green's Non-Zero Loop</strong>\n      <code class=\"text-[11px] text-[#475569]\">assert compute_polygon_area(poly) > 0.0</code>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Gate 3: COCO RLE Conservation</strong>\n      <code class=\"text-[11px] text-[#475569]\">assert sum(rle) == H * W (Fortran order)</code>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Gate 4: BIOES Structural Closure</strong>\n      <code class=\"text-[11px] text-[#475569]\">assert \"B\" not directly before \"O\"</code>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Capstone Synthesis: The 4 Invariants of Multi-Modal Annotation & Path to Lesson 4.3",
+        "type": "summary",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Capstone Synthesis: The 4 Invariants of Multi-Modal Annotation",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To synthesize today's masterclass, we establish the Four Invariants of Multi-Modal Annotation. First: Coordinate Schema Invariance. Never mix Pascal VOC, MS COCO, and YOLO formats without schema validation.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Second: Optimization Continuity Invariance. Use Generalized IoU or DIoU to preserve non-zero gradients when bounding boxes are disjoint. Third: Topological Loop Invariance. Enforce counter-clockwise, non-self-intersecting contours so Green's theorem accurately computes planar surface area. Fourth: Discrete Span Structure Invariance. Adopt BIOES sequence tagging to enforce explicit single-token and terminal-token transition constraints.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "You are now prepared for Lesson 4.3, where we extend these principles to time-series waveforms, multi-object video tracking, and tabular data annotation. Click Next to proceed to Lesson 4.3.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2 text-center\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border-2 border-[#151b20] text-[#15803d] font-mono text-xs font-bold uppercase mb-3\">\n    <span>Capstone Synthesis • Lesson 4.2 Complete</span>\n  </div>\n  <h2 class=\"text-2xl font-black text-[#151b20] mb-2\">The 4 Invariants of Multi-Modal Annotation</h2>\n  <p class=\"text-xs sm:text-sm text-[#475569] max-w-2xl mx-auto mb-5 leading-relaxed\">\n    These mathematical laws protect modern multi-modal computer vision and NLP models from training destabilization, vanishing gradients, and annotation corruption.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Coordinate Invariance</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Strictly separate Pascal VOC, MS COCO, and YOLO formats using Pydantic V2.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Gradient Continuity</strong>\n      <span class=\"text-[11px] text-[#151b20]\">GIoU and DIoU eliminate vanishing gradients for disjoint bounding geometries.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. Topological Invariance</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Enforce CCW, non-self-intersecting loops to prevent Green's theorem area collapse.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Span Structure</strong>\n      <span class=\"text-[11px] text-[#151b20]\">BIOES sequence tagging explicitly bounds singletons and sequence closures in CRFs.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Capstone: Ready for Audio, Video & Tabular Annotation",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Congratulations on completing Lesson 4.2, Kaito! We have formalized 2D spatial geometries, IoU metric hierarchies, Green's polygon theorem, column-major RLE bitmasks, and BIOES token sequence invariants.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "What an incredible journey, Dr. Nova! I finally understand how spatial coordinates and Unicode text offsets form the ground truth foundations that all modern neural networks depend on.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now our horizon expands. In Lesson 4.3, we enter the temporal and structured domain: audio spectrogram bounding boxes, multi-object video tracking with ID switching, and tabular entity linkage.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Let's click Next and dive into Lesson 4.3!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2 text-center\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase mb-3\">\n    <span>Socratic Capstone • Ready for Lesson 4.3</span>\n  </div>\n  <h2 class=\"text-2xl font-black text-[#151b20] mb-2\">Bridge to Lesson 4.3: Audio, Video &amp; Tabular Annotation</h2>\n  <p class=\"text-xs sm:text-sm text-[#475569] max-w-2xl mx-auto mb-5 leading-relaxed\">\n    Moving beyond static 2D images and text documents into temporal waveforms, multi-object video tracking (MOT), and relational tabular ground truth.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-3 text-left font-mono text-xs max-w-3xl mx-auto\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">1. Audio Spectrograms</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Time-frequency bounding boxes $[t_1, f_1, t_2, f_2]$ for acoustic event detection.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-bold\">2. Video Tracking (MOT)</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Trajectory association, tracklet interpolation, and identity switch (IDSW) prevention.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-bold\">3. Tabular Linkage</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Cell-level entity extraction, schema mapping, and functional dependency audits.</span>\n    </div>\n  </div>\n</div>\n"
         }
       }
     ]

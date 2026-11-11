@@ -3000,7 +3000,305 @@
     /* ========================================================
        Capeur-Grade Slide Interactivity System
        ======================================================== */
-        function auditQualityScores() {
+        function onChurnPresetChange() {
+      const preset = document.getElementById('churnModelPreset').value;
+      const tauInput = document.getElementById('churnTauRange');
+      if (preset === 'saas') {
+        tauInput.value = 0.35;
+      } else if (preset === 'b2b') {
+        tauInput.value = 0.25;
+      } else if (preset === 'consumer') {
+        tauInput.value = 0.45;
+      }
+      updateChurnSimulation();
+    }
+
+    function updateChurnSimulation() {
+      const tauInput = document.getElementById('churnTauRange');
+      const tauLabel = document.getElementById('churnTauVal');
+      const presetSelect = document.getElementById('churnModelPreset');
+      const canvas = document.getElementById('churnProfitCanvas');
+      if (!tauInput || !tauLabel || !presetSelect || !canvas) return;
+
+      const tau = parseFloat(tauInput.value);
+      tauLabel.innerText = tau.toFixed(2);
+
+      let ltv = 300, c_offer = 20, p_save = 0.40;
+      const preset = presetSelect.value;
+      if (preset === 'b2b') {
+        ltv = 1500; c_offer = 100; p_save = 0.30;
+      } else if (preset === 'consumer') {
+        ltv = 50; c_offer = 10; p_save = 0.50;
+      }
+
+      const trueChurners = 30;
+      const nonChurners = 70;
+
+      // Model probability response curves
+      const tp = Math.round(trueChurners * (1.0 - Math.pow(tau, 1.4)));
+      const fn = trueChurners - tp;
+      const fp = Math.round(nonChurners * Math.max(0, 0.45 - tau * 0.45));
+      const tn = nonChurners - fp;
+
+      const prec = tp / Math.max(1, (tp + fp));
+      const rec = tp / Math.max(1, trueChurners);
+      const f1 = (2 * prec * rec) / Math.max(0.001, (prec + rec));
+
+      const savedCustomers = Math.round(tp * p_save);
+      const revenueRetained = savedCustomers * ltv;
+      const interventionCost = (tp + fp) * c_offer;
+      const netUtility = revenueRetained - interventionCost;
+
+      const precEl = document.getElementById('churnMetricPrec');
+      const recEl = document.getElementById('churnMetricRec');
+      const f1El = document.getElementById('churnMetricF1');
+      const savedEl = document.getElementById('churnMetricSaved');
+      const profitEl = document.getElementById('churnMetricProfit');
+
+      if (precEl) precEl.innerText = Math.round(prec * 100) + '%';
+      if (recEl) recEl.innerText = Math.round(rec * 100) + '%';
+      if (f1El) f1El.innerText = f1.toFixed(2);
+      if (savedEl) savedEl.innerText = savedCustomers + ' Users';
+      if (profitEl) {
+        profitEl.innerText = (netUtility >= 0 ? '+$' : '-$') + Math.abs(netUtility).toLocaleString();
+        profitEl.className = 'text-2xl font-black my-0.5 ' + (netUtility >= 0 ? 'text-[#15803d]' : 'text-[#b91c1c]');
+      }
+
+      // Draw canvas profit curve
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width;
+      const H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+
+      // Background
+      ctx.fillStyle = '#fffdf7';
+      ctx.fillRect(0, 0, W, H);
+
+      // Gridlines
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.lineWidth = 1;
+      for (let y = 30; y < H - 25; y += 30) {
+        ctx.beginPath();
+        ctx.moveTo(40, y);
+        ctx.lineTo(W - 20, y);
+        ctx.stroke();
+      }
+
+      // Calculate utility across thresholds
+      const steps = 30;
+      let profits = [];
+      let maxP = -Infinity;
+      let minP = Infinity;
+      let bestT = 0.5;
+
+      for (let i = 0; i <= steps; i++) {
+        const tVal = 0.05 + (i / steps) * 0.90;
+        const curTp = Math.round(trueChurners * (1.0 - Math.pow(tVal, 1.4)));
+        const curFp = Math.round(nonChurners * Math.max(0, 0.45 - tVal * 0.45));
+        const curSaved = Math.round(curTp * p_save);
+        const curProfit = (curSaved * ltv) - ((curTp + curFp) * c_offer);
+        profits.push({ t: tVal, p: curProfit });
+        if (curProfit > maxP) { maxP = curProfit; bestT = tVal; }
+        if (curProfit < minP) minP = curProfit;
+      }
+
+      const padX = 50;
+      const padY = 25;
+      const plotW = W - padX - 30;
+      const plotH = H - padY - 30;
+      const rangeP = Math.max(100, maxP - minP);
+
+      function getX(tVal) {
+        return padX + ((tVal - 0.05) / 0.90) * plotW;
+      }
+      function getY(pVal) {
+        return H - padY - ((pVal - minP) / rangeP) * plotH;
+      }
+
+      // Draw Zero line if in range
+      if (minP < 0 && maxP > 0) {
+        const zeroY = getY(0);
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(padX, zeroY);
+        ctx.lineTo(W - 30, zeroY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
+      // Draw curve
+      ctx.beginPath();
+      ctx.strokeStyle = '#0e7490';
+      ctx.lineWidth = 3;
+      profits.forEach((pt, idx) => {
+        const px = getX(pt.t);
+        const py = getY(pt.p);
+        if (idx === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      });
+      ctx.stroke();
+
+      // Mark optimal tau*
+      const optX = getX(bestT);
+      const optY = getY(maxP);
+      ctx.fillStyle = '#15803d';
+      ctx.beginPath();
+      ctx.arc(optX, optY, 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#151b20';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      ctx.font = 'bold 10px monospace';
+      ctx.fillStyle = '#15803d';
+      ctx.fillText(`Optimal τ* = ${bestT.toFixed(2)} ($${maxP.toLocaleString()})`, Math.min(W - 170, optX - 50), optY - 10);
+
+      // Mark current tau
+      const curX = getX(tau);
+      const curY = getY(netUtility);
+      ctx.fillStyle = '#b45309';
+      ctx.beginPath();
+      ctx.arc(curX, curY, 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#151b20';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      ctx.fillStyle = '#b45309';
+      ctx.fillText(`Current τ = ${tau.toFixed(2)}`, Math.max(padX, Math.min(W - 100, curX - 30)), curY + 18);
+    }
+
+    function updateEdaSimulation() {
+      const distSelect = document.getElementById('edaDistType');
+      const transSelect = document.getElementById('edaTransform');
+      const canvas = document.getElementById('edaHistogramCanvas');
+      if (!distSelect || !transSelect || !canvas) return;
+
+      const dist = distSelect.value;
+      const trans = transSelect.value;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      // Deterministic pseudo-random synthetic distribution
+      let samples = [];
+      const N = 400;
+
+      if (dist === 'skewed') {
+        for (let i = 0; i < N; i++) {
+          const u1 = Math.sin(i * 12.9898) * 0.5 + 0.5 || 0.001;
+          const u2 = Math.cos(i * 78.233) * 0.5 + 0.5 || 0.001;
+          const z = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+          samples.push(Math.exp(11.2 + 0.65 * z));
+        }
+      } else if (dist === 'gaussian') {
+        for (let i = 0; i < N; i++) {
+          const u1 = Math.sin(i * 12.9898) * 0.5 + 0.5 || 0.001;
+          const u2 = Math.cos(i * 78.233) * 0.5 + 0.5 || 0.001;
+          const z = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+          samples.push(172.0 + 8.5 * z);
+        }
+      } else { // bimodal
+        for (let i = 0; i < N; i++) {
+          const isA = (i % 2 === 0);
+          const u1 = Math.sin(i * 12.9898) * 0.5 + 0.5 || 0.001;
+          const u2 = Math.cos(i * 78.233) * 0.5 + 0.5 || 0.001;
+          const z = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+          samples.push(isA ? (55 + 6 * z) : (95 + 7 * z));
+        }
+      }
+
+      // Apply transformations
+      if (trans === 'log') {
+        samples = samples.map(v => Math.log(Math.max(1, v)));
+      } else if (trans === 'zscore') {
+        const m = samples.reduce((a, b) => a + b, 0) / N;
+        const s = Math.sqrt(samples.reduce((a, b) => a + (b - m) ** 2, 0) / (N - 1)) || 1;
+        samples = samples.map(v => (v - m) / s);
+      }
+
+      samples.sort((a, b) => a - b);
+      const mean = samples.reduce((a, b) => a + b, 0) / N;
+      const median = samples[Math.floor(N / 2)];
+      const std = Math.sqrt(samples.reduce((a, b) => a + (b - mean) ** 2, 0) / (N - 1)) || 1;
+      const skew = (samples.reduce((a, b) => a + ((b - mean) / std) ** 3, 0) / N).toFixed(2);
+
+      // Tukey IQR Fences
+      const q1 = samples[Math.floor(N * 0.25)];
+      const q3 = samples[Math.floor(N * 0.75)];
+      const iqr = q3 - q1;
+      const lowFence = q1 - 1.5 * iqr;
+      const highFence = q3 + 1.5 * iqr;
+      const outliers = samples.filter(v => v < lowFence || v > highFence).length;
+
+      // Update HUD
+      const formatNum = (n) => (trans === 'raw' && dist === 'skewed') ? '$' + Math.round(n).toLocaleString() : n.toFixed(2);
+      const elMean = document.getElementById('edaMeanVal');
+      const elMed = document.getElementById('edaMedianVal');
+      const elSkew = document.getElementById('edaSkewVal');
+      const elOut = document.getElementById('edaOutlierCount');
+
+      if (elMean) elMean.innerText = formatNum(mean);
+      if (elMed) elMed.innerText = formatNum(median);
+      if (elSkew) elSkew.innerText = (skew > 0 ? '+' : '') + skew;
+      if (elOut) elOut.innerText = outliers + ' detected';
+
+      // Render Canvas Histogram
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const minVal = samples[0];
+      const maxVal = samples[samples.length - 1];
+      const numBins = 24;
+      const binWidth = (maxVal - minVal) / numBins || 1;
+      const bins = new Array(numBins).fill(0);
+
+      samples.forEach(v => {
+        let bIdx = Math.floor((v - minVal) / binWidth);
+        if (bIdx >= numBins) bIdx = numBins - 1;
+        if (bIdx < 0) bIdx = 0;
+        bins[bIdx]++;
+      });
+
+      const maxFreq = Math.max(...bins, 1);
+      const w = canvas.width / numBins;
+
+      for (let i = 0; i < numBins; i++) {
+        const h = (bins[i] / maxFreq) * (canvas.height - 40);
+        const x = i * w;
+        const y = canvas.height - h - 16;
+
+        ctx.fillStyle = '#c9f3f4';
+        ctx.fillRect(x + 2, y, w - 4, h);
+
+        ctx.strokeStyle = '#151b20';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(x + 2, y, w - 4, h);
+      }
+
+      // Draw Mean & Median reference lines
+      const range = (maxVal - minVal) || 1;
+      const meanX = ((mean - minVal) / range) * canvas.width;
+      const medianX = ((median - minVal) / range) * canvas.width;
+
+      // Mean Line (Dashed Red)
+      ctx.strokeStyle = '#c2410c';
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(meanX, 6);
+      ctx.lineTo(meanX, canvas.height - 16);
+      ctx.stroke();
+
+      // Median Line (Solid Green)
+      ctx.strokeStyle = '#15803d';
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([]);
+      ctx.beginPath();
+      ctx.moveTo(medianX, 6);
+      ctx.lineTo(medianX, canvas.height - 16);
+      ctx.stroke();
+    }
+
+    function auditQualityScores() {
       const chkMiss = document.getElementById('chkMissing');
       const chkOut = document.getElementById('chkOutliers');
       const chkDate = document.getElementById('chkDateInconsist');
@@ -3271,6 +3569,16 @@
       const isL4Chk1Slide = isLesson4 && (slideIndex === 6);        // Slide 7: Checkpoint 1 (Missing Data Mechanisms)
       const isL4Chk2Slide = isLesson4 && (slideIndex === 12);       // Slide 13: Checkpoint 2 (Representation Disparity)
 
+      const isLesson5 = (currentTopic === 'ch1_p5');
+      const isL5DistSimSlide = isLesson5 && (slideIndex === 9);     // Slide 10: Distribution Profiler
+      const isL5Chk1Slide = isLesson5 && (slideIndex === 6);        // Slide 7: Checkpoint 1 (Target Leakage)
+      const isL5Chk2Slide = isLesson5 && (slideIndex === 12);       // Slide 13: Checkpoint 2 (Group Splitting)
+
+      const isLesson6 = (currentTopic === 'ch1_p6');
+      const isL6ChurnSimSlide = isLesson6 && (slideIndex === 9);    // Slide 10: Churn Decision Workbench
+      const isL6Chk1Slide = isLesson6 && (slideIndex === 6);        // Slide 7: Checkpoint 1 (Benchmark Re-Use)
+      const isL6Chk2Slide = isLesson6 && (slideIndex === 12);       // Slide 13: Checkpoint 2 (Concept Drift)
+
       const isL2_1TaeSimSlide = isLesson2_1 && (slideIndex === 5); // Slide 6: Total Acquisition Error (TAE) Simulator
       const isL2_1Chk1Slide = isLesson2_1 && (slideIndex === 6);   // Slide 7: Checkpoint 1 (Calculating Frame Coverage Bias)
       const isL2_1FpcSimSlide = isLesson2_1 && (slideIndex === 11); // Slide 12: FPC & Power Workbench
@@ -3281,6 +3589,12 @@
       const isL2_2Chk1Slide = isLesson2_2 && (slideIndex === 6);      // Slide 7: Checkpoint 1 (Effective Sample Size)
       const isL2_2LittlesSimSlide = isLesson2_2 && (slideIndex === 11); // Slide 12: Little's Law Simulator
       const isL2_2Chk2Slide = isLesson2_2 && (slideIndex === 12);     // Slide 13: Checkpoint 2 (Queue Sizing)
+
+      const isLesson4_1 = (currentTopic === 'ch4_p1');
+      const isL4_1NoiseSimSlide = isLesson4_1 && (slideIndex === 5);   // Slide 6: Label Noise & PAC Learnability Studio
+      const isL4_1Chk1Slide = isLesson4_1 && (slideIndex === 6);       // Slide 7: Checkpoint 1 (Required Dataset Expansion)
+      const isL4_1TransSimSlide = isLesson4_1 && (slideIndex === 11);  // Slide 12: Asymmetric Transition Matrix & Loss Workbench
+      const isL4_1Chk2Slide = isLesson4_1 && (slideIndex === 12);      // Slide 13: Checkpoint 2 (Clinical Asymmetric Noise)
 
       const toolContainer = document.getElementById('slideToolContainer');
       const checkpointContainer = document.getElementById('slideCheckpointContainer');
@@ -3825,6 +4139,184 @@
         if (typeof updateTaeSim === 'function') {
           updateTaeSim();
         }
+      } else if (isL6ChurnSimSlide && toolContainer) {
+        // Slide 10: Customer Churn Decision & Profit Workbench
+        const churnCard = document.createElement('div');
+        churnCard.id = 'churnDecisionWidget';
+        churnCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] transition-all duration-300';
+        churnCard.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
+            <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide">
+              <span>⚡</span> Interactive Lab: Churn Decision &amp; Profit Workbench
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">
+              Economic Utility Engine
+            </span>
+          </div>
+
+          <p class="text-xs text-[#151b20]/80 font-sans mb-3">
+            Tune the classification decision threshold $\tau$ to find the profit-maximizing balance between Precision, Recall, and Net Revenue:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-3 font-mono text-xs">
+            <div class="bg-[#f6f0dc] p-2.5 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <label class="font-bold text-[#151b20] block mb-1">Business Model Preset:</label>
+              <select id="churnModelPreset" onchange="onChurnPresetChange()" class="w-full bg-[#fffdf7] border-2 border-[#151b20] text-[#151b20] p-1.5 rounded-lg text-xs font-bold cursor-pointer">
+                <option value="saas" selected>Enterprise SaaS (LTV: $300, Offer: $20, Save: 40%)</option>
+                <option value="b2b">High-LTV B2B Cloud (LTV: $1,500, Offer: $100, Save: 30%)</option>
+                <option value="consumer">Low-Margin Consumer App (LTV: $50, Offer: $10, Save: 50%)</option>
+              </select>
+            </div>
+            <div class="bg-[#f6f0dc] p-2.5 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between items-center mb-1">
+                <label class="font-bold text-[#151b20]">Decision Threshold (\(\tau\)):</label>
+                <span id="churnTauVal" class="text-xs font-black text-[#0e7490] bg-[#fffdf7] px-2 py-0.5 rounded border border-[#151b20]">0.35</span>
+              </div>
+              <input type="range" id="churnTauRange" min="0.05" max="0.95" step="0.05" value="0.35" oninput="updateChurnSimulation()" class="w-full cursor-pointer accent-[#0e7490] mt-1.5" />
+            </div>
+          </div>
+
+          <!-- CANVAS PROFIT CURVE -->
+          <div class="bg-[#fffdf7] border-2 border-[#151b20] rounded-xl p-3 shadow-[2px_2px_0px_#151b20] text-center mb-3">
+            <canvas id="churnProfitCanvas" width="760" height="180" class="w-full max-h-[180px]"></canvas>
+            <div class="flex items-center justify-center gap-4 text-[10px] font-mono font-bold mt-2 pt-1 border-t border-[#151b20]/15">
+              <span class="inline-flex items-center gap-1.5 text-[#0e7490]">
+                <span class="inline-block w-3 h-0.5 bg-[#0e7490]"></span> Net Profit Curve
+              </span>
+              <span class="inline-flex items-center gap-1.5 text-[#15803d]">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#15803d]"></span> Peak Optimal Threshold (\(\tau^*\))
+              </span>
+              <span class="inline-flex items-center gap-1.5 text-[#b45309]">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#b45309]"></span> Current Threshold (\(\tau\))
+              </span>
+            </div>
+          </div>
+
+          <!-- METRICS HUD & ECONOMIC OUTCOME -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3 font-mono text-xs">
+            <div class="p-2 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <span class="text-[9px] text-[#475569] font-bold uppercase tracking-wider block">Precision</span>
+              <div id="churnMetricPrec" class="text-base font-black text-[#0e7490] mt-0.5">74%</div>
+            </div>
+            <div class="p-2 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <span class="text-[9px] text-[#475569] font-bold uppercase tracking-wider block">Recall</span>
+              <div id="churnMetricRec" class="text-base font-black text-[#15803d] mt-0.5">86%</div>
+            </div>
+            <div class="p-2 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <span class="text-[9px] text-[#475569] font-bold uppercase tracking-wider block">F1-Score</span>
+              <div id="churnMetricF1" class="text-base font-black text-[#b45309] mt-0.5">0.79</div>
+            </div>
+            <div class="p-2 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <span class="text-[9px] text-[#475569] font-bold uppercase tracking-wider block">True Churn Saved</span>
+              <div id="churnMetricSaved" class="text-base font-black text-[#7c3aed] mt-0.5">34 Users</div>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] text-center mb-3">
+            <span class="text-[10px] font-mono font-bold text-[#15803d] uppercase tracking-wider block">Net Economic Value Generated</span>
+            <div id="churnMetricProfit" class="text-2xl font-black text-[#15803d] my-0.5">+$6,240</div>
+            <div class="text-[11px] font-sans text-[#151b20]/80">
+              Formula: \(\text{TP} \cdot (\text{LTV} \cdot P_{save} - C_{offer}) - \text{FP} \cdot C_{offer}\).
+            </div>
+          </div>
+
+          <div class="p-2.5 rounded-lg bg-[#fffaf0] border border-[#151b20] text-xs font-sans text-[#151b20] leading-relaxed">
+            💡 <b>Economic Principle:</b> Default \(\tau=0.50\) captures fewer churners (Net: \(+\$5,200\)). Lowering \(\tau \to 0.35\) sacrifices minor precision to prevent catastrophic customer lifetime value loss, maximizing bottom-line profit!
+          </div>
+        `;
+        toolContainer.appendChild(churnCard);
+
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        toolContainer.appendChild(simDock);
+
+        // Run initial simulation
+        setTimeout(() => { if (typeof updateChurnSimulation === 'function') updateChurnSimulation(); }, 50);
+      } else if (isL5DistSimSlide && toolContainer) {
+        // Slide 10: Distribution Profiler & Transformation Lab
+        const distCard = document.createElement('div');
+        distCard.id = 'distributionProfilerWidget';
+        distCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] transition-all duration-300';
+        distCard.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
+            <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide">
+              <span>🔬</span> Interactive Lab: Distribution Profiler &amp; Transformation Lab
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">
+              Forensic EDA Workbench
+            </span>
+          </div>
+
+          <p class="text-xs text-[#151b20]/80 font-sans mb-3">
+            Observe how right-skewed distributions distort central tendency and test variance-stabilizing transforms in real time:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-3 font-mono text-xs">
+            <div class="bg-[#f6f0dc] p-2.5 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <label class="font-bold text-[#151b20] block mb-1">Distribution Archetype:</label>
+              <select id="edaDistType" onchange="updateEdaSimulation()" class="w-full bg-[#fffdf7] border-2 border-[#151b20] text-[#151b20] p-1.5 rounded-lg text-xs font-bold cursor-pointer">
+                <option value="skewed" selected>Right-Skewed (Household Incomes / Log-Normal)</option>
+                <option value="gaussian">Symmetric Normal (Adult Heights: μ=172cm)</option>
+                <option value="bimodal">Bimodal Mixture (Dual Demographic Clusters)</option>
+              </select>
+            </div>
+            <div class="bg-[#f6f0dc] p-2.5 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <label class="font-bold text-[#151b20] block mb-1">Mathematical Transform:</label>
+              <select id="edaTransform" onchange="updateEdaSimulation()" class="w-full bg-[#fffdf7] border-2 border-[#151b20] text-[#151b20] p-1.5 rounded-lg text-xs font-bold cursor-pointer">
+                <option value="raw" selected>Raw Scale (Identity x)</option>
+                <option value="log">Logarithmic Normalization: log(x + 1)</option>
+                <option value="zscore">Standardization: (x - μ) / σ</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- CANVAS VISUALIZER -->
+          <div class="bg-[#fffdf7] border-2 border-[#151b20] rounded-xl p-3 shadow-[2px_2px_0px_#151b20] text-center mb-3">
+            <canvas id="edaHistogramCanvas" width="760" height="200" class="w-full max-h-[200px]"></canvas>
+            <div class="flex items-center justify-center gap-4 text-[10px] font-mono font-bold mt-2 pt-1 border-t border-[#151b20]/15">
+              <span class="inline-flex items-center gap-1.5 text-[#c2410c]">
+                <span class="inline-block w-3 h-0.5 border-t-2 border-dashed border-[#c2410c]"></span> Sample Mean (μ)
+              </span>
+              <span class="inline-flex items-center gap-1.5 text-[#15803d]">
+                <span class="inline-block w-3 h-0.5 bg-[#15803d]"></span> Sample Median (Q2)
+              </span>
+            </div>
+          </div>
+
+          <!-- SUMMARY STATISTICS HUD -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3 font-mono text-xs">
+            <div class="p-2.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <span class="text-[9px] text-[#475569] font-bold uppercase tracking-wider block">Sample Mean (μ)</span>
+              <div id="edaMeanVal" class="text-base font-black text-[#0e7490] mt-0.5">$105,250</div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <span class="text-[9px] text-[#475569] font-bold uppercase tracking-wider block">Median (Q2)</span>
+              <div id="edaMedianVal" class="text-base font-black text-[#15803d] mt-0.5">$87,500</div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <span class="text-[9px] text-[#475569] font-bold uppercase tracking-wider block">Skewness (γ1)</span>
+              <div id="edaSkewVal" class="text-base font-black text-[#b45309] mt-0.5">+1.42</div>
+            </div>
+            <div class="p-2.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <span class="text-[9px] text-[#475569] font-bold uppercase tracking-wider block">Tukey Outliers</span>
+              <div id="edaOutlierCount" class="text-base font-black text-[#c2410c] mt-0.5">12 detected</div>
+            </div>
+          </div>
+
+          <div class="p-2.5 rounded-lg bg-[#fffaf0] border border-[#151b20] text-xs font-sans text-[#151b20] leading-relaxed">
+            💡 <b>Forensic Principle:</b> When skewness $\gamma_1 > +1.0$, the mean is dragged outward by extreme tail records ($	ext{Mean} \gg 	ext{Median}$). Log-transforms collapse multi-order variance spreads, eliminating outlier spikes!
+          </div>
+        `;
+        toolContainer.appendChild(distCard);
+
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        toolContainer.appendChild(simDock);
+
+        // Run initial simulation
+        setTimeout(() => { if (typeof updateEdaSimulation === 'function') updateEdaSimulation(); }, 50);
       } else if (isL4QualitySimSlide && toolContainer) {
         // Slide 10: Data Quality Health Radar & Defect Injector
         const qualityCard = document.createElement('div');
@@ -4327,6 +4819,215 @@
         if (typeof updateLittlesSim === 'function') {
           updateLittlesSim();
         }
+      } else if (isL4_1NoiseSimSlide && toolContainer) {
+        // Slide 6: Label Noise & PAC Learnability Studio
+        const noiseCard = document.createElement('div');
+        noiseCard.id = 'noiseSimWidget';
+        noiseCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] transition-all duration-300';
+        noiseCard.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
+            <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide">
+              <span>🏷️</span> Interactive Lab: Label Noise &amp; PAC Learnability Studio
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#ffc83e] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">
+              Angluin &amp; Laird (1988)
+            </span>
+          </div>
+
+          <p class="text-xs text-[#151b20]/80 font-sans mb-3">
+            Tweak nominal dataset size $N$ and annotator error rate $\\eta$ to observe how PAC sample complexity causes quadratic effective sample size degradation:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono mb-3">
+            <!-- Slider 1: Nominal Size N -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">1. Nominal Records $N$:</span>
+                <span id="lbl_n_nominal" class="text-[#0e7490] font-black">5,000 Records</span>
+              </div>
+              <input type="range" id="sl_n_nominal" min="500" max="20000" step="500" value="5000" oninput="updateNoiseSim()" class="w-full accent-[#0e7490] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Small (500)</span>
+                <span>Large (20,000)</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: Error Rate eta -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">2. Error Rate $\\eta$:</span>
+                <span id="lbl_eta" class="text-[#dc2626] font-black">0.20 (20%)</span>
+              </div>
+              <input type="range" id="sl_eta" min="0.00" max="0.45" step="0.01" value="0.20" oninput="updateNoiseSim()" class="w-full accent-[#dc2626] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Clean (0.00)</span>
+                <span>Critical (0.45)</span>
+              </div>
+            </div>
+
+            <!-- Dropdown 3: Quality Filter -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="font-bold mb-1.5 text-[#151b20]">3. Quality Filtering Strategy:</div>
+              <select id="sel_filter" onchange="updateNoiseSim()" class="w-full p-1.5 bg-[#ffffff] border-2 border-[#151b20] rounded-lg font-bold text-xs cursor-pointer">
+                <option value="raw">Raw Unfiltered Noisy Labels</option>
+                <option value="consensus">3-Worker Majority Consensus</option>
+                <option value="confident" selected>Confident Learning Pruning</option>
+              </select>
+              <div class="text-[10px] text-[#151b20]/60 mt-1.5">
+                Northcutt et al. (NeurIPS 2021)
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-Time Metric Display Cards -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono">
+            <div class="bg-[#fffdf7] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#22bfd7]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Effective $N_{\\text{eff}}$</div>
+              <div id="stat_n_eff" class="text-sm md:text-base font-black text-[#1e293b]">1,800 Records</div>
+              <div id="stat_retention_pct" class="text-[10px] text-[#0284c7] font-bold">36.0% Retained</div>
+            </div>
+
+            <div class="bg-[#fef2f2] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#f38469]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Sample Expansion</div>
+              <div id="stat_sample_expansion" class="text-sm md:text-base font-black text-[#b91c1c]">2.78x Expansion</div>
+              <div class="text-[10px] text-[#475569]">$(1 - 2\\eta)^{-2}$ Penalty</div>
+            </div>
+
+            <div class="bg-[#eff6ff] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#0284c7]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Model Accuracy</div>
+              <div id="stat_accuracy" class="text-sm md:text-base font-black text-[#1e3a8a]">91.2%</div>
+              <div id="stat_acc_delta" class="text-[10px] text-[#15803d] font-bold">Recovered +6.8%</div>
+            </div>
+
+            <div class="bg-[#f0fdf4] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Residual Noise</div>
+              <div id="stat_effective_noise" class="text-sm md:text-base font-black text-[#15803d]">4.4% Residual</div>
+              <div class="text-[10px] text-[#15803d]">After Gate Audit</div>
+            </div>
+          </div>
+
+          <!-- Dynamic PAC Alert Banner -->
+          <div id="pac_alert_banner" class="mt-3 p-3 rounded-xl border-2 border-[#b45309] bg-[#fffbeb] text-xs text-[#92400e] font-sans leading-relaxed text-left">
+            <strong>ℹ️ High Sample Complexity Penalty:</strong> At $\\eta = 0.20$, nominal data power is degraded by 64%. Confident Learning filters pruned corrupted samples, recovering model generalization.
+          </div>
+        `;
+        toolContainer.appendChild(noiseCard);
+
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        toolContainer.appendChild(simDock);
+
+        if (typeof updateNoiseSim === 'function') {
+          updateNoiseSim();
+        }
+      } else if (isL4_1TransSimSlide && toolContainer) {
+        // Slide 12: Asymmetric Class Transition Matrix & Loss Correction Workbench
+        const transCard = document.createElement('div');
+        transCard.id = 'transSimWidget';
+        transCard.className = 'mt-3 p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] transition-all duration-300';
+        transCard.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2">
+            <div class="flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0e7490] uppercase tracking-wide">
+              <span>🔄</span> Interactive Lab: Asymmetric Transition Matrix &amp; Loss Workbench
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[1px_1px_0px_#151b20]">
+              Natarajan et al. (2013)
+            </span>
+          </div>
+
+          <p class="text-xs text-[#151b20]/80 font-sans mb-3">
+            Tweak asymmetric confusion rates $T_{01}$ and $T_{10}$ to observe matrix invertibility $\\det(T)$ and evaluate how the Natarajan inverse operator $T^{-1}$ de-biases expected loss:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono mb-3">
+            <!-- Slider 1: False Negative T01 -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">1. Confusion $T_{01}$ ($Y^*=0 \\to \\tilde{Y}=1$):</span>
+                <span id="transValT01" class="text-[#dc2626] font-black">25% (0.25)</span>
+              </div>
+              <input type="range" id="transSliderT01" min="0.00" max="0.45" step="0.01" value="0.25" oninput="updateTransSim()" class="w-full accent-[#dc2626] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Zero (0.00)</span>
+                <span>Severe (0.45)</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: False Positive T10 -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">2. Confusion $T_{10}$ ($Y^*=1 \\to \\tilde{Y}=0$):</span>
+                <span id="transValT10" class="text-[#0e7490] font-black">5% (0.05)</span>
+              </div>
+              <input type="range" id="transSliderT10" min="0.00" max="0.45" step="0.01" value="0.05" oninput="updateTransSim()" class="w-full accent-[#0e7490] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Zero (0.00)</span>
+                <span>Severe (0.45)</span>
+              </div>
+            </div>
+
+            <!-- Slider 3: True Latent Prevalence P(Y*=0) -->
+            <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="flex justify-between font-bold mb-1.5">
+                <span class="text-[#151b20]">3. Clean Prevalence $P(Y^*=0)$:</span>
+                <span id="transValPrev" class="text-[#b45309] font-black">10% (0.10)</span>
+              </div>
+              <input type="range" id="transSliderPrev" min="0.02" max="0.50" step="0.02" value="0.10" oninput="updateTransSim()" class="w-full accent-[#b45309] cursor-pointer">
+              <div class="flex justify-between text-[10px] text-[#151b20]/60 mt-1">
+                <span>Rare (0.02)</span>
+                <span>Balanced (0.50)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-Time Metric Display Cards -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center font-mono">
+            <div class="bg-[#f0fbfd] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#22bfd7]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Determinant $\\det(T)$</div>
+              <div id="transMetricDet" class="text-sm md:text-base font-black text-[#0e7490]">0.700</div>
+              <div class="text-[10px] text-[#475569]">$1 - T_{01} - T_{10}$</div>
+            </div>
+
+            <div class="bg-[#fffdf7] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Observed Prevalence</div>
+              <div id="transMetricObsPrev" class="text-sm md:text-base font-black text-[#151b20]">12.0%</div>
+              <div id="transMetricSkew" class="text-[10px] text-[#b45309] font-bold">+2.0% shift</div>
+            </div>
+
+            <div class="bg-[#f6fcf4] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#15803d]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Loss Re-weight</div>
+              <div id="transMetricWeightRatio" class="text-sm md:text-base font-black text-[#15803d]">1.27x</div>
+              <div class="text-[10px] text-[#15803d]">$T^{-1}$ Ratio</div>
+            </div>
+
+            <div class="bg-[#fff5f2] p-2.5 rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#f38469]">
+              <div class="text-[10px] text-[#151b20]/60 uppercase font-black">Matrix Condition</div>
+              <div id="transStatusBadge" class="text-xs font-black text-[#15803d] mt-1">Well-Conditioned</div>
+            </div>
+          </div>
+
+          <!-- Stability Gauge -->
+          <div class="bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] mt-3">
+            <div class="flex justify-between text-xs font-mono font-bold mb-1.5">
+              <span>Channel Invertibility &amp; Gradient Stability Gauge:</span>
+              <span id="transStatusText" class="text-[#0e7490] font-black">Stable Inversion Channel</span>
+            </div>
+            <div class="w-full h-4 bg-[#fffdf7] border-2 border-[#151b20] rounded-full overflow-hidden p-0.5">
+              <div id="transProgressBar" class="h-full bg-[#15803d] rounded-full transition-all duration-300" style="width: 70%;"></div>
+            </div>
+          </div>
+        `;
+        toolContainer.appendChild(transCard);
+
+        const simDock = document.createElement('div');
+        simDock.id = 'speakerDockSimulator';
+        simDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+        toolContainer.appendChild(simDock);
+
+        if (typeof updateTransSim === 'function') {
+          updateTransSim();
+        }
       }
 
       // 4. Interactive Active Checkpoint (Capeur Formative Assessment)
@@ -4452,6 +5153,142 @@
               </button>
               <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
                 <strong>C.</strong> It converts tumbling windows into session windows automatically without data loss.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        } else if (isL6Chk1Slide) {
+          // Slide 7: Checkpoint 1 (The Benchmark Re-Use Fallacy)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: Benchmark Adaptive Overfitting
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: In academic benchmark competitions (e.g., ImageNet, GLUE), the test set remains fixed for years while thousands of researchers submit models iteratively. Why does adaptive overfitting occur even if individual test set labels are sealed?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A.</strong> Repeated benchmark evaluations exhaust GPU memory bandwidth and cause silent numerical precision drift.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B.</strong> Repeated architecture selection and hyperparameter tuning driven by scalar test feedback acts as an implicit optimization loop on test noise, causing performance collapse on fresh replication sets.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C.</strong> Researchers inadvertently introduce data augmentation artifacts into validation evaluation code.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        } else if (isL6Chk2Slide) {
+          // Slide 13: Checkpoint 2 (Adversarial Concept Drift in Transaction Streams)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: Adversarial Concept Drift
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: A credit card fraud model trained Jan–Jun experiences an exponential drop in precision by October (from 82% to 34%), despite total transaction volume and merchant distributions remaining constant. What occurred?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A.</strong> Extreme underfitting caused by an excessively high regularization parameter lambda.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B.</strong> Adversarial concept drift ($P(Y \mid X)$ shifts as fraudsters change evasion strategies), requiring rolling temporal validation and weekly retraining.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C.</strong> Memory fragmentation in the Redis feature cache caused silent missing value imputation.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        } else if (isL5Chk1Slide) {
+          // Slide 7: Checkpoint 1 (Identifying Target Leakage in Feature Engineering)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: Identifying Target Leakage
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: A feature <code>oil_filter_replacement_count_next_7_days</code> yields 0.99 ROC-AUC in 5-fold cross-validation when predicting turbine gearbox failure 48 hours ahead. But when deployed live, model performance collapses to 0.52 ROC-AUC. What occurred?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A.</strong> The sample size was too small for 5-fold cross-validation to calculate reliable parameter variance.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B.</strong> Direct lookahead target leakage: technicians replaced oil filters immediately following gearbox failures, embedding future target labels into historical features.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C.</strong> Physical sensor drift caused the oil filter replacement sensors to lose calibration in production.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        } else if (isL5Chk2Slide) {
+          // Slide 13: Checkpoint 2 (Group-Based Splitting vs. Random Splitting)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: Group-Based Splitting Hygiene
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: In a hospital chest X-ray dataset containing 100,000 scans from 25,000 unique patients (4 scans/patient), why is standard random 80/20 train-test splitting catastrophic for evaluating model generalization?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A.</strong> Random splitting exhausts GPU memory because radiographs must be loaded contiguously.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B.</strong> Identity contamination: scans from the same patient appear in both train and test sets, so the model learns patient re-identification rather than pathology patterns.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C.</strong> 25,000 unique patients is mathematically insufficient to train modern deep convolutional neural networks.
               </button>
             </div>
             <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
@@ -4734,6 +5571,74 @@
           quizDock.id = 'speakerDockCheckpoint';
           quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
           checkpointContainer.appendChild(quizDock);
+        } else if (isL4_1Chk1Slide) {
+          // Slide 7: Checkpoint 1 (Calculating Required Dataset Expansion Under Noise)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#b45309] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#b45309] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: Calculating Required Dataset Expansion Under Noise
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: An autonomous vehicle perception engineering team contracts a crowdsourced workforce to label pedestrian bounding boxes. Quality auditing discovers that the crowd has a $30\\%$ error rate ($\\eta = 0.30$). If the team requires the equivalent statistical power of 10,000 gold-standard expert annotations ($\\eta = 0$), how many crowdsourced annotations must they collect?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A. $62{,}500\\text{ annotations}$:</strong> $N_{\\text{eff}} = N(1 - 2(0.30))^2 = N(0.40)^2 = 0.16N \\implies \\frac{10{,}000}{0.16} = \\mathbf{62{,}500\\text{ records}}$ ($6.25\\times$ expansion).
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B. $14{,}285\\text{ annotations}$:</strong> $\\frac{10{,}000}{1 - 0.30} \\approx 14{,}285\\text{ records}$, assuming linear noise degradation.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C. $33{,}333\\text{ annotations}$:</strong> $\\frac{10{,}000}{1 - 2(0.30)} = \\frac{10{,}000}{0.40} = 25{,}000\\text{ records}$ without quadratic squaring.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
+        } else if (isL4_1Chk2Slide) {
+          // Slide 13: Checkpoint 2 (Clinical Asymmetric Noise & Natarajan Correction)
+          const quizCard = document.createElement('div');
+          quizCard.id = 'slideQuizCheckpoint';
+          quizCard.className = 'mt-3 p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] transition-all duration-300';
+          quizCard.innerHTML = `
+            <div class="flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/20 flex-wrap gap-1">
+              <span class="font-mono font-black text-xs text-[#15803d] flex items-center gap-1.5 uppercase">
+                <span>💡</span> Active Checkpoint: Clinical Asymmetric Noise &amp; Natarajan Correction
+              </span>
+              <span class="text-[9px] font-mono text-[#151b20]/70 font-bold bg-[#eee4c8] px-2 py-0.5 rounded-full">Interactive Recall</span>
+            </div>
+            <p class="text-xs font-bold text-[#151b20] mb-2 font-sans">
+              Question: In a clinical oncology dataset with 3 classes, annotators frequently mislabel lethal Melanoma as Benign Nevus ($T_{01} = 0.25$), but never mislabel Nevus as Melanoma ($T_{10} = 0.00$). Why does training with standard Cross-Entropy fail catastrophically on test data, and how does Natarajan's inverse transition matrix $T^{-1}$ correct it?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-sans">
+              <button type="button" onclick="answerSlideQuiz(true, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#c9f3f4] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>A. Standard CE shifts boundary toward Benign Nevus; $T^{-1}$ restores unbiased risk:</strong> Directional noise biases empirical risk; multiplying loss by $T^{-1}$ satisfies $\\mathbb{E}[\\ell^*] = \\ell$, restoring true clinical sensitivity.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>B. Cross-Entropy encounters division by zero on asymmetric columns:</strong> The standard cross-entropy loss function is mathematically undefined for non-symmetric matrices.
+              </button>
+              <button type="button" onclick="answerSlideQuiz(false, this)" class="quiz-btn text-left p-2.5 rounded-lg bg-[#fffdf7] hover:bg-[#fff0b9] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-semibold transition cursor-pointer">
+                <strong>C. Standard CE overfits Melanoma due to class imbalance; $T^{-1}$ downsamples benign cases:</strong> The inverse transition matrix performs random majority class downsampling.
+              </button>
+            </div>
+            <div id="quizFeedbackBox" class="hidden mt-2 p-2.5 rounded-lg text-xs font-sans border-2 border-[#151b20] transition-all"></div>
+          `;
+          checkpointContainer.appendChild(quizCard);
+
+          const quizDock = document.createElement('div');
+          quizDock.id = 'speakerDockCheckpoint';
+          quizDock.className = 'speaker-dock-slot transition-all duration-500 w-full my-3';
+          checkpointContainer.appendChild(quizDock);
         }
       }
 
@@ -4894,14 +5799,119 @@
       const isL2_2 = (currentTopic === 'ch2_p2');
       const isL2_2Chk1 = isL2_2 && (currentSlideIndex === 6);
       const isL2_2Chk2 = isL2_2 && (currentSlideIndex === 12);
+      const isL4_1 = (currentTopic === 'ch4_p1');
+      const isL4_1Chk1 = isL4_1 && (currentSlideIndex === 6);
+      const isL4_1Chk2 = isL4_1 && (currentSlideIndex === 12);
       const isLesson3 = (currentTopic === 'ch1_p3');
       const isL3Chk1 = isLesson3 && (currentSlideIndex === 6);
       const isL3Chk2 = isLesson3 && (currentSlideIndex === 12);
+      const isLesson4 = (currentTopic === 'ch1_p4');
+      const isL4Chk1 = isLesson4 && (currentSlideIndex === 6);
+      const isL4Chk2 = isLesson4 && (currentSlideIndex === 12);
 
       if (isCorrect) {
         btnEl.className = 'quiz-btn text-left p-2.5 rounded-lg bg-[#b7df69] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black scale-[1.02]';
         feedback.className = 'mt-2 p-3 rounded-lg bg-[#f0fbfd] border-2 border-[#151b20] text-[#151b20] text-xs font-sans leading-relaxed';
-        if (isL4Chk1) {
+        if (isL6Chk1) {
+          feedback.innerHTML = `✅ <b>Adaptive Overfitting Diagnosed:</b> Repeated model selection driven by scalar leaderboard feedback acts as an implicit gradient optimization loop over static test noise. Over hundreds of iterations, architectures overfit to that specific sample, causing generalization collapse on fresh replication sets like ImageNet-v2!`;
+        } else if (isL6Chk2) {
+          feedback.innerHTML = `✅ <b>Adversarial Concept Drift Diagnosed:</b> In credit card fraud, fraudsters dynamically change evasion tactics once historical patterns are blocked. The conditional probability distribution $P(Y \mid X)$ shifts over time, causing precision collapse. The solution requires rolling temporal validation and continuous weekly retraining!`;
+        } else         if (isL5Chk1) {
+          feedback.innerHTML = `✅ <b>Lookahead Target Leakage Diagnosed:</b> The feature <code>oil_filter_replacement_count_next_7_days</code> accesses information from the future that is unavailable at inference time $t_0$. Technicians replaced filters in response to gearbox warnings, embedding the target label into the input feature!`;
+          verbalFeedback = 'Spot on! That is direct lookahead target leakage. In historical logs, technicians replaced oil filters immediately after gearbox failure alerts, embedding the target label into the input feature. When evaluated in cross-validation, the model memorized this future proxy. Always enforce strict temporal boundaries when generating rolling window aggregations!';
+        } else if (isL5Chk2) {
+          feedback.innerHTML = `✅ <b>Identity Contamination Diagnosed:</b> When multiple chest X-rays from the same patient appear across both train and test folds, deep neural networks memorize patient-specific anatomical or hardware markers. Deploy <code>GroupKFold</code> grouped strictly by <code>patient_id</code>!`;
+          verbalFeedback = 'Outstanding diagnosis! Random train-test splitting distributes scans from the same patient across both training and test sets. Deep convolutional networks easily learn idiosyncratic anatomical markers, implant signatures, or patient-specific radiograph hardware settings rather than generalized pathology patterns. The split must be partitioned strictly by patient identifier using GroupKFold!';
+        } else if (isL6Chk1) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p6_chk1_duo.mp3';
+            totalDuration = 16.19;
+            interactiveSentences = [
+              buildTimedSentence("Kaito", "Wait, if individual test labels are completely concealed, how does information leak back to the researchers?", 0.0, 5.0),
+              buildTimedSentence("Dr. Nova", "Think about what the leaderboard returns: a single scalar validation accuracy! Select the correct answer below to test your retention!", 5.35, 16.19)
+            ];
+          } else {
+            audioPath = './audio/ch1_p6_chk1_solo.mp3';
+            totalDuration = 22.08;
+            interactiveSentences = [
+              buildTimedSentence("Dr. Nova", "Active Recall Checkpoint 1! In academic competitions like ImageNet or GLUE, the test set remains fixed for years while thousands of research labs submit models iteratively. Explain why adaptive overfitting occurs even if no single researcher has direct access to test set labels. Select the correct mechanism on the slide!", 0.0, 22.08)
+            ];
+          }
+        } else if (isL6Chk2) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p6_chk2_duo.mp3';
+            totalDuration = 14.438;
+            interactiveSentences = [
+              buildTimedSentence("Kaito", "Transaction volumes didn't change, and merchants didn't change. Why did the fraud precision suddenly collapse?", 0.0, 5.0),
+              buildTimedSentence("Dr. Nova", "Select the correct option below to analyze adversarial concept drift and temporal domain shift!", 5.35, 14.438)
+            ];
+          } else {
+            audioPath = './audio/ch1_p6_chk2_solo.mp3';
+            totalDuration = 26.712;
+            interactiveSentences = [
+              buildTimedSentence("Dr. Nova", "Active Recall Checkpoint 2! A credit card fraud detection model trained on transactions from January through June experiences a severe drop in precision by October, from 82% down to 34%, despite total transaction volume and merchant distributions remaining constant. What statistical phenomenon explains this degradation, and how should dataset management mitigate it? Make your choice on the slide!", 0.0, 26.712)
+            ];
+          }        } else if (isL5Chk1) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p5_chk1_duo.mp3';
+            totalDuration = 18.422;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Look at that feature name: 'oil_filter_replacement_count_next_7_days.' At time t-zero when making a real-time prediction, do we know what happens in the next seven days?",
+                0.0,
+                9.500
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Click the correct answer on the checkpoint card below to test your retention!",
+                9.850,
+                18.422
+              )
+            ];
+          } else {
+            audioPath = './audio/ch1_p5_chk1_solo.mp3';
+            totalDuration = 34.464;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Recall Checkpoint 1! A predictive maintenance data scientist builds a model to forecast wind turbine gearbox failures forty-eight hours in advance. One engineered feature is oil_filter_replacement_count_next_7_days, which achieves an astonishing 0.99 ROC-AUC during five-fold cross-validation. But when deployed live, model performance collapses to near random chance at 0.52 ROC-AUC. What occurred? Select your answer on the slide!",
+                0.0,
+                34.464
+              )
+            ];
+          }
+        } else if (isL5Chk2) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p5_chk2_duo.mp3';
+            totalDuration = 15.254;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Twenty-five thousand patients, but one hundred thousand scans! If you do random splitting, what happens to scans belonging to the exact same patient?",
+                0.0,
+                9.800
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Select the correct option below to analyze the clinical data contamination hazard!",
+                10.150,
+                15.254
+              )
+            ];
+          } else {
+            audioPath = './audio/ch1_p5_chk2_solo.mp3';
+            totalDuration = 23.568;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Recall Checkpoint 2! In a hospital chest X-ray classification dataset containing one hundred thousand scans from twenty-five thousand unique patients, each patient has an average of four sequential radiographs taken over several months. Why is standard random i.i.d. train-test splitting catastrophic for evaluating model generalization? Make your choice on the slide!",
+                0.0,
+                23.568
+              )
+            ];
+          }
+        } else if (isL4Chk1) {
           feedback.innerHTML = `✅ <b>Missing at Random (MAR) Diagnosed:</b> Because missingness depends on observed features (age and insurance) but not the missing glucose itself, the data is MAR. Listwise deletion introduces demographic selection bias; deploy Multiple Imputation by Chained Equations (MICE) or conditioned regression imputation.`;
           verbalFeedback = 'Spot on! Because missingness depends strictly on observed covariates rather than the missing value itself, the data satisfies the Missing at Random assumption. Listwise deletion would introduce severe demographic bias; instead, we deploy Multiple Imputation by Chained Equations or regression imputation conditioned on age and insurance!';
         } else if (isL4Chk2) {
@@ -4991,6 +6001,12 @@
         } else if (isL2_2Chk2) {
           feedback.innerHTML = `❌ <b>Incorrect:</b> Recall Little's Law: $L = \\lambda \\cdot W$. Multiplying $2,000\\text{ pkts/s} \\times 0.040\\text{ s} yields $\\mathbf{80\\text{ packets}}$, which handles steady state within the $120$ capacity.`;
           verbalFeedback = 'That is incorrect. Recall Little\'s Law: L equals lambda times W. Two thousand packets per second times 0.040 seconds equals 80 packets average buffer depth.';
+        } else if (isL4_1Chk1) {
+          feedback.innerHTML = `🎉 <b>Spot on!</b> Under the Angluin-Laird RCN model: $N_{\\text{eff}} = N(1 - 2\\eta)^2 = N(0.40)^2 = 0.16N$. To retain $10{,}000$ gold-standard records, the team must collect $\\frac{10{,}000}{0.16} = \\mathbf{62{,}500\\text{ annotations}}$ ($6.25\\times$ more data)!`;
+          verbalFeedback = 'Spot on! With eta equals 0.30, the signal term 1 minus 2 eta is 0.40, and its square is 0.16. Ten thousand divided by 0.16 yields exactly 62,500 annotations! Attempting to compensate for poor guidelines with cheap crowdsourcing results in a massive 6.25x volume expansion!';
+        } else if (isL4_1Chk2) {
+          feedback.innerHTML = `🎉 <b>Precisely Correct!</b> Because noise is directional ($0.25$ vs $0.00$), standard ERM shifts the decision boundary toward the over-reported Benign class, creating dangerous false negatives. When $T$ is invertible, the Natarajan correction $\\ell^* = T^{-1}\\ell$ satisfies $\\mathbb{E}[\\ell^*] = \\ell$, pulling the boundary back to optimal clinical sensitivity!`;
+          verbalFeedback = 'Precisely correct! Because noise is asymmetric, standard empirical risk minimization shifts the decision boundary toward Benign Nevus, leading to lethal false negatives. Multiplying the loss vector by T inverse guarantees that expected gradients are unbiased, restoring optimal clinical sensitivity!';
         } else if (isChk1) {
           feedback.innerHTML = `🎉 <b>Outstanding!</b> Schema-on-read JSON forces full-document deserialization and CPU string parsing per row on every query, whereas columnar Parquet enables vectorized SIMD compression and zero-copy projection pushdown.`;
           verbalFeedback = 'Outstanding! Schema-on-read forces CPU-intensive string parsing and pointer dereferencing on every read, whereas columnar formats like Parquet store homogeneous columns contiguously with vectorized SIMD compression and zero-copy projection pushdown!';
@@ -5007,7 +6023,17 @@
       } else {
         btnEl.className = 'quiz-btn text-left p-2.5 rounded-lg bg-[#ffd8ce] text-[#151b20] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-black';
         feedback.className = 'mt-2 p-3 rounded-lg bg-[#fff5f2] border-2 border-[#f38469] text-[#151b20] text-xs font-sans leading-relaxed';
-        if (isL4Chk1) {
+        if (isL6Chk1) {
+          feedback.innerHTML = `❌ <b>Benchmark Fallacy:</b> Even with sealed test labels, using scalar test accuracy feedback to guide architecture and hyperparameter iterations causes adaptive overfitting to test noise!`;
+        } else if (isL6Chk2) {
+          feedback.innerHTML = `❌ <b>Concept Drift Diagnostic Error:</b> When input distributions and volumes remain stable while classifier precision collapses in adversarial domains, the cause is concept drift $P(Y \mid X)$ from fraudsters adapting their tactics.`;
+        } else         if (isL5Chk1) {
+          feedback.innerHTML = `❌ <b>Leakage Diagnosis Error:</b> An ROC-AUC of 0.99 in CV that plummets to 0.52 in production is the classic signature of lookahead target leakage. Features referencing future time windows ($t+7$) are physically unavailable at inference time.`;
+          verbalFeedback = 'Not quite. Remember our temporal boundaries: you cannot use events from the future to predict the present! The feature embedded future maintenance actions, causing massive lookahead target leakage.';
+        } else if (isL5Chk2) {
+          feedback.innerHTML = `❌ <b>Partitioning Trap:</b> Random i.i.d. splitting leaks patient identities across folds. The vision model memorizes patient anatomy rather than clinical pathology, causing severe over-optimistic evaluation metrics.`;
+          verbalFeedback = 'Careful! Random splitting across multiple records from the same patient causes severe identity contamination. The neural network learns patient re-identification rather than clinical disease generalization.';
+        } else if (isL4Chk1) {
           feedback.innerHTML = `❌ <b>Missingness Diagnosis Error:</b> When missingness correlates with observed features (age and insurance) but not the missing value itself, it is Missing at Random (MAR), not MCAR or MNAR. Listwise deletion causes severe demographic bias.`;
           verbalFeedback = 'Not quite. Remember our Little and Rubin taxonomy: when missingness correlates with observed features like age and insurance, but not the missing glucose itself, it is Missing at Random. Deleting rows introduces severe demographic bias!';
         } else if (isL4Chk2) {
@@ -5073,6 +6099,12 @@
         } else if (isL2_1Chk2) {
           feedback.innerHTML = `❌ <b>Common Architectural Trap:</b> Sampling variance scales with $(1 - f)$, which means standard error scales with the square root: $\\text{FPC} = \\sqrt{1 - f} = \\sqrt{0.75} \\approx 0.8660$. Thus standard error drops by $13.4\\%$, NOT $25\\%$.`;
           verbalFeedback = 'Not quite. Remember that variance scales with 1 minus f, so standard error scales with the square root of 1 minus f, which is square root of 0.75 or approximately 0.8660. This means standard error shrinks by 13.4 percent, not 25 percent.';
+        } else if (isL4_1Chk1) {
+          feedback.innerHTML = `❌ <b>Mathematical Trap:</b> The signal-to-noise ratio in PAC sample complexity scales quadratically: $(1 - 2\\eta)^2 = (0.40)^2 = 0.16$. The multiplier is $\\frac{1}{0.16} = 6.25\\times$, requiring $62{,}500$ annotations, not a linear fraction.`;
+          verbalFeedback = 'Careful! Remember that in the Angluin-Laird theorem, sample complexity scales with the square of 1 minus 2 eta. With eta at 0.30, 0.40 squared is 0.16. Dividing 10,000 by 0.16 requires 62,500 annotations, not a linear fraction.';
+        } else if (isL4_1Chk2) {
+          feedback.innerHTML = `❌ <b>Clinical Risk Trap:</b> Asymmetric noise is not mere class imbalance. The directional label flipping pulls the empirical risk minimum toward Benign Nevus, causing lethal missed diagnoses. The inverse operator $T^{-1}$ mathematically de-biases the expected gradient updates!`;
+          verbalFeedback = 'Not quite. Asymmetric noise is not mere class imbalance. The directional label corruption systematically shifts the empirical loss minimum away from true Bayes risk. Natarajan\'s inverse transition operator mathematically restores an unbiased risk estimator.';
         } else if (isChk1) {
           feedback.innerHTML = `❌ <b>Common Architectural Trap:</b> JSON is a row-oriented text format requiring full lexical parsing and key duplication across every single row. In contrast, columnar formats like Parquet project only requested columns with dictionary and run-length encoding.`;
           verbalFeedback = 'Not quite. Remember that JSON is a text-based format requiring full lexical parsing and field name duplication across every single row. In contrast, columnar formats like Parquet project only requested columns with run-length and dictionary encoding.';
@@ -5638,8 +6670,22 @@
       const isL2_2 = (currentTopic === 'ch2_p2');
       const isL2_2Cov = isL2_2 && (currentSlideIndex === 5);
       const isL2_2Littles = isL2_2 && (currentSlideIndex === 11);
+      const isL4_1Noise = isL4_1 && (currentSlideIndex === 5);
+      const isL4_1Trans = isL4_1 && (currentSlideIndex === 11);
       const isL2_2Chk1 = isL2_2 && (currentSlideIndex === 6);
       const isL2_2Chk2 = isL2_2 && (currentSlideIndex === 12);
+      const isL4_1 = (currentTopic === 'ch4_p1');
+      const isL4_1Chk1 = isL4_1 && (currentSlideIndex === 6);
+      const isL4_1Chk2 = isL4_1 && (currentSlideIndex === 12);
+      const isLesson3 = (currentTopic === 'ch1_p3');
+      const isL3Storage = isLesson3 && (currentSlideIndex === 9);
+      const isL3Chk1 = isLesson3 && (currentSlideIndex === 6);
+      const isL3Chk2 = isLesson3 && (currentSlideIndex === 12);
+
+      const isLesson4 = (currentTopic === 'ch1_p4');
+      const isL4Quality = isLesson4 && (currentSlideIndex === 9);
+      const isL4Chk1 = isLesson4 && (currentSlideIndex === 6);
+      const isL4Chk2 = isLesson4 && (currentSlideIndex === 12);
 
       if (dockKey === 'sim') {
         if (isL2_1Tae) {
@@ -5699,6 +6745,50 @@
                 "We have docked at the Finite Population Correction and Power Sizer Workbench! Look at the controls: Universe Size N, Planned Sample Size n, Variance sigma squared, and Target Margin of Error delta. Notice how increasing the sample fraction past 15% causes the FPC factor to compress standard error sharply, reducing required sample sizes. Try adjusting the sliders above me now!",
                 0.0,
                 25.536
+              )
+            ];
+          }
+        } else if (isL6Churn) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p6_sim_duo.mp3';
+            totalDuration = 26.966;
+            interactiveSentences = [
+              buildTimedSentence("Kaito", "Dr. Nova, look at the canvas profit curve! When tau is set to 0.35, net economic utility peaks at over six thousand two hundred dollars, while the naive 0.50 cutoff only reaches five thousand two hundred!", 0.0, 9.0),
+              buildTimedSentence("Dr. Nova", "Exactly, Kaito. Because saving a three hundred dollar subscriber is far more valuable than the twenty dollar outreach offer, lowering tau to prioritize recall maximizes commercial profit!", 9.35, 26.966)
+            ];
+          } else {
+            audioPath = './audio/ch1_p6_sim_solo.mp3';
+            totalDuration = 25.68;
+            interactiveSentences = [
+              buildTimedSentence("Dr. Nova", "We have docked at the Customer Churn Decision and Profit Workbench! Look at the controls above me: you can adjust the classification decision threshold tau from 0.05 to 0.95 and watch how the confusion matrix and net economic profit curve respond in real time. Notice how the default threshold of 0.5 leaves thousands of dollars on the table compared to our optimal asymmetric threshold tau-star!", 0.0, 25.68)
+            ];
+          }        } else if (isL5Dist) {
+          if (isDuo) {
+            audioPath = './audio/ch1_p5_sim_duo.mp3';
+            totalDuration = 24.302;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Dr. Nova, look at the canvas! When Right-Skewed is selected on Raw Scale, the mean is over one hundred thousand dollars, while the median is only eighty-seven thousand, and skewness is positive one point four!",
+                0.0,
+                11.800
+              ),
+              buildTimedSentence(
+                "Dr. Nova",
+                "Exactly, Kaito. Now switch the Mathematical Transform selector to 'Logarithmic Normalization: log(x + 1)'. Look at what happens to the histogram!",
+                12.150,
+                24.302
+              )
+            ];
+          } else {
+            audioPath = './audio/ch1_p5_sim_solo.mp3';
+            totalDuration = 24.048;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "We have docked at the Distribution Profiler and Transformation Lab! Look at the control selectors above me: you can toggle between Right-Skewed household incomes, Symmetric Gaussian adult heights, and a Bimodal multi-cluster mixture. Notice how the dashed reference lines on the histogram demonstrate the divergence between sample mean and median, and watch how variance-stabilizing log transforms restore normality!",
+                0.0,
+                24.048
               )
             ];
           }
@@ -5777,6 +6867,54 @@
                 "Welcome to the Little's Law and Queue Stability Simulator! Adjust arrival rate lambda and service rate mu. Observe how traffic intensity rho and steady-state buffer depth L behave dynamically.",
                 0.0,
                 12.744
+              )
+            ];
+          }
+        } else if (isL4_1Noise) {
+          if (isDuo) {
+            audioPath = './audio/ch4_p1_noise_sim_duo.mp3';
+            totalDuration = 9.696;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Dr. Nova, our speaker stage has traveled down to the Label Noise Studio! Look at the effective sample size plummet when error rate hits thirty percent!",
+                0.0,
+                9.696
+              )
+            ];
+          } else {
+            audioPath = './audio/ch4_p1_noise_sim_solo.mp3';
+            totalDuration = 15.744;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "We have docked at the Label Noise and PAC Learnability Studio! Adjust nominal sample size N and annotator error rate eta above me. Notice how nominal data power drops quadratically and how Confident Learning prunes inconsistent annotations.",
+                0.0,
+                15.744
+              )
+            ];
+          }
+        } else if (isL4_1Trans) {
+          if (isDuo) {
+            audioPath = './audio/ch4_p1_trans_sim_duo.mp3';
+            totalDuration = 9.696;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "Look at the class confusion sliders, Nova! When T zero-one hits 0.35, the decision boundary skews heavily toward the majority class!",
+                0.0,
+                9.696
+              )
+            ];
+          } else {
+            audioPath = './audio/ch4_p1_trans_sim_solo.mp3';
+            totalDuration = 16.968;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Welcome to the Asymmetric Transition Matrix and Loss Correction Workbench! Adjust false negative confusion T 0 1 and false positive confusion T 1 0. Watch the matrix determinant and see how the inverted operator T inverse de-biases the risk gradients.",
+                0.0,
+                16.968
               )
             ];
           }
@@ -5932,7 +7070,19 @@
           }
         }
       } else if (dockKey === 'quiz') {
-        if (isL4Chk1) {
+        if (isL6Chk1) {
+        feedbackDuration = isCorrect ? 23.952 : 13.608;
+        feedbackSrc = isCorrect ? './audio/ch1_p6_chk1_feedback_correct.mp3' : './audio/ch1_p6_chk1_feedback_incorrect.mp3';
+      } else if (isL6Chk2) {
+        feedbackDuration = isCorrect ? 26.304 : 14.112;
+        feedbackSrc = isCorrect ? './audio/ch1_p6_chk2_feedback_correct.mp3' : './audio/ch1_p6_chk2_feedback_incorrect.mp3';
+      } else         if (isL5Chk1) {
+        feedbackDuration = isCorrect ? 24.216 : 12.864;
+        feedbackSrc = isCorrect ? './audio/ch1_p5_chk1_feedback_correct.mp3' : './audio/ch1_p5_chk1_feedback_incorrect.mp3';
+      } else if (isL5Chk2) {
+        feedbackDuration = isCorrect ? 25.272 : 13.368;
+        feedbackSrc = isCorrect ? './audio/ch1_p5_chk2_feedback_correct.mp3' : './audio/ch1_p5_chk2_feedback_incorrect.mp3';
+      } else if (isL4Chk1) {
         feedbackDuration = isCorrect ? 21.216 : 15.384;
         feedbackSrc = isCorrect ? './audio/ch1_p4_chk1_feedback_correct.mp3' : './audio/ch1_p4_chk1_feedback_incorrect.mp3';
       } else if (isL4Chk2) {
@@ -6001,6 +7151,54 @@
                 "Here is your active checkpoint: An engineer collects 5,000 telemetry packets from an IoT edge device that logs exactly 20,000 packets per day. By what percentage does the Finite Population Correction shrink the standard error compared to assuming an infinite population? Select Option A, B, or C above me!",
                 0.0,
                 20.232
+              )
+            ];
+          }
+        } else if (isL4_1Chk1) {
+          if (isDuo) {
+            audioPath = './audio/ch4_p1_chk1_duo.mp3';
+            totalDuration = 10.104;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "A crowd workforce with thirty percent error rate, and we need ten thousand gold-standard records! Select Option A, B, or C above me to lock in your answer.",
+                0.0,
+                10.104
+              )
+            ];
+          } else {
+            audioPath = './audio/ch4_p1_chk1_solo.mp3';
+            totalDuration = 16.752;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Checkpoint 1: An autonomous perception team uses crowd workers with a 30% error rate. If they need the statistical power of 10,000 gold annotations, how many crowd annotations must they collect? Select Option A, B, or C above me!",
+                0.0,
+                16.752
+              )
+            ];
+          }
+        } else if (isL4_1Chk2) {
+          if (isDuo) {
+            audioPath = './audio/ch4_p1_chk2_duo.mp3';
+            totalDuration = 10.320;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Kaito",
+                "A 25% error rate in only one direction for melanoma diagnoses! Review our three options above me and select the correct architectural resolution!",
+                0.0,
+                10.320
+              )
+            ];
+          } else {
+            audioPath = './audio/ch4_p1_chk2_solo.mp3';
+            totalDuration = 19.728;
+            interactiveSentences = [
+              buildTimedSentence(
+                "Dr. Nova",
+                "Active Checkpoint 2: In a clinical oncology dataset, annotators mislabel Melanoma as Benign Nevus with probability 0.25, but never mislabel Nevus as Melanoma. Why does standard Cross-Entropy fail, and how does T inverse fix it? Select Option A, B, or C above me!",
+                0.0,
+                19.728
               )
             ];
           }
@@ -6320,9 +7518,15 @@
       const isL2_2 = (currentTopic === 'ch2_p2');
       const isL2_2Chk1 = isL2_2 && (currentSlideIndex === 6);
       const isL2_2Chk2 = isL2_2 && (currentSlideIndex === 12);
+      const isL4_1 = (currentTopic === 'ch4_p1');
+      const isL4_1Chk1 = isL4_1 && (currentSlideIndex === 6);
+      const isL4_1Chk2 = isL4_1 && (currentSlideIndex === 12);
       const isLesson3 = (currentTopic === 'ch1_p3');
       const isL3Chk1 = isLesson3 && (currentSlideIndex === 6);
       const isL3Chk2 = isLesson3 && (currentSlideIndex === 12);
+      const isLesson4 = (currentTopic === 'ch1_p4');
+      const isL4Chk1 = isLesson4 && (currentSlideIndex === 6);
+      const isL4Chk2 = isLesson4 && (currentSlideIndex === 12);
 
       let feedbackDuration = 12.0;
       let feedbackSrc = '';
@@ -6339,6 +7543,12 @@
       } else if (isL2_2Chk2) {
         feedbackDuration = isCorrect ? 17.376 : 13.392;
         feedbackSrc = isCorrect ? './audio/ch2_p2_chk2_feedback_correct.mp3' : './audio/ch2_p2_chk2_feedback_incorrect.mp3';
+      } else if (isL4_1Chk1) {
+        feedbackDuration = isCorrect ? 25.656 : 22.536;
+        feedbackSrc = isCorrect ? './audio/ch4_p1_chk1_feedback_correct.mp3' : './audio/ch4_p1_chk1_feedback_incorrect.mp3';
+      } else if (isL4_1Chk2) {
+        feedbackDuration = isCorrect ? 19.248 : 17.376;
+        feedbackSrc = isCorrect ? './audio/ch4_p1_chk2_feedback_correct.mp3' : './audio/ch4_p1_chk2_feedback_incorrect.mp3';
       } else if (isChk1) {
         feedbackDuration = isCorrect ? 15.912 : 16.920;
         feedbackSrc = isCorrect ? './audio/ch1_p2_chk1_feedback_correct.mp3' : './audio/ch1_p2_chk1_feedback_incorrect.mp3';
@@ -6572,22 +7782,27 @@
       const isL2Sim = (currentTopic === 'ch1_p2' && (currentSlideIndex === 5 || currentSlideIndex === 11));
       const isL3Sim = (currentTopic === 'ch1_p3' && currentSlideIndex === 9);
       const isL4Sim = (currentTopic === 'ch1_p4' && currentSlideIndex === 9);
+      const isL5Sim = (currentTopic === 'ch1_p5' && currentSlideIndex === 9);
+      const isL6Sim = (currentTopic === 'ch1_p6' && currentSlideIndex === 9);
       const domSim = !!(document.getElementById('speakerDockSimulator') ||
                         document.getElementById('empiricalCascadeWidget') ||
                         document.getElementById('empiricalSimWidget') ||
                         document.getElementById('multiStructureWidget') ||
                         document.getElementById('streamingWindowWidget') ||
                         document.getElementById('storageBenchmarkWidget') ||
-                        document.getElementById('qualityRadarWidget'));
-      const hasSim = isL1Sim || isL2Sim || isL3Sim || isL4Sim || hasTurnsSim || domSim;
+                        document.getElementById('qualityRadarWidget') ||
+                        document.getElementById('distributionProfilerWidget'));
+      const hasSim = isL1Sim || isL2Sim || isL3Sim || isL4Sim || isL5Sim || isL6Sim || hasTurnsSim || domSim;
 
       const isL1Quiz = (currentTopic === 'ch1_p1' && (currentSlideIndex === 1 || currentSlideIndex === 7));
       const isL2Quiz = (currentTopic === 'ch1_p2' && (currentSlideIndex === 6 || currentSlideIndex === 12));
       const isL3Quiz = (currentTopic === 'ch1_p3' && (currentSlideIndex === 6 || currentSlideIndex === 12));
       const isL4Quiz = (currentTopic === 'ch1_p4' && (currentSlideIndex === 6 || currentSlideIndex === 12));
+      const isL5Quiz = (currentTopic === 'ch1_p5' && (currentSlideIndex === 6 || currentSlideIndex === 12));
+      const isL6Quiz = (currentTopic === 'ch1_p6' && (currentSlideIndex === 6 || currentSlideIndex === 12));
       const domQuiz = !!(document.getElementById('speakerDockCheckpoint') ||
                          document.getElementById('slideQuizCheckpoint'));
-      const hasQuiz = isL1Quiz || isL2Quiz || isL3Quiz || isL4Quiz || hasTurnsQuiz || domQuiz;
+      const hasQuiz = isL1Quiz || isL2Quiz || isL3Quiz || isL4Quiz || isL5Quiz || isL6Quiz || hasTurnsQuiz || domQuiz;
 
       // Do not navigate away if tool does not exist on this slide
       if (targetKey === 'sim' && !hasSim) return;
@@ -6714,22 +7929,27 @@
       const isL2Sim = (currentTopic === 'ch1_p2' && (currentSlideIndex === 5 || currentSlideIndex === 11));
       const isL3Sim = (currentTopic === 'ch1_p3' && currentSlideIndex === 9);
       const isL4Sim = (currentTopic === 'ch1_p4' && currentSlideIndex === 9);
+      const isL5Sim = (currentTopic === 'ch1_p5' && currentSlideIndex === 9);
+      const isL6Sim = (currentTopic === 'ch1_p6' && currentSlideIndex === 9);
       const domSim = !!(document.getElementById('speakerDockSimulator') ||
                         document.getElementById('empiricalCascadeWidget') ||
                         document.getElementById('empiricalSimWidget') ||
                         document.getElementById('multiStructureWidget') ||
                         document.getElementById('streamingWindowWidget') ||
                         document.getElementById('storageBenchmarkWidget') ||
-                        document.getElementById('qualityRadarWidget'));
-      const hasSim = isL1Sim || isL2Sim || isL3Sim || isL4Sim || hasTurnsSim || domSim;
+                        document.getElementById('qualityRadarWidget') ||
+                        document.getElementById('distributionProfilerWidget'));
+      const hasSim = isL1Sim || isL2Sim || isL3Sim || isL4Sim || isL5Sim || isL6Sim || hasTurnsSim || domSim;
 
       const isL1Quiz = (currentTopic === 'ch1_p1' && (currentSlideIndex === 1 || currentSlideIndex === 7));
       const isL2Quiz = (currentTopic === 'ch1_p2' && (currentSlideIndex === 6 || currentSlideIndex === 12));
       const isL3Quiz = (currentTopic === 'ch1_p3' && (currentSlideIndex === 6 || currentSlideIndex === 12));
       const isL4Quiz = (currentTopic === 'ch1_p4' && (currentSlideIndex === 6 || currentSlideIndex === 12));
+      const isL5Quiz = (currentTopic === 'ch1_p5' && (currentSlideIndex === 6 || currentSlideIndex === 12));
+      const isL6Quiz = (currentTopic === 'ch1_p6' && (currentSlideIndex === 6 || currentSlideIndex === 12));
       const domQuiz = !!(document.getElementById('speakerDockCheckpoint') ||
                          document.getElementById('slideQuizCheckpoint'));
-      const hasQuiz = isL1Quiz || isL2Quiz || isL3Quiz || isL4Quiz || hasTurnsQuiz || domQuiz;
+      const hasQuiz = isL1Quiz || isL2Quiz || isL3Quiz || isL4Quiz || isL5Quiz || isL6Quiz || hasTurnsQuiz || domQuiz;
 
       const isCascade = (currentTopic === 'ch1_p1' && (currentSlideIndex === 7 || currentSlideIndex === 8));
       const isMultiStruct = (currentTopic === 'ch1_p2' && currentSlideIndex === 5);
@@ -6753,9 +7973,11 @@
       if (btnSim) {
         if (hasSim) {
           btnSim.classList.remove('hidden');
+          const isDistSim = (currentTopic === 'ch1_p5' && currentSlideIndex === 9);
           const isQualitySim = (currentTopic === 'ch1_p4' && currentSlideIndex === 9);
           const isStorageSim = (currentTopic === 'ch1_p3' && currentSlideIndex === 9);
-          if (isQualitySim) btnSim.innerHTML = '⚡ Quality Radar';
+          if (isDistSim) btnSim.innerHTML = '⚡ Distribution Lab';
+          else if (isQualitySim) btnSim.innerHTML = '⚡ Quality Radar';
           else if (isStorageSim) btnSim.innerHTML = '⚡ Storage Benchmark';
           else if (isMultiStruct) btnSim.innerHTML = '⚡ Multi-Structure';
           else if (isStreamSim) btnSim.innerHTML = '⚡ Streaming Sim';
@@ -6773,8 +7995,12 @@
           const isL3Chk2 = (currentTopic === 'ch1_p3' && currentSlideIndex === 12);
           const isL4Chk1 = (currentTopic === 'ch1_p4' && currentSlideIndex === 6);
           const isL4Chk2 = (currentTopic === 'ch1_p4' && currentSlideIndex === 12);
-          if (isChk1 || isL3Chk1 || isL4Chk1) btnQuiz.innerHTML = '💡 Checkpoint 1';
-          else if (isChk2 || isL3Chk2 || isL4Chk2) btnQuiz.innerHTML = '💡 Checkpoint 2';
+          const isL5Chk1 = (currentTopic === 'ch1_p5' && currentSlideIndex === 6);
+          const isL5Chk2 = (currentTopic === 'ch1_p5' && currentSlideIndex === 12);
+          const isL6Chk1 = (currentTopic === 'ch1_p6' && currentSlideIndex === 6);
+          const isL6Chk2 = (currentTopic === 'ch1_p6' && currentSlideIndex === 12);
+          if (isChk1 || isL3Chk1 || isL4Chk1 || isL5Chk1 || isL6Chk1) btnQuiz.innerHTML = '💡 Checkpoint 1';
+          else if (isChk2 || isL3Chk2 || isL4Chk2 || isL5Chk2 || isL6Chk2) btnQuiz.innerHTML = '💡 Checkpoint 2';
           else btnQuiz.innerHTML = '💡 Checkpoint';
         } else {
           btnQuiz.classList.add('hidden');
@@ -7641,6 +8867,139 @@
       }
     }
     window.updateLittlesSim = updateLittlesSim;
+
+    // --- Lesson 4.1 Simulation Engines ---
+    function updateNoiseSim() {
+      const nEl = document.getElementById('sl_n_nominal');
+      const etaEl = document.getElementById('sl_eta');
+      const filterEl = document.getElementById('sel_filter');
+
+      if (!nEl || !etaEl || !filterEl) return;
+
+      const N = parseInt(nEl.value, 10);
+      const eta = parseFloat(etaEl.value);
+      const filter = filterEl.value;
+
+      document.getElementById('lbl_n_nominal').textContent = `${N.toLocaleString()} Records`;
+      document.getElementById('lbl_eta').textContent = `${eta.toFixed(2)} (${(eta * 100).toFixed(0)}%)`;
+
+      const expansionFactor = 1.0 / Math.pow(Math.max(0.01, 1.0 - 2.0 * eta), 2);
+      let effectiveEta = eta;
+      let finalAcc = 0.95 - 0.50 * eta;
+
+      if (filter === 'consensus') {
+        effectiveEta = 3 * Math.pow(eta, 2) * (1 - eta) + Math.pow(eta, 3);
+        finalAcc = 0.95 - 0.40 * effectiveEta;
+      } else if (filter === 'confident') {
+        effectiveEta = eta * 0.22;
+        finalAcc = 0.95 - 0.25 * effectiveEta;
+      }
+
+      const finalNeff = N * Math.pow(Math.max(0.001, 1.0 - 2.0 * effectiveEta), 2);
+      const retentionPct = (finalNeff / N) * 100.0;
+
+      document.getElementById('stat_n_eff').textContent = `${Math.round(finalNeff).toLocaleString()} Records`;
+      document.getElementById('stat_retention_pct').textContent = `${retentionPct.toFixed(1)}% Retained`;
+      document.getElementById('stat_sample_expansion').textContent = `${expansionFactor.toFixed(2)}x Expansion`;
+      document.getElementById('stat_accuracy').textContent = `${(finalAcc * 100).toFixed(1)}%`;
+      document.getElementById('stat_effective_noise').textContent = `${(effectiveEta * 100).toFixed(1)}% Residual`;
+
+      const accDeltaEl = document.getElementById('stat_acc_delta');
+      if (accDeltaEl) {
+        if (filter === 'confident') {
+          const recovered = (finalAcc - (0.95 - 0.50 * eta)) * 100;
+          accDeltaEl.textContent = `Recovered +${recovered.toFixed(1)}%`;
+          accDeltaEl.style.color = "#15803d";
+        } else if (filter === 'consensus') {
+          const recovered = (finalAcc - (0.95 - 0.50 * eta)) * 100;
+          accDeltaEl.textContent = `Recovered +${recovered.toFixed(1)}%`;
+          accDeltaEl.style.color = "#0e7490";
+        } else {
+          accDeltaEl.textContent = "Raw Label Noise";
+          accDeltaEl.style.color = "#b91c1c";
+        }
+      }
+
+      const banner = document.getElementById('pac_alert_banner');
+      if (banner) {
+        if (eta >= 0.40) {
+          banner.style.background = "#fee2e2";
+          banner.style.border = "2px solid #b91c1c";
+          banner.style.color = "#7f1d1d";
+          banner.innerHTML = `<strong>⚠️ Total Statistical Signal Collapse (η = ${eta.toFixed(2)}):</strong> As η approaches 0.50, signal denominator (1 - 2η) approaches 0. Effective sample size collapses to ${Math.round(finalNeff)} records, requiring a ${expansionFactor.toFixed(1)}x sample size explosion. No model architecture can converge.`;
+        } else if (eta >= 0.20) {
+          banner.style.background = "#fffbeb";
+          banner.style.border = "2px solid #b45309";
+          banner.style.color = "#92400e";
+          banner.innerHTML = `<strong>ℹ️ High Sample Complexity Penalty:</strong> At η = ${eta.toFixed(2)}, statistical capacity is degraded by ${((1 - (finalNeff/N))*100).toFixed(0)}%. ${filter === 'confident' ? 'Confident Learning successfully prunes corrupted instances.' : 'Deploying Confident Learning or multi-worker consensus is strongly advised.'}`;
+        } else {
+          banner.style.background = "#dcfce7";
+          banner.style.border = "2px solid #15803d";
+          banner.style.color = "#14532d";
+          banner.innerHTML = `<strong>✓ High Quality Annotation Channel (η = ${eta.toFixed(2)}):</strong> Retaining ${retentionPct.toFixed(1)}% effective statistical power. Sample complexity expansion penalty is minimal (${expansionFactor.toFixed(2)}x).`;
+        }
+      }
+    }
+    window.updateNoiseSim = updateNoiseSim;
+
+    function updateTransSim() {
+      const t01El = document.getElementById('transSliderT01');
+      const t10El = document.getElementById('transSliderT10');
+      const prevEl = document.getElementById('transSliderPrev');
+
+      if (!t01El || !t10El || !prevEl) return;
+
+      const t01 = parseFloat(t01El.value);
+      const t10 = parseFloat(t10El.value);
+      const p0 = parseFloat(prevEl.value);
+
+      document.getElementById('transValT01').textContent = `${(t01 * 100).toFixed(0)}% (${t01.toFixed(2)})`;
+      document.getElementById('transValT10').textContent = `${(t10 * 100).toFixed(0)}% (${t10.toFixed(2)})`;
+      document.getElementById('transValPrev').textContent = `${(p0 * 100).toFixed(0)}% (P(Y*=0) = ${p0.toFixed(2)})`;
+
+      const det = (1.0 - t01) * (1.0 - t10) - (t01 * t10);
+      const obsPrev = (1.0 - t01) * p0 + t10 * (1.0 - p0);
+      const skew = obsPrev - p0;
+      const weightRatio = (1.0 - t10) / Math.max(0.001, 1.0 - t01);
+
+      document.getElementById('transMetricDet').textContent = det.toFixed(3);
+      document.getElementById('transMetricObsPrev').textContent = `${(obsPrev * 100).toFixed(1)}%`;
+      document.getElementById('transMetricSkew').textContent = `${skew >= 0 ? '+' : ''}${(skew * 100).toFixed(1)}% shift`;
+      document.getElementById('transMetricWeightRatio').textContent = `${weightRatio.toFixed(2)}x`;
+
+      const badgeEl = document.getElementById('transStatusBadge');
+      const barEl = document.getElementById('transProgressBar');
+
+      if (det <= 0.10) {
+        if (badgeEl) {
+          badgeEl.className = 'text-xs font-black text-[#dc2626] mt-1';
+          badgeEl.innerText = 'Near Singular (det ≤ 0.10)';
+        }
+        if (barEl) {
+          barEl.style.width = '100%';
+          barEl.className = 'h-full bg-[#dc2626] rounded-full transition-all duration-300';
+        }
+      } else if (det <= 0.40) {
+        if (badgeEl) {
+          badgeEl.className = 'text-xs font-black text-[#b45309] mt-1';
+          badgeEl.innerText = 'Ill-Conditioned (High Variance)';
+        }
+        if (barEl) {
+          barEl.style.width = `${Math.min(100, det * 100)}%`;
+          barEl.className = 'h-full bg-[#b45309] rounded-full transition-all duration-300';
+        }
+      } else {
+        if (badgeEl) {
+          badgeEl.className = 'text-xs font-black text-[#15803d] mt-1';
+          badgeEl.innerText = 'Well-Conditioned Unbiased';
+        }
+        if (barEl) {
+          barEl.style.width = `${Math.min(100, det * 100)}%`;
+          barEl.className = 'h-full bg-[#15803d] rounded-full transition-all duration-300';
+        }
+      }
+    }
+    window.updateTransSim = updateTransSim;
     
   </script>
 

@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -2051,17 +2095,6 @@
     <span class="md-ellipsis">
       
         📚 Syllabus &amp; Lessons in Track 4
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interactive-data-studio-browser-workbenches" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🔬 Interactive Data Studio &amp; Browser Workbenches
       
     </span>
   </a>
@@ -7304,17 +7337,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#interactive-data-studio-browser-workbenches" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🔬 Interactive Data Studio &amp; Browser Workbenches
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -7336,31 +7358,32 @@
 
 
 <h1 id="track-4-data-annotation">Track 4: Data Annotation</h1>
-<div class="noc-hero">
-  <div class="noc-track-badge">Curriculum Track • Module 04</div>
-  <h1>Data Annotation</h1>
-  <p class="subtitle">
-    Explore the theoretical foundations, practical methods, and real-world implementations of data annotation. Aligned directly with Chapter 4 of the Springer Nature monograph.
+<div class="noc-hero" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; box-shadow: 4px 4px 0px #ffc83e;">
+  <div class="noc-track-badge" style="background: #ffc83e; color: #151b20; border: 1.5px solid #151b20; font-size: 0.75rem; padding: 3px 10px; border-radius: 9999px; font-weight: 800; font-family: monospace; display: inline-block; margin-bottom: 8px;">Curriculum Track • Module 04</div>
+  <h1 style="margin: 0 0 10px 0; font-size: 2rem; font-weight: 900; color: #151b20;">Data Annotation Engineering</h1>
+  <p class="subtitle" style="font-size: 1.05rem; color: #334155; margin: 0 0 16px 0; line-height: 1.55;">
+    Theoretical foundations, statistical quality control, multi-modal annotation paradigms, and frontier foundation-model-in-the-loop workflows. Grounded directly in Chapter 4 of the Springer Nature monograph.
   </p>
-  <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem;">
-    <span class="noc-track-badge" style="background: rgba(37, 99, 235, 0.1); color: #2563eb; border-color: rgba(37, 99, 235, 0.2);">⏱️ 10 In-Depth Lessons</span>
-    <span class="noc-track-badge" style="background: rgba(16, 185, 129, 0.1); color: #059669; border-color: rgba(16, 185, 129, 0.2);">🔬 Interactive Labs &amp; Tools</span>
-    <span class="noc-track-badge" style="background: rgba(124, 58, 237, 0.1); color: #7c3aed; border-color: rgba(124, 58, 237, 0.2);">📊 PPTX &amp; PDF Lecture Decks</span>
-    <span class="noc-track-badge" style="background: rgba(234, 88, 12, 0.1); color: #ea580c; border-color: rgba(234, 88, 12, 0.2);">📜 Grounded in Springer Monograph</span>
+  <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+    <span class="noc-track-badge" style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-weight: 800; padding: 3px 10px; border-radius: 6px; font-size: 0.78rem;">⏱️ 10 Intensive Lessons</span>
+    <span class="noc-track-badge" style="background: #fff0b9; color: #b45309; border: 1.5px solid #151b20; font-weight: 800; padding: 3px 10px; border-radius: 6px; font-size: 0.78rem;">🔬 10 Client-Side Interactive Labs</span>
+    <span class="noc-track-badge" style="background: #e7f4c8; color: #3f6212; border: 1.5px solid #151b20; font-weight: 800; padding: 3px 10px; border-radius: 6px; font-size: 0.78rem;">📊 PPTX &amp; PDF Lecture Decks</span>
+    <span class="noc-track-badge" style="background: #f3e8ff; color: #6b21a8; border: 1.5px solid #151b20; font-weight: 800; padding: 3px 10px; border-radius: 6px; font-size: 0.78rem;">📜 Springer Monograph Aligned</span>
   </div>
 </div>
 
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-  <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-      <span>📚 Aligned with Chapter 4 of the Official Monograph</span>
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 4px 4px 0px #ffc83e;">
+  <div style="flex: 1; min-width: 280px;">
+    <div style="font-weight: 800; color: #151b20; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 1.3rem;">📚</span>
+      <span>Aligned with Chapter 4 of the Official Monograph</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
-      Explore complete theoretical derivations, mathematical models, and proofs in <strong>Chapter 4</strong>.
+    <div style="font-size: 0.92rem; color: #334155; margin-top: 6px; line-height: 1.55;">
+      Explore complete theoretical derivations, mathematical models, and proofs in <strong>Chapter 4: Data Annotation</strong> in the official Springer Nature textbook.
     </div>
   </div>
-  <a href="../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none;">
-    <span>Read Monograph Hub →</span>
+  <a href="../textbook/" style="display: inline-flex; align-items: center; gap: 8px; background: #2563eb; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; transition: transform 0.15s ease;">
+    <span>Explore Chapter 4 in Monograph →</span>
   </a>
 </div>
 
@@ -7368,150 +7391,175 @@
 <h2 id="architectural-learning-roadmap">🗺️ Architectural Learning Roadmap</h2>
 <p>The diagram below outlines how the core concepts in Track 4 connect across the data engineering lifecycle:</p>
 <pre class="mermaid"><code>flowchart TD
-  Tax["Annotation Taxonomy&lt;br/&gt;(Guidelines &amp; Codes)"] --&gt; Schema["Multi-Modal Labeling&lt;br/&gt;(Text, Bounding Box, Polygon)"]
-  Schema --&gt; HITL["Human-in-the-Loop&lt;br/&gt;(Crowdsourcing &amp; Verification)"]
-  HITL --&gt; IAA["Inter-Annotator Agreement&lt;br/&gt;(Cohen &amp; Fleiss' κ)"]
-  IAA --&gt; Gold["Consensus Adjudication&lt;br/&gt;(Gold Standards)"]
+  Tax["1. Annotation Taxonomy &amp; Modalities&lt;br/&gt;(Text, Vision, Audio, Video, 3D Point Clouds)"] --&gt; Scale["2. Scalable Annotation Paradigms&lt;br/&gt;(Active Learning, Weak Supervision, Model Pre-Label)"]
+  Scale --&gt; Systems["3. Production Platform Architecture&lt;br/&gt;(Distributed M/M/c Queuing, Redis Leases, Wald's SPRT)"]
+  Systems --&gt; QC["4. Statistical Quality Control&lt;br/&gt;(Cohen/Fleiss' κ, Krippendorff's α, Dawid-Skene EM)"]
+  QC --&gt; Gov["5. High-Stakes Domains &amp; Governance&lt;br/&gt;(3D Dice/HD95, 7-DOF BBox, Bayesian Elo, DPO)"]
 
   classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
   classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
-  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
+  classDef purple fill:#f3e8ff,stroke:#151b20,stroke-width:2px,color:#151b20;
   classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
 
   class Tax blue;
-  class Schema,HITL amber;
-  class IAA purple;
-  class Gold green;</code></pre>
+  class Scale,Systems amber;
+  class QC purple;
+  class Gov green;</code></pre>
 <hr />
 <h2 id="syllabus-lessons-in-track-4">📚 Syllabus &amp; Lessons in Track 4</h2>
-<div class="noc-tracks-grid">
+<div class="noc-tracks-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 20px;">
 
-  <div class="noc-track-card">
+  <div class="noc-track-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 10px; padding: 18px; box-shadow: 3px 3px 0px #151b20; display: flex; flex-direction: column; justify-content: space-between;">
     <div>
-      <span class="noc-track-badge">Lesson 4.1</span>
-      <div class="noc-track-title">Introduction to data annotation</div>
-      <div class="noc-track-desc">Chapters 2 and 3 covered how records enter a dataset and what obligations attach to them. This chapter asks how raw records become supervised training signal. This first part defines annotation, shows why label quality often caps model accuracy, and previews labeled examples across text, image, audio, and video.</div>
-      <div style="font-size:0.8rem; color:var(--md-default-fg-color--lighter); margin-top:0.35rem; margin-bottom:0.75rem;">
-        ⚡ ~7 min
+      <span class="noc-track-badge" style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-weight: 800; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Lesson 4.1</span>
+      <h3 style="margin: 8px 0; font-size: 1.1rem; font-weight: 800; color: #151b20;">Introduction to Data Annotation</h3>
+      <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin: 0 0 12px 0;">
+        Information-theoretic limits under Random Classification Noise (RCN), Northcutt Confident Learning pruning, and cross-modality taxonomy mapping.
+      </p>
+      <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; margin-bottom: 12px;">
+        ⚡ ~25 min • 🔬 Interactive RCN &amp; Confident Learning Lab
       </div>
     </div>
-    <a href="01-introduction-to-data-annotation/" class="noc-track-link">Launch Lesson 4.1 →</a>
+    <a href="01-introduction-to-data-annotation/" style="display: inline-flex; align-items: center; justify-content: center; background: #2563eb; color: #ffffff; padding: 8px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; text-decoration: none; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20;">Launch Lesson 4.1 →</a>
   </div>
 
-  <div class="noc-track-card">
+  <div class="noc-track-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 10px; padding: 18px; box-shadow: 3px 3px 0px #151b20; display: flex; flex-direction: column; justify-content: space-between;">
     <div>
-      <span class="noc-track-badge">Lesson 4.2</span>
-      <div class="noc-track-title">Text and image annotation</div>
-      <div class="noc-track-desc">The introduction showed what labeled data look like in each modality. This part turns to the label operations teams specify in guidelines: tokenization, sentiment, named entities, and part-of-speech for text; bounding boxes, segmentation, and landmarks for images.</div>
-      <div style="font-size:0.8rem; color:var(--md-default-fg-color--lighter); margin-top:0.35rem; margin-bottom:0.75rem;">
-        ⚡ ~8 min • 🛠️ text annotation, image annotation
+      <span class="noc-track-badge" style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-weight: 800; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Lesson 4.2</span>
+      <h3 style="margin: 8px 0; font-size: 1.1rem; font-weight: 800; color: #151b20;">Text and Image Annotation</h3>
+      <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin: 0 0 12px 0;">
+        Pascal VOC / COCO / YOLO bounding box coordinate transforms, Green's Theorem polygon area, IoU/GIoU/DIoU, column-major RLE, and BIOES tokenization.
+      </p>
+      <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; margin-bottom: 12px;">
+        ⚡ ~25 min • 🔬 Geometry &amp; Span Annotation Studio
       </div>
     </div>
-    <a href="02-text-and-image-annotation/" class="noc-track-link">Launch Lesson 4.2 →</a>
+    <a href="02-text-and-image-annotation/" style="display: inline-flex; align-items: center; justify-content: center; background: #2563eb; color: #ffffff; padding: 8px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; text-decoration: none; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20;">Launch Lesson 4.2 →</a>
   </div>
 
-  <div class="noc-track-card">
+  <div class="noc-track-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 10px; padding: 18px; box-shadow: 3px 3px 0px #151b20; display: flex; flex-direction: column; justify-content: space-between;">
     <div>
-      <span class="noc-track-badge">Lesson 4.3</span>
-      <div class="noc-track-title">Audio, video, and tabular annotation</div>
-      <div class="noc-track-desc">Text and image schemas are only part of the annotation landscape. This part covers transcription and diarization for audio, frame-level and activity labels for video, and row-level categorization and outlier flags for tabular data.</div>
-      <div style="font-size:0.8rem; color:var(--md-default-fg-color--lighter); margin-top:0.35rem; margin-bottom:0.75rem;">
-        ⚡ ~7 min
+      <span class="noc-track-badge" style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-weight: 800; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Lesson 4.3</span>
+      <h3 style="margin: 8px 0; font-size: 1.1rem; font-weight: 800; color: #151b20;">Audio, Video, and Tabular Annotation</h3>
+      <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin: 0 0 12px 0;">
+        Gabor-Heisenberg time-frequency resolution limits in STFT spectrograms, temporal tIoU, 3D video spatio-temporal tubelets, MOTA / IDF1 / HOTA, and CTA/CEL table graphs.
+      </p>
+      <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; margin-bottom: 12px;">
+        ⚡ ~25 min • 🔬 Audio-Video Tubelet &amp; CTA Studio
       </div>
     </div>
-    <a href="03-audio-video-tabular-annotation/" class="noc-track-link">Launch Lesson 4.3 →</a>
+    <a href="03-audio-video-tabular-annotation/" style="display: inline-flex; align-items: center; justify-content: center; background: #2563eb; color: #ffffff; padding: 8px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; text-decoration: none; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20;">Launch Lesson 4.3 →</a>
   </div>
 
-  <div class="noc-track-card">
+  <div class="noc-track-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 10px; padding: 18px; box-shadow: 3px 3px 0px #151b20; display: flex; flex-direction: column; justify-content: space-between;">
     <div>
-      <span class="noc-track-badge">Lesson 4.4</span>
-      <div class="noc-track-title">Annotation techniques</div>
-      <div class="noc-track-desc">Knowing which labels to apply is not enough—you still need a workflow that matches quality and budget. This part contrasts manual, semi-automated, fully automated, and crowdsourced annotation, including active learning queues and majority-vote redundancy.</div>
-      <div style="font-size:0.8rem; color:var(--md-default-fg-color--lighter); margin-top:0.35rem; margin-bottom:0.75rem;">
-        ⚡ ~7 min
+      <span class="noc-track-badge" style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-weight: 800; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Lesson 4.4</span>
+      <h3 style="margin: 8px 0; font-size: 1.1rem; font-weight: 800; color: #151b20;">Annotation Techniques &amp; Weak Supervision</h3>
+      <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin: 0 0 12px 0;">
+        Pool-based Active Learning (Entropy, Margin, QBC, Core-Set), Snorkel generative factor models with analytical triplet covariance accuracy discovery, and cost reduction dynamics.
+      </p>
+      <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; margin-bottom: 12px;">
+        ⚡ ~25 min • 🔬 Active Learning 2D &amp; Snorkel Studio
       </div>
     </div>
-    <a href="04-annotation-techniques/" class="noc-track-link">Launch Lesson 4.4 →</a>
+    <a href="04-annotation-techniques/" style="display: inline-flex; align-items: center; justify-content: center; background: #2563eb; color: #ffffff; padding: 8px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; text-decoration: none; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20;">Launch Lesson 4.4 →</a>
   </div>
 
-  <div class="noc-track-card">
+  <div class="noc-track-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 10px; padding: 18px; box-shadow: 3px 3px 0px #151b20; display: flex; flex-direction: column; justify-content: space-between;">
     <div>
-      <span class="noc-track-badge">Lesson 4.5</span>
-      <div class="noc-track-title">Tools for data annotation</div>
-      <div class="noc-track-desc">Technique choices become operational through annotation platforms. This part maps open-source editors and commercial platforms to modality needs, lists four features every production tool should provide, and walks a minimal object-detection workflow with LabelImg.</div>
-      <div style="font-size:0.8rem; color:var(--md-default-fg-color--lighter); margin-top:0.35rem; margin-bottom:0.75rem;">
-        ⚡ ~7 min • 🛠️ image annotation
+      <span class="noc-track-badge" style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-weight: 800; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Lesson 4.5</span>
+      <h3 style="margin: 8px 0; font-size: 1.1rem; font-weight: 800; color: #151b20;">Tools &amp; Platform Architecture</h3>
+      <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin: 0 0 12px 0;">
+        Distributed queue queuing theory ($M/M/c$ Erlang-C delays, Little's Law), HITL speedup multipliers, Redis distributed lease locking with heartbeat renewals, and Wald's SPRT worker certification.
+      </p>
+      <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; margin-bottom: 12px;">
+        ⚡ ~25 min • 🔬 Distributed Queue &amp; SPRT Honeypot Studio
       </div>
     </div>
-    <a href="05-tools-for-annotation/" class="noc-track-link">Launch Lesson 4.5 →</a>
+    <a href="05-tools-for-annotation/" style="display: inline-flex; align-items: center; justify-content: center; background: #2563eb; color: #ffffff; padding: 8px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; text-decoration: none; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20;">Launch Lesson 4.5 →</a>
   </div>
 
-  <div class="noc-track-card">
+  <div class="noc-track-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 10px; padding: 18px; box-shadow: 3px 3px 0px #151b20; display: flex; flex-direction: column; justify-content: space-between;">
     <div>
-      <span class="noc-track-badge">Lesson 4.6</span>
-      <div class="noc-track-title">Quality control in annotation</div>
-      <div class="noc-track-desc">Tools speed labeling, but inconsistent labels teach the wrong decision boundaries. This part covers common annotation errors, inter-annotator agreement measures, gold-set audit metrics, and annotator training habits that keep drift in check.</div>
-      <div style="font-size:0.8rem; color:var(--md-default-fg-color--lighter); margin-top:0.35rem; margin-bottom:0.75rem;">
-        ⚡ ~8 min • 🛠️ IAA calculator
+      <span class="noc-track-badge" style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-weight: 800; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Lesson 4.6</span>
+      <h3 style="margin: 8px 0; font-size: 1.1rem; font-weight: 800; color: #151b20;">Quality Control &amp; Agreement Metrics</h3>
+      <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin: 0 0 12px 0;">
+        Chance-corrected agreement, Feinstein-Cicchetti prevalence paradox, Cohen's kappa, quadratic weighted kappa, Fleiss' multi-rater kappa, Krippendorff's alpha, and Dawid-Skene EM latent truth estimation.
+      </p>
+      <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; margin-bottom: 12px;">
+        ⚡ ~25 min • 🔬 Multi-Annotator Agreement &amp; Dawid-Skene Studio
       </div>
     </div>
-    <a href="06-quality-control/" class="noc-track-link">Launch Lesson 4.6 →</a>
+    <a href="06-quality-control/" style="display: inline-flex; align-items: center; justify-content: center; background: #2563eb; color: #ffffff; padding: 8px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; text-decoration: none; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20;">Launch Lesson 4.6 →</a>
   </div>
 
-  <div class="noc-track-card">
+  <div class="noc-track-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 10px; padding: 18px; box-shadow: 3px 3px 0px #151b20; display: flex; flex-direction: column; justify-content: space-between;">
     <div>
-      <span class="noc-track-badge">Lesson 4.7</span>
-      <div class="noc-track-title">Challenges in data annotation</div>
-      <div class="noc-track-desc">Even strong QC programs face structural limits. This part names scale bottlenecks, labeler bias, workforce ethics, and rare-class scarcity—and points back to workflows and governance already introduced rather than re-teaching them.</div>
-      <div style="font-size:0.8rem; color:var(--md-default-fg-color--lighter); margin-top:0.35rem; margin-bottom:0.75rem;">
-        ⚡ ~6 min
+      <span class="noc-track-badge" style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-weight: 800; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Lesson 4.7</span>
+      <h3 style="margin: 8px 0; font-size: 1.1rem; font-weight: 800; color: #151b20;">Challenges in Annotation &amp; Adversarial Dynamics</h3>
+      <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin: 0 0 12px 0;">
+        Aleatoric vs. epistemic ambiguity, cognitive fatigue hazard functions $\eta(t)$, cumulative shift error integrals, log-normal dwell time bot anomaly filters, and honeypot economic allocation laws.
+      </p>
+      <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; margin-bottom: 12px;">
+        ⚡ ~25 min • 🔬 Cognitive Fatigue &amp; Bot Defense Studio
       </div>
     </div>
-    <a href="07-challenges-in-annotation/" class="noc-track-link">Launch Lesson 4.7 →</a>
+    <a href="07-challenges-in-annotation/" style="display: inline-flex; align-items: center; justify-content: center; background: #2563eb; color: #ffffff; padding: 8px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; text-decoration: none; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20;">Launch Lesson 4.7 →</a>
   </div>
 
-  <div class="noc-track-card">
+  <div class="noc-track-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 10px; padding: 18px; box-shadow: 3px 3px 0px #151b20; display: flex; flex-direction: column; justify-content: space-between;">
     <div>
-      <span class="noc-track-badge">Lesson 4.8</span>
-      <div class="noc-track-title">Use cases and applications</div>
-      <div class="noc-track-desc">Abstract schemas become concrete in domain settings. This part shows how annotation choices play out in autonomous driving, medical imaging, e-commerce catalogs, and emerging geospatial and augmented-reality workflows.</div>
-      <div style="font-size:0.8rem; color:var(--md-default-fg-color--lighter); margin-top:0.35rem; margin-bottom:0.75rem;">
-        ⚡ ~6 min
+      <span class="noc-track-badge" style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-weight: 800; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Lesson 4.8</span>
+      <h3 style="margin: 8px 0; font-size: 1.1rem; font-weight: 800; color: #151b20;">Domain-Specific High-Stakes Annotation</h3>
+      <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin: 0 0 12px 0;">
+        Clinical 3D volumetric Dice vs. 95th-percentile Hausdorff distance (HD95), autonomous vehicle 7-DOF oriented bounding box IoU, LiDAR spatial density decay, and legal NLP fuzzy token span matching.
+      </p>
+      <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; margin-bottom: 12px;">
+        ⚡ ~25 min • 🔬 Medical 3D &amp; Autonomous 3D BBox Studio
       </div>
     </div>
-    <a href="08-use-cases-and-applications/" class="noc-track-link">Launch Lesson 4.8 →</a>
+    <a href="08-use-cases-and-applications/" style="display: inline-flex; align-items: center; justify-content: center; background: #2563eb; color: #ffffff; padding: 8px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; text-decoration: none; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20;">Launch Lesson 4.8 →</a>
   </div>
 
-  <div class="noc-track-card">
+  <div class="noc-track-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 10px; padding: 18px; box-shadow: 3px 3px 0px #151b20; display: flex; flex-direction: column; justify-content: space-between;">
     <div>
-      <span class="noc-track-badge">Lesson 4.9</span>
-      <div class="noc-track-title">Best practices for annotation</div>
-      <div class="noc-track-desc">Use cases illustrate stakes; day-to-day habits sustain quality. This part turns the QC skeleton into operational practice: versioned guidelines with exemplars, calibration and drift audits, diversity checks, and pre-labeling used as proposals rather than shortcuts.</div>
-      <div style="font-size:0.8rem; color:var(--md-default-fg-color--lighter); margin-top:0.35rem; margin-bottom:0.75rem;">
-        ⚡ ~6 min
+      <span class="noc-track-badge" style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-weight: 800; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Lesson 4.9</span>
+      <h3 style="margin: 8px 0; font-size: 1.1rem; font-weight: 800; color: #151b20;">Best Practices &amp; Lifecycle Governance</h3>
+      <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin: 0 0 12px 0;">
+        Statistical pilot study sample size sizing ($N \ge 193$), Bayesian Elo annotator competence updates with tenure damping, dynamic tiered multi-worker redundancy, and Datasheets for Datasets lineage.
+      </p>
+      <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; margin-bottom: 12px;">
+        ⚡ ~25 min • 🔬 Dynamic Redundancy &amp; Elo Auditor Studio
       </div>
     </div>
-    <a href="09-best-practices/" class="noc-track-link">Launch Lesson 4.9 →</a>
+    <a href="09-best-practices/" style="display: inline-flex; align-items: center; justify-content: center; background: #2563eb; color: #ffffff; padding: 8px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; text-decoration: none; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20;">Launch Lesson 4.9 →</a>
   </div>
 
-  <div class="noc-track-card">
+  <div class="noc-track-card" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 10px; padding: 18px; box-shadow: 3px 3px 0px #151b20; display: flex; flex-direction: column; justify-content: space-between;">
     <div>
-      <span class="noc-track-badge">Lesson 4.10</span>
-      <div class="noc-track-title">Emerging topics and future directions</div>
-      <div class="noc-track-desc">Annotation practice is moving toward tighter human–model loops. This final part surveys AI-assisted labeling, synthetic and programmatic labels, real-time annotation for streaming systems, and how those accelerators still depend on QC, ethics, and bias review before Chapter 5 turns to cleaning labeled data.</div>
-      <div style="font-size:0.8rem; color:var(--md-default-fg-color--lighter); margin-top:0.35rem; margin-bottom:0.75rem;">
-        ⚡ ~6 min
+      <span class="noc-track-badge" style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-weight: 800; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px;">Lesson 4.10</span>
+      <h3 style="margin: 8px 0; font-size: 1.1rem; font-weight: 800; color: #151b20;">Emerging Paradigms: LLMs &amp; Preference Alignment</h3>
+      <p style="font-size: 0.85rem; color: #475569; line-height: 1.5; margin: 0 0 12px 0;">
+        Direct Preference Optimization (DPO) closed-form derivation without PPO, LLM-as-a-Judge position bias permutation debiasing, Self-Consistency reasoning marginalization, and model collapse variance decay.
+      </p>
+      <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; margin-bottom: 12px;">
+        ⚡ ~25 min • 🔬 LLM Judge &amp; DPO Alignment Studio
       </div>
     </div>
-    <a href="10-emerging-topics/" class="noc-track-link">Launch Lesson 4.10 →</a>
+    <a href="10-emerging-topics/" style="display: inline-flex; align-items: center; justify-content: center; background: #2563eb; color: #ffffff; padding: 8px 14px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; text-decoration: none; border: 1.5px solid #151b20; box-shadow: 2px 2px 0px #151b20;">Launch Lesson 4.10 →</a>
   </div>
 
 </div>
 
 <hr />
-<h2 id="interactive-data-studio-browser-workbenches">🔬 Interactive Data Studio &amp; Browser Workbenches</h2>
-<p>Explore client-side interactive laboratories and dataset transformation workbenches for Track 4:</p>
-<p>👉 <strong><a href="../tools/">Launch Interactive Data Studio (21+ Labs)</a></strong></p>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">
+  <a href="../track3-ethics-privacy/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffffff; color: #151b20; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+    ← Previous: Track 3 Ethics &amp; Privacy
+  </a>
+  <a href="../track5-dataset-management/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20;">
+    Next: Track 5 Dataset Management →
+  </a>
+</div>
 
 
 

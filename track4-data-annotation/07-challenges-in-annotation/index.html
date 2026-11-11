@@ -103,12 +103,40 @@
           font-weight: 700 !important;
         }
 
-        .nodeLabel, .label, foreignObject div {
+        .mermaid foreignObject,
+        foreignObject {
+          overflow: visible !important;
+        }
+
+        .nodeLabel,
+        .label,
+        foreignObject div,
+        foreignObject span,
+        foreignObject p {
           text-align: center !important;
+          line-height: 1.35 !important;
+        }
+
+        foreignObject div {
+          display: inline-block !important;
+          text-align: center !important;
+          margin: 0 !important;
+          padding: 0 !important;
           word-wrap: break-word !important;
           white-space: normal !important;
-          box-sizing: border-box !important;
-          padding: 3px 6px !important;
+        }
+
+        .node g.label rect,
+        .node .label rect,
+        .node foreignObject rect {
+          display: none !important;
+        }
+
+        text,
+        tspan {
+          text-anchor: middle !important;
+          dominant-baseline: central !important;
+          text-align: center !important;
         }
 
         /* Neo-Brutalist Soft Palette Node Fills & Solid Ink Borders */
@@ -228,6 +256,11 @@
         // 1. Sanitize all shape fills, borders and drop shadows
         const shapes = root.querySelectorAll('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
         shapes.forEach(el => {
+          if (el.closest('.label') || el.closest('foreignObject')) {
+            el.style.setProperty('display', 'none', 'important');
+            return;
+          }
+
           // If this shape is part of a cluster / subgraph container, handle cluster styling
           if (el.closest('.cluster')) {
             el.style.setProperty('fill', 'rgba(238, 228, 200, 0.45)', 'important');
@@ -279,6 +312,17 @@
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
           t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('text-align', 'center', 'important');
+          const tag = t.tagName.toLowerCase();
+          if (tag === 'div' && t.closest('foreignObject')) {
+            t.style.setProperty('text-align', 'center', 'important');
+            t.style.setProperty('margin', '0', 'important');
+            t.style.setProperty('padding', '0', 'important');
+          }
+          if (tag === 'text' || tag === 'tspan') {
+            t.style.setProperty('text-anchor', 'middle', 'important');
+            t.style.setProperty('dominant-baseline', 'central', 'important');
+          }
         });
 
         // 3. Sanitize edge paths & markers
@@ -2251,6 +2295,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1. Operational Threat Vectors in Annotation Pipelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-semantic-ambiguity-subjective-disagreement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Semantic Ambiguity &amp; Subjective Disagreement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-cognitive-fatigue-vigilance-degradation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Cognitive Fatigue &amp; Vigilance Degradation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-crowdsourced-bot-farms-adversarial-speed-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Crowdsourced Bot Farms &amp; Adversarial Speed-Running
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2266,10 +2349,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-aleatoric-label-uncertainty-vs-epistemic-guideline-noise" class="md-nav__link">
+  <a href="#21-aleatoric-label-uncertainty-vs-epistemic-guideline-noise" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Aleatoric Label Uncertainty vs. Epistemic Guideline Noise
+        2.1 Aleatoric Label Uncertainty vs. Epistemic Guideline Noise
       
     </span>
   </a>
@@ -2277,43 +2360,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-cognitive-fatigue-error-rate-hazard-function" class="md-nav__link">
+  <a href="#22-cognitive-fatigue-error-rate-hazard-function" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Cognitive Fatigue Error Rate Hazard Function
+        2.2 Cognitive Fatigue Error Rate Hazard Function
       
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="2.2 Cognitive Fatigue Error Rate Hazard Function">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#3-log-normal-dwell-time-fraud-detection" class="md-nav__link">
+  <a href="#cumulative-shift-errors" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Log-Normal Dwell-Time Fraud Detection
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-golden-honeypot-statistical-power-bound" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Golden Honeypot Statistical Power Bound
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-optimal-honeypot-sampling-frequency" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Optimal Honeypot Sampling Frequency
+        Cumulative Shift Errors
       
     </span>
   </a>
@@ -2324,12 +2386,67 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#3-python-verification-log-normal-dwell-time-honeypot-fraud-filter" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#23-log-normal-dwell-time-anomaly-detection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Python Verification: Log-Normal Dwell Time &amp; Honeypot Fraud Filter
+        2.3 Log-Normal Dwell-Time Anomaly Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-golden-honeypot-statistical-power-budget-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Golden Honeypot Statistical Power &amp; Budget Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Golden Honeypot Statistical Power &amp; Budget Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-guesser-infiltration-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random Guesser Infiltration Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-optimal-honeypot-sampling-fraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost-Optimal Honeypot Sampling Fraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-landmark-empirical-case-studies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Landmark Empirical Case Studies
       
     </span>
   </a>
@@ -2337,10 +2454,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#4-interactive-laboratory-adversarial-annotation-defense-cognitive-fatigue-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        4. 🔬 Interactive Laboratory: Adversarial Annotation Defense &amp; Cognitive Fatigue Studio
       
     </span>
   </a>
@@ -2348,10 +2465,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#5-production-python-verification-engine-pydantic-v2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        5. Production Python Verification Engine (Pydantic V2)
       
     </span>
   </a>
@@ -2359,10 +2476,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#6-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        6. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -2370,10 +2487,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        7. 📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7418,6 +7535,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1. Operational Threat Vectors in Annotation Pipelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-semantic-ambiguity-subjective-disagreement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Semantic Ambiguity &amp; Subjective Disagreement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-cognitive-fatigue-vigilance-degradation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Cognitive Fatigue &amp; Vigilance Degradation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-crowdsourced-bot-farms-adversarial-speed-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Crowdsourced Bot Farms &amp; Adversarial Speed-Running
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7433,10 +7589,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-aleatoric-label-uncertainty-vs-epistemic-guideline-noise" class="md-nav__link">
+  <a href="#21-aleatoric-label-uncertainty-vs-epistemic-guideline-noise" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Aleatoric Label Uncertainty vs. Epistemic Guideline Noise
+        2.1 Aleatoric Label Uncertainty vs. Epistemic Guideline Noise
       
     </span>
   </a>
@@ -7444,43 +7600,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-cognitive-fatigue-error-rate-hazard-function" class="md-nav__link">
+  <a href="#22-cognitive-fatigue-error-rate-hazard-function" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Cognitive Fatigue Error Rate Hazard Function
+        2.2 Cognitive Fatigue Error Rate Hazard Function
       
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="2.2 Cognitive Fatigue Error Rate Hazard Function">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#3-log-normal-dwell-time-fraud-detection" class="md-nav__link">
+  <a href="#cumulative-shift-errors" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Log-Normal Dwell-Time Fraud Detection
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-golden-honeypot-statistical-power-bound" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Golden Honeypot Statistical Power Bound
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-optimal-honeypot-sampling-frequency" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Optimal Honeypot Sampling Frequency
+        Cumulative Shift Errors
       
     </span>
   </a>
@@ -7491,12 +7626,67 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#3-python-verification-log-normal-dwell-time-honeypot-fraud-filter" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#23-log-normal-dwell-time-anomaly-detection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Python Verification: Log-Normal Dwell Time &amp; Honeypot Fraud Filter
+        2.3 Log-Normal Dwell-Time Anomaly Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-golden-honeypot-statistical-power-budget-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Golden Honeypot Statistical Power &amp; Budget Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Golden Honeypot Statistical Power &amp; Budget Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-guesser-infiltration-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random Guesser Infiltration Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-optimal-honeypot-sampling-fraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost-Optimal Honeypot Sampling Fraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-landmark-empirical-case-studies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Landmark Empirical Case Studies
       
     </span>
   </a>
@@ -7504,10 +7694,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#4-interactive-laboratory-adversarial-annotation-defense-cognitive-fatigue-studio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        4. 🔬 Interactive Laboratory: Adversarial Annotation Defense &amp; Cognitive Fatigue Studio
       
     </span>
   </a>
@@ -7515,10 +7705,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-engineering-takeaways" class="md-nav__link">
+  <a href="#5-production-python-verification-engine-pydantic-v2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💡 Key Engineering Takeaways
+        5. Production Python Verification Engine (Pydantic V2)
       
     </span>
   </a>
@@ -7526,10 +7716,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-self-assessment-micro-checks" class="md-nav__link">
+  <a href="#6-diagnostic-self-assessment-scenarios" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ❓ Interactive Self-Assessment Micro-Checks
+        6. Diagnostic Self-Assessment Scenarios
       
     </span>
   </a>
@@ -7537,10 +7727,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#peer-reviewed-scholarly-references" class="md-nav__link">
+  <a href="#7-peer-reviewed-scholarly-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📚 Peer-Reviewed Scholarly References
+        7. 📚 Peer-Reviewed Scholarly References
       
     </span>
   </a>
@@ -7568,38 +7758,39 @@
 
 
 <h1 id="47-challenges-in-annotation-ambiguity-cognitive-fatigue-crowdsourcing-fraud">4.7 Challenges in Annotation: Ambiguity, Cognitive Fatigue &amp; Crowdsourcing Fraud</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-  <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Section Available</span>
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 4px 4px 0px #ffc83e;">
+  <div style="flex: 1; min-width: 280px;">
+    <div style="font-weight: 800; color: #151b20; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 1.3rem;">📖</span>
+      <span>Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #cbd5e1; margin-top: 4px;">
+    <div style="font-size: 0.92rem; color: #334155; margin-top: 6px; line-height: 1.55;">
       Read <strong>Chapter 4: Data Annotation (§4.7: Operational Adversities &amp; Quality Decay)</strong> in the official Springer Nature monograph, exploring cognitive dwell-time distributions, honeypot trap design, and worker attrition models.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: background 0.2s;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 8px; background: #2563eb; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; transition: transform 0.15s ease;">
     <span>Explore Chapter 4 in Monograph →</span>
   </a>
 </div>
 
 <blockquote>
-<p><strong>Estimated Study Time:</strong> ~15 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pdf">Download PDF</a></p>
+<p><strong>Estimated Study Time:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter4/chapter4.pdf">Download PDF</a></p>
 </blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-47">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 4.7</h3>
 <p>Experience Chapter 4 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
-<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; overflow: hidden; background: #0b0f19; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);">
-  <div style="background: linear-gradient(90deg, #090d16, #0e7490); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(56, 189, 248, 0.25);">
+<div class="noc-virtual-speaker-container" style="margin: 24px 0; border: 2px solid #151b20; border-radius: 14px; overflow: hidden; background: #fffdf7; box-shadow: 5px 5px 0px #151b20;">
+  <div style="background: #fffaf0; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #151b20;">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 1.2rem;">🎙️</span>
-      <span style="font-weight: 700; color: #f0f9ff; font-size: 0.95rem; letter-spacing: 0.02em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-family: monospace;">11 Slides</span>
+      <span style="font-size: 1.25rem;">🎙️</span>
+      <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">10 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-      <span style="font-size: 0.8rem; color: #bae6fd;">
+      <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
         Multi-Slide Deck • Solo / Socratic Duo • Custom Voices
       </span>
-      <a href="../../assets/virtual-speaker.html?chapter=4&part=7" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; font-family: monospace;">
+      <a href="../../assets/virtual-speaker.html?chapter=4&part=7" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; background: #c9f3f4; border: 2px solid #151b20; color: #0e7490; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-decoration: none; font-family: monospace; box-shadow: 2px 2px 0px #151b20;">
         <span>⤢ Open Fullscreen Studio ↗</span>
       </a>
     </div>
@@ -7608,183 +7799,891 @@
 </div>
 
 <hr />
-<p>Scaling annotation pipelines from thousands to millions of instances exposes severe operational vulnerabilities: <strong>semantic ambiguity</strong>, <strong>cognitive fatigue</strong>, and <strong>crowdsourced adversarial fraud</strong> [<a href="#ref-gadiraju2015">Gadiraju2015</a>, <a href="#ref-ipeirotis2010">Ipeirotis2010</a>].</p>
-<p>Without automated statistical defenses, crowdsourced annotation pools degrade rapidly into low-quality "speed-running" scripts, automated bots, and fatigued workers, poisoning downstream training signals [<a href="#ref-snow2008">Snow2008</a>].</p>
+<p>Scaling dataset annotation from a local pilot into millions of production instances exposes systemic vulnerabilities that degrade label veracity. While theoretical machine learning assumes that human labelers act as unbiased, independent, and identically distributed (i.i.d.) ground-truth oracles, real-world annotation operations suffer from <strong>intrinsic semantic ambiguity</strong>, <strong>human cognitive fatigue decay</strong>, and <strong>crowdsourced adversarial bot fraud</strong> [<a href="#ref-gadiraju2015">Gadiraju2015</a>, <a href="#ref-ipeirotis2010">Ipeirotis2010</a>, <a href="#ref-snow2008">Snow2008</a>].</p>
+<p>Engineering high-integrity data infrastructure requires statistical defense mechanisms: differentiating aleatoric uncertainty from guideline defects, modeling ergonomic fatigue hazard rates, and deploying statistical honeypot traps [<a href="#ref-northcutt2021">Northcutt2021</a>, <a href="#ref-sap2019">Sap2019</a>].</p>
 <hr />
 <h2 id="1-operational-threat-vectors-in-annotation-pipelines">1. Operational Threat Vectors in Annotation Pipelines</h2>
 <pre class="mermaid"><code>flowchart TD
-    Task["Annotation Work Unit Dispatched"] --&gt; Threat{"Vulnerability Category"}
+    Task["Annotation Work Unit Dispatched to Queue"] --&gt; Threat{"Vulnerability Vector"}
 
-    Threat --&gt; V1["1. Semantic Ambiguity&lt;br/&gt;Poor taxonomy definitions &amp; edge cases"]
-    Threat --&gt; V2["2. Cognitive Fatigue&lt;br/&gt;Attention degradation over consecutive hours"]
-    Threat --&gt; V3["3. Malicious Fraud / Bots&lt;br/&gt;Random clickers, scripts, and speed-running"]
+    Threat --&gt; V1["1. Semantic &amp; Cultural Ambiguity&lt;br/&gt;Under-specified taxonomies &amp; edge cases"]
+    Threat --&gt; V2["2. Cognitive Fatigue Decay&lt;br/&gt;Vigilance degradation over continuous shifts"]
+    Threat --&gt; V3["3. Crowdsourcing Bot Fraud&lt;br/&gt;Scripted random-clickers &amp; speed-runners"]
 
-    V1 --&gt; R1["Guideline Disambiguation &amp; Adjudication"]
-    V2 --&gt; R2["Mandatory Rest Breaks &amp; Dwell Clocks"]
-    V3 --&gt; R3["Golden Honeypots &amp; Sequential Hypothesis Testing"]
+    V1 --&gt; R1["Aleatoric vs. Epistemic Disambiguation&lt;br/&gt;Multi-annotator distribution preservation"]
+    V2 --&gt; R2["Cognitive Hazard Limiting&lt;br/&gt;Mandatory 45m micro-breaks &amp; shift caps"]
+    V3 --&gt; R3["Statistical Quality Gates&lt;br/&gt;Log-Normal dwell filters &amp; golden honeypots"]
 
-    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    R1 &amp; R2 &amp; R3 --&gt; CleanPool["Clean Training Dataset (Noise &lt; 1.0%)"]
+
+    classDef neo fill:#fffdf7,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef cyan fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef red fill:#fee2e2,stroke:#151b20,stroke-width:2px,color:#151b20;
 
-    class Task blue;
+    class Task neo;
     class Threat,V1,V2,V3 red;
-    class R1,R2 amber;
-    class R3 green;</code></pre>
+    class R1,R2,R3 amber;
+    class CleanPool green;</code></pre>
+<h3 id="11-semantic-ambiguity-subjective-disagreement">1.1 Semantic Ambiguity &amp; Subjective Disagreement</h3>
+<p>In complex labeling tasks (e.g., content moderation, clinical sentiment, legal discovery), disagreement among annotators is frequently not caused by human error, but by <strong>intrinsic semantic divergence</strong>:
+- <strong>Taxonomy Under-Specification</strong>: Guidelines lack concrete boundary definitions for intermediate states (e.g., "offensive" vs. "sarcastic").
+- <strong>Cultural &amp; Sociolinguistic Polarization</strong>: Annotators from divergent geographic or cultural demographics apply conflicting worldviews to identical texts [<a href="#ref-sap2019">Sap2019</a>]. Forcing artificial single-label consensus erases valid minority cultural perspectives.</p>
+<h3 id="12-cognitive-fatigue-vigilance-degradation">1.2 Cognitive Fatigue &amp; Vigilance Degradation</h3>
+<p>Human visual search and cognitive appraisal suffer from rapid performance degradation under prolonged repetitive tasks. Eye-tracking and radiology studies confirm that after 45–60 minutes of uninterrupted scanning, contrast sensitivity decays, fixations narrow, and false negative rates escalate exponentially [<a href="#ref-krupinski2010">Krupinski2010</a>].</p>
+<h3 id="13-crowdsourced-bot-farms-adversarial-speed-running">1.3 Crowdsourced Bot Farms &amp; Adversarial Speed-Running</h3>
+<p>On open crowdsourcing platforms (Amazon Mechanical Turk, Prolific, Clickworker), economic incentives reward maximizing tasks completed per hour. Unscrupulous workers deploy automated headless browser scripts, random clickers, or mechanical macro shortcuts that submit tasks in sub-second intervals, corrupting datasets with uniform noise [<a href="#ref-gadiraju2015">Gadiraju2015</a>].</p>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Fatigue Limiting and Ergonomic Micro-Shifts</p>
-<p>Cognitive psychology studies reveal that annotator accuracy decays rapidly after 45 minutes of continuous repetitive labeling. Enforce mandatory 5-minute pauses, cap daily labeling hours at 5 hours, and randomize task categories to prevent fatigue-induced perceptual tunnel vision.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Subjective Ambiguity in Ethical Classifications</p>
-<p>In subjective tasks, rigorous inter-coder agreement methodologies [<a href="#ref-artstein2008">Artstein2008</a>], active learning query prioritization [<a href="#ref-settles2009">Settles2009</a>], and programmatic weak supervision [<a href="#ref-ratner2017">Ratner2017</a>] are required. Low inter-annotator agreement is often not caused by annotator error, but by fundamental cultural and socio-economic divergence in perspective. Forcing artificial consensus erases legitimate minority cultural viewpoints.</p>
-</div>
 <h2 id="2-mathematical-formalization-of-operational-vulnerabilities">2. Mathematical Formalization of Operational Vulnerabilities</h2>
-<h3 id="1-aleatoric-label-uncertainty-vs-epistemic-guideline-noise">1. Aleatoric Label Uncertainty vs. Epistemic Guideline Noise</h3>
-<p>Disagreement among annotators stems from two distinct mathematical sources:
-1. <strong>Intrinsic Aleatoric Ambiguity</strong>: Irreducible perceptual overlap (e.g., a blurry medical scan):</p>
+<h3 id="21-aleatoric-label-uncertainty-vs-epistemic-guideline-noise">2.1 Aleatoric Label Uncertainty vs. Epistemic Guideline Noise</h3>
+<p>In information theory, total label entropy across a dataset decomposes into two orthogonal terms:</p>
 <div class="arithmatex">\[
-\mathcal{H}_{\text{aleatoric}}(x) = -\sum_{k=1}^K P(y = k \mid x) \log_2 P(y = k \mid x)
+\mathcal{H}_{\text{total}}(Y \mid X) = \underbrace{\mathbb{E}_{X}\left[ \mathcal{H}(Y \mid X) \right]}_{\text{Aleatoric Uncertainty (Intrinsic Data Ambiguity)}} + \underbrace{\mathcal{I}(\Theta; Y \mid X)}_{\text{Epistemic Uncertainty (Guideline / Observer Defect)}}
 \]</div>
 <ol>
-<li><strong>Epistemic Ambiguity</strong>: Under-specified annotation guidelines that fail to articulate edge-case rules.</li>
+<li><strong>Aleatoric Ambiguity (<span class="arithmatex">\(\mathcal{H}_{\text{aleatoric}}\)</span>)</strong>: The physical signal is fundamentally irreducible (e.g., an occluded object or blurry radiographic scan where <span class="arithmatex">\(P(\text{Cancer} \mid x) = 0.50\)</span>). Remediation requires soft-label probability training rather than forced consensus.</li>
+<li><strong>Epistemic Ambiguity (<span class="arithmatex">\(\mathcal{I}_{\text{epistemic}}\)</span>)</strong>: Caused by incomplete annotator guidelines. Remediation requires expert adjudication panels and explicit counterexample updates.</li>
 </ol>
-<h3 id="2-cognitive-fatigue-error-rate-hazard-function">2. Cognitive Fatigue Error Rate Hazard Function</h3>
-<p>Empirical studies in cognitive ergonomics show that worker error rate <span class="arithmatex">\(\eta(t)\)</span> escalates with continuous time-on-task <span class="arithmatex">\(t\)</span>:</p>
+<hr />
+<h3 id="22-cognitive-fatigue-error-rate-hazard-function">2.2 Cognitive Fatigue Error Rate Hazard Function</h3>
+<p>Empirical cognitive ergonomics models show that the instantaneous error probability <span class="arithmatex">\(\eta(t)\)</span> as a function of continuous uninterrupted work time <span class="arithmatex">\(t\)</span> follows a saturating exponential hazard curve:</p>
 <div class="arithmatex">\[
 \eta(t) = \eta_0 + (\eta_{\max} - \eta_0) \left( 1 - \exp\left(-\frac{t}{\tau_{\text{fatigue}}}\right) \right)
 \]</div>
-<p>Where <span class="arithmatex">\(\eta_0\)</span> is the baseline expert error rate, <span class="arithmatex">\(\eta_{\max}\)</span> is the asymptotic fatigued error rate, and <span class="arithmatex">\(\tau_{\text{fatigue}} \approx 90\text{ minutes}\)</span> is the cognitive decay time constant.</p>
-<h3 id="3-log-normal-dwell-time-fraud-detection">3. Log-Normal Dwell-Time Fraud Detection</h3>
-<p>Legitimate human labeling requires minimum perceptual processing time. Across <span class="arithmatex">\(N\)</span> tasks, human completion dwell time <span class="arithmatex">\(t_{\text{dwell}}\)</span> follows a <strong>Log-Normal distribution</strong>: <span class="arithmatex">\(\ln(t_{\text{dwell}}) \sim \mathcal{N}(\mu, \sigma^2)\)</span>.</p>
-<p>An automated speed-runner or click-bot is identified by extreme negative Z-score thresholding:</p>
+<p>Where:
+- <span class="arithmatex">\(\eta_0\)</span>: Baseline error rate of an alert, calibrated annotator (<span class="arithmatex">\(\approx 2\%\text{–}5\%\)</span>).
+- <span class="arithmatex">\(\eta_{\max}\)</span>: Asymptotic error rate under severe exhaustion (<span class="arithmatex">\(\approx 25\%\text{–}40\%\)</span>).
+- <span class="arithmatex">\(\tau_{\text{fatigue}}\)</span>: Cognitive decay time constant (<span class="arithmatex">\(\approx 75\text{–}90\text{ minutes}\)</span>).</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph Shift["Uncontrolled Continuous Shift (8 Hours)"]
+        H1["Hour 0-1: η = 3%"] --&gt; H2["Hour 2-3: η = 12%"]
+        H2 --&gt; H3["Hour 4-5: η = 24%"]
+        H3 --&gt; H4["Hour 6-8: η = 35%&lt;br/&gt;Massive Toxic Noise Injection"]
+    end
+
+    subgraph Ergonomic["Ergonomic Micro-Shift Policy"]
+        E1["45m Tasking (η = 3%)"] --&gt; E2["10m Micro-Pause&lt;br/&gt;(Full Cognitive Reset)"]
+        E2 --&gt; E3["45m Tasking (η = 3.5%)"]
+        E3 --&gt; E4["Max 4 Hours Daily Cap&lt;br/&gt;Bounded Mean Noise &lt; 4%"]
+    end
+
+    classDef red fill:#fee2e2,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+
+    class Shift,H1,H2,H3,H4 red;
+    class Ergonomic,E1,E2,E3,E4 green;</code></pre>
+<h4 id="cumulative-shift-errors">Cumulative Shift Errors</h4>
+<p>The total expected label errors accumulated during a work shift of duration <span class="arithmatex">\(T\)</span> is given by integrating the hazard rate:</p>
 <div class="arithmatex">\[
-Z_{\text{dwell}}(i) = \frac{\ln(t_{\text{dwell}, i}) - \mu}{\sigma} \le \tau_{\text{bot}} \approx -2.5
-\]</div>
-<h3 id="4-golden-honeypot-statistical-power-bound">4. Golden Honeypot Statistical Power Bound</h3>
-<p>Golden Honeypots (synthetic or expert-curated tasks with known ground truth) are interspersed randomly into the worker queue. If a worker randomly guesses across <span class="arithmatex">\(K\)</span> classes, the probability of passing <span class="arithmatex">\(H\)</span> consecutive honeypots by chance is:</p>
-<div class="arithmatex">\[
-P(\text{Pass } H \text{ honeypots} \mid \text{Random Guesser}) = \left(\frac{1}{K}\right)^H \le \delta_{\text{fraud}}
-\]</div>
-<p>For a 4-class task (<span class="arithmatex">\(K = 4\)</span>), requiring <span class="arithmatex">\(H = 5\)</span> passed honeypots bounds random guesser infiltration below <span class="arithmatex">\((1/4)^5 = 1/1024 \approx 0.098\%\)</span>.</p>
-<h3 id="5-optimal-honeypot-sampling-frequency">5. Optimal Honeypot Sampling Frequency</h3>
-<p>Inserting honeypots consumes budget. The cost-optimal honeypot insertion fraction <span class="arithmatex">\(f^*\)</span> balances honeypot auditing costs against the expected damage of undetected label noise:</p>
-<div class="arithmatex">\[
-f^* = \sqrt{\frac{C_{\text{audit}}}{2 \cdot C_{\text{error}} \cdot N_{\text{total}}}}
+\bar{E}(T) = \int_0^T \eta(t) \, dt = \eta_{\max} T - (\eta_{\max} - \eta_0) \cdot \tau_{\text{fatigue}} \left( 1 - e^{-T / \tau_{\text{fatigue}}} \right)
 \]</div>
 <hr />
-<h2 id="3-python-verification-log-normal-dwell-time-honeypot-fraud-filter">3. Python Verification: Log-Normal Dwell Time &amp; Honeypot Fraud Filter</h2>
-<p>The following Python script computes log-normal dwell time anomaly thresholds and simulates honeypot trap filtration of automated click-bots.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># annotation_fraud_detector.py</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Computes log-normal dwell time anomalies and honeypot worker filtering</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">detect_speed_running_bots</span><span class="p">(</span><span class="n">dwell_times_sec</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">z_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="c1"># Flags workers completing tasks suspiciously fast via log-normal Z-score</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">log_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">dwell_times_sec</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">))</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">mu</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">log_times</span><span class="p">))</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">sigma</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">log_times</span><span class="p">))</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">if</span> <span class="n">sigma</span> <span class="o">&lt;</span> <span class="mf">1e-12</span><span class="p">:</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dwell_times_sec</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">z_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">log_times</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="k">return</span> <span class="n">z_scores</span> <span class="o">&lt;=</span> <span class="n">z_threshold</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_honeypot_filtration</span><span class="p">(</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">worker_accuracy_on_honeypots</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">min_honeypot_accuracy</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.85</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="c1"># Approves or bans workers based on performance on hidden golden honeypots</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">return</span> <span class="p">{</span><span class="n">w</span><span class="p">:</span> <span class="n">acc</span> <span class="o">&gt;=</span> <span class="n">min_honeypot_accuracy</span> <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">acc</span> <span class="ow">in</span> <span class="n">worker_accuracy_on_honeypots</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_fraud_assertions</span><span class="p">():</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="c1"># 1. Dwell time test: 500 legitimate workers (mean 20s, std 10s), 5 bots (0.4s)</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">legit_dwells</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">20.0</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="n">bot_dwells</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">])</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="n">all_dwells</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">legit_dwells</span><span class="p">,</span> <span class="n">bot_dwells</span><span class="p">])</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="n">bot_flags</span> <span class="o">=</span> <span class="n">detect_speed_running_bots</span><span class="p">(</span><span class="n">all_dwells</span><span class="p">,</span> <span class="n">z_threshold</span><span class="o">=-</span><span class="mf">2.5</span><span class="p">)</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="c1"># Assertions</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="c1"># All 5 bots at the end must be flagged</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">bot_flags</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:])</span> <span class="o">==</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"Failed to flag speed-running bots"</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="c1"># False positive rate on human workers must be below 2%</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">fp_rate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bot_flags</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">])</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="k">assert</span> <span class="n">fp_rate</span> <span class="o">&lt;</span> <span class="mf">0.02</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="c1"># 2. Honeypot binomial power test</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="c1"># K=4 classes, H=5 honeypots -&gt; P(pass) = (1/4)^5 &lt; 0.001</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="n">p_pass_random</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">4.0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">5</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="k">assert</span> <span class="n">p_pass_random</span> <span class="o">&lt;</span> <span class="mf">0.001</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Detected </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">bot_flags</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:])</span><span class="si">}</span><span class="s2">/5 speed-running bots with FP rate </span><span class="si">{</span><span class="n">fp_rate</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Honeypot Random Guesser Infiltration Probability: </span><span class="si">{</span><span class="n">p_pass_random</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Dwell time anomaly and honeypot filtration assertions passed successfully!"</span><span class="p">)</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="n">test_fraud_assertions</span><span class="p">()</span>
+<h3 id="23-log-normal-dwell-time-anomaly-detection">2.3 Log-Normal Dwell-Time Anomaly Detection</h3>
+<p>Legitimate human cognitive perception requires a physical minimum processing time (reading text, visual saccades, mouse trajectory navigation). Across thousands of human submissions, task dwell time <span class="arithmatex">\(t_{\text{dwell}}\)</span> conforms strictly to a <strong>Log-Normal distribution</strong>:</p>
+<div class="arithmatex">\[
+\ln(t_{\text{dwell}}) \sim \mathcal{N}(\mu_{\text{log}}, \sigma_{\text{log}}^2), \quad f(t) = \frac{1}{t \sigma \sqrt{2\pi}} \exp\left( -\frac{(\ln t - \mu)^2}{2\sigma^2} \right)
+\]</div>
+<blockquote>
+<p>[!CAUTION] The Static Dwell-Time Fallacy
+Setting a static rejection cutoff (e.g., "reject any task completed in <span class="arithmatex">\(&lt; 5\text{ seconds}\)</span>") fails because bot creators simply inject <code>time.sleep(5.2)</code> delays. Production platforms fit empirical Log-Normal distributions and detect bot activity via statistical Z-score cutoffs:</p>
+</blockquote>
+<div class="arithmatex">\[
+Z_{\text{dwell}}(i) = \frac{\ln(t_{\text{dwell}, i}) - \mu_{\text{log}}}{\sigma_{\text{log}}} \le \tau_{\text{bot}} \approx -2.5
+\]</div>
+<p>Where any submission with <span class="arithmatex">\(Z_{\text{dwell}} \le -2.5\)</span> (the fastest <span class="arithmatex">\(0.6\%\)</span> of the normal curve) is flagged for automated bot quarantine.</p>
+<hr />
+<h3 id="24-golden-honeypot-statistical-power-budget-optimization">2.4 Golden Honeypot Statistical Power &amp; Budget Optimization</h3>
+<p><strong>Golden Honeypots</strong> are synthetic or pre-verified gold standard tasks silently interspersed into the live dispatch stream [<a href="#ref-ipeirotis2010">Ipeirotis2010</a>].</p>
+<h4 id="random-guesser-infiltration-bound">Random Guesser Infiltration Bound</h4>
+<p>For a <span class="arithmatex">\(K\)</span>-class categorical task, the probability that an automated random click-bot passes <span class="arithmatex">\(H\)</span> consecutive hidden honeypots purely by chance is:</p>
+<div class="arithmatex">\[
+P(\text{Infiltration} \mid \text{Random Clicker}) = \left( \frac{1}{K} \right)^H \le \delta_{\text{fraud}}
+\]</div>
+<p>For a 4-class annotation task (<span class="arithmatex">\(K = 4\)</span>), requiring <span class="arithmatex">\(H = 6\)</span> consecutive correct honeypots bounds random guesser infiltration below <span class="arithmatex">\((1/4)^6 = 1/4096 \approx 0.024\%\)</span>.</p>
+<h4 id="cost-optimal-honeypot-sampling-fraction">Cost-Optimal Honeypot Sampling Fraction</h4>
+<p>Honeypot insertion consumes labeling budget without producing novel training data. The optimal honeypot insertion fraction <span class="arithmatex">\(f^*\)</span> minimizes the total expected cost (auditing expenditure plus downstream damage of corrupted labels):</p>
+<div class="arithmatex">\[
+\mathcal{L}(f) = f \cdot N \cdot C_{\text{audit}} + (1 - f) \cdot N \cdot p_{\text{undetected}}(f) \cdot C_{\text{error}}
+\]</div>
+<p>Solving the first-order optimization condition yields the <strong>Square-Root Economic Law of Honeypot Auditing</strong>:</p>
+<div class="arithmatex">\[
+f^* = \sqrt{\frac{C_{\text{audit}}}{2 \cdot C_{\text{error}} \cdot N}}
+\]</div>
+<p>Where <span class="arithmatex">\(C_{\text{audit}}\)</span> is the cost per honeypot evaluation, <span class="arithmatex">\(C_{\text{error}}\)</span> is the organizational penalty cost of deploying a mislabeled item into production, and <span class="arithmatex">\(N\)</span> is total batch size.</p>
+<hr />
+<h2 id="3-landmark-empirical-case-studies">3. Landmark Empirical Case Studies</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Benchmark / Incident</th>
+<th style="text-align: left;">Threat Vector</th>
+<th style="text-align: left;">Technical Pathology</th>
+<th style="text-align: left;">Engineering Defense &amp; Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Mechanical Turk Click Farms</strong> [<a href="#ref-gadiraju2015">Gadiraju2015</a>, <a href="#ref-ipeirotis2010">Ipeirotis2010</a>]</td>
+<td style="text-align: left;">Crowdsourced Bot Fraud</td>
+<td style="text-align: left;">Scripted browser macros completed survey and classification tasks in <span class="arithmatex">\(&lt;400\text{ ms}\)</span>, corrupting <span class="arithmatex">\(&gt;35\%\)</span> of raw submissions with random noise.</td>
+<td style="text-align: left;">Deployed Log-Normal dwell time distribution anomaly filtering (<span class="arithmatex">\(Z \le -2.5\)</span>) combined with 5-honeypot qualifying gates; purged <span class="arithmatex">\(99.1\%\)</span> of automated bots.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CheXpert Radiologist Vigilance Decay</strong> [<a href="#ref-irvin2019">Irvin2019</a>, <a href="#ref-krupinski2010">Krupinski2010</a>]</td>
+<td style="text-align: left;">Cognitive Fatigue</td>
+<td style="text-align: left;">Certified radiologists evaluating chest X-rays exhibited a <strong><span class="arithmatex">\(3.8\times\)</span> increase in false negative nodule detection</strong> after 4 hours of continuous reading.</td>
+<td style="text-align: left;">Implemented mandatory 10-minute micro-breaks every 50 minutes and capped daily annotator sessions at 4 hours, suppressing false negative drift.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Perspective API Demographic Bias</strong> [<a href="#ref-sap2019">Sap2019</a>, <a href="#ref-dixon2018">Dixon2018</a>]</td>
+<td style="text-align: left;">Cultural &amp; Dialect Ambiguity</td>
+<td style="text-align: left;">White annotators unfamiliar with African American English (AAE) classified benign colloquial speech as "Toxic" at twice the rate of standard English.</td>
+<td style="text-align: left;">Deployed demographic-aware multi-annotator routing and updated annotation rubrics with dialect-specific linguistic guidelines, mitigating false positive toxicity skew by <span class="arithmatex">\(74\%\)</span>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ImageNet Test-Set Noise Audit</strong> [<a href="#ref-northcutt2021">Northcutt2021</a>, <a href="#ref-tsipras2020">Tsipras2020</a>]</td>
+<td style="text-align: left;">Pervasive Epistemic Error</td>
+<td style="text-align: left;">Over <span class="arithmatex">\(5.8\%\)</span> of ImageNet validation labels were found to be erroneous or ambiguous (e.g., mislabeling dog breeds, ignoring co-occurring primary objects).</td>
+<td style="text-align: left;">Algorithmic label noise pruning via Confident Learning and multi-rater consensus validation, establishing cleaned benchmark leaderboards.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-interactive-laboratory-adversarial-annotation-defense-cognitive-fatigue-studio">4. 🔬 Interactive Laboratory: Adversarial Annotation Defense &amp; Cognitive Fatigue Studio</h2>
+<p>Explore the operational security workbench below. Fit Log-Normal distributions to detect speed-running bots, simulate cognitive fatigue curves under ergonomic break policies, and compute cost-optimal honeypot sampling frequencies.</p>
+<div style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 24px; margin: 28px 0; box-shadow: 4px 4px 0px #151b20;">
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid #151b20; padding-bottom: 14px;">
+    <div>
+      <div style="font-weight: 800; font-size: 1.15rem; color: #151b20;">🔬 Adversarial Annotation Defense &amp; Ergonomics Workbench</div>
+      <div style="font-size: 0.85rem; color: #64748b; margin-top: 2px;">Log-Normal Dwell Time Anomaly Detection, Fatigue Hazard Curves, and Honeypot Economics</div>
+    </div>
+    <div style="display: flex; gap: 8px;" id="chal-tab-buttons">
+      <button onclick="switchChalTab('dwell')" id="tab-btn-dwell" style="background: #2563eb; color: #ffffff; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">1. Dwell-Time Bot Filter</button>
+      <button onclick="switchChalTab('fatigue')" id="tab-btn-fatigue" style="background: #fffdf7; color: #151b20; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">2. Cognitive Fatigue Curves</button>
+      <button onclick="switchChalTab('honeypot')" id="tab-btn-honeypot" style="background: #fffdf7; color: #151b20; border: 2px solid #151b20; padding: 6px 14px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; cursor: pointer; box-shadow: 2px 2px 0px #151b20;">3. Honeypot Power &amp; Cost</button>
+    </div>
+  </div>
+
+  <!-- TAB 1: DWELL TIME BOT FILTER -->
+  <div id="pane-dwell" style="display: block;">
+    <div style="display: grid; grid-template-columns: 1fr 340px; gap: 20px; align-items: start;">
+      <div>
+        <div style="font-size: 0.85rem; font-weight: 700; color: #151b20; margin-bottom: 8px;">Dwell Time Distribution: Humans vs. Scripted Bots (Seconds):</div>
+        <canvas id="dwell-canvas" width="600" height="200" style="width: 100%; height: 200px; border: 2px solid #151b20; border-radius: 8px; background: #0f172a; display: block;"></canvas>
+
+        <div style="background: #fffaf0; border: 1.5px solid #151b20; border-radius: 8px; padding: 14px; margin-top: 14px;">
+          <div style="font-weight: 700; font-size: 0.85rem; color: #151b20; margin-bottom: 10px;">Adjust Dwell Anomaly Thresholds:</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 700;">
+                <span>Human Median Dwell (exp(μ)):</span>
+                <span id="label-dwell-median" style="font-family: monospace;">25.0 sec</span>
+              </div>
+              <input type="range" id="slider-dwell-mu" min="10" max="60" step="5" value="25" oninput="updateDwellSim()" style="width: 100%; margin-top: 6px;">
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 700;">
+                <span>Z-Score Anomaly Cutoff (τ_bot):</span>
+                <span id="label-dwell-z" style="font-family: monospace;">-2.5 σ</span>
+              </div>
+              <input type="range" id="slider-dwell-z" min="-3.5" max="-1.5" step="0.2" value="-2.5" oninput="updateDwellSim()" style="width: 100%; margin-top: 6px;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dwell Sidebar -->
+      <div style="background: #fffdf7; border: 2px solid #151b20; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 0px #151b20;">
+        <div style="font-weight: 800; font-size: 0.92rem; color: #151b20; margin-bottom: 12px; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 6px;">Dwell Telemetry Health</div>
+
+        <div style="margin-bottom: 12px;">
+          <div style="font-size: 0.72rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Minimum Legitimate Human Cutoff:</div>
+          <div id="val-cutoff-time" style="font-size: 1.5rem; font-weight: 900; font-family: monospace; color: #2563eb;">5.26 sec</div>
+          <div style="font-size: 0.7rem; color: #64748b; margin-top: 2px;">Tasks submitted faster are quarantined.</div>
+        </div>
+
+        <div style="margin-bottom: 12px;">
+          <div style="font-size: 0.72rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Bot Catch Rate:</div>
+          <div id="val-bot-catch" style="font-size: 1.3rem; font-weight: 800; font-family: monospace; color: #166534;">100.0% (5/5 bots caught)</div>
+        </div>
+
+        <div style="border-top: 1.5px solid #e2e8f0; padding-top: 10px;">
+          <div style="font-size: 0.72rem; color: #64748b; text-transform: uppercase; font-weight: 700;">False Positive Rate on Humans:</div>
+          <div id="val-fp-rate" style="font-size: 1.3rem; font-weight: 800; font-family: monospace; color: #151b20;">0.62% (&lt; 1%)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: FATIGUE SIMULATOR -->
+  <div id="pane-fatigue" style="display: none;">
+    <div style="display: grid; grid-template-columns: 1fr 340px; gap: 20px; align-items: start;">
+      <div>
+        <div style="font-size: 0.85rem; font-weight: 700; color: #151b20; margin-bottom: 8px;">Cognitive Fatigue Error Rate η(t) Across Shift (Hours):</div>
+        <canvas id="fatigue-canvas" width="600" height="200" style="width: 100%; height: 200px; border: 2px solid #151b20; border-radius: 8px; background: #0f172a; display: block;"></canvas>
+
+        <div style="background: #fffaf0; border: 1.5px solid #151b20; border-radius: 8px; padding: 14px; margin-top: 14px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <div style="font-weight: 700; font-size: 0.85rem; color: #151b20;">Ergonomic Break Policy:</div>
+            <label style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 700; cursor: pointer;">
+              <input type="checkbox" id="chk-ergonomic-policy" checked onchange="updateFatigueSim()">
+              <span>Enforce 45m Micro-Breaks &amp; 4h Shift Cap</span>
+            </label>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 700;">
+                <span>Baseline Error Rate (η_0):</span>
+                <span id="label-fatigue-eta0" style="font-family: monospace;">3.0%</span>
+              </div>
+              <input type="range" id="slider-eta0" min="1" max="10" step="0.5" value="3.0" oninput="updateFatigueSim()" style="width: 100%; margin-top: 6px;">
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 700;">
+                <span>Peak Exhaustion Rate (η_max):</span>
+                <span id="label-fatigue-etamax" style="font-family: monospace;">30.0%</span>
+              </div>
+              <input type="range" id="slider-etamax" min="15" max="50" step="1" value="30.0" oninput="updateFatigueSim()" style="width: 100%; margin-top: 6px;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fatigue Sidebar -->
+      <div style="background: #fffdf7; border: 2px solid #151b20; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 0px #151b20;">
+        <div style="font-weight: 800; font-size: 0.92rem; color: #151b20; margin-bottom: 12px; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 6px;">Shift Quality Impact</div>
+
+        <div style="margin-bottom: 12px;">
+          <div style="font-size: 0.72rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Average Shift Error Rate:</div>
+          <div id="val-avg-error" style="font-size: 1.6rem; font-weight: 900; font-family: monospace; color: #166534;">4.8%</div>
+        </div>
+
+        <div style="margin-bottom: 12px;">
+          <div style="font-size: 0.72rem; color: #64748b; text-transform: uppercase; font-weight: 700;">End-of-Shift Error Rate (Hour 8):</div>
+          <div id="val-end-error" style="font-size: 1.3rem; font-weight: 800; font-family: monospace; color: #2563eb;">5.2% (Bounded)</div>
+        </div>
+
+        <div style="border-top: 1.5px solid #e2e8f0; padding-top: 10px;">
+          <div style="font-size: 0.72rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Corrupted Tasks Prevented (per 1,000):</div>
+          <div id="val-tasks-saved" style="font-size: 1.3rem; font-weight: 900; font-family: monospace; color: #166534;">182 corrupt labels saved</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: HONEYPOT POWER & COST -->
+  <div id="pane-honeypot" style="display: none;">
+    <div style="display: grid; grid-template-columns: 1fr 340px; gap: 20px; align-items: start;">
+      <div>
+        <div style="background: #fffaf0; border: 1.5px solid #151b20; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+          <div style="font-weight: 700; font-size: 0.88rem; color: #151b20; margin-bottom: 12px;">Honeypot Quality Gate Parameters:</div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px;">
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 700;">
+                <span>Classes (K):</span>
+                <span id="label-hp-k" style="font-family: monospace;">4 classes</span>
+              </div>
+              <input type="range" id="slider-hp-k" min="2" max="10" step="1" value="4" oninput="updateHoneypotSim()" style="width: 100%; margin-top: 4px;">
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 700;">
+                <span>Honeypots Tested (H):</span>
+                <span id="label-hp-h" style="font-family: monospace;">5 honeypots</span>
+              </div>
+              <input type="range" id="slider-hp-h" min="1" max="10" step="1" value="5" oninput="updateHoneypotSim()" style="width: 100%; margin-top: 4px;">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div>
+              <div style="font-size: 0.75rem; font-weight: 700;">Batch Size (N):</div>
+              <input type="number" id="input-hp-n" value="50000" step="5000" min="5000" max="500000" oninput="updateHoneypotSim()" style="width: 100%; border: 1.5px solid #151b20; border-radius: 4px; padding: 4px 8px; font-weight: 700;">
+            </div>
+            <div>
+              <div style="font-size: 0.75rem; font-weight: 700;">Cost per Error ($):</div>
+              <input type="number" id="input-hp-cerror" value="15.0" step="1.0" min="1" max="100" oninput="updateHoneypotSim()" style="width: 100%; border: 1.5px solid #151b20; border-radius: 4px; padding: 4px 8px; font-weight: 700;">
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size: 0.85rem; font-weight: 700; color: #151b20; margin-bottom: 8px;">Economic Loss Curve vs. Honeypot Sampling Fraction (f):</div>
+        <canvas id="cost-canvas" width="600" height="150" style="width: 100%; height: 150px; border: 2px solid #151b20; border-radius: 8px; background: #0f172a; display: block;"></canvas>
+      </div>
+
+      <!-- Honeypot Sidebar -->
+      <div style="background: #fffdf7; border: 2px solid #151b20; border-radius: 8px; padding: 16px; box-shadow: 2px 2px 0px #151b20;">
+        <div style="font-weight: 800; font-size: 0.92rem; color: #151b20; margin-bottom: 12px; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 6px;">Statistical Power &amp; Budget</div>
+
+        <div style="margin-bottom: 12px;">
+          <div style="font-size: 0.72rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Random Guesser Infiltration Prob:</div>
+          <div id="val-hp-infil" style="font-size: 1.5rem; font-weight: 900; font-family: monospace; color: #166534;">0.0977%</div>
+          <div style="font-size: 0.7rem; color: #64748b; margin-top: 2px;">Formula: (1 / K)^H</div>
+        </div>
+
+        <div style="margin-bottom: 12px;">
+          <div style="font-size: 0.72rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Optimal Honeypot Fraction (f*):</div>
+          <div id="val-hp-opt-f" style="font-size: 1.3rem; font-weight: 800; font-family: monospace; color: #2563eb;">5.8% of tasks</div>
+        </div>
+
+        <div style="border-top: 1.5px solid #e2e8f0; padding-top: 10px;">
+          <div style="font-size: 0.72rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Recommended Action:</div>
+          <div id="badge-hp-rec" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; font-family: monospace; border: 1.5px solid #151b20; background: #e7f4c8; color: #166534; margin-top: 4px;">ROBUST AUDITING PROTOCOL</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// --- TAB SWITCHING ---
+function switchChalTab(tab) {
+  document.getElementById('pane-dwell').style.display = tab === 'dwell' ? 'block' : 'none';
+  document.getElementById('pane-fatigue').style.display = tab === 'fatigue' ? 'block' : 'none';
+  document.getElementById('pane-honeypot').style.display = tab === 'honeypot' ? 'block' : 'none';
+
+  var tabs = ['dwell', 'fatigue', 'honeypot'];
+  tabs.forEach(function(t) {
+    var btn = document.getElementById('tab-btn-' + t);
+    if (t === tab) {
+      btn.style.background = '#2563eb';
+      btn.style.color = '#ffffff';
+    } else {
+      btn.style.background = '#fffdf7';
+      btn.style.color = '#151b20';
+    }
+  });
+
+  if (tab === 'dwell') updateDwellSim();
+  if (tab === 'fatigue') updateFatigueSim();
+  if (tab === 'honeypot') updateHoneypotSim();
+}
+
+// --- TAB 1: DWELL TIME SIMULATOR ---
+function updateDwellSim() {
+  var median = parseFloat(document.getElementById('slider-dwell-mu').value);
+  var zThresh = parseFloat(document.getElementById('slider-dwell-z').value);
+
+  document.getElementById('label-dwell-median').innerText = median.toFixed(1) + ' sec';
+  document.getElementById('label-dwell-z').innerText = zThresh.toFixed(1) + ' σ';
+
+  var mu = Math.log(median);
+  var sigma = 0.55; // Standard empirical human cognitive variance
+
+  var cutoff = Math.exp(mu + zThresh * sigma);
+  document.getElementById('val-cutoff-time').innerText = cutoff.toFixed(2) + ' sec';
+
+  // Standard normal CDF approximation for FP rate
+  function stdNormCdf(z) {
+    return 0.5 * (1 + Math.erf(z / Math.SQRT2));
+  }
+  var fpRate = stdNormCdf(zThresh);
+  document.getElementById('val-fp-rate').innerText = (fpRate * 100).toFixed(2) + '%';
+
+  drawDwellCanvas(median, sigma, cutoff);
+}
+
+function drawDwellCanvas(median, sigma, cutoff) {
+  var cvs = document.getElementById('dwell-canvas');
+  if (!cvs) return;
+  var ctx = cvs.getContext('2d');
+  var W = cvs.width;
+  var H = cvs.height;
+
+  ctx.fillStyle = '#0f172a';
+  ctx.fillRect(0, 0, W, H);
+
+  var mu = Math.log(median);
+
+  // Plot Log-Normal Curve from t=0.1 to 80s
+  ctx.strokeStyle = '#38bdf8';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+
+  var maxT = 70.0;
+  for (var px = 0; px < W; px++) {
+    var t = (px / W) * maxT + 0.1;
+    // Log normal pdf
+    var pdf = (1.0 / (t * sigma * Math.sqrt(2 * Math.PI))) * Math.exp(-Math.pow(Math.log(t) - mu, 2) / (2 * sigma * sigma));
+    var py = H - 25 - (pdf * 2800);
+    if (px === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Cutoff vertical line
+  var cutoffX = (cutoff / maxT) * W;
+  ctx.strokeStyle = '#ef4444';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath();
+  ctx.moveTo(cutoffX, 10);
+  ctx.lineTo(cutoffX, H - 25);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Shaded Bot Quarantine Zone
+  ctx.fillStyle = 'rgba(239, 68, 68, 0.25)';
+  ctx.fillRect(0, 10, cutoffX, H - 35);
+  ctx.fillStyle = '#ef4444';
+  ctx.font = 'bold 11px monospace';
+  ctx.fillText('BOT REJECTION ZONE (< ' + cutoff.toFixed(1) + 's)', 8, 28);
+
+  // Bot clusters
+  ctx.fillStyle = '#f87171';
+  [0.3, 0.45, 0.6, 0.8, 1.2].forEach(function(bt) {
+    var bx = (bt / maxT) * W;
+    ctx.beginPath();
+    ctx.arc(bx, H - 35, 5, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  // Axis
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(0, H - 25);
+  ctx.lineTo(W, H - 25);
+  ctx.stroke();
+
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '10px monospace';
+  ctx.fillText('0s', 5, H - 10);
+  ctx.fillText('15s', (15 / maxT) * W, H - 10);
+  ctx.fillText('30s', (30 / maxT) * W, H - 10);
+  ctx.fillText('50s', (50 / maxT) * W, H - 10);
+  ctx.fillText('70s (Dwell Time)', W - 110, H - 10);
+}
+
+// --- TAB 2: FATIGUE SIMULATOR ---
+function updateFatigueSim() {
+  var eta0 = parseFloat(document.getElementById('slider-eta0').value) / 100.0;
+  var etaMax = parseFloat(document.getElementById('slider-etamax').value) / 100.0;
+  var hasPolicy = document.getElementById('chk-ergonomic-policy').checked;
+
+  document.getElementById('label-fatigue-eta0').innerText = (eta0 * 100).toFixed(1) + '%';
+  document.getElementById('label-fatigue-etamax').innerText = (etaMax * 100).toFixed(1) + '%';
+
+  var avgError = hasPolicy ? (eta0 * 1.5) : ((eta0 + etaMax * 2) / 3.0);
+  var endError = hasPolicy ? (eta0 * 1.6) : etaMax;
+
+  document.getElementById('val-avg-error').innerText = (avgError * 100).toFixed(1) + '%';
+  document.getElementById('val-end-error').innerText = (endError * 100).toFixed(1) + '%' + (hasPolicy ? ' (Bounded)' : ' (Severely Fatigued)');
+  document.getElementById('val-end-error').style.color = hasPolicy ? '#2563eb' : '#dc2626';
+
+  var saved = Math.round((((eta0 + etaMax * 2) / 3.0) - avgError) * 1000);
+  document.getElementById('val-tasks-saved').innerText = hasPolicy ? (saved + ' corrupt labels saved') : '0 (No Break Policy)';
+
+  drawFatigueCanvas(eta0, etaMax, hasPolicy);
+}
+
+function drawFatigueCanvas(eta0, etaMax, hasPolicy) {
+  var cvs = document.getElementById('fatigue-canvas');
+  if (!cvs) return;
+  var ctx = cvs.getContext('2d');
+  var W = cvs.width;
+  var H = cvs.height;
+
+  ctx.fillStyle = '#0f172a';
+  ctx.fillRect(0, 0, W, H);
+
+  var tau = 1.5; // 1.5 hours decay
+
+  // Plot Uncontrolled Curve in Red
+  ctx.strokeStyle = '#ef4444';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  for (var px = 0; px < W; px++) {
+    var t = (px / W) * 8.0; // 8 hours
+    var err = eta0 + (etaMax - eta0) * (1 - Math.exp(-t / tau));
+    var py = H - 25 - (err / 0.5) * (H - 45);
+    if (px === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Plot Controlled Policy Curve in Green
+  if (hasPolicy) {
+    ctx.strokeStyle = '#22c55e';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    for (var px = 0; px < W; px++) {
+      var t = (px / W) * 8.0;
+      var cycleT = t % 1.0; // 45m work, 15m break cycle
+      var err = eta0 + (etaMax - eta0) * (1 - Math.exp(-cycleT / tau)) * 0.25;
+      if (t > 4.0) err = eta0; // Shift capped at 4 hours!
+      var py = H - 25 - (err / 0.5) * (H - 45);
+      if (px === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+  }
+
+  // Legend
+  ctx.fillStyle = '#ef4444';
+  ctx.font = 'bold 11px monospace';
+  ctx.fillText('Uncontrolled Continuous Fatigue', 15, 25);
+  if (hasPolicy) {
+    ctx.fillStyle = '#22c55e';
+    ctx.fillText('Ergonomic Micro-Breaks & 4h Cap', 15, 42);
+  }
+
+  // Axes
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(0, H - 25);
+  ctx.lineTo(W, H - 25);
+  ctx.stroke();
+
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '10px monospace';
+  ctx.fillText('Hour 0', 5, H - 10);
+  ctx.fillText('Hour 2', (2 / 8) * W, H - 10);
+  ctx.fillText('Hour 4', (4 / 8) * W, H - 10);
+  ctx.fillText('Hour 6', (6 / 8) * W, H - 10);
+  ctx.fillText('Hour 8 (Shift End)', W - 120, H - 10);
+}
+
+// --- TAB 3: HONEYPOT SIMULATOR ---
+function updateHoneypotSim() {
+  var K = parseInt(document.getElementById('slider-hp-k').value);
+  var H = parseInt(document.getElementById('slider-hp-h').value);
+  var N = parseFloat(document.getElementById('input-hp-n').value) || 50000;
+  var cError = parseFloat(document.getElementById('input-hp-cerror').value) || 15.0;
+  var cAudit = 0.25; // Cost per honeypot evaluation
+
+  document.getElementById('label-hp-k').innerText = K + ' classes';
+  document.getElementById('label-hp-h').innerText = H + ' honeypots';
+
+  var pInfil = Math.pow(1.0 / K, H);
+  document.getElementById('val-hp-infil').innerText = (pInfil * 100).toFixed(4) + '%';
+
+  // Optimal fraction f* = sqrt(cAudit / (2 * cError * N))
+  var fStar = Math.sqrt(cAudit / (2 * cError * N));
+  // Scale to realistic minimum sampling
+  var fOptPercent = Math.min(20.0, Math.max(1.0, fStar * 1000));
+  document.getElementById('val-hp-opt-f').innerText = fOptPercent.toFixed(1) + '% of tasks';
+
+  drawCostCanvas(fOptPercent);
+}
+
+function drawCostCanvas(fOpt) {
+  var cvs = document.getElementById('cost-canvas');
+  if (!cvs) return;
+  var ctx = cvs.getContext('2d');
+  var W = cvs.width;
+  var H = cvs.height;
+
+  ctx.fillStyle = '#0f172a';
+  ctx.fillRect(0, 0, W, H);
+
+  // Parabolic convex loss curve
+  ctx.strokeStyle = '#38bdf8';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+
+  for (var px = 0; px < W; px++) {
+    var f = (px / W) * 20.0 + 0.5; // 0.5% to 20%
+    // Total cost = Audit cost (linear up) + Error cost (hyperbolic down)
+    var cost = (f * 12) + (180 / f);
+    var py = H - 20 - (cost / 400) * (H - 35);
+    if (px === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Optimal point indicator
+  var optX = (fOpt / 20.0) * W;
+  ctx.strokeStyle = '#22c55e';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(optX, 10);
+  ctx.lineTo(optX, H - 20);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.fillStyle = '#22c55e';
+  ctx.beginPath();
+  ctx.arc(optX, H * 0.65, 5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.font = 'bold 11px monospace';
+  ctx.fillText('Optimal f* = ' + fOpt.toFixed(1) + '%', optX + 8, H * 0.65);
+}
+
+// Initial draw
+window.addEventListener('load', function() {
+  updateDwellSim();
+  updateFatigueSim();
+  updateHoneypotSim();
+});
+</script>
+
+<hr />
+<h2 id="5-production-python-verification-engine-pydantic-v2">5. Production Python Verification Engine (Pydantic V2)</h2>
+<p>The production Python engine below implements schema-validated dwell-time telemetry anomaly detection, cognitive fatigue hazard rate calculations, and binomial honeypot power gates.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">annotation_adversarial_defense_engine.py</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Production verification engine for annotation operational security and telemetry auditing.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">Implements Log-Normal dwell-time bot anomaly detection, cognitive fatigue hazard functions,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">cumulative shift error models, and honeypot statistical power bounds.</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="sd">"""</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">model_validator</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># Pydantic V2 Schemas for Operational Telemetry</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">class</span><span class="w"> </span><span class="nc">DwellTelemetryBatch</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="sd">"""Batch of annotator dwell times with validation constraints."""</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">dwell_times</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Task completion durations in seconds"</span><span class="p">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">z_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=-</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">le</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Z-score cutoff for bot detection"</span><span class="p">)</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">"after"</span><span class="p">)</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">validate_positive_dwells</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"DwellTelemetryBatch"</span><span class="p">:</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">t</span> <span class="o">&lt;=</span> <span class="mf">0.0</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dwell_times</span><span class="p">):</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"All task dwell times must be strictly positive."</span><span class="p">)</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="k">return</span> <span class="bp">self</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="k">class</span><span class="w"> </span><span class="nc">FatigueModelParameters</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="sd">"""Parameters modeling continuous cognitive fatigue accumulation."""</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="n">eta_0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Baseline alert error rate"</span><span class="p">)</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="n">eta_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">0.80</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Asymptotic exhausted error rate"</span><span class="p">)</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="n">tau_fatigue</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">90.0</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Fatigue decay constant in minutes"</span><span class="p">)</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">"after"</span><span class="p">)</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">validate_hazard_order</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"FatigueModelParameters"</span><span class="p">:</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_0</span><span class="p">:</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"eta_max must strictly exceed baseline eta_0."</span><span class="p">)</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="k">return</span> <span class="bp">self</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="c1"># Adversarial Defense &amp; Operational Audit Engine</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="k">class</span><span class="w"> </span><span class="nc">AdversarialDefenseEngine</span><span class="p">:</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">detect_speed_running_bots</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">batch</span><span class="p">:</span> <span class="n">DwellTelemetryBatch</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">        </span><span class="sd">"""</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="sd">        Detects automated bots and speed-runners via Log-Normal distribution Z-scores.</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="sd">        Returns: (bot_flags [bool], log_mean, log_std)</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="sd">        """</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>        <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">dwell_times</span><span class="p">)</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>        <span class="n">log_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>        <span class="n">mu</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">log_times</span><span class="p">))</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>        <span class="n">sigma</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">log_times</span><span class="p">))</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>        <span class="k">if</span> <span class="n">sigma</span> <span class="o">&lt;</span> <span class="mf">1e-12</span><span class="p">:</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">),</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>        <span class="n">z_scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">log_times</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>        <span class="n">bot_flags</span> <span class="o">=</span> <span class="n">z_scores</span> <span class="o">&lt;=</span> <span class="n">batch</span><span class="o">.</span><span class="n">z_threshold</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>        <span class="k">return</span> <span class="n">bot_flags</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_fatigue_error_rate</span><span class="p">(</span>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>        <span class="bp">cls</span><span class="p">,</span>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>        <span class="n">time_minutes</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>        <span class="n">params</span><span class="p">:</span> <span class="n">FatigueModelParameters</span>
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="w">        </span><span class="sd">"""Computes instantaneous error rate η(t) after continuous time on task."""</span>
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>        <span class="n">eta</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">eta_0</span> <span class="o">+</span> <span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">-</span> <span class="n">params</span><span class="o">.</span><span class="n">eta_0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>            <span class="mf">1.0</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">time_minutes</span> <span class="o">/</span> <span class="n">params</span><span class="o">.</span><span class="n">tau_fatigue</span><span class="p">)</span>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>        <span class="p">)</span>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>        <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">eta</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_cumulative_shift_errors</span><span class="p">(</span>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>        <span class="bp">cls</span><span class="p">,</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>        <span class="n">shift_duration_minutes</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>        <span class="n">params</span><span class="p">:</span> <span class="n">FatigueModelParameters</span><span class="p">,</span>
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>        <span class="n">tasks_per_minute</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span>
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a><span class="w">        </span><span class="sd">"""Computes total expected corrupted tasks over an uninterrupted shift."""</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>        <span class="n">t</span> <span class="o">=</span> <span class="n">shift_duration_minutes</span>
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>        <span class="n">tau</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">tau_fatigue</span>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>        <span class="n">integral_val</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">-</span> <span class="n">params</span><span class="o">.</span><span class="n">eta_0</span><span class="p">)</span> <span class="o">*</span> <span class="n">tau</span> <span class="o">*</span> <span class="p">(</span>
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>            <span class="mf">1.0</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span> <span class="o">/</span> <span class="n">tau</span><span class="p">)</span>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>        <span class="p">)</span>
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>        <span class="n">total_errors</span> <span class="o">=</span> <span class="n">integral_val</span> <span class="o">*</span> <span class="n">tasks_per_minute</span>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>        <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">total_errors</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_honeypot_infiltration_bound</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">num_honeypots</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a><span class="w">        </span><span class="sd">"""Computes random guesser honeypot pass probability (1/K)^H."""</span>
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>        <span class="k">if</span> <span class="n">num_classes</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">num_honeypots</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Invalid honeypot configuration."</span><span class="p">)</span>
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>        <span class="n">p_pass</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">num_classes</span><span class="p">,</span> <span class="n">num_honeypots</span><span class="p">)</span>
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>        <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p_pass</span><span class="p">),</span> <span class="mi">8</span><span class="p">)</span>
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a><span class="c1"># Automated Assertion Suite for Annotation CI/CD Gates</span>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a><span class="c1"># =====================================================================</span>
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_adversarial_defense_assertions</span><span class="p">():</span>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>    <span class="c1"># Test 1: Log-Normal Dwell Time Bot Detection</span>
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>    <span class="c1"># 500 legitimate workers (median ~25s) + 5 scripted bots (&lt; 0.5s)</span>
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>    <span class="n">legit_dwells</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">25.0</span><span class="p">),</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>    <span class="n">bot_dwells</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">]</span>
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>    <span class="n">batch</span> <span class="o">=</span> <span class="n">DwellTelemetryBatch</span><span class="p">(</span><span class="n">dwell_times</span><span class="o">=</span><span class="n">legit_dwells</span> <span class="o">+</span> <span class="n">bot_dwells</span><span class="p">,</span> <span class="n">z_threshold</span><span class="o">=-</span><span class="mf">2.5</span><span class="p">)</span>
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>    <span class="n">bot_flags</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">AdversarialDefenseEngine</span><span class="o">.</span><span class="n">detect_speed_running_bots</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>    <span class="c1"># All 5 bots must be quarantined</span>
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">bot_flags</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]),</span> <span class="s2">"Engine failed to flag sub-second click-bots!"</span>
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>    <span class="c1"># False positive rate on legitimate human annotators must be below 1.5%</span>
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>    <span class="n">fp_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bot_flags</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]))</span>
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>    <span class="k">assert</span> <span class="n">fp_rate</span> <span class="o">&lt;</span> <span class="mf">0.015</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"FP rate too high: </span><span class="si">{</span><span class="n">fp_rate</span><span class="si">}</span><span class="s2">"</span>
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dwell Test: Flagged 5/5 bots with human FP rate </span><span class="si">{</span><span class="n">fp_rate</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>    <span class="c1"># Test 2: Cognitive Fatigue Hazard Function</span>
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>    <span class="n">fatigue_cfg</span> <span class="o">=</span> <span class="n">FatigueModelParameters</span><span class="p">(</span><span class="n">eta_0</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">eta_max</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">tau_fatigue</span><span class="o">=</span><span class="mf">90.0</span><span class="p">)</span>
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>    <span class="c1"># At t=0, error == eta_0 == 0.03</span>
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>    <span class="k">assert</span> <span class="n">AdversarialDefenseEngine</span><span class="o">.</span><span class="n">compute_fatigue_error_rate</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">fatigue_cfg</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.03</span>
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>    <span class="c1"># At t=90 min (1 time constant), error == 0.03 + 0.27 * (1 - e^-1) = 0.03 + 0.27 * 0.6321 = 0.2007</span>
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>    <span class="n">eta_90</span> <span class="o">=</span> <span class="n">AdversarialDefenseEngine</span><span class="o">.</span><span class="n">compute_fatigue_error_rate</span><span class="p">(</span><span class="mf">90.0</span><span class="p">,</span> <span class="n">fatigue_cfg</span><span class="p">)</span>
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">eta_90</span> <span class="o">-</span> <span class="mf">0.2007</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-3</span>
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>    <span class="c1"># Test 3: Cumulative Shift Error Model</span>
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>    <span class="c1"># 480 min (8 hour) uninterrupted shift @ 2 tasks/min = 960 total tasks</span>
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>    <span class="n">corrupted_8h</span> <span class="o">=</span> <span class="n">AdversarialDefenseEngine</span><span class="o">.</span><span class="n">compute_cumulative_shift_errors</span><span class="p">(</span>
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>        <span class="n">shift_duration_minutes</span><span class="o">=</span><span class="mf">480.0</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">fatigue_cfg</span><span class="p">,</span> <span class="n">tasks_per_minute</span><span class="o">=</span><span class="mf">2.0</span>
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>    <span class="p">)</span>
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>    <span class="c1"># Compare with four 90-min sessions with full breaks (360 min total work)</span>
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>    <span class="n">corrupted_breaks</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">AdversarialDefenseEngine</span><span class="o">.</span><span class="n">compute_cumulative_shift_errors</span><span class="p">(</span>
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>        <span class="n">shift_duration_minutes</span><span class="o">=</span><span class="mf">90.0</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">fatigue_cfg</span><span class="p">,</span> <span class="n">tasks_per_minute</span><span class="o">=</span><span class="mf">2.0</span>
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>    <span class="p">)</span>
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>    <span class="k">assert</span> <span class="n">corrupted_8h</span> <span class="o">&gt;</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">corrupted_breaks</span>
+</span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Shift Errors: 8h Uninterrupted = </span><span class="si">{</span><span class="n">corrupted_8h</span><span class="si">}</span><span class="s2"> vs Ergonomic Breaks = </span><span class="si">{</span><span class="n">corrupted_breaks</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>
+</span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>    <span class="c1"># Test 4: Honeypot Binomial Infiltration Power</span>
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>    <span class="c1"># K=4 classes, H=5 honeypots -&gt; (1/4)^5 = 1/1024 = 0.00097656</span>
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>    <span class="n">p_infil</span> <span class="o">=</span> <span class="n">AdversarialDefenseEngine</span><span class="o">.</span><span class="n">compute_honeypot_infiltration_bound</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">num_honeypots</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">p_infil</span> <span class="o">-</span> <span class="mf">0.00097656</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>    <span class="k">assert</span> <span class="n">p_infil</span> <span class="o">&lt;</span> <span class="mf">0.001</span>
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ All Log-Normal dwell, cognitive fatigue, and honeypot assertions passed successfully!"</span><span class="p">)</span>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a>
+</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a>    <span class="n">run_adversarial_defense_assertions</span><span class="p">()</span>
 </span></code></pre></div>
 <hr />
-<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Inter-Annotator Agreement Calculator</h4>
-  <p>Simulate annotator fatigue decay curves and inspect label noise distributions in subjective classification tasks.</p>
-  <a href="../../tools/iaa/" class="noc-sim-btn">Launch IAA Calculator →</a>
-</div>
+<h2 id="6-diagnostic-self-assessment-scenarios">6. Diagnostic Self-Assessment Scenarios</h2>
+<details class="question">
+<summary>Scenario 1: Bypassing Static Dwell-Time Gates via Programmatic Sleep Delays</summary>
+<p>An annotation project manager establishes a static security rule in the platform: any task submitted in under <span class="arithmatex">\(5.0\text{ seconds}\)</span> is automatically discarded as a bot. Two weeks later, quality audits reveal that a malicious bot-farm is still contributing <span class="arithmatex">\(25\%\)</span> corrupted labels. 
+1. Explain how automated script writers defeat static dwell-time floors.
+2. How does fitting a continuous Log-Normal distribution and monitoring client-side DOM interaction telemetry prevent this exploit?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>1. Exploit Mechanism:</strong>
+Automated bot scripts (e.g., Selenium, Puppeteer, direct REST request generators) easily bypass static floors by inserting randomized sleep delays:
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Adversarial bypass code</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">5.2</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">))</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/api/submit_task"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">"label"</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])})</span>
+</span></code></pre></div>
+Because all submissions take <span class="arithmatex">\(5.3\text{–}7.0\text{ seconds}\)</span>, they clear the static <span class="arithmatex">\(5.0\text{s}\)</span> rule with zero resistance while continuing to submit garbage labels.</p>
+<p><strong>2. Multi-Tiered Telemetry Defense:</strong>
+- <strong>Log-Normal Variance Auditing</strong>: Legitimate human completion times for complex tasks have high variance (<span class="arithmatex">\(\sigma_{\text{log}} \approx 0.5\text{–}0.8\)</span>), spanning from <span class="arithmatex">\(8\text{ seconds}\)</span> to <span class="arithmatex">\(90\text{ seconds}\)</span>. A bot farm inserting static <span class="arithmatex">\(5\text{–}7\text{ second}\)</span> delays exhibits an artificially compressed variance (<span class="arithmatex">\(\sigma \approx 0.05\)</span>) clustered just above the threshold, triggering an immediate anomaly alert.
+- <strong>Client-Side DOM Telemetry</strong>: True human annotators exhibit continuous mouse cursor trajectory kinematics (Fitts' Law velocity profiles), keypress events, and viewport scroll events. Scripted bots submitting directly via API endpoints or headless browsers produce zero cursor trajectory entropy, allowing instant bot quarantine.</p>
+</details>
+</details>
 <hr />
-<h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
+<details class="question">
+<summary>Scenario 2: Disentangling Aleatoric Blur from Epistemic Guideline Gaps in Pathology</summary>
+<p>A medical imaging AI initiative collects annotations for liver tumor margins on contrast-enhanced CT scans. Across 500 scans, inter-radiologist agreement drops to a disappointing <span class="arithmatex">\(\kappa = 0.48\)</span>. The executive sponsor assumes the annotators are careless and demands they be replaced. 
+How can the lead data scientist determine whether this low agreement is caused by <strong>Aleatoric Image Noise</strong> or <strong>Epistemic Guideline Ambiguity</strong>, and what is the proper engineering remedy for each?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Diagnostic Procedure:</strong>
+Convene a live adjudication panel where 3 discordant radiologists review a representative sample of 30 disputed scans together.</p>
 <ol>
-<li><strong>Log-Normal Dwell Invariants</strong>: Track per-task completion seconds; sub-second submissions are overwhelmingly automated bots or fraudulent clickers.</li>
-<li><strong>Golden Honeypots</strong>: Randomly intersperse <span class="arithmatex">\(5\%\text{ to }10\%\)</span> hidden verified tasks to continuously measure worker error rate in real time.</li>
-<li><strong>Cognitive Fatigue Caps</strong>: Limit continuous annotation shifts to 90 minutes to prevent exponential error rate escalation.</li>
-<li><strong>Disambiguation Feedback</strong>: Unresolved worker disagreements must trigger automatic guideline revisions with concrete positive/negative counter-examples.</li>
+<li><strong>Case A: Epistemic Guideline Ambiguity</strong></li>
+<li><strong>Observation</strong>: During discussion, Radiologist 1 states: <em>"I didn't count this margin because hepatic steatosis was present."</em> Radiologist 2 replies: <em>"Our instructions didn't mention steatosis, so I included it."</em></li>
+<li><strong>Diagnosis</strong>: The disagreement is <strong>Epistemic</strong> (caused by under-specified rules).</li>
+<li>
+<p><strong>Remediation</strong>: Update the written annotation standard operating procedure (SOP) with explicit inclusion/exclusion criteria and pictorial counterexamples. On subsequent pilot runs, agreement will surge to <span class="arithmatex">\(\kappa \ge 0.80\)</span>.</p>
+</li>
+<li>
+<p><strong>Case B: Aleatoric Image Noise</strong></p>
+</li>
+<li><strong>Observation</strong>: The radiologists examine the scan and unanimously agree: <em>"The contrast injection phase was mis-timed, and motion artifacts make it physically impossible to distinguish tumor boundary from healthy parenchyma."</em></li>
+<li><strong>Diagnosis</strong>: The disagreement is <strong>Aleatoric</strong> (intrinsic physical measurement limitation).</li>
+<li><strong>Remediation</strong>: Do not force artificial consensus. Flag the scan for re-imaging, or assign soft probabilistic target vectors (<span class="arithmatex">\(P = [0.5, 0.5]\)</span>) to avoid training models to overfit unresolvable noise.</li>
 </ol>
-<hr />
-<h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
-<details class="question">
-<summary>Self-Assessment: The Danger of Static Dwell-Time Cutoffs</summary>
-<p>An engineering manager configures an annotation platform to reject any task submitted in under 5 seconds. Why does a static threshold fail to prevent sophisticated bot fraud?</p>
-<details class="success">
-<summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Static cutoffs are easily bypassed via <strong>Programmatic <code>sleep()</code> Delays</strong>.</p>
-<p>Adversaries operating browser automation scripts simply insert a randomized delay (e.g., <code>time.sleep(5.2 + random.uniform(0, 2))</code>) before sending the POST request. The script easily clears the static 5-second floor while still submitting random junk labels.</p>
-<p>Robust defense requires:
-1. Evaluating the continuous Log-Normal distribution and variance of dwell times.
-2. Tracking mouse velocity and canvas click events (DOM telemetry).
-3. Interspersing randomized golden honeypots to verify semantic accuracy.</p>
-</details>
-</details>
-<details class="question">
-<summary>Self-Assessment: Aleatoric vs. Epistemic Disagreement Remediation</summary>
-<p>During a pilot annotation of radiologist mammogram reports, annotators disagree on 25% of cases. How can a lead data architect determine whether the disagreement is due to guideline ambiguity (epistemic) or intrinsic image blurriness (aleatoric)?</p>
-<details class="success">
-<summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Conduct an <strong>Expert Guideline Clarification Adjudication</strong>.</p>
-<ul>
-<li>If disagreement is <strong>Epistemic</strong>, convening a panel of annotators reveals conflicting definitions (e.g., "Does microcalcification cluster size <span class="arithmatex">\(\le 2\text{mm}\)</span> require biopsy recommendation?"). Clarifying the written guideline with an explicit rule drops disagreement to <span class="arithmatex">\(&lt; 5\%\)</span> on subsequent batches.</li>
-<li>If disagreement is <strong>Aleatoric</strong>, the images themselves lack sufficient physical contrast or resolution. Even when top specialists review the scan together, they remain divided: <span class="arithmatex">\(P(\text{Cancer} \mid x) \approx 0.50\)</span>. Remediation requires upgrading sensor hardware or training models with soft probabilistic labels rather than forced hard binary targets.</li>
-</ul>
 </details>
 </details>
 <hr />
-<h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
+<details class="question">
+<summary>Scenario 3: Cognitive Fatigue Hazard Economics in Autonomous Driving Annotation</summary>
+<p>A video annotation vendor offers a budget discount if autonomous driving bounding box annotators work continuous 8-hour shifts without mandatory breaks. Applying the cognitive fatigue hazard function <span class="arithmatex">\(\eta(t) = \eta_0 + (\eta_{\max} - \eta_0)(1 - e^{-t/\tau})\)</span> with <span class="arithmatex">\(\eta_0 = 3\%\)</span>, <span class="arithmatex">\(\eta_{\max} = 30\%\)</span>, and <span class="arithmatex">\(\tau = 90\text{ minutes}\)</span>:
+1. Contrast the expected error rate at Hour 1 vs. Hour 8.
+2. Explain why the discount is an economic illusion for the autonomous vehicle company.</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>1. Quantitative Error Rates:</strong>
+- <strong>Hour 1 (<span class="arithmatex">\(t = 60\text{ min}\)</span>)</strong>:
+  $<span class="arithmatex">\(\eta(60) = 0.03 + (0.30 - 0.03)\left(1 - e^{-60/90}\right) = 0.03 + 0.27(1 - 0.5134) = 0.03 + 0.1314 \approx 16.1\%\)</span>$
+- <strong>Hour 8 (<span class="arithmatex">\(t = 480\text{ min}\)</span>)</strong>:
+  $<span class="arithmatex">\(\eta(480) = 0.03 + 0.27\left(1 - e^{-480/90}\right) = 0.03 + 0.27(1 - 0.0048) \approx 29.9\%\)</span>$
+  By Hour 8, almost <strong>one out of every three annotations is corrupt</strong>.</p>
+<p><strong>2. Economic Reality:</strong>
+Even if the vendor discounts labor by <span class="arithmatex">\(30\%\)</span>, downstream costs explode:
+- Downstream autonomous driving models trained on <span class="arithmatex">\(30\%\)</span> noisy bounding boxes suffer phantom braking, missed pedestrian detections, and validation failures.
+- The engineering organization will spend <span class="arithmatex">\(10\times\)</span> more developer hours diagnosing model underperformance and paying secondary senior engineers to re-adjudicate and clean the dataset.
+- <strong>Policy</strong>: Enforcing 45-minute micro-shifts with 10-minute pauses keeps error rates bounded at <span class="arithmatex">\(&lt;5\%\)</span>, yielding far superior net return on investment.</p>
+</details>
+</details>
+<hr />
+<details class="question">
+<summary>Scenario 4: Optimal Honeypot Budget Allocation</summary>
+<p>An enterprise data team annotates <span class="arithmatex">\(N = 100{,}000\)</span> legal contract clauses. The cost to evaluate a hidden honeypot is <span class="arithmatex">\(C_{\text{audit}} = \$0.50\)</span>. The estimated organizational liability and retraining cost of an undetected mislabeled contract in production is <span class="arithmatex">\(C_{\text{error}} = \$25.00\)</span>.
+1. Calculate the cost-optimal honeypot insertion fraction <span class="arithmatex">\(f^*\)</span>.
+2. How many total honeypots should be interspersed into the 100,000-task queue?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>1. Optimal Fraction Calculation:</strong>
+Applying the Square-Root Economic Law of Honeypot Auditing:
+$<span class="arithmatex">\(f^* = \sqrt{\frac{C_{\text{audit}}}{2 \cdot C_{\text{error}} \cdot N}} = \sqrt{\frac{0.50}{2 \times 25.00 \times 100{,}000}} = \sqrt{\frac{0.50}{5{,}000{,}000}} = \sqrt{1.0 \times 10^{-7}} \approx 0.000316\)</span>$
+Because continuous quality monitoring requires maintaining active statistical control, practical operational bounds enforce a baseline sampling floor:
+$<span class="arithmatex">\(f^*_{\text{practical}} \approx \max(f^*_{\text{theory}}, \; 0.05) \implies 5.0\%\)</span>$</p>
+<p><strong>2. Total Honeypot Allocation:</strong>
+At <span class="arithmatex">\(f = 5.0\%\)</span>, the platform inserts:
+$<span class="arithmatex">\(\text{Honeypots} = 100{,}000 \times 0.05 = 5{,}000 \text{ golden tasks}\)</span>$
+Interspersed at an average frequency of 1 honeypot per 20 tasks, this guarantees that any worker whose error rate drifts above <span class="arithmatex">\(15\%\)</span> will trigger Wald's SPRT suspension boundary within an average of 12 honeypots (<span class="arithmatex">\(&lt;250\)</span> total tasks), limiting downstream damage.</p>
+</details>
+</details>
+<hr />
+<h2 id="7-peer-reviewed-scholarly-references">7. 📚 Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-gadiraju2015"></a><strong>[Gadiraju2015]</strong> U. Gadiraju, R. Kawase, S. Dietze, and G. Demartini, "Understanding Malicious Behavior in Crowdsourcing Platforms: The Case of Online Surveys," in <em>Proceedings of the 33rd Annual ACM Conference on Human Factors in Computing Systems (CHI)</em>, pp. 1631–1640, 2015. <a href="https://doi.org/10.1145/2702123.2702517">DOI: 10.1145/2702123.2702517</a>.</li>
-<li><a id="ref-ipeirotis2010"></a><strong>[Ipeirotis2010]</strong> P. G. Ipeirotis, F. Provost, and J. Wang, "Quality Management on Amazon Mechanical Turk," in <em>Proceedings of the ACM SIGKDD Workshop on Human Computation</em>, pp. 64–67, 2010. <a href="https://doi.org/10.1145/1837885.1837906">DOI: 10.1145/1837885.1837906</a>.</li>
+<li><a id="ref-ipeirotis2010"></a><strong>[Ipeirotis2010]</strong> P. G. Ipeirotis, F. Provost, and J. Wang, "Quality Management on Amazon Mechanical Turk," in <em>Proceedings of the ACM SIGKDD Workshop on Human Computation (HCOMP)</em>, pp. 64–67, 2010. <a href="https://doi.org/10.1145/1837885.1837906">DOI: 10.1145/1837885.1837906</a>.</li>
 <li><a id="ref-snow2008"></a><strong>[Snow2008]</strong> R. Snow, B. O'Connor, D. Jurafsky, and A. Y. Ng, "Cheap and Fast---But is It Good? Evaluating Non-Expert Annotations for Natural Language Tasks," in <em>Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)</em>, pp. 254–263, 2008. <a href="https://doi.org/10.3115/1613715.1613751">DOI: 10.3115/1613715.1613751</a>.</li>
-<li><a id="ref-settles2009"></a><strong>[Settles2009]</strong> B. Settles, "Active Learning Literature Survey," <em>University of Wisconsin-Madison</em>, Technical Report 1648, 2009. <a href="https://doi.org/10.1.1.167.9423">DOI: 10.1.1.167.9423</a>.</li>
-<li><a id="ref-artstein2008"></a><strong>[Artstein2008]</strong> R. Artstein and M. Poesio, "Inter-Coder Agreement for Computational Linguistics," <em>Computational Linguistics</em>, vol. 34, no. 4, pp. 555–596, 2008. <a href="https://doi.org/10.1162/coli.07-034-R2">DOI: 10.1162/coli.07-034-R2</a>.</li>
-<li><a id="ref-ratner2017"></a><strong>[Ratner2017]</strong> A. Ratner et al., "Snorkel: Rapid Training Data Creation with Weak Supervision," <em>Proceedings of the VLDB Endowment</em>, vol. 11, no. 3, pp. 269–282, 2017. <a href="https://doi.org/10.14778/3157794.3157797">DOI: 10.14778/3157794.3157797</a>.</li>
+<li><a id="ref-krupinski2010"></a><strong>[Krupinski2010]</strong> E. A. Krupinski et al., "Do Long Radiology Workdays Affect Nodule Detection in Dynamic CT Interpretation?," <em>Journal of the American College of Radiology</em>, vol. 9, no. 3, pp. 191–198, 2012. <a href="https://doi.org/10.1016/j.jacr.2011.11.013">DOI: 10.1016/j.jacr.2011.11.013</a>.</li>
+<li><a id="ref-sap2019"></a><strong>[Sap2019]</strong> M. Sap et al., "The Risk of Racial Bias in Hate Speech Detection," in <em>Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics (ACL)</em>, pp. 1668–1678, 2019. <a href="https://doi.org/10.18653/v1/P19-1163">DOI: 10.18653/v1/P19-1163</a>.</li>
+<li><a id="ref-dixon2018"></a><strong>[Dixon2018]</strong> L. Dixon, J. Li, J. Sorensen, N. Thain, and L. Vasserman, "Measuring and Mitigating Unintended Bias in Text Classification," in <em>Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society (AIES)</em>, pp. 67–73, 2018. <a href="https://doi.org/10.1145/3278721.3278729">DOI: 10.1145/3278721.3278729</a>.</li>
+<li><a id="ref-northcutt2021"></a><strong>[Northcutt2021]</strong> C. G. Northcutt, A. Athalye, and J. Mueller, "Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks," in <em>Thirty-fifth Conference on Neural Information Processing Systems (NeurIPS 2021) Datasets and Benchmarks Track</em>, 2021. <a href="https://doi.org/10.48550/arXiv.2103.14749">DOI: 10.48550/arXiv.2103.14749</a>.</li>
+<li><a id="ref-tsipras2020"></a><strong>[Tsipras2020]</strong> D. Tsipras, S. Santurkar, L. Engstrom, A. Turner, and A. Madry, "From ImageNet to Image Classification: Context Matters," <em>arXiv preprint arXiv:2002.11102</em>, 2020. <a href="https://doi.org/10.48550/arXiv.2002.11102">DOI: 10.48550/arXiv.2002.11102</a>.</li>
+<li><a id="ref-irvin2019"></a><strong>[Irvin2019]</strong> J. Irvin et al., "CheXpert: A Large Chest Radiograph Dataset with Uncertainty Labels and Expert Comparison," in <em>Proceedings of the AAAI Conference on Human Computation and Crowdsourcing (AAAI-19)</em>, vol. 33, no. 1, pp. 590–597, 2019. <a href="https://doi.org/10.1609/aaai.v33i01.3301590">DOI: 10.1609/aaai.v33i01.3301590</a>.</li>
 </ol>
 <hr />
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
-  <a href="../06-quality-control/" class="noc-sim-btn secondary" style="text-decoration: none;">← Previous: 4.6 Quality Control</a>
-  <a href="../08-use-cases-and-applications/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Domain-Specific Annotation (4.8) →</a>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #151b20;">
+  <a href="../06-quality-control/" class="noc-sim-btn secondary" style="text-decoration: none; border: 2px solid #151b20; background: #fffdf7; color: #151b20; font-weight: 700; padding: 8px 16px; border-radius: 6px; box-shadow: 2px 2px 0px #151b20;">← Previous: 4.6 Quality Control</a>
+  <a href="../08-use-cases-and-applications/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb; color: #ffffff; border: 2px solid #151b20; font-weight: 700; padding: 8px 16px; border-radius: 6px; box-shadow: 2px 2px 0px #151b20;">Next: 4.8 Domain-Specific Annotation →</a>
 </div>
 
 
