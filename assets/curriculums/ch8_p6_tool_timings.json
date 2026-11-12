@@ -1,0 +1,178 @@
+{
+  "ch8_p6_sim1_solo.mp3": {
+    "duration": 18.288,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "I have docked below at Interactive Lab 1: the Delta Lake ACID Transaction Journal and OCC Concurrency Studio! Trigger an Append Ingestion, run Compaction, or trigger a Concurrent OCC Conflict to inspect how conflicting transactions abort to guarantee ACID serializability!",
+        "start": 0.0,
+        "end": 18.288
+      }
+    ]
+  },
+  "ch8_p6_sim1_duo.mp3": {
+    "duration": 14.472,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Look at the Delta Lake OCC simulator directly above! Click Trigger Concurrent OCC Conflict to see how Worker A aborts when Worker B modifies the same partition, and scrub the time-travel slider to inspect historical table states!",
+        "start": 0.0,
+        "end": 14.472
+      }
+    ]
+  },
+  "ch8_p6_chk1_solo.mp3": {
+    "duration": 23.4,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Active Checkpoint 1: An ML engineer versions 120,000 speech audio clips of 64 kilobytes each across a 100 megabyte per second link with 40 milliseconds per-file HTTP handshake overhead. What is total checkout duration, what percentage of time is wasted on handshakes, and how do we fix it? Choose Option A, B, or C above me!",
+        "start": 0.0,
+        "end": 23.4
+      }
+    ]
+  },
+  "ch8_p6_chk1_duo.mp3": {
+    "duration": 15.072,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Let us check Checkpoint 1! 120,000 files times 40 milliseconds equals 4,800 seconds of pure HTTP handshake latency! Select the correct checkout duration and architectural remedy above me!",
+        "start": 0.0,
+        "end": 15.072
+      }
+    ]
+  },
+  "ch8_p6_chk1_feedback_correct.mp3": {
+    "duration": 26.904,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Spot on! Pure data transfer of 7.68 gigabytes takes only 76.8 seconds, but cumulative HTTP handshakes consume 4,800 seconds, resulting in a total checkout duration of 81.28 minutes with 98.42 percent of time squandered on transport handshakes! Packing clips into WebDataset tar shards collapses checkout time to under 78 seconds!",
+        "start": 0.0,
+        "end": 26.904
+      }
+    ]
+  },
+  "ch8_p6_chk1_feedback_incorrect.mp3": {
+    "duration": 28.776,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Incorrect. Remember that Git-LFS performs per-file HTTP authentication and handshake round-trips: 120,000 files times 0.040 seconds is 4,800 seconds, which is 80 minutes of handshake latency alone! Total checkout is 81.28 minutes, squandering 98.42 percent of time on handshakes. Bundling files into WebDataset tar shards eliminates this bottleneck!",
+        "start": 0.0,
+        "end": 28.776
+      }
+    ]
+  },
+  "ch8_p6_sim2_solo.mp3": {
+    "duration": 16.752,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "I have docked below at Interactive Lab 2: the Comparative Architectural Decision Engine! Tune the dropdowns above for File Cardinality, Corpus Scale, and Query Mode to evaluate the optimal storage plane, branching overhead, and ACID guarantees for your pipeline!",
+        "start": 0.0,
+        "end": 16.752
+      }
+    ]
+  },
+  "ch8_p6_sim2_duo.mp3": {
+    "duration": 12.336,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Check out the Comparative Decision Matrix below us, Nova! Select Petabyte Scale and massive file cardinality to see LakeFS highlighted, or switch to SQL Analytics to see Delta Lake take the lead!",
+        "start": 0.0,
+        "end": 12.336
+      }
+    ]
+  },
+  "ch8_p6_chk2_solo.mp3": {
+    "duration": 18.456,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Active Checkpoint 2: Given four commit actions adding and removing Parquet files, what are the active files at Version 1, 2, and 3, and are compacted files f 1 and f 2 physically erased from object storage at Commit 2? Select Option A, B, or C above me!",
+        "start": 0.0,
+        "end": 18.456
+      }
+    ]
+  },
+  "ch8_p6_chk2_duo.mp3": {
+    "duration": 13.896,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Let us check Checkpoint 2! Use the snapshot state reconstruction formula: active files equal cumulative adds minus cumulative removes! What are the active sets across versions 1, 2, and 3?",
+        "start": 0.0,
+        "end": 13.896
+      }
+    ]
+  },
+  "ch8_p6_chk2_feedback_correct.mp3": {
+    "duration": 26.808,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Outstanding! At Version 1, active files are f 1, f 2, and f 3. At Version 2, compacting f 1 and f 2 into f 4 leaves f 3 and f 4. At Version 3, removing f 3 leaves f 4 and f 5. And crucially, f 1 and f 2 are logical tombstones—they remain untouched in S3 until an explicit VACUUM command is executed!",
+        "start": 0.0,
+        "end": 26.808
+      }
+    ]
+  },
+  "ch8_p6_chk2_feedback_incorrect.mp3": {
+    "duration": 17.856,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Incorrect. In Delta Lake, a remove entry is strictly a logical tombstone in the transaction log; physical files are never deleted at commit time, preserving deterministic snapshot time-travel. F 1 and f 2 remain on object storage until the table is vacuumed!",
+        "start": 0.0,
+        "end": 17.856
+      }
+    ]
+  },
+  "ch8_p6_chk3_solo.mp3": {
+    "duration": 23.784,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Active Checkpoint 3: In Part 1, does Pipeline A abort when Pipeline B modifies disjoint partition P 3 versus overlapping partition P 1? In Part 2, how much storage and 6-month cloud expenditure is saved when 12 teams use zero-copy LakeFS branches over a 600 terabyte cohort with 4 percent mutation? Choose Option A, B, or C above me!",
+        "start": 0.0,
+        "end": 23.784
+      }
+    ]
+  },
+  "ch8_p6_chk3_duo.mp3": {
+    "duration": 18.192,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Final Capstone Checkpoint! In Part 1, check partition intersection for OCC conflict! In Part 2, compare 13 full clones at 7,800 terabytes against LakeFS at 888 terabytes! Select Option A, B, or C above me!",
+        "start": 0.0,
+        "end": 18.192
+      }
+    ]
+  },
+  "ch8_p6_chk3_feedback_correct.mp3": {
+    "duration": 28.824,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Precisely validated! In Part 1, disjoint partition writes succeed at Version 6 with zero conflict, while overlapping writes on partition P 1 trigger an immediate OCC abort. In Part 2, naive cloning requires 7,800 terabytes, while LakeFS requires only 888 terabytes—saving 6,912 terabytes and over 976,000 dollars in cloud storage over six months!",
+        "start": 0.0,
+        "end": 28.824
+      }
+    ]
+  },
+  "ch8_p6_chk3_feedback_incorrect.mp3": {
+    "duration": 30.168,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Incorrect. Remember that under OCC, disjoint partition sets produce an empty intersection, allowing concurrent commits without abort. When partitions overlap, the transaction reading stale data must abort. For LakeFS, 12 branches at 4 percent mutation consume only 600 plus 288, or 888 terabytes—saving 6,912 terabytes and 976,000 dollars over six months!",
+        "start": 0.0,
+        "end": 30.168
+      }
+    ]
+  }
+}

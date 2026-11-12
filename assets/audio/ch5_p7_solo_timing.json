@@ -1,0 +1,407 @@
+{
+  "duration": 801.24,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Chapter 5, Lesson 7: Feature Engineering and Non-Linear Transformations. In the preceding lessons, we cleaned corrupted observations, imputed missingness, and standardized feature scales. However, raw observations frequently violate the fundamental geometric assumptions of parametric and neural estimators.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 21.312
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "When features exhibit heavy-tailed Pareto distributions, linear models suffer from severe heteroscedasticity and coefficient attenuation. Furthermore, representing periodic variables like the hour of the day as raw integers creates an artificial discontinuity between 23:59 and midnight, where Euclidean distance jumps to 23 units despite temporal adjacency.",
+          "dock": "main",
+          "start": 21.312,
+          "end": 44.424
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In this masterclass, we formalize the mathematics of coordinate transformation: profile log-likelihood Box-Cox and Yeo-Johnson power warping, periodic trigonometric projection, B-spline piecewise polynomials, and Variance Inflation Factor pruning to suppress combinatorial interaction explosions.",
+          "dock": "main",
+          "start": 44.424,
+          "end": 63.144
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "A robust feature engineering architecture operates as a disciplined, staged pipeline. We begin with a skewness audit of all continuous numeric columns. Features with absolute skewness exceeding 0.75 are routed to power transformations.",
+          "dock": "main",
+          "start": 63.144,
+          "end": 79.632
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "If the variable is strictly positive, Box-Cox profile maximum likelihood estimation finds the optimal power lambda. If zero or negative values exist, we apply the piecewise continuous Yeo-Johnson transform.",
+          "dock": "main",
+          "start": 79.632,
+          "end": 93.816
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Next, periodic variables are projected onto the unit circle via sine and cosine coordinates. Domain ratios and B-spline basis expansions are synthesized to capture non-linear interactions. Finally, multicollinearity pruning removes redundant features exceeding a Variance Inflation Factor of 10.",
+          "dock": "main",
+          "start": 93.816,
+          "end": 113.472
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "When numeric distributions obey heavy-tailed Pareto or Log-Normal geometry, sample skewness gamma-1 exceeds 0.75, and residual errors become heteroscedastic. In 1964, George Box and David Cox introduced a continuous parameterized family of power transformations.",
+          "dock": "main",
+          "start": 113.472,
+          "end": 133.176
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "For strictly positive values y greater than 0, y to the lambda power minus 1 divided by lambda smoothly unifies reciprocal, square-root, and logarithmic transformations. By L'Hopital's rule, the limit as lambda approaches zero is exactly the natural logarithm of y.",
+          "dock": "main",
+          "start": 133.176,
+          "end": 151.2
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Crucially, finding optimal lambda requires maximizing the Gaussian profile log-likelihood, which includes the transformation Jacobian determinant. Without the Jacobian penalty term, lambda could artificially collapse transformed variance to zero by shrinking values. For data containing zeros or negative numbers, the Yeo-Johnson transformation provides the continuous extension.",
+          "dock": "main",
+          "start": 151.2,
+          "end": 175.152
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "While Box-Cox and Yeo-Johnson assume that some power exponent can rotate a distribution into Gaussianity, multi-modal distributions or complex mixtures fail parametric power transformation.",
+          "dock": "main",
+          "start": 175.152,
+          "end": 187.224
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In such cases, we deploy non-parametric Quantile Transformations based on the Probability Integral Transform. First, we compute the empirical cumulative distribution function F-hat of x, which maps any arbitrary continuous distribution onto a uniform distribution between 0 and 1.",
+          "dock": "main",
+          "start": 187.224,
+          "end": 206.016
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Then, passing that uniform variable through the inverse standard normal CDF, Phi-inverse, forces an exact standard Gaussian distribution. In discretization, quantile equal-frequency binning achieves maximal Shannon entropy log-2 B, guaranteeing balanced sample representation across all intervals.",
+          "dock": "main",
+          "start": 206.016,
+          "end": 225.216
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Periodic cycles\u2014such as hour of day from 0 to 23, day of week, or compass wind direction\u2014represent closed circular manifolds. Yet standard machine learning pipelines routinely encode them as flat linear integers.",
+          "dock": "main",
+          "start": 225.216,
+          "end": 240.408
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Consider 11:00 PM (hour 23) and midnight (hour 0). In physical reality, they are exactly 60 minutes apart. In scalar integer space, their Euclidean distance is 23 units, treating them as maximally dissimilar!",
+          "dock": "main",
+          "start": 240.408,
+          "end": 257.184
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "We resolve this boundary tearing by projecting period P onto a two-dimensional unit circle using sine and cosine coordinates. This guarantees that the Euclidean chord distance between 23:00 and 00:00 is exactly identical to the distance between noon and 1:00 PM.",
+          "dock": "main",
+          "start": 257.184,
+          "end": 274.152
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our first interactive laboratory: the Power Transformations and Cyclical Continuity Studio. Below, you have access to two dual-purpose simulation workbenches.",
+          "dock": "main",
+          "start": 274.152,
+          "end": 285.504
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In Tab A, sweep the Box-Cox power exponent lambda from negative 1.0 to positive 2.0. Observe how a heavily right-skewed salary distribution with gamma-1 equal to plus 2.84 collapses into an exact symmetric Gaussian bell when lambda hits 0.0, the logarithmic transform.",
+          "dock": "main",
+          "start": 285.504,
+          "end": 305.472
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Switch to Tab B to explore the cyclical unit clock. Set Hour A to 23 and Hour B to 0. Watch how naive integer distance falsely jumps to 23 units, while the unit circle Euclidean chord distance holds perfectly steady at 0.2611.",
+          "dock": "main",
+          "start": 305.472,
+          "end": 322.92
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for Active Checkpoint 1. Suppose an electrical grid forecasting engineer feeds the raw scalar hour H in range 0 to 23 directly into a Ridge regression model to forecast energy demand.",
+          "dock": "main",
+          "start": 322.92,
+          "end": 335.928
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "At 23:59, the model performs reasonably, but at 00:01, predictions spike with a massive discontinuity error. Analyze the underlying geometric failure and choose the mathematically rigorous remediation.",
+          "dock": "main",
+          "start": 335.928,
+          "end": 350.376
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Linear estimators approximate curved decision surfaces by projecting raw inputs x in R-d onto basis expansions phi of x in R-D. When engineering polynomial interactions of degree k, total feature dimensionality grows combinatorially as d plus k choose k.",
+          "dock": "main",
+          "start": 350.376,
+          "end": 367.632
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "For two features, a quadratic expansion produces a modest six columns: constant intercept, x1, x2, x1-squared, x2-squared, and interaction x1 times x2. However, with fifty features, degree-2 expansion explodes to 1,326 columns. If your sample size is 1,000 rows, the number of features D immediately exceeds sample size N!",
+          "dock": "main",
+          "start": 367.632,
+          "end": 394.8
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "When D exceeds N, the Gram matrix X-transpose X becomes strictly rank-deficient and non-invertible. Ordinary Least Squares achieves zero training error by memorizing random noise, causing test generalization error to explode. Unchecked interaction generation is a direct recipe for catastrophic overfitting.",
+          "dock": "main",
+          "start": 394.8,
+          "end": 415.176
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "When modeling non-linear continuous relationships, global polynomial expansion suffers from severe non-local feedback: perturbing a single observation in the right tail drastically warps predictions on the left tail.",
+          "dock": "main",
+          "start": 415.176,
+          "end": 428.232
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "B-splines, or Basis Splines, resolve this fundamental instability by constructing piecewise polynomials with local compact support. Defined over an ordered knot sequence xi-1 through xi-K, the Cox-de Boor recursive algorithm generates smooth basis functions of order M.",
+          "dock": "main",
+          "start": 428.232,
+          "end": 446.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Each B-spline basis function B-i-m is strictly zero outside m plus one adjacent knots. Consequently, data points in one region have zero influence on distant intervals. This local support guarantees numerical stability and isolates noise.",
+          "dock": "main",
+          "start": 446.328,
+          "end": 462.96
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "In 1901, mathematician Carl Runge proved that interpolating smooth functions using high-degree polynomials on equidistant nodes leads to wild, divergent oscillations near the edges of the interval.",
+          "dock": "main",
+          "start": 462.96,
+          "end": 475.392
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "For the Runge function, 1 over 1 plus 25 x-squared, increasing polynomial degree beyond 5 causes edge errors to explode to infinity rather than converging to zero. In machine learning, this means models make absurdly large positive or negative predictions for records near boundary values.",
+          "dock": "main",
+          "start": 475.392,
+          "end": 494.232
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Natural Cubic Splines completely neutralize Runge's phenomenon by enforcing boundary constraints: the second and third derivatives must equal zero beyond the outermost knots. This forces the function to extrapolate as a stable straight line outside the data range, preventing boundary blowup.",
+          "dock": "main",
+          "start": 494.232,
+          "end": 512.016
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Beyond univariate transforms and basis splines, domain interactions combine two or more columns into physically meaningful synthetic attributes.",
+          "dock": "main",
+          "start": 512.016,
+          "end": 521.304
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In finance, raw total debt and raw annual income are informative, but their interaction ratio\u2014debt divided by income plus 1\u2014is the single strongest predictor of loan default. Similarly, in healthcare, body mass index divides weight by height squared.",
+          "dock": "main",
+          "start": 521.304,
+          "end": 538.152
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Recall our key theorem: while tree-based models like XGBoost are invariant to monotonic single-column transformations, they struggle to approximate diagonal decision boundaries formed by ratios. Supplying explicit interaction ratios provides trees with direct orthogonal splits that drastically reduce tree depth and prevent overfitting.",
+          "dock": "main",
+          "start": 538.152,
+          "end": 558.744
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our second interactive laboratory: the B-Spline Knot Placement and Runge Phenomenon Workbench. On canvas, we fit the classic Runge function: 1 over 1 plus 25 x-squared, sampled across twelve nodes.",
+          "dock": "main",
+          "start": 558.744,
+          "end": 573.288
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Select 'Global Polynomial' and slide the degree up to 10. Notice how the fitted red curve explodes near the boundary edges with wild, violent oscillations! The Boundary Oscillation Index shoots above 50, and condition number explodes into billions.",
+          "dock": "main",
+          "start": 573.288,
+          "end": 589.968
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now switch to 'Natural Cubic B-Spline'. Sweep the knot count from 3 up to 8. Observe how the green spline hugs the true bell curve smoothly, holding boundary oscillations below 0.05 while keeping the condition number bounded.",
+          "dock": "main",
+          "start": 589.968,
+          "end": 605.592
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for Active Checkpoint 2. An engineering team expands a tabular dataset with 50 numeric features into degree-2 polynomial features, creating 1,326 columns on 1,000 training rows.",
+          "dock": "main",
+          "start": 605.592,
+          "end": 620.304
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The unregularized linear regression achieves a training R-squared of 0.999, but test R-squared collapses to negative 4.2. Variance Inflation Factors for generated terms exceed 100,000. Identify the mathematically sound remediation strategy.",
+          "dock": "main",
+          "start": 620.304,
+          "end": 639.048
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us examine an industrial landmark case study: predicting credit risk on 250,000 individual financial tax records from the US Census Public Use Microdata Sample.",
+          "dock": "main",
+          "start": 639.048,
+          "end": 650.4
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The raw annual income feature had a catastrophic Pareto skewness of plus 4.82 and kurtosis of 28.4. Standard OLS regression severely underestimated default risk standard errors by 38% and was rejected by the Jarque-Bera normality test with a p-value below 10 to the minus 15.",
+          "dock": "main",
+          "start": 650.4,
+          "end": 670.488
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Applying profile maximum likelihood Box-Cox optimization converged to lambda equals 0.12, close to logarithmic. Skewness plummeted to plus 0.04, satisfying Gaussian residual normality with a p-value of 0.428, and boosting OLS R-squared from 0.384 to 0.812. Adding the engineered debt-to-income ratio lifted downstream tree Gini importance by 18 percent.",
+          "dock": "main",
+          "start": 670.488,
+          "end": 699.432
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Production machine learning pipelines demand verifiable mathematical guarantees. On this slide, we implement a production feature engineering engine combining Scikit-Learn transformers with Pydantic V2 runtime schema validation.",
+          "dock": "main",
+          "start": 699.432,
+          "end": 714.072
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The MulticollinearityPruner class implements iterative Variance Inflation Factor pruning, regressing each column against all others to compute 1 over 1 minus R-squared and iteratively dropping features exceeding the threshold.",
+          "dock": "main",
+          "start": 714.072,
+          "end": 727.656
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Finally, the FeatureEngineeringReport validates skewness stabilization, VIF column reduction, linear R-squared lift, and cyclical chord distance invariance across midnight. All contracts are verified deterministically.",
+          "dock": "main",
+          "start": 727.656,
+          "end": 742.368
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Congratulations on completing Lesson 5.7. We have systematically explored the mathematical foundations of coordinate transformations, periodic embeddings, basis splines, and collinearity management.",
+          "dock": "main",
+          "start": 742.368,
+          "end": 756.288
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us consolidate our four golden axioms: First, match transformations to estimator inductive biases. Second, project periodic domains onto unit hyperspheres with both sine and cosine. Third, prefer local B-splines over global monomials to eliminate Runge's phenomenon. Fourth, prune combinatorial expansions with VIF to preserve positive definite Gram matrices.",
+          "dock": "main",
+          "start": 756.288,
+          "end": 781.68
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In our next lesson, Lesson 5.8, we transition from transformation theory to high-performance pipeline architecture: exploring Python memory geometries, vectorization, PyArrow columnar layouts, DuckDB zero-copy queries, and Polars streaming engines. We look forward to seeing you there!",
+          "dock": "main",
+          "start": 781.68,
+          "end": 801.24
+        }
+      ]
+    }
+  ]
+}

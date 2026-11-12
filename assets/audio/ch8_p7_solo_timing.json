@@ -1,0 +1,5016 @@
+{
+  "lessonKey": "ch8_p7",
+  "mode": "solo",
+  "duration": 608.402,
+  "slidesCount": 16,
+  "sentences": [
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 8.7 of Dataset Fundamentals: DVC Pipelines and Automated Workflows. In empirical machine learning, reproducibility is broken when teams rely on ad-hoc shell scripts, unversioned notebooks, and manual database dumps. Today, we formalize workflow reproducibility as a declarative Directed Acyclic Graph.",
+      "slide": 1,
+      "dock": "main",
+      "start": 0.0,
+      "end": 22.68,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 0.0
+        },
+        {
+          "w": "to",
+          "t": 0.527
+        },
+        {
+          "w": "Lesson",
+          "t": 1.055
+        },
+        {
+          "w": "8.7",
+          "t": 1.582
+        },
+        {
+          "w": "of",
+          "t": 2.11
+        },
+        {
+          "w": "Dataset",
+          "t": 2.637
+        },
+        {
+          "w": "Fundamentals:",
+          "t": 3.165
+        },
+        {
+          "w": "DVC",
+          "t": 3.692
+        },
+        {
+          "w": "Pipelines",
+          "t": 4.22
+        },
+        {
+          "w": "and",
+          "t": 4.747
+        },
+        {
+          "w": "Automated",
+          "t": 5.274
+        },
+        {
+          "w": "Workflows.",
+          "t": 5.802
+        },
+        {
+          "w": "In",
+          "t": 6.329
+        },
+        {
+          "w": "empirical",
+          "t": 6.857
+        },
+        {
+          "w": "machine",
+          "t": 7.384
+        },
+        {
+          "w": "learning,",
+          "t": 7.912
+        },
+        {
+          "w": "reproducibility",
+          "t": 8.439
+        },
+        {
+          "w": "is",
+          "t": 8.967
+        },
+        {
+          "w": "broken",
+          "t": 9.494
+        },
+        {
+          "w": "when",
+          "t": 10.021
+        },
+        {
+          "w": "teams",
+          "t": 10.549
+        },
+        {
+          "w": "rely",
+          "t": 11.076
+        },
+        {
+          "w": "on",
+          "t": 11.604
+        },
+        {
+          "w": "ad-hoc",
+          "t": 12.131
+        },
+        {
+          "w": "shell",
+          "t": 12.659
+        },
+        {
+          "w": "scripts,",
+          "t": 13.186
+        },
+        {
+          "w": "unversioned",
+          "t": 13.713
+        },
+        {
+          "w": "notebooks,",
+          "t": 14.241
+        },
+        {
+          "w": "and",
+          "t": 14.768
+        },
+        {
+          "w": "manual",
+          "t": 15.296
+        },
+        {
+          "w": "database",
+          "t": 15.823
+        },
+        {
+          "w": "dumps.",
+          "t": 16.351
+        },
+        {
+          "w": "Today,",
+          "t": 16.878
+        },
+        {
+          "w": "we",
+          "t": 17.406
+        },
+        {
+          "w": "formalize",
+          "t": 17.933
+        },
+        {
+          "w": "workflow",
+          "t": 18.46
+        },
+        {
+          "w": "reproducibility",
+          "t": 18.988
+        },
+        {
+          "w": "as",
+          "t": 19.515
+        },
+        {
+          "w": "a",
+          "t": 20.043
+        },
+        {
+          "w": "declarative",
+          "t": 20.57
+        },
+        {
+          "w": "Directed",
+          "t": 21.098
+        },
+        {
+          "w": "Acyclic",
+          "t": 21.625
+        },
+        {
+          "w": "Graph.",
+          "t": 22.153
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "We will explore four foundational pillars: declarative stage dependencies in dvc.yaml, cryptographic stage keys that hash code, configuration, and data digests, content-addressed memoization governed by Amdahl's Law, and automated CI/CD evaluation gates that protect production systems from model regression.",
+      "slide": 1,
+      "dock": "main",
+      "start": 23.03,
+      "end": 43.622,
+      "words": [
+        {
+          "w": "We",
+          "t": 23.03
+        },
+        {
+          "w": "will",
+          "t": 23.558
+        },
+        {
+          "w": "explore",
+          "t": 24.086
+        },
+        {
+          "w": "four",
+          "t": 24.614
+        },
+        {
+          "w": "foundational",
+          "t": 25.142
+        },
+        {
+          "w": "pillars:",
+          "t": 25.67
+        },
+        {
+          "w": "declarative",
+          "t": 26.198
+        },
+        {
+          "w": "stage",
+          "t": 26.726
+        },
+        {
+          "w": "dependencies",
+          "t": 27.254
+        },
+        {
+          "w": "in",
+          "t": 27.782
+        },
+        {
+          "w": "dvc.yaml,",
+          "t": 28.31
+        },
+        {
+          "w": "cryptographic",
+          "t": 28.838
+        },
+        {
+          "w": "stage",
+          "t": 29.366
+        },
+        {
+          "w": "keys",
+          "t": 29.894
+        },
+        {
+          "w": "that",
+          "t": 30.422
+        },
+        {
+          "w": "hash",
+          "t": 30.95
+        },
+        {
+          "w": "code,",
+          "t": 31.478
+        },
+        {
+          "w": "configuration,",
+          "t": 32.006
+        },
+        {
+          "w": "and",
+          "t": 32.534
+        },
+        {
+          "w": "data",
+          "t": 33.062
+        },
+        {
+          "w": "digests,",
+          "t": 33.59
+        },
+        {
+          "w": "content-addressed",
+          "t": 34.118
+        },
+        {
+          "w": "memoization",
+          "t": 34.646
+        },
+        {
+          "w": "governed",
+          "t": 35.174
+        },
+        {
+          "w": "by",
+          "t": 35.702
+        },
+        {
+          "w": "Amdahl's",
+          "t": 36.23
+        },
+        {
+          "w": "Law,",
+          "t": 36.758
+        },
+        {
+          "w": "and",
+          "t": 37.286
+        },
+        {
+          "w": "automated",
+          "t": 37.814
+        },
+        {
+          "w": "CI/CD",
+          "t": 38.342
+        },
+        {
+          "w": "evaluation",
+          "t": 38.87
+        },
+        {
+          "w": "gates",
+          "t": 39.398
+        },
+        {
+          "w": "that",
+          "t": 39.926
+        },
+        {
+          "w": "protect",
+          "t": 40.454
+        },
+        {
+          "w": "production",
+          "t": 40.982
+        },
+        {
+          "w": "systems",
+          "t": 41.51
+        },
+        {
+          "w": "from",
+          "t": 42.038
+        },
+        {
+          "w": "model",
+          "t": 42.566
+        },
+        {
+          "w": "regression.",
+          "t": 43.094
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "A robust machine learning pipeline decomposes monolithic code into discrete, verifiable stages: Raw Ingestion, Feature Preparation, Model Training, and Evaluation Metrics. Each stage defines strict contracts using dependencies and outputs.",
+      "slide": 2,
+      "dock": "main",
+      "start": 44.372,
+      "end": 60.908,
+      "words": [
+        {
+          "w": "A",
+          "t": 44.372
+        },
+        {
+          "w": "robust",
+          "t": 44.923
+        },
+        {
+          "w": "machine",
+          "t": 45.474
+        },
+        {
+          "w": "learning",
+          "t": 46.026
+        },
+        {
+          "w": "pipeline",
+          "t": 46.577
+        },
+        {
+          "w": "decomposes",
+          "t": 47.128
+        },
+        {
+          "w": "monolithic",
+          "t": 47.679
+        },
+        {
+          "w": "code",
+          "t": 48.23
+        },
+        {
+          "w": "into",
+          "t": 48.782
+        },
+        {
+          "w": "discrete,",
+          "t": 49.333
+        },
+        {
+          "w": "verifiable",
+          "t": 49.884
+        },
+        {
+          "w": "stages:",
+          "t": 50.435
+        },
+        {
+          "w": "Raw",
+          "t": 50.986
+        },
+        {
+          "w": "Ingestion,",
+          "t": 51.538
+        },
+        {
+          "w": "Feature",
+          "t": 52.089
+        },
+        {
+          "w": "Preparation,",
+          "t": 52.64
+        },
+        {
+          "w": "Model",
+          "t": 53.191
+        },
+        {
+          "w": "Training,",
+          "t": 53.742
+        },
+        {
+          "w": "and",
+          "t": 54.294
+        },
+        {
+          "w": "Evaluation",
+          "t": 54.845
+        },
+        {
+          "w": "Metrics.",
+          "t": 55.396
+        },
+        {
+          "w": "Each",
+          "t": 55.947
+        },
+        {
+          "w": "stage",
+          "t": 56.498
+        },
+        {
+          "w": "defines",
+          "t": 57.05
+        },
+        {
+          "w": "strict",
+          "t": 57.601
+        },
+        {
+          "w": "contracts",
+          "t": 58.152
+        },
+        {
+          "w": "using",
+          "t": 58.703
+        },
+        {
+          "w": "dependencies",
+          "t": 59.254
+        },
+        {
+          "w": "and",
+          "t": 59.806
+        },
+        {
+          "w": "outputs.",
+          "t": 60.357
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Dependencies specify source files, parameter keys, and ancestor data artifacts. Outputs declare generated partitions, model weights, and performance metrics. This explicit contract eliminates implicit environment side effects and makes execution graph-addressable.",
+      "slide": 2,
+      "dock": "main",
+      "start": 61.258,
+      "end": 79.57,
+      "words": [
+        {
+          "w": "Dependencies",
+          "t": 61.258
+        },
+        {
+          "w": "specify",
+          "t": 61.849
+        },
+        {
+          "w": "source",
+          "t": 62.439
+        },
+        {
+          "w": "files,",
+          "t": 63.03
+        },
+        {
+          "w": "parameter",
+          "t": 63.621
+        },
+        {
+          "w": "keys,",
+          "t": 64.212
+        },
+        {
+          "w": "and",
+          "t": 64.802
+        },
+        {
+          "w": "ancestor",
+          "t": 65.393
+        },
+        {
+          "w": "data",
+          "t": 65.984
+        },
+        {
+          "w": "artifacts.",
+          "t": 66.574
+        },
+        {
+          "w": "Outputs",
+          "t": 67.165
+        },
+        {
+          "w": "declare",
+          "t": 67.756
+        },
+        {
+          "w": "generated",
+          "t": 68.347
+        },
+        {
+          "w": "partitions,",
+          "t": 68.937
+        },
+        {
+          "w": "model",
+          "t": 69.528
+        },
+        {
+          "w": "weights,",
+          "t": 70.119
+        },
+        {
+          "w": "and",
+          "t": 70.709
+        },
+        {
+          "w": "performance",
+          "t": 71.3
+        },
+        {
+          "w": "metrics.",
+          "t": 71.891
+        },
+        {
+          "w": "This",
+          "t": 72.481
+        },
+        {
+          "w": "explicit",
+          "t": 73.072
+        },
+        {
+          "w": "contract",
+          "t": 73.663
+        },
+        {
+          "w": "eliminates",
+          "t": 74.254
+        },
+        {
+          "w": "implicit",
+          "t": 74.844
+        },
+        {
+          "w": "environment",
+          "t": 75.435
+        },
+        {
+          "w": "side",
+          "t": 76.026
+        },
+        {
+          "w": "effects",
+          "t": 76.616
+        },
+        {
+          "w": "and",
+          "t": 77.207
+        },
+        {
+          "w": "makes",
+          "t": 77.798
+        },
+        {
+          "w": "execution",
+          "t": 78.389
+        },
+        {
+          "w": "graph-addressable.",
+          "t": 78.979
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Let us formalize Definition 8.7.1: The Cryptographic Stage Key. A computational stage s in pipeline graph G has four deterministic inputs: the command string cmd(s), the source code digest C(s), the serialized hyperparameters theta(s), and the ordered input data dependency digests D(s).",
+      "slide": 3,
+      "dock": "main",
+      "start": 80.32,
+      "end": 101.296,
+      "words": [
+        {
+          "w": "Let",
+          "t": 80.32
+        },
+        {
+          "w": "us",
+          "t": 80.819
+        },
+        {
+          "w": "formalize",
+          "t": 81.319
+        },
+        {
+          "w": "Definition",
+          "t": 81.818
+        },
+        {
+          "w": "8.7.1:",
+          "t": 82.318
+        },
+        {
+          "w": "The",
+          "t": 82.817
+        },
+        {
+          "w": "Cryptographic",
+          "t": 83.317
+        },
+        {
+          "w": "Stage",
+          "t": 83.816
+        },
+        {
+          "w": "Key.",
+          "t": 84.315
+        },
+        {
+          "w": "A",
+          "t": 84.815
+        },
+        {
+          "w": "computational",
+          "t": 85.314
+        },
+        {
+          "w": "stage",
+          "t": 85.814
+        },
+        {
+          "w": "s",
+          "t": 86.313
+        },
+        {
+          "w": "in",
+          "t": 86.813
+        },
+        {
+          "w": "pipeline",
+          "t": 87.312
+        },
+        {
+          "w": "graph",
+          "t": 87.811
+        },
+        {
+          "w": "G",
+          "t": 88.311
+        },
+        {
+          "w": "has",
+          "t": 88.81
+        },
+        {
+          "w": "four",
+          "t": 89.31
+        },
+        {
+          "w": "deterministic",
+          "t": 89.809
+        },
+        {
+          "w": "inputs:",
+          "t": 90.309
+        },
+        {
+          "w": "the",
+          "t": 90.808
+        },
+        {
+          "w": "command",
+          "t": 91.307
+        },
+        {
+          "w": "string",
+          "t": 91.807
+        },
+        {
+          "w": "cmd(s),",
+          "t": 92.306
+        },
+        {
+          "w": "the",
+          "t": 92.806
+        },
+        {
+          "w": "source",
+          "t": 93.305
+        },
+        {
+          "w": "code",
+          "t": 93.805
+        },
+        {
+          "w": "digest",
+          "t": 94.304
+        },
+        {
+          "w": "C(s),",
+          "t": 94.803
+        },
+        {
+          "w": "the",
+          "t": 95.303
+        },
+        {
+          "w": "serialized",
+          "t": 95.802
+        },
+        {
+          "w": "hyperparameters",
+          "t": 96.302
+        },
+        {
+          "w": "theta(s),",
+          "t": 96.801
+        },
+        {
+          "w": "and",
+          "t": 97.301
+        },
+        {
+          "w": "the",
+          "t": 97.8
+        },
+        {
+          "w": "ordered",
+          "t": 98.299
+        },
+        {
+          "w": "input",
+          "t": 98.799
+        },
+        {
+          "w": "data",
+          "t": 99.298
+        },
+        {
+          "w": "dependency",
+          "t": 99.798
+        },
+        {
+          "w": "digests",
+          "t": 100.297
+        },
+        {
+          "w": "D(s).",
+          "t": 100.797
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "The stage fingerprint is defined as the SHA-256 digest of the concatenation of these four elements, with dependencies deterministically sorted. If any bit of source code, configuration, or input data changes, the cryptographic avalanche effect generates a completely new stage key.",
+      "slide": 3,
+      "dock": "main",
+      "start": 101.646,
+      "end": 120.654,
+      "words": [
+        {
+          "w": "The",
+          "t": 101.646
+        },
+        {
+          "w": "stage",
+          "t": 102.11
+        },
+        {
+          "w": "fingerprint",
+          "t": 102.573
+        },
+        {
+          "w": "is",
+          "t": 103.037
+        },
+        {
+          "w": "defined",
+          "t": 103.5
+        },
+        {
+          "w": "as",
+          "t": 103.964
+        },
+        {
+          "w": "the",
+          "t": 104.428
+        },
+        {
+          "w": "SHA-256",
+          "t": 104.891
+        },
+        {
+          "w": "digest",
+          "t": 105.355
+        },
+        {
+          "w": "of",
+          "t": 105.818
+        },
+        {
+          "w": "the",
+          "t": 106.282
+        },
+        {
+          "w": "concatenation",
+          "t": 106.746
+        },
+        {
+          "w": "of",
+          "t": 107.209
+        },
+        {
+          "w": "these",
+          "t": 107.673
+        },
+        {
+          "w": "four",
+          "t": 108.137
+        },
+        {
+          "w": "elements,",
+          "t": 108.6
+        },
+        {
+          "w": "with",
+          "t": 109.064
+        },
+        {
+          "w": "dependencies",
+          "t": 109.527
+        },
+        {
+          "w": "deterministically",
+          "t": 109.991
+        },
+        {
+          "w": "sorted.",
+          "t": 110.455
+        },
+        {
+          "w": "If",
+          "t": 110.918
+        },
+        {
+          "w": "any",
+          "t": 111.382
+        },
+        {
+          "w": "bit",
+          "t": 111.845
+        },
+        {
+          "w": "of",
+          "t": 112.309
+        },
+        {
+          "w": "source",
+          "t": 112.773
+        },
+        {
+          "w": "code,",
+          "t": 113.236
+        },
+        {
+          "w": "configuration,",
+          "t": 113.7
+        },
+        {
+          "w": "or",
+          "t": 114.163
+        },
+        {
+          "w": "input",
+          "t": 114.627
+        },
+        {
+          "w": "data",
+          "t": 115.091
+        },
+        {
+          "w": "changes,",
+          "t": 115.554
+        },
+        {
+          "w": "the",
+          "t": 116.018
+        },
+        {
+          "w": "cryptographic",
+          "t": 116.482
+        },
+        {
+          "w": "avalanche",
+          "t": 116.945
+        },
+        {
+          "w": "effect",
+          "t": 117.409
+        },
+        {
+          "w": "generates",
+          "t": 117.872
+        },
+        {
+          "w": "a",
+          "t": 118.336
+        },
+        {
+          "w": "completely",
+          "t": 118.8
+        },
+        {
+          "w": "new",
+          "t": 119.263
+        },
+        {
+          "w": "stage",
+          "t": 119.727
+        },
+        {
+          "w": "key.",
+          "t": 120.19
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "When dvc repro is invoked, DVC evaluates Definition 8.7.2: The Memoization Bypass Predicate B(s). If the cryptographic stage key K_stage is already present in dvc.lock and all output digests match their expected hashes, the predicate evaluates to True.",
+      "slide": 4,
+      "dock": "main",
+      "start": 121.404,
+      "end": 141.204,
+      "words": [
+        {
+          "w": "When",
+          "t": 121.404
+        },
+        {
+          "w": "dvc",
+          "t": 121.925
+        },
+        {
+          "w": "repro",
+          "t": 122.446
+        },
+        {
+          "w": "is",
+          "t": 122.967
+        },
+        {
+          "w": "invoked,",
+          "t": 123.488
+        },
+        {
+          "w": "DVC",
+          "t": 124.009
+        },
+        {
+          "w": "evaluates",
+          "t": 124.53
+        },
+        {
+          "w": "Definition",
+          "t": 125.051
+        },
+        {
+          "w": "8.7.2:",
+          "t": 125.572
+        },
+        {
+          "w": "The",
+          "t": 126.093
+        },
+        {
+          "w": "Memoization",
+          "t": 126.615
+        },
+        {
+          "w": "Bypass",
+          "t": 127.136
+        },
+        {
+          "w": "Predicate",
+          "t": 127.657
+        },
+        {
+          "w": "B(s).",
+          "t": 128.178
+        },
+        {
+          "w": "If",
+          "t": 128.699
+        },
+        {
+          "w": "the",
+          "t": 129.22
+        },
+        {
+          "w": "cryptographic",
+          "t": 129.741
+        },
+        {
+          "w": "stage",
+          "t": 130.262
+        },
+        {
+          "w": "key",
+          "t": 130.783
+        },
+        {
+          "w": "K_stage",
+          "t": 131.304
+        },
+        {
+          "w": "is",
+          "t": 131.825
+        },
+        {
+          "w": "already",
+          "t": 132.346
+        },
+        {
+          "w": "present",
+          "t": 132.867
+        },
+        {
+          "w": "in",
+          "t": 133.388
+        },
+        {
+          "w": "dvc.lock",
+          "t": 133.909
+        },
+        {
+          "w": "and",
+          "t": 134.43
+        },
+        {
+          "w": "all",
+          "t": 134.951
+        },
+        {
+          "w": "output",
+          "t": 135.472
+        },
+        {
+          "w": "digests",
+          "t": 135.993
+        },
+        {
+          "w": "match",
+          "t": 136.515
+        },
+        {
+          "w": "their",
+          "t": 137.036
+        },
+        {
+          "w": "expected",
+          "t": 137.557
+        },
+        {
+          "w": "hashes,",
+          "t": 138.078
+        },
+        {
+          "w": "the",
+          "t": 138.599
+        },
+        {
+          "w": "predicate",
+          "t": 139.12
+        },
+        {
+          "w": "evaluates",
+          "t": 139.641
+        },
+        {
+          "w": "to",
+          "t": 140.162
+        },
+        {
+          "w": "True.",
+          "t": 140.683
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "When B(s) is True, stage execution is bypassed in order one time by restoring outputs directly from .dvc/cache via hardlink or copy-on-write reflink. Conversely, if B(s) is False, the stage executes, monotonically invalidating all downstream descendant stages.",
+      "slide": 4,
+      "dock": "main",
+      "start": 141.554,
+      "end": 160.106,
+      "words": [
+        {
+          "w": "When",
+          "t": 141.554
+        },
+        {
+          "w": "B(s)",
+          "t": 142.055
+        },
+        {
+          "w": "is",
+          "t": 142.557
+        },
+        {
+          "w": "True,",
+          "t": 143.058
+        },
+        {
+          "w": "stage",
+          "t": 143.56
+        },
+        {
+          "w": "execution",
+          "t": 144.061
+        },
+        {
+          "w": "is",
+          "t": 144.562
+        },
+        {
+          "w": "bypassed",
+          "t": 145.064
+        },
+        {
+          "w": "in",
+          "t": 145.565
+        },
+        {
+          "w": "order",
+          "t": 146.067
+        },
+        {
+          "w": "one",
+          "t": 146.568
+        },
+        {
+          "w": "time",
+          "t": 147.069
+        },
+        {
+          "w": "by",
+          "t": 147.571
+        },
+        {
+          "w": "restoring",
+          "t": 148.072
+        },
+        {
+          "w": "outputs",
+          "t": 148.574
+        },
+        {
+          "w": "directly",
+          "t": 149.075
+        },
+        {
+          "w": "from",
+          "t": 149.576
+        },
+        {
+          "w": ".dvc/cache",
+          "t": 150.078
+        },
+        {
+          "w": "via",
+          "t": 150.579
+        },
+        {
+          "w": "hardlink",
+          "t": 151.081
+        },
+        {
+          "w": "or",
+          "t": 151.582
+        },
+        {
+          "w": "copy-on-write",
+          "t": 152.084
+        },
+        {
+          "w": "reflink.",
+          "t": 152.585
+        },
+        {
+          "w": "Conversely,",
+          "t": 153.086
+        },
+        {
+          "w": "if",
+          "t": 153.588
+        },
+        {
+          "w": "B(s)",
+          "t": 154.089
+        },
+        {
+          "w": "is",
+          "t": 154.591
+        },
+        {
+          "w": "False,",
+          "t": 155.092
+        },
+        {
+          "w": "the",
+          "t": 155.593
+        },
+        {
+          "w": "stage",
+          "t": 156.095
+        },
+        {
+          "w": "executes,",
+          "t": 156.596
+        },
+        {
+          "w": "monotonically",
+          "t": 157.098
+        },
+        {
+          "w": "invalidating",
+          "t": 157.599
+        },
+        {
+          "w": "all",
+          "t": 158.1
+        },
+        {
+          "w": "downstream",
+          "t": 158.602
+        },
+        {
+          "w": "descendant",
+          "t": 159.103
+        },
+        {
+          "w": "stages.",
+          "t": 159.605
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "How much faster does DVC make your team? We quantify this in Definition 8.7.3 using Amdahl's Pipeline Acceleration Factor. Let total cold-start duration be T_cold. If cached upstream stages represent a fraction f_cached of total runtime, the speedup factor is approximately 1 over 1 minus f_cached.",
+      "slide": 5,
+      "dock": "main",
+      "start": 160.856,
+      "end": 184.208,
+      "words": [
+        {
+          "w": "How",
+          "t": 160.856
+        },
+        {
+          "w": "much",
+          "t": 161.364
+        },
+        {
+          "w": "faster",
+          "t": 161.871
+        },
+        {
+          "w": "does",
+          "t": 162.379
+        },
+        {
+          "w": "DVC",
+          "t": 162.887
+        },
+        {
+          "w": "make",
+          "t": 163.394
+        },
+        {
+          "w": "your",
+          "t": 163.902
+        },
+        {
+          "w": "team?",
+          "t": 164.41
+        },
+        {
+          "w": "We",
+          "t": 164.917
+        },
+        {
+          "w": "quantify",
+          "t": 165.425
+        },
+        {
+          "w": "this",
+          "t": 165.933
+        },
+        {
+          "w": "in",
+          "t": 166.44
+        },
+        {
+          "w": "Definition",
+          "t": 166.948
+        },
+        {
+          "w": "8.7.3",
+          "t": 167.455
+        },
+        {
+          "w": "using",
+          "t": 167.963
+        },
+        {
+          "w": "Amdahl's",
+          "t": 168.471
+        },
+        {
+          "w": "Pipeline",
+          "t": 168.978
+        },
+        {
+          "w": "Acceleration",
+          "t": 169.486
+        },
+        {
+          "w": "Factor.",
+          "t": 169.994
+        },
+        {
+          "w": "Let",
+          "t": 170.501
+        },
+        {
+          "w": "total",
+          "t": 171.009
+        },
+        {
+          "w": "cold-start",
+          "t": 171.517
+        },
+        {
+          "w": "duration",
+          "t": 172.024
+        },
+        {
+          "w": "be",
+          "t": 172.532
+        },
+        {
+          "w": "T_cold.",
+          "t": 173.04
+        },
+        {
+          "w": "If",
+          "t": 173.547
+        },
+        {
+          "w": "cached",
+          "t": 174.055
+        },
+        {
+          "w": "upstream",
+          "t": 174.563
+        },
+        {
+          "w": "stages",
+          "t": 175.07
+        },
+        {
+          "w": "represent",
+          "t": 175.578
+        },
+        {
+          "w": "a",
+          "t": 176.086
+        },
+        {
+          "w": "fraction",
+          "t": 176.593
+        },
+        {
+          "w": "f_cached",
+          "t": 177.101
+        },
+        {
+          "w": "of",
+          "t": 177.609
+        },
+        {
+          "w": "total",
+          "t": 178.116
+        },
+        {
+          "w": "runtime,",
+          "t": 178.624
+        },
+        {
+          "w": "the",
+          "t": 179.131
+        },
+        {
+          "w": "speedup",
+          "t": 179.639
+        },
+        {
+          "w": "factor",
+          "t": 180.147
+        },
+        {
+          "w": "is",
+          "t": 180.654
+        },
+        {
+          "w": "approximately",
+          "t": 181.162
+        },
+        {
+          "w": "1",
+          "t": 181.67
+        },
+        {
+          "w": "over",
+          "t": 182.177
+        },
+        {
+          "w": "1",
+          "t": 182.685
+        },
+        {
+          "w": "minus",
+          "t": 183.193
+        },
+        {
+          "w": "f_cached.",
+          "t": 183.7
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "If heavy raw data ingestion and feature engineering account for 95% of pipeline time, tuning hyperparameters on the final 5% yields a 20x speedup! A 4-hour pipeline finishes in just 12 minutes.",
+      "slide": 5,
+      "dock": "main",
+      "start": 184.558,
+      "end": 198.934,
+      "words": [
+        {
+          "w": "If",
+          "t": 184.558
+        },
+        {
+          "w": "heavy",
+          "t": 185.007
+        },
+        {
+          "w": "raw",
+          "t": 185.457
+        },
+        {
+          "w": "data",
+          "t": 185.906
+        },
+        {
+          "w": "ingestion",
+          "t": 186.355
+        },
+        {
+          "w": "and",
+          "t": 186.804
+        },
+        {
+          "w": "feature",
+          "t": 187.254
+        },
+        {
+          "w": "engineering",
+          "t": 187.703
+        },
+        {
+          "w": "account",
+          "t": 188.152
+        },
+        {
+          "w": "for",
+          "t": 188.601
+        },
+        {
+          "w": "95%",
+          "t": 189.05
+        },
+        {
+          "w": "of",
+          "t": 189.5
+        },
+        {
+          "w": "pipeline",
+          "t": 189.949
+        },
+        {
+          "w": "time,",
+          "t": 190.398
+        },
+        {
+          "w": "tuning",
+          "t": 190.847
+        },
+        {
+          "w": "hyperparameters",
+          "t": 191.297
+        },
+        {
+          "w": "on",
+          "t": 191.746
+        },
+        {
+          "w": "the",
+          "t": 192.195
+        },
+        {
+          "w": "final",
+          "t": 192.644
+        },
+        {
+          "w": "5%",
+          "t": 193.094
+        },
+        {
+          "w": "yields",
+          "t": 193.543
+        },
+        {
+          "w": "a",
+          "t": 193.992
+        },
+        {
+          "w": "20x",
+          "t": 194.441
+        },
+        {
+          "w": "speedup!",
+          "t": 194.891
+        },
+        {
+          "w": "A",
+          "t": 195.34
+        },
+        {
+          "w": "4-hour",
+          "t": 195.789
+        },
+        {
+          "w": "pipeline",
+          "t": 196.238
+        },
+        {
+          "w": "finishes",
+          "t": 196.688
+        },
+        {
+          "w": "in",
+          "t": 197.137
+        },
+        {
+          "w": "just",
+          "t": 197.586
+        },
+        {
+          "w": "12",
+          "t": 198.035
+        },
+        {
+          "w": "minutes.",
+          "t": 198.485
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 1: DVC Pipeline DAG and Content-Addressed Execution Studio. Look at the four stages in the live canvas below: Ingest at 25 seconds, Features at 140 seconds, Train at 60 seconds, and Eval at 15 seconds, totaling 240 seconds cold-start.",
+      "slide": 6,
+      "dock": "main",
+      "start": 199.684,
+      "end": 220.684,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 199.684
+        },
+        {
+          "w": "to",
+          "t": 200.172
+        },
+        {
+          "w": "Interactive",
+          "t": 200.661
+        },
+        {
+          "w": "Lab",
+          "t": 201.149
+        },
+        {
+          "w": "1:",
+          "t": 201.637
+        },
+        {
+          "w": "DVC",
+          "t": 202.126
+        },
+        {
+          "w": "Pipeline",
+          "t": 202.614
+        },
+        {
+          "w": "DAG",
+          "t": 203.103
+        },
+        {
+          "w": "and",
+          "t": 203.591
+        },
+        {
+          "w": "Content-Addressed",
+          "t": 204.079
+        },
+        {
+          "w": "Execution",
+          "t": 204.568
+        },
+        {
+          "w": "Studio.",
+          "t": 205.056
+        },
+        {
+          "w": "Look",
+          "t": 205.544
+        },
+        {
+          "w": "at",
+          "t": 206.033
+        },
+        {
+          "w": "the",
+          "t": 206.521
+        },
+        {
+          "w": "four",
+          "t": 207.01
+        },
+        {
+          "w": "stages",
+          "t": 207.498
+        },
+        {
+          "w": "in",
+          "t": 207.986
+        },
+        {
+          "w": "the",
+          "t": 208.475
+        },
+        {
+          "w": "live",
+          "t": 208.963
+        },
+        {
+          "w": "canvas",
+          "t": 209.451
+        },
+        {
+          "w": "below:",
+          "t": 209.94
+        },
+        {
+          "w": "Ingest",
+          "t": 210.428
+        },
+        {
+          "w": "at",
+          "t": 210.917
+        },
+        {
+          "w": "25",
+          "t": 211.405
+        },
+        {
+          "w": "seconds,",
+          "t": 211.893
+        },
+        {
+          "w": "Features",
+          "t": 212.382
+        },
+        {
+          "w": "at",
+          "t": 212.87
+        },
+        {
+          "w": "140",
+          "t": 213.358
+        },
+        {
+          "w": "seconds,",
+          "t": 213.847
+        },
+        {
+          "w": "Train",
+          "t": 214.335
+        },
+        {
+          "w": "at",
+          "t": 214.824
+        },
+        {
+          "w": "60",
+          "t": 215.312
+        },
+        {
+          "w": "seconds,",
+          "t": 215.8
+        },
+        {
+          "w": "and",
+          "t": 216.289
+        },
+        {
+          "w": "Eval",
+          "t": 216.777
+        },
+        {
+          "w": "at",
+          "t": 217.265
+        },
+        {
+          "w": "15",
+          "t": 217.754
+        },
+        {
+          "w": "seconds,",
+          "t": 218.242
+        },
+        {
+          "w": "totaling",
+          "t": 218.731
+        },
+        {
+          "w": "240",
+          "t": 219.219
+        },
+        {
+          "w": "seconds",
+          "t": 219.707
+        },
+        {
+          "w": "cold-start.",
+          "t": 220.196
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Click Execute dvc repro on an unchanged pipeline to witness a 100% cache hit in zero seconds. Then click Tune Hyperparams to see how Stages 1 and 2 bypass in green, re-executing only Train and Eval in 75 seconds!",
+      "slide": 6,
+      "dock": "main",
+      "start": 221.034,
+      "end": 237.114,
+      "words": [
+        {
+          "w": "Click",
+          "t": 221.034
+        },
+        {
+          "w": "Execute",
+          "t": 221.446
+        },
+        {
+          "w": "dvc",
+          "t": 221.859
+        },
+        {
+          "w": "repro",
+          "t": 222.271
+        },
+        {
+          "w": "on",
+          "t": 222.683
+        },
+        {
+          "w": "an",
+          "t": 223.096
+        },
+        {
+          "w": "unchanged",
+          "t": 223.508
+        },
+        {
+          "w": "pipeline",
+          "t": 223.92
+        },
+        {
+          "w": "to",
+          "t": 224.332
+        },
+        {
+          "w": "witness",
+          "t": 224.745
+        },
+        {
+          "w": "a",
+          "t": 225.157
+        },
+        {
+          "w": "100%",
+          "t": 225.569
+        },
+        {
+          "w": "cache",
+          "t": 225.982
+        },
+        {
+          "w": "hit",
+          "t": 226.394
+        },
+        {
+          "w": "in",
+          "t": 226.806
+        },
+        {
+          "w": "zero",
+          "t": 227.219
+        },
+        {
+          "w": "seconds.",
+          "t": 227.631
+        },
+        {
+          "w": "Then",
+          "t": 228.043
+        },
+        {
+          "w": "click",
+          "t": 228.456
+        },
+        {
+          "w": "Tune",
+          "t": 228.868
+        },
+        {
+          "w": "Hyperparams",
+          "t": 229.28
+        },
+        {
+          "w": "to",
+          "t": 229.692
+        },
+        {
+          "w": "see",
+          "t": 230.105
+        },
+        {
+          "w": "how",
+          "t": 230.517
+        },
+        {
+          "w": "Stages",
+          "t": 230.929
+        },
+        {
+          "w": "1",
+          "t": 231.342
+        },
+        {
+          "w": "and",
+          "t": 231.754
+        },
+        {
+          "w": "2",
+          "t": 232.166
+        },
+        {
+          "w": "bypass",
+          "t": 232.579
+        },
+        {
+          "w": "in",
+          "t": 232.991
+        },
+        {
+          "w": "green,",
+          "t": 233.403
+        },
+        {
+          "w": "re-executing",
+          "t": 233.816
+        },
+        {
+          "w": "only",
+          "t": 234.228
+        },
+        {
+          "w": "Train",
+          "t": 234.64
+        },
+        {
+          "w": "and",
+          "t": 235.052
+        },
+        {
+          "w": "Eval",
+          "t": 235.465
+        },
+        {
+          "w": "in",
+          "t": 235.877
+        },
+        {
+          "w": "75",
+          "t": 236.289
+        },
+        {
+          "w": "seconds!",
+          "t": 236.702
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 1, aligned with Self-Assessment 8.7.1. In a DVC pipeline, Stage 2 depends on features.py, params.yaml, and raw.parquet. An engineer adds an inline comment '# Clean outlier bounds' to features.py without modifying any code logic or parameters.",
+      "slide": 7,
+      "dock": "main",
+      "start": 237.864,
+      "end": 259.296,
+      "words": [
+        {
+          "w": "Time",
+          "t": 237.864
+        },
+        {
+          "w": "for",
+          "t": 238.4
+        },
+        {
+          "w": "Active",
+          "t": 238.936
+        },
+        {
+          "w": "Checkpoint",
+          "t": 239.471
+        },
+        {
+          "w": "1,",
+          "t": 240.007
+        },
+        {
+          "w": "aligned",
+          "t": 240.543
+        },
+        {
+          "w": "with",
+          "t": 241.079
+        },
+        {
+          "w": "Self-Assessment",
+          "t": 241.615
+        },
+        {
+          "w": "8.7.1.",
+          "t": 242.15
+        },
+        {
+          "w": "In",
+          "t": 242.686
+        },
+        {
+          "w": "a",
+          "t": 243.222
+        },
+        {
+          "w": "DVC",
+          "t": 243.758
+        },
+        {
+          "w": "pipeline,",
+          "t": 244.294
+        },
+        {
+          "w": "Stage",
+          "t": 244.829
+        },
+        {
+          "w": "2",
+          "t": 245.365
+        },
+        {
+          "w": "depends",
+          "t": 245.901
+        },
+        {
+          "w": "on",
+          "t": 246.437
+        },
+        {
+          "w": "features.py,",
+          "t": 246.973
+        },
+        {
+          "w": "params.yaml,",
+          "t": 247.508
+        },
+        {
+          "w": "and",
+          "t": 248.044
+        },
+        {
+          "w": "raw.parquet.",
+          "t": 248.58
+        },
+        {
+          "w": "An",
+          "t": 249.116
+        },
+        {
+          "w": "engineer",
+          "t": 249.652
+        },
+        {
+          "w": "adds",
+          "t": 250.187
+        },
+        {
+          "w": "an",
+          "t": 250.723
+        },
+        {
+          "w": "inline",
+          "t": 251.259
+        },
+        {
+          "w": "comment",
+          "t": 251.795
+        },
+        {
+          "w": "'#",
+          "t": 252.331
+        },
+        {
+          "w": "Clean",
+          "t": 252.866
+        },
+        {
+          "w": "outlier",
+          "t": 253.402
+        },
+        {
+          "w": "bounds'",
+          "t": 253.938
+        },
+        {
+          "w": "to",
+          "t": 254.474
+        },
+        {
+          "w": "features.py",
+          "t": 255.01
+        },
+        {
+          "w": "without",
+          "t": 255.545
+        },
+        {
+          "w": "modifying",
+          "t": 256.081
+        },
+        {
+          "w": "any",
+          "t": 256.617
+        },
+        {
+          "w": "code",
+          "t": 257.153
+        },
+        {
+          "w": "logic",
+          "t": 257.689
+        },
+        {
+          "w": "or",
+          "t": 258.224
+        },
+        {
+          "w": "parameters.",
+          "t": 258.76
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Does the code hash change? Does the stage fingerprint change? What happens when dvc repro runs, and how should teams prevent innocuous comment edits from invalidating multi-hour stages? Select Option A, B, or C on the card below.",
+      "slide": 7,
+      "dock": "quiz",
+      "start": 259.646,
+      "end": 276.494,
+      "words": [
+        {
+          "w": "Does",
+          "t": 259.646
+        },
+        {
+          "w": "the",
+          "t": 260.089
+        },
+        {
+          "w": "code",
+          "t": 260.533
+        },
+        {
+          "w": "hash",
+          "t": 260.976
+        },
+        {
+          "w": "change?",
+          "t": 261.419
+        },
+        {
+          "w": "Does",
+          "t": 261.863
+        },
+        {
+          "w": "the",
+          "t": 262.306
+        },
+        {
+          "w": "stage",
+          "t": 262.75
+        },
+        {
+          "w": "fingerprint",
+          "t": 263.193
+        },
+        {
+          "w": "change?",
+          "t": 263.636
+        },
+        {
+          "w": "What",
+          "t": 264.08
+        },
+        {
+          "w": "happens",
+          "t": 264.523
+        },
+        {
+          "w": "when",
+          "t": 264.966
+        },
+        {
+          "w": "dvc",
+          "t": 265.41
+        },
+        {
+          "w": "repro",
+          "t": 265.853
+        },
+        {
+          "w": "runs,",
+          "t": 266.297
+        },
+        {
+          "w": "and",
+          "t": 266.74
+        },
+        {
+          "w": "how",
+          "t": 267.183
+        },
+        {
+          "w": "should",
+          "t": 267.627
+        },
+        {
+          "w": "teams",
+          "t": 268.07
+        },
+        {
+          "w": "prevent",
+          "t": 268.513
+        },
+        {
+          "w": "innocuous",
+          "t": 268.957
+        },
+        {
+          "w": "comment",
+          "t": 269.4
+        },
+        {
+          "w": "edits",
+          "t": 269.843
+        },
+        {
+          "w": "from",
+          "t": 270.287
+        },
+        {
+          "w": "invalidating",
+          "t": 270.73
+        },
+        {
+          "w": "multi-hour",
+          "t": 271.174
+        },
+        {
+          "w": "stages?",
+          "t": 271.617
+        },
+        {
+          "w": "Select",
+          "t": 272.06
+        },
+        {
+          "w": "Option",
+          "t": 272.504
+        },
+        {
+          "w": "A,",
+          "t": 272.947
+        },
+        {
+          "w": "B,",
+          "t": 273.39
+        },
+        {
+          "w": "or",
+          "t": 273.834
+        },
+        {
+          "w": "C",
+          "t": 274.277
+        },
+        {
+          "w": "on",
+          "t": 274.721
+        },
+        {
+          "w": "the",
+          "t": 275.164
+        },
+        {
+          "w": "card",
+          "t": 275.607
+        },
+        {
+          "w": "below.",
+          "t": 276.051
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "When scheduling complex pipelines across multi-core workers or distributed cloud runners, we formalize Definition 8.7.4: The DAG Critical Path Makespan. Let P be the set of all directed paths from source nodes to terminal sink nodes in G.",
+      "slide": 8,
+      "dock": "main",
+      "start": 277.244,
+      "end": 294.02,
+      "words": [
+        {
+          "w": "When",
+          "t": 277.244
+        },
+        {
+          "w": "scheduling",
+          "t": 277.685
+        },
+        {
+          "w": "complex",
+          "t": 278.127
+        },
+        {
+          "w": "pipelines",
+          "t": 278.568
+        },
+        {
+          "w": "across",
+          "t": 279.01
+        },
+        {
+          "w": "multi-core",
+          "t": 279.451
+        },
+        {
+          "w": "workers",
+          "t": 279.893
+        },
+        {
+          "w": "or",
+          "t": 280.334
+        },
+        {
+          "w": "distributed",
+          "t": 280.776
+        },
+        {
+          "w": "cloud",
+          "t": 281.217
+        },
+        {
+          "w": "runners,",
+          "t": 281.659
+        },
+        {
+          "w": "we",
+          "t": 282.1
+        },
+        {
+          "w": "formalize",
+          "t": 282.542
+        },
+        {
+          "w": "Definition",
+          "t": 282.983
+        },
+        {
+          "w": "8.7.4:",
+          "t": 283.425
+        },
+        {
+          "w": "The",
+          "t": 283.866
+        },
+        {
+          "w": "DAG",
+          "t": 284.308
+        },
+        {
+          "w": "Critical",
+          "t": 284.749
+        },
+        {
+          "w": "Path",
+          "t": 285.191
+        },
+        {
+          "w": "Makespan.",
+          "t": 285.632
+        },
+        {
+          "w": "Let",
+          "t": 286.073
+        },
+        {
+          "w": "P",
+          "t": 286.515
+        },
+        {
+          "w": "be",
+          "t": 286.956
+        },
+        {
+          "w": "the",
+          "t": 287.398
+        },
+        {
+          "w": "set",
+          "t": 287.839
+        },
+        {
+          "w": "of",
+          "t": 288.281
+        },
+        {
+          "w": "all",
+          "t": 288.722
+        },
+        {
+          "w": "directed",
+          "t": 289.164
+        },
+        {
+          "w": "paths",
+          "t": 289.605
+        },
+        {
+          "w": "from",
+          "t": 290.047
+        },
+        {
+          "w": "source",
+          "t": 290.488
+        },
+        {
+          "w": "nodes",
+          "t": 290.93
+        },
+        {
+          "w": "to",
+          "t": 291.371
+        },
+        {
+          "w": "terminal",
+          "t": 291.813
+        },
+        {
+          "w": "sink",
+          "t": 292.254
+        },
+        {
+          "w": "nodes",
+          "t": 292.696
+        },
+        {
+          "w": "in",
+          "t": 293.137
+        },
+        {
+          "w": "G.",
+          "t": 293.579
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "The critical path makespan T_crit is the maximum cumulative duration along any directed path. By scheduling theory, even with infinite parallel worker nodes P to infinity, no scheduling algorithm can execute the pipeline faster than T_crit.",
+      "slide": 8,
+      "dock": "main",
+      "start": 294.37,
+      "end": 311.05,
+      "words": [
+        {
+          "w": "The",
+          "t": 294.37
+        },
+        {
+          "w": "critical",
+          "t": 294.833
+        },
+        {
+          "w": "path",
+          "t": 295.297
+        },
+        {
+          "w": "makespan",
+          "t": 295.76
+        },
+        {
+          "w": "T_crit",
+          "t": 296.223
+        },
+        {
+          "w": "is",
+          "t": 296.687
+        },
+        {
+          "w": "the",
+          "t": 297.15
+        },
+        {
+          "w": "maximum",
+          "t": 297.613
+        },
+        {
+          "w": "cumulative",
+          "t": 298.077
+        },
+        {
+          "w": "duration",
+          "t": 298.54
+        },
+        {
+          "w": "along",
+          "t": 299.003
+        },
+        {
+          "w": "any",
+          "t": 299.467
+        },
+        {
+          "w": "directed",
+          "t": 299.93
+        },
+        {
+          "w": "path.",
+          "t": 300.393
+        },
+        {
+          "w": "By",
+          "t": 300.857
+        },
+        {
+          "w": "scheduling",
+          "t": 301.32
+        },
+        {
+          "w": "theory,",
+          "t": 301.783
+        },
+        {
+          "w": "even",
+          "t": 302.247
+        },
+        {
+          "w": "with",
+          "t": 302.71
+        },
+        {
+          "w": "infinite",
+          "t": 303.173
+        },
+        {
+          "w": "parallel",
+          "t": 303.637
+        },
+        {
+          "w": "worker",
+          "t": 304.1
+        },
+        {
+          "w": "nodes",
+          "t": 304.563
+        },
+        {
+          "w": "P",
+          "t": 305.027
+        },
+        {
+          "w": "to",
+          "t": 305.49
+        },
+        {
+          "w": "infinity,",
+          "t": 305.953
+        },
+        {
+          "w": "no",
+          "t": 306.417
+        },
+        {
+          "w": "scheduling",
+          "t": 306.88
+        },
+        {
+          "w": "algorithm",
+          "t": 307.343
+        },
+        {
+          "w": "can",
+          "t": 307.807
+        },
+        {
+          "w": "execute",
+          "t": 308.27
+        },
+        {
+          "w": "the",
+          "t": 308.733
+        },
+        {
+          "w": "pipeline",
+          "t": 309.197
+        },
+        {
+          "w": "faster",
+          "t": 309.66
+        },
+        {
+          "w": "than",
+          "t": 310.123
+        },
+        {
+          "w": "T_crit.",
+          "t": 310.587
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Understanding DAG topology reveals why the blast radius of changes differs fundamentally based on stage depth. Mutating root inputs triggers a full downstream cascade, while mutating terminal stages provides surgical invalidation.",
+      "slide": 9,
+      "dock": "main",
+      "start": 311.8,
+      "end": 326.536,
+      "words": [
+        {
+          "w": "Understanding",
+          "t": 311.8
+        },
+        {
+          "w": "DAG",
+          "t": 312.275
+        },
+        {
+          "w": "topology",
+          "t": 312.751
+        },
+        {
+          "w": "reveals",
+          "t": 313.226
+        },
+        {
+          "w": "why",
+          "t": 313.701
+        },
+        {
+          "w": "the",
+          "t": 314.177
+        },
+        {
+          "w": "blast",
+          "t": 314.652
+        },
+        {
+          "w": "radius",
+          "t": 315.127
+        },
+        {
+          "w": "of",
+          "t": 315.603
+        },
+        {
+          "w": "changes",
+          "t": 316.078
+        },
+        {
+          "w": "differs",
+          "t": 316.554
+        },
+        {
+          "w": "fundamentally",
+          "t": 317.029
+        },
+        {
+          "w": "based",
+          "t": 317.504
+        },
+        {
+          "w": "on",
+          "t": 317.98
+        },
+        {
+          "w": "stage",
+          "t": 318.455
+        },
+        {
+          "w": "depth.",
+          "t": 318.93
+        },
+        {
+          "w": "Mutating",
+          "t": 319.406
+        },
+        {
+          "w": "root",
+          "t": 319.881
+        },
+        {
+          "w": "inputs",
+          "t": 320.356
+        },
+        {
+          "w": "triggers",
+          "t": 320.832
+        },
+        {
+          "w": "a",
+          "t": 321.307
+        },
+        {
+          "w": "full",
+          "t": 321.782
+        },
+        {
+          "w": "downstream",
+          "t": 322.258
+        },
+        {
+          "w": "cascade,",
+          "t": 322.733
+        },
+        {
+          "w": "while",
+          "t": 323.209
+        },
+        {
+          "w": "mutating",
+          "t": 323.684
+        },
+        {
+          "w": "terminal",
+          "t": 324.159
+        },
+        {
+          "w": "stages",
+          "t": 324.635
+        },
+        {
+          "w": "provides",
+          "t": 325.11
+        },
+        {
+          "w": "surgical",
+          "t": 325.585
+        },
+        {
+          "w": "invalidation.",
+          "t": 326.061
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "When raw sensor data changes at Stage 1, every single downstream output hash changes, forcing all subsequent stages to recompute. Conversely, tweaking hyperparameter lr at Stage 3 affects only Stages 3 and 4, leaving heavy Stage 1 and 2 artifacts fully cached.",
+      "slide": 9,
+      "dock": "main",
+      "start": 326.886,
+      "end": 345.414,
+      "words": [
+        {
+          "w": "When",
+          "t": 326.886
+        },
+        {
+          "w": "raw",
+          "t": 327.327
+        },
+        {
+          "w": "sensor",
+          "t": 327.768
+        },
+        {
+          "w": "data",
+          "t": 328.209
+        },
+        {
+          "w": "changes",
+          "t": 328.651
+        },
+        {
+          "w": "at",
+          "t": 329.092
+        },
+        {
+          "w": "Stage",
+          "t": 329.533
+        },
+        {
+          "w": "1,",
+          "t": 329.974
+        },
+        {
+          "w": "every",
+          "t": 330.415
+        },
+        {
+          "w": "single",
+          "t": 330.856
+        },
+        {
+          "w": "downstream",
+          "t": 331.297
+        },
+        {
+          "w": "output",
+          "t": 331.739
+        },
+        {
+          "w": "hash",
+          "t": 332.18
+        },
+        {
+          "w": "changes,",
+          "t": 332.621
+        },
+        {
+          "w": "forcing",
+          "t": 333.062
+        },
+        {
+          "w": "all",
+          "t": 333.503
+        },
+        {
+          "w": "subsequent",
+          "t": 333.944
+        },
+        {
+          "w": "stages",
+          "t": 334.385
+        },
+        {
+          "w": "to",
+          "t": 334.827
+        },
+        {
+          "w": "recompute.",
+          "t": 335.268
+        },
+        {
+          "w": "Conversely,",
+          "t": 335.709
+        },
+        {
+          "w": "tweaking",
+          "t": 336.15
+        },
+        {
+          "w": "hyperparameter",
+          "t": 336.591
+        },
+        {
+          "w": "lr",
+          "t": 337.032
+        },
+        {
+          "w": "at",
+          "t": 337.473
+        },
+        {
+          "w": "Stage",
+          "t": 337.915
+        },
+        {
+          "w": "3",
+          "t": 338.356
+        },
+        {
+          "w": "affects",
+          "t": 338.797
+        },
+        {
+          "w": "only",
+          "t": 339.238
+        },
+        {
+          "w": "Stages",
+          "t": 339.679
+        },
+        {
+          "w": "3",
+          "t": 340.12
+        },
+        {
+          "w": "and",
+          "t": 340.561
+        },
+        {
+          "w": "4,",
+          "t": 341.003
+        },
+        {
+          "w": "leaving",
+          "t": 341.444
+        },
+        {
+          "w": "heavy",
+          "t": 341.885
+        },
+        {
+          "w": "Stage",
+          "t": 342.326
+        },
+        {
+          "w": "1",
+          "t": 342.767
+        },
+        {
+          "w": "and",
+          "t": 343.208
+        },
+        {
+          "w": "2",
+          "t": 343.649
+        },
+        {
+          "w": "artifacts",
+          "t": 344.091
+        },
+        {
+          "w": "fully",
+          "t": 344.532
+        },
+        {
+          "w": "cached.",
+          "t": 344.973
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 2: Cloud Compute Economics and Amdahl Acceleration Studio. Here we model the direct cloud financial return on investment from DVC pipeline caching across a machine learning organization.",
+      "slide": 10,
+      "dock": "main",
+      "start": 346.164,
+      "end": 360.108,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 346.164
+        },
+        {
+          "w": "to",
+          "t": 346.614
+        },
+        {
+          "w": "Interactive",
+          "t": 347.064
+        },
+        {
+          "w": "Lab",
+          "t": 347.513
+        },
+        {
+          "w": "2:",
+          "t": 347.963
+        },
+        {
+          "w": "Cloud",
+          "t": 348.413
+        },
+        {
+          "w": "Compute",
+          "t": 348.863
+        },
+        {
+          "w": "Economics",
+          "t": 349.313
+        },
+        {
+          "w": "and",
+          "t": 349.762
+        },
+        {
+          "w": "Amdahl",
+          "t": 350.212
+        },
+        {
+          "w": "Acceleration",
+          "t": 350.662
+        },
+        {
+          "w": "Studio.",
+          "t": 351.112
+        },
+        {
+          "w": "Here",
+          "t": 351.562
+        },
+        {
+          "w": "we",
+          "t": 352.011
+        },
+        {
+          "w": "model",
+          "t": 352.461
+        },
+        {
+          "w": "the",
+          "t": 352.911
+        },
+        {
+          "w": "direct",
+          "t": 353.361
+        },
+        {
+          "w": "cloud",
+          "t": 353.811
+        },
+        {
+          "w": "financial",
+          "t": 354.261
+        },
+        {
+          "w": "return",
+          "t": 354.71
+        },
+        {
+          "w": "on",
+          "t": 355.16
+        },
+        {
+          "w": "investment",
+          "t": 355.61
+        },
+        {
+          "w": "from",
+          "t": 356.06
+        },
+        {
+          "w": "DVC",
+          "t": 356.51
+        },
+        {
+          "w": "pipeline",
+          "t": 356.959
+        },
+        {
+          "w": "caching",
+          "t": 357.409
+        },
+        {
+          "w": "across",
+          "t": 357.859
+        },
+        {
+          "w": "a",
+          "t": 358.309
+        },
+        {
+          "w": "machine",
+          "t": 358.759
+        },
+        {
+          "w": "learning",
+          "t": 359.208
+        },
+        {
+          "w": "organization.",
+          "t": 359.658
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Using the sliders below, adjust the GPU cluster rate, daily pipeline runs, and cached fraction. Notice how a 68.8% cached fraction slashes a monthly cluster bill from 14,400 dollars to 4,500 dollars, saving nearly 10,000 dollars each month!",
+      "slide": 10,
+      "dock": "main",
+      "start": 360.458,
+      "end": 380.018,
+      "words": [
+        {
+          "w": "Using",
+          "t": 360.458
+        },
+        {
+          "w": "the",
+          "t": 360.973
+        },
+        {
+          "w": "sliders",
+          "t": 361.487
+        },
+        {
+          "w": "below,",
+          "t": 362.002
+        },
+        {
+          "w": "adjust",
+          "t": 362.517
+        },
+        {
+          "w": "the",
+          "t": 363.032
+        },
+        {
+          "w": "GPU",
+          "t": 363.546
+        },
+        {
+          "w": "cluster",
+          "t": 364.061
+        },
+        {
+          "w": "rate,",
+          "t": 364.576
+        },
+        {
+          "w": "daily",
+          "t": 365.091
+        },
+        {
+          "w": "pipeline",
+          "t": 365.605
+        },
+        {
+          "w": "runs,",
+          "t": 366.12
+        },
+        {
+          "w": "and",
+          "t": 366.635
+        },
+        {
+          "w": "cached",
+          "t": 367.15
+        },
+        {
+          "w": "fraction.",
+          "t": 367.664
+        },
+        {
+          "w": "Notice",
+          "t": 368.179
+        },
+        {
+          "w": "how",
+          "t": 368.694
+        },
+        {
+          "w": "a",
+          "t": 369.209
+        },
+        {
+          "w": "68.8%",
+          "t": 369.723
+        },
+        {
+          "w": "cached",
+          "t": 370.238
+        },
+        {
+          "w": "fraction",
+          "t": 370.753
+        },
+        {
+          "w": "slashes",
+          "t": 371.267
+        },
+        {
+          "w": "a",
+          "t": 371.782
+        },
+        {
+          "w": "monthly",
+          "t": 372.297
+        },
+        {
+          "w": "cluster",
+          "t": 372.812
+        },
+        {
+          "w": "bill",
+          "t": 373.326
+        },
+        {
+          "w": "from",
+          "t": 373.841
+        },
+        {
+          "w": "14,400",
+          "t": 374.356
+        },
+        {
+          "w": "dollars",
+          "t": 374.871
+        },
+        {
+          "w": "to",
+          "t": 375.385
+        },
+        {
+          "w": "4,500",
+          "t": 375.9
+        },
+        {
+          "w": "dollars,",
+          "t": 376.415
+        },
+        {
+          "w": "saving",
+          "t": 376.93
+        },
+        {
+          "w": "nearly",
+          "t": 377.444
+        },
+        {
+          "w": "10,000",
+          "t": 377.959
+        },
+        {
+          "w": "dollars",
+          "t": 378.474
+        },
+        {
+          "w": "each",
+          "t": 378.989
+        },
+        {
+          "w": "month!",
+          "t": 379.503
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Now let us verify dependency cascade dynamics in Active Checkpoint 2, aligned with Self-Assessment 8.7.2. Consider our four-stage pipeline: Ingestion takes 30 seconds, Preprocessing takes 180 seconds, Training takes 300 seconds, and Evaluation takes 20 seconds, totaling 530 seconds cold.",
+      "slide": 11,
+      "dock": "main",
+      "start": 380.768,
+      "end": 403.352,
+      "words": [
+        {
+          "w": "Now",
+          "t": 380.768
+        },
+        {
+          "w": "let",
+          "t": 381.333
+        },
+        {
+          "w": "us",
+          "t": 381.897
+        },
+        {
+          "w": "verify",
+          "t": 382.462
+        },
+        {
+          "w": "dependency",
+          "t": 383.026
+        },
+        {
+          "w": "cascade",
+          "t": 383.591
+        },
+        {
+          "w": "dynamics",
+          "t": 384.156
+        },
+        {
+          "w": "in",
+          "t": 384.72
+        },
+        {
+          "w": "Active",
+          "t": 385.285
+        },
+        {
+          "w": "Checkpoint",
+          "t": 385.849
+        },
+        {
+          "w": "2,",
+          "t": 386.414
+        },
+        {
+          "w": "aligned",
+          "t": 386.979
+        },
+        {
+          "w": "with",
+          "t": 387.543
+        },
+        {
+          "w": "Self-Assessment",
+          "t": 388.108
+        },
+        {
+          "w": "8.7.2.",
+          "t": 388.672
+        },
+        {
+          "w": "Consider",
+          "t": 389.237
+        },
+        {
+          "w": "our",
+          "t": 389.802
+        },
+        {
+          "w": "four-stage",
+          "t": 390.366
+        },
+        {
+          "w": "pipeline:",
+          "t": 390.931
+        },
+        {
+          "w": "Ingestion",
+          "t": 391.495
+        },
+        {
+          "w": "takes",
+          "t": 392.06
+        },
+        {
+          "w": "30",
+          "t": 392.625
+        },
+        {
+          "w": "seconds,",
+          "t": 393.189
+        },
+        {
+          "w": "Preprocessing",
+          "t": 393.754
+        },
+        {
+          "w": "takes",
+          "t": 394.318
+        },
+        {
+          "w": "180",
+          "t": 394.883
+        },
+        {
+          "w": "seconds,",
+          "t": 395.448
+        },
+        {
+          "w": "Training",
+          "t": 396.012
+        },
+        {
+          "w": "takes",
+          "t": 396.577
+        },
+        {
+          "w": "300",
+          "t": 397.141
+        },
+        {
+          "w": "seconds,",
+          "t": 397.706
+        },
+        {
+          "w": "and",
+          "t": 398.271
+        },
+        {
+          "w": "Evaluation",
+          "t": 398.835
+        },
+        {
+          "w": "takes",
+          "t": 399.4
+        },
+        {
+          "w": "20",
+          "t": 399.964
+        },
+        {
+          "w": "seconds,",
+          "t": 400.529
+        },
+        {
+          "w": "totaling",
+          "t": 401.094
+        },
+        {
+          "w": "530",
+          "t": 401.658
+        },
+        {
+          "w": "seconds",
+          "t": 402.223
+        },
+        {
+          "w": "cold.",
+          "t": 402.787
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Evaluate two cases: First, modifying only batch_size in Training. Second, patching a sensor bug in Ingestion. What are the execution runtimes and bypassed stages? Select Option A, B, or C below.",
+      "slide": 11,
+      "dock": "quiz",
+      "start": 403.702,
+      "end": 420.334,
+      "words": [
+        {
+          "w": "Evaluate",
+          "t": 403.702
+        },
+        {
+          "w": "two",
+          "t": 404.239
+        },
+        {
+          "w": "cases:",
+          "t": 404.775
+        },
+        {
+          "w": "First,",
+          "t": 405.312
+        },
+        {
+          "w": "modifying",
+          "t": 405.848
+        },
+        {
+          "w": "only",
+          "t": 406.385
+        },
+        {
+          "w": "batch_size",
+          "t": 406.921
+        },
+        {
+          "w": "in",
+          "t": 407.458
+        },
+        {
+          "w": "Training.",
+          "t": 407.994
+        },
+        {
+          "w": "Second,",
+          "t": 408.531
+        },
+        {
+          "w": "patching",
+          "t": 409.067
+        },
+        {
+          "w": "a",
+          "t": 409.604
+        },
+        {
+          "w": "sensor",
+          "t": 410.14
+        },
+        {
+          "w": "bug",
+          "t": 410.677
+        },
+        {
+          "w": "in",
+          "t": 411.213
+        },
+        {
+          "w": "Ingestion.",
+          "t": 411.75
+        },
+        {
+          "w": "What",
+          "t": 412.286
+        },
+        {
+          "w": "are",
+          "t": 412.823
+        },
+        {
+          "w": "the",
+          "t": 413.359
+        },
+        {
+          "w": "execution",
+          "t": 413.896
+        },
+        {
+          "w": "runtimes",
+          "t": 414.432
+        },
+        {
+          "w": "and",
+          "t": 414.969
+        },
+        {
+          "w": "bypassed",
+          "t": 415.505
+        },
+        {
+          "w": "stages?",
+          "t": 416.042
+        },
+        {
+          "w": "Select",
+          "t": 416.578
+        },
+        {
+          "w": "Option",
+          "t": 417.115
+        },
+        {
+          "w": "A,",
+          "t": 417.651
+        },
+        {
+          "w": "B,",
+          "t": 418.188
+        },
+        {
+          "w": "or",
+          "t": 418.724
+        },
+        {
+          "w": "C",
+          "t": 419.261
+        },
+        {
+          "w": "below.",
+          "t": 419.797
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Let us examine two industrial deployments operating at planetary and physical scale: Planet Labs and Nuro Autonomous Delivery Robots.",
+      "slide": 12,
+      "dock": "main",
+      "start": 421.084,
+      "end": 429.868,
+      "words": [
+        {
+          "w": "Let",
+          "t": 421.084
+        },
+        {
+          "w": "us",
+          "t": 421.546
+        },
+        {
+          "w": "examine",
+          "t": 422.009
+        },
+        {
+          "w": "two",
+          "t": 422.471
+        },
+        {
+          "w": "industrial",
+          "t": 422.933
+        },
+        {
+          "w": "deployments",
+          "t": 423.396
+        },
+        {
+          "w": "operating",
+          "t": 423.858
+        },
+        {
+          "w": "at",
+          "t": 424.32
+        },
+        {
+          "w": "planetary",
+          "t": 424.783
+        },
+        {
+          "w": "and",
+          "t": 425.245
+        },
+        {
+          "w": "physical",
+          "t": 425.707
+        },
+        {
+          "w": "scale:",
+          "t": 426.169
+        },
+        {
+          "w": "Planet",
+          "t": 426.632
+        },
+        {
+          "w": "Labs",
+          "t": 427.094
+        },
+        {
+          "w": "and",
+          "t": 427.556
+        },
+        {
+          "w": "Nuro",
+          "t": 428.019
+        },
+        {
+          "w": "Autonomous",
+          "t": 428.481
+        },
+        {
+          "w": "Delivery",
+          "t": 428.943
+        },
+        {
+          "w": "Robots.",
+          "t": 429.406
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Planet Labs operates over 200 satellites imaging 25 terabytes daily. By caching atmospheric surface reflectance calibrations in DVC stages, they slash GPU compute bills by 68%, saving over 450,000 dollars annually. At Nuro, GitHub Actions CI gates PRs on dvc repro, blocking builds if pedestrian motion error ADE degrades by more than 2 centimeters.",
+      "slide": 12,
+      "dock": "main",
+      "start": 430.218,
+      "end": 457.698,
+      "words": [
+        {
+          "w": "Planet",
+          "t": 430.218
+        },
+        {
+          "w": "Labs",
+          "t": 430.727
+        },
+        {
+          "w": "operates",
+          "t": 431.236
+        },
+        {
+          "w": "over",
+          "t": 431.745
+        },
+        {
+          "w": "200",
+          "t": 432.254
+        },
+        {
+          "w": "satellites",
+          "t": 432.762
+        },
+        {
+          "w": "imaging",
+          "t": 433.271
+        },
+        {
+          "w": "25",
+          "t": 433.78
+        },
+        {
+          "w": "terabytes",
+          "t": 434.289
+        },
+        {
+          "w": "daily.",
+          "t": 434.798
+        },
+        {
+          "w": "By",
+          "t": 435.307
+        },
+        {
+          "w": "caching",
+          "t": 435.816
+        },
+        {
+          "w": "atmospheric",
+          "t": 436.325
+        },
+        {
+          "w": "surface",
+          "t": 436.834
+        },
+        {
+          "w": "reflectance",
+          "t": 437.342
+        },
+        {
+          "w": "calibrations",
+          "t": 437.851
+        },
+        {
+          "w": "in",
+          "t": 438.36
+        },
+        {
+          "w": "DVC",
+          "t": 438.869
+        },
+        {
+          "w": "stages,",
+          "t": 439.378
+        },
+        {
+          "w": "they",
+          "t": 439.887
+        },
+        {
+          "w": "slash",
+          "t": 440.396
+        },
+        {
+          "w": "GPU",
+          "t": 440.905
+        },
+        {
+          "w": "compute",
+          "t": 441.414
+        },
+        {
+          "w": "bills",
+          "t": 441.922
+        },
+        {
+          "w": "by",
+          "t": 442.431
+        },
+        {
+          "w": "68%,",
+          "t": 442.94
+        },
+        {
+          "w": "saving",
+          "t": 443.449
+        },
+        {
+          "w": "over",
+          "t": 443.958
+        },
+        {
+          "w": "450,000",
+          "t": 444.467
+        },
+        {
+          "w": "dollars",
+          "t": 444.976
+        },
+        {
+          "w": "annually.",
+          "t": 445.485
+        },
+        {
+          "w": "At",
+          "t": 445.994
+        },
+        {
+          "w": "Nuro,",
+          "t": 446.502
+        },
+        {
+          "w": "GitHub",
+          "t": 447.011
+        },
+        {
+          "w": "Actions",
+          "t": 447.52
+        },
+        {
+          "w": "CI",
+          "t": 448.029
+        },
+        {
+          "w": "gates",
+          "t": 448.538
+        },
+        {
+          "w": "PRs",
+          "t": 449.047
+        },
+        {
+          "w": "on",
+          "t": 449.556
+        },
+        {
+          "w": "dvc",
+          "t": 450.065
+        },
+        {
+          "w": "repro,",
+          "t": 450.574
+        },
+        {
+          "w": "blocking",
+          "t": 451.082
+        },
+        {
+          "w": "builds",
+          "t": 451.591
+        },
+        {
+          "w": "if",
+          "t": 452.1
+        },
+        {
+          "w": "pedestrian",
+          "t": 452.609
+        },
+        {
+          "w": "motion",
+          "t": 453.118
+        },
+        {
+          "w": "error",
+          "t": 453.627
+        },
+        {
+          "w": "ADE",
+          "t": 454.136
+        },
+        {
+          "w": "degrades",
+          "t": 454.645
+        },
+        {
+          "w": "by",
+          "t": 455.154
+        },
+        {
+          "w": "more",
+          "t": 455.662
+        },
+        {
+          "w": "than",
+          "t": 456.171
+        },
+        {
+          "w": "2",
+          "t": 456.68
+        },
+        {
+          "w": "centimeters.",
+          "t": 457.189
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Active Checkpoint 3, our dual formative capstone. Part 1 evaluates developer iteration velocity: a 240-minute vision pipeline with 216 minutes cached yields what speedup factor, and how many runs can an engineer execute in an 8-hour workday?",
+      "slide": 13,
+      "dock": "main",
+      "start": 458.448,
+      "end": 476.064,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 458.448
+        },
+        {
+          "w": "to",
+          "t": 458.9
+        },
+        {
+          "w": "Active",
+          "t": 459.351
+        },
+        {
+          "w": "Checkpoint",
+          "t": 459.803
+        },
+        {
+          "w": "3,",
+          "t": 460.255
+        },
+        {
+          "w": "our",
+          "t": 460.706
+        },
+        {
+          "w": "dual",
+          "t": 461.158
+        },
+        {
+          "w": "formative",
+          "t": 461.61
+        },
+        {
+          "w": "capstone.",
+          "t": 462.062
+        },
+        {
+          "w": "Part",
+          "t": 462.513
+        },
+        {
+          "w": "1",
+          "t": 462.965
+        },
+        {
+          "w": "evaluates",
+          "t": 463.417
+        },
+        {
+          "w": "developer",
+          "t": 463.868
+        },
+        {
+          "w": "iteration",
+          "t": 464.32
+        },
+        {
+          "w": "velocity:",
+          "t": 464.772
+        },
+        {
+          "w": "a",
+          "t": 465.223
+        },
+        {
+          "w": "240-minute",
+          "t": 465.675
+        },
+        {
+          "w": "vision",
+          "t": 466.127
+        },
+        {
+          "w": "pipeline",
+          "t": 466.578
+        },
+        {
+          "w": "with",
+          "t": 467.03
+        },
+        {
+          "w": "216",
+          "t": 467.482
+        },
+        {
+          "w": "minutes",
+          "t": 467.934
+        },
+        {
+          "w": "cached",
+          "t": 468.385
+        },
+        {
+          "w": "yields",
+          "t": 468.837
+        },
+        {
+          "w": "what",
+          "t": 469.289
+        },
+        {
+          "w": "speedup",
+          "t": 469.74
+        },
+        {
+          "w": "factor,",
+          "t": 470.192
+        },
+        {
+          "w": "and",
+          "t": 470.644
+        },
+        {
+          "w": "how",
+          "t": 471.095
+        },
+        {
+          "w": "many",
+          "t": 471.547
+        },
+        {
+          "w": "runs",
+          "t": 471.999
+        },
+        {
+          "w": "can",
+          "t": 472.45
+        },
+        {
+          "w": "an",
+          "t": 472.902
+        },
+        {
+          "w": "engineer",
+          "t": 473.354
+        },
+        {
+          "w": "execute",
+          "t": 473.806
+        },
+        {
+          "w": "in",
+          "t": 474.257
+        },
+        {
+          "w": "an",
+          "t": 474.709
+        },
+        {
+          "w": "8-hour",
+          "t": 475.161
+        },
+        {
+          "w": "workday?",
+          "t": 475.612
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Part 2 evaluates a genomic DAG: Stage A at 10 minutes, Stage B at 45, Stage C at 60, Stage D at 35, and Stage E at 25 minutes. What is the critical path, minimum makespan, and speedup when running on 10 parallel cores? Select Option A, B, or C below.",
+      "slide": 13,
+      "dock": "quiz",
+      "start": 476.414,
+      "end": 497.966,
+      "words": [
+        {
+          "w": "Part",
+          "t": 476.414
+        },
+        {
+          "w": "2",
+          "t": 476.837
+        },
+        {
+          "w": "evaluates",
+          "t": 477.259
+        },
+        {
+          "w": "a",
+          "t": 477.682
+        },
+        {
+          "w": "genomic",
+          "t": 478.104
+        },
+        {
+          "w": "DAG:",
+          "t": 478.527
+        },
+        {
+          "w": "Stage",
+          "t": 478.95
+        },
+        {
+          "w": "A",
+          "t": 479.372
+        },
+        {
+          "w": "at",
+          "t": 479.795
+        },
+        {
+          "w": "10",
+          "t": 480.217
+        },
+        {
+          "w": "minutes,",
+          "t": 480.64
+        },
+        {
+          "w": "Stage",
+          "t": 481.062
+        },
+        {
+          "w": "B",
+          "t": 481.485
+        },
+        {
+          "w": "at",
+          "t": 481.908
+        },
+        {
+          "w": "45,",
+          "t": 482.33
+        },
+        {
+          "w": "Stage",
+          "t": 482.753
+        },
+        {
+          "w": "C",
+          "t": 483.175
+        },
+        {
+          "w": "at",
+          "t": 483.598
+        },
+        {
+          "w": "60,",
+          "t": 484.021
+        },
+        {
+          "w": "Stage",
+          "t": 484.443
+        },
+        {
+          "w": "D",
+          "t": 484.866
+        },
+        {
+          "w": "at",
+          "t": 485.288
+        },
+        {
+          "w": "35,",
+          "t": 485.711
+        },
+        {
+          "w": "and",
+          "t": 486.134
+        },
+        {
+          "w": "Stage",
+          "t": 486.556
+        },
+        {
+          "w": "E",
+          "t": 486.979
+        },
+        {
+          "w": "at",
+          "t": 487.401
+        },
+        {
+          "w": "25",
+          "t": 487.824
+        },
+        {
+          "w": "minutes.",
+          "t": 488.246
+        },
+        {
+          "w": "What",
+          "t": 488.669
+        },
+        {
+          "w": "is",
+          "t": 489.092
+        },
+        {
+          "w": "the",
+          "t": 489.514
+        },
+        {
+          "w": "critical",
+          "t": 489.937
+        },
+        {
+          "w": "path,",
+          "t": 490.359
+        },
+        {
+          "w": "minimum",
+          "t": 490.782
+        },
+        {
+          "w": "makespan,",
+          "t": 491.205
+        },
+        {
+          "w": "and",
+          "t": 491.627
+        },
+        {
+          "w": "speedup",
+          "t": 492.05
+        },
+        {
+          "w": "when",
+          "t": 492.472
+        },
+        {
+          "w": "running",
+          "t": 492.895
+        },
+        {
+          "w": "on",
+          "t": 493.318
+        },
+        {
+          "w": "10",
+          "t": 493.74
+        },
+        {
+          "w": "parallel",
+          "t": 494.163
+        },
+        {
+          "w": "cores?",
+          "t": 494.585
+        },
+        {
+          "w": "Select",
+          "t": 495.008
+        },
+        {
+          "w": "Option",
+          "t": 495.43
+        },
+        {
+          "w": "A,",
+          "t": 495.853
+        },
+        {
+          "w": "B,",
+          "t": 496.276
+        },
+        {
+          "w": "or",
+          "t": 496.698
+        },
+        {
+          "w": "C",
+          "t": 497.121
+        },
+        {
+          "w": "below.",
+          "t": 497.543
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Production pipelines frequently degrade due to subtle architectural antipatterns. We examine four critical failure modes: Non-Deterministic Stage Execution, Flaky Cache Invalidation, Untracked Hidden Side Effects, and Inode Exhaustion.",
+      "slide": 14,
+      "dock": "main",
+      "start": 498.716,
+      "end": 514.508,
+      "words": [
+        {
+          "w": "Production",
+          "t": 498.716
+        },
+        {
+          "w": "pipelines",
+          "t": 499.28
+        },
+        {
+          "w": "frequently",
+          "t": 499.844
+        },
+        {
+          "w": "degrade",
+          "t": 500.408
+        },
+        {
+          "w": "due",
+          "t": 500.972
+        },
+        {
+          "w": "to",
+          "t": 501.536
+        },
+        {
+          "w": "subtle",
+          "t": 502.1
+        },
+        {
+          "w": "architectural",
+          "t": 502.664
+        },
+        {
+          "w": "antipatterns.",
+          "t": 503.228
+        },
+        {
+          "w": "We",
+          "t": 503.792
+        },
+        {
+          "w": "examine",
+          "t": 504.356
+        },
+        {
+          "w": "four",
+          "t": 504.92
+        },
+        {
+          "w": "critical",
+          "t": 505.484
+        },
+        {
+          "w": "failure",
+          "t": 506.048
+        },
+        {
+          "w": "modes:",
+          "t": 506.612
+        },
+        {
+          "w": "Non-Deterministic",
+          "t": 507.176
+        },
+        {
+          "w": "Stage",
+          "t": 507.74
+        },
+        {
+          "w": "Execution,",
+          "t": 508.304
+        },
+        {
+          "w": "Flaky",
+          "t": 508.868
+        },
+        {
+          "w": "Cache",
+          "t": 509.432
+        },
+        {
+          "w": "Invalidation,",
+          "t": 509.996
+        },
+        {
+          "w": "Untracked",
+          "t": 510.56
+        },
+        {
+          "w": "Hidden",
+          "t": 511.124
+        },
+        {
+          "w": "Side",
+          "t": 511.688
+        },
+        {
+          "w": "Effects,",
+          "t": 512.252
+        },
+        {
+          "w": "and",
+          "t": 512.816
+        },
+        {
+          "w": "Inode",
+          "t": 513.38
+        },
+        {
+          "w": "Exhaustion.",
+          "t": 513.944
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Unseeded random number generators or unpinned external API calls make output digests non-reproducible. Storing raw timestamps inside params.yaml breaks memoization on every commit. Strict seeding, hermetic containers, and AST normalization are mandatory remediations.",
+      "slide": 14,
+      "dock": "main",
+      "start": 514.858,
+      "end": 533.986,
+      "words": [
+        {
+          "w": "Unseeded",
+          "t": 514.858
+        },
+        {
+          "w": "random",
+          "t": 515.438
+        },
+        {
+          "w": "number",
+          "t": 516.017
+        },
+        {
+          "w": "generators",
+          "t": 516.597
+        },
+        {
+          "w": "or",
+          "t": 517.177
+        },
+        {
+          "w": "unpinned",
+          "t": 517.756
+        },
+        {
+          "w": "external",
+          "t": 518.336
+        },
+        {
+          "w": "API",
+          "t": 518.915
+        },
+        {
+          "w": "calls",
+          "t": 519.495
+        },
+        {
+          "w": "make",
+          "t": 520.075
+        },
+        {
+          "w": "output",
+          "t": 520.654
+        },
+        {
+          "w": "digests",
+          "t": 521.234
+        },
+        {
+          "w": "non-reproducible.",
+          "t": 521.814
+        },
+        {
+          "w": "Storing",
+          "t": 522.393
+        },
+        {
+          "w": "raw",
+          "t": 522.973
+        },
+        {
+          "w": "timestamps",
+          "t": 523.553
+        },
+        {
+          "w": "inside",
+          "t": 524.132
+        },
+        {
+          "w": "params.yaml",
+          "t": 524.712
+        },
+        {
+          "w": "breaks",
+          "t": 525.291
+        },
+        {
+          "w": "memoization",
+          "t": 525.871
+        },
+        {
+          "w": "on",
+          "t": 526.451
+        },
+        {
+          "w": "every",
+          "t": 527.03
+        },
+        {
+          "w": "commit.",
+          "t": 527.61
+        },
+        {
+          "w": "Strict",
+          "t": 528.19
+        },
+        {
+          "w": "seeding,",
+          "t": 528.769
+        },
+        {
+          "w": "hermetic",
+          "t": 529.349
+        },
+        {
+          "w": "containers,",
+          "t": 529.929
+        },
+        {
+          "w": "and",
+          "t": 530.508
+        },
+        {
+          "w": "AST",
+          "t": 531.088
+        },
+        {
+          "w": "normalization",
+          "t": 531.667
+        },
+        {
+          "w": "are",
+          "t": 532.247
+        },
+        {
+          "w": "mandatory",
+          "t": 532.827
+        },
+        {
+          "w": "remediations.",
+          "t": 533.406
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "On Slide 15, we provide the verified Pydantic V2 reference implementation: DVCPipelineEngine. It models stages, recursively computes cryptographic stage keys, evaluates memoization bypass, and computes makespan bounds.",
+      "slide": 15,
+      "dock": "main",
+      "start": 534.736,
+      "end": 551.056,
+      "words": [
+        {
+          "w": "On",
+          "t": 534.736
+        },
+        {
+          "w": "Slide",
+          "t": 535.34
+        },
+        {
+          "w": "15,",
+          "t": 535.945
+        },
+        {
+          "w": "we",
+          "t": 536.549
+        },
+        {
+          "w": "provide",
+          "t": 537.154
+        },
+        {
+          "w": "the",
+          "t": 537.758
+        },
+        {
+          "w": "verified",
+          "t": 538.363
+        },
+        {
+          "w": "Pydantic",
+          "t": 538.967
+        },
+        {
+          "w": "V2",
+          "t": 539.572
+        },
+        {
+          "w": "reference",
+          "t": 540.176
+        },
+        {
+          "w": "implementation:",
+          "t": 540.78
+        },
+        {
+          "w": "DVCPipelineEngine.",
+          "t": 541.385
+        },
+        {
+          "w": "It",
+          "t": 541.989
+        },
+        {
+          "w": "models",
+          "t": 542.594
+        },
+        {
+          "w": "stages,",
+          "t": 543.198
+        },
+        {
+          "w": "recursively",
+          "t": 543.803
+        },
+        {
+          "w": "computes",
+          "t": 544.407
+        },
+        {
+          "w": "cryptographic",
+          "t": 545.012
+        },
+        {
+          "w": "stage",
+          "t": 545.616
+        },
+        {
+          "w": "keys,",
+          "t": 546.22
+        },
+        {
+          "w": "evaluates",
+          "t": 546.825
+        },
+        {
+          "w": "memoization",
+          "t": 547.429
+        },
+        {
+          "w": "bypass,",
+          "t": 548.034
+        },
+        {
+          "w": "and",
+          "t": 548.638
+        },
+        {
+          "w": "computes",
+          "t": 549.243
+        },
+        {
+          "w": "makespan",
+          "t": 549.847
+        },
+        {
+          "w": "bounds.",
+          "t": 550.452
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Notice the compute_stage_key method: it recursively resolves all ancestor dependency hashes, concatenates code and parameter digests, and yields a deterministic SHA-256 fingerprint. When run_repro executes, memoized stages take zero seconds.",
+      "slide": 15,
+      "dock": "main",
+      "start": 551.406,
+      "end": 570.27,
+      "words": [
+        {
+          "w": "Notice",
+          "t": 551.406
+        },
+        {
+          "w": "the",
+          "t": 552.035
+        },
+        {
+          "w": "compute_stage_key",
+          "t": 552.664
+        },
+        {
+          "w": "method:",
+          "t": 553.292
+        },
+        {
+          "w": "it",
+          "t": 553.921
+        },
+        {
+          "w": "recursively",
+          "t": 554.55
+        },
+        {
+          "w": "resolves",
+          "t": 555.179
+        },
+        {
+          "w": "all",
+          "t": 555.808
+        },
+        {
+          "w": "ancestor",
+          "t": 556.436
+        },
+        {
+          "w": "dependency",
+          "t": 557.065
+        },
+        {
+          "w": "hashes,",
+          "t": 557.694
+        },
+        {
+          "w": "concatenates",
+          "t": 558.323
+        },
+        {
+          "w": "code",
+          "t": 558.952
+        },
+        {
+          "w": "and",
+          "t": 559.58
+        },
+        {
+          "w": "parameter",
+          "t": 560.209
+        },
+        {
+          "w": "digests,",
+          "t": 560.838
+        },
+        {
+          "w": "and",
+          "t": 561.467
+        },
+        {
+          "w": "yields",
+          "t": 562.096
+        },
+        {
+          "w": "a",
+          "t": 562.724
+        },
+        {
+          "w": "deterministic",
+          "t": 563.353
+        },
+        {
+          "w": "SHA-256",
+          "t": 563.982
+        },
+        {
+          "w": "fingerprint.",
+          "t": 564.611
+        },
+        {
+          "w": "When",
+          "t": 565.24
+        },
+        {
+          "w": "run_repro",
+          "t": 565.868
+        },
+        {
+          "w": "executes,",
+          "t": 566.497
+        },
+        {
+          "w": "memoized",
+          "t": 567.126
+        },
+        {
+          "w": "stages",
+          "t": 567.755
+        },
+        {
+          "w": "take",
+          "t": 568.384
+        },
+        {
+          "w": "zero",
+          "t": 569.012
+        },
+        {
+          "w": "seconds.",
+          "t": 569.641
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "To conclude Lesson 8.7, remember the Four Cardinal Rules of Production Pipeline Automation. Rule One: Declarative Dependency Invariance. Never allow untracked files or hidden system dependencies across stage boundaries.",
+      "slide": 16,
+      "dock": "main",
+      "start": 571.02,
+      "end": 586.812,
+      "words": [
+        {
+          "w": "To",
+          "t": 571.02
+        },
+        {
+          "w": "conclude",
+          "t": 571.565
+        },
+        {
+          "w": "Lesson",
+          "t": 572.109
+        },
+        {
+          "w": "8.7,",
+          "t": 572.654
+        },
+        {
+          "w": "remember",
+          "t": 573.198
+        },
+        {
+          "w": "the",
+          "t": 573.743
+        },
+        {
+          "w": "Four",
+          "t": 574.287
+        },
+        {
+          "w": "Cardinal",
+          "t": 574.832
+        },
+        {
+          "w": "Rules",
+          "t": 575.376
+        },
+        {
+          "w": "of",
+          "t": 575.921
+        },
+        {
+          "w": "Production",
+          "t": 576.466
+        },
+        {
+          "w": "Pipeline",
+          "t": 577.01
+        },
+        {
+          "w": "Automation.",
+          "t": 577.555
+        },
+        {
+          "w": "Rule",
+          "t": 578.099
+        },
+        {
+          "w": "One:",
+          "t": 578.644
+        },
+        {
+          "w": "Declarative",
+          "t": 579.188
+        },
+        {
+          "w": "Dependency",
+          "t": 579.733
+        },
+        {
+          "w": "Invariance.",
+          "t": 580.277
+        },
+        {
+          "w": "Never",
+          "t": 580.822
+        },
+        {
+          "w": "allow",
+          "t": 581.366
+        },
+        {
+          "w": "untracked",
+          "t": 581.911
+        },
+        {
+          "w": "files",
+          "t": 582.456
+        },
+        {
+          "w": "or",
+          "t": 583.0
+        },
+        {
+          "w": "hidden",
+          "t": 583.545
+        },
+        {
+          "w": "system",
+          "t": 584.089
+        },
+        {
+          "w": "dependencies",
+          "t": 584.634
+        },
+        {
+          "w": "across",
+          "t": 585.178
+        },
+        {
+          "w": "stage",
+          "t": 585.723
+        },
+        {
+          "w": "boundaries.",
+          "t": 586.267
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Rule Two: Content-Addressed Hermetic Execution. Ensure stage outputs are strictly deterministic. Rule Three: Downstream Monotonic Invalidation. And Rule Four: Automated Continuous Verification Gates. Join us in Lesson 8.8 for Best Practices in Data Documentation and Versioning!",
+      "slide": 16,
+      "dock": "main",
+      "start": 587.162,
+      "end": 608.402,
+      "words": [
+        {
+          "w": "Rule",
+          "t": 587.162
+        },
+        {
+          "w": "Two:",
+          "t": 587.752
+        },
+        {
+          "w": "Content-Addressed",
+          "t": 588.342
+        },
+        {
+          "w": "Hermetic",
+          "t": 588.932
+        },
+        {
+          "w": "Execution.",
+          "t": 589.522
+        },
+        {
+          "w": "Ensure",
+          "t": 590.112
+        },
+        {
+          "w": "stage",
+          "t": 590.702
+        },
+        {
+          "w": "outputs",
+          "t": 591.292
+        },
+        {
+          "w": "are",
+          "t": 591.882
+        },
+        {
+          "w": "strictly",
+          "t": 592.472
+        },
+        {
+          "w": "deterministic.",
+          "t": 593.062
+        },
+        {
+          "w": "Rule",
+          "t": 593.652
+        },
+        {
+          "w": "Three:",
+          "t": 594.242
+        },
+        {
+          "w": "Downstream",
+          "t": 594.832
+        },
+        {
+          "w": "Monotonic",
+          "t": 595.422
+        },
+        {
+          "w": "Invalidation.",
+          "t": 596.012
+        },
+        {
+          "w": "And",
+          "t": 596.602
+        },
+        {
+          "w": "Rule",
+          "t": 597.192
+        },
+        {
+          "w": "Four:",
+          "t": 597.782
+        },
+        {
+          "w": "Automated",
+          "t": 598.372
+        },
+        {
+          "w": "Continuous",
+          "t": 598.962
+        },
+        {
+          "w": "Verification",
+          "t": 599.552
+        },
+        {
+          "w": "Gates.",
+          "t": 600.142
+        },
+        {
+          "w": "Join",
+          "t": 600.732
+        },
+        {
+          "w": "us",
+          "t": 601.322
+        },
+        {
+          "w": "in",
+          "t": 601.912
+        },
+        {
+          "w": "Lesson",
+          "t": 602.502
+        },
+        {
+          "w": "8.8",
+          "t": 603.092
+        },
+        {
+          "w": "for",
+          "t": 603.682
+        },
+        {
+          "w": "Best",
+          "t": 604.272
+        },
+        {
+          "w": "Practices",
+          "t": 604.862
+        },
+        {
+          "w": "in",
+          "t": 605.452
+        },
+        {
+          "w": "Data",
+          "t": 606.042
+        },
+        {
+          "w": "Documentation",
+          "t": 606.632
+        },
+        {
+          "w": "and",
+          "t": 607.222
+        },
+        {
+          "w": "Versioning!",
+          "t": 607.812
+        }
+      ]
+    }
+  ]
+}

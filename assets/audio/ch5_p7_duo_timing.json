@@ -1,0 +1,533 @@
+{
+  "duration": 842.232,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, with multi-layer perceptrons, transformers, and gradient-boosted trees, why should we manually engineer power transformations or periodic embeddings? Can't universal function approximators learn these mappings automatically?",
+          "dock": "main",
+          "start": 0.0,
+          "end": 14.616
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In theory, given infinite samples and capacity, yes. But in practice, sample complexity explodes. When a feature has heavy-tailed skewness with values spanning four orders of magnitude, gradient descent spends almost all its steps oscillating on extreme outliers while ignoring dense inliers.",
+          "dock": "main",
+          "start": 14.616,
+          "end": 33.792
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And what about periodic boundaries like midnight? If hour 23 and hour 0 are separated by a jump of 23 in raw scalar space, a neural net has to learn a sharp step function to connect them!",
+          "dock": "main",
+          "start": 33.792,
+          "end": 46.056
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely! By projecting periodic time onto the unit circle with sine and cosine, we provide the model with an isometric manifold where 23:00 and 00:00 are naturally adjacent. Feature engineering aligns raw data with the geometry of optimization.",
+          "dock": "main",
+          "start": 46.056,
+          "end": 63.408
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I see that after generating polynomial interactions and B-splines, Step 4 runs multicollinearity pruning with Variance Inflation Factor. Why can't we just feed all generated features directly to our estimator?",
+          "dock": "main",
+          "start": 63.408,
+          "end": 77.352
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "When you generate degree-k polynomial terms or spline knots, columns become highly correlated with their parent features. For instance, x and x-squared have a correlation often exceeding 0.95 when x is positive.",
+          "dock": "main",
+          "start": 77.352,
+          "end": 92.4
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And that causes the Gram matrix X-transpose X to become nearly singular, right?",
+          "dock": "main",
+          "start": 92.4,
+          "end": 97.8
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! The condition number explodes, coefficient variance inflates by the factor VIF, and small perturbations in test data cause wildly swinging predictions. VIF pruning preserves expressiveness while restoring numerical stability.",
+          "dock": "main",
+          "start": 97.8,
+          "end": 113.808
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, in the Box-Cox profile log-likelihood equation, why can't we simply optimize lambda to minimize the transformed sample variance sigma-squared?",
+          "dock": "main",
+          "start": 113.808,
+          "end": 123.024
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Think about what happens if you set lambda to a very large negative number, Kaito! As lambda goes to negative infinity, y to the lambda power approaches zero. The transformed values all collapse to a tiny point, making sample variance artificially zero!",
+          "dock": "main",
+          "start": 123.024,
+          "end": 139.848
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Ah! So the model could 'cheat' by simply shrinking the coordinate scale rather than actually making the distribution Gaussian?",
+          "dock": "main",
+          "start": 139.848,
+          "end": 147.888
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! The log-Jacobian determinant, lambda minus 1 times the sum of log y, measures the differential volume expansion of the transformation. It acts as an exact physical tax that penalizes scale compression, ensuring we maximize true Gaussian normality.",
+          "dock": "main",
+          "start": 147.888,
+          "end": 165.816
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, if QuantileTransformer can force ANY continuous distribution into a perfect normal bell curve, why wouldn't we use it 100% of the time instead of Box-Cox or Yeo-Johnson?",
+          "dock": "main",
+          "start": 165.816,
+          "end": 177.048
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because QuantileTransformer is completely non-parametric, Kaito! It destroys linear distance relationships. In a financial model, if one customer earns 50,000 and another earns 52,000, but there are thousands of people in between, the quantile transform separates them aggressively.",
+          "dock": "main",
+          "start": 177.048,
+          "end": 196.176
+        },
+        {
+          "speaker": "Kaito",
+          "text": "While in the tail, a billionaire and a multimillionaire might get bunched into adjacent quantiles because the density is sparse?",
+          "dock": "main",
+          "start": 196.176,
+          "end": 203.76
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Box-Cox preserves the relative smooth geometry of the underlying physical or monetary variable, whereas Quantile transforms only preserve rank order. Use Quantile when multi-modal or arbitrary non-linear noise cannot be resolved parametrically.",
+          "dock": "main",
+          "start": 203.76,
+          "end": 221.16
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, generating two features\u2014both sine and cosine\u2014doubles our column count for every periodic variable. Couldn't we just use sine of 2-pi-t over P to capture the cycle?",
+          "dock": "main",
+          "start": 221.16,
+          "end": 232.728
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, think of the unit circle! Sine measures the vertical coordinate. If you only provide sine, what happens at 3:00 AM and 9:00 AM?",
+          "dock": "main",
+          "start": 232.728,
+          "end": 242.928
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Wait! 3:00 AM is 45 degrees, and 9:00 AM is 135 degrees. Both have a sine of positive square-root of 2 over 2!",
+          "dock": "main",
+          "start": 242.928,
+          "end": 253.488
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! The model would be completely blind to whether it is the middle of the night or morning rush hour! Cosine provides the horizontal coordinate, ensuring every point on the clock maps to a unique, invertible coordinate on the unit circle.",
+          "dock": "main",
+          "start": 253.488,
+          "end": 268.776
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova! When I drag the lambda slider to 0.0 in Tab A, the raw skewed salary histogram completely transforms into a symmetrical Gaussian bell, and skewness drops from plus 2.84 right down to 0.02!",
+          "dock": "main",
+          "start": 268.776,
+          "end": 283.128
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly, Kaito! At lambda equals 0, the Box-Cox transformation operates as the natural log. Notice what happens if you overshoot to negative 1.0: the distribution becomes heavily left-skewed, showing that power transforms can over-correct if unguided by profile likelihood.",
+          "dock": "main",
+          "start": 283.128,
+          "end": 302.376
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And in Tab B, comparing 23:00 and midnight: the naive linear distance says 23 hours apart, but the green chord across the unit circle is just 0.26 units!",
+          "dock": "main",
+          "start": 302.376,
+          "end": 313.56
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That green chord represents true physical metric proximity. By embedding the 24-hour cycle into two continuous dimensions, linear and neural models can interpolate seamlessly across day boundaries without boundary shocks.",
+          "dock": "main",
+          "start": 313.56,
+          "end": 328.08
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why did the engineer's attempt to add H-squared and H-cubed make the model's test error worse instead of fixing the midnight boundary?",
+          "dock": "main",
+          "start": 328.08,
+          "end": 336.144
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because polynomial terms amplify the scalar distance, Kaito! At hour 23, H-squared is 529 and H-cubed is 12,167! At hour 0, both are zero. The gap between 23:59 and midnight actually grows from 23 to over twelve thousand units!",
+          "dock": "main",
+          "start": 336.144,
+          "end": 357.984
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Wow, so higher-degree polynomials make the cliff edge steeper! Only trigonometric embedding wraps the line into a closed circle where 23 and 0 are adjacent.",
+          "dock": "main",
+          "start": 357.984,
+          "end": 368.736
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Let's see if the students can identify the correct trigonometric projection pair in the diagnostic quiz below.",
+          "dock": "main",
+          "start": 368.736,
+          "end": 376.992
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, if we have 50 features and generate degree-2 interactions, we get 1,326 columns. If we have 1,000 training samples, the model has more parameters than data points. Doesn't that just mean zero training error?",
+          "dock": "main",
+          "start": 376.992,
+          "end": 393.12
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Zero training error, yes, but at the cost of catastrophic test error, Kaito! When D exceeds N, the rank of the design matrix X cannot exceed N. The Gram matrix X-transpose X is singular and cannot be inverted.",
+          "dock": "main",
+          "start": 393.12,
+          "end": 408.576
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So there are infinitely many coefficient vectors that achieve zero training loss, and the solver picks arbitrary, massive weights that fit pure random noise?",
+          "dock": "main",
+          "start": 408.576,
+          "end": 417.408
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. The weights oscillate wildly between positive and negative millions. In the next slide, we will examine piecewise polynomial splines, which provide local non-linear flexibility without the global instability of polynomial expansions.",
+          "dock": "main",
+          "start": 417.408,
+          "end": 434.016
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, both a degree-7 polynomial and a cubic B-spline with 4 knots can fit a curved line through data. Why are splines mathematically superior to standard polynomial monomials like x-squared, x-cubed, and x-to-the-fourth?",
+          "dock": "main",
+          "start": 434.016,
+          "end": 448.176
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because monomials have infinite global support, Kaito! If you adjust the coefficient of x-to-the-seventh to fit a dip on the far right, it bends the function across the entire negative domain as well! Every single parameter fights every other parameter.",
+          "dock": "main",
+          "start": 448.176,
+          "end": 464.016
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Whereas a B-spline basis function is only turned on over a small window of adjacent knots?",
+          "dock": "main",
+          "start": 464.016,
+          "end": 469.608
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely! Each B-spline basis function acts like a local specialist. Changing data at hour 14 only alters the knots near hour 14; it leaves predictions at midnight completely undisturbed. That is the power of compact local support.",
+          "dock": "main",
+          "start": 469.608,
+          "end": 486.816
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why do Natural Cubic Splines force the second and third derivatives to zero beyond the outer knots? Doesn't that make the model simpler at the edges?",
+          "dock": "main",
+          "start": 486.816,
+          "end": 496.896
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is the exact point, Kaito! If the second derivative is zero, what kind of function has zero curvature?",
+          "dock": "main",
+          "start": 496.896,
+          "end": 504.648
+        },
+        {
+          "speaker": "Kaito",
+          "text": "A straight line! Because the second derivative of a linear function mx plus b is always zero!",
+          "dock": "main",
+          "start": 504.648,
+          "end": 511.68
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Bingo! By forcing the boundary extrapolation to be a straight line rather than a cubic curve, the model cannot shoot off into positive or negative infinity on unseen test data. It provides the safest possible extrapolation geometry.",
+          "dock": "main",
+          "start": 511.68,
+          "end": 527.136
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, this feels like an apparent contradiction! Earlier we said tree models like XGBoost don't care about monotonic transformations like log-income. But now you are saying XGBoost benefits tremendously from the ratio of debt to income. Why?",
+          "dock": "main",
+          "start": 527.136,
+          "end": 543.936
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because taking the log of income is a univariate monotonic transform: if Alice earns more than Bob, log-Alice is still greater than log-Bob. The rank order does not change at all!",
+          "dock": "main",
+          "start": 543.936,
+          "end": 555.312
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Right, so any tree split on income gives the exact same partition whether it is logged or raw.",
+          "dock": "main",
+          "start": 555.312,
+          "end": 561.24
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! But a ratio combines TWO variables non-linearly. Alice might have higher income than Bob, but if Alice has ten times more debt, Bob has a lower debt-to-income ratio! The ratio scrambles the rank order and creates an entirely new coordinate dimension that the tree cannot represent with single-column splits.",
+          "dock": "main",
+          "start": 561.24,
+          "end": 582.264
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova! When I select 'Global Poly' and increase degree to 8, the polynomial curve violently overshoots at negative 0.9 and positive 0.9! The red curve shoots up past 2.0 even though the true function stays under 0.1!",
+          "dock": "main",
+          "start": 582.264,
+          "end": 598.92
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is Carl Runge's 1901 theorem playing out right on your screen, Kaito! As degree increases, equidistant polynomial interpolation error near the boundaries diverges toward infinity. Now click 'Natural Cubic Spline'.",
+          "dock": "main",
+          "start": 598.92,
+          "end": 614.208
+        },
+        {
+          "speaker": "Kaito",
+          "text": "The wild red wave vanished! The green spline fits the center bell perfectly, and at the edges, it tapers off in smooth, controlled lines without a single ripple!",
+          "dock": "main",
+          "start": 614.208,
+          "end": 624.192
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because the Natural Cubic Spline enforces zero second derivatives at the outer knots. It replaces explosive global oscillations with graceful linear extrapolation. That is why modern tabular architectures use splines rather than polynomials.",
+          "dock": "main",
+          "start": 624.192,
+          "end": 640.32
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, some engineers in option B think that if we just apply MinMaxScaler or StandardScaler to the 1,326 polynomial features, we can solve the problem. Why doesn't feature scaling eliminate multicollinearity?",
+          "dock": "main",
+          "start": 640.32,
+          "end": 655.056
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because linear scaling does not change linear dependence, Kaito! If column 3 is an exact linear combination of columns 1 and 2, multiplying column 3 by a scale factor does not change its correlation or make the Gram matrix full rank!",
+          "dock": "main",
+          "start": 655.056,
+          "end": 670.704
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Right! Scaling only rescales the axes; it doesn't remove redundant dimensions. The only way to fix rank deficiency is to drop collinear columns via VIF pruning or add regularization like L1 LASSO or ridge penalties.",
+          "dock": "main",
+          "start": 670.704,
+          "end": 685.8
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on. Let's see if the learners select Option A in the quiz below.",
+          "dock": "main",
+          "start": 685.8,
+          "end": 691.248
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at row two of the benchmark table! StandardScaler shifted the mean to 0 and variance to 1, but skewness stayed exactly plus 4.82, and kurtosis stayed 28.4! Why didn't Z-score scaling normalize the data?",
+          "dock": "main",
+          "start": 691.248,
+          "end": 707.448
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because StandardScaler is an affine linear transformation, Kaito! Subtracting the mean and dividing by standard deviation simply shifts and rescales the axis. It does not bend or compress the distance between points!",
+          "dock": "main",
+          "start": 707.448,
+          "end": 722.328
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Right! Skewness is the third standardized moment. A linear shift leaves the third moment completely unchanged! Only a non-linear power transform can pull in the long tail.",
+          "dock": "main",
+          "start": 722.328,
+          "end": 735.384
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. StandardScaler standardizes scales, but power transformations standardize distribution shape. Both are necessary, but they solve entirely different mathematical failures.",
+          "dock": "main",
+          "start": 735.384,
+          "end": 748.632
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, in the test suite for this engine, we assert that the distance between 23:00 and 00:00 is mathematically equal to the distance between 12:00 and 13:00 to six decimal places!",
+          "dock": "main",
+          "start": 748.632,
+          "end": 760.704
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes! That unit circle test proves that the periodic boundary discontinuity has been completely cured. If someone accidentally implemented sine without cosine, that assertion immediately fails.",
+          "dock": "main",
+          "start": 760.704,
+          "end": 774.384
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And the VIF pruner guarantees that our polynomial feature expansion never leaves singular columns in the final training matrix!",
+          "dock": "main",
+          "start": 774.384,
+          "end": 782.088
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Machine learning pipelines must be guarded by strict algebraic invariants. When automated tests enforce these properties, models deploy safely without unexpected production failures.",
+          "dock": "main",
+          "start": 782.088,
+          "end": 795.816
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, this lesson really brought the geometry of feature engineering into focus! From Box-Cox likelihood surfaces to unit circle clock embeddings, every transform has a strict mathematical justification.",
+          "dock": "main",
+          "start": 795.816,
+          "end": 809.376
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Indeed, Kaito. Data cleaning is not just about removing noise; it is about shaping feature spaces so estimators can extract the true underlying generative laws with minimal variance.",
+          "dock": "main",
+          "start": 809.376,
+          "end": 821.784
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And in Lesson 5.8, we get to build these pipelines at scale with Polars, DuckDB, and Apache Arrow?",
+          "dock": "main",
+          "start": 821.784,
+          "end": 828.648
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! We will explore memory geometries, zero-copy buffer sharing, and SIMD vectorization. Outstanding work today, Kaito\u2014let's keep pushing the frontier of dataset engineering!",
+          "dock": "main",
+          "start": 828.648,
+          "end": 842.232
+        }
+      ]
+    }
+  ]
+}

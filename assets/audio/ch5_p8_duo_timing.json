@@ -1,0 +1,519 @@
+{
+  "duration": 811.632,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Lesson 5.8, Kaito! Today, we examine why writing clean Python code isn't enough when processing tens of millions of records. Standard CPython loops like iterrows or apply crawl at a snail's pace, crashing enterprise clusters.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 17.496
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I've hit that exact wall, Dr. Nova! In my internship, our Pandas preprocessing script ran out of memory on a 256-gigabyte cloud machine while trying to filter 80 million log records with apply. Why does Python consume so much RAM for simple numbers?",
+          "dock": "main",
+          "start": 17.496,
+          "end": 34.488
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because CPython does not store raw numbers in memory! Each individual number is wrapped in an allocated PyObject containing reference counts and type pointers, scattered across the heap. Addressing them requires pointer chasing, driving CPU cache misses to nearly one hundred percent.",
+          "dock": "main",
+          "start": 34.488,
+          "end": 53.472
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So while our CPU is capable of billions of operations per second, it spends ninety-eight percent of its clock cycles just waiting for data to travel from main memory across the motherboard bus?",
+          "dock": "main",
+          "start": 53.472,
+          "end": 64.176
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely! That physical bottleneck is known as the Memory Wall. Today, we will study how columnar contiguous memory, SIMD registers, and lazy execution DAGs shatter that wall completely!",
+          "dock": "main",
+          "start": 64.176,
+          "end": 78.792
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Take a close look at this computational decision tree, Kaito. Notice how raw data branches depending on row count and streaming topology.",
+          "dock": "main",
+          "start": 78.792,
+          "end": 88.488
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I see that for interactive exploratory work under one million rows, Pandas 2.0 is still recommended. But once we hit one million rows, the tree forks straight into Polars or DuckDB!",
+          "dock": "main",
+          "start": 88.488,
+          "end": 100.752
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Correct. At one million records, memory allocation overhead begins to dominate. Polars uses a Rust engine with Rayon work-stealing parallelism, while DuckDB executes columnar vector chunks directly inside an embedded SQL engine.",
+          "dock": "main",
+          "start": 100.752,
+          "end": 117.456
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And for streaming data where we can't fit the stream into RAM, Vitter's Reservoir Sampling captures a statistically unbiased sample in fixed memory before validation!",
+          "dock": "main",
+          "start": 117.456,
+          "end": 126.912
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at this formula for effective memory access latency, Kaito. L1 cache responds in just one nanosecond, but main DRAM memory requires eighty nanoseconds.",
+          "dock": "main",
+          "start": 126.912,
+          "end": 138.576
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Eighty nanoseconds doesn't sound like a long time in human terms, Dr. Nova! Why does an eighty-nanosecond stall destroy our pipeline's performance?",
+          "dock": "main",
+          "start": 138.576,
+          "end": 148.2
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because a modern 4 gigahertz CPU executes four clock cycles every single nanosecond! An eighty nanosecond wait means the CPU sits completely idle for over three hundred instruction cycles.",
+          "dock": "main",
+          "start": 148.2,
+          "end": 161.544
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Multiply three hundred wasted cycles across eighty million rows, and our CPU spends literally billions of cycles frozen in place! How does contiguous memory solve this?",
+          "dock": "main",
+          "start": 161.544,
+          "end": 172.728
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "When bytes sit next to each other in memory, the CPU's hardware prefetcher automatically loads the next sixty-four bytes into L1 cache before the program even requests them! The miss probability drops to near zero.",
+          "dock": "main",
+          "start": 172.728,
+          "end": 187.152
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice how Apache Arrow eliminates object overhead, Kaito. By laying out values contiguously, finding any item i is just base pointer plus i times element size.",
+          "dock": "main",
+          "start": 187.152,
+          "end": 199.296
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! In Pandas, missing values were either float NaNs or None objects. How does Arrow handle missing values if the array is just raw primitive numbers packed together?",
+          "dock": "main",
+          "start": 199.296,
+          "end": 211.752
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Arrow uses a parallel validity bitmask! Each element has a single bit: one for valid, zero for null. For one million records, that validity mask takes only one hundred and twenty-five kilobytes of memory!",
+          "dock": "main",
+          "start": 211.752,
+          "end": 226.752
+        },
+        {
+          "speaker": "Kaito",
+          "text": "One hundred and twenty-five kilobytes versus eight megabytes! And because the layout is standardized, Python and Rust can read the exact same memory buffer with zero serialization overhead!",
+          "dock": "main",
+          "start": 226.752,
+          "end": 238.536
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Here is the mathematics of SIMD parallelism, Kaito. In an AVX-512 CPU, the processor has 512-bit wide execution registers.",
+          "dock": "main",
+          "start": 238.536,
+          "end": 250.44
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So if our numbers are 32-bit floats, 512 divided by 32 means the CPU executes 16 additions or comparisons at the exact same clock tick?",
+          "dock": "main",
+          "start": 250.44,
+          "end": 260.376
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly 16 operations per clock cycle! And what's more, a 64-byte L1 cache line holds exactly 16 float32 values. One cache line fill feeds an entire AVX-512 vector register in a single cycle.",
+          "dock": "main",
+          "start": 260.376,
+          "end": 277.464
+        },
+        {
+          "speaker": "Kaito",
+          "text": "That explains why downcasting float64 data to float32 during data cleaning creates such an enormous boost! It doubles our computational lane width and cuts DRAM bandwidth in half!",
+          "dock": "main",
+          "start": 277.464,
+          "end": 289.44
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let's put theory into practice right inside your browser engine, Kaito! Click the benchmark button in Tab A to run a 500,000 row filter comparison live on your machine's CPU.",
+          "dock": "simulator",
+          "start": 289.44,
+          "end": 301.848
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Running it now, Dr. Nova! Wow, look at that! The scattered row object loop took nearly forty milliseconds, while the contiguous typed array finished in just two milliseconds! That's over a twenty-times speedup with exact numerical parity!",
+          "dock": "simulator",
+          "start": 301.848,
+          "end": 318.432
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now switch to Tab B, Kaito, and inspect the Amdahl curve. Notice how the speedup flattens out as core count approaches 128.",
+          "dock": "simulator",
+          "start": 318.432,
+          "end": 328.44
+        },
+        {
+          "speaker": "Kaito",
+          "text": "At a parallel fraction of 0.90, the theoretical limit is capped at exactly 10x! So throwing 128 cores at a job with a 10% sequential bottleneck is a huge waste of cloud compute budget!",
+          "dock": "simulator",
+          "start": 328.44,
+          "end": 342.36
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for our first active knowledge check, Kaito! An engineer is optimizing a 100-million row coordinate clipping routine on an AVX-512 processor. What happens when they downcast from float64 to float32?",
+          "dock": "checkpoint",
+          "start": 342.36,
+          "end": 358.608
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Let's calculate: AVX-512 has 512 bits in each register. A float32 is 32 bits, and a float64 is 64 bits. Let me check the exact lane concurrency and bandwidth impacts!",
+          "dock": "checkpoint",
+          "start": 358.608,
+          "end": 373.272
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Many data scientists attempt to speed up slow cleaning scripts by wrapping them in Python's threading module, Kaito. But on CPU-bound tasks, that often makes performance worse!",
+          "dock": "main",
+          "start": 373.272,
+          "end": 385.464
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I tried that once! I spun up 16 Python threads, but my CPU monitor showed only one core running at a time while the others sat idle. Why didn't all 16 cores light up?",
+          "dock": "main",
+          "start": 385.464,
+          "end": 397.68
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because of the Global Interpreter Lock, or GIL! CPython uses a global mutex to prevent multiple threads from modifying Python object reference counts simultaneously. Only one thread can execute Python bytecode at any moment.",
+          "dock": "main",
+          "start": 397.68,
+          "end": 414.168
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So the 16 threads were just fighting over that single key! But Polars and DuckDB bypass that completely by dropping the GIL and running in native compiled Rust and C++!",
+          "dock": "main",
+          "start": 414.168,
+          "end": 425.352
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice how lazy evaluation fundamentally changes the execution model, Kaito. Instead of calculating immediately, the engine builds an optimization tree.",
+          "dock": "main",
+          "start": 425.352,
+          "end": 436.536
+        },
+        {
+          "speaker": "Kaito",
+          "text": "In eager Pandas, if I write df.filter followed by df.select, Pandas first loads all 50 columns into memory, filters them, and then drops the 47 unused columns! What a waste of RAM!",
+          "dock": "main",
+          "start": 436.536,
+          "end": 449.28
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! In a lazy engine like Polars, the query planner reverses the order. It detects that you only need three columns, so it tells the storage layer to only decompress those three columns from disk.",
+          "dock": "main",
+          "start": 449.28,
+          "end": 463.536
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And with predicate pushdown, it checks the Parquet min and max zone maps before reading! If a block has no matching rows, the CPU doesn't even touch the disk! That saves over ninety percent of our I/O!",
+          "dock": "main",
+          "start": 463.536,
+          "end": 476.976
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Review this comparison matrix, Kaito. Each engine occupies a distinct position in the performance and complexity space.",
+          "dock": "main",
+          "start": 476.976,
+          "end": 486.024
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Look at the peak memory overhead! Pandas takes up to five times the raw file size in RAM, while Polars only needs about twenty to thirty percent overhead!",
+          "dock": "main",
+          "start": 486.024,
+          "end": 496.08
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And notice DuckDB! When a dataset is larger than your physical RAM, DuckDB automatically streams chunks and spills intermediate hash tables to disk, avoiding out-of-memory crashes completely.",
+          "dock": "main",
+          "start": 496.08,
+          "end": 509.184
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And in the 85-million row e-commerce case study, switching from Pandas to Polars took execution time down from over three hours to just eleven minutes! That saved one hundred and forty thousand dollars a year in cloud server bills!",
+          "dock": "main",
+          "start": 509.184,
+          "end": 522.984
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Imagine a streaming pipeline where sensor events flow in continuously twenty-four hours a day, Kaito. Total row count N is unknown, and the stream never ends. How can we audit the distribution without running out of RAM?",
+          "dock": "main",
+          "start": 522.984,
+          "end": 538.008
+        },
+        {
+          "speaker": "Kaito",
+          "text": "If we don't know total N in advance, we can't just pick random indices! How does Vitter's Algorithm R ensure that every single item has the exact same probability of being in our sample?",
+          "dock": "main",
+          "start": 538.008,
+          "end": 549.528
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "By updating the reservoir with dynamic probabilities! We store the first k items. For item number i, we generate a random number from 1 to i. If it lands within 1 to k, we replace that reservoir slot with the new item.",
+          "dock": "main",
+          "start": 549.528,
+          "end": 566.232
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And by the induction proof, whether an item arrived in the first hundred rows or at row ten million, it has the exact same probability k over N of being in our reservoir! That is brilliant mathematics!",
+          "dock": "main",
+          "start": 566.232,
+          "end": 578.904
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let's observe Vitter's Algorithm R in real time, Kaito! Start the data stream and select the Bimodal distribution.",
+          "dock": "simulator",
+          "start": 578.904,
+          "end": 587.184
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Starting the stream now! Thousands of items are flying through, but our reservoir is locked at exactly one hundred slots. Look at the green histogram bars\u2014they're forming both bimodal peaks identically to the true population curve!",
+          "dock": "simulator",
+          "start": 587.184,
+          "end": 601.872
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice the sample mean readout, Kaito! Even after twenty thousand stream items, the difference between the reservoir sample mean and true population mean remains below one percent.",
+          "dock": "simulator",
+          "start": 601.872,
+          "end": 613.752
+        },
+        {
+          "speaker": "Kaito",
+          "text": "That proves it! We can monitor data quality, calculate summary statistics, and detect data drift on infinite live streams using a fixed tiny buffer of RAM!",
+          "dock": "simulator",
+          "start": 613.752,
+          "end": 623.952
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Here is our second checkpoint challenge, Kaito. An engineer queries a 100-gigabyte Parquet archive with 50 columns using Polars scan parquet. They select only two columns and filter for records where country is Canada.",
+          "dock": "checkpoint",
+          "start": 623.952,
+          "end": 639.624
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Let's see: they only need user ID and amount, plus country for the filter. That's three columns out of fifty! And the country filter only matches five percent of rows! Let me calculate the exact savings from projection pruning and predicate pushdown!",
+          "dock": "checkpoint",
+          "start": 639.624,
+          "end": 656.496
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Every data scientist has experienced the dreaded OOMKilled error, Kaito, when the Linux kernel suddenly assassinates your Python process because you ran out of memory.",
+          "dock": "main",
+          "start": 656.496,
+          "end": 667.344
+        },
+        {
+          "speaker": "Kaito",
+          "text": "It's the most frustrating thing in data engineering! You wait two hours for a join to complete, and right at the end, the terminal just says 'Killed'. How does DuckDB handle datasets larger than RAM?",
+          "dock": "main",
+          "start": 667.344,
+          "end": 680.28
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "DuckDB uses an out-of-core buffer manager! It tracks every byte of allocated memory. When memory pressure hits your machine's threshold, DuckDB gracefully streams intermediate hash tables onto temporary disk files.",
+          "dock": "main",
+          "start": 680.28,
+          "end": 695.64
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So instead of crashing with an Out-of-Memory exception, the query keeps executing smoothly to completion, allowing my laptop to process datasets ten times larger than its physical RAM!",
+          "dock": "main",
+          "start": 695.64,
+          "end": 706.128
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at our production implementation on Slide 15, Kaito. We encapsulate the entire vectorization benchmark and reservoir sampling algorithm inside an executable Pydantic V2 verification contract.",
+          "dock": "main",
+          "start": 706.128,
+          "end": 720.384
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Notice how the Pydantic model asserts speedup factor greater than 10.0! If a regression is introduced that drops vectorization back to an object loop, Pydantic immediately raises a validation error and halts CI/CD deployment!",
+          "dock": "main",
+          "start": 720.384,
+          "end": 734.904
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And notice how we test floating-point reductions! Because SIMD uses pairwise tree summation while scalar loops add numbers sequentially, float rounding differs at the lowest bits. We compare results with math.isclose rather than exact equality.",
+          "dock": "main",
+          "start": 734.904,
+          "end": 752.016
+        },
+        {
+          "speaker": "Kaito",
+          "text": "That is an essential detail! Pairwise SIMD summation is actually mathematically more accurate than sequential loops because it avoids accumulating tiny rounding errors across millions of additions!",
+          "dock": "main",
+          "start": 752.016,
+          "end": 764.112
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "What an incredible exploration of high-performance computing, Kaito! We've demystified how memory hardware, SIMD registers, and query compilers transform slow Python scripts into lightning-fast data engines.",
+          "dock": "main",
+          "start": 764.112,
+          "end": 778.824
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I will never write a row-by-row apply loop again, Dr. Nova! Seeing that live in-browser benchmark run twenty times faster with contiguous typed arrays completely changed my perspective on data engineering.",
+          "dock": "main",
+          "start": 778.824,
+          "end": 791.208
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And remember Amdahl's Law, Kaito: always profile and vectorize that lingering sequential ten percent before adding more cloud CPU cores!",
+          "dock": "main",
+          "start": 791.208,
+          "end": 800.544
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I'm ready for Lesson 5.9, Dr. Nova! Let's take these vectorized engines and connect them into fully automated production pipelines with Airflow and Great Expectations!",
+          "dock": "main",
+          "start": 800.544,
+          "end": 811.632
+        }
+      ]
+    }
+  ]
+}

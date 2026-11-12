@@ -121,9 +121,11 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 !important;
+          padding: 0 4px !important;
           word-wrap: break-word !important;
           white-space: normal !important;
+          box-sizing: border-box !important;
+          width: 100% !important;
         }
 
         .node g.label rect,
@@ -5215,67 +5217,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#conceptual-overview-derivation-distributed-storage-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        🎯 Conceptual Overview &amp; Derivation: Distributed Storage Architecture
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation: Distributed Storage Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-physical-storage-hierarchy-latency-numbers" class="md-nav__link">
+  <a href="#the-physical-storage-hierarchy-latency-ladder" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Physical Storage Hierarchy &amp; Latency Numbers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mathematical-foundations-scaling-limits-littles-law-and-queuing-dynamics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mathematical Foundations: Scaling Limits, Little's Law, and Queuing Dynamics
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Mathematical Foundations: Scaling Limits, Little&#39;s Law, and Queuing Dynamics">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-littles-law" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Little's Law
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-mm1-queuing-response-time-and-saturation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. M/M/1 Queuing Response Time and Saturation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-amdahls-law-vs-gustafsons-law" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Amdahl's Law vs. Gustafson's Law
+        The Physical Storage Hierarchy &amp; Latency Ladder
       
     </span>
   </a>
@@ -5286,6 +5243,62 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#mathematical-formalisms-queuing-backpressure-scaling-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📐 Mathematical Formalisms: Queuing Backpressure &amp; Scaling Limits
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📐 Mathematical Formalisms: Queuing Backpressure &amp; Scaling Limits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-1211-littles-law-for-data-ingestion-pipelines-concurrency-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition 12.1.1: Little's Law for Data Ingestion Pipelines &amp; Concurrency Limits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-1212-mm1-and-mmc-queuing-dynamics-asymptotic-saturation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition 12.1.2: M/M/1 and M/M/c Queuing Dynamics &amp; Asymptotic Saturation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-1213-amdahls-law-vs-gustafsons-law-in-distributed-data-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition 12.1.3: Amdahl's Law vs. Gustafson's Law in Distributed Data Processing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-1214-universal-scalability-law-usl-coherence-contention-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition 12.1.4: Universal Scalability Law (USL) &amp; Coherence Contention Overhead
+      
+    </span>
+  </a>
+  
+</li>
         
       </ul>
     </nav>
@@ -5293,10 +5306,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-scalability-queue-simulator" class="md-nav__link">
+  <a href="#production-implementation-distributed-pipeline-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Scalability &amp; Queue Simulator
+        💻 Production Implementation: Distributed Pipeline Engine
       
     </span>
   </a>
@@ -5304,10 +5317,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-cern-worldwide-lhc-computing-grid-wlcg" class="md-nav__link">
+  <a href="#interactive-laboratory-simulator-121" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: CERN Worldwide LHC Computing Grid (WLCG)
+        🔬 Interactive Laboratory: SIMULATOR 12.1
       
     </span>
   </a>
@@ -5315,13 +5328,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#dual-industrial-case-studies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        🔬 Dual Industrial Case Studies
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="🔬 Dual Industrial Case Studies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-cern-worldwide-lhc-computing-grid-wlcg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: CERN Worldwide LHC Computing Grid (WLCG)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-netflix-keystone-big-data-platform-kafka-s3-apache-iceberg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: Netflix Keystone &amp; Big Data Platform (Kafka + S3 + Apache Iceberg)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#industrial-architecture-comparison-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Industrial Architecture Comparison Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -7449,67 +7501,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conceptual-overview-derivation" class="md-nav__link">
+  <a href="#conceptual-overview-derivation-distributed-storage-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Conceptual Overview &amp; Derivation
+        🎯 Conceptual Overview &amp; Derivation: Distributed Storage Architecture
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation">
+    <nav class="md-nav" aria-label="🎯 Conceptual Overview &amp; Derivation: Distributed Storage Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-physical-storage-hierarchy-latency-numbers" class="md-nav__link">
+  <a href="#the-physical-storage-hierarchy-latency-ladder" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Physical Storage Hierarchy &amp; Latency Numbers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mathematical-foundations-scaling-limits-littles-law-and-queuing-dynamics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mathematical Foundations: Scaling Limits, Little's Law, and Queuing Dynamics
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Mathematical Foundations: Scaling Limits, Little&#39;s Law, and Queuing Dynamics">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-littles-law" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Little's Law
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-mm1-queuing-response-time-and-saturation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. M/M/1 Queuing Response Time and Saturation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-amdahls-law-vs-gustafsons-law" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Amdahl's Law vs. Gustafson's Law
+        The Physical Storage Hierarchy &amp; Latency Ladder
       
     </span>
   </a>
@@ -7520,6 +7527,62 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#mathematical-formalisms-queuing-backpressure-scaling-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📐 Mathematical Formalisms: Queuing Backpressure &amp; Scaling Limits
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📐 Mathematical Formalisms: Queuing Backpressure &amp; Scaling Limits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-1211-littles-law-for-data-ingestion-pipelines-concurrency-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition 12.1.1: Little's Law for Data Ingestion Pipelines &amp; Concurrency Limits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-1212-mm1-and-mmc-queuing-dynamics-asymptotic-saturation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition 12.1.2: M/M/1 and M/M/c Queuing Dynamics &amp; Asymptotic Saturation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-1213-amdahls-law-vs-gustafsons-law-in-distributed-data-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition 12.1.3: Amdahl's Law vs. Gustafson's Law in Distributed Data Processing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-1214-universal-scalability-law-usl-coherence-contention-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition 12.1.4: Universal Scalability Law (USL) &amp; Coherence Contention Overhead
+      
+    </span>
+  </a>
+  
+</li>
         
       </ul>
     </nav>
@@ -7527,10 +7590,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#production-implementation-scalability-queue-simulator" class="md-nav__link">
+  <a href="#production-implementation-distributed-pipeline-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💻 Production Implementation: Scalability &amp; Queue Simulator
+        💻 Production Implementation: Distributed Pipeline Engine
       
     </span>
   </a>
@@ -7538,10 +7601,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#empirical-case-study-cern-worldwide-lhc-computing-grid-wlcg" class="md-nav__link">
+  <a href="#interactive-laboratory-simulator-121" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Empirical Case Study: CERN Worldwide LHC Computing Grid (WLCG)
+        🔬 Interactive Laboratory: SIMULATOR 12.1
       
     </span>
   </a>
@@ -7549,13 +7612,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-laboratory-workbench" class="md-nav__link">
+  <a href="#dual-industrial-case-studies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🔬 Interactive Laboratory Workbench
+        🔬 Dual Industrial Case Studies
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="🔬 Dual Industrial Case Studies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#case-study-1-cern-worldwide-lhc-computing-grid-wlcg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 1: CERN Worldwide LHC Computing Grid (WLCG)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-study-2-netflix-keystone-big-data-platform-kafka-s3-apache-iceberg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case Study 2: Netflix Keystone &amp; Big Data Platform (Kafka + S3 + Apache Iceberg)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#industrial-architecture-comparison-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Industrial Architecture Comparison Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -7602,23 +7704,20 @@
 
 
 <h1 id="121-introduction-to-scalable-data-management">12.1 Introduction to Scalable Data Management</h1>
-<div class="noc-book-banner" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.25), rgba(15, 23, 42, 0.45)); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 700; color: #60a5fa; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 12 (sec:12.1)</span>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 4px;">
-      Read <strong>Chapter 12: Scalable Data Management</strong> in the Springer Nature companion monograph for rigorous formalisms and distributed storage theory.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 12: Scalable Data Management (§12.1: Foundations of Scalable Data Management)</strong>, covering rigorous formalisms of memory hierarchies, distributed storage theory, queuing backpressure, and scaling limits.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #2563eb; color: #ffffff; padding: 7px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; text-decoration: none;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+    <span>Explore Chapter 12 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Duration:</strong> ~14 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter12/chapter12.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter12/chapter12.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-121">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 12.1</h3>
 <p>Experience Chapter 12 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
@@ -7627,7 +7726,7 @@
     <div style="display: flex; align-items: center; gap: 10px;">
       <span style="font-size: 1.25rem;">🎙️</span>
       <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">5 Slides</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">10 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
       <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
@@ -7642,55 +7741,63 @@
 </div>
 
 <hr />
-<h2 id="conceptual-overview-derivation">🎯 Conceptual Overview &amp; Derivation</h2>
-<p>Modern machine learning systems are fundamentally limited not by algorithmic complexity, but by the physical and architectural constraints of data ingestion, storage, and retrieval (<a href="#ref-dean2004">Dean &amp; Ghemawat, 2004</a>). While earlier chapters examined data collection, cleaning, synthetic generation, and manual annotation on bounded sample spaces, <strong>scalable data management</strong> addresses the operational challenges that emerge when dataset volume (<span class="arithmatex">\(V\)</span>), ingestion velocity (<span class="arithmatex">\(\lambda\)</span>), and query concurrency (<span class="arithmatex">\(Q\)</span>) outgrow single-server memory and storage fabrics.</p>
+<h2 id="conceptual-overview-derivation-distributed-storage-architecture">🎯 Conceptual Overview &amp; Derivation: Distributed Storage Architecture</h2>
+<p>Modern artificial intelligence systems are fundamentally constrained not by algorithmic expression, but by the physical boundaries of data ingestion, storage fabrics, and memory bandwidth (<a href="#ref-dean2004">Dean &amp; Ghemawat, 2004</a>; <a href="#ref-barroso2013">Barroso et al., 2013</a>). In previous tracks, dataset engineering focused on bounded sample spaces: quality auditing, active query selection, heuristic labeling, and synthetic generation. <strong>Scalable Data Management</strong> governs the architectural transformations required when dataset volume (<span class="arithmatex">\(V\)</span>), continuous arrival velocity (<span class="arithmatex">\(\lambda\)</span>), format heterogeneity, and concurrent analytical queries (<span class="arithmatex">\(Q\)</span>) surpass the physical capacity of any single monolithic server.</p>
 <pre class="mermaid"><code>flowchart LR
-  subgraph Ingest ["1. Ingestion Tier"]
+  subgraph Stage1 ["1. Ingestion &amp; Streaming Fabric"]
     direction TB
-    IoT["IoT &amp; Telemetry Streams"]
-    CDC["CDC &amp; Message Brokers&lt;br/&gt;(Kafka / Pulsar)"]
-    Web["Web Crawlers &amp; APIs"]
+    Edge["IoT &amp; Telemetry Streams&lt;br/&gt;Arrival &amp;lambda; = 100k msg/s"]
+    Brokers["Distributed Log Brokers&lt;br/&gt;(Apache Kafka / Apache Pulsar)"]
+    CDC["Change Data Capture (CDC)&lt;br/&gt;(Debezium Engine)"]
   end
 
-  subgraph Store ["2. Storage &amp; Metadata Catalog Tier"]
+  subgraph Stage2 ["2. Distributed Storage &amp; ACID Catalog"]
     direction TB
-    ObjectStore[("Cloud Object Store&lt;br/&gt;(S3 / GCS / Ceph)")]
-    Catalog[("ACID Metadata Catalog&lt;br/&gt;(Iceberg / Delta Lake)")]
+    ObjectStore[("Cloud Object Storage&lt;br/&gt;(AWS S3 / GCS / Ceph)&lt;br/&gt;11-Nines Durability")]
+    Catalog[("ACID Lakehouse Catalog&lt;br/&gt;(Apache Iceberg / Delta Lake)&lt;br/&gt;Snapshot Isolation")]
+    TierCache[("Tiered NVMe SSD Cache&lt;br/&gt;(Local Alluxio / Lustre)")]
   end
 
-  subgraph Compute ["3. Distributed Compute Tier"]
+  subgraph Stage3 ["3. Distributed Execution &amp; Compute Engines"]
     direction TB
-    Spark["Analytical Query Engines&lt;br/&gt;(Apache Spark ([Zaharia et al., 2016](#ref-zaharia2016)) / Trino)"]
-    Ray["Distributed ML Training&lt;br/&gt;(PyTorch DDP / Ray)"]
-    Vector["Vector Index Fabric&lt;br/&gt;(HNSW / Milvus)"]
+    SparkEng["Analytical Query Engines&lt;br/&gt;(Apache Spark / Trino)&lt;br/&gt;Vectorized SIMD Execution"]
+    RayCluster["Distributed ML Training&lt;br/&gt;(Ray Train / PyTorch DDP)&lt;br/&gt;Multi-GPU Ring AllReduce"]
   end
 
-  %% Top-alignment constraint across stages
-  IoT ~~~ ObjectStore ~~~ Spark
+  subgraph Stage4 ["4. Downstream Serving &amp; Vector Index"]
+    direction TB
+    FeatStore["Real-Time Feature Store&lt;br/&gt;Sub-10ms Lookup"]
+    VectorDB[("Distributed Vector Index&lt;br/&gt;(HNSW / Milvus)")]
+  end
 
-  Ingest --&gt; ObjectStore
+  %% Top-alignment invisible links
+  Edge ~~~ ObjectStore ~~~ SparkEng ~~~ FeatStore
+
+  Stage1 --&gt; Stage2
   ObjectStore &lt;--&gt; Catalog
-  Catalog --&gt; Spark
-  Catalog --&gt; Ray
-  Catalog --&gt; Vector
+  Catalog &lt;--&gt; TierCache
+  Stage2 --&gt; Stage3
+  Stage3 --&gt; Stage4
 
   classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
   classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
   classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
   classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
 
-  class IoT,CDC,Web blue;
-  class ObjectStore,Catalog green;
-  class Spark,Ray,Vector purple;</code></pre>
-<h3 id="the-physical-storage-hierarchy-latency-numbers">The Physical Storage Hierarchy &amp; Latency Numbers</h3>
-<p>Scalable architecture begins with the physical realities of computer architecture (<a href="#ref-barroso2013">Barroso et al., 2013</a>). Latency differentials across memory tiers span six orders of magnitude:</p>
+  class Edge,Brokers,CDC blue;
+  class ObjectStore,Catalog,TierCache green;
+  class SparkEng,RayCluster purple;
+  class FeatStore,VectorDB amber;</code></pre>
+<h3 id="the-physical-storage-hierarchy-latency-ladder">The Physical Storage Hierarchy &amp; Latency Ladder</h3>
+<p>Every scalable system is governed by the physical memory hierarchy of modern computer systems (<a href="#ref-barroso2013">Barroso et al., 2013</a>). Access latencies span eight orders of magnitude across hardware tiers. To develop an intuitive operational grasp, architects scale hardware cycle times to human perceptual time, treating one CPU clock cycle (<span class="arithmatex">\(0.5\text{ ns}\)</span>) as equivalent to one second:</p>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">Storage Tier</th>
-<th style="text-align: left;">Typical Capacity</th>
+<th style="text-align: left;">Typical Hardware Capacity</th>
 <th style="text-align: left;">Access Latency</th>
-<th style="text-align: left;">Latency Scaled to Human Scale (1 cycle = 1 sec)</th>
+<th style="text-align: left;">Bandwidth (GB/s)</th>
+<th style="text-align: left;">Scaled to Human Perspective (1 cycle = 1 sec)</th>
 </tr>
 </thead>
 <tbody>
@@ -7698,231 +7805,1195 @@
 <td style="text-align: left;"><strong>L1 CPU Cache</strong></td>
 <td style="text-align: left;">64 KB / core</td>
 <td style="text-align: left;"><span class="arithmatex">\(0.5\text{ ns}\)</span></td>
-<td style="text-align: left;">1 second</td>
+<td style="text-align: left;"><span class="arithmatex">\(3,000 - 5,000\)</span></td>
+<td style="text-align: left;">1 second (a heartbeat)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>L3 Shared Cache</strong></td>
 <td style="text-align: left;">32 - 128 MB</td>
 <td style="text-align: left;"><span class="arithmatex">\(15\text{ ns}\)</span></td>
-<td style="text-align: left;">30 seconds</td>
+<td style="text-align: left;"><span class="arithmatex">\(800 - 1,500\)</span></td>
+<td style="text-align: left;">30 seconds (checking a watch)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>DRAM Main Memory</strong></td>
 <td style="text-align: left;">64 - 1024 GB</td>
 <td style="text-align: left;"><span class="arithmatex">\(100\text{ ns}\)</span></td>
-<td style="text-align: left;">3.3 minutes</td>
+<td style="text-align: left;"><span class="arithmatex">\(200 - 400\)</span></td>
+<td style="text-align: left;">3.3 minutes (making coffee)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>NVMe PCIe SSD</strong></td>
 <td style="text-align: left;">1 - 30 TB</td>
 <td style="text-align: left;"><span class="arithmatex">\(100\text{ }\mu\text{s}\)</span></td>
-<td style="text-align: left;">2.3 days</td>
+<td style="text-align: left;"><span class="arithmatex">\(5 - 14\)</span></td>
+<td style="text-align: left;">2.3 days (a weekend trip)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Mechanical HDD</strong></td>
 <td style="text-align: left;">4 - 24 TB</td>
 <td style="text-align: left;"><span class="arithmatex">\(10\text{ ms}\)</span></td>
-<td style="text-align: left;">8 months</td>
+<td style="text-align: left;"><span class="arithmatex">\(0.2 - 0.3\)</span></td>
+<td style="text-align: left;">8 months (academic semester)</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Cloud Object Store</strong></td>
-<td style="text-align: left;">Petabytes to Exabytes</td>
+<td style="text-align: left;"><strong>Cloud Object Store (S3)</strong></td>
+<td style="text-align: left;">Exabytes</td>
 <td style="text-align: left;"><span class="arithmatex">\(50 - 150\text{ ms}\)</span></td>
-<td style="text-align: left;">3 to 10 years</td>
+<td style="text-align: left;"><span class="arithmatex">\(25 - 100\)</span></td>
+<td style="text-align: left;">3.2 to 9.5 years (earning a Ph.D.)</td>
 </tr>
 </tbody>
 </table>
-<p>Because deep learning gradient steps require throughputs exceeding gigabytes per second, distributed systems must decouple persistent storage (object stores) from ephemeral caching (local NVMe and DRAM caches) through tiered prefetching.</p>
-<h3 id="mathematical-foundations-scaling-limits-littles-law-and-queuing-dynamics">Mathematical Foundations: Scaling Limits, Little's Law, and Queuing Dynamics</h3>
-<p>Four governing mathematical laws define the theoretical boundaries of scaling data pipelines:</p>
-<h4 id="1-littles-law">1. Little's Law</h4>
-<p>For any stable queuing system operating in steady state, the average number of concurrent requests or in-flight data items <span class="arithmatex">\(L\)</span> equals the long-term average arrival rate <span class="arithmatex">\(\lambda\)</span> multiplied by the average latency <span class="arithmatex">\(W\)</span> spent in the system (<a href="#ref-little1961">Little, 1961</a>):</p>
+<p>Because deep learning gradient steps require throughputs exceeding gigabytes per second, distributed systems must decouple persistent storage (object stores) from ephemeral caching (local NVMe and DRAM caches) through tiered asynchronous prefetching, moving away from legacy monolithic shared-disk assumptions (<a href="#ref-armbrust2020">Armbrust et al., 2020</a>; <a href="#ref-zaharia2016">Zaharia et al., 2016</a>; <a href="#ref-shvachko2010">Shvachko et al., 2010</a>). Synchronous reads directly to cloud object stores starve GPUs, capping compute utilization below <span class="arithmatex">\(10\%\)</span>.</p>
+<hr />
+<h2 id="mathematical-formalisms-queuing-backpressure-scaling-limits">📐 Mathematical Formalisms: Queuing Backpressure &amp; Scaling Limits</h2>
+<p>Distributed data management requires mathematical formalisms to dimension buffers, prevent queuing collapse, and compute theoretical scaling ceilings.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>+--------------------------------------------------------------------------------------------------+
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>|                                  THE FOUR GOVERNING LAWS                                         |
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>+------------------------------------+-------------------------------------------------------------+
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>| Law                                | Core Engineering Implication                                |
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>+------------------------------------+-------------------------------------------------------------+
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>| Little's Law                       | Governs steady-state in-flight buffer capacity L = lambda*W |
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>| M/M/c Queuing Hockey-Stick         | Non-linear latency explosion when utilization rho &gt; 0.85     |
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>| Amdahl's Law vs. Gustafson's Law   | Strong scaling serial caps vs. weak scaling throughput      |
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>| Gunther's Universal Scalability    | Contention &amp; crosstalk penalty causing retrograde scaling   |
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>+------------------------------------+-------------------------------------------------------------+
+</span></code></pre></div>
+<h3 id="definition-1211-littles-law-for-data-ingestion-pipelines-concurrency-limits">Definition 12.1.1: Little's Law for Data Ingestion Pipelines &amp; Concurrency Limits</h3>
+<p>For any stable, non-preemptive queuing system operating in steady state with conservation of flow (no items created or lost within the system boundaries), the average number of concurrent requests or in-flight data items <span class="arithmatex">\(L\)</span> is strictly equal to the long-term average arrival rate <span class="arithmatex">\(\lambda\)</span> multiplied by the average residence time <span class="arithmatex">\(W\)</span> spent by an item in the system (<a href="#ref-little1961">Little, 1961</a>):</p>
 <div class="arithmatex">\[
 L = \lambda \cdot W
 \]</div>
-<p>If an ingestion pipeline receives <span class="arithmatex">\(\lambda = 100,000\text{ records/sec}\)</span> and downstream validation/commit latency is <span class="arithmatex">\(W = 0.05\text{ sec}\)</span>, the system must maintain an in-flight concurrency buffer of:</p>
+<p>Where:
+- <span class="arithmatex">\(\lambda \in \mathbb{R}^+\)</span> denotes the average arrival rate of records or transactions per second (<span class="arithmatex">\(\text{records} \cdot \text{s}^{-1}\)</span>).
+- <span class="arithmatex">\(W \in \mathbb{R}^+\)</span> denotes the total end-to-end residence latency (<span class="arithmatex">\(\text{s}\)</span>), encompassing both queue waiting time <span class="arithmatex">\(W_q\)</span> and worker execution service time <span class="arithmatex">\(W_s = \frac{1}{\mu}\)</span>:</p>
 <div class="arithmatex">\[
-L = 100,000 \times 0.05 = 5,000\text{ concurrent records}
+W = W_q + \frac{1}{\mu}
 \]</div>
-<h4 id="2-mm1-queuing-response-time-and-saturation">2. M/M/1 Queuing Response Time and Saturation</h4>
-<p>Under Markovian arrival rate <span class="arithmatex">\(\lambda\)</span> and single-worker service rate <span class="arithmatex">\(\mu\)</span> (with utilization <span class="arithmatex">\(\rho = \frac{\lambda}{\mu} &lt; 1\)</span>), the expected residence time <span class="arithmatex">\(W\)</span> and queue length <span class="arithmatex">\(L_q\)</span> diverge asymptotically as <span class="arithmatex">\(\rho \to 1\)</span>:</p>
+<ul>
+<li><span class="arithmatex">\(L \in \mathbb{R}^+\)</span> represents the mean in-flight load across memory buffers, network sockets, and worker threads.</li>
+</ul>
+<blockquote>
+<p><strong>Buffer Sizing Invariant:</strong> If an ingestion pipeline receives <span class="arithmatex">\(\lambda = 150,000\text{ records/s}\)</span> and downstream object storage commit latency under load is <span class="arithmatex">\(W = 80\text{ ms} = 0.08\text{ s}\)</span>, the system must allocate in-flight buffer capacity for at least:</p>
+<div class="arithmatex">\[
+L = 150,000 \times 0.08 = 12,000\text{ concurrent records}
+\]</div>
+<p>Sizing the ingress message queue below <span class="arithmatex">\(L\)</span> triggers buffer overflow and packet dropping; sizing the buffer orders of magnitude higher leads to buffer bloat and catastrophic memory exhaustion.</p>
+</blockquote>
+<hr />
+<h3 id="definition-1212-mm1-and-mmc-queuing-dynamics-asymptotic-saturation">Definition 12.1.2: M/M/1 and M/M/c Queuing Dynamics &amp; Asymptotic Saturation</h3>
+<p>Let an ingestion pipeline be modeled as an <span class="arithmatex">\(M/M/c\)</span> queuing system where arrival intervals follow a Poisson process with parameter <span class="arithmatex">\(\lambda\)</span>, and service times follow an exponential distribution with parameter <span class="arithmatex">\(\mu\)</span> across <span class="arithmatex">\(c\)</span> independent parallel worker nodes. The system utilization factor <span class="arithmatex">\(\rho\)</span> is defined as:</p>
+<div class="arithmatex">\[
+\rho = \frac{\lambda}{c \cdot \mu}
+\]</div>
+<p>Operational stability requires <span class="arithmatex">\(\rho &lt; 1.0\)</span>. In the single-server regime (<span class="arithmatex">\(c = 1\)</span>), the expected residence time <span class="arithmatex">\(W\)</span> and average queued backlog <span class="arithmatex">\(L_q\)</span> are given by:</p>
 <div class="arithmatex">\[
 W = \frac{1}{\mu - \lambda} = \frac{1}{\mu(1 - \rho)}
 \]</div>
 <div class="arithmatex">\[
 L_q = \frac{\rho^2}{1 - \rho}
 \]</div>
-<p>When utilization <span class="arithmatex">\(\rho\)</span> exceeds <span class="arithmatex">\(0.90\)</span>, queue delays increase tenfold, requiring horizontal worker sharding to maintain latency SLAs.</p>
-<h4 id="3-amdahls-law-vs-gustafsons-law">3. Amdahl's Law vs. Gustafson's Law</h4>
-<p>When parallelizing data operations across <span class="arithmatex">\(s\)</span> distributed nodes, let <span class="arithmatex">\(p\)</span> denote the fraction of the workload that is strictly parallelizable, while <span class="arithmatex">\((1 - p)\)</span> is inherently serial. The theoretical speedup <span class="arithmatex">\(S(s)\)</span> is bounded by <strong>Amdahl's Law</strong> (<a href="#ref-amdahl1967">Amdahl, 1967</a>):</p>
+<p>For a multi-worker cluster (<span class="arithmatex">\(c \ge 1\)</span>), the probability that an arriving item must queue is given by the <strong>Erlang-C formula</strong> <span class="arithmatex">\(\mathcal{C}(c, \rho)\)</span>:</p>
 <div class="arithmatex">\[
-S(s) = \frac{1}{(1 - p) + \frac{p}{s}}
+\mathcal{C}(c, \rho) = \frac{\frac{(c\rho)^c}{c!(1 - \rho)}}{\sum_{k=0}^{c-1} \frac{(c\rho)^k}{k!} + \frac{(c\rho)^c}{c!(1 - \rho)}}
 \]</div>
-<p>As <span class="arithmatex">\(s \to \infty\)</span>, the maximum speedup asymptotically approaches <span class="arithmatex">\(\frac{1}{1 - p}\)</span>. Even if <span class="arithmatex">\(95\%\)</span> of an ETL pipeline is parallelizable (<span class="arithmatex">\(p = 0.95\)</span>), the maximum speedup across an infinite cluster is strictly capped at <span class="arithmatex">\(20\times\)</span>.</p>
-<p>Conversely, <strong>Gustafson's Law</strong> (<a href="#ref-gustafson1988">Gustafson, 1988</a>) assumes that problem size scales to fill available capacity:</p>
+<p>The expected queue waiting latency <span class="arithmatex">\(W_q\)</span> and total residence time <span class="arithmatex">\(W\)</span> are:</p>
 <div class="arithmatex">\[
-S(s) = s - (s - 1)(1 - p)
+W_q = \frac{\mathcal{C}(c, \rho)}{c\mu - \lambda} = \frac{\mathcal{C}(c, \rho)}{c\mu(1 - \rho)}, \qquad W = W_q + \frac{1}{\mu}
 \]</div>
-<p>Under Gustafson's perspective, scalable data management succeeds by increasing dataset volume proportionally with node count while holding execution latency constant.</p>
+<p>As utilization <span class="arithmatex">\(\rho \to 1.0\)</span>, the denominator <span class="arithmatex">\((1 - \rho) \to 0\)</span>, causing residence latency <span class="arithmatex">\(W\)</span> to diverge asymptotically to infinity:</p>
+<div class="arithmatex">\[
+\lim_{\rho \to 1^-} W(\rho) = \infty
+\]</div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Latency W (ms)
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  ^
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  |                                        | Asymptote rho = 1.0
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  |                                        |
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  |                                        |
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  |                                       /|
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  |                                      / |  &lt;-- Hockey-Stick Knee (rho &gt; 0.85)
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  |                                     /  |
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  |                                   /    |
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>  |  [Safe Operating Zone]          /      |
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>  |  rho &lt;= 0.70                  /        |
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>  |-----------------------------/          |
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>  +----------------------------------------+---&gt; Utilization rho
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>  0.0            0.50          0.70  0.85 1.0
+</span></code></pre></div>
+<blockquote>
+<p><strong>The Hockey-Stick Saturation Knee:</strong> When <span class="arithmatex">\(\rho \le 0.70\)</span>, latency remains bounded and predictable (<span class="arithmatex">\(W \le 3.33 \cdot \frac{1}{\mu}\)</span>). However, as <span class="arithmatex">\(\rho\)</span> passes <span class="arithmatex">\(0.85\)</span>, latency escalates exponentially. At <span class="arithmatex">\(\rho = 0.95\)</span>, queue delay is twenty times service time. Production distributed clusters must maintain operational headroom (<span class="arithmatex">\(\rho \le 0.70\)</span>) to prevent queuing collapse during traffic bursts.</p>
+</blockquote>
 <hr />
-<div class="admonition tip">
-<p class="admonition-title">Industrial Best Practice: Amdahl's Law and Scaling Granularity</p>
-<p>When scaling analytical data processing across distributed clusters, optimize the serial bottleneck first: by Amdahl's Law, if 5% of your pipeline is strictly serial (e.g., global synchronization barriers, single-threaded metadata writes), adding 1,000 GPU nodes caps maximum theoretical speedup at <span class="arithmatex">\(20\times\)</span>.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Common Pitfall / Anti-Pattern: Premature Distributed Cluster Deployment</p>
-<p>Spinning up a 100-node Apache Spark cluster for a 25 GB dataset is a massive waste of cloud spend. Modern single-node vectorized engines (DuckDB, Polars) process 50 GB in seconds on a standard 32-core laptop with zero cluster networking overhead.</p>
-</div>
-<h2 id="production-implementation-scalability-queue-simulator">💻 Production Implementation: Scalability &amp; Queue Simulator</h2>
-<p>The following typed, self-contained Python module simulates a distributed ingestion pipeline, validates Little's Law, computes M/M/1 queuing saturation, and verifies theoretical Amdahl speedup limits.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sd">"""</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="sd">Scalable Data Management: Ingestion Queue &amp; Scaling Bounds Simulator</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">Validates Little's Law, M/M/1 queue saturation, and parallel speedups.</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">"""</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">class</span><span class="w"> </span><span class="nc">PipelineMetrics</span><span class="p">:</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">arrival_rate</span><span class="p">:</span> <span class="nb">float</span>       <span class="c1"># lambda: records per second</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">service_rate</span><span class="p">:</span> <span class="nb">float</span>       <span class="c1"># mu: maximum processing capacity per second</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">utilization</span><span class="p">:</span> <span class="nb">float</span>        <span class="c1"># rho: lambda / mu</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">expected_latency</span><span class="p">:</span> <span class="nb">float</span>   <span class="c1"># W = 1 / (mu - lambda)</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">concurrent_load</span><span class="p">:</span> <span class="nb">float</span>    <span class="c1"># L = lambda * W</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">class</span><span class="w"> </span><span class="nc">ScalabilityEngine</span><span class="p">:</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="sd">"""Evaluates concurrency bounds, throughput, and Amdahl/Gustafson limits."""</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="nd">@staticmethod</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_mm1_pipeline</span><span class="p">(</span><span class="n">arrival_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">service_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PipelineMetrics</span><span class="p">:</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span><span class="sd">"""</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="sd">        Computes steady-state M/M/1 queuing metrics via Little's Law.</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="sd">        """</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="k">assert</span> <span class="n">arrival_rate</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"Arrival rate must be positive."</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="k">assert</span> <span class="n">service_rate</span> <span class="o">&gt;</span> <span class="n">arrival_rate</span><span class="p">,</span> <span class="s2">"System unstable: service rate must exceed arrival rate."</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="n">rho</span> <span class="o">=</span> <span class="n">arrival_rate</span> <span class="o">/</span> <span class="n">service_rate</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="n">expected_latency</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">service_rate</span> <span class="o">-</span> <span class="n">arrival_rate</span><span class="p">)</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="n">concurrent_load</span> <span class="o">=</span> <span class="n">arrival_rate</span> <span class="o">*</span> <span class="n">expected_latency</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="k">return</span> <span class="n">PipelineMetrics</span><span class="p">(</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>            <span class="n">arrival_rate</span><span class="o">=</span><span class="n">arrival_rate</span><span class="p">,</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>            <span class="n">service_rate</span><span class="o">=</span><span class="n">service_rate</span><span class="p">,</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>            <span class="n">utilization</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>            <span class="n">expected_latency</span><span class="o">=</span><span class="n">expected_latency</span><span class="p">,</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>            <span class="n">concurrent_load</span><span class="o">=</span><span class="n">concurrent_load</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="p">)</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="nd">@staticmethod</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">amdahl_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">        </span><span class="sd">"""Computes speedup under Amdahl's Law: S(s) = 1 / ((1 - p) + p / s)."""</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">parallel_fraction</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">"Parallel fraction must be in [0, 1]."</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="k">assert</span> <span class="n">nodes</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Node count must be at least 1."</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="n">serial_fraction</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">parallel_fraction</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">serial_fraction</span> <span class="o">+</span> <span class="p">(</span><span class="n">parallel_fraction</span> <span class="o">/</span> <span class="n">nodes</span><span class="p">))</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="nd">@staticmethod</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">gustafson_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">        </span><span class="sd">"""Computes scaled speedup under Gustafson's Law: S(s) = s - (s - 1) * (1 - p)."""</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>        <span class="k">assert</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">parallel_fraction</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">"Parallel fraction must be in [0, 1]."</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>        <span class="k">assert</span> <span class="n">nodes</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Node count must be at least 1."</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>        <span class="n">serial_fraction</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">parallel_fraction</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">nodes</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">serial_fraction</span><span class="p">)</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Executing ScalabilityEngine verification tests..."</span><span class="p">)</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="c1"># 1. Test M/M/1 Queuing and Little's Law (lambda=80k req/s, mu=100k req/s -&gt; rho=0.8)</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="n">metrics</span> <span class="o">=</span> <span class="n">ScalabilityEngine</span><span class="o">.</span><span class="n">evaluate_mm1_pipeline</span><span class="p">(</span><span class="n">arrival_rate</span><span class="o">=</span><span class="mf">80_000.0</span><span class="p">,</span> <span class="n">service_rate</span><span class="o">=</span><span class="mf">100_000.0</span><span class="p">)</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">utilization</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">),</span> <span class="s2">"Utilization mismatch"</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">expected_latency</span><span class="p">,</span> <span class="mf">0.00005</span><span class="p">),</span> <span class="s2">"Latency mismatch"</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">concurrent_load</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span> <span class="s2">"Little's Law load mismatch"</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ M/M/1 Queue: rho=</span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">utilization</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, W=</span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">expected_latency</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">ms, in-flight=</span><span class="si">{</span><span class="n">metrics</span><span class="o">.</span><span class="n">concurrent_load</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="c1"># 2. Test Amdahl's Law asymptotic limits</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="n">speedup_16</span> <span class="o">=</span> <span class="n">ScalabilityEngine</span><span class="o">.</span><span class="n">amdahl_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="o">=</span><span class="mf">0.90</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="n">speedup_inf</span> <span class="o">=</span> <span class="n">ScalabilityEngine</span><span class="o">.</span><span class="n">amdahl_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="o">=</span><span class="mf">0.90</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">)</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="k">assert</span> <span class="n">speedup_16</span> <span class="o">&lt;</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s2">"Amdahl speedup exceeded theoretical maximum for 16 nodes"</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">speedup_inf</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">),</span> <span class="s2">"Amdahl limit failed to converge to 1/(1-p)"</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ Amdahl 90% parallel: 16 nodes = </span><span class="si">{</span><span class="n">speedup_16</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x, asymptotic ceiling = </span><span class="si">{</span><span class="n">speedup_inf</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x"</span><span class="p">)</span>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="c1"># 3. Test Gustafson's Law scaled speedup</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="n">g_speedup</span> <span class="o">=</span> <span class="n">ScalabilityEngine</span><span class="o">.</span><span class="n">gustafson_speedup</span><span class="p">(</span><span class="n">parallel_fraction</span><span class="o">=</span><span class="mf">0.90</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="k">assert</span> <span class="n">g_speedup</span> <span class="o">&gt;</span> <span class="n">speedup_16</span><span class="p">,</span> <span class="s2">"Gustafson speedup should exceed fixed-size Amdahl speedup"</span>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ Gustafson 90% parallel: 16 nodes = </span><span class="si">{</span><span class="n">g_speedup</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x scaled speedup."</span><span class="p">)</span>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"All mathematical validation tests passed successfully!"</span><span class="p">)</span>
+<h3 id="definition-1213-amdahls-law-vs-gustafsons-law-in-distributed-data-processing">Definition 12.1.3: Amdahl's Law vs. Gustafson's Law in Distributed Data Processing</h3>
+<p>When parallelizing an analytical or ETL workload across <span class="arithmatex">\(s\)</span> distributed compute nodes, let <span class="arithmatex">\(p \in [0, 1]\)</span> denote the fraction of computational instructions that can be executed in parallel, while <span class="arithmatex">\((1 - p)\)</span> represents the inherently serial coordination fraction (e.g., global synchronization barriers, ACID metadata commits, distributed reductions).</p>
+<p><strong>Amdahl's Law (Strong Scaling):</strong> Evaluates speedup <span class="arithmatex">\(S_{\text{Amdahl}}(s)\)</span> for a <strong>fixed problem size</strong> (<a href="#ref-amdahl1967">Amdahl, 1967</a>):</p>
+<div class="arithmatex">\[
+S_{\text{Amdahl}}(s) = \frac{1}{(1 - p) + \frac{p}{s}}
+\]</div>
+<p>Taking the asymptotic limit as node count approaches infinity:</p>
+<div class="arithmatex">\[
+\lim_{s \to \infty} S_{\text{Amdahl}}(s) = \frac{1}{1 - p}
+\]</div>
+<p><strong>Gustafson's Law (Weak Scaling):</strong> Evaluates scaled speedup <span class="arithmatex">\(S_{\text{Gustafson}}(s)\)</span> assuming the <strong>problem size scales proportionally</strong> to fill available compute capacity (<a href="#ref-gustafson1988">Gustafson, 1988</a>):</p>
+<div class="arithmatex">\[
+S_{\text{Gustafson}}(s) = s - (s - 1)(1 - p) = 1 + (s - 1)p
+\]</div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Speedup S(s)
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  ^
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  |                     / Gustafson Weak Scaling (Workload expands with s)
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  |                   /
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  |                 /
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  |  -------------+------------------------- Amdahl Asymptotic Ceiling = 1 / (1 - p)
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  |             /
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  |           /
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  |         /     Amdahl Strong Scaling (Fixed-size problem)
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>  |       /
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>  |     /
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>  +----+------------------------------------&gt; Compute Nodes s
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>  1    4    8    16    32    64    128   1024
+</span></code></pre></div>
+<blockquote>
+<p><strong>The Serial Coordination Bottleneck:</strong> If <span class="arithmatex">\(5\%\)</span> of a distributed ML pipeline is strictly serial (<span class="arithmatex">\(p = 0.95\)</span>), Amdahl's Law proves that deploying <span class="arithmatex">\(1,000\)</span> GPU nodes achieves a maximum theoretical speedup of:</p>
+<div class="arithmatex">\[
+S(1000) = \frac{1}{(1 - 0.95) + \frac{0.95}{1000}} = \frac{1}{0.05 + 0.00095} = 19.63\times
+\]</div>
+<p>The organization pays for <span class="arithmatex">\(1,000\)</span> nodes but achieves the throughput of less than <span class="arithmatex">\(20\)</span> nodes. Scalable big data systems succeed by following Gustafson's weak scaling: expanding the volume of ingested data proportionally to cluster size rather than attempting to minimize the execution time of small datasets.</p>
+</blockquote>
+<hr />
+<h3 id="definition-1214-universal-scalability-law-usl-coherence-contention-overhead">Definition 12.1.4: Universal Scalability Law (USL) &amp; Coherence Contention Overhead</h3>
+<p>Neither Amdahl's Law nor Gustafson's Law accounts for inter-node communication contention. Dr. Neil Gunther's <strong>Universal Scalability Law (USL)</strong> models the effective throughput capacity <span class="arithmatex">\(C(N)\)</span> of a distributed system comprising <span class="arithmatex">\(N\)</span> processing units:</p>
+<div class="arithmatex">\[
+C(N) = \frac{N}{1 + \sigma(N - 1) + \kappa N(N - 1)}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(N \in \mathbb{N}^+\)</span> is the number of distributed processing nodes.
+- <span class="arithmatex">\(\sigma \ge 0\)</span> is the <strong>contention parameter</strong>, representing serialization queueing on shared resources (identical to the Amdahl serial term <span class="arithmatex">\(1 - p\)</span>).
+- <span class="arithmatex">\(\kappa \ge 0\)</span> is the <strong>coherence crosstalk parameter</strong>, quantifying the overhead of pairwise state consistency maintenance, distributed cache invalidations, and inter-node broadcast messages (<span class="arithmatex">\(\mathcal{O}(N^2)\)</span> network exchanges).</p>
+<p>When <span class="arithmatex">\(\kappa &gt; 0\)</span>, the function <span class="arithmatex">\(C(N)\)</span> is strictly concave with a unique global maximum. Differentiating <span class="arithmatex">\(C(N)\)</span> with respect to <span class="arithmatex">\(N\)</span> and setting <span class="arithmatex">\(\frac{dC}{dN} = 0\)</span> yields the <strong>optimal cluster size</strong> <span class="arithmatex">\(N^*\)</span>:</p>
+<div class="arithmatex">\[
+N^* = \sqrt{\frac{1 - \sigma}{\kappa}}
+\]</div>
+<p>The maximum obtainable capacity <span class="arithmatex">\(C(N^*)\)</span> is:</p>
+<div class="arithmatex">\[
+C(N^*) = \frac{1}{\sigma + 2\sqrt{\kappa(1 - \sigma)} - \kappa}
+\]</div>
+<p>For <span class="arithmatex">\(N &gt; N^*\)</span>, the derivative <span class="arithmatex">\(\frac{dC}{dN} &lt; 0\)</span>, resulting in <strong>retrograde scalability</strong>: adding additional worker nodes degrades aggregate cluster throughput due to catastrophic network broadcast storms and lock contention.</p>
+<hr />
+<h2 id="production-implementation-distributed-pipeline-engine">💻 Production Implementation: Distributed Pipeline Engine</h2>
+<p>The following self-contained, typed Python module implements <code>ScalableDataPipelineEngine</code> using <strong>Pydantic V2</strong>. It calculates memory tier latency ladders, validates Little's Law, computes multi-server Erlang-C queuing residence times, and solves for the optimal USL cluster size <span class="arithmatex">\(N^*\)</span>.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="sd">"""</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="sd">Scalable Data Management: Distributed Ingestion &amp; Scaling Bounds Engine</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="sd">Implements Little's Law, M/M/c queuing dynamics, and Gunther's Universal Scalability Law (USL).</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="sd">Verified with Pydantic V2 and zero external network dependencies.</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="sd">"""</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">field_validator</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">class</span><span class="w"> </span><span class="nc">StorageTier</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="sd">"""Represents a physical storage/memory tier in modern computer architecture."""</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Name of the physical storage tier"</span><span class="p">)</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="n">capacity_bytes</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Typical tier storage capacity in bytes"</span><span class="p">)</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="n">access_latency_ns</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Read access latency in nanoseconds"</span><span class="p">)</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="n">bandwidth_gbps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Read throughput bandwidth in GB/s"</span><span class="p">)</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="n">relative_cost_per_gb_month</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Approximate monthly cost per GB in USD"</span><span class="p">)</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="k">class</span><span class="w"> </span><span class="nc">WorkloadConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="sd">"""Configuration parameters for distributed ingestion and parallel compute."""</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>    <span class="n">arrival_rate_rps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Incoming records per second (lambda)"</span><span class="p">)</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>    <span class="n">record_size_bytes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Average record payload size in bytes"</span><span class="p">)</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    <span class="n">single_worker_capacity_rps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Service rate per worker node (mu)"</span><span class="p">)</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>    <span class="n">worker_nodes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Number of parallel worker nodes (c or N)"</span><span class="p">)</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>    <span class="n">parallel_fraction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.90</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Parallel compute fraction (p)"</span><span class="p">)</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>    <span class="n">contention_sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Amdahl contention parameter (sigma)"</span><span class="p">)</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>    <span class="n">crosstalk_kappa</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.0005</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Coherence crosstalk parameter (kappa)"</span><span class="p">)</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="k">class</span><span class="w"> </span><span class="nc">IngestionQueueMetrics</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">    </span><span class="sd">"""Metrics derived from steady-state M/M/c queuing dynamics and Little's Law."""</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>    <span class="n">arrival_rate</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>    <span class="n">worker_count</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>    <span class="n">aggregate_service_capacity</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>    <span class="n">utilization_rho</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>    <span class="n">is_stable</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>    <span class="n">residence_time_sec</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>    <span class="n">queue_latency_sec</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>    <span class="n">in_flight_records_littles_law</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>    <span class="n">queued_records</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="k">class</span><span class="w"> </span><span class="nc">ScalingLawsMetrics</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="w">    </span><span class="sd">"""Theoretical speedup metrics across Amdahl, Gustafson, and USL formulations."""</span>
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>    <span class="n">nodes</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>    <span class="n">parallel_fraction</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>    <span class="n">amdahl_speedup</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>    <span class="n">amdahl_asymptotic_ceiling</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>    <span class="n">gustafson_speedup</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>    <span class="n">usl_capacity</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>    <span class="n">optimal_node_count_usl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>    <span class="n">max_usl_capacity</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>    <span class="n">scaling_efficiency</span><span class="p">:</span> <span class="nb">float</span>
+</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>
+</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>
+</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a><span class="k">class</span><span class="w"> </span><span class="nc">ScalableDataPipelineEngine</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a><span class="sd">    Production-grade distributed data management and queuing simulator.</span>
+</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a><span class="sd">    Evaluates physical storage hierarchies, M/M/c queuing backpressure, and USL multi-node bounds.</span>
+</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a><span class="sd">    """</span>
+</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a>    <span class="n">config</span><span class="p">:</span> <span class="n">WorkloadConfig</span>
+</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>
+</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_standard_storage_hierarchy</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">StorageTier</span><span class="p">]:</span>
+</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a><span class="w">        </span><span class="sd">"""Returns standard hardware memory and storage hierarchy tiers."""</span>
+</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>        <span class="k">return</span> <span class="p">[</span>
+</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>            <span class="n">StorageTier</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"L1 CPU Cache"</span><span class="p">,</span> <span class="n">capacity_bytes</span><span class="o">=</span><span class="mi">64</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">access_latency_ns</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">bandwidth_gbps</span><span class="o">=</span><span class="mf">4000.0</span><span class="p">,</span> <span class="n">relative_cost_per_gb_month</span><span class="o">=</span><span class="mf">50000.0</span><span class="p">),</span>
+</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>            <span class="n">StorageTier</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"L3 CPU Cache"</span><span class="p">,</span> <span class="n">capacity_bytes</span><span class="o">=</span><span class="mi">64</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">access_latency_ns</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span> <span class="n">bandwidth_gbps</span><span class="o">=</span><span class="mf">1200.0</span><span class="p">,</span> <span class="n">relative_cost_per_gb_month</span><span class="o">=</span><span class="mf">15000.0</span><span class="p">),</span>
+</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>            <span class="n">StorageTier</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"DRAM Main Memory"</span><span class="p">,</span> <span class="n">capacity_bytes</span><span class="o">=</span><span class="mi">512</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">access_latency_ns</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">bandwidth_gbps</span><span class="o">=</span><span class="mf">300.0</span><span class="p">,</span> <span class="n">relative_cost_per_gb_month</span><span class="o">=</span><span class="mf">4.50</span><span class="p">),</span>
+</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>            <span class="n">StorageTier</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"NVMe PCIe SSD"</span><span class="p">,</span> <span class="n">capacity_bytes</span><span class="o">=</span><span class="mi">15</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">access_latency_ns</span><span class="o">=</span><span class="mf">100_000.0</span><span class="p">,</span> <span class="n">bandwidth_gbps</span><span class="o">=</span><span class="mf">7.0</span><span class="p">,</span> <span class="n">relative_cost_per_gb_month</span><span class="o">=</span><span class="mf">0.15</span><span class="p">),</span>
+</span><span id="__span-3-73"><a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a>            <span class="n">StorageTier</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Mechanical HDD"</span><span class="p">,</span> <span class="n">capacity_bytes</span><span class="o">=</span><span class="mi">24</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">access_latency_ns</span><span class="o">=</span><span class="mf">10_000_000.0</span><span class="p">,</span> <span class="n">bandwidth_gbps</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">relative_cost_per_gb_month</span><span class="o">=</span><span class="mf">0.015</span><span class="p">),</span>
+</span><span id="__span-3-74"><a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>            <span class="n">StorageTier</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Cloud Object Store (S3)"</span><span class="p">,</span> <span class="n">capacity_bytes</span><span class="o">=</span><span class="mf">1e18</span><span class="p">,</span> <span class="n">access_latency_ns</span><span class="o">=</span><span class="mf">100_000_000.0</span><span class="p">,</span> <span class="n">bandwidth_gbps</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">relative_cost_per_gb_month</span><span class="o">=</span><span class="mf">0.021</span><span class="p">),</span>
+</span><span id="__span-3-75"><a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a>        <span class="p">]</span>
+</span><span id="__span-3-76"><a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a>
+</span><span id="__span-3-77"><a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_queuing_dynamics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IngestionQueueMetrics</span><span class="p">:</span>
+</span><span id="__span-3-78"><a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a><span class="w">        </span><span class="sd">"""</span>
+</span><span id="__span-3-79"><a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a><span class="sd">        Evaluates steady-state M/M/c queuing dynamics and validates Little's Law: L = lambda * W.</span>
+</span><span id="__span-3-80"><a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a><span class="sd">        """</span>
+</span><span id="__span-3-81"><a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a>        <span class="n">lam</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">arrival_rate_rps</span>
+</span><span id="__span-3-82"><a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a>        <span class="n">mu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">single_worker_capacity_rps</span>
+</span><span id="__span-3-83"><a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a>        <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">worker_nodes</span>
+</span><span id="__span-3-84"><a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a>        <span class="n">agg_capacity</span> <span class="o">=</span> <span class="n">c</span> <span class="o">*</span> <span class="n">mu</span>
+</span><span id="__span-3-85"><a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a>        <span class="n">rho</span> <span class="o">=</span> <span class="n">lam</span> <span class="o">/</span> <span class="n">agg_capacity</span>
+</span><span id="__span-3-86"><a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a>
+</span><span id="__span-3-87"><a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a>        <span class="k">if</span> <span class="n">rho</span> <span class="o">&gt;=</span> <span class="mf">1.0</span><span class="p">:</span>
+</span><span id="__span-3-88"><a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a>            <span class="c1"># System unstable: arrival exceeds service capacity</span>
+</span><span id="__span-3-89"><a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a>            <span class="k">return</span> <span class="n">IngestionQueueMetrics</span><span class="p">(</span>
+</span><span id="__span-3-90"><a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a>                <span class="n">arrival_rate</span><span class="o">=</span><span class="n">lam</span><span class="p">,</span>
+</span><span id="__span-3-91"><a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a>                <span class="n">worker_count</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
+</span><span id="__span-3-92"><a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a>                <span class="n">aggregate_service_capacity</span><span class="o">=</span><span class="n">agg_capacity</span><span class="p">,</span>
+</span><span id="__span-3-93"><a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a>                <span class="n">utilization_rho</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-3-94"><a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a>                <span class="n">is_stable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="__span-3-95"><a id="__codelineno-3-95" name="__codelineno-3-95" href="#__codelineno-3-95"></a>                <span class="n">residence_time_sec</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">),</span>
+</span><span id="__span-3-96"><a id="__codelineno-3-96" name="__codelineno-3-96" href="#__codelineno-3-96"></a>                <span class="n">queue_latency_sec</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">),</span>
+</span><span id="__span-3-97"><a id="__codelineno-3-97" name="__codelineno-3-97" href="#__codelineno-3-97"></a>                <span class="n">in_flight_records_littles_law</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">),</span>
+</span><span id="__span-3-98"><a id="__codelineno-3-98" name="__codelineno-3-98" href="#__codelineno-3-98"></a>                <span class="n">queued_records</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">)</span>
+</span><span id="__span-3-99"><a id="__codelineno-3-99" name="__codelineno-3-99" href="#__codelineno-3-99"></a>            <span class="p">)</span>
+</span><span id="__span-3-100"><a id="__codelineno-3-100" name="__codelineno-3-100" href="#__codelineno-3-100"></a>
+</span><span id="__span-3-101"><a id="__codelineno-3-101" name="__codelineno-3-101" href="#__codelineno-3-101"></a>        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="__span-3-102"><a id="__codelineno-3-102" name="__codelineno-3-102" href="#__codelineno-3-102"></a>            <span class="n">w_total</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="n">lam</span><span class="p">)</span>
+</span><span id="__span-3-103"><a id="__codelineno-3-103" name="__codelineno-3-103" href="#__codelineno-3-103"></a>            <span class="n">w_queue</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">/</span> <span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="n">lam</span><span class="p">)</span>
+</span><span id="__span-3-104"><a id="__codelineno-3-104" name="__codelineno-3-104" href="#__codelineno-3-104"></a>            <span class="n">l_total</span> <span class="o">=</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">w_total</span>
+</span><span id="__span-3-105"><a id="__codelineno-3-105" name="__codelineno-3-105" href="#__codelineno-3-105"></a>            <span class="n">l_queue</span> <span class="o">=</span> <span class="p">(</span><span class="n">rho</span> <span class="o">*</span> <span class="n">rho</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">rho</span><span class="p">)</span>
+</span><span id="__span-3-106"><a id="__codelineno-3-106" name="__codelineno-3-106" href="#__codelineno-3-106"></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-3-107"><a id="__codelineno-3-107" name="__codelineno-3-107" href="#__codelineno-3-107"></a>            <span class="c1"># M/M/c multi-server queuing with Erlang-C formulation</span>
+</span><span id="__span-3-108"><a id="__codelineno-3-108" name="__codelineno-3-108" href="#__codelineno-3-108"></a>            <span class="n">sum_terms</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">c</span> <span class="o">*</span> <span class="n">rho</span><span class="p">)</span> <span class="o">**</span> <span class="n">n</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</span><span id="__span-3-109"><a id="__codelineno-3-109" name="__codelineno-3-109" href="#__codelineno-3-109"></a>            <span class="n">p_c</span> <span class="o">=</span> <span class="p">((</span><span class="n">c</span> <span class="o">*</span> <span class="n">rho</span><span class="p">)</span> <span class="o">**</span> <span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">rho</span><span class="p">))</span>
+</span><span id="__span-3-110"><a id="__codelineno-3-110" name="__codelineno-3-110" href="#__codelineno-3-110"></a>            <span class="n">p0</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">sum_terms</span> <span class="o">+</span> <span class="n">p_c</span><span class="p">)</span>
+</span><span id="__span-3-111"><a id="__codelineno-3-111" name="__codelineno-3-111" href="#__codelineno-3-111"></a>            <span class="c1"># Erlang-C probability of waiting</span>
+</span><span id="__span-3-112"><a id="__codelineno-3-112" name="__codelineno-3-112" href="#__codelineno-3-112"></a>            <span class="n">p_wait</span> <span class="o">=</span> <span class="n">p_c</span> <span class="o">*</span> <span class="n">p0</span>
+</span><span id="__span-3-113"><a id="__codelineno-3-113" name="__codelineno-3-113" href="#__codelineno-3-113"></a>            <span class="n">w_queue</span> <span class="o">=</span> <span class="n">p_wait</span> <span class="o">/</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="n">mu</span> <span class="o">-</span> <span class="n">lam</span><span class="p">)</span>
+</span><span id="__span-3-114"><a id="__codelineno-3-114" name="__codelineno-3-114" href="#__codelineno-3-114"></a>            <span class="n">w_total</span> <span class="o">=</span> <span class="n">w_queue</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">mu</span><span class="p">)</span>
+</span><span id="__span-3-115"><a id="__codelineno-3-115" name="__codelineno-3-115" href="#__codelineno-3-115"></a>            <span class="n">l_total</span> <span class="o">=</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">w_total</span>
+</span><span id="__span-3-116"><a id="__codelineno-3-116" name="__codelineno-3-116" href="#__codelineno-3-116"></a>            <span class="n">l_queue</span> <span class="o">=</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">w_queue</span>
+</span><span id="__span-3-117"><a id="__codelineno-3-117" name="__codelineno-3-117" href="#__codelineno-3-117"></a>
+</span><span id="__span-3-118"><a id="__codelineno-3-118" name="__codelineno-3-118" href="#__codelineno-3-118"></a>        <span class="k">return</span> <span class="n">IngestionQueueMetrics</span><span class="p">(</span>
+</span><span id="__span-3-119"><a id="__codelineno-3-119" name="__codelineno-3-119" href="#__codelineno-3-119"></a>            <span class="n">arrival_rate</span><span class="o">=</span><span class="n">lam</span><span class="p">,</span>
+</span><span id="__span-3-120"><a id="__codelineno-3-120" name="__codelineno-3-120" href="#__codelineno-3-120"></a>            <span class="n">worker_count</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
+</span><span id="__span-3-121"><a id="__codelineno-3-121" name="__codelineno-3-121" href="#__codelineno-3-121"></a>            <span class="n">aggregate_service_capacity</span><span class="o">=</span><span class="n">agg_capacity</span><span class="p">,</span>
+</span><span id="__span-3-122"><a id="__codelineno-3-122" name="__codelineno-3-122" href="#__codelineno-3-122"></a>            <span class="n">utilization_rho</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+</span><span id="__span-3-123"><a id="__codelineno-3-123" name="__codelineno-3-123" href="#__codelineno-3-123"></a>            <span class="n">is_stable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-3-124"><a id="__codelineno-3-124" name="__codelineno-3-124" href="#__codelineno-3-124"></a>            <span class="n">residence_time_sec</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">w_total</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+</span><span id="__span-3-125"><a id="__codelineno-3-125" name="__codelineno-3-125" href="#__codelineno-3-125"></a>            <span class="n">queue_latency_sec</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">w_queue</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+</span><span id="__span-3-126"><a id="__codelineno-3-126" name="__codelineno-3-126" href="#__codelineno-3-126"></a>            <span class="n">in_flight_records_littles_law</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">l_total</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-3-127"><a id="__codelineno-3-127" name="__codelineno-3-127" href="#__codelineno-3-127"></a>            <span class="n">queued_records</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">l_queue</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-3-128"><a id="__codelineno-3-128" name="__codelineno-3-128" href="#__codelineno-3-128"></a>        <span class="p">)</span>
+</span><span id="__span-3-129"><a id="__codelineno-3-129" name="__codelineno-3-129" href="#__codelineno-3-129"></a>
+</span><span id="__span-3-130"><a id="__codelineno-3-130" name="__codelineno-3-130" href="#__codelineno-3-130"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_scaling_laws</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ScalingLawsMetrics</span><span class="p">:</span>
+</span><span id="__span-3-131"><a id="__codelineno-3-131" name="__codelineno-3-131" href="#__codelineno-3-131"></a><span class="w">        </span><span class="sd">"""</span>
+</span><span id="__span-3-132"><a id="__codelineno-3-132" name="__codelineno-3-132" href="#__codelineno-3-132"></a><span class="sd">        Computes Amdahl's Law, Gustafson's Law, and Gunther's Universal Scalability Law (USL).</span>
+</span><span id="__span-3-133"><a id="__codelineno-3-133" name="__codelineno-3-133" href="#__codelineno-3-133"></a><span class="sd">        """</span>
+</span><span id="__span-3-134"><a id="__codelineno-3-134" name="__codelineno-3-134" href="#__codelineno-3-134"></a>        <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">worker_nodes</span>
+</span><span id="__span-3-135"><a id="__codelineno-3-135" name="__codelineno-3-135" href="#__codelineno-3-135"></a>        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">parallel_fraction</span>
+</span><span id="__span-3-136"><a id="__codelineno-3-136" name="__codelineno-3-136" href="#__codelineno-3-136"></a>        <span class="n">s</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">p</span>
+</span><span id="__span-3-137"><a id="__codelineno-3-137" name="__codelineno-3-137" href="#__codelineno-3-137"></a>        <span class="n">sigma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">contention_sigma</span>
+</span><span id="__span-3-138"><a id="__codelineno-3-138" name="__codelineno-3-138" href="#__codelineno-3-138"></a>        <span class="n">kappa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">crosstalk_kappa</span>
+</span><span id="__span-3-139"><a id="__codelineno-3-139" name="__codelineno-3-139" href="#__codelineno-3-139"></a>
+</span><span id="__span-3-140"><a id="__codelineno-3-140" name="__codelineno-3-140" href="#__codelineno-3-140"></a>        <span class="c1"># 1. Amdahl's Law: S(N) = 1 / ((1 - p) + p / N)</span>
+</span><span id="__span-3-141"><a id="__codelineno-3-141" name="__codelineno-3-141" href="#__codelineno-3-141"></a>        <span class="n">amdahl_speedup</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span>
+</span><span id="__span-3-142"><a id="__codelineno-3-142" name="__codelineno-3-142" href="#__codelineno-3-142"></a>        <span class="n">amdahl_ceiling</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">s</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">)</span>
+</span><span id="__span-3-143"><a id="__codelineno-3-143" name="__codelineno-3-143" href="#__codelineno-3-143"></a>
+</span><span id="__span-3-144"><a id="__codelineno-3-144" name="__codelineno-3-144" href="#__codelineno-3-144"></a>        <span class="c1"># 2. Gustafson's Law: S(N) = N - (N - 1) * (1 - p)</span>
+</span><span id="__span-3-145"><a id="__codelineno-3-145" name="__codelineno-3-145" href="#__codelineno-3-145"></a>        <span class="n">gustafson_speedup</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">s</span><span class="p">)</span>
+</span><span id="__span-3-146"><a id="__codelineno-3-146" name="__codelineno-3-146" href="#__codelineno-3-146"></a>
+</span><span id="__span-3-147"><a id="__codelineno-3-147" name="__codelineno-3-147" href="#__codelineno-3-147"></a>        <span class="c1"># 3. Universal Scalability Law (USL): C(N) = N / (1 + sigma*(N - 1) + kappa*N*(N - 1))</span>
+</span><span id="__span-3-148"><a id="__codelineno-3-148" name="__codelineno-3-148" href="#__codelineno-3-148"></a>        <span class="n">denominator</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">sigma</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">kappa</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-3-149"><a id="__codelineno-3-149" name="__codelineno-3-149" href="#__codelineno-3-149"></a>        <span class="n">usl_capacity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="n">denominator</span> <span class="k">if</span> <span class="n">denominator</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+</span><span id="__span-3-150"><a id="__codelineno-3-150" name="__codelineno-3-150" href="#__codelineno-3-150"></a>
+</span><span id="__span-3-151"><a id="__codelineno-3-151" name="__codelineno-3-151" href="#__codelineno-3-151"></a>        <span class="c1"># Peak node count N* where derivative dC/dN = 0: N* = sqrt((1 - sigma) / kappa)</span>
+</span><span id="__span-3-152"><a id="__codelineno-3-152" name="__codelineno-3-152" href="#__codelineno-3-152"></a>        <span class="k">if</span> <span class="n">kappa</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">sigma</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+</span><span id="__span-3-153"><a id="__codelineno-3-153" name="__codelineno-3-153" href="#__codelineno-3-153"></a>            <span class="n">n_star</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">sigma</span><span class="p">)</span> <span class="o">/</span> <span class="n">kappa</span><span class="p">)</span>
+</span><span id="__span-3-154"><a id="__codelineno-3-154" name="__codelineno-3-154" href="#__codelineno-3-154"></a>            <span class="n">c_max</span> <span class="o">=</span> <span class="n">n_star</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">sigma</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_star</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">kappa</span> <span class="o">*</span> <span class="n">n_star</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_star</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-3-155"><a id="__codelineno-3-155" name="__codelineno-3-155" href="#__codelineno-3-155"></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-3-156"><a id="__codelineno-3-156" name="__codelineno-3-156" href="#__codelineno-3-156"></a>            <span class="n">n_star</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-3-157"><a id="__codelineno-3-157" name="__codelineno-3-157" href="#__codelineno-3-157"></a>            <span class="n">c_max</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-3-158"><a id="__codelineno-3-158" name="__codelineno-3-158" href="#__codelineno-3-158"></a>
+</span><span id="__span-3-159"><a id="__codelineno-3-159" name="__codelineno-3-159" href="#__codelineno-3-159"></a>        <span class="n">efficiency</span> <span class="o">=</span> <span class="p">(</span><span class="n">usl_capacity</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">*</span> <span class="mf">100.0</span>
+</span><span id="__span-3-160"><a id="__codelineno-3-160" name="__codelineno-3-160" href="#__codelineno-3-160"></a>
+</span><span id="__span-3-161"><a id="__codelineno-3-161" name="__codelineno-3-161" href="#__codelineno-3-161"></a>        <span class="k">return</span> <span class="n">ScalingLawsMetrics</span><span class="p">(</span>
+</span><span id="__span-3-162"><a id="__codelineno-3-162" name="__codelineno-3-162" href="#__codelineno-3-162"></a>            <span class="n">nodes</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+</span><span id="__span-3-163"><a id="__codelineno-3-163" name="__codelineno-3-163" href="#__codelineno-3-163"></a>            <span class="n">parallel_fraction</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+</span><span id="__span-3-164"><a id="__codelineno-3-164" name="__codelineno-3-164" href="#__codelineno-3-164"></a>            <span class="n">amdahl_speedup</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">amdahl_speedup</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+</span><span id="__span-3-165"><a id="__codelineno-3-165" name="__codelineno-3-165" href="#__codelineno-3-165"></a>            <span class="n">amdahl_asymptotic_ceiling</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">amdahl_ceiling</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+</span><span id="__span-3-166"><a id="__codelineno-3-166" name="__codelineno-3-166" href="#__codelineno-3-166"></a>            <span class="n">gustafson_speedup</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">gustafson_speedup</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+</span><span id="__span-3-167"><a id="__codelineno-3-167" name="__codelineno-3-167" href="#__codelineno-3-167"></a>            <span class="n">usl_capacity</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">usl_capacity</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+</span><span id="__span-3-168"><a id="__codelineno-3-168" name="__codelineno-3-168" href="#__codelineno-3-168"></a>            <span class="n">optimal_node_count_usl</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">n_star</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n_star</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-3-169"><a id="__codelineno-3-169" name="__codelineno-3-169" href="#__codelineno-3-169"></a>            <span class="n">max_usl_capacity</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">c_max</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="n">c_max</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-3-170"><a id="__codelineno-3-170" name="__codelineno-3-170" href="#__codelineno-3-170"></a>            <span class="n">scaling_efficiency</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">efficiency</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-3-171"><a id="__codelineno-3-171" name="__codelineno-3-171" href="#__codelineno-3-171"></a>        <span class="p">)</span>
+</span><span id="__span-3-172"><a id="__codelineno-3-172" name="__codelineno-3-172" href="#__codelineno-3-172"></a>
+</span><span id="__span-3-173"><a id="__codelineno-3-173" name="__codelineno-3-173" href="#__codelineno-3-173"></a>
+</span><span id="__span-3-174"><a id="__codelineno-3-174" name="__codelineno-3-174" href="#__codelineno-3-174"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-3-175"><a id="__codelineno-3-175" name="__codelineno-3-175" href="#__codelineno-3-175"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+</span><span id="__span-3-176"><a id="__codelineno-3-176" name="__codelineno-3-176" href="#__codelineno-3-176"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"SCALABLE DATA MANAGEMENT PIPELINE ENGINE: VERIFICATION RUN"</span><span class="p">)</span>
+</span><span id="__span-3-177"><a id="__codelineno-3-177" name="__codelineno-3-177" href="#__codelineno-3-177"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+</span><span id="__span-3-178"><a id="__codelineno-3-178" name="__codelineno-3-178" href="#__codelineno-3-178"></a>
+</span><span id="__span-3-179"><a id="__codelineno-3-179" name="__codelineno-3-179" href="#__codelineno-3-179"></a>    <span class="c1"># Workload: 120,000 records/sec arriving into 16-worker cluster</span>
+</span><span id="__span-3-180"><a id="__codelineno-3-180" name="__codelineno-3-180" href="#__codelineno-3-180"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">WorkloadConfig</span><span class="p">(</span>
+</span><span id="__span-3-181"><a id="__codelineno-3-181" name="__codelineno-3-181" href="#__codelineno-3-181"></a>        <span class="n">arrival_rate_rps</span><span class="o">=</span><span class="mf">120_000.0</span><span class="p">,</span>
+</span><span id="__span-3-182"><a id="__codelineno-3-182" name="__codelineno-3-182" href="#__codelineno-3-182"></a>        <span class="n">record_size_bytes</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>
+</span><span id="__span-3-183"><a id="__codelineno-3-183" name="__codelineno-3-183" href="#__codelineno-3-183"></a>        <span class="n">single_worker_capacity_rps</span><span class="o">=</span><span class="mf">10_000.0</span><span class="p">,</span>
+</span><span id="__span-3-184"><a id="__codelineno-3-184" name="__codelineno-3-184" href="#__codelineno-3-184"></a>        <span class="n">worker_nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+</span><span id="__span-3-185"><a id="__codelineno-3-185" name="__codelineno-3-185" href="#__codelineno-3-185"></a>        <span class="n">parallel_fraction</span><span class="o">=</span><span class="mf">0.92</span><span class="p">,</span>
+</span><span id="__span-3-186"><a id="__codelineno-3-186" name="__codelineno-3-186" href="#__codelineno-3-186"></a>        <span class="n">contention_sigma</span><span class="o">=</span><span class="mf">0.015</span><span class="p">,</span>
+</span><span id="__span-3-187"><a id="__codelineno-3-187" name="__codelineno-3-187" href="#__codelineno-3-187"></a>        <span class="n">crosstalk_kappa</span><span class="o">=</span><span class="mf">0.0008</span>
+</span><span id="__span-3-188"><a id="__codelineno-3-188" name="__codelineno-3-188" href="#__codelineno-3-188"></a>    <span class="p">)</span>
+</span><span id="__span-3-189"><a id="__codelineno-3-189" name="__codelineno-3-189" href="#__codelineno-3-189"></a>
+</span><span id="__span-3-190"><a id="__codelineno-3-190" name="__codelineno-3-190" href="#__codelineno-3-190"></a>    <span class="n">engine</span> <span class="o">=</span> <span class="n">ScalableDataPipelineEngine</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</span><span id="__span-3-191"><a id="__codelineno-3-191" name="__codelineno-3-191" href="#__codelineno-3-191"></a>
+</span><span id="__span-3-192"><a id="__codelineno-3-192" name="__codelineno-3-192" href="#__codelineno-3-192"></a>    <span class="c1"># 1. Queuing Verification</span>
+</span><span id="__span-3-193"><a id="__codelineno-3-193" name="__codelineno-3-193" href="#__codelineno-3-193"></a>    <span class="n">q_metrics</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">evaluate_queuing_dynamics</span><span class="p">()</span>
+</span><span id="__span-3-194"><a id="__codelineno-3-194" name="__codelineno-3-194" href="#__codelineno-3-194"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- 1. Queuing Dynamics &amp; Little's Law Invariants ---"</span><span class="p">)</span>
+</span><span id="__span-3-195"><a id="__codelineno-3-195" name="__codelineno-3-195" href="#__codelineno-3-195"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Arrival Rate (lambda):             </span><span class="si">{</span><span class="n">q_metrics</span><span class="o">.</span><span class="n">arrival_rate</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2"> req/s"</span><span class="p">)</span>
+</span><span id="__span-3-196"><a id="__codelineno-3-196" name="__codelineno-3-196" href="#__codelineno-3-196"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Worker Nodes (c):                  </span><span class="si">{</span><span class="n">q_metrics</span><span class="o">.</span><span class="n">worker_count</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-3-197"><a id="__codelineno-3-197" name="__codelineno-3-197" href="#__codelineno-3-197"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Aggregate Capacity (c * mu):       </span><span class="si">{</span><span class="n">q_metrics</span><span class="o">.</span><span class="n">aggregate_service_capacity</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2"> req/s"</span><span class="p">)</span>
+</span><span id="__span-3-198"><a id="__codelineno-3-198" name="__codelineno-3-198" href="#__codelineno-3-198"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cluster Utilization (rho):         </span><span class="si">{</span><span class="n">q_metrics</span><span class="o">.</span><span class="n">utilization_rho</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</span><span id="__span-3-199"><a id="__codelineno-3-199" name="__codelineno-3-199" href="#__codelineno-3-199"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Residence Time (W):                </span><span class="si">{</span><span class="n">q_metrics</span><span class="o">.</span><span class="n">residence_time_sec</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> ms"</span><span class="p">)</span>
+</span><span id="__span-3-200"><a id="__codelineno-3-200" name="__codelineno-3-200" href="#__codelineno-3-200"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Queue Wait Latency (Wq):           </span><span class="si">{</span><span class="n">q_metrics</span><span class="o">.</span><span class="n">queue_latency_sec</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> ms"</span><span class="p">)</span>
+</span><span id="__span-3-201"><a id="__codelineno-3-201" name="__codelineno-3-201" href="#__codelineno-3-201"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"In-Flight Buffer Load (L = lam*W): </span><span class="si">{</span><span class="n">q_metrics</span><span class="o">.</span><span class="n">in_flight_records_littles_law</span><span class="si">:</span><span class="s2">,.1f</span><span class="si">}</span><span class="s2"> records"</span><span class="p">)</span>
+</span><span id="__span-3-202"><a id="__codelineno-3-202" name="__codelineno-3-202" href="#__codelineno-3-202"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Stability Status:                  </span><span class="si">{</span><span class="s1">'STABLE'</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">q_metrics</span><span class="o">.</span><span class="n">is_stable</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">'SATURATED / BLOCKED'</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-3-203"><a id="__codelineno-3-203" name="__codelineno-3-203" href="#__codelineno-3-203"></a>
+</span><span id="__span-3-204"><a id="__codelineno-3-204" name="__codelineno-3-204" href="#__codelineno-3-204"></a>    <span class="k">assert</span> <span class="n">q_metrics</span><span class="o">.</span><span class="n">is_stable</span><span class="p">,</span> <span class="s2">"Queue should be stable for rho &lt; 1.0"</span>
+</span><span id="__span-3-205"><a id="__codelineno-3-205" name="__codelineno-3-205" href="#__codelineno-3-205"></a>    <span class="k">assert</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">q_metrics</span><span class="o">.</span><span class="n">utilization_rho</span><span class="p">,</span> <span class="mf">120_000.0</span> <span class="o">/</span> <span class="mf">160_000.0</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+</span><span id="__span-3-206"><a id="__codelineno-3-206" name="__codelineno-3-206" href="#__codelineno-3-206"></a>
+</span><span id="__span-3-207"><a id="__codelineno-3-207" name="__codelineno-3-207" href="#__codelineno-3-207"></a>    <span class="c1"># 2. Scaling Laws Verification</span>
+</span><span id="__span-3-208"><a id="__codelineno-3-208" name="__codelineno-3-208" href="#__codelineno-3-208"></a>    <span class="n">s_metrics</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">evaluate_scaling_laws</span><span class="p">()</span>
+</span><span id="__span-3-209"><a id="__codelineno-3-209" name="__codelineno-3-209" href="#__codelineno-3-209"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- 2. Distributed Scaling Laws &amp; USL Retrograde Bounds ---"</span><span class="p">)</span>
+</span><span id="__span-3-210"><a id="__codelineno-3-210" name="__codelineno-3-210" href="#__codelineno-3-210"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Worker Nodes (N):                  </span><span class="si">{</span><span class="n">s_metrics</span><span class="o">.</span><span class="n">nodes</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-3-211"><a id="__codelineno-3-211" name="__codelineno-3-211" href="#__codelineno-3-211"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Parallel Compute Fraction (p):     </span><span class="si">{</span><span class="n">s_metrics</span><span class="o">.</span><span class="n">parallel_fraction</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</span><span id="__span-3-212"><a id="__codelineno-3-212" name="__codelineno-3-212" href="#__codelineno-3-212"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Amdahl Speedup S(N):               </span><span class="si">{</span><span class="n">s_metrics</span><span class="o">.</span><span class="n">amdahl_speedup</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x (Ceiling: </span><span class="si">{</span><span class="n">s_metrics</span><span class="o">.</span><span class="n">amdahl_asymptotic_ceiling</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x)"</span><span class="p">)</span>
+</span><span id="__span-3-213"><a id="__codelineno-3-213" name="__codelineno-3-213" href="#__codelineno-3-213"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Gustafson Scaled Speedup:          </span><span class="si">{</span><span class="n">s_metrics</span><span class="o">.</span><span class="n">gustafson_speedup</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x"</span><span class="p">)</span>
+</span><span id="__span-3-214"><a id="__codelineno-3-214" name="__codelineno-3-214" href="#__codelineno-3-214"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Universal Scalability Capacity:    </span><span class="si">{</span><span class="n">s_metrics</span><span class="o">.</span><span class="n">usl_capacity</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x"</span><span class="p">)</span>
+</span><span id="__span-3-215"><a id="__codelineno-3-215" name="__codelineno-3-215" href="#__codelineno-3-215"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cluster Scaling Efficiency:        </span><span class="si">{</span><span class="n">s_metrics</span><span class="o">.</span><span class="n">scaling_efficiency</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</span><span id="__span-3-216"><a id="__codelineno-3-216" name="__codelineno-3-216" href="#__codelineno-3-216"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"USL Peak Node Count (N*):          </span><span class="si">{</span><span class="n">s_metrics</span><span class="o">.</span><span class="n">optimal_node_count_usl</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> nodes"</span><span class="p">)</span>
+</span><span id="__span-3-217"><a id="__codelineno-3-217" name="__codelineno-3-217" href="#__codelineno-3-217"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Maximum Obtainable Capacity C(N*): </span><span class="si">{</span><span class="n">s_metrics</span><span class="o">.</span><span class="n">max_usl_capacity</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x"</span><span class="p">)</span>
+</span><span id="__span-3-218"><a id="__codelineno-3-218" name="__codelineno-3-218" href="#__codelineno-3-218"></a>
+</span><span id="__span-3-219"><a id="__codelineno-3-219" name="__codelineno-3-219" href="#__codelineno-3-219"></a>    <span class="k">assert</span> <span class="n">s_metrics</span><span class="o">.</span><span class="n">amdahl_speedup</span> <span class="o">&lt;</span> <span class="n">s_metrics</span><span class="o">.</span><span class="n">amdahl_asymptotic_ceiling</span>
+</span><span id="__span-3-220"><a id="__codelineno-3-220" name="__codelineno-3-220" href="#__codelineno-3-220"></a>    <span class="k">assert</span> <span class="n">s_metrics</span><span class="o">.</span><span class="n">gustafson_speedup</span> <span class="o">&gt;</span> <span class="n">s_metrics</span><span class="o">.</span><span class="n">amdahl_speedup</span>
+</span><span id="__span-3-221"><a id="__codelineno-3-221" name="__codelineno-3-221" href="#__codelineno-3-221"></a>    <span class="k">assert</span> <span class="n">s_metrics</span><span class="o">.</span><span class="n">optimal_node_count_usl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span><span id="__span-3-222"><a id="__codelineno-3-222" name="__codelineno-3-222" href="#__codelineno-3-222"></a>
+</span><span id="__span-3-223"><a id="__codelineno-3-223" name="__codelineno-3-223" href="#__codelineno-3-223"></a>    <span class="c1"># 3. Storage Hierarchy</span>
+</span><span id="__span-3-224"><a id="__codelineno-3-224" name="__codelineno-3-224" href="#__codelineno-3-224"></a>    <span class="n">tiers</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">get_standard_storage_hierarchy</span><span class="p">()</span>
+</span><span id="__span-3-225"><a id="__codelineno-3-225" name="__codelineno-3-225" href="#__codelineno-3-225"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- 3. Memory &amp; Storage Latency Hierarchy ---"</span><span class="p">)</span>
+</span><span id="__span-3-226"><a id="__codelineno-3-226" name="__codelineno-3-226" href="#__codelineno-3-226"></a>    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tiers</span><span class="p">:</span>
+</span><span id="__span-3-227"><a id="__codelineno-3-227" name="__codelineno-3-227" href="#__codelineno-3-227"></a>        <span class="n">human_scale</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">access_latency_ns</span> <span class="o">/</span> <span class="mf">0.5</span>  <span class="c1"># 1 CPU cycle (0.5 ns) = 1 sec</span>
+</span><span id="__span-3-228"><a id="__codelineno-3-228" name="__codelineno-3-228" href="#__codelineno-3-228"></a>        <span class="k">if</span> <span class="n">human_scale</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">:</span>
+</span><span id="__span-3-229"><a id="__codelineno-3-229" name="__codelineno-3-229" href="#__codelineno-3-229"></a>            <span class="n">time_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">human_scale</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> seconds"</span>
+</span><span id="__span-3-230"><a id="__codelineno-3-230" name="__codelineno-3-230" href="#__codelineno-3-230"></a>        <span class="k">elif</span> <span class="n">human_scale</span> <span class="o">&lt;</span> <span class="mi">3600</span><span class="p">:</span>
+</span><span id="__span-3-231"><a id="__codelineno-3-231" name="__codelineno-3-231" href="#__codelineno-3-231"></a>            <span class="n">time_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">human_scale</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> minutes"</span>
+</span><span id="__span-3-232"><a id="__codelineno-3-232" name="__codelineno-3-232" href="#__codelineno-3-232"></a>        <span class="k">elif</span> <span class="n">human_scale</span> <span class="o">&lt;</span> <span class="mi">86400</span><span class="p">:</span>
+</span><span id="__span-3-233"><a id="__codelineno-3-233" name="__codelineno-3-233" href="#__codelineno-3-233"></a>            <span class="n">time_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">human_scale</span><span class="o">/</span><span class="mi">3600</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> hours"</span>
+</span><span id="__span-3-234"><a id="__codelineno-3-234" name="__codelineno-3-234" href="#__codelineno-3-234"></a>        <span class="k">elif</span> <span class="n">human_scale</span> <span class="o">&lt;</span> <span class="mi">31536000</span><span class="p">:</span>
+</span><span id="__span-3-235"><a id="__codelineno-3-235" name="__codelineno-3-235" href="#__codelineno-3-235"></a>            <span class="n">time_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">human_scale</span><span class="o">/</span><span class="mi">86400</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> days"</span>
+</span><span id="__span-3-236"><a id="__codelineno-3-236" name="__codelineno-3-236" href="#__codelineno-3-236"></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-3-237"><a id="__codelineno-3-237" name="__codelineno-3-237" href="#__codelineno-3-237"></a>            <span class="n">time_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">human_scale</span><span class="o">/</span><span class="mi">31536000</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> years"</span>
+</span><span id="__span-3-238"><a id="__codelineno-3-238" name="__codelineno-3-238" href="#__codelineno-3-238"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">name</span><span class="si">:</span><span class="s2">26s</span><span class="si">}</span><span class="s2"> | Latency: </span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">access_latency_ns</span><span class="si">:</span><span class="s2">12,.1f</span><span class="si">}</span><span class="s2"> ns | Bandwidth: </span><span class="si">{</span><span class="n">t</span><span class="o">.</span><span class="n">bandwidth_gbps</span><span class="si">:</span><span class="s2">7.1f</span><span class="si">}</span><span class="s2"> GB/s | Human Scale: </span><span class="si">{</span><span class="n">time_str</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-3-239"><a id="__codelineno-3-239" name="__codelineno-3-239" href="#__codelineno-3-239"></a>
+</span><span id="__span-3-240"><a id="__codelineno-3-240" name="__codelineno-3-240" href="#__codelineno-3-240"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✓ ALL PRODUCTION ENGINE ASSERTIONS PASSED (rc=0)!"</span><span class="p">)</span>
+</span><span id="__span-3-241"><a id="__codelineno-3-241" name="__codelineno-3-241" href="#__codelineno-3-241"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
-<h2 id="empirical-case-study-cern-worldwide-lhc-computing-grid-wlcg">🔬 Empirical Case Study: CERN Worldwide LHC Computing Grid (WLCG)</h2>
+<h2 id="interactive-laboratory-simulator-121">🔬 Interactive Laboratory: SIMULATOR 12.1</h2>
+<p>Explore the governing mathematical laws of scalable data systems using the client-side interactive simulator below. Adjust arrival velocity <span class="arithmatex">\(\lambda\)</span>, worker node count <span class="arithmatex">\(c\)</span>, parallelization fraction <span class="arithmatex">\(p\)</span>, and network crosstalk <span class="arithmatex">\(\kappa\)</span> to visualize storage tier latencies, M/M/c queuing hockey-stick saturation, and USL retrograde scaling.</p>
+<div class="noc-simulator-container" id="sim121-root" style="border: 2px solid #151b20; border-radius: 12px; background: #fffdf7; box-shadow: 6px 6px 0px #151b20; padding: 24px; margin: 32px 0;">
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid #151b20; padding-bottom: 14px;">
+    <div>
+      <span style="background: #ffc83e; color: #151b20; border: 1.5px solid #151b20; font-family: monospace; font-size: 0.75rem; font-weight: 800; padding: 3px 10px; border-radius: 6px; box-shadow: 1px 1px 0px #151b20;">SIMULATOR 12.1</span>
+      <h3 style="margin: 6px 0 0 0; font-size: 1.25rem; font-weight: 800; color: #151b20;">Distributed Ingestion Queuing, Scaling Bounds &amp; Storage Tier Latencies</h3>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <button id="sim121-btn-preset1" class="noc-sim-btn secondary" style="font-size: 0.78rem; padding: 6px 12px;">Standard ETL (12 Nodes)</button>
+      <button id="sim121-btn-preset2" class="noc-sim-btn secondary" style="font-size: 0.78rem; padding: 6px 12px;">High-Concurrency (24 Nodes)</button>
+      <button id="sim121-btn-preset3" class="noc-sim-btn secondary" style="font-size: 0.78rem; padding: 6px 12px;">Crosstalk Collapse (48 Nodes)</button>
+      <button id="sim121-btn-reset" class="noc-sim-btn" style="font-size: 0.78rem; padding: 6px 12px; background: #2563eb;">Reset</button>
+    </div>
+  </div>
+
+  <!-- Real-time KPI Readout Cards -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 24px;">
+    <div style="background: #ffffff; border: 2px solid #151b20; border-radius: 8px; padding: 12px; box-shadow: 2px 2px 0px #151b20;">
+      <div style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase;">Cluster Utilization (&rho;)</div>
+      <div id="sim121-kpi-util" style="font-size: 1.4rem; font-weight: 800; color: #0284c7; margin-top: 4px;">66.7%</div>
+      <div style="font-size: 0.72rem; color: #475569; margin-top: 2px;">Target: &le; 70.0% (Safe)</div>
+    </div>
+    <div style="background: #ffffff; border: 2px solid #151b20; border-radius: 8px; padding: 12px; box-shadow: 2px 2px 0px #151b20;">
+      <div style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase;">In-Flight Buffer Load (L)</div>
+      <div id="sim121-kpi-buffer" style="font-size: 1.4rem; font-weight: 800; color: #10b981; margin-top: 4px;">24.0 rec</div>
+      <div style="font-size: 0.72rem; color: #475569; margin-top: 2px;">Little's Law: L = &lambda; &middot; W</div>
+    </div>
+    <div style="background: #ffffff; border: 2px solid #151b20; border-radius: 8px; padding: 12px; box-shadow: 2px 2px 0px #151b20;">
+      <div style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase;">USL Capacity C(N)</div>
+      <div id="sim121-kpi-speedup" style="font-size: 1.4rem; font-weight: 800; color: #8b5cf6; margin-top: 4px;">9.45x</div>
+      <div style="font-size: 0.72rem; color: #475569; margin-top: 2px;">Efficiency: 78.8%</div>
+    </div>
+    <div style="background: #ffffff; border: 2px solid #151b20; border-radius: 8px; padding: 12px; box-shadow: 2px 2px 0px #151b20;">
+      <div style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase;">Optimal Nodes (N*)</div>
+      <div id="sim121-kpi-peak" style="font-size: 1.4rem; font-weight: 800; color: #d97706; margin-top: 4px;">35.1 nodes</div>
+      <div style="font-size: 0.72rem; color: #475569; margin-top: 2px;">Peak Capacity: 14.2x</div>
+    </div>
+  </div>
+
+  <!-- Sliders Grid -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; background: #fffaf0; padding: 16px; border: 2px solid #151b20; border-radius: 8px;">
+    <div>
+      <label for="sim121-sl-arrival" style="font-size: 0.8rem; font-weight: 700; color: #151b20; display: block; margin-bottom: 4px;">
+        Arrival Rate &lambda;: <span id="sim121-val-arrival" style="color: #0284c7; font-family: monospace;">80,000</span> req/s
+      </label>
+      <input type="range" id="sim121-sl-arrival" min="10000" max="200000" step="5000" value="80000" style="width: 100%;">
+    </div>
+    <div>
+      <label for="sim121-sl-workers" style="font-size: 0.8rem; font-weight: 700; color: #151b20; display: block; margin-bottom: 4px;">
+        Worker Nodes c (N): <span id="sim121-val-workers" style="color: #10b981; font-family: monospace;">12</span> nodes
+      </label>
+      <input type="range" id="sim121-sl-workers" min="1" max="64" step="1" value="12" style="width: 100%;">
+    </div>
+    <div>
+      <label for="sim121-sl-parallel" style="font-size: 0.8rem; font-weight: 700; color: #151b20; display: block; margin-bottom: 4px;">
+        Parallel Fraction p: <span id="sim121-val-parallel" style="color: #8b5cf6; font-family: monospace;">0.92</span>
+      </label>
+      <input type="range" id="sim121-sl-parallel" min="0.70" max="0.99" step="0.01" value="0.92" style="width: 100%;">
+    </div>
+    <div>
+      <label for="sim121-sl-crosstalk" style="font-size: 0.8rem; font-weight: 700; color: #151b20; display: block; margin-bottom: 4px;">
+        Crosstalk Penalty &kappa;: <span id="sim121-val-crosstalk" style="color: #d97706; font-family: monospace;">0.0008</span>
+      </label>
+      <input type="range" id="sim121-sl-crosstalk" min="0.0001" max="0.0050" step="0.0001" value="0.0008" style="width: 100%;">
+    </div>
+  </div>
+
+  <!-- 4-Canvas Grid -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 20px;">
+    <!-- Canvas 1: Hierarchy -->
+    <div style="background: #ffffff; border: 2px solid #151b20; border-radius: 8px; padding: 12px; box-shadow: 3px 3px 0px #151b20;">
+      <canvas id="sim121-cv-hierarchy" width="460" height="260" style="display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 4px;"></canvas>
+    </div>
+    <!-- Canvas 2: Queues -->
+    <div style="background: #ffffff; border: 2px solid #151b20; border-radius: 8px; padding: 12px; box-shadow: 3px 3px 0px #151b20;">
+      <canvas id="sim121-cv-queues" width="460" height="260" style="display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 4px;"></canvas>
+    </div>
+    <!-- Canvas 3: Scaling -->
+    <div style="background: #ffffff; border: 2px solid #151b20; border-radius: 8px; padding: 12px; box-shadow: 3px 3px 0px #151b20;">
+      <canvas id="sim121-cv-scaling" width="460" height="260" style="display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 4px;"></canvas>
+    </div>
+    <!-- Canvas 4: Stream Buffer -->
+    <div style="background: #ffffff; border: 2px solid #151b20; border-radius: 8px; padding: 12px; box-shadow: 3px 3px 0px #151b20;">
+      <canvas id="sim121-cv-throughput" width="460" height="260" style="display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; border-radius: 4px;"></canvas>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var state = {
+    arrivalRate: 80000,
+    workerNodes: 12,
+    workerCapacity: 10000,
+    parallelFraction: 0.92,
+    contentionSigma: 0.015,
+    crosstalkKappa: 0.0008
+  };
+
+  function updateKpiAndCanvases() {
+    var aggCap = state.workerNodes * state.workerCapacity;
+    var rho = state.arrivalRate / aggCap;
+    var baseLatency = 0.0001;
+    var wTransit = baseLatency / Math.max(0.01, (1.0 - Math.min(0.98, rho)));
+    var inFlightL = state.arrivalRate * wTransit;
+
+    var s = 1.0 - state.parallelFraction;
+    var denom = 1.0 + state.contentionSigma * (state.workerNodes - 1) + state.crosstalkKappa * state.workerNodes * (state.workerNodes - 1);
+    var uslCap = denom > 0 ? (state.workerNodes / denom) : 0;
+    var efficiency = (uslCap / state.workerNodes) * 100;
+    var nStar = Math.sqrt((1.0 - state.contentionSigma) / state.crosstalkKappa);
+    var cMax = nStar / (1.0 + state.contentionSigma * (nStar - 1) + state.crosstalkKappa * nStar * (nStar - 1));
+
+    var elUtil = document.getElementById('sim121-kpi-util');
+    if (elUtil) {
+      elUtil.innerText = (rho * 100).toFixed(1) + '%';
+      elUtil.style.color = rho > 0.85 ? '#ef4444' : (rho > 0.70 ? '#f59e0b' : '#0284c7');
+    }
+    var elBuf = document.getElementById('sim121-kpi-buffer');
+    if (elBuf) elBuf.innerText = inFlightL.toFixed(1) + ' rec';
+    var elSpeed = document.getElementById('sim121-kpi-speedup');
+    if (elSpeed) elSpeed.innerText = uslCap.toFixed(2) + 'x';
+    var elPeak = document.getElementById('sim121-kpi-peak');
+    if (elPeak) elPeak.innerText = nStar.toFixed(1) + ' nodes';
+
+    renderHierarchy();
+    renderQueues();
+    renderScaling();
+    renderThroughput();
+  }
+
+  function renderHierarchy() {
+    var cv = document.getElementById('sim121-cv-hierarchy');
+    if (!cv) return;
+    var ctx = cv.getContext('2d');
+    var w = cv.width, h = cv.height;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.fillStyle = '#151b20';
+    ctx.font = 'bold 12px sans-serif';
+    ctx.fillText('Storage Hierarchy Latency Ladder (Log Scale)', 14, 20);
+
+    var tiers = [
+      { name: 'L1 CPU Cache', lat: 0.5, human: '1 sec', color: '#06b6d4', log: 0.0 },
+      { name: 'L3 Cache', lat: 15, human: '30 sec', color: '#0ea5e9', log: 1.48 },
+      { name: 'DRAM Memory', lat: 100, human: '3.3 min', color: '#10b981', log: 2.30 },
+      { name: 'NVMe SSD', lat: 100000, human: '2.3 days', color: '#f59e0b', log: 5.30 },
+      { name: 'Mechanical HDD', lat: 10000000, human: '8 mos', color: '#f97316', log: 7.30 },
+      { name: 'Cloud S3 Store', lat: 100000000, human: '6.3 yrs', color: '#ef4444', log: 8.30 }
+    ];
+
+    var maxLog = 9.0, startY = 40, barH = 24, gap = 11, barStartX = 125, maxBarW = w - barStartX - 80;
+
+    tiers.forEach(function(t, i) {
+      var y = startY + i * (barH + gap);
+      ctx.fillStyle = '#151b20';
+      ctx.font = 'bold 10px sans-serif';
+      ctx.fillText(t.name, 14, y + 16);
+
+      ctx.fillStyle = '#f1f5f9';
+      ctx.fillRect(barStartX, y, maxBarW, barH);
+      ctx.strokeStyle = '#cbd5e1';
+      ctx.strokeRect(barStartX, y, maxBarW, barH);
+
+      var barW = Math.max(8, (t.log / maxLog) * maxBarW);
+      ctx.fillStyle = t.color;
+      ctx.fillRect(barStartX, y, barW, barH);
+      ctx.strokeStyle = '#151b20';
+      ctx.strokeRect(barStartX, y, barW, barH);
+
+      ctx.fillStyle = '#151b20';
+      ctx.font = '9px monospace';
+      var latStr = t.lat < 1000 ? t.lat + ' ns' : (t.lat < 1000000 ? (t.lat/1000) + ' us' : (t.lat/1000000) + ' ms');
+      ctx.fillText(latStr + ' (' + t.human + ')', barStartX + barW + 6, y + 16);
+    });
+  }
+
+  function renderQueues() {
+    var cv = document.getElementById('sim121-cv-queues');
+    if (!cv) return;
+    var ctx = cv.getContext('2d');
+    var w = cv.width, h = cv.height;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.fillStyle = '#151b20';
+    ctx.font = 'bold 12px sans-serif';
+    ctx.fillText('M/M/c Queuing Response Time vs. Utilization', 14, 20);
+
+    var padL = 45, padR = 25, padT = 35, padB = 35;
+    var plotW = w - padL - padR, plotH = h - padT - padB;
+
+    var x70 = padL + 0.70 * plotW;
+    var x85 = padL + 0.85 * plotW;
+
+    ctx.fillStyle = 'rgba(16, 185, 129, 0.12)';
+    ctx.fillRect(padL, padT, x70 - padL, plotH);
+    ctx.fillStyle = 'rgba(245, 158, 11, 0.12)';
+    ctx.fillRect(x70, padT, x85 - x70, plotH);
+    ctx.fillStyle = 'rgba(239, 68, 68, 0.12)';
+    ctx.fillRect(x85, padT, padL + plotW - x85, plotH);
+
+    ctx.strokeStyle = '#151b20';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(padL, padT);
+    ctx.lineTo(padL, padT + plotH);
+    ctx.lineTo(padL + plotW, padT + plotH);
+    ctx.stroke();
+
+    ctx.fillStyle = '#64748b';
+    ctx.font = '9px sans-serif';
+    ctx.fillText('0.0', padL - 6, padT + plotH + 14);
+    ctx.fillText('0.5', padL + 0.5 * plotW - 8, padT + plotH + 14);
+    ctx.fillText('0.7 (Safe)', x70 - 16, padT + plotH + 14);
+    ctx.fillText('0.85', x85 - 8, padT + plotH + 14);
+    ctx.fillText('1.0', padL + plotW - 6, padT + plotH + 14);
+    ctx.fillText('Cluster Utilization (rho)', padL + plotW * 0.35, padT + plotH + 26);
+    ctx.fillText('Latency W (ms)', 8, padT - 8);
+
+    var baseLatency = 0.1;
+    var maxLatDisplay = 1.5;
+
+    ctx.strokeStyle = '#2563eb';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    for (var step = 0; step <= 95; step++) {
+      var rho = step / 100;
+      var wVal = baseLatency / (1.0 - rho);
+      var px = padL + rho * plotW;
+      var py = padT + plotH - Math.min(plotH, (wVal / maxLatDisplay) * plotH);
+      if (step === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+
+    var aggCap = state.workerNodes * state.workerCapacity;
+    var currentRho = Math.min(0.99, state.arrivalRate / aggCap);
+    var currentW = baseLatency / (1.0 - Math.min(0.95, currentRho));
+    var curX = padL + Math.min(0.98, currentRho) * plotW;
+    var curY = padT + plotH - Math.min(plotH, (currentW / maxLatDisplay) * plotH);
+
+    ctx.fillStyle = currentRho > 0.85 ? '#ef4444' : (currentRho > 0.70 ? '#f59e0b' : '#10b981');
+    ctx.beginPath();
+    ctx.arc(curX, curY, 6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#151b20';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    var calloutText = 'rho=' + (currentRho*100).toFixed(1) + '%, W=' + currentW.toFixed(2) + 'ms';
+    ctx.fillStyle = '#151b20';
+    var boxX = Math.min(w - 140, Math.max(padL, curX - 60));
+    var boxY = Math.max(padT, curY - 26);
+    ctx.fillRect(boxX, boxY, 120, 18);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 9px monospace';
+    ctx.fillText(calloutText, boxX + 6, boxY + 12);
+  }
+
+  function renderScaling() {
+    var cv = document.getElementById('sim121-cv-scaling');
+    if (!cv) return;
+    var ctx = cv.getContext('2d');
+    var w = cv.width, h = cv.height;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.fillStyle = '#151b20';
+    ctx.font = 'bold 12px sans-serif';
+    ctx.fillText('Distributed Scaling Laws: Amdahl vs. Gustafson vs. USL', 14, 20);
+
+    var padL = 35, padR = 25, padT = 35, padB = 35;
+    var plotW = w - padL - padR, plotH = h - padT - padB;
+    var maxNodes = 64, maxSpeedup = 35;
+
+    ctx.strokeStyle = '#151b20';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(padL, padT);
+    ctx.lineTo(padL, padT + plotH);
+    ctx.lineTo(padL + plotW, padT + plotH);
+    ctx.stroke();
+
+    ctx.fillStyle = '#64748b';
+    ctx.font = '9px sans-serif';
+    [1, 16, 32, 48, 64].forEach(function(n) {
+      var px = padL + (n / maxNodes) * plotW;
+      ctx.fillText(String(n), px - 6, padT + plotH + 14);
+    });
+    ctx.fillText('Worker Nodes (N)', padL + plotW * 0.40, padT + plotH + 26);
+
+    [10, 20, 30].forEach(function(s) {
+      var py = padT + plotH - (s / maxSpeedup) * plotH;
+      ctx.fillText(s + 'x', padL - 24, py + 3);
+    });
+
+    var p = state.parallelFraction, s = 1.0 - p;
+    var sigma = state.contentionSigma, kappa = state.crosstalkKappa;
+
+    // Gustafson
+    ctx.strokeStyle = '#10b981';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (var n = 1; n <= maxNodes; n++) {
+      var gVal = n - (n - 1) * s;
+      var px = padL + (n / maxNodes) * plotW;
+      var py = padT + plotH - Math.min(plotH, (gVal / maxSpeedup) * plotH);
+      if (n === 1) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+
+    // Amdahl
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (var n = 1; n <= maxNodes; n++) {
+      var aVal = 1.0 / (s + p / n);
+      var px = padL + (n / maxNodes) * plotW;
+      var py = padT + plotH - Math.min(plotH, (aVal / maxSpeedup) * plotH);
+      if (n === 1) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+
+    // USL
+    ctx.strokeStyle = '#8b5cf6';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    var maxUsl = 0, nPeak = 1;
+    for (var n = 1; n <= maxNodes; n++) {
+      var denom = 1.0 + sigma * (n - 1) + kappa * n * (n - 1);
+      var uslVal = n / denom;
+      if (uslVal > maxUsl) { maxUsl = uslVal; nPeak = n; }
+      var px = padL + (n / maxNodes) * plotW;
+      var py = padT + plotH - Math.min(plotH, (uslVal / maxSpeedup) * plotH);
+      if (n === 1) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+
+    var peakPx = padL + (nPeak / maxNodes) * plotW;
+    var peakPy = padT + plotH - Math.min(plotH, (maxUsl / maxSpeedup) * plotH);
+    ctx.fillStyle = '#ef4444';
+    ctx.beginPath();
+    ctx.arc(peakPx, peakPy, 5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#151b20';
+    ctx.stroke();
+
+    ctx.fillStyle = '#151b20';
+    ctx.font = 'bold 9px sans-serif';
+    ctx.fillText('Gustafson', w - 80, padT + 10);
+    ctx.fillStyle = '#10b981';
+    ctx.fillRect(w - 95, padT + 3, 10, 8);
+
+    ctx.fillStyle = '#151b20';
+    ctx.fillText('Amdahl', w - 80, padT + 24);
+    ctx.fillStyle = '#f59e0b';
+    ctx.fillRect(w - 95, padT + 17, 10, 8);
+
+    ctx.fillStyle = '#151b20';
+    ctx.fillText('Gunther USL', w - 80, padT + 38);
+    ctx.fillStyle = '#8b5cf6';
+    ctx.fillRect(w - 95, padT + 31, 10, 8);
+
+    ctx.fillStyle = '#151b20';
+    ctx.font = 'bold 9px monospace';
+    ctx.fillText('Peak N*=' + nPeak + ' (' + maxUsl.toFixed(1) + 'x)', Math.max(padL, peakPx - 30), Math.max(padT + 10, peakPy - 10));
+  }
+
+  function renderThroughput() {
+    var cv = document.getElementById('sim121-cv-throughput');
+    if (!cv) return;
+    var ctx = cv.getContext('2d');
+    var w = cv.width, h = cv.height;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.fillStyle = '#151b20';
+    ctx.font = 'bold 12px sans-serif';
+    ctx.fillText("Real-Time Ingestion Buffer & Little's Law (L = lambda * W)", 14, 20);
+
+    var bufX = 140, bufY = 45, bufW = 180, bufH = 150;
+    ctx.fillStyle = '#f8fafc';
+    ctx.fillRect(bufX, bufY, bufW, bufH);
+    ctx.strokeStyle = '#151b20';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(bufX, bufY, bufW, bufH);
+
+    var aggCap = state.workerNodes * state.workerCapacity;
+    var rho = state.arrivalRate / aggCap;
+    var fillPct = Math.min(1.0, rho);
+    var fillH = fillPct * bufH;
+
+    ctx.fillStyle = fillPct > 0.90 ? '#fca5a5' : (fillPct > 0.70 ? '#fde68a' : '#a7f3d0');
+    ctx.fillRect(bufX, bufY + bufH - fillH, bufW, fillH);
+
+    ctx.fillStyle = '#151b20';
+    ctx.font = 'bold 11px sans-serif';
+    ctx.fillText('In-Flight Buffer (Kafka / RAM)', bufX + 10, bufY + 22);
+
+    var wTransit = 0.0001 / Math.max(0.01, (1.0 - Math.min(0.98, rho)));
+    var inFlightL = state.arrivalRate * wTransit;
+    ctx.font = 'bold 10px monospace';
+    ctx.fillText('Arrival lambda: ' + state.arrivalRate.toLocaleString() + ' rec/s', bufX + 10, bufY + 45);
+    ctx.fillText('Transit W: ' + (wTransit*1000).toFixed(2) + ' ms', bufX + 10, bufY + 65);
+    ctx.fillText('In-Flight L: ' + inFlightL.toFixed(1) + ' records', bufX + 10, bufY + 85);
+    ctx.fillText('Buffer Fill: ' + (fillPct*100).toFixed(1) + '%', bufX + 10, bufY + 105);
+
+    var isSaturated = rho >= 1.0;
+    ctx.fillStyle = isSaturated ? '#ef4444' : (rho > 0.85 ? '#f59e0b' : '#10b981');
+    ctx.fillRect(bufX + 10, bufY + 120, 160, 20);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 9px sans-serif';
+    ctx.fillText(isSaturated ? 'DROPPING PACKETS (OVERFLOW)' : (rho > 0.85 ? 'WARNING: HIGH LATENCY' : 'STABLE PIPELINE FLOW'), bufX + 15, bufY + 134);
+
+    // Ingress Arrow
+    ctx.strokeStyle = '#0284c7';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(30, bufY + bufH / 2);
+    ctx.lineTo(bufX - 5, bufY + bufH / 2);
+    ctx.stroke();
+
+    ctx.fillStyle = '#0284c7';
+    ctx.beginPath();
+    ctx.moveTo(bufX, bufY + bufH / 2);
+    ctx.lineTo(bufX - 12, bufY + bufH / 2 - 6);
+    ctx.lineTo(bufX - 12, bufY + bufH / 2 + 6);
+    ctx.fill();
+
+    ctx.fillStyle = '#151b20';
+    ctx.font = 'bold 10px sans-serif';
+    ctx.fillText('Ingress Stream', 35, bufY + bufH / 2 - 12);
+    ctx.fillText((state.arrivalRate / 1000) + 'k req/s', 45, bufY + bufH / 2 + 18);
+
+    // Egress Arrow
+    ctx.strokeStyle = '#10b981';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(bufX + bufW, bufY + bufH / 2);
+    ctx.lineTo(w - 35, bufY + bufH / 2);
+    ctx.stroke();
+
+    ctx.fillStyle = '#10b981';
+    ctx.beginPath();
+    ctx.moveTo(w - 25, bufY + bufH / 2);
+    ctx.lineTo(w - 37, bufY + bufH / 2 - 6);
+    ctx.lineTo(w - 37, bufY + bufH / 2 + 6);
+    ctx.fill();
+
+    ctx.fillStyle = '#151b20';
+    ctx.font = 'bold 10px sans-serif';
+    ctx.fillText(state.workerNodes + ' Workers', w - 95, bufY + bufH / 2 - 12);
+    ctx.fillText('Cap: ' + (aggCap / 1000) + 'k req/s', w - 105, bufY + bufH / 2 + 18);
+
+    // Invariant
+    ctx.fillStyle = '#f1f5f9';
+    ctx.fillRect(14, h - 35, w - 28, 25);
+    ctx.strokeStyle = '#151b20';
+    ctx.strokeRect(14, h - 35, w - 28, 25);
+    ctx.fillStyle = '#151b20';
+    ctx.font = '10px sans-serif';
+    ctx.fillText("Little's Law Validation: Buffer capacity L (" + inFlightL.toFixed(1) + ") = arrival lambda (" + state.arrivalRate + ") * transit W (" + wTransit.toFixed(4) + "s)", 24, h - 19);
+  }
+
+  function initListeners() {
+    var slArr = document.getElementById('sim121-sl-arrival');
+    var slWrk = document.getElementById('sim121-sl-workers');
+    var slPar = document.getElementById('sim121-sl-parallel');
+    var slCro = document.getElementById('sim121-sl-crosstalk');
+
+    if (slArr) {
+      slArr.addEventListener('input', function(e) {
+        state.arrivalRate = parseFloat(e.target.value);
+        document.getElementById('sim121-val-arrival').innerText = state.arrivalRate.toLocaleString();
+        updateKpiAndCanvases();
+      });
+    }
+    if (slWrk) {
+      slWrk.addEventListener('input', function(e) {
+        state.workerNodes = parseInt(e.target.value);
+        document.getElementById('sim121-val-workers').innerText = state.workerNodes;
+        updateKpiAndCanvases();
+      });
+    }
+    if (slPar) {
+      slPar.addEventListener('input', function(e) {
+        state.parallelFraction = parseFloat(e.target.value);
+        document.getElementById('sim121-val-parallel').innerText = state.parallelFraction.toFixed(2);
+        updateKpiAndCanvases();
+      });
+    }
+    if (slCro) {
+      slCro.addEventListener('input', function(e) {
+        state.crosstalkKappa = parseFloat(e.target.value);
+        document.getElementById('sim121-val-crosstalk').innerText = state.crosstalkKappa.toFixed(4);
+        updateKpiAndCanvases();
+      });
+    }
+
+    var btnP1 = document.getElementById('sim121-btn-preset1');
+    if (btnP1) {
+      btnP1.addEventListener('click', function() {
+        state.arrivalRate = 70000;
+        state.workerNodes = 12;
+        state.parallelFraction = 0.92;
+        state.crosstalkKappa = 0.0008;
+        syncControls();
+      });
+    }
+    var btnP2 = document.getElementById('sim121-btn-preset2');
+    if (btnP2) {
+      btnP2.addEventListener('click', function() {
+        state.arrivalRate = 150000;
+        state.workerNodes = 24;
+        state.parallelFraction = 0.96;
+        state.crosstalkKappa = 0.0004;
+        syncControls();
+      });
+    }
+    var btnP3 = document.getElementById('sim121-btn-preset3');
+    if (btnP3) {
+      btnP3.addEventListener('click', function() {
+        state.arrivalRate = 110000;
+        state.workerNodes = 48;
+        state.parallelFraction = 0.88;
+        state.crosstalkKappa = 0.0035;
+        syncControls();
+      });
+    }
+    var btnReset = document.getElementById('sim121-btn-reset');
+    if (btnReset) {
+      btnReset.addEventListener('click', function() {
+        state.arrivalRate = 80000;
+        state.workerNodes = 12;
+        state.parallelFraction = 0.92;
+        state.crosstalkKappa = 0.0008;
+        syncControls();
+      });
+    }
+  }
+
+  function syncControls() {
+    var slArr = document.getElementById('sim121-sl-arrival');
+    var slWrk = document.getElementById('sim121-sl-workers');
+    var slPar = document.getElementById('sim121-sl-parallel');
+    var slCro = document.getElementById('sim121-sl-crosstalk');
+    if (slArr) slArr.value = state.arrivalRate;
+    if (slWrk) slWrk.value = state.workerNodes;
+    if (slPar) slPar.value = state.parallelFraction;
+    if (slCro) slCro.value = state.crosstalkKappa;
+    document.getElementById('sim121-val-arrival').innerText = state.arrivalRate.toLocaleString();
+    document.getElementById('sim121-val-workers').innerText = state.workerNodes;
+    document.getElementById('sim121-val-parallel').innerText = state.parallelFraction.toFixed(2);
+    document.getElementById('sim121-val-crosstalk').innerText = state.crosstalkKappa.toFixed(4);
+    updateKpiAndCanvases();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      initListeners();
+      updateKpiAndCanvases();
+    });
+  } else {
+    initListeners();
+    updateKpiAndCanvases();
+  }
+})();
+</script>
+
+<hr />
+<h2 id="dual-industrial-case-studies">🔬 Dual Industrial Case Studies</h2>
+<p>To understand how hardware hierarchies and scaling formalisms govern real-world systems, we examine two canonical production architectures: the extreme-throughput particle filtering grid at CERN, and the cloud-native lakehouse platform at Netflix.</p>
+<h3 id="case-study-1-cern-worldwide-lhc-computing-grid-wlcg">Case Study 1: CERN Worldwide LHC Computing Grid (WLCG)</h3>
 <p>At the European Organization for Nuclear Research (CERN), the <strong>Large Hadron Collider (LHC)</strong> produces over <strong>1 billion proton-proton collisions per second</strong> across four detector experiments (ATLAS, CMS, ALICE, LHCb).</p>
 <ol>
-<li><strong>The Ingestion Dilemma:</strong> Detector digitizers capture raw collision telemetry at <span class="arithmatex">\(40\text{ Terabytes per second}\)</span>. Streaming this raw volume directly to persistent storage is physically impossible.</li>
-<li><strong>The Tiered Processing Architecture:</strong> CERN deploys a multi-tier hierarchical filtering topology:</li>
-<li><strong>Level-1 Hardware Trigger (FPGAs/ASICs):</strong> Filters raw events from <span class="arithmatex">\(40\text{ MHz}\)</span> down to <span class="arithmatex">\(100\text{ kHz}\)</span> in under <span class="arithmatex">\(3.2\text{ }\mu\text{s}\)</span>.</li>
-<li><strong>High-Level Trigger (HLT, GPU/CPU Clusters):</strong> Further reduces the event stream to <span class="arithmatex">\(1\text{ kHz}\)</span> (<span class="arithmatex">\(1\text{ GB/sec}\)</span> sustained write rate).</li>
-<li><strong>WLCG Tier Structure:</strong> Distributes over <strong>50 Petabytes of collision data annually</strong> across 170 computing centers in 42 countries.</li>
+<li><strong>The Ingestion Challenge:</strong> Detector digitizers capture raw collision telemetry at <span class="arithmatex">\(40\text{ Terabytes per second}\)</span> (<span class="arithmatex">\(40\text{ MHz}\)</span> event rate). Streaming this unfiltered volume directly to persistent storage is physically impossible; it would saturate global networking fabrics in minutes.</li>
+<li><strong>The Tiered Processing Topology:</strong> CERN deploys a multi-tier hierarchical filtering topology:</li>
+<li><strong>Level-1 Hardware Trigger (FPGAs/ASICs):</strong> Analyzes coarse calorimeter and muon chamber signals directly on custom radiation-hardened hardware. Filters raw events from <span class="arithmatex">\(40\text{ MHz}\)</span> down to <span class="arithmatex">\(100\text{ kHz}\)</span> in under <span class="arithmatex">\(3.2\text{ }\mu\text{s}\)</span>.</li>
+<li><strong>High-Level Trigger (HLT, GPU/CPU Clusters):</strong> A farm of tens of thousands of compute cores runs partial reconstruction algorithms, further reducing the event stream from <span class="arithmatex">\(100\text{ kHz}\)</span> down to <span class="arithmatex">\(1\text{ kHz}\)</span> (<span class="arithmatex">\(1\text{ GB/s}\)</span> sustained write rate).</li>
+<li><strong>WLCG Tier Structure:</strong> Distributes over <strong>50 Petabytes of collision data annually</strong> across 170 computing centers in 42 countries, managing a cumulative storage footprint exceeding <strong>1 Exabyte (1,000 Petabytes)</strong>.</li>
 </ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Detector Digitizers (40 TB/s raw, 40 MHz)
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>        |
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        v  L1 Hardware FPGA Trigger (&lt; 3.2 us)
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Level-1 Filtered Stream (100 GB/s, 100 kHz)
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        |
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        v  High-Level Trigger GPU Farm
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>Persistent Ingestion Stream (1 GB/s, 1 kHz)
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        |
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        +---&gt; Tier 0 (CERN Data Center: Primary Tape &amp; RAW Archive)
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>                |
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>                +---&gt; Tier 1 (13 National Supercomputing Centers: Re-reconstruction)
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>                        |
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>                        +---&gt; Tier 2 (160 University Data Centers: Analysis &amp; Monte Carlo)
+</span></code></pre></div>
+<hr />
+<h3 id="case-study-2-netflix-keystone-big-data-platform-kafka-s3-apache-iceberg">Case Study 2: Netflix Keystone &amp; Big Data Platform (Kafka + S3 + Apache Iceberg)</h3>
+<p>Netflix operates one of the world's largest streaming telemetry platforms, ingesting video playback diagnostics, user interaction logs, and microservice RPC traces across hundreds of millions of global subscribers.</p>
+<ol>
+<li><strong>The Ingestion Volume:</strong> The Keystone platform ingests over <strong>500 billion events per day</strong>, generating over <strong>1.5 Petabytes of raw telemetry daily</strong>. Incoming messages are buffered through a multi-region Apache Kafka cluster before being written to Amazon S3 by Apache Flink stream workers.</li>
+<li><strong>The "Small Files" Tragedy:</strong> Originally, Flink streaming jobs flushed micro-batches every 30 seconds into S3 to provide low-latency query visibility. Over months, this created over <strong>100 million 20 KB files</strong> partitioned by hour:</li>
+<li><strong>S3 API Throttling:</strong> AWS S3 partitions key prefixes at 5,500 GET requests/sec. Running an analytical query across a week required millions of LIST and GET requests, triggering catastrophic 503 Slow Down throttling.</li>
+<li><strong>Query Planning Exhaustion:</strong> Apache Spark query planning took <strong>45 minutes</strong> simply listing S3 object keys before a single byte of data was processed.</li>
+<li><strong>Cost Explosion:</strong> AWS charges USD 0.005 per 1,000 GET requests, resulting in hundreds of thousands of dollars spent solely on object listing API calls.</li>
+<li><strong>The Apache Iceberg Architectural Migration:</strong> Netflix co-designed and deployed <strong>Apache Iceberg</strong>, replacing directory-based object partition schemes with hierarchical ACID metadata manifests (<a href="#ref-armbrust2020">Armbrust et al., 2020</a>):</li>
+<li><strong>Hierarchical Manifest Trees:</strong> Partition pruning and file locations are stored in immutable Avro manifest files. Query planning requires reading fewer than 10 metadata files instead of issuing millions of S3 LIST API calls.</li>
+<li><strong>Asynchronous Compaction Daemons:</strong> Background compaction jobs automatically combine thousands of small 20 KB files into optimal 128 MB or 256 MB columnar Parquet files.</li>
+<li><strong>Outcomes:</strong> Spark query planning latency dropped from <strong>45 minutes to 3.2 seconds</strong> (a <span class="arithmatex">\(99.8\%\)</span> improvement), and S3 metadata API costs decreased by <span class="arithmatex">\(78\%\)</span>.</li>
+</ol>
+<hr />
+<h3 id="industrial-architecture-comparison-matrix">Industrial Architecture Comparison Matrix</h3>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Metric</th>
-<th style="text-align: left;">Single Monolithic Enterprise NAS</th>
-<th style="text-align: left;">CERN WLCG Tiered Architecture</th>
+<th style="text-align: left;">Architectural Dimension</th>
+<th style="text-align: left;">CERN Worldwide LHC Computing Grid (WLCG)</th>
+<th style="text-align: left;">Netflix Keystone Data Platform</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Ingestion Bandwidth</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(2 - 10\text{ GB/sec}\)</span> (Saturates PCI bus)</td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(40\text{ TB/sec}\)</span> raw <span class="arithmatex">\(\to\)</span> <span class="arithmatex">\(1\text{ GB/sec}\)</span> filtered</strong></td>
+<td style="text-align: left;"><strong>Primary Workload</strong></td>
+<td style="text-align: left;">High-energy physics collision event telemetry</td>
+<td style="text-align: left;">Global streaming entertainment telemetry &amp; event logs</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Global Storage Footprint</strong></td>
-<td style="text-align: left;"><span class="arithmatex">\(&lt; 5\text{ Petabytes}\)</span></td>
-<td style="text-align: left;"><strong><span class="arithmatex">\(&gt; 1,000\text{ Petabytes (1 Exabyte)}\)</span> distributed</strong></td>
+<td style="text-align: left;"><strong>Peak Ingestion Rate</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(40\text{ TB/s}\)</span> raw telemetry (<span class="arithmatex">\(40\text{ MHz}\)</span>)</td>
+<td style="text-align: left;"><span class="arithmatex">\(&gt; 500\text{ billion}\)</span> events/day (<span class="arithmatex">\(&gt; 6\text{ million}\)</span> events/sec)</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Fault Isolation</strong></td>
-<td style="text-align: left;">Single-point controller failure risk</td>
-<td style="text-align: left;">Autonomous regional failover (Tier 0 <span class="arithmatex">\(\to\)</span> Tier 1 <span class="arithmatex">\(\to\)</span> Tier 2)</td>
+<td style="text-align: left;"><strong>Primary Ingestion Invariant</strong></td>
+<td style="text-align: left;">Sub-<span class="arithmatex">\(3.2\text{ }\mu\text{s}\)</span> FPGA Level-1 hardware trigger</td>
+<td style="text-align: left;">Multi-region Apache Kafka log with Flink streaming sink</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Batch Analytical Throughput</strong></td>
-<td style="text-align: left;">Limited to local RAID IOPS</td>
-<td style="text-align: left;"><span class="arithmatex">\(&gt; 1,000,000\)</span> concurrent compute cores</td>
+<td style="text-align: left;"><strong>Storage Architecture</strong></td>
+<td style="text-align: left;">Tiered Grid: Tier 0 (CERN) <span class="arithmatex">\(\to\)</span> Tier 1 (National) <span class="arithmatex">\(\to\)</span> Tier 2</td>
+<td style="text-align: left;">Cloud Lakehouse: AWS S3 + Apache Iceberg + Parquet</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Total Managed Footprint</strong></td>
+<td style="text-align: left;"><span class="arithmatex">\(&gt; 1,000\text{ Petabytes}\)</span> (<span class="arithmatex">\(&gt; 1\text{ Exabyte}\)</span>) distributed</td>
+<td style="text-align: left;"><span class="arithmatex">\(&gt; 500\text{ Petabytes}\)</span> stored across cloud object buckets</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Analytical Compute Engines</strong></td>
+<td style="text-align: left;">ROOT framework, HTCondor batch processing</td>
+<td style="text-align: left;">Apache Spark, Trino, PyTorch distributed ML pipelines</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Metadata Management</strong></td>
+<td style="text-align: left;">Hierarchical physics run &amp; luminosity block catalogs</td>
+<td style="text-align: left;">Iceberg snapshot manifests with automated file compaction</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Failure Mode Addressed</strong></td>
+<td style="text-align: left;">Hardware line-rate overflow and memory bus saturation</td>
+<td style="text-align: left;">The "small files problem" and S3 metadata API exhaustion</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="interactive-laboratory-workbench">🔬 Interactive Laboratory Workbench</h2>
-<div class="noc-sim-card">
-  <div class="noc-sim-badge">🔬 Interactive Laboratory</div>
-  <h4>Explore Storage Format & Parquet Chooser</h4>
-  <p>Benchmark columnar Parquet and Arrow storage against row-oriented CSV and SQLite databases client-side.</p>
-  <a href="../../tools/storage-format/" class="noc-sim-btn">Launch Storage Format Workbench →</a>
-</div>
-<hr />
 <h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
 <details class="question">
-<summary>Self-Assessment: Vertical vs. Horizontal Scaling Cost Curves</summary>
-<p>Explain why enterprise data platforms typically scale vertically (Scale-Up) before scaling horizontally (Scale-Out) for datasets under 1 Terabyte.</p>
+<summary>Self-Assessment 1: Optimal Node Sizing under Gunther's Universal Scalability Law</summary>
+<p>A distributed machine learning training platform evaluates its data shuffling stage across an expanding cluster of compute nodes. Profiling reveals an Amdahl serialization contention parameter of <span class="arithmatex">\(\sigma = 0.012\)</span> and an inter-node network coherence crosstalk parameter of <span class="arithmatex">\(\kappa = 0.0003\)</span>.</p>
+<ol>
+<li>Calculate the optimal cluster size <span class="arithmatex">\(N^*\)</span> that maximizes aggregate processing capacity.</li>
+<li>Compute the maximum theoretical speedup <span class="arithmatex">\(C(N^*)\)</span> obtainable by this cluster.</li>
+<li>What occurs if the platform engineering team increases the cluster size to <span class="arithmatex">\(N = 128\)</span> nodes?</li>
+</ol>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Scaling horizontally introduces <strong>distributed systems complexity</strong>: network serialization overhead, RPC latency, data shuffling across switches, and consensus coordination (Paxos/Raft).</p>
-<p>Modern cloud instances offer up to 224 vCPUs and 24 TB of RAM. A single large instance executes queries via zero-copy shared memory without network serialization or partitioning bugs, delivering <span class="arithmatex">\(10\times\)</span> higher throughput per dollar than a 50-node cluster for sub-terabyte analytical workloads.</p>
+<p><strong>1. Optimal Node Count Calculation (<span class="arithmatex">\(N^*\)</span>):</strong>
+By Gunther's Universal Scalability Law (Definition 12.1.4):</p>
+<div class="arithmatex">\[
+N^* = \sqrt{\frac{1 - \sigma}{\kappa}}
+\]</div>
+<p>Substituting <span class="arithmatex">\(\sigma = 0.012\)</span> and <span class="arithmatex">\(\kappa = 0.0003\)</span>:</p>
+<div class="arithmatex">\[
+N^* = \sqrt{\frac{1 - 0.012}{0.0003}} = \sqrt{\frac{0.988}{0.0003}} = \sqrt{3293.33} \approx 57.38\text{ nodes}
+\]</div>
+<p>The optimal cluster size is <strong><span class="arithmatex">\(57\)</span> nodes</strong> (or <span class="arithmatex">\(58\)</span> nodes).</p>
+<p><strong>2. Maximum Obtainable Capacity <span class="arithmatex">\(C(N^*)\)</span>:</strong>
+Evaluating <span class="arithmatex">\(C(N)\)</span> at <span class="arithmatex">\(N = 57\)</span>:</p>
+<div class="arithmatex">\[
+\text{Denominator} = 1 + \sigma(N - 1) + \kappa N(N - 1)
+\]</div>
+<div class="arithmatex">\[
+\text{Contention term} = 0.012 \times (57 - 1) = 0.012 \times 56 = 0.672
+\]</div>
+<div class="arithmatex">\[
+\text{Crosstalk term} = 0.0003 \times 57 \times 56 = 0.0003 \times 3192 = 0.9576
+\]</div>
+<div class="arithmatex">\[
+\text{Denominator} = 1 + 0.672 + 0.9576 = 2.6296
+\]</div>
+<div class="arithmatex">\[
+C(57) = \frac{57}{2.6296} \approx 21.68\times
+\]</div>
+<p>The maximum obtainable capacity is <strong><span class="arithmatex">\(21.68\times\)</span></strong> baseline single-node performance.</p>
+<p><strong>3. Impact of Scaling to <span class="arithmatex">\(N = 128\)</span> Nodes:</strong>
+Evaluating <span class="arithmatex">\(C(128)\)</span>:</p>
+<div class="arithmatex">\[
+\text{Contention term} = 0.012 \times 127 = 1.524
+\]</div>
+<div class="arithmatex">\[
+\text{Crosstalk term} = 0.0003 \times 128 \times 127 = 4.8768
+\]</div>
+<div class="arithmatex">\[
+\text{Denominator} = 1 + 1.524 + 4.8768 = 7.4008
+\]</div>
+<div class="arithmatex">\[
+C(128) = \frac{128}{7.4008} \approx 17.30\times
+\]</div>
+<p><strong>Conclusion:</strong> Deploying <span class="arithmatex">\(128\)</span> nodes reduces throughput from <span class="arithmatex">\(21.68\times\)</span> to <span class="arithmatex">\(17.30\times\)</span> (a <strong><span class="arithmatex">\(20.2\%\)</span> drop in performance</strong>) while <strong>more than doubling the cloud infrastructure bill</strong>. This proves the danger of retrograde scalability caused by pairwise network coordination overhead.</p>
 </details>
 </details>
+<hr />
 <details class="question">
-<summary>Self-Assessment: The Small Files Metadata Wall</summary>
-<p>Why does storing 50 million 20 KB image files in an AWS S3 bucket cause catastrophic query degradation compared to packing them into 1,000 1 GB Apache Parquet or WebDataset tar archives?</p>
+<summary>Self-Assessment 2: Ingestion Buffer Dimensioning and Burst Stability via Little's Law</summary>
+<p>An autonomous vehicle fleet streaming ingestion broker receives continuous telemetry at an average arrival rate of <span class="arithmatex">\(\lambda = 80,000\text{ events/sec}\)</span>. The downstream validation and lakehouse micro-batch ingestion pipeline operates with an average service latency of <span class="arithmatex">\(W = 60\text{ ms} = 0.06\text{ sec}\)</span>.</p>
+<ol>
+<li>Compute the minimum required in-flight buffer capacity <span class="arithmatex">\(L\)</span> under steady-state conditions using Little's Law.</li>
+<li>During a network partition or cloud storage API throttle event, downstream latency spikes to <span class="arithmatex">\(W_{\text{spike}} = 450\text{ ms}\)</span>. If the broker queue is capped at <span class="arithmatex">\(20,000\)</span> events, compute the time <span class="arithmatex">\(t_{\text{overflow}}\)</span> until buffer overflow occurs.</li>
+<li>What architectural remediation prevents packet loss during downstream latency spikes?</li>
+</ol>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Every individual S3 object request incurs:
-1. An HTTPS TLS handshake and network round-trip latency (<span class="arithmatex">\(\sim 20\text{--}50\text{ ms}\)</span>).
-2. Financial cost: AWS charges <span class="arithmatex">\(\$0.005\)</span> per 1,000 <code>GET</code> requests ($250 just to list/read the files once).
-3. Rate limits: AWS S3 prefixes partition at 5,500 requests/sec, bottlenecking ingestion.
-Packing images into sequential binary shards (WebDataset or Parquet) streams contiguous gigabyte-scale byte chunks at hardware line rate (100 Gbps), maximizing network I/O efficiency.</p>
+<p><strong>1. Steady-State In-Flight Buffer Capacity (<span class="arithmatex">\(L\)</span>):</strong>
+By Little's Law (Definition 12.1.1):</p>
+<div class="arithmatex">\[
+L = \lambda \cdot W = 80,000\text{ events/s} \times 0.06\text{ s} = 4,800\text{ events}
+\]</div>
+<p>The ingestion broker must maintain an in-flight capacity of at least <strong><span class="arithmatex">\(4,800\)</span> events</strong> to operate without dropping data.</p>
+<p><strong>2. Buffer Overflow Dynamics Under Latency Spike:</strong>
+Under a latency spike to <span class="arithmatex">\(W_{\text{spike}} = 0.45\text{ s}\)</span>, the steady-state load required by Little's Law becomes:</p>
+<div class="arithmatex">\[
+L_{\text{required}} = 80,000 \times 0.45 = 36,000\text{ events}
+\]</div>
+<p>Because the buffer is statically capped at <span class="arithmatex">\(B = 20,000\)</span> events, the backlog accumulates rapidly. The maximum processing drain rate during the spike is:</p>
+<div class="arithmatex">\[
+\mu_{\text{eff}} = \frac{B}{W_{\text{spike}}} = \frac{20,000}{0.45} \approx 44,444\text{ events/s}
+\]</div>
+<p>The net rate of queue accumulation <span class="arithmatex">\(\Delta \lambda\)</span> is:</p>
+<div class="arithmatex">\[
+\Delta \lambda = \lambda_{\text{in}} - \mu_{\text{eff}} = 80,000 - 44,444 = 35,556\text{ events/s}
+\]</div>
+<p>Starting from steady-state buffer fill <span class="arithmatex">\(L_0 = 4,800\)</span> events, the headroom remaining is <span class="arithmatex">\(20,000 - 4,800 = 15,200\)</span> events.
+The time to buffer overflow is:</p>
+<div class="arithmatex">\[
+t_{\text{overflow}} = \frac{15,200\text{ events}}{35,556\text{ events/s}} \approx 0.427\text{ seconds}
+\]</div>
+<p>The buffer overflows in approximately <strong><span class="arithmatex">\(427\text{ milliseconds}\)</span></strong>, causing subsequent events to be permanently dropped.</p>
+<p><strong>3. Architectural Remediation:</strong>
+- <strong>Persistent Disk-Backed Spooling:</strong> Route telemetry through a partitioned log broker (Apache Kafka or Apache Pulsar) backed by NVMe SSDs capable of spooling hours of backlogged data without dropping packets.
+- <strong>Reactive Backpressure Signaling:</strong> Propagate flow control backpressure signals to the edge vehicle telemetry clients, causing edge devices to buffer telemetry locally until downstream ingestion stabilizes.
+- <strong>Dynamic Worker Autoscaling:</strong> Automatically spin up additional micro-batch workers when consumer lag exceeds a predefined threshold, restoring utilization <span class="arithmatex">\(\rho &lt; 0.70\)</span>.</p>
 </details>
 </details>
 <hr />
@@ -7932,13 +9003,15 @@ Packing images into sequential binary shards (WebDataset or Parquet) streams con
 <li><a id="ref-little1961"></a><strong>[Little1961]</strong> J. D. C. Little, "A Proof for the Queuing Formula: <span class="arithmatex">\(L = \lambda W\)</span>," <em>Operations Research</em>, vol. 9, no. 3, pp. 383–387, June 1961. <a href="https://doi.org/10.1287/opre.9.3.383">DOI: 10.1287/opre.9.3.383</a>.</li>
 <li><a id="ref-amdahl1967"></a><strong>[Amdahl1967]</strong> G. M. Amdahl, "Validity of the Single Processor Approach to Achieving Large Scale Computing Capabilities," in <em>Proceedings of the April 18–20, 1967, Spring Joint Computer Conference (AFIPS '67)</em>, 1967, pp. 483–485. <a href="https://doi.org/10.1145/1465482.1465560">DOI: 10.1145/1465482.1465560</a>.</li>
 <li><a id="ref-gustafson1988"></a><strong>[Gustafson1988]</strong> J. L. Gustafson, "Reevaluating Amdahl's Law," <em>Communications of the ACM</em>, vol. 31, no. 5, pp. 532–533, May 1988. <a href="https://doi.org/10.1145/42411.42415">DOI: 10.1145/42411.42415</a>.</li>
-<li><a id="ref-zaharia2016"></a><strong>[Zaharia2016]</strong> M. Zaharia et al., "Apache Spark: A Unified Engine for Big Data Processing," <em>Communications of the ACM</em>, vol. 59, no. 11, pp. 56–65, Oct. 2016. <a href="https://doi.org/10.1145/2934664">DOI: 10.1145/2934664</a>.</li>
 <li><a id="ref-barroso2013"></a><strong>[Barroso2013]</strong> L. A. Barroso, J. Clidaras, and U. Hölzle, "The Datacenter as a Computer: An Introduction to the Design of Warehouse-Scale Machines," <em>Synthesis Lectures on Computer Architecture</em>, vol. 8, no. 3, pp. 1–154, 2013. <a href="https://doi.org/10.2200/S00516ED2V01Y201306CAC024">DOI: 10.2200/S00516ED2V01Y201306CAC024</a>.</li>
+<li><a id="ref-zaharia2016"></a><strong>[Zaharia2016]</strong> M. Zaharia et al., "Apache Spark: A Unified Engine for Big Data Processing," <em>Communications of the ACM</em>, vol. 59, no. 11, pp. 56–65, Oct. 2016. <a href="https://doi.org/10.1145/2934664">DOI: 10.1145/2934664</a>.</li>
+<li><a id="ref-shvachko2010"></a><strong>[Shvachko2010]</strong> K. Shvachko, H. Kuang, S. Radia, and R. Chansler, "The Hadoop Distributed File System," in <em>2010 IEEE 26th Symposium on Mass Storage Systems and Technologies (MSST)</em>, May 2010, pp. 1–10. <a href="https://doi.org/10.1109/MSST.2010.5496972">DOI: 10.1109/MSST.2010.5496972</a>.</li>
+<li><a id="ref-armbrust2020"></a><strong>[Armbrust2020]</strong> M. Armbrust et al., "Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores," <em>Proceedings of the VLDB Endowment</em>, vol. 13, no. 12, pp. 3411–3424, Aug. 2020. <a href="https://doi.org/10.14778/3415478.3415560">DOI: 10.14778/3415478.3415560</a>.</li>
 </ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
   <a href="../" class="noc-sim-btn secondary" style="text-decoration: none;">← Track 12 Overview</a>
-  <a href="../02-databases-and-cloud-storage/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Databases & Cloud Storage (12.2) →</a>
+  <a href="../02-databases-and-cloud-storage/" class="noc-sim-btn" style="text-decoration: none; background: #2563eb;">Next: Databases &amp; Cloud Storage (12.2) →</a>
 </div>
 
 

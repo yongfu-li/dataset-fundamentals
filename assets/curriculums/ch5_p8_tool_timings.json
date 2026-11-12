@@ -1,0 +1,134 @@
+{
+  "ch5_p8_solo_lab1.mp3": {
+    "duration": 21.984,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the Memory Hierarchy, SIMD, and Live Browser Benchmark Studio! In Tab A, run the real-time benchmark across 500,000 records to compare pointer-chasing row objects against contiguous typed arrays. In Tab B, sweep the Amdahl's Law parallel fraction to visualize the asymptotic speedup ceiling.",
+        "start": 0.0,
+        "end": 21.984
+      }
+    ]
+  },
+  "ch5_p8_duo_lab1.mp3": {
+    "duration": 21.048,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova! When I run the live 500,000 row benchmark, the contiguous Float64Array finishes over twenty times faster than the row object loop! That is the power of hardware prefetching and 64-byte L1 cache-line locality in action, Kaito! Now check Tab B to see how Amdahl's Law bounds multi-core scaling.",
+        "start": 0.0,
+        "end": 21.048
+      }
+    ]
+  },
+  "ch5_p8_solo_lab2.mp3": {
+    "duration": 15.768,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the Vitter Reservoir Sampling and Streaming Audit Workbench! Start the data stream and observe how an active reservoir buffer of fixed capacity k maintains an exact uniform sample across thousands of incoming records in constant memory.",
+        "start": 0.0,
+        "end": 15.768
+      }
+    ]
+  },
+  "ch5_p8_duo_lab2.mp3": {
+    "duration": 19.68,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova! Even though thousands of records are streaming through at high velocity, the reservoir sample mean tracks the true population mean with less than one percent deviation! Exactly, Kaito! Algorithm R proves that streaming data contracts can be validated with zero memory overflow risk.",
+        "start": 0.0,
+        "end": 19.68
+      }
+    ]
+  },
+  "ch5_p8_solo_chk1.mp3": {
+    "duration": 16.248,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Active Checkpoint 1. Analyze the mathematical impact of downcasting coordinate data from float64 to float32 on an AVX-512 processor, focusing on instruction lane concurrency and memory bus bandwidth.",
+        "start": 0.0,
+        "end": 16.248
+      }
+    ]
+  },
+  "ch5_p8_duo_chk1.mp3": {
+    "duration": 22.512,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, if a processor already has 512-bit registers, why does changing the data type from float64 to float32 double our throughput? Because lane concurrency is 512 divided by bit size, Kaito! At 32 bits, you get 16 simultaneous operations per clock cycle instead of 8, and you cut memory traffic in half!",
+        "start": 0.0,
+        "end": 22.512
+      }
+    ]
+  },
+  "ch5_p8_solo_chk2.mp3": {
+    "duration": 15.264,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Active Checkpoint 2. Diagnose the query execution on a 100-gigabyte Parquet archive, and identify how lazy relational algebra pushdown achieves a 99% reduction in memory and I/O footprint.",
+        "start": 0.0,
+        "end": 15.264
+      }
+    ]
+  },
+  "ch5_p8_duo_chk2.mp3": {
+    "duration": 18.984,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Dr. Nova, why does Polars scan parquet only use 300 megabytes of RAM on a 100-gigabyte dataset? Because projection pruning only loads the 3 required columns instead of all 50, Kaito! And Parquet zone maps allow the engine to skip non-matching row groups before decompression even starts!",
+        "start": 0.0,
+        "end": 18.984
+      }
+    ]
+  },
+  "ch5_p8_chk1_correct.mp3": {
+    "duration": 16.656,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Outstanding work! You correctly determined that an AVX-512 register doubles lane concurrency from 8 to 16 elements per clock cycle when processing float32, while halving DRAM memory bandwidth from 800 megabytes to 400 megabytes.",
+        "start": 0.0,
+        "end": 16.656
+      }
+    ]
+  },
+  "ch5_p8_chk1_incorrect.mp3": {
+    "duration": 19.68,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Not quite. Remember that vector lane concurrency equals register width divided by element bit size: 512 divided by 32 yields 16 lanes for float32, compared to 8 lanes for float64. Downcasting doubles throughput and halves memory bus bandwidth.",
+        "start": 0.0,
+        "end": 19.68
+      }
+    ]
+  },
+  "ch5_p8_chk2_correct.mp3": {
+    "duration": 19.344,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Correct! Projection pruning eliminates 47 unreferenced columns before allocation, reading only 6% of the schema. Combined with predicate pushdown skipping non-matching Parquet row groups, total memory touched plummets from 100 gigabytes to roughly 300 megabytes.",
+        "start": 0.0,
+        "end": 19.344
+      }
+    ]
+  },
+  "ch5_p8_chk2_incorrect.mp3": {
+    "duration": 16.176,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Careful. Lazy evaluation does not decompress all columns into memory. By commuting selection and projection, the query planner prunes unreferenced columns and skips entire Parquet row groups at the storage layer before allocation.",
+        "start": 0.0,
+        "end": 16.176
+      }
+    ]
+  }
+}
