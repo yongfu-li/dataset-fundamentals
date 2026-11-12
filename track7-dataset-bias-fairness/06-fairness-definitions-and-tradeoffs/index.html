@@ -9274,6 +9274,25 @@ Can both metrics be satisfied simultaneously if historical ground-truth qualific
 </details>
 </details>
 <hr />
+<details class="question">
+<summary>Check 4: Kusner's Counterfactual Invariance vs. Fairness Through Unawareness</summary>
+<p>A bank trains a loan approval model without including the applicant's protected attribute <span class="arithmatex">\(A\)</span> (race), satisfying "Fairness Through Unawareness." However, the model includes zip code (<span class="arithmatex">\(Z\)</span>) and university attended (<span class="arithmatex">\(U\)</span>), both of which are descendant mediators of <span class="arithmatex">\(A\)</span> in the causal DAG (<span class="arithmatex">\(A \to Z\)</span> and <span class="arithmatex">\(A \to U\)</span>).</p>
+<p>Explain why this model violates Kusner's Counterfactual Fairness definition, and state the exact Pearlian interventional condition that must be satisfied.</p>
+<details class="success">
+<summary>Reveal Detailed Solution &amp; Proof</summary>
+<p><strong>1. Why Fairness Through Unawareness Fails:</strong>
+Simply omitting <span class="arithmatex">\(A\)</span> from the feature matrix <span class="arithmatex">\(\mathcal{X}\)</span> does not eliminate the causal influence of <span class="arithmatex">\(A\)</span>. Because <span class="arithmatex">\(Z\)</span> and <span class="arithmatex">\(U\)</span> are causally downstream of <span class="arithmatex">\(A\)</span> (<span class="arithmatex">\(A \to Z \to \hat{Y}\)</span> and <span class="arithmatex">\(A \to U \to \hat{Y}\)</span>), the model reconstructs <span class="arithmatex">\(A\)</span> through proxy encoding.</p>
+<p><strong>2. Kusner's Counterfactual Fairness Condition:</strong>
+A predictor <span class="arithmatex">\(\hat{Y} = f(\mathcal{X})\)</span> is counterfactually fair if and only if for all individuals with observed evidence <span class="arithmatex">\(\mathcal{X} = x, A = a\)</span>:
+$<span class="arithmatex">\(\mathbb{P}\left(\hat{Y}_{A \leftarrow a}(\mathcal{U}) = 1 \;\middle|\; \mathcal{X} = x, A = a\right) = \mathbb{P}\left(\hat{Y}_{A \leftarrow a'}(\mathcal{U}) = 1 \;\middle|\; \mathcal{X} = x, A = a\right), \quad \forall a, a' \in \mathcal{A}\)</span>$
+where <span class="arithmatex">\(\mathcal{U}\)</span> represents the unobserved exogenous background factors.</p>
+<p><strong>3. Causal Mediation Proof:</strong>
+When we intervene <span class="arithmatex">\(\text{do}(A \leftarrow a')\)</span>, the interventional values of the mediators change:
+$<span class="arithmatex">\(Z_{A \leftarrow a'} \ne Z_{A \leftarrow a}, \qquad U_{A \leftarrow a'} \ne U_{A \leftarrow a}\)</span>$
+Since <span class="arithmatex">\(\hat{Y}\)</span> depends on <span class="arithmatex">\(Z\)</span> and <span class="arithmatex">\(U\)</span>, <span class="arithmatex">\(\hat{Y}_{A \leftarrow a'} \ne \hat{Y}_{A \leftarrow a}\)</span>, resulting in a non-zero counterfactual disparity <span class="arithmatex">\(\Delta_{\text{CF}} &gt; 0\)</span>. To achieve counterfactual fairness, the model must predict using only the abducted exogenous variables <span class="arithmatex">\(\mathcal{U}\)</span> or non-descendant features of <span class="arithmatex">\(A\)</span>.</p>
+</details>
+</details>
+<hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-kleinberg2017"></a><strong>[Kleinberg2017]</strong> J. Kleinberg, S. Mullainathan, and M. Raghavan, "Inherent Trade-Offs in the Fair Determination of Risk Scores," in <em>Proceedings of the 8th Innovations in Theoretical Computer Science Conference (ITCS)</em>, LIPIcs, vol. 67, pp. 43:1–43:23, 2017. <a href="https://doi.org/10.4230/LIPIcs.ITCS.2017.43">DOI: 10.4230/LIPIcs.ITCS.2017.43</a>.</li>

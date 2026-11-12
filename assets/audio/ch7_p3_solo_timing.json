@@ -1,0 +1,261 @@
+{
+  "duration": 720.96,
+  "sentences": [
+    {
+      "slideIndex": 0,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 7.3 of Dataset Fundamentals: Detecting and Auditing Bias Statistically. In previous lessons, we unpacked the structural taxonomy of dataset bias and formalized mechanisms like differential measurement noise and Simpson's aggregation reversal. Now, we turn to the definitive engineering challenge: how do we quantitatively audit and detect bias before models reach production?",
+      "start": 0.0,
+      "end": 25.104
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Auditing cannot rely on intuition or superficial visual inspections. We need rigorous mathematical distance metrics across continuous score distributions, exact regulatory parity formulations for discrete decision thresholds, and non-parametric hypothesis testing that prevents fatal small-sample power failures. Today, we build the complete statistical auditing apparatus from mathematical first principles.",
+      "start": 25.404,
+      "end": 51.588
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "A rigorous statistical audit operates on two distinct mathematical planes: the continuous feature or score space upstream, and the discrete selection or classification space downstream.",
+      "start": 52.088,
+      "end": 63.44
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "In the continuous tier, we evaluate model risk scores S conditioned on protected demographic attributes A. If the score distributions P of S given A equals 0 and P of S given A equals 1 diverge, that underlying gap is latent. In the discrete tier, a operational decision cutoff tau converts continuous scores into binary decisions Y-hat. Depending on where tau is placed, a subtle continuous divergence can explode into a massive regulatory adverse impact violation.",
+      "start": 63.74,
+      "end": 94.724
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "The two-sample Kolmogorov-Smirnov statistic, denoted D sub KS, is the most celebrated non-parametric test for continuous distributional equality. Mathematically, it measures the supreme vertical distance between the empirical cumulative distribution functions of the two demographic cohorts.",
+      "start": 95.224,
+      "end": 113.848
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because D sub KS is strictly non-parametric, it requires zero parametric assumptions about normality or variance homoscedasticity. Furthermore, it is completely invariant under any strictly increasing monotonic re-scaling of the model score. Under the null hypothesis that both groups share an identical score distribution, the scaled test statistic converges asymptotically to the Kolmogorov distribution.",
+      "start": 114.148,
+      "end": 139.66
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "The 1-Wasserstein metric, commonly known as the Earth Mover's Distance, formalizes distribution divergence through the lens of Monge-Kantorovich optimal transport. Rather than computing a vertical gap at one point, it calculates the minimal total work required to transport probability mass from distribution P zero into distribution P one.",
+      "start": 140.16,
+      "end": 160.92
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "In one dimension, optimal transport has an extraordinarily elegant closed form: the Wasserstein-1 distance equals the integrated absolute difference between the two quantile functions, or equivalently, the integrated area between the two cumulative distribution functions. Through Kantorovich-Rubinstein duality, it represents the supreme difference in expectations over all 1-Lipschitz continuous functions.",
+      "start": 161.22,
+      "end": 186.42
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Now consider the critical operational scenario: automated hiring for senior engineering roles or prime mortgage underwriting. In these domains, decisions are never made on average applicants. They are restricted exclusively to the extreme upper tail of the distribution, such as the top five percent.",
+      "start": 186.92,
+      "end": 205.568
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Suppose both groups share similar score shapes across the bottom ninety percent, but Group zero's scores truncate abruptly at 800 while Group one's scores extend to 950. Because the cumulative mass in the tail is small, the maximum vertical gap D sub KS will be trivial, perhaps 0.08. An auditor relying on KS would declare the system fair. Yet Wasserstein-1 integrates the massive 150-point horizontal gap, immediately flagging total demographic exclusion at the top threshold.",
+      "start": 205.868,
+      "end": 238.988
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 1: Score Divergence and Wasserstein Transport Studio. In the interactive dock below, you have live control over the continuous score distributions of Group zero and Group one.",
+      "start": 239.488,
+      "end": 252.304
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Notice the default state: Group one has a mean shift of plus 0.18, and the decision cutoff tau is set to 0.60. Look at the divergence dashboard: Wasserstein-1 is 0.180, Kolmogorov-Smirnov is 0.435, and the Disparate Impact Ratio is 0.38, triggering a severe 80 percent rule violation.",
+      "start": 252.604,
+      "end": 275.812
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 2,
+      "speaker": "Dr. Nova",
+      "text": "Now, drag the privileged mean shift slider down to 0.00. Watch how the two distributions align, Wasserstein distance collapses to zero, and the Disparate Impact Ratio recovers to parity at 1.00. Experiment with different decision thresholds to see how threshold selection interacts with continuous divergence.",
+      "start": 276.112,
+      "end": 298.048
+    },
+    {
+      "slideIndex": 6,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 1! Let us test your conceptual command of distribution divergence metrics. Review the question in the interactive dock below and select the correct answer.",
+      "start": 298.548,
+      "end": 310.572
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "When auditing the allocation of benefits across a population, such as loan amounts, compute budgets, or medical access, econometricians measure total system inequality. Many teams reach for the Gini coefficient. However, the Gini coefficient suffers from a severe mathematical limitation: when subgroup distributions overlap, its decomposition includes an intractable residual covariance term.",
+      "start": 311.072,
+      "end": 336.704
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "In contrast, the Theil Index, derived from Claude Shannon's information entropy, satisfies the axiom of strong additive decomposability. Total inequality T decomposes exactly into the sum of within-group inequality T-within and between-group inequality T-between. This allows auditors to isolate precisely what fraction of system disparity is caused by systemic demographic bias versus legitimate individual performance dispersion.",
+      "start": 337.004,
+      "end": 364.076
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Having audited continuous feature distributions, we now move downstream to Tier 2: discrete binary selection decisions such as hiring, bail release, or credit approval. Here, the foundational legal benchmark in United States employment and civil rights compliance is the Disparate Impact Ratio, commonly referred to as the 80 percent or four-fifths rule.",
+      "start": 364.576,
+      "end": 386.752
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Codified in the 1978 Uniform Guidelines on Employee Selection Procedures, the Disparate Impact Ratio divides the favorable selection rate of the unprivileged group by that of the highest-selected group. If this ratio drops below 0.80, the model triggers prima facie evidence of unlawful adverse impact, shifting the legal burden onto the deploying organization to prove strict business necessity.",
+      "start": 387.052,
+      "end": 412.132
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "To determine whether an observed selection disparity is statistically systematic rather than a product of finite-sample variance, civil rights litigation frequently employs the Two-Proportion Pooled Z-test.",
+      "start": 412.632,
+      "end": 424.584
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Under the null hypothesis that true population selection rates are identical—p zero equals p one—we estimate the common proportion p-hat by pooling both cohorts together. We then normalize the observed rate difference p-hat zero minus p-hat one by its pooled standard error. In large samples, if the resulting Z-score falls below minus 1.96, we reject the null hypothesis of fairness at the five percent significance level.",
+      "start": 424.884,
+      "end": 452.604
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Suppose an organization evaluates an intersectional subgroup with just n zero equals 16 applicants against a majority group of n one equals 200. Suppose the hiring rates are 25 percent versus 45 percent. That yields a Disparate Impact Ratio of 0.55—a catastrophic adverse impact violation!",
+      "start": 453.104,
+      "end": 474.8
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Yet because n zero is only 16, the standard error swells to 0.128, dragging the Z-score down to minus 1.56 and giving a p-value of 0.118. Concluding the model is fair because p exceeds 0.05 commits a disastrous Type II error. Furthermore, when reporting confidence intervals for ratios like DIR, we must apply the Katz logarithmic transformation to obtain bounded, statistically accurate interval widths.",
+      "start": 475.1,
+      "end": 505.412
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 2: Non-Parametric Permutation Resampling and Statistical Significance. Below in the interactive dock is Simulator 7.3 Tab B, which runs one thousand exact Monte Carlo permutations in your browser.",
+      "start": 505.912,
+      "end": 521.608
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "At default settings—n zero equals 50, n one equals 150, and a true mean shift Delta of 0.08—look at the null permutation distribution. The observed difference T-obs of 0.081 sits in the extreme tail, yielding an exact permutation p-value around 0.004 and a verdict of Disparity Proven.",
+      "start": 521.908,
+      "end": 545.428
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 2,
+      "speaker": "Dr. Nova",
+      "text": "Now, shrink the unprivileged sample size slider n zero down to 15 while keeping the true bias gap unchanged at 0.08. Watch how the null distribution widens dramatically! The exact same underlying unfairness suddenly becomes statistically non-significant with p exceeding 0.05—demonstrating the small-sample Type II error live!",
+      "start": 545.728,
+      "end": 569.032
+    },
+    {
+      "slideIndex": 12,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us consolidate your statistical intuition in Active Checkpoint 2. Analyze the hiring audit scenario involving a small unprivileged cohort and select the correct regulatory conclusion in the dock below.",
+      "start": 569.532,
+      "end": 582.636
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "When auditing heavy-tailed continuous distributions or highly imbalanced binary outcomes where normal Z approximations collapse, the gold standard in statistical rigor is exact Fisher-Pitman permutation resampling.",
+      "start": 583.136,
+      "end": 596.192
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Under the null hypothesis that demographic attribute A has zero causal or correlational relationship with the model decision Y-hat, the group labels are completely exchangeable. By pooling all N samples together and randomly permuting the group assignments B times—typically ten thousand iterations—we construct an exact, distribution-free empirical reference distribution for our test statistic.",
+      "start": 596.492,
+      "end": 620.708
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us anchor our mathematical tools in two landmark empirical audits: automated technical recruiting and algorithmic mortgage underwriting.",
+      "start": 621.208,
+      "end": 629.8
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "In 2018, an automated resume screening engine trained on ten years of predominantly male software engineering applications began systematically penalizing terms such as 'women's chess club captain' and graduates of all-women's colleges. Applying the Disparate Impact Ratio revealed a DIR below 0.60—an immediate EEOC 80 percent violation forcing shutdown. Similarly, in HMDA mortgage lending audits, risk scoring models maintained high calibration accuracy yet exhibited Wasserstein-1 gaps exceeding 65 points across racial cohorts, denying loans to otherwise creditworthy borrowers.",
+      "start": 630.1,
+      "end": 669.796
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "To operationalize everything covered in Lesson 7.3, production ML pipelines encapsulate statistical fairness checks inside strictly typed Pydantic V2 verification contracts before any model checkpoint can promote to deployment.",
+      "start": 670.296,
+      "end": 685.128
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Remember our four Cardinal Rules of Statistical Bias Auditing: First, always pair Kolmogorov-Smirnov with Wasserstein-1 optimal transport to eliminate tail blindspots. Second, isolate between-group inequality via the additively decomposable Theil Index. Third, compute Disparate Impact Ratios with Katz logarithmic confidence bounds. Fourth, use exact permutation resampling and statistical power audits so underpowered p-values never certify unfair systems. Thank you for joining Lesson 7.3!",
+      "start": 685.428,
+      "end": 719.244
+    }
+  ]
+}

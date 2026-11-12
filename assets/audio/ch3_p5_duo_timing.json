@@ -1,0 +1,348 @@
+{
+  "duration": 581.88,
+  "sentences": [
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 3.5, Kaito! Today we explore Privacy-Enhancing Technologies: the mathematical armor protecting sensitive microdata when datasets are shared, published, or trained upon.",
+      "start": 0.0,
+      "end": 13.344,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Glad to be here, Nova! Most engineers still believe that stripping names and Social Security numbers creates an anonymous dataset. But in Lesson 3.4 we proved that auxiliary quasi-identifier linkage deterministically unmasks eighty-seven percent of Americans!",
+      "start": 13.344,
+      "end": 30.24,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Direct redaction fails because quasi-identifiers create sparse, unique fingerprints. That is why computer science developed rigorous PETs: k-anonymity, l-diversity, t-closeness, and differential privacy.",
+      "start": 30.24,
+      "end": 45.864,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Kaito",
+      "text": "And we will even explore federated learning and gradient inversion! Let us dive into the mathematical formulations behind equivalence classes.",
+      "start": 45.864,
+      "end": 55.248,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Look at the core formula on the slide: an equivalence class brackets all records sharing identical quasi-identifiers. If every bracket holds at least k tuples, an attacker can never single anyone out with probability greater than one over k.",
+      "start": 55.248,
+      "end": 69.984,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Kaito",
+      "text": "So if k equals five, every patient hides in a crowd of at least five people with the exact same generalized ZIP code, age bracket, and gender! That prevents Governor Weld's voter registry attack, right?",
+      "start": 69.984,
+      "end": 82.248,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Precisely. But achieving this requires transforming the microdata through generalization hierarchies and record suppression, which brings us to our next engineering consideration.",
+      "start": 82.248,
+      "end": 93.576,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Kaito",
+      "text": "So if we generalize too aggressively—say, collapsing all ZIP codes to just the state level—we get high privacy, but our epidemiological model can no longer detect localized disease clusters!",
+      "start": 93.576,
+      "end": 104.472,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito. That is why we quantify information loss using normalized span metrics. But there is a much darker vulnerability lurking in k-anonymity that generalization cannot solve: attribute disclosure.",
+      "start": 104.472,
+      "end": 118.896,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Attribute disclosure? Even if my identity is hidden among five people, can an attacker still discover my medical secrets?",
+      "start": 118.896,
+      "end": 127.248,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Yes! Let us examine the Homogeneity Attack.",
+      "start": 127.248,
+      "end": 131.76,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Whoa! So even though k equals four, if all four records in my equivalence class say 'Alzheimer's', the crowd cannot protect me because there is zero variance in the sensitive column!",
+      "start": 131.76,
+      "end": 142.608,
+      "slideIndex": 3
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Precisely. The adversary does not need to know which of the four rows is yours; knowing you belong to that equivalence class reveals your diagnosis unconditionally. That prompted Ashwin Machanavajjhala and colleagues to create l-diversity.",
+      "start": 142.608,
+      "end": 157.608,
+      "slideIndex": 3
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Requiring that the sensitive column itself contains diverse values! Let us see how l-diversity formalizes that requirement.",
+      "start": 157.608,
+      "end": 166.128,
+      "slideIndex": 3
+    },
+    {
+      "speaker": "Kaito",
+      "text": "That semantic similarity trap is devious! The strings 'Stomach Cancer', 'Colon Cancer', and 'Esophageal Cancer' are three distinct values, satisfying distinct l-diversity! But to a doctor or an insurer, they all mean the patient has serious digestive cancer!",
+      "start": 166.128,
+      "end": 182.976,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Pure string diversity cannot understand medical ontological semantics. That is why we need our interactive simulator to explore these failure modes hands-on.",
+      "start": 182.976,
+      "end": 194.52,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Let us test the PETs Multi-Metric Auditor and observe how generalization, diversity, and distance interact in real time!",
+      "start": 194.52,
+      "end": 201.888,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Look at the real-time metrics dashboard above us, Nova! In Preset 1, we have singleton records vulnerable to re-identification. Switch to Preset 2 to see a homogeneity trap, or Preset 4 to verify certified privacy with Earth Mover's Distance under zero point fifteen!",
+      "start": 201.888,
+      "end": 219.6,
+      "slideIndex": 5
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito. Notice how modifying the Age bracket from Exact to Decade instantly collapses eight singletons into two robust cohorts. But keep an eye on the Distinct l gauge to ensure we haven't concentrated diagnoses.",
+      "start": 219.6,
+      "end": 234.816,
+      "slideIndex": 5
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Checkpoint 1 time! A clinical table satisfies k equals five and distinct l equals three, but the diagnoses are Ulcerative Colitis, Crohn's Disease, and Colorectal Carcinoma. Why does this fail patient privacy? Select Option A, B, or C above me!",
+      "start": 234.816,
+      "end": 252.84,
+      "slideIndex": 6
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Analyze the anatomical relationships between those conditions, Kaito. An attacker does not need to distinguish between Crohn's and Colitis to know the patient suffers from severe bowel pathology.",
+      "start": 252.84,
+      "end": 264.864,
+      "slideIndex": 6
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Here is the key insight of t-closeness, Kaito: an adversary learns about an individual by comparing what they learn about the equivalence class versus what they already know about the general population.",
+      "start": 264.864,
+      "end": 276.168,
+      "slideIndex": 7
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Right! If knowing I am in a specific group shifts the probability of having cancer from two percent to thirty-three percent, that group leaked massive information even if there are ten other diseases in the group!",
+      "start": 276.168,
+      "end": 287.952,
+      "slideIndex": 7
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Earth Mover's Distance bounds that distributional shift. But as we will see on Slide 9, partition models suffer from an insurmountable structural barrier: the curse of high dimensionality.",
+      "start": 287.952,
+      "end": 301.056,
+      "slideIndex": 7
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Wait, so even if we use k-anonymity, l-diversity, and t-closeness, none of them work once we have more than ten or fifteen features in our dataset?",
+      "start": 301.056,
+      "end": 309.984,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito! It is the curse of dimensionality. In twenty dimensions, points are so far apart that there is no crowd to hide in without turning the data into useless mush.",
+      "start": 309.984,
+      "end": 322.248,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Kaito",
+      "text": "So if we cannot sanitize the table, how do we share insights without violating privacy?",
+      "start": 322.248,
+      "end": 327.936,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "By shifting the guarantee from the static artifact to the query algorithm itself! Let us examine Cynthia Dwork's revolutionary breakthrough: Differential Privacy.",
+      "start": 327.936,
+      "end": 338.328,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Kaito",
+      "text": "This is completely different from k-anonymity! Instead of trying to alter the table and hoping no one has an auxiliary database, differential privacy injects controlled randomness into the query itself!",
+      "start": 338.328,
+      "end": 350.52,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Yes! And notice the mathematical beauty: whether Alice opts into the clinical trial or withdraws, the probability of any given outcome changes by at most e to the epsilon. That means Alice can never be harmed by participating in the study.",
+      "start": 350.52,
+      "end": 366.168,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Kaito",
+      "text": "And the privacy holds forever, even if an attacker invents a quantum computer or acquires every public record on earth! How do we calibrate the injected noise?",
+      "start": 366.168,
+      "end": 376.32,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Through Global Sensitivity and the Laplace mechanism. Let us look at the noise calibration formula.",
+      "start": 376.32,
+      "end": 383.16,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Look at the variance formula: variance equals two times Delta f squared over epsilon squared! That means if I cut epsilon in half to double my privacy, my noise variance quadruples!",
+      "start": 383.16,
+      "end": 394.728,
+      "slideIndex": 10
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito. The privacy-utility trade-off is governed by that inverse quadratic penalty. Let us explore this directly in our second interactive laboratory: the Laplace DP Calibration Studio.",
+      "start": 394.728,
+      "end": 408.48,
+      "slideIndex": 10
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Let us test different values of epsilon and sensitivity to see how query outputs fluctuate!",
+      "start": 408.48,
+      "end": 414.384,
+      "slideIndex": 10
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Look at the live query results above us, Nova! Under Preset 1 with high epsilon, the reported count is accurate but privacy is weak. Select Preset 2 to see balanced production differential privacy with a variance of two point zero!",
+      "start": 414.384,
+      "end": 429.648,
+      "slideIndex": 11
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito. Notice how dragging the sensitivity slider to two immediately doubles the noise scale b and quadruples the variance. That shows why bounded global sensitivity is critical for practical differential privacy.",
+      "start": 429.648,
+      "end": 444.216,
+      "slideIndex": 11
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Checkpoint 2! How did researchers reconstruct fifty-two million individual records from aggregate Census tables without any security breach or password leak? Choose Option A, B, or C above me!",
+      "start": 444.216,
+      "end": 457.344,
+      "slideIndex": 12
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "It is pure linear algebra! Dinur and Nissim proved in 2003 that if you publish O of n aggregate queries with low error, the system of linear equations is overdetermined! An adversary can use linear programming to solve for every individual row!",
+      "start": 457.344,
+      "end": 473.304,
+      "slideIndex": 12
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Wait, so sending gradients instead of raw images still leaks the images? That completely destroys the naive pitch for federated learning!",
+      "start": 473.304,
+      "end": 482.4,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Yes! Gradients are essentially high-dimensional loss equations. If the model is sufficiently expressive, the input pixels can be recovered with ninety-nine percent fidelity through gradient matching.",
+      "start": 482.4,
+      "end": 495.312,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Kaito",
+      "text": "So federated learning by itself is just distributed computing. To get actual privacy, we have to inject DP-SGD noise and use Secure Multi-Party Aggregation!",
+      "start": 495.312,
+      "end": 506.088,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Now let us examine how to implement Mondrian k-anonymity and the Laplace mechanism in production Python.",
+      "start": 506.088,
+      "end": 514.2,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Splitting the epsilon budget between the sum and the count is clever! If you don't bound the input domain, a single outlier could have infinite sensitivity and completely wreck the noise calibration!",
+      "start": 514.2,
+      "end": 525.768,
+      "slideIndex": 14
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Precisely, Kaito. Differential privacy always requires bounded sensitivity. In production, we clip outliers at reasonable percentiles before injecting Laplace noise.",
+      "start": 525.768,
+      "end": 538.104,
+      "slideIndex": 14
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Now let us synthesize the five foundational laws of modern data privacy in our final slide!",
+      "start": 538.104,
+      "end": 543.864,
+      "slideIndex": 14
+    },
+    {
+      "speaker": "Kaito",
+      "text": "What an incredible journey! We started with Latanya Sweeney's voter-roll re-identification, proved why l-diversity and t-closeness were necessary, navigated the curse of dimensionality into differential privacy, and exposed gradient inversion in federated learning!",
+      "start": 543.864,
+      "end": 559.344,
+      "slideIndex": 15
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "You have mastered the foundational toolkit of Privacy-Enhancing Technologies, Kaito. Remember: privacy is not an obstacle to data science; it is the cryptographic foundation that makes ethical machine learning possible.",
+      "start": 559.344,
+      "end": 572.856,
+      "slideIndex": 15
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Next up is Lesson 3.6, where we examine algorithmic bias and fairness definitions. See you all in the next masterclass!",
+      "start": 572.856,
+      "end": 581.88,
+      "slideIndex": 15
+    }
+  ]
+}

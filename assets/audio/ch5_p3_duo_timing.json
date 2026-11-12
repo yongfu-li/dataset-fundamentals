@@ -1,0 +1,533 @@
+{
+  "duration": 770.616,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, in relational databases, deduplication is usually as simple as running SELECT DISTINCT or grouping by Social Security Number or email. Why do we need an entire mathematical theory for record linkage?",
+          "dock": "main",
+          "start": 0.0,
+          "end": 13.656
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because real-world data is hostile, Kaito! What happens when a user types Jonathon with an O instead of Jonathan with an A, or when an OCR scanner mistakes the digit 0 for the letter O, or when an address is written as Street instead of St?",
+          "dock": "main",
+          "start": 13.656,
+          "end": 28.896
+        },
+        {
+          "speaker": "Kaito",
+          "text": "An exact SQL DISTINCT would treat them as two completely separate human beings. That means duplicate patient charts in hospitals, multiple marketing emails to the same client, and contaminated train-test splits!",
+          "dock": "main",
+          "start": 28.896,
+          "end": 41.904
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. In enterprise datasets, up to 15% of records represent duplicates masked by minor character edits. Exact matching is blind to them. But if we naively compare every record against every other record, we hit a quadratic computational wall.",
+          "dock": "main",
+          "start": 41.904,
+          "end": 60.048
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! One hundred thousand records is a tiny database for modern engineering. How can that produce five billion pairwise comparisons?",
+          "dock": "main",
+          "start": 60.048,
+          "end": 70.968
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because combination mathematics is ruthless, Kaito. One hundred thousand times ninety-nine thousand nine hundred ninety-nine divided by two equals four billion nine hundred ninety-nine million nine hundred fifty thousand pairs. If each comparison takes one microsecond, that is nearly an hour and a half of pure CPU crunching!",
+          "dock": "main",
+          "start": 70.968,
+          "end": 91.368
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And if our database grows to one million records, it's not ten times slower\u2014it's one hundred times slower! Five hundred billion comparisons!",
+          "dock": "main",
+          "start": 91.368,
+          "end": 100.656
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. That is the quadratic barrier. If we don't prune away the 99.8% of obvious non-matches using indexing blocks, our pipelines grind to a complete halt.",
+          "dock": "main",
+          "start": 100.656,
+          "end": 113.376
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "So instead of comparing all five billion pairs with complex string formulas, Stage 1 uses a fast hash key to group similar records into small buckets first?",
+          "dock": "main",
+          "start": 113.376,
+          "end": 122.688
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. For instance, if two records have completely different phonetic surnames and live in different postal codes, they never share a bucket. They are discarded in Stage 1 with zero expensive string calculations.",
+          "dock": "main",
+          "start": 122.688,
+          "end": 137.328
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And only the candidate pairs that make it into the same bucket get evaluated by Levenshtein or Jaro-Winkler in Stage 2, scored in Stage 3, and routed to clerical review in Stage 4!",
+          "dock": "main",
+          "start": 137.328,
+          "end": 148.128
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly right. That multi-stage architecture turns an impossible quadratic nightmare into a blazing fast sub-quadratic pipeline.",
+          "dock": "main",
+          "start": 148.128,
+          "end": 157.464
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, if someone types 'MARHTA' instead of 'MARTHA', they didn't make two independent mistakes\u2014their fingers just swapped the T and H on the keyboard! Why does Levenshtein give that a penalty of two?",
+          "dock": "main",
+          "start": 157.464,
+          "end": 169.248
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Brilliant observation, Kaito! Standard Levenshtein only allows single-character insertions, deletions, and substitutions. Swapping two adjacent letters requires deleting one and inserting another, counting as two distinct operations.",
+          "dock": "main",
+          "start": 169.248,
+          "end": 185.76
+        },
+        {
+          "speaker": "Kaito",
+          "text": "That explains why human names with simple typos score so poorly on Levenshtein! Sixty-six percent similarity might fall below an auto-merge threshold.",
+          "dock": "main",
+          "start": 185.76,
+          "end": 195.552
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely! And that limitation led William Winkler and Matthew Jaro to design metrics specifically tailored for human names and character transpositions.",
+          "dock": "main",
+          "start": 195.552,
+          "end": 206.064
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why does Winkler focus so heavily on the first four characters? What makes the prefix so special compared to the rest of the word?",
+          "dock": "main",
+          "start": 206.064,
+          "end": 215.184
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Cognitive psychology and keystroke logging, Kaito! When humans type a surname or city, they are hyper-focused on the initial letter. Typos almost always cluster in the middle or end of words due to phonetic approximations or rapid finger motion.",
+          "dock": "main",
+          "start": 215.184,
+          "end": 231.048
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Ah! So if two strings share 'MAR' or 'SMIT', they get an immediate score bonus because the probability of that shared prefix being a pure accident is extremely low.",
+          "dock": "main",
+          "start": 231.048,
+          "end": 241.152
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. That is why Jaro-Winkler is the gold standard for personal names in the US Census Bureau and enterprise deduplication engines worldwide.",
+          "dock": "main",
+          "start": 241.152,
+          "end": 251.184
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I just clicked the 'SMITH / SMYTHE' preset. Levenshtein shows 2 edits, but American Soundex shows S530 for both strings! They get an exact collision!",
+          "dock": "main",
+          "start": 251.184,
+          "end": 263.52
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is the phonetic magic of Soundex, Kaito. Soundex maps consonants that sound identical\u2014like M and N, or D and T\u2014to the same digit. S becomes the lead character, M maps to 5, T maps to 3, and vowels like I, Y, and E are dropped.",
+          "dock": "main",
+          "start": 263.52,
+          "end": 282.504
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So even though the spellings differ by two letters, they produce the exact same blocking key S530. That means they will always be placed in the same candidate bucket during Stage 1!",
+          "dock": "main",
+          "start": 282.504,
+          "end": 293.832
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Try typing in CATHERINE and KATHARINE next to see where phonetic Soundex fails when initial consonants differ.",
+          "dock": "main",
+          "start": 293.832,
+          "end": 302.184
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, both pairs have four out of five letters matching with zero transpositions, so their base Jaro score is exactly 0.8667. But how much extra score does the prefix CRA give to CRANE and CRATE?",
+          "dock": "main",
+          "start": 302.184,
+          "end": 315.936
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Apply the Winkler formula, Kaito! The prefix length ell is 3. Multiply 3 by p equals 0.1, which is 0.3. Then multiply that by 1 minus 0.8667, which is 0.1333. What is 0.3 times 0.1333?",
+          "dock": "main",
+          "start": 315.936,
+          "end": 337.776
+        },
+        {
+          "speaker": "Kaito",
+          "text": "0.3 times 0.1333 is 0.0400! Adding 0.0400 to 0.8667 gives exactly 0.9067! While CRANE versus TRANE has ell equals 0, so it gets zero bonus and stays at 0.8667!",
+          "dock": "main",
+          "start": 337.776,
+          "end": 357.456
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on, Kaito! Now select the correct answer card in the interactive checkpoint below.",
+          "dock": "main",
+          "start": 357.456,
+          "end": 364.248
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, in the lab earlier, Catherine generated C365, but Katharine generated K365! Even though the rest of the numbers were identical, because the first letter differed, they ended up in different buckets!",
+          "dock": "main",
+          "start": 364.248,
+          "end": 378.552
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly, Kaito. Soundex was invented over a century ago for the 1890 US Census, and it explicitly preserves the first letter. That means any typo on the initial character breaks the entire block.",
+          "dock": "main",
+          "start": 378.552,
+          "end": 393.24
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And if they never share a bucket, Stage 2 never compares them! They become a permanent false negative!",
+          "dock": "main",
+          "start": 393.24,
+          "end": 400.416
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Which is why we use Multi-Pass Overlapping Blocking. In Pass 2, we block on Postal Code plus Date of Birth. In Pass 2, Catherine and Katharine have the exact same key and are successfully linked!",
+          "dock": "main",
+          "start": 400.416,
+          "end": 414.192
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, this proof is astonishing. By simply sorting records into five hundred buckets, we eliminated four billion nine hundred ninety million comparisons!",
+          "dock": "main",
+          "start": 414.192,
+          "end": 424.632
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes! Because the pairs that are eliminated were never going to match anyway. Two people with completely different phonetic names living in different states have essentially zero probability of being the same human.",
+          "dock": "main",
+          "start": 424.632,
+          "end": 437.808
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So blocking acts as a massive high-recall, low-precision filter. It lets through almost all true matches while throwing away 99.8% of the garbage pairs.",
+          "dock": "main",
+          "start": 437.808,
+          "end": 448.032
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. And now, the surviving 9.95 million pairs can be evaluated with full mathematical rigor using the Fellegi-Sunter theorem.",
+          "dock": "main",
+          "start": 448.032,
+          "end": 458.232
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, converting the likelihood ratio to base-2 logarithms is brilliant! It turns a messy multiplication of decimal probabilities into a clean addition of positive and negative points!",
+          "dock": "main",
+          "start": 458.232,
+          "end": 470.472
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly, Kaito. And each point represents one bit of information evidence. If an attribute adds plus 6 bits, the odds that the records represent the same person increase by 2 to the 6th power, which is 64 times!",
+          "dock": "main",
+          "start": 470.472,
+          "end": 486.048
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And if an attribute disagrees, it subtracts bits, pushing the candidate down toward rejection or clerical audit!",
+          "dock": "main",
+          "start": 486.048,
+          "end": 493.032
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. Now let's explore why rare attributes generate vastly higher positive bits than common attributes.",
+          "dock": "main",
+          "start": 493.032,
+          "end": 501.144
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, this explains why sharing an unusual surname feels like such definitive proof in real life! Two random strangers named Zephyros bumping into each other by chance has a probability of one in one hundred thousand!",
+          "dock": "main",
+          "start": 501.144,
+          "end": 514.488
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. While two strangers named Smith or Jones share their name frequently. So for Smith, the model demands matching date of birth and street address before granting an auto-merge.",
+          "dock": "main",
+          "start": 514.488,
+          "end": 526.68
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And the Clerical Review zone in the middle acts as a safety valve: when the score is ambiguous, say 5 bits, we don't guess\u2014we route the record pair to a human auditor.",
+          "dock": "main",
+          "start": 526.68,
+          "end": 536.448
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on, Kaito. That keeps precision above 99.8% in mission-critical applications like healthcare and financial fraud detection.",
+          "dock": "main",
+          "start": 536.448,
+          "end": 546.624
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I'm playing with Tab 1. When all five attributes agree, the total score is over plus 18 bits, and the decision is an overwhelming Auto-Merge!",
+          "dock": "main",
+          "start": 546.624,
+          "end": 557.136
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now toggle Postal Code to Disagree, Kaito. What happens to the score and decision?",
+          "dock": "main",
+          "start": 557.136,
+          "end": 563.568
+        },
+        {
+          "speaker": "Kaito",
+          "text": "The Postal Code weight flips from plus 7.41 bits to minus 2.73 bits! The composite score drops to 13.42 bits, but the decision is STILL Auto-Merge because Last Name, First Name, DOB, and Gender provided overwhelming positive evidence!",
+          "dock": "main",
+          "start": 563.568,
+          "end": 579.792
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. A typo in the postal code does not derail a match when high-fidelity identifying attributes agree. But flip Date of Birth to Disagree, and the pair plummets straight into Clerical Review.",
+          "dock": "main",
+          "start": 579.792,
+          "end": 592.848
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, let me walk through the numbers: 500 times 19,900 pairs is exactly 9.95 million pairs. Compared to five billion brute force pairs, that is 1 minus 9.95 million over 5 billion, which equals 99.80 percent reduction!",
+          "dock": "main",
+          "start": 592.848,
+          "end": 610.176
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on. And what about the attribute bit weights?",
+          "dock": "main",
+          "start": 610.176,
+          "end": 614.664
+        },
+        {
+          "speaker": "Kaito",
+          "text": "The weight is log2 of m over u. Since u for Zephyros is one in one hundred thousand while u for Gender is zero point five, log2 of m over u is over 16 bits for Zephyros but less than 1 bit for Gender! Rare attributes carry vastly higher information content!",
+          "dock": "main",
+          "start": 614.664,
+          "end": 631.632
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Excellent synthesis, Kaito! Select Option A in the checkpoint card below to confirm.",
+          "dock": "main",
+          "start": 631.632,
+          "end": 638.376
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I was surprised to see LLM pre-training on this slide! How does record linkage connect to training modern large language models?",
+          "dock": "main",
+          "start": 638.376,
+          "end": 647.808
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Web crawls are flooded with duplicate boilerplate text: terms of service, cookie banners, and syndicated news articles copied hundreds of times across different domains. If an LLM reads the same article forty times during pre-training, it memorizes the text verbatim.",
+          "dock": "main",
+          "start": 647.808,
+          "end": 664.8
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And that causes privacy leaks and regurgitation during generation, while wasting GPU compute cycles on redundant tokens!",
+          "dock": "main",
+          "start": 664.8,
+          "end": 672.504
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Pruning 42% duplicate text using MinHash LSH deduplication makes training faster, lowers loss, and dramatically improves benchmark reasoning.",
+          "dock": "main",
+          "start": 672.504,
+          "end": 684.216
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I love that AttributeLinkageSpec puts hard bounds on m and u! If someone accidentally inputs an m probability of 0.4, Pydantic immediately throws a validation error!",
+          "dock": "main",
+          "start": 684.216,
+          "end": 696.6
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly, Kaito. Because if m were less than 0.5, an attribute agreement would actually decrease the likelihood of a match, which violates the very definition of an identifying attribute.",
+          "dock": "main",
+          "start": 696.6,
+          "end": 709.8
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And the LinkageTriageResult ensures downstream services receive strict literal enums: AUTO_MERGE, CLERICAL_REVIEW, or NON_MATCH, with no ambiguous string formatting!",
+          "dock": "main",
+          "start": 709.8,
+          "end": 721.632
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is the hallmark of production-grade ML engineering: mathematical rigor verified by strict schema validation.",
+          "dock": "main",
+          "start": 721.632,
+          "end": 728.88
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, this lesson completely transformed how I think about data cleaning. What used to seem like boring string matching turned out to be a rich intersection of dynamic programming, information theory, and Neyman-Pearson hypothesis testing!",
+          "dock": "main",
+          "start": 728.88,
+          "end": 742.872
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is the beauty of dataset fundamentals, Kaito. When you replace ad-hoc heuristics with formal mathematical frameworks, your systems become fast, provably correct, and robust at enterprise scale.",
+          "dock": "main",
+          "start": 742.872,
+          "end": 756.24
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I can't wait for Lesson 5.4! Outliers, feature relevance, and severe class imbalance\u2014let's conquer them next!",
+          "dock": "main",
+          "start": 756.24,
+          "end": 764.712
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Outstanding enthusiasm, Kaito! See you in Lesson 5.4.",
+          "dock": "main",
+          "start": 764.712,
+          "end": 770.616
+        }
+      ]
+    }
+  ]
+}

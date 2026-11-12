@@ -1,0 +1,379 @@
+{
+  "duration": 862.608,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Chapter 5, Lesson 3: Duplicates and Inconsistency: Fuzzy String Matching, Record Linkage, and Fellegi-Sunter Theory. In distributed enterprise data warehouses, clinical health records, and web-scale foundation model pre-training corpora, identical real-world entities are ingested repeatedly across disparate schemas with typographical errors, OCR noise, phonetic variations, and formatting anomalies.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 27.288
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Relying on naive exact SQL DISTINCT operations or primary-key joins fails completely in the presence of noise. This fractures patient profiles, inflates training sample counts, and causes insidious train-test data leakage. Today, we formalize the mathematical architecture required to resolve entity identity: dynamic programming string edit distances, sub-quadratic blocking indexes, and Ivan Fellegi and Alan Sunter's foundational probabilistic linkage theorem.",
+          "dock": "main",
+          "start": 27.288,
+          "end": 57.024
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us quantify the mathematical barrier at the heart of deduplication. Given a database of N records, determining all duplicates naively requires evaluating the full Cartesian product, producing N times N minus 1 divided by 2 distinct pairs.",
+          "dock": "main",
+          "start": 57.024,
+          "end": 73.128
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "For a modest hospital database of 100,000 patients, that yields 5 billion pairwise comparisons. For a national census or web crawl of 10 million entities, the comparison universe explodes to 50 trillion pairs! Running computationally intensive Levenshtein or neural string alignments on 50 trillion pairs would take months of compute.",
+          "dock": "main",
+          "start": 73.128,
+          "end": 95.664
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Furthermore, naive thresholding creates the Transitive Closure Trap: if record A matches B, and B matches C, blindly merging them causes snowball clusters where completely unrelated entities are chained together through ambiguous bridging records.",
+          "dock": "main",
+          "start": 95.664,
+          "end": 110.328
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "To conquer the quadratic complexity while maintaining high recall, production entity resolution decomposes into four disciplined architectural stages: Blocking, Feature Vector Extraction, Probabilistic Likelihood Scoring, and Decision Triage.",
+          "dock": "main",
+          "start": 110.328,
+          "end": 125.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In Stage 1, Phonetic and Locality-Sensitive Hashing blocking indexes prune over 99.5% of impossible pairs. In Stage 2, candidate pairs pass through specialized string and numeric distance operators, creating a multi-attribute similarity vector gamma. In Stage 3, the Fellegi-Sunter log-odds formula sums the information bits. Finally, in Stage 4, Neyman-Pearson decision thresholds partition pairs into designated matches, non-matches, or clerical review.",
+          "dock": "main",
+          "start": 125.328,
+          "end": 157.68
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now let us examine the mathematical mechanics of string distance metrics. The foundation of typographical error correction is the Levenshtein Edit Distance, introduced by Vladimir Levenshtein in 1966. It measures the minimum number of single-character insertions, deletions, or substitutions required to transform string s1 into string s2.",
+          "dock": "main",
+          "start": 157.68,
+          "end": 181.176
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "We solve Levenshtein distance using the classic Wagner-Fischer dynamic programming matrix in O of m times n time. The recurrence evaluates the minimum of three operations: deletion from s1, insertion into s1, or character substitution.",
+          "dock": "main",
+          "start": 181.176,
+          "end": 197.208
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "To turn the raw edit distance into a normalized similarity score bounded between 0 and 1, we divide the edit count by the maximum length of the two strings and subtract from 1. For example, MARTHA and MARHTA have an edit distance of 2, yielding a normalized similarity of 66.7%.",
+          "dock": "main",
+          "start": 197.208,
+          "end": 216.408
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "To solve the transposition penalty for human identifiers, Matthew Jaro introduced the Jaro metric. Two characters are considered matching if they are identical and within a sliding window of max length divided by 2 minus 1.",
+          "dock": "main",
+          "start": 216.408,
+          "end": 230.64
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The Jaro score balances the proportion of matched characters against the number of out-of-order transpositions t. Then, William Winkler improved Jaro's score with prefix scaling: because humans rarely make typos on the first character of a name, matching a common prefix of up to 4 characters boosts the score substantially.",
+          "dock": "main",
+          "start": 230.64,
+          "end": 250.008
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "With Winkler scaling parameter p equals 0.1, MARTHA and MARHTA achieve a spectacular score of 0.9611! For multi-word strings like street addresses, we complement Jaro-Winkler with Q-gram character shingles and Jaccard set similarity to remain invariant to word permutations.",
+          "dock": "main",
+          "start": 250.008,
+          "end": 269.52
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to the interactive Fuzzy String Distance Studio. In this workbench, you can type any two arbitrary strings or load empirical test presets such as MARTHA versus MARHTA, SMITH versus SMYTHE, or CATHERINE versus KATHARINE.",
+          "dock": "main",
+          "start": 269.52,
+          "end": 284.16
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Observe how the four metrics react simultaneously: Levenshtein dynamic programming measures discrete character insertions and deletions; Jaro-Winkler rewards matching alignment windows and common prefixes; American Soundex hashes phonetic consonants into a 4-character phonetic bucket; and Bigram Jaccard computes shingle set overlap.",
+          "dock": "main",
+          "start": 284.16,
+          "end": 304.224
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for our first active checkpoint. Let us verify your mastery of string distance mechanics. Consider two pairs of strings: Pair 1 is CRANE versus TRANE. Pair 2 is CRANE versus CRATE.",
+          "dock": "main",
+          "start": 304.224,
+          "end": 318.456
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Both pairs share exactly 4 matching characters out of 5 with 0 transpositions, giving them identical base Jaro scores of 0.8667. However, Pair 1 shares no common prefix, while Pair 2 shares the three-character prefix C-R-A. Calculate the Winkler scores for both pairs using standard scaling factor p equals 0.1.",
+          "dock": "main",
+          "start": 318.456,
+          "end": 340.872
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Having mastered string metrics, we now formalize Stage 1: Phonetic Blocking. The purpose of blocking is to partition the N records into B disjoint or overlapping buckets using coarse deterministic keys so that detailed comparisons are only executed within each bucket.",
+          "dock": "main",
+          "start": 340.872,
+          "end": 357.576
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The American Soundex algorithm encodes surnames into a four-character code: the first letter followed by three digits representing consonant phonetic classes. Digits map bilabials B, F, P, V to 1; velars and sibilants C, G, J, K, Q, S, X, Z to 2; dentals D and T to 3; liquids L to 4; nasals M and N to 5; and rhotic R to 6.",
+          "dock": "main",
+          "start": 357.576,
+          "end": 384.432
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "However, traditional Soundex has a fatal blind spot: it anchors on the very first character! If a typist misspells Catherine with a K or Smith as Kmith, single-pass Soundex produces a catastrophic false negative. In production, we deploy Multi-Pass Overlapping Blocking: Pass 1 blocks on Soundex surname, while Pass 2 blocks on Postal Code plus Birth Year.",
+          "dock": "main",
+          "start": 384.432,
+          "end": 408.24
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us derive the exact mathematical proof for search space compression under blocking. Consider an enterprise dataset of 100,000 records. Without blocking, the full pairwise comparison universe is N times N minus 1 divided by 2, which equals 4 billion 999 million 950 thousand pairs, or approximately 5.0 billion pairs.",
+          "dock": "main",
+          "start": 408.24,
+          "end": 432.864
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now, suppose we partition the records into B equals 500 balanced phonetic blocking buckets. Each bucket contains n sub b equals 200 records. Within each bucket, we only evaluate n sub b times n sub b minus 1 divided by 2 pairs, which is 19,900 pairs.",
+          "dock": "main",
+          "start": 432.864,
+          "end": 453.12
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Summing across all 500 buckets gives exactly 9 million 950 thousand candidate pairs. The ratio of blocked pairs to brute-force pairs is 9.95 million divided by 5.0 billion, which equals 0.00199. That represents a staggering 99.80 percent reduction in computational search space!",
+          "dock": "main",
+          "start": 453.12,
+          "end": 476.472
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "In 1969, Ivan Fellegi and Alan Sunter published their landmark paper, establishing the mathematical foundations of modern record linkage. Let two tables generate candidate pairs partitioned into true matches M and distinct non-matches U.",
+          "dock": "main",
+          "start": 476.472,
+          "end": 492.648
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "For each attribute k, we define two fundamental conditional probabilities: m sub k is the probability of attribute agreement given the records refer to the same entity. It reflects data entry fidelity, typically ranging from 0.85 to 0.99. In contrast, u sub k is the coincidence probability: the chance that two completely unrelated entities happen to share the attribute by pure coincidence.",
+          "dock": "main",
+          "start": 492.648,
+          "end": 519.672
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Under conditional independence across attributes, the likelihood ratio factors into a product of terms. Taking the base-2 logarithm transforms this product into an additive weight score W of gamma in information bits. If an attribute agrees, it adds positive evidence log2 of m sub k over u sub k; if it disagrees, it adds negative penalty log2 of 1 minus m sub k over 1 minus u sub k.",
+          "dock": "main",
+          "start": 519.672,
+          "end": 547.08
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Not all attribute agreements are created equal. Suppose two records share the attribute Gender equals Male. Because roughly 50% of the population is male, the coincidence probability u is 0.50. Matching on gender yields log2 of 0.95 over 0.50, which is only plus 0.93 bits.",
+          "dock": "main",
+          "start": 547.08,
+          "end": 570.336
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now consider the surname Smith, which appears in 1% of the population. Its u is 0.01, generating plus 6.57 bits. But if two records share the rare surname Zephyros, with a population frequency of one in 100,000, u is 10 to the minus 5, generating a massive plus 16.54 bits of evidence from a single field!",
+          "dock": "main",
+          "start": 570.336,
+          "end": 594.504
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Using Neyman-Pearson lemma bounds, we establish two optimal thresholds: an upper threshold T upper, above which pairs are automatically merged, and a lower threshold T lower, below which pairs are rejected. Pairs falling between these thresholds are routed to human clerical review.",
+          "dock": "main",
+          "start": 594.504,
+          "end": 612.216
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to the Fellegi-Sunter Probabilistic Linkage and Search Compression Workbench. In Tab 1, toggle attribute agreement across Last Name, First Name, Date of Birth, Gender, and Postal Code to inspect how individual bit weights accumulate into the total composite score W of gamma.",
+          "dock": "main",
+          "start": 612.216,
+          "end": 630.312
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Watch how the odds ratio and the Neyman-Pearson triage decision card shift from Auto-Merge to Clerical Audit to Non-Match. In Tab 2, adjust the sliders for database size N and bucket count B to visualize brute-force pair explosion and verify the 99.8% search space reduction in real time.",
+          "dock": "main",
+          "start": 630.312,
+          "end": 649.056
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for our second active checkpoint. Let us verify your quantitative understanding of blocking reduction and Fellegi-Sunter bit weight dynamics.",
+          "dock": "main",
+          "start": 649.056,
+          "end": 658.536
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In a customer deduplication corpus with 100,000 records, you partition records into 500 balanced phonetic blocks of 200 records each. How many candidate pairs survive, what percentage of the brute-force search space is eliminated, and why does matching on a rare surname like Zephyros contribute far more positive bits than matching on Gender?",
+          "dock": "main",
+          "start": 658.536,
+          "end": 679.392
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us examine three landmark empirical case studies where probabilistic record linkage and blocking delivered massive real-world impact. First, in healthcare: Hospital Master Patient Indexes managing 2.4 million electronic health records deployed Soundex surname blocking and Fellegi-Sunter scoring.",
+          "dock": "main",
+          "start": 679.392,
+          "end": 698.112
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "This cut pairwise search space by 99.4%, resolving 312,000 duplicate patient charts with 99.8% precision, and saving 1.2 million dollars annually in redundant diagnostic scans and adverse medication interactions.",
+          "dock": "main",
+          "start": 698.112,
+          "end": 715.224
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Second, the US Census Bureau relies on multi-pass phonetic blocking and Expectation-Maximization estimated Fellegi-Sunter weights to link 300 million decennial census records. And third, in modern AI: web crawls like C4 and FineWeb use MinHash Locality Sensitive Hashing over 5-gram shingles to remove 42% duplicate web text, preventing LLM memorization and dramatically improving perplexity.",
+          "dock": "main",
+          "start": 715.224,
+          "end": 742.176
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Production data quality pipelines require strict contract enforcement. On Slide 15, we encapsulate our record linkage architecture using Pydantic V2 models and type-safe verification routines.",
+          "dock": "main",
+          "start": 742.176,
+          "end": 755.712
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The AttributeLinkageSpec model validates match probability m between 0.5 and 1.0, and coincidence probability u between 0 and 0.6, computing log2 weights on agreement or disagreement. The LinkageTriageResult schema enforces structured outputs with literal triage decisions: AUTO_MERGE, CLERICAL_REVIEW, or NON_MATCH.",
+          "dock": "main",
+          "start": 755.712,
+          "end": 780.072
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The FuzzyMatchingEngine class implements static methods for Levenshtein dynamic programming, Jaro-Winkler prefix scaling, and American Soundex hashing, complete with unit assertions.",
+          "dock": "main",
+          "start": 780.072,
+          "end": 791.592
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Congratulations on completing Chapter 5, Lesson 3: Duplicates and Inconsistency. We have explored the combinatorial barrier of pairwise comparison, formulated Levenshtein and Jaro-Winkler string metrics, derived sub-quadratic blocking compression, mastered Fellegi-Sunter log-likelihood linkage, and implemented production Pydantic V2 models.",
+          "dock": "main",
+          "start": 791.592,
+          "end": 814.416
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Commit these Four Golden Rules to memory: Rule 1: Never compare all pairs directly; deploy multi-pass phonetic blocking to eliminate 99.8% of comparisons. Rule 2: Tailor your edit distance to the domain: use Jaro-Winkler for human names, and token Jaccard for addresses. Rule 3: Deploy Fellegi-Sunter frequency scaling: rare attributes generate decisive bit weights that justify instant auto-merges. And Rule 4: Guard against transitive closure: reject naive connected components to prevent snowball cluster corruption.",
+          "dock": "main",
+          "start": 814.416,
+          "end": 850.392
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In Lesson 5.4, we tackle the next crucial challenge in dataset cleaning: Outliers, Irrelevant Features, and Severe Class Imbalance. I look forward to seeing you there!",
+          "dock": "main",
+          "start": 850.392,
+          "end": 862.608
+        }
+      ]
+    }
+  ]
+}

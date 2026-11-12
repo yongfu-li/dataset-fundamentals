@@ -1,0 +1,257 @@
+{
+  "duration": 749.856,
+  "sentences": [
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 3.6: Bias and Algorithmic Fairness: Harm Taxonomies, Proxy Leakage, and Subgroup Disparity. A dataset is not an objective mirror of reality. Datasets encode historical institutional power relations, systemic socioeconomic exclusions, sampling artifacts, and annotator heuristics.",
+      "start": 0.0,
+      "end": 21.816,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "When machine learning models are trained on biased data, they do not merely replicate human disparities; they automate, amplify, and entrench systemic discrimination under an aura of mathematical objectivity. Today, we formalize the seven-stage lifecycle of data bias, examine the three orthogonal families of mathematical group fairness, prove Kleinberg's fundamental impossibility theorem, and uncover why deleting sensitive columns provides zero defense against proxy reconstruction.",
+      "start": 21.816,
+      "end": 50.664,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Bias is not a monolithic error injected at a single point in the codebase. As formalized in Table 3.6 of the curriculum, data bias contaminates machine learning across seven distinct lifecycle transitions.",
+      "start": 50.664,
+      "end": 64.248,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "First, Historical Bias exists in the world before any collection begins, where true socioeconomic generation is unequal. Second, Representation Bias occurs during sampling when subpopulation probability fails to match the operational target, as uncovered in the Gender Shades benchmark where facial datasets were 79 percent light-skinned.",
+      "start": 64.248,
+      "end": 85.512,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Third, Measurement and Proxy Bias occurs when an engineered numeric feature acts as a distorted proxy for an unobservable latent construct, such as using commercial healthcare expenditures as a proxy for illness severity. Finally, Aggregation, Evaluation, and Deployment Feedback Loops compound these defects, locking models into self-fulfilling prophecies.",
+      "start": 85.512,
+      "end": 107.304,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "To evaluate algorithmic fairness rigorously, we define a unified mathematical framework. Let X be the non-sensitive feature vector, A in {0, 1} be the binary sensitive protected attribute, Y in {0, 1} be the true binary target label, and R equals f of X be the continuous predicted risk score.",
+      "start": 107.304,
+      "end": 128.496,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Every group fairness metric in the scientific literature partitions into exactly three mutually orthogonal conditional independence criteria. First, Independence requires that the prediction is independent of the protected attribute: R independent of A.",
+      "start": 128.496,
+      "end": 143.784,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Second, Separation demands conditional independence given the ground truth target: R independent of A given Y. Third, Sufficiency requires conditional independence of the target given the score: Y independent of A given R. Understanding this tripartite structure is essential because satisfying one family directly conflicts with the others.",
+      "start": 143.784,
+      "end": 163.608,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Let us examine Independence metrics in detail. Demographic Parity requires that the positive prediction rate is identical across protected classes. The Demographic Parity Difference, Delta DP, measures the absolute gap between cohorts.",
+      "start": 163.608,
+      "end": 179.832,
+      "slideIndex": 3
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "In industrial data engineering, the most critical regulatory metric is the Disparate Impact Ratio, or DIR. DIR divides the selection rate of the unprivileged group by that of the privileged group. Under the United States Equal Employment Opportunity Commission Uniform Guidelines, known as the Four-Fifths or 80 percent Rule, any selection pipeline yielding a DIR below 0.80 establishes a prima facie statutory case of illegal discrimination under Title VII of the Civil Rights Act.",
+      "start": 179.832,
+      "end": 209.688,
+      "slideIndex": 3
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "When subpopulation base rates differ, enforcing Demographic Parity forces models to distort qualifications. To avoid this, Moritz Hardt, Eric Price, and Nathan Srebro introduced the Separation family at NeurIPS 2016.",
+      "start": 209.688,
+      "end": 225.768,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Separation requires that the prediction R is conditionally independent of protected attribute A given true outcome Y. In binary decisions, this yields two primary formulations: Equal Opportunity and Equalized Odds.",
+      "start": 225.768,
+      "end": 239.664,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Equal Opportunity demands that the True Positive Rate, or recall for qualified applicants, is identical across groups: TPR_0 equals TPR_1. Equalized Odds is stricter: it demands simultaneous parity across both True Positive Rates and False Positive Rates: TPR_0 equals TPR_1 and FPR_0 equals FPR_1.",
+      "start": 239.664,
+      "end": 264.816,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "We now arrive at Interactive Lab 1: The Algorithmic Fairness and Impossibility Explorer. In this laboratory, you can dynamically adjust subgroup base rates p_0 and p_1, tune decision thresholds theta_0 and theta_1, and explore policy presets.",
+      "start": 264.816,
+      "end": 283.92,
+      "slideIndex": 5
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Notice what happens when unprivileged base rate p_0 is 0.35 and privileged base rate p_1 is 0.55. Under unconstrained optimization with equal thresholds of 0.50, Demographic Parity fails with a Disparate Impact Ratio of 0.72. If you click Enforce Demographic Parity, the selection rates balance, but False Positive Rates diverge sharply, providing empirical evidence of Kleinberg's theorem.",
+      "start": 283.92,
+      "end": 313.464,
+      "slideIndex": 5
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "We have arrived at Active Checkpoint 1. Let us test your operational mastery of the EEOC Four-Fifths Rule.",
+      "start": 313.464,
+      "end": 320.904,
+      "slideIndex": 6
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Consider an enterprise screening pipeline where the unprivileged cohort achieves a 20 percent selection rate, while the privileged cohort achieves a 30 percent selection rate. Diagnose the regulatory compliance state under Title VII of the Civil Rights Act.",
+      "start": 320.904,
+      "end": 336.24,
+      "slideIndex": 6
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "The third family of algorithmic fairness is Sufficiency, which formalizes the concept of Predictive Calibration. Sufficiency demands that the true outcome Y is conditionally independent of protected attribute A given the score R.",
+      "start": 336.24,
+      "end": 350.112,
+      "slideIndex": 7
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Within-Group Calibration requires that for every score r, the empirical probability of a positive outcome equals r across all demographic groups identically: P of Y equals 1 given R equals r and A equals 0 equals r, and similarly for A equals 1. In commercial risk scoring, this was Northpointe's central defense of the COMPAS instrument: a risk score of 7 represented approximately a 60 percent recidivism probability for both Black and White defendants.",
+      "start": 350.112,
+      "end": 378.024,
+      "slideIndex": 7
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Slide 9 covers one of the most profound theoretical results in computer science: the Fundamental Impossibility Theorem of Algorithmic Fairness, established independently by Kleinberg, Mullainathan, and Raghavan, and by Alexandra Chouldechova in 2016 and 2017.",
+      "start": 378.024,
+      "end": 395.712,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Engineers often assume that with enough clean training data and neural capacity, an algorithm can satisfy all intuitive fairness criteria simultaneously. Kleinberg proved that this is mathematically impossible whenever subpopulation base rates differ. Under unequal base rates, an algorithm cannot be simultaneously calibrated and equal in false positive rates. Choosing a fairness metric is not a technical hyperparameter to tune; it is an unavoidable ethical policy decision.",
+      "start": 395.712,
+      "end": 425.352,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Slide 10 debunks the most common anti-pattern in industrial machine learning: Fairness Through Unawareness.",
+      "start": 425.352,
+      "end": 432.0,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Many software teams attempt to prevent discrimination by simply deleting columns representing protected attributes—such as race, gender, or religion—from their training tables. However, modern high-capacity non-linear models easily reconstruct the deleted attribute from correlated auxiliary features like postal ZIP codes, alumni affiliations, or commute distances. Shannon mutual information and Fano's inequality prove that omitting protected columns provides zero protection while blinding developers to algorithmic disparities.",
+      "start": 432.0,
+      "end": 464.928,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Slide 11 reviews four landmark socio-technical case studies that shaped modern AI ethics and regulatory enforcement.",
+      "start": 464.928,
+      "end": 472.776,
+      "slideIndex": 10
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "First, the 2016 COMPAS recidivism investigation by ProPublica exposed how commercial risk scores yielded a forty-five percent false positive rate for Black defendants versus twenty-three percent for white defendants. Second, Amazon's resume engine learned to penalize female candidates because it was trained on ten years of male-skewed engineering resumes. Third, Obermeyer's 2019 study showed that an algorithm triaging two hundred million patients used past health expenditure as a proxy for healthcare need, severely under-enrolling Black patients. Fourth, Buolamwini and Gebru's Gender Shades benchmark proved that commercial facial recognition APIs had a sub-one percent error rate on lighter males but a thirty-five percent error rate on darker females.",
+      "start": 472.776,
+      "end": 518.04,
+      "slideIndex": 10
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 2! This is the Proxy Leakage & Mutual Information Workbench. Here you will observe how auxiliary features leak sensitive protected attributes even when the protected column is completely deleted.",
+      "start": 518.04,
+      "end": 531.984,
+      "slideIndex": 11
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Select different dataset domains above us—from mortgage underwriting to hiring and healthcare. Toggle individual auxiliary features like ZIP code, alumni association, or commute distance, and switch between linear and deep non-linear model capacities. Watch the live Shannon Mutual Information meter and attribute reconstruction accuracy update in real time.",
+      "start": 531.984,
+      "end": 554.616,
+      "slideIndex": 11
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "We have arrived at Active Checkpoint 2! Let us test your analytical understanding of the COMPAS controversy and Kleinberg's Impossibility Theorem.",
+      "start": 554.616,
+      "end": 563.76,
+      "slideIndex": 12
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "In 2016, ProPublica demonstrated that among defendants who did not reoffend, Black individuals had a forty-five percent false positive rate compared to twenty-four percent for white individuals. Northpointe replied that COMPAS was fair because an assigned risk score of seven had an identical sixty percent probability of reoffending regardless of race. How can both statements be mathematically true simultaneously? Select Option A, B, or C above me.",
+      "start": 563.76,
+      "end": 592.32,
+      "slideIndex": 12
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Slide 14 addresses a crucial frontier in dataset engineering: Intersectional Fairness and Subgroup Disparities.",
+      "start": 592.32,
+      "end": 599.64,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Auditing models across single demographic dimensions in isolation creates a false sense of safety. A facial recognition model can demonstrate ninety-five percent accuracy on men and ninety-three percent accuracy on women, while concealing a devastating thirty-five percent failure rate on darker-skinned women. Michael Kearns and colleagues formalized this as fairness gerrymandering in 2018: an algorithm can be fair across every marginal group while committing severe discrimination against intersectional sub-populations. Production auditing must evaluate the Cartesian product of protected attributes.",
+      "start": 599.64,
+      "end": 635.664,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Slide 15 walks through our production Python architecture for automated algorithmic fairness verification.",
+      "start": 635.664,
+      "end": 642.456,
+      "slideIndex": 14
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "In production ML engineering, fairness cannot be a post-hoc PowerPoint slide. We implement the AlgorithmicFairnessAuditor class using Pydantic V2. It ingests thousands of inference evaluation records, computes group confusion matrices, calculates the Disparate Impact Ratio, checks compliance against the EEOC eighty percent rule, evaluates equal opportunity and equalized odds gaps, and flags Kleinberg impossibility witnesses directly within your continuous integration deployment gates.",
+      "start": 642.456,
+      "end": 673.728,
+      "slideIndex": 14
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Congratulations on completing Masterclass Lesson 3.6 on Bias, Fairness, and Representativeness in Datasets!",
+      "start": 673.728,
+      "end": 681.672,
+      "slideIndex": 15
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Let us consolidate our five golden rules of algorithmic fairness engineering. Law One: Fairness through unawareness is an illusion—mutual information allows non-linear models to reconstruct protected attributes from proxies. Law Two: The Impossibility Theorem is non-negotiable—when base rates differ, calibration and equal error rates are mutually incompatible. Law Three: Societal context dictates the metric—allocative domains favor demographic parity or equal opportunity, while punitive domains demand equalized false positive rates. Law Four: Marginal auditing conceals intersectional harm—always audit the Cartesian product of protected attributes. Law Five: Embed automated fairness assertions into your CI/CD pipelines using Pydantic validation.",
+      "start": 681.672,
+      "end": 731.064,
+      "slideIndex": 15
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "In our upcoming masterclass, Lesson 3.7, we will explore Statutory Frameworks & Privacy Laws: examining the General Data Protection Regulation, the California Consumer Privacy Act, HIPAA, and the European Union Artificial Intelligence Act. See you in Lesson 3.7!",
+      "start": 731.064,
+      "end": 749.856,
+      "slideIndex": 15
+    }
+  ]
+}

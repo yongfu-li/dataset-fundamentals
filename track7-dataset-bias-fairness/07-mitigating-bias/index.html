@@ -8910,6 +8910,31 @@ The gradient component along the adversary's detection axis is completely elimin
 </details>
 </details>
 <hr />
+<details class="question">
+<summary>Check 4: Quantile Inversion Distribution Repair vs. Disparate Impact Restoration</summary>
+<p>In Feldman et al.'s quantile distribution repair algorithm, suppose a numerical credit feature <span class="arithmatex">\(X\)</span> has group-conditional cumulative distributions <span class="arithmatex">\(F_0(x)\)</span> for minority group <span class="arithmatex">\(A=0\)</span> and <span class="arithmatex">\(F_1(x)\)</span> for majority group <span class="arithmatex">\(A=1\)</span>.</p>
+<ol>
+<li>Define the repair transformation <span class="arithmatex">\(\tilde{X}\)</span> with partial repair parameter <span class="arithmatex">\(\lambda \in [0, 1]\)</span>.</li>
+<li>Explain why setting <span class="arithmatex">\(\lambda = 1.0\)</span> completely eliminates the ability of <em>any</em> downstream classifier to predict sensitive attribute <span class="arithmatex">\(A\)</span> from <span class="arithmatex">\(\tilde{X}\)</span>.</li>
+</ol>
+<details class="success">
+<summary>Reveal Detailed Solution &amp; Proof</summary>
+<p><strong>1. Partial Quantile Repair Formula:</strong>
+Let <span class="arithmatex">\(F_{\text{target}}^{-1}(q)\)</span> be the median quantile function across groups: <span class="arithmatex">\(F_{\text{target}}^{-1}(q) = \text{median}_{a \in \{0, 1\}} F_a^{-1}(q)\)</span>.
+The partially repaired feature <span class="arithmatex">\(\tilde{X}\)</span> for an individual with attribute <span class="arithmatex">\(A=a\)</span> and feature value <span class="arithmatex">\(X=x\)</span> is:
+$<span class="arithmatex">\(\tilde{X} = (1 - \lambda) x + \lambda F_{\text{target}}^{-1}(F_a(x))\)</span>$
+where <span class="arithmatex">\(F_a(x)\)</span> computes the individual's percentile within their own demographic group.</p>
+<p><strong>2. Full Repair (<span class="arithmatex">\(\lambda = 1.0\)</span>) Information Erasure Proof:</strong>
+When <span class="arithmatex">\(\lambda = 1.0\)</span>:
+$<span class="arithmatex">\(\tilde{X} = F_{\text{target}}^{-1}(F_a(X))\)</span>$
+By the probability integral transform, for any continuous random variable <span class="arithmatex">\(X \mid A=a\)</span>, the percentile <span class="arithmatex">\(Q = F_a(X)\)</span> is uniformly distributed on <span class="arithmatex">\([0, 1]\)</span>, completely independent of <span class="arithmatex">\(A\)</span>:
+$<span class="arithmatex">\(\mathbb{P}(Q \le q \mid A = a) = q, \quad \forall a \in \{0, 1\}\)</span>$
+Since <span class="arithmatex">\(F_{\text{target}}^{-1}\)</span> is a deterministic monotonic mapping applied identically across all groups, the distribution of <span class="arithmatex">\(\tilde{X} \mid A=0\)</span> and <span class="arithmatex">\(\tilde{X} \mid A=1\)</span> are identical:
+$<span class="arithmatex">\(\mathbb{P}(\tilde{X} \le t \mid A = 0) = \mathbb{P}(\tilde{X} \le t \mid A = 1) = F_{\text{target}}(t)\)</span>$
+Therefore, <span class="arithmatex">\(\tilde{X} \perp A\)</span>. By the Data Processing Inequality, no downstream model (linear or non-linear) can extract mutual information about <span class="arithmatex">\(A\)</span> from <span class="arithmatex">\(\tilde{X}\)</span>, guaranteeing that mutual information <span class="arithmatex">\(I(\tilde{X}; A) = 0\)</span>.</p>
+</details>
+</details>
+<hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-kamiran2012"></a><strong>[Kamiran2012]</strong> F. Kamiran and T. Calders, "Data preprocessing techniques for classification without discrimination," <em>Knowledge and Information Systems</em>, vol. 33, no. 1, pp. 1–33, 2012. <a href="https://doi.org/10.1007/s10115-011-0463-8">DOI: 10.1007/s10115-011-0463-8</a>.</li>

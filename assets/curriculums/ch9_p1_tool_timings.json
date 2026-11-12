@@ -1,0 +1,178 @@
+{
+  "ch9_p1_sim1_solo.mp3": {
+    "duration": 18.72,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the M/M/1/K Queueing Backpressure and Shannon Uplink Studio! Toggle Token-Bucket Reactive Backpressure or switch between Burst Traffic Spike and Shannon Uplink Saturation to watch Little's Law concurrency, the overflow drop curve, and physical link margins update live!",
+        "start": 0.0,
+        "end": 18.72
+      }
+    ]
+  },
+  "ch9_p1_sim1_duo.mp3": {
+    "duration": 17.688,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Look at the two charts above us, Nova! Under the Burst Traffic Spike, rho hits 1.25 and unthrottled queue loss climbs to 20.19 percent—but clicking Token-Bucket Backpressure immediately clamps admitted flow to 900 events per second and cuts overflow down to 1.38 percent!",
+        "start": 0.0,
+        "end": 17.688
+      }
+    ]
+  },
+  "ch9_p1_chk1_solo.mp3": {
+    "duration": 20.136,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Active Checkpoint 1: A distributed gateway receives 2,500 telemetry events per second at average residency latency 0.08 seconds. Compute baseline concurrency L under Little's Law, and explain why provisioned queue capacity must exceed L. Select Option A, B, or C above me!",
+        "start": 0.0,
+        "end": 20.136
+      }
+    ]
+  },
+  "ch9_p1_chk1_duo.mp3": {
+    "duration": 14.616,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "2,500 events per second at 80 milliseconds latency! Compute baseline concurrency L under Little's Law and identify how much burst headroom protects against M/M/1/K eviction stalls in the three options above me!",
+        "start": 0.0,
+        "end": 14.616
+      }
+    ]
+  },
+  "ch9_p1_chk1_feedback_correct.mp3": {
+    "duration": 27.024,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Correct! By Little's Law, L equals 2,500 times 0.08, yielding 200 concurrent in-flight events at steady state. However, finite M/M/1/K queueing shows that transient arrival spikes pushing rho toward 1 or downstream fsync stalls amplify queue depth non-linearly, requiring 3x to 5x headroom alongside Token-Bucket Reactive Backpressure!",
+        "start": 0.0,
+        "end": 27.024
+      }
+    ]
+  },
+  "ch9_p1_chk1_feedback_incorrect.mp3": {
+    "duration": 25.32,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Incorrect. Under Little's Law, L equals lambda times W—so 2,500 events per second times 0.08 seconds equals 200 concurrent events, not 2,500 or 31,250. Sizing strictly at 200 causes immediate packet drops during transient bursts unless you provision 3x to 5x headroom plus reactive backpressure.",
+        "start": 0.0,
+        "end": 25.32
+      }
+    ]
+  },
+  "ch9_p1_sim2_solo.mp3": {
+    "duration": 18.816,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the Multi-Modal Synchronization and Batch versus Stream Explorer! Switch between Software NTP Drift and IEEE 1588 Hardware PTP, or adjust velocity, peak clock skew, and batch windows to inspect bounding-box localization shear and Small-Files Parquet density!",
+        "start": 0.0,
+        "end": 18.816
+      }
+    ]
+  },
+  "ch9_p1_sim2_duo.mp3": {
+    "duration": 22.632,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Look at the cyan LiDAR and red Camera boxes drifting 1.400 meters apart under 50-millisecond NTP above us! Snapping to the IEEE 1588 PTP preset collapses RMS jitter to 0.10 milliseconds and aligns both boxes within 7 millimeters while keeping streaming 11,984 times faster than a 60-second batch!",
+        "start": 0.0,
+        "end": 22.632
+      }
+    ]
+  },
+  "ch9_p1_chk2_solo.mp3": {
+    "duration": 20.856,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Active Checkpoint 2: An industrial cellular uplink operates across 2.0 megahertz at 15 decibels SNR, while sensors emit 2,500 events per second of 600-byte frames. Evaluate Shannon capacity C against ingress demand R_ingest, and choose the physically valid remedy above me!",
+        "start": 0.0,
+        "end": 20.856
+      }
+    ]
+  },
+  "ch9_p1_chk2_duo.mp3": {
+    "duration": 14.208,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "2.0 megahertz at 15 decibels SNR versus 2,500 frames per second at 600 bytes each! Convert decibels to linear signal-to-noise ratio carefully and check whether this raw stream clears Shannon's limit!",
+        "start": 0.0,
+        "end": 14.208
+      }
+    ]
+  },
+  "ch9_p1_chk2_feedback_correct.mp3": {
+    "duration": 29.664,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Spot on! Converting 15 decibels gives linear S over N equal to 31.6228, placing Shannon capacity C at 10.056 megabits per second. Meanwhile, 2,500 frames times 4,800 bits equals 12.000 megabits per second—creating a negative 1.944 megabit saturation deficit that only edge delta compression or adaptive downsampling can resolve!",
+        "start": 0.0,
+        "end": 29.664
+      }
+    ]
+  },
+  "ch9_p1_chk2_feedback_incorrect.mp3": {
+    "duration": 28.752,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Incorrect. Remember to convert 15 decibels into linear ratio 10 to the 1.5 power, about 31.6228, giving Shannon capacity 10.056 megabits per second. Multiplying 2,500 events by 4,800 bits gives 12.000 megabits per second—exceeding capacity by 1.944 megabits so socket retries cannot prevent packet loss.",
+        "start": 0.0,
+        "end": 28.752
+      }
+    ]
+  },
+  "ch9_p1_chk3_solo.mp3": {
+    "duration": 24.36,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Active Checkpoint 3: At 28 meters per second highway speed, compare LiDAR-Camera bounding-box dislocation under 50-millisecond software NTP versus 0.25-millisecond IEEE 1588 PTP, and identify why Lakehouses compact telemetry into 128-megabyte Parquet stripes. Select Option A, B, or C above me!",
+        "start": 0.0,
+        "end": 24.36
+      }
+    ]
+  },
+  "ch9_p1_chk3_duo.mp3": {
+    "duration": 15.576,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "28 meters per second comparing 50-millisecond NTP against 0.25-millisecond PTP—plus why streaming pipelines shouldn't emit raw 500-byte files directly to cloud object stores! Lock in the airtight engineering option above me!",
+        "start": 0.0,
+        "end": 15.576
+      }
+    ]
+  },
+  "ch9_p1_chk3_feedback_correct.mp3": {
+    "duration": 27.096,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Outstanding synthesis! At 28 meters per second, 50-millisecond NTP produces 1.40 meters of lateral bounding-box shear whereas IEEE 1588 PTP cuts drift down to 7.0 millimeters. Meanwhile, compacting events into 128-megabyte Parquet row groups eliminates S3 metadata catalog overhead and enables complete end-of-day cross-partition reconciliation!",
+        "start": 0.0,
+        "end": 27.096
+      }
+    ]
+  },
+  "ch9_p1_chk3_feedback_incorrect.mp3": {
+    "duration": 28.896,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Incorrect. Check your units: 28 meters per second times 0.050 seconds equals 1.40 meters, whereas 28 times 0.00025 seconds equals 0.007 meters—just 7.0 millimeters! And flushing uncompacted 500-byte events creates 36,000 tiny objects per hour, burying storage scans under Small-Files metadata overhead.",
+        "start": 0.0,
+        "end": 28.896
+      }
+    ]
+  }
+}

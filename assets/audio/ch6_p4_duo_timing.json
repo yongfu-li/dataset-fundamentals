@@ -1,0 +1,8622 @@
+{
+  "duration": 714.84,
+  "sentences": [
+    {
+      "slide": 1,
+      "turn": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, in Lesson 6.3 we mastered variance, skewness, kurtosis, and Eve's Law. If we already know the numerical moments of our data, why do we need to visualize them?",
+      "start": 0.0,
+      "end": 11.59,
+      "duration": 11.59
+    },
+    {
+      "slide": 1,
+      "turn": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because scalar moments project high-dimensional data geometry down to single numbers, Kaito! As Frank Anscombe famously demonstrated, completely different distributions\u2014linear, parabolic, outliers, and leverage clusters\u2014can share identical means, variances, and regression slopes.",
+      "start": 11.59,
+      "end": 30.77,
+      "duration": 19.18
+    },
+    {
+      "slide": 1,
+      "turn": 2,
+      "speaker": "Kaito",
+      "text": "Right! The human visual cortex can process topological manifolds, clusters, and boundaries that a variance calculation completely flattens. So visualization isn't just aesthetic; it's an empirical verification necessity.",
+      "start": 30.77,
+      "end": 46.1,
+      "duration": 15.34
+    },
+    {
+      "slide": 1,
+      "turn": 3,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Today we formalize the mathematics of visualization: optimal histogram bin widths, kernel density bandwidths, Tukey fence geometries, and overplotting mitigation in massive datasets.",
+      "start": 46.1,
+      "end": 59.57,
+      "duration": 13.46
+    },
+    {
+      "slide": 2,
+      "turn": 4,
+      "speaker": "Kaito",
+      "text": "Histograms feel so natural, Dr. Nova! Why do statisticians often prefer Kernel Density Estimation over simple histogram bars?",
+      "start": 59.57,
+      "end": 69.0,
+      "duration": 9.43
+    },
+    {
+      "slide": 2,
+      "turn": 5,
+      "speaker": "Dr. Nova",
+      "text": "Because histograms suffer from an insidious artifact called origin sensitivity! If you shift your bin boundaries by just half a bin width to the right, unimodal data can suddenly appear bimodal, purely from bin edge quantization.",
+      "start": 69.0,
+      "end": 83.09,
+      "duration": 14.09
+    },
+    {
+      "slide": 2,
+      "turn": 6,
+      "speaker": "Kaito",
+      "text": "Wait, shifting the origin can fake a second mode? That's terrifying for automated anomaly detection!",
+      "start": 83.09,
+      "end": 90.72,
+      "duration": 7.63
+    },
+    {
+      "slide": 2,
+      "turn": 7,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. KDE places the smoothing window over each data point itself rather than fixing a rigid grid, making density estimation continuous, differentiable, and invariant to origin shifts.",
+      "start": 90.72,
+      "end": 103.94,
+      "duration": 13.22
+    },
+    {
+      "slide": 3,
+      "turn": 8,
+      "speaker": "Kaito",
+      "text": "Every spreadsheet defaults to Sturges' rule! Why do you call Sturges a fallacy?",
+      "start": 103.94,
+      "end": 110.14,
+      "duration": 6.19
+    },
+    {
+      "slide": 3,
+      "turn": 9,
+      "speaker": "Dr. Nova",
+      "text": "Because Sturges' rule was derived in 1926 by assuming a discrete binomial approximation to a Gaussian! For one million observations, Sturges allocates only 21 bins. That is catastrophic oversmoothing that obliterates fine sub-clusters.",
+      "start": 110.14,
+      "end": 127.3,
+      "duration": 17.16
+    },
+    {
+      "slide": 3,
+      "turn": 10,
+      "speaker": "Kaito",
+      "text": "Twenty-one bins for a million data points? That would turn complex multimodal web traffic into a featureless blob!",
+      "start": 127.3,
+      "end": 135.38,
+      "duration": 8.09
+    },
+    {
+      "slide": 3,
+      "turn": 11,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. And if a single outlier inflates the range, Sturges leaves twenty empty bins while packing ninety-nine point nine percent of data into bin one. Freedman-Diaconis uses the interquartile range instead of the total range, scaling with n to the negative one-third and resisting outliers with a twenty-five percent breakdown point.",
+      "start": 135.38,
+      "end": 156.43,
+      "duration": 21.05
+    },
+    {
+      "slide": 4,
+      "turn": 12,
+      "speaker": "Kaito",
+      "text": "Wait, Dr. Nova! In histograms the optimal bin width scaled as n to the negative one-third, but in KDE the bandwidth scales as n to the negative one-fifth! Why the difference?",
+      "start": 156.43,
+      "end": 168.7,
+      "duration": 12.26
+    },
+    {
+      "slide": 4,
+      "turn": 13,
+      "speaker": "Dr. Nova",
+      "text": "Because symmetric kernels cancel out first-order bias terms, Kaito! The linear Taylor term vanishes due to kernel symmetry, so bias begins only at the second derivative f-double-prime of x.",
+      "start": 168.7,
+      "end": 181.15,
+      "duration": 12.46
+    },
+    {
+      "slide": 4,
+      "turn": 14,
+      "speaker": "Kaito",
+      "text": "Aha! That allows the bandwidth to shrink more slowly, which suppresses variance while bias stays small. So KDE converges at order n to the minus four-fifths, strictly beating histograms!",
+      "start": 181.15,
+      "end": 194.06,
+      "duration": 12.91
+    },
+    {
+      "slide": 4,
+      "turn": 15,
+      "speaker": "Dr. Nova",
+      "text": "Brilliant deduction, Kaito! That rate advantage is why continuous KDE provides vastly superior density estimation for smooth distributions.",
+      "start": 194.06,
+      "end": 204.19,
+      "duration": 10.13
+    },
+    {
+      "slide": 5,
+      "turn": 16,
+      "speaker": "Kaito",
+      "text": "Boundary leakage sounds like a serious issue in engineering! If we measure API response times, latency can never be negative. But standard KDE draws a tail below zero milliseconds!",
+      "start": 204.19,
+      "end": 217.03,
+      "duration": 12.84
+    },
+    {
+      "slide": 5,
+      "turn": 17,
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito! Symmetric kernels center probability bumps on points near zero, and half of that bump extends into negative numbers where data cannot physically exist. That makes the density at zero appear artificially cut in half.",
+      "start": 217.03,
+      "end": 232.99,
+      "duration": 15.96
+    },
+    {
+      "slide": 5,
+      "turn": 18,
+      "speaker": "Kaito",
+      "text": "And boundary reflection fixes that by taking all the mass that leaked below zero and folding it over the boundary back into positive space!",
+      "start": 232.99,
+      "end": 240.77,
+      "duration": 7.78
+    },
+    {
+      "slide": 5,
+      "turn": 19,
+      "speaker": "Dr. Nova",
+      "text": "Spot on. Let's enter the interactive laboratory next to test bandwidth tuning and witness boundary reflection in real time.",
+      "start": 240.77,
+      "end": 249.31,
+      "duration": 8.54
+    },
+    {
+      "slide": 6,
+      "turn": 20,
+      "speaker": "Kaito",
+      "text": "Awesome! I have the bandwidth slider in my hands! Look what happens when I drag h down to 0.15: the curve turns into an oscillatory mountain range of spikes!",
+      "start": 249.31,
+      "end": 261.1,
+      "duration": 11.78
+    },
+    {
+      "slide": 6,
+      "turn": 21,
+      "speaker": "Dr. Nova",
+      "text": "That is classic under-smoothing, Kaito: high variance where every individual sample point creates its own mode. Now drag h up to 1.8.",
+      "start": 261.1,
+      "end": 270.94,
+      "duration": 9.84
+    },
+    {
+      "slide": 6,
+      "turn": 22,
+      "speaker": "Kaito",
+      "text": "Whoa, now it's a giant flat hill! That's over-smoothing: massive bias. And look at the zero boundary: without reflection, tons of probability is leaking below zero!",
+      "start": 270.94,
+      "end": 282.79,
+      "duration": 11.86
+    },
+    {
+      "slide": 6,
+      "turn": 23,
+      "speaker": "Dr. Nova",
+      "text": "Check the Boundary Reflection box and watch the folded density restore exact mass conservation right at zero milliseconds.",
+      "start": 282.79,
+      "end": 290.4,
+      "duration": 7.61
+    },
+    {
+      "slide": 7,
+      "turn": 24,
+      "speaker": "Kaito",
+      "text": "Our first knowledge check! A data engineer used Sturges' rule on one million request records with long-tail timeouts, and the histogram look completely distorted. Why did Sturges fail?",
+      "start": 290.4,
+      "end": 302.88,
+      "duration": 12.48
+    },
+    {
+      "slide": 7,
+      "turn": 25,
+      "speaker": "Dr. Nova",
+      "text": "Evaluate the mathematical reasons behind Sturges' failure and how Freedman-Diaconis resolves both sample size starvation and outlier inflation.",
+      "start": 302.88,
+      "end": 311.86,
+      "duration": 8.98
+    },
+    {
+      "slide": 8,
+      "turn": 26,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, I used to think the whiskers on a boxplot were drawn exactly at Q1 minus 1.5 times IQR and Q3 plus 1.5 times IQR!",
+      "start": 311.86,
+      "end": 321.41,
+      "duration": 9.55
+    },
+    {
+      "slide": 8,
+      "turn": 27,
+      "speaker": "Dr. Nova",
+      "text": "That is one of the most widespread myths in data science, Kaito! The fences are conceptual boundaries. The whiskers must stop at the furthest actual data point inside those fences.",
+      "start": 321.41,
+      "end": 333.91,
+      "duration": 12.5
+    },
+    {
+      "slide": 8,
+      "turn": 28,
+      "speaker": "Kaito",
+      "text": "So if our highest point inside the fence is 82, and the fence is at 90, the whisker stops at 82! And if a point sits at 95, it's plotted as a lone dot.",
+      "start": 333.91,
+      "end": 344.66,
+      "duration": 10.75
+    },
+    {
+      "slide": 8,
+      "turn": 29,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. That guarantees that whisker tips represent true empirical data, not theoretical empty space.",
+      "start": 344.66,
+      "end": 352.73,
+      "duration": 8.06
+    },
+    {
+      "slide": 9,
+      "turn": 30,
+      "speaker": "Kaito",
+      "text": "Wait, Dr. Nova! A unimodal Gaussian and a bimodal mixture can have the exact same boxplot? How is that mathematically possible?",
+      "start": 352.73,
+      "end": 363.26,
+      "duration": 10.54
+    },
+    {
+      "slide": 9,
+      "turn": 31,
+      "speaker": "Dr. Nova",
+      "text": "Because quantiles care only about rank ordering, Kaito! If twenty-five percent of observations fall below forty, fifty percent below fifty, and seventy-five percent below sixty, the boxplot is identical whether probability mass fills the middle or splits into two separate peaks.",
+      "start": 363.26,
+      "end": 380.86,
+      "duration": 17.59
+    },
+    {
+      "slide": 9,
+      "turn": 32,
+      "speaker": "Kaito",
+      "text": "So if our customers are split into budget users and enterprise users, a boxplot would show a healthy middle-class customer base that doesn't actually exist!",
+      "start": 380.86,
+      "end": 389.83,
+      "duration": 8.98
+    },
+    {
+      "slide": 9,
+      "turn": 33,
+      "speaker": "Dr. Nova",
+      "text": "Precisely! That's why violin plots and KDE overlays are mandatory whenever evaluating multi-modal customer or system telemetry.",
+      "start": 389.83,
+      "end": 399.29,
+      "duration": 9.46
+    },
+    {
+      "slide": 10,
+      "turn": 34,
+      "speaker": "Kaito",
+      "text": "Wait, Dr. Nova! If histograms need bin tuning and KDE needs bandwidth tuning, does the Empirical CDF need any tuning at all?",
+      "start": 399.29,
+      "end": 408.67,
+      "duration": 9.38
+    },
+    {
+      "slide": 10,
+      "turn": 35,
+      "speaker": "Dr. Nova",
+      "text": "Zero tuning parameters, Kaito! The empirical CDF is the definitive non-parametric ground truth. Every single data point steps the function up by exactly 1 over n.",
+      "start": 408.67,
+      "end": 421.15,
+      "duration": 12.48
+    },
+    {
+      "slide": 10,
+      "turn": 36,
+      "speaker": "Kaito",
+      "text": "And the DKW inequality gives us a uniform confidence band that brackets the true distribution across all x simultaneously! How wide is that band for five thousand points at ninety-five percent confidence?",
+      "start": 421.15,
+      "end": 434.09,
+      "duration": 12.94
+    },
+    {
+      "slide": 10,
+      "turn": 37,
+      "speaker": "Dr. Nova",
+      "text": "Plugging n equals 5000 and alpha equals 0.05 into epsilon yields about one point nine percent. We can state with ninety-five percent confidence that the true continuous CDF never deviates from our empirical curve by more than one point nine percent anywhere on the real line.",
+      "start": 434.09,
+      "end": 452.06,
+      "duration": 17.98
+    },
+    {
+      "slide": 11,
+      "turn": 38,
+      "speaker": "Kaito",
+      "text": "I tried plotting two million telemetry points on a scatter plot once, and my browser froze! When it finally rendered, it was just a solid blob of black ink.",
+      "start": 452.06,
+      "end": 461.98,
+      "duration": 9.91
+    },
+    {
+      "slide": 11,
+      "turn": 39,
+      "speaker": "Dr. Nova",
+      "text": "That is Cleveland's ink saturation threshold in action, Kaito! Once data points overlap, human vision cannot distinguish between a hundred observations and ten thousand observations.",
+      "start": 461.98,
+      "end": 473.93,
+      "duration": 11.95
+    },
+    {
+      "slide": 11,
+      "turn": 40,
+      "speaker": "Kaito",
+      "text": "And why are hexagonal bins better than square bins? Both partition a 2D plane into a grid!",
+      "start": 473.93,
+      "end": 481.03,
+      "duration": 7.1
+    },
+    {
+      "slide": 11,
+      "turn": 41,
+      "speaker": "Dr. Nova",
+      "text": "Because hexagons are the regular polygon closest to a circle that tiles a plane without gaps! A square has corners that are forty-one percent further from the center than its edges. Hexagons have six equidistant neighbors, giving symmetric radial resolution with zero directional distortion.",
+      "start": 481.03,
+      "end": 499.37,
+      "duration": 18.34
+    },
+    {
+      "slide": 12,
+      "turn": 42,
+      "speaker": "Kaito",
+      "text": "Look at the Raw Scatter mode with 3,000 points: it's pure ink saturation! I can't tell where the points are clustering at all.",
+      "start": 499.37,
+      "end": 507.74,
+      "duration": 8.38
+    },
+    {
+      "slide": 12,
+      "turn": 43,
+      "speaker": "Dr. Nova",
+      "text": "Now toggle to Hexbin Mode, Kaito. See how the hex cells light up in yellow and crimson where the true density peak resides?",
+      "start": 507.74,
+      "end": 516.05,
+      "duration": 8.3
+    },
+    {
+      "slide": 12,
+      "turn": 44,
+      "speaker": "Kaito",
+      "text": "That's incredible! The core mode emerges immediately. Now let me switch to Monotonic Exponential data: Spearman rho is 1.0, while Pearson r drops to 0.79 because of non-linear curvature!",
+      "start": 516.05,
+      "end": 530.3,
+      "duration": 14.26
+    },
+    {
+      "slide": 12,
+      "turn": 45,
+      "speaker": "Dr. Nova",
+      "text": "And if you drag up the outlier leverage slider, Pearson r collapses negative, while Spearman rho stays rock solid. That proves the resilience of rank correlation.",
+      "start": 530.3,
+      "end": 540.77,
+      "duration": 10.46
+    },
+    {
+      "slide": 13,
+      "turn": 46,
+      "speaker": "Kaito",
+      "text": "Our final checkpoint! We have Pearson r at 0.82, Spearman rho at 0.98, and Kendall tau at 0.94. Then we apply a strictly increasing exponential transform: Y prime equals exp of Y. What happens to the three metrics?",
+      "start": 540.77,
+      "end": 558.58,
+      "duration": 17.81
+    },
+    {
+      "slide": 13,
+      "turn": 47,
+      "speaker": "Dr. Nova",
+      "text": "Think carefully about which metrics are invariant under affine linear maps versus strictly monotonic maps. Lock in your choice!",
+      "start": 558.58,
+      "end": 567.36,
+      "duration": 8.78
+    },
+    {
+      "slide": 14,
+      "turn": 48,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, if Spearman rho and Kendall tau are both rank-based and invariant to monotonic transformations, when should I choose Kendall tau over Spearman?",
+      "start": 567.36,
+      "end": 576.0,
+      "duration": 8.64
+    },
+    {
+      "slide": 14,
+      "turn": 49,
+      "speaker": "Dr. Nova",
+      "text": "Kendall tau is vastly superior for small sample sizes and hypothesis testing, Kaito! Its test statistic converges to normality much faster, and its denominator directly counts concordant versus discordant pairs without squaring rank differences.",
+      "start": 576.0,
+      "end": 592.37,
+      "duration": 16.37
+    },
+    {
+      "slide": 14,
+      "turn": 50,
+      "speaker": "Kaito",
+      "text": "So Kendall tau gives us an exact probability: the probability that two random observations are ordered the same way minus the probability they are inverted!",
+      "start": 592.37,
+      "end": 601.25,
+      "duration": 8.88
+    },
+    {
+      "slide": 14,
+      "turn": 51,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. While Spearman rho is easier to compute on millions of rows using O(n log n) sorting, Kendall tau provides the cleanest probabilistic meaning.",
+      "start": 601.25,
+      "end": 612.31,
+      "duration": 11.06
+    },
+    {
+      "slide": 15,
+      "turn": 52,
+      "speaker": "Kaito",
+      "text": "The LiDAR and Radar case study is terrifying! Because ninety percent of driving happened on dry highways, aggregate Pearson correlation stayed above 0.9, while the vehicle was practically blind in the rain!",
+      "start": 612.31,
+      "end": 625.22,
+      "duration": 12.91
+    },
+    {
+      "slide": 15,
+      "turn": 53,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. High-speed highway driving created massive linear scale that masked the rainy segments. Only when safety engineers segmented by precipitation and tracked Spearman rank did the sensor disagreement reveal itself.",
+      "start": 625.22,
+      "end": 639.74,
+      "duration": 14.52
+    },
+    {
+      "slide": 15,
+      "turn": 54,
+      "speaker": "Kaito",
+      "text": "And with the database contention, CPU was flat until a sudden vertical cliff at 1,024 workers. Pearson correlation thought the relationship was weak, but Spearman rank detected the monotonic jump!",
+      "start": 639.74,
+      "end": 652.58,
+      "duration": 12.84
+    },
+    {
+      "slide": 15,
+      "turn": 55,
+      "speaker": "Dr. Nova",
+      "text": "And the hexagonal binning plot showed the infrastructure team exactly where the connection pool thread wall was located. Visual geometry and robust metrics save production systems.",
+      "start": 652.58,
+      "end": 663.98,
+      "duration": 11.4
+    },
+    {
+      "slide": 16,
+      "turn": 56,
+      "speaker": "Kaito",
+      "text": "What an eye-opening masterclass, Dr. Nova! From MISE Taylor expansions and Parzen-Rosenblatt KDE to the DKW uniform confidence envelope and hexagonal binning, our visual toolkit is complete.",
+      "start": 663.98,
+      "end": 676.97,
+      "duration": 12.98
+    },
+    {
+      "slide": 16,
+      "turn": 57,
+      "speaker": "Dr. Nova",
+      "text": "You now understand that visualization is not mere graphic design, Kaito\u2014it is a rigorous branch of mathematical estimation theory. Follow our four cardinal rules whenever you visualize empirical distributions.",
+      "start": 676.97,
+      "end": 690.43,
+      "duration": 13.46
+    },
+    {
+      "slide": 16,
+      "turn": 58,
+      "speaker": "Kaito",
+      "text": "Freedman-Diaconis binning, violin plots for multimodal safety, Pearson paired with Spearman, and hexagonal binning above ten thousand points. What is waiting for us in Lesson 6.5?",
+      "start": 690.43,
+      "end": 702.46,
+      "duration": 12.02
+    },
+    {
+      "slide": 16,
+      "turn": 59,
+      "speaker": "Dr. Nova",
+      "text": "In Lesson 6.5, we expand into higher dimensions: Multivariate Visualization, PCA biplots, t-SNE manifolds, and parallel coordinates. See you there!",
+      "start": 702.46,
+      "end": 714.84,
+      "duration": 12.38
+    }
+  ],
+  "words": [
+    {
+      "word": "dr",
+      "start": 0.0,
+      "end": 0.39
+    },
+    {
+      "word": "nova",
+      "start": 0.39,
+      "end": 0.77
+    },
+    {
+      "word": "in",
+      "start": 0.77,
+      "end": 1.16
+    },
+    {
+      "word": "lesson",
+      "start": 1.16,
+      "end": 1.55
+    },
+    {
+      "word": "63",
+      "start": 1.55,
+      "end": 1.93
+    },
+    {
+      "word": "we",
+      "start": 1.93,
+      "end": 2.32
+    },
+    {
+      "word": "mastered",
+      "start": 2.32,
+      "end": 2.7
+    },
+    {
+      "word": "variance",
+      "start": 2.7,
+      "end": 3.09
+    },
+    {
+      "word": "skewness",
+      "start": 3.09,
+      "end": 3.48
+    },
+    {
+      "word": "kurtosis",
+      "start": 3.48,
+      "end": 3.86
+    },
+    {
+      "word": "and",
+      "start": 3.86,
+      "end": 4.25
+    },
+    {
+      "word": "eves",
+      "start": 4.25,
+      "end": 4.64
+    },
+    {
+      "word": "law",
+      "start": 4.64,
+      "end": 5.02
+    },
+    {
+      "word": "if",
+      "start": 5.02,
+      "end": 5.41
+    },
+    {
+      "word": "we",
+      "start": 5.41,
+      "end": 5.79
+    },
+    {
+      "word": "already",
+      "start": 5.79,
+      "end": 6.18
+    },
+    {
+      "word": "know",
+      "start": 6.18,
+      "end": 6.57
+    },
+    {
+      "word": "the",
+      "start": 6.57,
+      "end": 6.95
+    },
+    {
+      "word": "numerical",
+      "start": 6.95,
+      "end": 7.34
+    },
+    {
+      "word": "moments",
+      "start": 7.34,
+      "end": 7.73
+    },
+    {
+      "word": "of",
+      "start": 7.73,
+      "end": 8.11
+    },
+    {
+      "word": "our",
+      "start": 8.11,
+      "end": 8.5
+    },
+    {
+      "word": "data",
+      "start": 8.5,
+      "end": 8.89
+    },
+    {
+      "word": "why",
+      "start": 8.89,
+      "end": 9.27
+    },
+    {
+      "word": "do",
+      "start": 9.27,
+      "end": 9.66
+    },
+    {
+      "word": "we",
+      "start": 9.66,
+      "end": 10.04
+    },
+    {
+      "word": "need",
+      "start": 10.04,
+      "end": 10.43
+    },
+    {
+      "word": "to",
+      "start": 10.43,
+      "end": 10.82
+    },
+    {
+      "word": "visualize",
+      "start": 10.82,
+      "end": 11.2
+    },
+    {
+      "word": "them",
+      "start": 11.2,
+      "end": 11.59
+    },
+    {
+      "word": "because",
+      "start": 11.59,
+      "end": 12.19
+    },
+    {
+      "word": "scalar",
+      "start": 12.19,
+      "end": 12.79
+    },
+    {
+      "word": "moments",
+      "start": 12.79,
+      "end": 13.39
+    },
+    {
+      "word": "project",
+      "start": 13.39,
+      "end": 13.99
+    },
+    {
+      "word": "highdimensional",
+      "start": 13.99,
+      "end": 14.59
+    },
+    {
+      "word": "data",
+      "start": 14.59,
+      "end": 15.19
+    },
+    {
+      "word": "geometry",
+      "start": 15.19,
+      "end": 15.79
+    },
+    {
+      "word": "down",
+      "start": 15.79,
+      "end": 16.38
+    },
+    {
+      "word": "to",
+      "start": 16.38,
+      "end": 16.98
+    },
+    {
+      "word": "single",
+      "start": 16.98,
+      "end": 17.58
+    },
+    {
+      "word": "numbers",
+      "start": 17.58,
+      "end": 18.18
+    },
+    {
+      "word": "kaito",
+      "start": 18.18,
+      "end": 18.78
+    },
+    {
+      "word": "as",
+      "start": 18.78,
+      "end": 19.38
+    },
+    {
+      "word": "frank",
+      "start": 19.38,
+      "end": 19.98
+    },
+    {
+      "word": "anscombe",
+      "start": 19.98,
+      "end": 20.58
+    },
+    {
+      "word": "famously",
+      "start": 20.58,
+      "end": 21.18
+    },
+    {
+      "word": "demonstrated",
+      "start": 21.18,
+      "end": 21.78
+    },
+    {
+      "word": "completely",
+      "start": 21.78,
+      "end": 22.38
+    },
+    {
+      "word": "different",
+      "start": 22.38,
+      "end": 22.98
+    },
+    {
+      "word": "distributionslinear",
+      "start": 22.98,
+      "end": 23.58
+    },
+    {
+      "word": "parabolic",
+      "start": 23.58,
+      "end": 24.18
+    },
+    {
+      "word": "outliers",
+      "start": 24.18,
+      "end": 24.78
+    },
+    {
+      "word": "and",
+      "start": 24.78,
+      "end": 25.38
+    },
+    {
+      "word": "leverage",
+      "start": 25.38,
+      "end": 25.97
+    },
+    {
+      "word": "clusterscan",
+      "start": 25.98,
+      "end": 26.57
+    },
+    {
+      "word": "share",
+      "start": 26.57,
+      "end": 27.17
+    },
+    {
+      "word": "identical",
+      "start": 27.17,
+      "end": 27.77
+    },
+    {
+      "word": "means",
+      "start": 27.77,
+      "end": 28.37
+    },
+    {
+      "word": "variances",
+      "start": 28.37,
+      "end": 28.97
+    },
+    {
+      "word": "and",
+      "start": 28.97,
+      "end": 29.57
+    },
+    {
+      "word": "regression",
+      "start": 29.57,
+      "end": 30.17
+    },
+    {
+      "word": "slopes",
+      "start": 30.17,
+      "end": 30.77
+    },
+    {
+      "word": "right",
+      "start": 30.77,
+      "end": 31.32
+    },
+    {
+      "word": "the",
+      "start": 31.32,
+      "end": 31.86
+    },
+    {
+      "word": "human",
+      "start": 31.86,
+      "end": 32.41
+    },
+    {
+      "word": "visual",
+      "start": 32.41,
+      "end": 32.96
+    },
+    {
+      "word": "cortex",
+      "start": 32.96,
+      "end": 33.51
+    },
+    {
+      "word": "can",
+      "start": 33.51,
+      "end": 34.05
+    },
+    {
+      "word": "process",
+      "start": 34.05,
+      "end": 34.6
+    },
+    {
+      "word": "topological",
+      "start": 34.6,
+      "end": 35.15
+    },
+    {
+      "word": "manifolds",
+      "start": 35.15,
+      "end": 35.7
+    },
+    {
+      "word": "clusters",
+      "start": 35.7,
+      "end": 36.24
+    },
+    {
+      "word": "and",
+      "start": 36.25,
+      "end": 36.79
+    },
+    {
+      "word": "boundaries",
+      "start": 36.79,
+      "end": 37.34
+    },
+    {
+      "word": "that",
+      "start": 37.34,
+      "end": 37.89
+    },
+    {
+      "word": "a",
+      "start": 37.89,
+      "end": 38.44
+    },
+    {
+      "word": "variance",
+      "start": 38.44,
+      "end": 38.98
+    },
+    {
+      "word": "calculation",
+      "start": 38.98,
+      "end": 39.53
+    },
+    {
+      "word": "completely",
+      "start": 39.53,
+      "end": 40.08
+    },
+    {
+      "word": "flattens",
+      "start": 40.08,
+      "end": 40.62
+    },
+    {
+      "word": "so",
+      "start": 40.62,
+      "end": 41.17
+    },
+    {
+      "word": "visualization",
+      "start": 41.17,
+      "end": 41.72
+    },
+    {
+      "word": "isnt",
+      "start": 41.72,
+      "end": 42.27
+    },
+    {
+      "word": "just",
+      "start": 42.27,
+      "end": 42.81
+    },
+    {
+      "word": "aesthetic",
+      "start": 42.81,
+      "end": 43.36
+    },
+    {
+      "word": "its",
+      "start": 43.36,
+      "end": 43.91
+    },
+    {
+      "word": "an",
+      "start": 43.91,
+      "end": 44.46
+    },
+    {
+      "word": "empirical",
+      "start": 44.46,
+      "end": 45.01
+    },
+    {
+      "word": "verification",
+      "start": 45.01,
+      "end": 45.55
+    },
+    {
+      "word": "necessity",
+      "start": 45.55,
+      "end": 46.1
+    },
+    {
+      "word": "exactly",
+      "start": 46.1,
+      "end": 46.66
+    },
+    {
+      "word": "today",
+      "start": 46.66,
+      "end": 47.22
+    },
+    {
+      "word": "we",
+      "start": 47.22,
+      "end": 47.78
+    },
+    {
+      "word": "formalize",
+      "start": 47.78,
+      "end": 48.34
+    },
+    {
+      "word": "the",
+      "start": 48.34,
+      "end": 48.91
+    },
+    {
+      "word": "mathematics",
+      "start": 48.91,
+      "end": 49.47
+    },
+    {
+      "word": "of",
+      "start": 49.47,
+      "end": 50.03
+    },
+    {
+      "word": "visualization",
+      "start": 50.03,
+      "end": 50.59
+    },
+    {
+      "word": "optimal",
+      "start": 50.59,
+      "end": 51.15
+    },
+    {
+      "word": "histogram",
+      "start": 51.15,
+      "end": 51.71
+    },
+    {
+      "word": "bin",
+      "start": 51.71,
+      "end": 52.27
+    },
+    {
+      "word": "widths",
+      "start": 52.27,
+      "end": 52.84
+    },
+    {
+      "word": "kernel",
+      "start": 52.84,
+      "end": 53.4
+    },
+    {
+      "word": "density",
+      "start": 53.4,
+      "end": 53.96
+    },
+    {
+      "word": "bandwidths",
+      "start": 53.96,
+      "end": 54.52
+    },
+    {
+      "word": "tukey",
+      "start": 54.52,
+      "end": 55.08
+    },
+    {
+      "word": "fence",
+      "start": 55.08,
+      "end": 55.64
+    },
+    {
+      "word": "geometries",
+      "start": 55.64,
+      "end": 56.2
+    },
+    {
+      "word": "and",
+      "start": 56.2,
+      "end": 56.76
+    },
+    {
+      "word": "overplotting",
+      "start": 56.76,
+      "end": 57.33
+    },
+    {
+      "word": "mitigation",
+      "start": 57.33,
+      "end": 57.89
+    },
+    {
+      "word": "in",
+      "start": 57.89,
+      "end": 58.45
+    },
+    {
+      "word": "massive",
+      "start": 58.45,
+      "end": 59.01
+    },
+    {
+      "word": "datasets",
+      "start": 59.01,
+      "end": 59.57
+    },
+    {
+      "word": "histograms",
+      "start": 59.57,
+      "end": 60.09
+    },
+    {
+      "word": "feel",
+      "start": 60.09,
+      "end": 60.62
+    },
+    {
+      "word": "so",
+      "start": 60.62,
+      "end": 61.14
+    },
+    {
+      "word": "natural",
+      "start": 61.14,
+      "end": 61.67
+    },
+    {
+      "word": "dr",
+      "start": 61.67,
+      "end": 62.19
+    },
+    {
+      "word": "nova",
+      "start": 62.19,
+      "end": 62.71
+    },
+    {
+      "word": "why",
+      "start": 62.71,
+      "end": 63.24
+    },
+    {
+      "word": "do",
+      "start": 63.24,
+      "end": 63.76
+    },
+    {
+      "word": "statisticians",
+      "start": 63.76,
+      "end": 64.28
+    },
+    {
+      "word": "often",
+      "start": 64.28,
+      "end": 64.81
+    },
+    {
+      "word": "prefer",
+      "start": 64.81,
+      "end": 65.33
+    },
+    {
+      "word": "kernel",
+      "start": 65.33,
+      "end": 65.86
+    },
+    {
+      "word": "density",
+      "start": 65.86,
+      "end": 66.38
+    },
+    {
+      "word": "estimation",
+      "start": 66.38,
+      "end": 66.9
+    },
+    {
+      "word": "over",
+      "start": 66.9,
+      "end": 67.43
+    },
+    {
+      "word": "simple",
+      "start": 67.43,
+      "end": 67.95
+    },
+    {
+      "word": "histogram",
+      "start": 67.95,
+      "end": 68.48
+    },
+    {
+      "word": "bars",
+      "start": 68.48,
+      "end": 69.0
+    },
+    {
+      "word": "because",
+      "start": 69.0,
+      "end": 69.39
+    },
+    {
+      "word": "histograms",
+      "start": 69.39,
+      "end": 69.78
+    },
+    {
+      "word": "suffer",
+      "start": 69.78,
+      "end": 70.17
+    },
+    {
+      "word": "from",
+      "start": 70.17,
+      "end": 70.57
+    },
+    {
+      "word": "an",
+      "start": 70.57,
+      "end": 70.96
+    },
+    {
+      "word": "insidious",
+      "start": 70.96,
+      "end": 71.35
+    },
+    {
+      "word": "artifact",
+      "start": 71.35,
+      "end": 71.74
+    },
+    {
+      "word": "called",
+      "start": 71.74,
+      "end": 72.13
+    },
+    {
+      "word": "origin",
+      "start": 72.13,
+      "end": 72.52
+    },
+    {
+      "word": "sensitivity",
+      "start": 72.52,
+      "end": 72.91
+    },
+    {
+      "word": "if",
+      "start": 72.91,
+      "end": 73.31
+    },
+    {
+      "word": "you",
+      "start": 73.31,
+      "end": 73.7
+    },
+    {
+      "word": "shift",
+      "start": 73.7,
+      "end": 74.09
+    },
+    {
+      "word": "your",
+      "start": 74.09,
+      "end": 74.48
+    },
+    {
+      "word": "bin",
+      "start": 74.48,
+      "end": 74.87
+    },
+    {
+      "word": "boundaries",
+      "start": 74.87,
+      "end": 75.26
+    },
+    {
+      "word": "by",
+      "start": 75.26,
+      "end": 75.65
+    },
+    {
+      "word": "just",
+      "start": 75.65,
+      "end": 76.05
+    },
+    {
+      "word": "half",
+      "start": 76.05,
+      "end": 76.44
+    },
+    {
+      "word": "a",
+      "start": 76.44,
+      "end": 76.83
+    },
+    {
+      "word": "bin",
+      "start": 76.83,
+      "end": 77.22
+    },
+    {
+      "word": "width",
+      "start": 77.22,
+      "end": 77.61
+    },
+    {
+      "word": "to",
+      "start": 77.61,
+      "end": 78.0
+    },
+    {
+      "word": "the",
+      "start": 78.0,
+      "end": 78.39
+    },
+    {
+      "word": "right",
+      "start": 78.39,
+      "end": 78.78
+    },
+    {
+      "word": "unimodal",
+      "start": 78.78,
+      "end": 79.18
+    },
+    {
+      "word": "data",
+      "start": 79.18,
+      "end": 79.57
+    },
+    {
+      "word": "can",
+      "start": 79.57,
+      "end": 79.96
+    },
+    {
+      "word": "suddenly",
+      "start": 79.96,
+      "end": 80.35
+    },
+    {
+      "word": "appear",
+      "start": 80.35,
+      "end": 80.74
+    },
+    {
+      "word": "bimodal",
+      "start": 80.74,
+      "end": 81.13
+    },
+    {
+      "word": "purely",
+      "start": 81.13,
+      "end": 81.52
+    },
+    {
+      "word": "from",
+      "start": 81.52,
+      "end": 81.92
+    },
+    {
+      "word": "bin",
+      "start": 81.92,
+      "end": 82.31
+    },
+    {
+      "word": "edge",
+      "start": 82.31,
+      "end": 82.7
+    },
+    {
+      "word": "quantization",
+      "start": 82.7,
+      "end": 83.09
+    },
+    {
+      "word": "wait",
+      "start": 83.09,
+      "end": 83.6
+    },
+    {
+      "word": "shifting",
+      "start": 83.6,
+      "end": 84.11
+    },
+    {
+      "word": "the",
+      "start": 84.11,
+      "end": 84.62
+    },
+    {
+      "word": "origin",
+      "start": 84.62,
+      "end": 85.12
+    },
+    {
+      "word": "can",
+      "start": 85.12,
+      "end": 85.63
+    },
+    {
+      "word": "fake",
+      "start": 85.63,
+      "end": 86.14
+    },
+    {
+      "word": "a",
+      "start": 86.14,
+      "end": 86.65
+    },
+    {
+      "word": "second",
+      "start": 86.65,
+      "end": 87.16
+    },
+    {
+      "word": "mode",
+      "start": 87.16,
+      "end": 87.67
+    },
+    {
+      "word": "thats",
+      "start": 87.67,
+      "end": 88.18
+    },
+    {
+      "word": "terrifying",
+      "start": 88.18,
+      "end": 88.69
+    },
+    {
+      "word": "for",
+      "start": 88.69,
+      "end": 89.19
+    },
+    {
+      "word": "automated",
+      "start": 89.19,
+      "end": 89.7
+    },
+    {
+      "word": "anomaly",
+      "start": 89.7,
+      "end": 90.21
+    },
+    {
+      "word": "detection",
+      "start": 90.21,
+      "end": 90.72
+    },
+    {
+      "word": "exactly",
+      "start": 90.72,
+      "end": 91.21
+    },
+    {
+      "word": "kde",
+      "start": 91.21,
+      "end": 91.7
+    },
+    {
+      "word": "places",
+      "start": 91.7,
+      "end": 92.19
+    },
+    {
+      "word": "the",
+      "start": 92.19,
+      "end": 92.68
+    },
+    {
+      "word": "smoothing",
+      "start": 92.68,
+      "end": 93.17
+    },
+    {
+      "word": "window",
+      "start": 93.17,
+      "end": 93.66
+    },
+    {
+      "word": "over",
+      "start": 93.66,
+      "end": 94.15
+    },
+    {
+      "word": "each",
+      "start": 94.15,
+      "end": 94.64
+    },
+    {
+      "word": "data",
+      "start": 94.64,
+      "end": 95.13
+    },
+    {
+      "word": "point",
+      "start": 95.13,
+      "end": 95.62
+    },
+    {
+      "word": "itself",
+      "start": 95.62,
+      "end": 96.11
+    },
+    {
+      "word": "rather",
+      "start": 96.11,
+      "end": 96.6
+    },
+    {
+      "word": "than",
+      "start": 96.6,
+      "end": 97.09
+    },
+    {
+      "word": "fixing",
+      "start": 97.09,
+      "end": 97.57
+    },
+    {
+      "word": "a",
+      "start": 97.57,
+      "end": 98.06
+    },
+    {
+      "word": "rigid",
+      "start": 98.06,
+      "end": 98.55
+    },
+    {
+      "word": "grid",
+      "start": 98.55,
+      "end": 99.04
+    },
+    {
+      "word": "making",
+      "start": 99.04,
+      "end": 99.53
+    },
+    {
+      "word": "density",
+      "start": 99.53,
+      "end": 100.02
+    },
+    {
+      "word": "estimation",
+      "start": 100.02,
+      "end": 100.51
+    },
+    {
+      "word": "continuous",
+      "start": 100.51,
+      "end": 101.0
+    },
+    {
+      "word": "differentiable",
+      "start": 101.0,
+      "end": 101.49
+    },
+    {
+      "word": "and",
+      "start": 101.49,
+      "end": 101.98
+    },
+    {
+      "word": "invariant",
+      "start": 101.98,
+      "end": 102.47
+    },
+    {
+      "word": "to",
+      "start": 102.47,
+      "end": 102.96
+    },
+    {
+      "word": "origin",
+      "start": 102.96,
+      "end": 103.45
+    },
+    {
+      "word": "shifts",
+      "start": 103.45,
+      "end": 103.94
+    },
+    {
+      "word": "every",
+      "start": 103.94,
+      "end": 104.42
+    },
+    {
+      "word": "spreadsheet",
+      "start": 104.42,
+      "end": 104.89
+    },
+    {
+      "word": "defaults",
+      "start": 104.89,
+      "end": 105.37
+    },
+    {
+      "word": "to",
+      "start": 105.37,
+      "end": 105.85
+    },
+    {
+      "word": "sturges",
+      "start": 105.85,
+      "end": 106.32
+    },
+    {
+      "word": "rule",
+      "start": 106.32,
+      "end": 106.8
+    },
+    {
+      "word": "why",
+      "start": 106.8,
+      "end": 107.28
+    },
+    {
+      "word": "do",
+      "start": 107.28,
+      "end": 107.76
+    },
+    {
+      "word": "you",
+      "start": 107.76,
+      "end": 108.23
+    },
+    {
+      "word": "call",
+      "start": 108.23,
+      "end": 108.71
+    },
+    {
+      "word": "sturges",
+      "start": 108.71,
+      "end": 109.19
+    },
+    {
+      "word": "a",
+      "start": 109.19,
+      "end": 109.66
+    },
+    {
+      "word": "fallacy",
+      "start": 109.66,
+      "end": 110.14
+    },
+    {
+      "word": "because",
+      "start": 110.14,
+      "end": 110.66
+    },
+    {
+      "word": "sturges",
+      "start": 110.66,
+      "end": 111.18
+    },
+    {
+      "word": "rule",
+      "start": 111.18,
+      "end": 111.7
+    },
+    {
+      "word": "was",
+      "start": 111.7,
+      "end": 112.22
+    },
+    {
+      "word": "derived",
+      "start": 112.22,
+      "end": 112.74
+    },
+    {
+      "word": "in",
+      "start": 112.74,
+      "end": 113.26
+    },
+    {
+      "word": "1926",
+      "start": 113.26,
+      "end": 113.78
+    },
+    {
+      "word": "by",
+      "start": 113.78,
+      "end": 114.3
+    },
+    {
+      "word": "assuming",
+      "start": 114.3,
+      "end": 114.82
+    },
+    {
+      "word": "a",
+      "start": 114.82,
+      "end": 115.34
+    },
+    {
+      "word": "discrete",
+      "start": 115.34,
+      "end": 115.86
+    },
+    {
+      "word": "binomial",
+      "start": 115.86,
+      "end": 116.38
+    },
+    {
+      "word": "approximation",
+      "start": 116.38,
+      "end": 116.9
+    },
+    {
+      "word": "to",
+      "start": 116.9,
+      "end": 117.42
+    },
+    {
+      "word": "a",
+      "start": 117.42,
+      "end": 117.94
+    },
+    {
+      "word": "gaussian",
+      "start": 117.94,
+      "end": 118.46
+    },
+    {
+      "word": "for",
+      "start": 118.46,
+      "end": 118.98
+    },
+    {
+      "word": "one",
+      "start": 118.98,
+      "end": 119.5
+    },
+    {
+      "word": "million",
+      "start": 119.5,
+      "end": 120.02
+    },
+    {
+      "word": "observations",
+      "start": 120.02,
+      "end": 120.54
+    },
+    {
+      "word": "sturges",
+      "start": 120.54,
+      "end": 121.06
+    },
+    {
+      "word": "allocates",
+      "start": 121.06,
+      "end": 121.58
+    },
+    {
+      "word": "only",
+      "start": 121.58,
+      "end": 122.1
+    },
+    {
+      "word": "21",
+      "start": 122.1,
+      "end": 122.62
+    },
+    {
+      "word": "bins",
+      "start": 122.62,
+      "end": 123.14
+    },
+    {
+      "word": "that",
+      "start": 123.14,
+      "end": 123.66
+    },
+    {
+      "word": "is",
+      "start": 123.66,
+      "end": 124.18
+    },
+    {
+      "word": "catastrophic",
+      "start": 124.18,
+      "end": 124.7
+    },
+    {
+      "word": "oversmoothing",
+      "start": 124.7,
+      "end": 125.22
+    },
+    {
+      "word": "that",
+      "start": 125.22,
+      "end": 125.74
+    },
+    {
+      "word": "obliterates",
+      "start": 125.74,
+      "end": 126.26
+    },
+    {
+      "word": "fine",
+      "start": 126.26,
+      "end": 126.78
+    },
+    {
+      "word": "subclusters",
+      "start": 126.78,
+      "end": 127.3
+    },
+    {
+      "word": "twentyone",
+      "start": 127.3,
+      "end": 127.75
+    },
+    {
+      "word": "bins",
+      "start": 127.75,
+      "end": 128.2
+    },
+    {
+      "word": "for",
+      "start": 128.2,
+      "end": 128.65
+    },
+    {
+      "word": "a",
+      "start": 128.65,
+      "end": 129.1
+    },
+    {
+      "word": "million",
+      "start": 129.1,
+      "end": 129.54
+    },
+    {
+      "word": "data",
+      "start": 129.54,
+      "end": 129.99
+    },
+    {
+      "word": "points",
+      "start": 129.99,
+      "end": 130.44
+    },
+    {
+      "word": "that",
+      "start": 130.44,
+      "end": 130.89
+    },
+    {
+      "word": "would",
+      "start": 130.89,
+      "end": 131.34
+    },
+    {
+      "word": "turn",
+      "start": 131.34,
+      "end": 131.79
+    },
+    {
+      "word": "complex",
+      "start": 131.79,
+      "end": 132.24
+    },
+    {
+      "word": "multimodal",
+      "start": 132.24,
+      "end": 132.69
+    },
+    {
+      "word": "web",
+      "start": 132.69,
+      "end": 133.14
+    },
+    {
+      "word": "traffic",
+      "start": 133.14,
+      "end": 133.58
+    },
+    {
+      "word": "into",
+      "start": 133.58,
+      "end": 134.03
+    },
+    {
+      "word": "a",
+      "start": 134.03,
+      "end": 134.48
+    },
+    {
+      "word": "featureless",
+      "start": 134.48,
+      "end": 134.93
+    },
+    {
+      "word": "blob",
+      "start": 134.93,
+      "end": 135.38
+    },
+    {
+      "word": "precisely",
+      "start": 135.38,
+      "end": 135.79
+    },
+    {
+      "word": "and",
+      "start": 135.79,
+      "end": 136.21
+    },
+    {
+      "word": "if",
+      "start": 136.21,
+      "end": 136.62
+    },
+    {
+      "word": "a",
+      "start": 136.62,
+      "end": 137.03
+    },
+    {
+      "word": "single",
+      "start": 137.03,
+      "end": 137.44
+    },
+    {
+      "word": "outlier",
+      "start": 137.44,
+      "end": 137.86
+    },
+    {
+      "word": "inflates",
+      "start": 137.86,
+      "end": 138.27
+    },
+    {
+      "word": "the",
+      "start": 138.27,
+      "end": 138.68
+    },
+    {
+      "word": "range",
+      "start": 138.68,
+      "end": 139.09
+    },
+    {
+      "word": "sturges",
+      "start": 139.09,
+      "end": 139.51
+    },
+    {
+      "word": "leaves",
+      "start": 139.51,
+      "end": 139.92
+    },
+    {
+      "word": "twenty",
+      "start": 139.92,
+      "end": 140.33
+    },
+    {
+      "word": "empty",
+      "start": 140.33,
+      "end": 140.75
+    },
+    {
+      "word": "bins",
+      "start": 140.75,
+      "end": 141.16
+    },
+    {
+      "word": "while",
+      "start": 141.16,
+      "end": 141.57
+    },
+    {
+      "word": "packing",
+      "start": 141.57,
+      "end": 141.98
+    },
+    {
+      "word": "ninetynine",
+      "start": 141.98,
+      "end": 142.4
+    },
+    {
+      "word": "point",
+      "start": 142.4,
+      "end": 142.81
+    },
+    {
+      "word": "nine",
+      "start": 142.81,
+      "end": 143.22
+    },
+    {
+      "word": "percent",
+      "start": 143.22,
+      "end": 143.63
+    },
+    {
+      "word": "of",
+      "start": 143.63,
+      "end": 144.05
+    },
+    {
+      "word": "data",
+      "start": 144.05,
+      "end": 144.46
+    },
+    {
+      "word": "into",
+      "start": 144.46,
+      "end": 144.87
+    },
+    {
+      "word": "bin",
+      "start": 144.87,
+      "end": 145.29
+    },
+    {
+      "word": "one",
+      "start": 145.29,
+      "end": 145.7
+    },
+    {
+      "word": "freedmandiaconis",
+      "start": 145.7,
+      "end": 146.11
+    },
+    {
+      "word": "uses",
+      "start": 146.11,
+      "end": 146.52
+    },
+    {
+      "word": "the",
+      "start": 146.52,
+      "end": 146.94
+    },
+    {
+      "word": "interquartile",
+      "start": 146.94,
+      "end": 147.35
+    },
+    {
+      "word": "range",
+      "start": 147.35,
+      "end": 147.76
+    },
+    {
+      "word": "instead",
+      "start": 147.76,
+      "end": 148.18
+    },
+    {
+      "word": "of",
+      "start": 148.18,
+      "end": 148.59
+    },
+    {
+      "word": "the",
+      "start": 148.59,
+      "end": 149.0
+    },
+    {
+      "word": "total",
+      "start": 149.0,
+      "end": 149.41
+    },
+    {
+      "word": "range",
+      "start": 149.41,
+      "end": 149.83
+    },
+    {
+      "word": "scaling",
+      "start": 149.83,
+      "end": 150.24
+    },
+    {
+      "word": "with",
+      "start": 150.24,
+      "end": 150.65
+    },
+    {
+      "word": "n",
+      "start": 150.65,
+      "end": 151.06
+    },
+    {
+      "word": "to",
+      "start": 151.06,
+      "end": 151.48
+    },
+    {
+      "word": "the",
+      "start": 151.48,
+      "end": 151.89
+    },
+    {
+      "word": "negative",
+      "start": 151.89,
+      "end": 152.3
+    },
+    {
+      "word": "onethird",
+      "start": 152.3,
+      "end": 152.72
+    },
+    {
+      "word": "and",
+      "start": 152.72,
+      "end": 153.13
+    },
+    {
+      "word": "resisting",
+      "start": 153.13,
+      "end": 153.54
+    },
+    {
+      "word": "outliers",
+      "start": 153.54,
+      "end": 153.95
+    },
+    {
+      "word": "with",
+      "start": 153.95,
+      "end": 154.37
+    },
+    {
+      "word": "a",
+      "start": 154.37,
+      "end": 154.78
+    },
+    {
+      "word": "twentyfive",
+      "start": 154.78,
+      "end": 155.19
+    },
+    {
+      "word": "percent",
+      "start": 155.19,
+      "end": 155.6
+    },
+    {
+      "word": "breakdown",
+      "start": 155.6,
+      "end": 156.02
+    },
+    {
+      "word": "point",
+      "start": 156.02,
+      "end": 156.43
+    },
+    {
+      "word": "wait",
+      "start": 156.43,
+      "end": 156.83
+    },
+    {
+      "word": "dr",
+      "start": 156.83,
+      "end": 157.22
+    },
+    {
+      "word": "nova",
+      "start": 157.22,
+      "end": 157.62
+    },
+    {
+      "word": "in",
+      "start": 157.62,
+      "end": 158.01
+    },
+    {
+      "word": "histograms",
+      "start": 158.01,
+      "end": 158.41
+    },
+    {
+      "word": "the",
+      "start": 158.41,
+      "end": 158.8
+    },
+    {
+      "word": "optimal",
+      "start": 158.8,
+      "end": 159.2
+    },
+    {
+      "word": "bin",
+      "start": 159.2,
+      "end": 159.6
+    },
+    {
+      "word": "width",
+      "start": 159.6,
+      "end": 159.99
+    },
+    {
+      "word": "scaled",
+      "start": 159.99,
+      "end": 160.39
+    },
+    {
+      "word": "as",
+      "start": 160.39,
+      "end": 160.78
+    },
+    {
+      "word": "n",
+      "start": 160.78,
+      "end": 161.18
+    },
+    {
+      "word": "to",
+      "start": 161.18,
+      "end": 161.58
+    },
+    {
+      "word": "the",
+      "start": 161.58,
+      "end": 161.97
+    },
+    {
+      "word": "negative",
+      "start": 161.97,
+      "end": 162.37
+    },
+    {
+      "word": "onethird",
+      "start": 162.37,
+      "end": 162.76
+    },
+    {
+      "word": "but",
+      "start": 162.76,
+      "end": 163.16
+    },
+    {
+      "word": "in",
+      "start": 163.16,
+      "end": 163.55
+    },
+    {
+      "word": "kde",
+      "start": 163.55,
+      "end": 163.95
+    },
+    {
+      "word": "the",
+      "start": 163.95,
+      "end": 164.35
+    },
+    {
+      "word": "bandwidth",
+      "start": 164.35,
+      "end": 164.74
+    },
+    {
+      "word": "scales",
+      "start": 164.74,
+      "end": 165.14
+    },
+    {
+      "word": "as",
+      "start": 165.14,
+      "end": 165.53
+    },
+    {
+      "word": "n",
+      "start": 165.53,
+      "end": 165.93
+    },
+    {
+      "word": "to",
+      "start": 165.93,
+      "end": 166.33
+    },
+    {
+      "word": "the",
+      "start": 166.33,
+      "end": 166.72
+    },
+    {
+      "word": "negative",
+      "start": 166.72,
+      "end": 167.12
+    },
+    {
+      "word": "onefifth",
+      "start": 167.12,
+      "end": 167.51
+    },
+    {
+      "word": "why",
+      "start": 167.51,
+      "end": 167.91
+    },
+    {
+      "word": "the",
+      "start": 167.91,
+      "end": 168.3
+    },
+    {
+      "word": "difference",
+      "start": 168.3,
+      "end": 168.7
+    },
+    {
+      "word": "because",
+      "start": 168.7,
+      "end": 169.13
+    },
+    {
+      "word": "symmetric",
+      "start": 169.13,
+      "end": 169.56
+    },
+    {
+      "word": "kernels",
+      "start": 169.56,
+      "end": 169.99
+    },
+    {
+      "word": "cancel",
+      "start": 169.99,
+      "end": 170.42
+    },
+    {
+      "word": "out",
+      "start": 170.42,
+      "end": 170.85
+    },
+    {
+      "word": "firstorder",
+      "start": 170.85,
+      "end": 171.28
+    },
+    {
+      "word": "bias",
+      "start": 171.28,
+      "end": 171.71
+    },
+    {
+      "word": "terms",
+      "start": 171.71,
+      "end": 172.13
+    },
+    {
+      "word": "kaito",
+      "start": 172.13,
+      "end": 172.56
+    },
+    {
+      "word": "the",
+      "start": 172.56,
+      "end": 172.99
+    },
+    {
+      "word": "linear",
+      "start": 172.99,
+      "end": 173.42
+    },
+    {
+      "word": "taylor",
+      "start": 173.42,
+      "end": 173.85
+    },
+    {
+      "word": "term",
+      "start": 173.85,
+      "end": 174.28
+    },
+    {
+      "word": "vanishes",
+      "start": 174.28,
+      "end": 174.71
+    },
+    {
+      "word": "due",
+      "start": 174.71,
+      "end": 175.14
+    },
+    {
+      "word": "to",
+      "start": 175.14,
+      "end": 175.57
+    },
+    {
+      "word": "kernel",
+      "start": 175.57,
+      "end": 176.0
+    },
+    {
+      "word": "symmetry",
+      "start": 176.0,
+      "end": 176.43
+    },
+    {
+      "word": "so",
+      "start": 176.43,
+      "end": 176.86
+    },
+    {
+      "word": "bias",
+      "start": 176.86,
+      "end": 177.29
+    },
+    {
+      "word": "begins",
+      "start": 177.29,
+      "end": 177.72
+    },
+    {
+      "word": "only",
+      "start": 177.72,
+      "end": 178.14
+    },
+    {
+      "word": "at",
+      "start": 178.14,
+      "end": 178.57
+    },
+    {
+      "word": "the",
+      "start": 178.57,
+      "end": 179.0
+    },
+    {
+      "word": "second",
+      "start": 179.0,
+      "end": 179.43
+    },
+    {
+      "word": "derivative",
+      "start": 179.43,
+      "end": 179.86
+    },
+    {
+      "word": "fdoubleprime",
+      "start": 179.86,
+      "end": 180.29
+    },
+    {
+      "word": "of",
+      "start": 180.29,
+      "end": 180.72
+    },
+    {
+      "word": "x",
+      "start": 180.72,
+      "end": 181.15
+    },
+    {
+      "word": "aha",
+      "start": 181.15,
+      "end": 181.6
+    },
+    {
+      "word": "that",
+      "start": 181.6,
+      "end": 182.04
+    },
+    {
+      "word": "allows",
+      "start": 182.04,
+      "end": 182.49
+    },
+    {
+      "word": "the",
+      "start": 182.49,
+      "end": 182.93
+    },
+    {
+      "word": "bandwidth",
+      "start": 182.93,
+      "end": 183.38
+    },
+    {
+      "word": "to",
+      "start": 183.38,
+      "end": 183.82
+    },
+    {
+      "word": "shrink",
+      "start": 183.82,
+      "end": 184.27
+    },
+    {
+      "word": "more",
+      "start": 184.27,
+      "end": 184.71
+    },
+    {
+      "word": "slowly",
+      "start": 184.71,
+      "end": 185.16
+    },
+    {
+      "word": "which",
+      "start": 185.16,
+      "end": 185.6
+    },
+    {
+      "word": "suppresses",
+      "start": 185.6,
+      "end": 186.05
+    },
+    {
+      "word": "variance",
+      "start": 186.05,
+      "end": 186.49
+    },
+    {
+      "word": "while",
+      "start": 186.49,
+      "end": 186.94
+    },
+    {
+      "word": "bias",
+      "start": 186.94,
+      "end": 187.38
+    },
+    {
+      "word": "stays",
+      "start": 187.38,
+      "end": 187.83
+    },
+    {
+      "word": "small",
+      "start": 187.83,
+      "end": 188.27
+    },
+    {
+      "word": "so",
+      "start": 188.27,
+      "end": 188.72
+    },
+    {
+      "word": "kde",
+      "start": 188.72,
+      "end": 189.16
+    },
+    {
+      "word": "converges",
+      "start": 189.16,
+      "end": 189.61
+    },
+    {
+      "word": "at",
+      "start": 189.61,
+      "end": 190.05
+    },
+    {
+      "word": "order",
+      "start": 190.05,
+      "end": 190.5
+    },
+    {
+      "word": "n",
+      "start": 190.5,
+      "end": 190.94
+    },
+    {
+      "word": "to",
+      "start": 190.94,
+      "end": 191.39
+    },
+    {
+      "word": "the",
+      "start": 191.39,
+      "end": 191.83
+    },
+    {
+      "word": "minus",
+      "start": 191.83,
+      "end": 192.28
+    },
+    {
+      "word": "fourfifths",
+      "start": 192.28,
+      "end": 192.72
+    },
+    {
+      "word": "strictly",
+      "start": 192.72,
+      "end": 193.17
+    },
+    {
+      "word": "beating",
+      "start": 193.17,
+      "end": 193.61
+    },
+    {
+      "word": "histograms",
+      "start": 193.61,
+      "end": 194.06
+    },
+    {
+      "word": "brilliant",
+      "start": 194.06,
+      "end": 194.62
+    },
+    {
+      "word": "deduction",
+      "start": 194.62,
+      "end": 195.19
+    },
+    {
+      "word": "kaito",
+      "start": 195.19,
+      "end": 195.75
+    },
+    {
+      "word": "that",
+      "start": 195.75,
+      "end": 196.31
+    },
+    {
+      "word": "rate",
+      "start": 196.31,
+      "end": 196.87
+    },
+    {
+      "word": "advantage",
+      "start": 196.87,
+      "end": 197.44
+    },
+    {
+      "word": "is",
+      "start": 197.44,
+      "end": 198.0
+    },
+    {
+      "word": "why",
+      "start": 198.0,
+      "end": 198.56
+    },
+    {
+      "word": "continuous",
+      "start": 198.56,
+      "end": 199.12
+    },
+    {
+      "word": "kde",
+      "start": 199.12,
+      "end": 199.69
+    },
+    {
+      "word": "provides",
+      "start": 199.69,
+      "end": 200.25
+    },
+    {
+      "word": "vastly",
+      "start": 200.25,
+      "end": 200.81
+    },
+    {
+      "word": "superior",
+      "start": 200.81,
+      "end": 201.38
+    },
+    {
+      "word": "density",
+      "start": 201.38,
+      "end": 201.94
+    },
+    {
+      "word": "estimation",
+      "start": 201.94,
+      "end": 202.5
+    },
+    {
+      "word": "for",
+      "start": 202.5,
+      "end": 203.06
+    },
+    {
+      "word": "smooth",
+      "start": 203.06,
+      "end": 203.63
+    },
+    {
+      "word": "distributions",
+      "start": 203.63,
+      "end": 204.19
+    },
+    {
+      "word": "boundary",
+      "start": 204.19,
+      "end": 204.63
+    },
+    {
+      "word": "leakage",
+      "start": 204.63,
+      "end": 205.08
+    },
+    {
+      "word": "sounds",
+      "start": 205.08,
+      "end": 205.52
+    },
+    {
+      "word": "like",
+      "start": 205.52,
+      "end": 205.96
+    },
+    {
+      "word": "a",
+      "start": 205.96,
+      "end": 206.4
+    },
+    {
+      "word": "serious",
+      "start": 206.4,
+      "end": 206.85
+    },
+    {
+      "word": "issue",
+      "start": 206.85,
+      "end": 207.29
+    },
+    {
+      "word": "in",
+      "start": 207.29,
+      "end": 207.73
+    },
+    {
+      "word": "engineering",
+      "start": 207.73,
+      "end": 208.17
+    },
+    {
+      "word": "if",
+      "start": 208.17,
+      "end": 208.62
+    },
+    {
+      "word": "we",
+      "start": 208.62,
+      "end": 209.06
+    },
+    {
+      "word": "measure",
+      "start": 209.06,
+      "end": 209.5
+    },
+    {
+      "word": "api",
+      "start": 209.5,
+      "end": 209.95
+    },
+    {
+      "word": "response",
+      "start": 209.95,
+      "end": 210.39
+    },
+    {
+      "word": "times",
+      "start": 210.39,
+      "end": 210.83
+    },
+    {
+      "word": "latency",
+      "start": 210.83,
+      "end": 211.27
+    },
+    {
+      "word": "can",
+      "start": 211.27,
+      "end": 211.72
+    },
+    {
+      "word": "never",
+      "start": 211.72,
+      "end": 212.16
+    },
+    {
+      "word": "be",
+      "start": 212.16,
+      "end": 212.6
+    },
+    {
+      "word": "negative",
+      "start": 212.6,
+      "end": 213.05
+    },
+    {
+      "word": "but",
+      "start": 213.05,
+      "end": 213.49
+    },
+    {
+      "word": "standard",
+      "start": 213.49,
+      "end": 213.93
+    },
+    {
+      "word": "kde",
+      "start": 213.93,
+      "end": 214.37
+    },
+    {
+      "word": "draws",
+      "start": 214.37,
+      "end": 214.82
+    },
+    {
+      "word": "a",
+      "start": 214.82,
+      "end": 215.26
+    },
+    {
+      "word": "tail",
+      "start": 215.26,
+      "end": 215.7
+    },
+    {
+      "word": "below",
+      "start": 215.7,
+      "end": 216.14
+    },
+    {
+      "word": "zero",
+      "start": 216.14,
+      "end": 216.59
+    },
+    {
+      "word": "milliseconds",
+      "start": 216.59,
+      "end": 217.03
+    },
+    {
+      "word": "exactly",
+      "start": 217.03,
+      "end": 217.47
+    },
+    {
+      "word": "kaito",
+      "start": 217.47,
+      "end": 217.92
+    },
+    {
+      "word": "symmetric",
+      "start": 217.92,
+      "end": 218.36
+    },
+    {
+      "word": "kernels",
+      "start": 218.36,
+      "end": 218.8
+    },
+    {
+      "word": "center",
+      "start": 218.8,
+      "end": 219.25
+    },
+    {
+      "word": "probability",
+      "start": 219.25,
+      "end": 219.69
+    },
+    {
+      "word": "bumps",
+      "start": 219.69,
+      "end": 220.13
+    },
+    {
+      "word": "on",
+      "start": 220.13,
+      "end": 220.58
+    },
+    {
+      "word": "points",
+      "start": 220.58,
+      "end": 221.02
+    },
+    {
+      "word": "near",
+      "start": 221.02,
+      "end": 221.46
+    },
+    {
+      "word": "zero",
+      "start": 221.46,
+      "end": 221.91
+    },
+    {
+      "word": "and",
+      "start": 221.91,
+      "end": 222.35
+    },
+    {
+      "word": "half",
+      "start": 222.35,
+      "end": 222.79
+    },
+    {
+      "word": "of",
+      "start": 222.79,
+      "end": 223.24
+    },
+    {
+      "word": "that",
+      "start": 223.24,
+      "end": 223.68
+    },
+    {
+      "word": "bump",
+      "start": 223.68,
+      "end": 224.12
+    },
+    {
+      "word": "extends",
+      "start": 224.12,
+      "end": 224.57
+    },
+    {
+      "word": "into",
+      "start": 224.57,
+      "end": 225.01
+    },
+    {
+      "word": "negative",
+      "start": 225.01,
+      "end": 225.45
+    },
+    {
+      "word": "numbers",
+      "start": 225.45,
+      "end": 225.9
+    },
+    {
+      "word": "where",
+      "start": 225.9,
+      "end": 226.34
+    },
+    {
+      "word": "data",
+      "start": 226.34,
+      "end": 226.78
+    },
+    {
+      "word": "cannot",
+      "start": 226.78,
+      "end": 227.23
+    },
+    {
+      "word": "physically",
+      "start": 227.23,
+      "end": 227.67
+    },
+    {
+      "word": "exist",
+      "start": 227.67,
+      "end": 228.11
+    },
+    {
+      "word": "that",
+      "start": 228.11,
+      "end": 228.56
+    },
+    {
+      "word": "makes",
+      "start": 228.56,
+      "end": 229.0
+    },
+    {
+      "word": "the",
+      "start": 229.0,
+      "end": 229.44
+    },
+    {
+      "word": "density",
+      "start": 229.44,
+      "end": 229.89
+    },
+    {
+      "word": "at",
+      "start": 229.89,
+      "end": 230.33
+    },
+    {
+      "word": "zero",
+      "start": 230.33,
+      "end": 230.77
+    },
+    {
+      "word": "appear",
+      "start": 230.77,
+      "end": 231.22
+    },
+    {
+      "word": "artificially",
+      "start": 231.22,
+      "end": 231.66
+    },
+    {
+      "word": "cut",
+      "start": 231.66,
+      "end": 232.1
+    },
+    {
+      "word": "in",
+      "start": 232.1,
+      "end": 232.55
+    },
+    {
+      "word": "half",
+      "start": 232.55,
+      "end": 232.99
+    },
+    {
+      "word": "and",
+      "start": 232.99,
+      "end": 233.31
+    },
+    {
+      "word": "boundary",
+      "start": 233.31,
+      "end": 233.64
+    },
+    {
+      "word": "reflection",
+      "start": 233.64,
+      "end": 233.96
+    },
+    {
+      "word": "fixes",
+      "start": 233.96,
+      "end": 234.29
+    },
+    {
+      "word": "that",
+      "start": 234.29,
+      "end": 234.61
+    },
+    {
+      "word": "by",
+      "start": 234.61,
+      "end": 234.94
+    },
+    {
+      "word": "taking",
+      "start": 234.94,
+      "end": 235.26
+    },
+    {
+      "word": "all",
+      "start": 235.26,
+      "end": 235.58
+    },
+    {
+      "word": "the",
+      "start": 235.58,
+      "end": 235.91
+    },
+    {
+      "word": "mass",
+      "start": 235.91,
+      "end": 236.23
+    },
+    {
+      "word": "that",
+      "start": 236.23,
+      "end": 236.56
+    },
+    {
+      "word": "leaked",
+      "start": 236.56,
+      "end": 236.88
+    },
+    {
+      "word": "below",
+      "start": 236.88,
+      "end": 237.2
+    },
+    {
+      "word": "zero",
+      "start": 237.2,
+      "end": 237.53
+    },
+    {
+      "word": "and",
+      "start": 237.53,
+      "end": 237.85
+    },
+    {
+      "word": "folding",
+      "start": 237.85,
+      "end": 238.18
+    },
+    {
+      "word": "it",
+      "start": 238.18,
+      "end": 238.5
+    },
+    {
+      "word": "over",
+      "start": 238.5,
+      "end": 238.82
+    },
+    {
+      "word": "the",
+      "start": 238.83,
+      "end": 239.15
+    },
+    {
+      "word": "boundary",
+      "start": 239.15,
+      "end": 239.47
+    },
+    {
+      "word": "back",
+      "start": 239.47,
+      "end": 239.8
+    },
+    {
+      "word": "into",
+      "start": 239.8,
+      "end": 240.12
+    },
+    {
+      "word": "positive",
+      "start": 240.12,
+      "end": 240.45
+    },
+    {
+      "word": "space",
+      "start": 240.45,
+      "end": 240.77
+    },
+    {
+      "word": "spot",
+      "start": 240.77,
+      "end": 241.22
+    },
+    {
+      "word": "on",
+      "start": 241.22,
+      "end": 241.67
+    },
+    {
+      "word": "lets",
+      "start": 241.67,
+      "end": 242.12
+    },
+    {
+      "word": "enter",
+      "start": 242.12,
+      "end": 242.57
+    },
+    {
+      "word": "the",
+      "start": 242.57,
+      "end": 243.02
+    },
+    {
+      "word": "interactive",
+      "start": 243.02,
+      "end": 243.47
+    },
+    {
+      "word": "laboratory",
+      "start": 243.47,
+      "end": 243.92
+    },
+    {
+      "word": "next",
+      "start": 243.92,
+      "end": 244.37
+    },
+    {
+      "word": "to",
+      "start": 244.37,
+      "end": 244.82
+    },
+    {
+      "word": "test",
+      "start": 244.82,
+      "end": 245.26
+    },
+    {
+      "word": "bandwidth",
+      "start": 245.26,
+      "end": 245.71
+    },
+    {
+      "word": "tuning",
+      "start": 245.71,
+      "end": 246.16
+    },
+    {
+      "word": "and",
+      "start": 246.16,
+      "end": 246.61
+    },
+    {
+      "word": "witness",
+      "start": 246.61,
+      "end": 247.06
+    },
+    {
+      "word": "boundary",
+      "start": 247.06,
+      "end": 247.51
+    },
+    {
+      "word": "reflection",
+      "start": 247.51,
+      "end": 247.96
+    },
+    {
+      "word": "in",
+      "start": 247.96,
+      "end": 248.41
+    },
+    {
+      "word": "real",
+      "start": 248.41,
+      "end": 248.86
+    },
+    {
+      "word": "time",
+      "start": 248.86,
+      "end": 249.31
+    },
+    {
+      "word": "awesome",
+      "start": 249.31,
+      "end": 249.72
+    },
+    {
+      "word": "i",
+      "start": 249.72,
+      "end": 250.12
+    },
+    {
+      "word": "have",
+      "start": 250.12,
+      "end": 250.53
+    },
+    {
+      "word": "the",
+      "start": 250.53,
+      "end": 250.94
+    },
+    {
+      "word": "bandwidth",
+      "start": 250.94,
+      "end": 251.34
+    },
+    {
+      "word": "slider",
+      "start": 251.34,
+      "end": 251.75
+    },
+    {
+      "word": "in",
+      "start": 251.75,
+      "end": 252.16
+    },
+    {
+      "word": "my",
+      "start": 252.16,
+      "end": 252.56
+    },
+    {
+      "word": "hands",
+      "start": 252.56,
+      "end": 252.97
+    },
+    {
+      "word": "look",
+      "start": 252.97,
+      "end": 253.38
+    },
+    {
+      "word": "what",
+      "start": 253.38,
+      "end": 253.78
+    },
+    {
+      "word": "happens",
+      "start": 253.78,
+      "end": 254.19
+    },
+    {
+      "word": "when",
+      "start": 254.19,
+      "end": 254.6
+    },
+    {
+      "word": "i",
+      "start": 254.6,
+      "end": 255.0
+    },
+    {
+      "word": "drag",
+      "start": 255.0,
+      "end": 255.41
+    },
+    {
+      "word": "h",
+      "start": 255.41,
+      "end": 255.81
+    },
+    {
+      "word": "down",
+      "start": 255.81,
+      "end": 256.22
+    },
+    {
+      "word": "to",
+      "start": 256.22,
+      "end": 256.63
+    },
+    {
+      "word": "015",
+      "start": 256.63,
+      "end": 257.03
+    },
+    {
+      "word": "the",
+      "start": 257.03,
+      "end": 257.44
+    },
+    {
+      "word": "curve",
+      "start": 257.44,
+      "end": 257.85
+    },
+    {
+      "word": "turns",
+      "start": 257.85,
+      "end": 258.25
+    },
+    {
+      "word": "into",
+      "start": 258.25,
+      "end": 258.66
+    },
+    {
+      "word": "an",
+      "start": 258.66,
+      "end": 259.07
+    },
+    {
+      "word": "oscillatory",
+      "start": 259.07,
+      "end": 259.47
+    },
+    {
+      "word": "mountain",
+      "start": 259.47,
+      "end": 259.88
+    },
+    {
+      "word": "range",
+      "start": 259.88,
+      "end": 260.29
+    },
+    {
+      "word": "of",
+      "start": 260.29,
+      "end": 260.69
+    },
+    {
+      "word": "spikes",
+      "start": 260.69,
+      "end": 261.1
+    },
+    {
+      "word": "that",
+      "start": 261.1,
+      "end": 261.55
+    },
+    {
+      "word": "is",
+      "start": 261.55,
+      "end": 261.99
+    },
+    {
+      "word": "classic",
+      "start": 261.99,
+      "end": 262.44
+    },
+    {
+      "word": "undersmoothing",
+      "start": 262.44,
+      "end": 262.89
+    },
+    {
+      "word": "kaito",
+      "start": 262.89,
+      "end": 263.34
+    },
+    {
+      "word": "high",
+      "start": 263.34,
+      "end": 263.78
+    },
+    {
+      "word": "variance",
+      "start": 263.78,
+      "end": 264.23
+    },
+    {
+      "word": "where",
+      "start": 264.23,
+      "end": 264.68
+    },
+    {
+      "word": "every",
+      "start": 264.68,
+      "end": 265.13
+    },
+    {
+      "word": "individual",
+      "start": 265.13,
+      "end": 265.57
+    },
+    {
+      "word": "sample",
+      "start": 265.57,
+      "end": 266.02
+    },
+    {
+      "word": "point",
+      "start": 266.02,
+      "end": 266.47
+    },
+    {
+      "word": "creates",
+      "start": 266.47,
+      "end": 266.91
+    },
+    {
+      "word": "its",
+      "start": 266.91,
+      "end": 267.36
+    },
+    {
+      "word": "own",
+      "start": 267.36,
+      "end": 267.81
+    },
+    {
+      "word": "mode",
+      "start": 267.81,
+      "end": 268.26
+    },
+    {
+      "word": "now",
+      "start": 268.26,
+      "end": 268.7
+    },
+    {
+      "word": "drag",
+      "start": 268.7,
+      "end": 269.15
+    },
+    {
+      "word": "h",
+      "start": 269.15,
+      "end": 269.6
+    },
+    {
+      "word": "up",
+      "start": 269.6,
+      "end": 270.05
+    },
+    {
+      "word": "to",
+      "start": 270.05,
+      "end": 270.49
+    },
+    {
+      "word": "18",
+      "start": 270.49,
+      "end": 270.94
+    },
+    {
+      "word": "whoa",
+      "start": 270.94,
+      "end": 271.4
+    },
+    {
+      "word": "now",
+      "start": 271.4,
+      "end": 271.85
+    },
+    {
+      "word": "its",
+      "start": 271.85,
+      "end": 272.31
+    },
+    {
+      "word": "a",
+      "start": 272.31,
+      "end": 272.76
+    },
+    {
+      "word": "giant",
+      "start": 272.76,
+      "end": 273.22
+    },
+    {
+      "word": "flat",
+      "start": 273.22,
+      "end": 273.67
+    },
+    {
+      "word": "hill",
+      "start": 273.67,
+      "end": 274.13
+    },
+    {
+      "word": "thats",
+      "start": 274.13,
+      "end": 274.59
+    },
+    {
+      "word": "oversmoothing",
+      "start": 274.59,
+      "end": 275.04
+    },
+    {
+      "word": "massive",
+      "start": 275.04,
+      "end": 275.5
+    },
+    {
+      "word": "bias",
+      "start": 275.5,
+      "end": 275.95
+    },
+    {
+      "word": "and",
+      "start": 275.95,
+      "end": 276.41
+    },
+    {
+      "word": "look",
+      "start": 276.41,
+      "end": 276.87
+    },
+    {
+      "word": "at",
+      "start": 276.87,
+      "end": 277.32
+    },
+    {
+      "word": "the",
+      "start": 277.32,
+      "end": 277.78
+    },
+    {
+      "word": "zero",
+      "start": 277.78,
+      "end": 278.23
+    },
+    {
+      "word": "boundary",
+      "start": 278.23,
+      "end": 278.69
+    },
+    {
+      "word": "without",
+      "start": 278.69,
+      "end": 279.14
+    },
+    {
+      "word": "reflection",
+      "start": 279.14,
+      "end": 279.6
+    },
+    {
+      "word": "tons",
+      "start": 279.6,
+      "end": 280.06
+    },
+    {
+      "word": "of",
+      "start": 280.06,
+      "end": 280.51
+    },
+    {
+      "word": "probability",
+      "start": 280.51,
+      "end": 280.97
+    },
+    {
+      "word": "is",
+      "start": 280.97,
+      "end": 281.42
+    },
+    {
+      "word": "leaking",
+      "start": 281.42,
+      "end": 281.88
+    },
+    {
+      "word": "below",
+      "start": 281.88,
+      "end": 282.33
+    },
+    {
+      "word": "zero",
+      "start": 282.33,
+      "end": 282.79
+    },
+    {
+      "word": "check",
+      "start": 282.79,
+      "end": 283.21
+    },
+    {
+      "word": "the",
+      "start": 283.21,
+      "end": 283.64
+    },
+    {
+      "word": "boundary",
+      "start": 283.64,
+      "end": 284.06
+    },
+    {
+      "word": "reflection",
+      "start": 284.06,
+      "end": 284.48
+    },
+    {
+      "word": "box",
+      "start": 284.48,
+      "end": 284.9
+    },
+    {
+      "word": "and",
+      "start": 284.9,
+      "end": 285.33
+    },
+    {
+      "word": "watch",
+      "start": 285.33,
+      "end": 285.75
+    },
+    {
+      "word": "the",
+      "start": 285.75,
+      "end": 286.17
+    },
+    {
+      "word": "folded",
+      "start": 286.17,
+      "end": 286.59
+    },
+    {
+      "word": "density",
+      "start": 286.6,
+      "end": 287.02
+    },
+    {
+      "word": "restore",
+      "start": 287.02,
+      "end": 287.44
+    },
+    {
+      "word": "exact",
+      "start": 287.44,
+      "end": 287.86
+    },
+    {
+      "word": "mass",
+      "start": 287.86,
+      "end": 288.29
+    },
+    {
+      "word": "conservation",
+      "start": 288.29,
+      "end": 288.71
+    },
+    {
+      "word": "right",
+      "start": 288.71,
+      "end": 289.13
+    },
+    {
+      "word": "at",
+      "start": 289.13,
+      "end": 289.55
+    },
+    {
+      "word": "zero",
+      "start": 289.55,
+      "end": 289.98
+    },
+    {
+      "word": "milliseconds",
+      "start": 289.98,
+      "end": 290.4
+    },
+    {
+      "word": "our",
+      "start": 290.4,
+      "end": 290.85
+    },
+    {
+      "word": "first",
+      "start": 290.85,
+      "end": 291.29
+    },
+    {
+      "word": "knowledge",
+      "start": 291.29,
+      "end": 291.74
+    },
+    {
+      "word": "check",
+      "start": 291.74,
+      "end": 292.18
+    },
+    {
+      "word": "a",
+      "start": 292.18,
+      "end": 292.63
+    },
+    {
+      "word": "data",
+      "start": 292.63,
+      "end": 293.07
+    },
+    {
+      "word": "engineer",
+      "start": 293.07,
+      "end": 293.52
+    },
+    {
+      "word": "used",
+      "start": 293.52,
+      "end": 293.97
+    },
+    {
+      "word": "sturges",
+      "start": 293.97,
+      "end": 294.41
+    },
+    {
+      "word": "rule",
+      "start": 294.41,
+      "end": 294.86
+    },
+    {
+      "word": "on",
+      "start": 294.86,
+      "end": 295.3
+    },
+    {
+      "word": "one",
+      "start": 295.3,
+      "end": 295.75
+    },
+    {
+      "word": "million",
+      "start": 295.75,
+      "end": 296.19
+    },
+    {
+      "word": "request",
+      "start": 296.19,
+      "end": 296.64
+    },
+    {
+      "word": "records",
+      "start": 296.64,
+      "end": 297.09
+    },
+    {
+      "word": "with",
+      "start": 297.09,
+      "end": 297.53
+    },
+    {
+      "word": "longtail",
+      "start": 297.53,
+      "end": 297.98
+    },
+    {
+      "word": "timeouts",
+      "start": 297.98,
+      "end": 298.42
+    },
+    {
+      "word": "and",
+      "start": 298.42,
+      "end": 298.87
+    },
+    {
+      "word": "the",
+      "start": 298.87,
+      "end": 299.31
+    },
+    {
+      "word": "histogram",
+      "start": 299.31,
+      "end": 299.76
+    },
+    {
+      "word": "look",
+      "start": 299.76,
+      "end": 300.21
+    },
+    {
+      "word": "completely",
+      "start": 300.21,
+      "end": 300.65
+    },
+    {
+      "word": "distorted",
+      "start": 300.65,
+      "end": 301.1
+    },
+    {
+      "word": "why",
+      "start": 301.1,
+      "end": 301.54
+    },
+    {
+      "word": "did",
+      "start": 301.54,
+      "end": 301.99
+    },
+    {
+      "word": "sturges",
+      "start": 301.99,
+      "end": 302.43
+    },
+    {
+      "word": "fail",
+      "start": 302.43,
+      "end": 302.88
+    },
+    {
+      "word": "evaluate",
+      "start": 302.88,
+      "end": 303.38
+    },
+    {
+      "word": "the",
+      "start": 303.38,
+      "end": 303.88
+    },
+    {
+      "word": "mathematical",
+      "start": 303.88,
+      "end": 304.38
+    },
+    {
+      "word": "reasons",
+      "start": 304.38,
+      "end": 304.88
+    },
+    {
+      "word": "behind",
+      "start": 304.88,
+      "end": 305.37
+    },
+    {
+      "word": "sturges",
+      "start": 305.37,
+      "end": 305.87
+    },
+    {
+      "word": "failure",
+      "start": 305.87,
+      "end": 306.37
+    },
+    {
+      "word": "and",
+      "start": 306.37,
+      "end": 306.87
+    },
+    {
+      "word": "how",
+      "start": 306.87,
+      "end": 307.37
+    },
+    {
+      "word": "freedmandiaconis",
+      "start": 307.37,
+      "end": 307.87
+    },
+    {
+      "word": "resolves",
+      "start": 307.87,
+      "end": 308.37
+    },
+    {
+      "word": "both",
+      "start": 308.37,
+      "end": 308.87
+    },
+    {
+      "word": "sample",
+      "start": 308.87,
+      "end": 309.37
+    },
+    {
+      "word": "size",
+      "start": 309.37,
+      "end": 309.86
+    },
+    {
+      "word": "starvation",
+      "start": 309.86,
+      "end": 310.36
+    },
+    {
+      "word": "and",
+      "start": 310.36,
+      "end": 310.86
+    },
+    {
+      "word": "outlier",
+      "start": 310.86,
+      "end": 311.36
+    },
+    {
+      "word": "inflation",
+      "start": 311.36,
+      "end": 311.86
+    },
+    {
+      "word": "dr",
+      "start": 311.86,
+      "end": 312.23
+    },
+    {
+      "word": "nova",
+      "start": 312.23,
+      "end": 312.59
+    },
+    {
+      "word": "i",
+      "start": 312.59,
+      "end": 312.96
+    },
+    {
+      "word": "used",
+      "start": 312.96,
+      "end": 313.33
+    },
+    {
+      "word": "to",
+      "start": 313.33,
+      "end": 313.7
+    },
+    {
+      "word": "think",
+      "start": 313.7,
+      "end": 314.06
+    },
+    {
+      "word": "the",
+      "start": 314.06,
+      "end": 314.43
+    },
+    {
+      "word": "whiskers",
+      "start": 314.43,
+      "end": 314.8
+    },
+    {
+      "word": "on",
+      "start": 314.8,
+      "end": 315.17
+    },
+    {
+      "word": "a",
+      "start": 315.17,
+      "end": 315.53
+    },
+    {
+      "word": "boxplot",
+      "start": 315.53,
+      "end": 315.9
+    },
+    {
+      "word": "were",
+      "start": 315.9,
+      "end": 316.27
+    },
+    {
+      "word": "drawn",
+      "start": 316.27,
+      "end": 316.63
+    },
+    {
+      "word": "exactly",
+      "start": 316.63,
+      "end": 317.0
+    },
+    {
+      "word": "at",
+      "start": 317.0,
+      "end": 317.37
+    },
+    {
+      "word": "q1",
+      "start": 317.37,
+      "end": 317.74
+    },
+    {
+      "word": "minus",
+      "start": 317.74,
+      "end": 318.1
+    },
+    {
+      "word": "15",
+      "start": 318.1,
+      "end": 318.47
+    },
+    {
+      "word": "times",
+      "start": 318.47,
+      "end": 318.84
+    },
+    {
+      "word": "iqr",
+      "start": 318.84,
+      "end": 319.21
+    },
+    {
+      "word": "and",
+      "start": 319.21,
+      "end": 319.57
+    },
+    {
+      "word": "q3",
+      "start": 319.57,
+      "end": 319.94
+    },
+    {
+      "word": "plus",
+      "start": 319.94,
+      "end": 320.31
+    },
+    {
+      "word": "15",
+      "start": 320.31,
+      "end": 320.68
+    },
+    {
+      "word": "times",
+      "start": 320.68,
+      "end": 321.04
+    },
+    {
+      "word": "iqr",
+      "start": 321.04,
+      "end": 321.41
+    },
+    {
+      "word": "that",
+      "start": 321.41,
+      "end": 321.83
+    },
+    {
+      "word": "is",
+      "start": 321.83,
+      "end": 322.24
+    },
+    {
+      "word": "one",
+      "start": 322.24,
+      "end": 322.66
+    },
+    {
+      "word": "of",
+      "start": 322.66,
+      "end": 323.08
+    },
+    {
+      "word": "the",
+      "start": 323.08,
+      "end": 323.49
+    },
+    {
+      "word": "most",
+      "start": 323.49,
+      "end": 323.91
+    },
+    {
+      "word": "widespread",
+      "start": 323.91,
+      "end": 324.33
+    },
+    {
+      "word": "myths",
+      "start": 324.33,
+      "end": 324.74
+    },
+    {
+      "word": "in",
+      "start": 324.74,
+      "end": 325.16
+    },
+    {
+      "word": "data",
+      "start": 325.16,
+      "end": 325.58
+    },
+    {
+      "word": "science",
+      "start": 325.58,
+      "end": 325.99
+    },
+    {
+      "word": "kaito",
+      "start": 325.99,
+      "end": 326.41
+    },
+    {
+      "word": "the",
+      "start": 326.41,
+      "end": 326.83
+    },
+    {
+      "word": "fences",
+      "start": 326.83,
+      "end": 327.24
+    },
+    {
+      "word": "are",
+      "start": 327.24,
+      "end": 327.66
+    },
+    {
+      "word": "conceptual",
+      "start": 327.66,
+      "end": 328.08
+    },
+    {
+      "word": "boundaries",
+      "start": 328.08,
+      "end": 328.49
+    },
+    {
+      "word": "the",
+      "start": 328.49,
+      "end": 328.91
+    },
+    {
+      "word": "whiskers",
+      "start": 328.91,
+      "end": 329.33
+    },
+    {
+      "word": "must",
+      "start": 329.33,
+      "end": 329.74
+    },
+    {
+      "word": "stop",
+      "start": 329.74,
+      "end": 330.16
+    },
+    {
+      "word": "at",
+      "start": 330.16,
+      "end": 330.58
+    },
+    {
+      "word": "the",
+      "start": 330.58,
+      "end": 330.99
+    },
+    {
+      "word": "furthest",
+      "start": 330.99,
+      "end": 331.41
+    },
+    {
+      "word": "actual",
+      "start": 331.41,
+      "end": 331.83
+    },
+    {
+      "word": "data",
+      "start": 331.83,
+      "end": 332.24
+    },
+    {
+      "word": "point",
+      "start": 332.24,
+      "end": 332.66
+    },
+    {
+      "word": "inside",
+      "start": 332.66,
+      "end": 333.08
+    },
+    {
+      "word": "those",
+      "start": 333.08,
+      "end": 333.49
+    },
+    {
+      "word": "fences",
+      "start": 333.49,
+      "end": 333.91
+    },
+    {
+      "word": "so",
+      "start": 333.91,
+      "end": 334.23
+    },
+    {
+      "word": "if",
+      "start": 334.23,
+      "end": 334.54
+    },
+    {
+      "word": "our",
+      "start": 334.54,
+      "end": 334.86
+    },
+    {
+      "word": "highest",
+      "start": 334.86,
+      "end": 335.17
+    },
+    {
+      "word": "point",
+      "start": 335.17,
+      "end": 335.49
+    },
+    {
+      "word": "inside",
+      "start": 335.49,
+      "end": 335.81
+    },
+    {
+      "word": "the",
+      "start": 335.81,
+      "end": 336.12
+    },
+    {
+      "word": "fence",
+      "start": 336.12,
+      "end": 336.44
+    },
+    {
+      "word": "is",
+      "start": 336.44,
+      "end": 336.76
+    },
+    {
+      "word": "82",
+      "start": 336.76,
+      "end": 337.07
+    },
+    {
+      "word": "and",
+      "start": 337.07,
+      "end": 337.39
+    },
+    {
+      "word": "the",
+      "start": 337.39,
+      "end": 337.7
+    },
+    {
+      "word": "fence",
+      "start": 337.7,
+      "end": 338.02
+    },
+    {
+      "word": "is",
+      "start": 338.02,
+      "end": 338.34
+    },
+    {
+      "word": "at",
+      "start": 338.34,
+      "end": 338.65
+    },
+    {
+      "word": "90",
+      "start": 338.65,
+      "end": 338.97
+    },
+    {
+      "word": "the",
+      "start": 338.97,
+      "end": 339.29
+    },
+    {
+      "word": "whisker",
+      "start": 339.29,
+      "end": 339.6
+    },
+    {
+      "word": "stops",
+      "start": 339.6,
+      "end": 339.92
+    },
+    {
+      "word": "at",
+      "start": 339.92,
+      "end": 340.23
+    },
+    {
+      "word": "82",
+      "start": 340.23,
+      "end": 340.55
+    },
+    {
+      "word": "and",
+      "start": 340.55,
+      "end": 340.87
+    },
+    {
+      "word": "if",
+      "start": 340.87,
+      "end": 341.18
+    },
+    {
+      "word": "a",
+      "start": 341.18,
+      "end": 341.5
+    },
+    {
+      "word": "point",
+      "start": 341.5,
+      "end": 341.81
+    },
+    {
+      "word": "sits",
+      "start": 341.81,
+      "end": 342.13
+    },
+    {
+      "word": "at",
+      "start": 342.13,
+      "end": 342.45
+    },
+    {
+      "word": "95",
+      "start": 342.45,
+      "end": 342.76
+    },
+    {
+      "word": "its",
+      "start": 342.76,
+      "end": 343.08
+    },
+    {
+      "word": "plotted",
+      "start": 343.08,
+      "end": 343.4
+    },
+    {
+      "word": "as",
+      "start": 343.4,
+      "end": 343.71
+    },
+    {
+      "word": "a",
+      "start": 343.71,
+      "end": 344.03
+    },
+    {
+      "word": "lone",
+      "start": 344.03,
+      "end": 344.34
+    },
+    {
+      "word": "dot",
+      "start": 344.34,
+      "end": 344.66
+    },
+    {
+      "word": "exactly",
+      "start": 344.66,
+      "end": 345.24
+    },
+    {
+      "word": "that",
+      "start": 345.24,
+      "end": 345.81
+    },
+    {
+      "word": "guarantees",
+      "start": 345.81,
+      "end": 346.39
+    },
+    {
+      "word": "that",
+      "start": 346.39,
+      "end": 346.97
+    },
+    {
+      "word": "whisker",
+      "start": 346.97,
+      "end": 347.54
+    },
+    {
+      "word": "tips",
+      "start": 347.54,
+      "end": 348.12
+    },
+    {
+      "word": "represent",
+      "start": 348.12,
+      "end": 348.69
+    },
+    {
+      "word": "true",
+      "start": 348.7,
+      "end": 349.27
+    },
+    {
+      "word": "empirical",
+      "start": 349.27,
+      "end": 349.85
+    },
+    {
+      "word": "data",
+      "start": 349.85,
+      "end": 350.42
+    },
+    {
+      "word": "not",
+      "start": 350.42,
+      "end": 351.0
+    },
+    {
+      "word": "theoretical",
+      "start": 351.0,
+      "end": 351.58
+    },
+    {
+      "word": "empty",
+      "start": 351.58,
+      "end": 352.15
+    },
+    {
+      "word": "space",
+      "start": 352.15,
+      "end": 352.73
+    },
+    {
+      "word": "wait",
+      "start": 352.73,
+      "end": 353.23
+    },
+    {
+      "word": "dr",
+      "start": 353.23,
+      "end": 353.73
+    },
+    {
+      "word": "nova",
+      "start": 353.73,
+      "end": 354.23
+    },
+    {
+      "word": "a",
+      "start": 354.23,
+      "end": 354.74
+    },
+    {
+      "word": "unimodal",
+      "start": 354.74,
+      "end": 355.24
+    },
+    {
+      "word": "gaussian",
+      "start": 355.24,
+      "end": 355.74
+    },
+    {
+      "word": "and",
+      "start": 355.74,
+      "end": 356.24
+    },
+    {
+      "word": "a",
+      "start": 356.24,
+      "end": 356.74
+    },
+    {
+      "word": "bimodal",
+      "start": 356.74,
+      "end": 357.24
+    },
+    {
+      "word": "mixture",
+      "start": 357.24,
+      "end": 357.74
+    },
+    {
+      "word": "can",
+      "start": 357.74,
+      "end": 358.25
+    },
+    {
+      "word": "have",
+      "start": 358.25,
+      "end": 358.75
+    },
+    {
+      "word": "the",
+      "start": 358.75,
+      "end": 359.25
+    },
+    {
+      "word": "exact",
+      "start": 359.25,
+      "end": 359.75
+    },
+    {
+      "word": "same",
+      "start": 359.75,
+      "end": 360.25
+    },
+    {
+      "word": "boxplot",
+      "start": 360.25,
+      "end": 360.75
+    },
+    {
+      "word": "how",
+      "start": 360.75,
+      "end": 361.25
+    },
+    {
+      "word": "is",
+      "start": 361.25,
+      "end": 361.76
+    },
+    {
+      "word": "that",
+      "start": 361.76,
+      "end": 362.26
+    },
+    {
+      "word": "mathematically",
+      "start": 362.26,
+      "end": 362.76
+    },
+    {
+      "word": "possible",
+      "start": 362.76,
+      "end": 363.26
+    },
+    {
+      "word": "because",
+      "start": 363.26,
+      "end": 363.69
+    },
+    {
+      "word": "quantiles",
+      "start": 363.69,
+      "end": 364.12
+    },
+    {
+      "word": "care",
+      "start": 364.12,
+      "end": 364.55
+    },
+    {
+      "word": "only",
+      "start": 364.55,
+      "end": 364.98
+    },
+    {
+      "word": "about",
+      "start": 364.98,
+      "end": 365.41
+    },
+    {
+      "word": "rank",
+      "start": 365.41,
+      "end": 365.84
+    },
+    {
+      "word": "ordering",
+      "start": 365.84,
+      "end": 366.26
+    },
+    {
+      "word": "kaito",
+      "start": 366.26,
+      "end": 366.69
+    },
+    {
+      "word": "if",
+      "start": 366.69,
+      "end": 367.12
+    },
+    {
+      "word": "twentyfive",
+      "start": 367.12,
+      "end": 367.55
+    },
+    {
+      "word": "percent",
+      "start": 367.55,
+      "end": 367.98
+    },
+    {
+      "word": "of",
+      "start": 367.98,
+      "end": 368.41
+    },
+    {
+      "word": "observations",
+      "start": 368.41,
+      "end": 368.84
+    },
+    {
+      "word": "fall",
+      "start": 368.84,
+      "end": 369.27
+    },
+    {
+      "word": "below",
+      "start": 369.27,
+      "end": 369.7
+    },
+    {
+      "word": "forty",
+      "start": 369.7,
+      "end": 370.13
+    },
+    {
+      "word": "fifty",
+      "start": 370.13,
+      "end": 370.56
+    },
+    {
+      "word": "percent",
+      "start": 370.56,
+      "end": 370.99
+    },
+    {
+      "word": "below",
+      "start": 370.99,
+      "end": 371.42
+    },
+    {
+      "word": "fifty",
+      "start": 371.42,
+      "end": 371.85
+    },
+    {
+      "word": "and",
+      "start": 371.85,
+      "end": 372.27
+    },
+    {
+      "word": "seventyfive",
+      "start": 372.27,
+      "end": 372.7
+    },
+    {
+      "word": "percent",
+      "start": 372.7,
+      "end": 373.13
+    },
+    {
+      "word": "below",
+      "start": 373.13,
+      "end": 373.56
+    },
+    {
+      "word": "sixty",
+      "start": 373.56,
+      "end": 373.99
+    },
+    {
+      "word": "the",
+      "start": 373.99,
+      "end": 374.42
+    },
+    {
+      "word": "boxplot",
+      "start": 374.42,
+      "end": 374.85
+    },
+    {
+      "word": "is",
+      "start": 374.85,
+      "end": 375.28
+    },
+    {
+      "word": "identical",
+      "start": 375.28,
+      "end": 375.71
+    },
+    {
+      "word": "whether",
+      "start": 375.71,
+      "end": 376.14
+    },
+    {
+      "word": "probability",
+      "start": 376.14,
+      "end": 376.57
+    },
+    {
+      "word": "mass",
+      "start": 376.57,
+      "end": 377.0
+    },
+    {
+      "word": "fills",
+      "start": 377.0,
+      "end": 377.43
+    },
+    {
+      "word": "the",
+      "start": 377.43,
+      "end": 377.86
+    },
+    {
+      "word": "middle",
+      "start": 377.86,
+      "end": 378.28
+    },
+    {
+      "word": "or",
+      "start": 378.28,
+      "end": 378.71
+    },
+    {
+      "word": "splits",
+      "start": 378.71,
+      "end": 379.14
+    },
+    {
+      "word": "into",
+      "start": 379.14,
+      "end": 379.57
+    },
+    {
+      "word": "two",
+      "start": 379.57,
+      "end": 380.0
+    },
+    {
+      "word": "separate",
+      "start": 380.0,
+      "end": 380.43
+    },
+    {
+      "word": "peaks",
+      "start": 380.43,
+      "end": 380.86
+    },
+    {
+      "word": "so",
+      "start": 380.86,
+      "end": 381.22
+    },
+    {
+      "word": "if",
+      "start": 381.22,
+      "end": 381.58
+    },
+    {
+      "word": "our",
+      "start": 381.58,
+      "end": 381.94
+    },
+    {
+      "word": "customers",
+      "start": 381.94,
+      "end": 382.3
+    },
+    {
+      "word": "are",
+      "start": 382.3,
+      "end": 382.65
+    },
+    {
+      "word": "split",
+      "start": 382.65,
+      "end": 383.01
+    },
+    {
+      "word": "into",
+      "start": 383.01,
+      "end": 383.37
+    },
+    {
+      "word": "budget",
+      "start": 383.37,
+      "end": 383.73
+    },
+    {
+      "word": "users",
+      "start": 383.73,
+      "end": 384.09
+    },
+    {
+      "word": "and",
+      "start": 384.09,
+      "end": 384.45
+    },
+    {
+      "word": "enterprise",
+      "start": 384.45,
+      "end": 384.81
+    },
+    {
+      "word": "users",
+      "start": 384.81,
+      "end": 385.17
+    },
+    {
+      "word": "a",
+      "start": 385.17,
+      "end": 385.52
+    },
+    {
+      "word": "boxplot",
+      "start": 385.52,
+      "end": 385.88
+    },
+    {
+      "word": "would",
+      "start": 385.88,
+      "end": 386.24
+    },
+    {
+      "word": "show",
+      "start": 386.24,
+      "end": 386.6
+    },
+    {
+      "word": "a",
+      "start": 386.6,
+      "end": 386.96
+    },
+    {
+      "word": "healthy",
+      "start": 386.96,
+      "end": 387.32
+    },
+    {
+      "word": "middleclass",
+      "start": 387.32,
+      "end": 387.68
+    },
+    {
+      "word": "customer",
+      "start": 387.68,
+      "end": 388.04
+    },
+    {
+      "word": "base",
+      "start": 388.04,
+      "end": 388.39
+    },
+    {
+      "word": "that",
+      "start": 388.39,
+      "end": 388.75
+    },
+    {
+      "word": "doesnt",
+      "start": 388.75,
+      "end": 389.11
+    },
+    {
+      "word": "actually",
+      "start": 389.11,
+      "end": 389.47
+    },
+    {
+      "word": "exist",
+      "start": 389.47,
+      "end": 389.83
+    },
+    {
+      "word": "precisely",
+      "start": 389.83,
+      "end": 390.39
+    },
+    {
+      "word": "thats",
+      "start": 390.39,
+      "end": 390.94
+    },
+    {
+      "word": "why",
+      "start": 390.94,
+      "end": 391.5
+    },
+    {
+      "word": "violin",
+      "start": 391.5,
+      "end": 392.06
+    },
+    {
+      "word": "plots",
+      "start": 392.06,
+      "end": 392.61
+    },
+    {
+      "word": "and",
+      "start": 392.61,
+      "end": 393.17
+    },
+    {
+      "word": "kde",
+      "start": 393.17,
+      "end": 393.73
+    },
+    {
+      "word": "overlays",
+      "start": 393.73,
+      "end": 394.28
+    },
+    {
+      "word": "are",
+      "start": 394.28,
+      "end": 394.84
+    },
+    {
+      "word": "mandatory",
+      "start": 394.84,
+      "end": 395.39
+    },
+    {
+      "word": "whenever",
+      "start": 395.39,
+      "end": 395.95
+    },
+    {
+      "word": "evaluating",
+      "start": 395.95,
+      "end": 396.51
+    },
+    {
+      "word": "multimodal",
+      "start": 396.51,
+      "end": 397.06
+    },
+    {
+      "word": "customer",
+      "start": 397.06,
+      "end": 397.62
+    },
+    {
+      "word": "or",
+      "start": 397.62,
+      "end": 398.18
+    },
+    {
+      "word": "system",
+      "start": 398.18,
+      "end": 398.73
+    },
+    {
+      "word": "telemetry",
+      "start": 398.73,
+      "end": 399.29
+    },
+    {
+      "word": "wait",
+      "start": 399.29,
+      "end": 399.72
+    },
+    {
+      "word": "dr",
+      "start": 399.72,
+      "end": 400.14
+    },
+    {
+      "word": "nova",
+      "start": 400.14,
+      "end": 400.57
+    },
+    {
+      "word": "if",
+      "start": 400.57,
+      "end": 401.0
+    },
+    {
+      "word": "histograms",
+      "start": 401.0,
+      "end": 401.42
+    },
+    {
+      "word": "need",
+      "start": 401.42,
+      "end": 401.85
+    },
+    {
+      "word": "bin",
+      "start": 401.85,
+      "end": 402.27
+    },
+    {
+      "word": "tuning",
+      "start": 402.27,
+      "end": 402.7
+    },
+    {
+      "word": "and",
+      "start": 402.7,
+      "end": 403.13
+    },
+    {
+      "word": "kde",
+      "start": 403.13,
+      "end": 403.55
+    },
+    {
+      "word": "needs",
+      "start": 403.55,
+      "end": 403.98
+    },
+    {
+      "word": "bandwidth",
+      "start": 403.98,
+      "end": 404.41
+    },
+    {
+      "word": "tuning",
+      "start": 404.41,
+      "end": 404.83
+    },
+    {
+      "word": "does",
+      "start": 404.83,
+      "end": 405.26
+    },
+    {
+      "word": "the",
+      "start": 405.26,
+      "end": 405.69
+    },
+    {
+      "word": "empirical",
+      "start": 405.69,
+      "end": 406.11
+    },
+    {
+      "word": "cdf",
+      "start": 406.11,
+      "end": 406.54
+    },
+    {
+      "word": "need",
+      "start": 406.54,
+      "end": 406.96
+    },
+    {
+      "word": "any",
+      "start": 406.96,
+      "end": 407.39
+    },
+    {
+      "word": "tuning",
+      "start": 407.39,
+      "end": 407.82
+    },
+    {
+      "word": "at",
+      "start": 407.82,
+      "end": 408.24
+    },
+    {
+      "word": "all",
+      "start": 408.24,
+      "end": 408.67
+    },
+    {
+      "word": "zero",
+      "start": 408.67,
+      "end": 409.15
+    },
+    {
+      "word": "tuning",
+      "start": 409.15,
+      "end": 409.63
+    },
+    {
+      "word": "parameters",
+      "start": 409.63,
+      "end": 410.11
+    },
+    {
+      "word": "kaito",
+      "start": 410.11,
+      "end": 410.59
+    },
+    {
+      "word": "the",
+      "start": 410.59,
+      "end": 411.07
+    },
+    {
+      "word": "empirical",
+      "start": 411.07,
+      "end": 411.55
+    },
+    {
+      "word": "cdf",
+      "start": 411.55,
+      "end": 412.03
+    },
+    {
+      "word": "is",
+      "start": 412.03,
+      "end": 412.51
+    },
+    {
+      "word": "the",
+      "start": 412.51,
+      "end": 412.99
+    },
+    {
+      "word": "definitive",
+      "start": 412.99,
+      "end": 413.47
+    },
+    {
+      "word": "nonparametric",
+      "start": 413.47,
+      "end": 413.95
+    },
+    {
+      "word": "ground",
+      "start": 413.95,
+      "end": 414.43
+    },
+    {
+      "word": "truth",
+      "start": 414.43,
+      "end": 414.91
+    },
+    {
+      "word": "every",
+      "start": 414.91,
+      "end": 415.39
+    },
+    {
+      "word": "single",
+      "start": 415.39,
+      "end": 415.87
+    },
+    {
+      "word": "data",
+      "start": 415.87,
+      "end": 416.35
+    },
+    {
+      "word": "point",
+      "start": 416.35,
+      "end": 416.83
+    },
+    {
+      "word": "steps",
+      "start": 416.83,
+      "end": 417.31
+    },
+    {
+      "word": "the",
+      "start": 417.31,
+      "end": 417.79
+    },
+    {
+      "word": "function",
+      "start": 417.79,
+      "end": 418.27
+    },
+    {
+      "word": "up",
+      "start": 418.27,
+      "end": 418.75
+    },
+    {
+      "word": "by",
+      "start": 418.75,
+      "end": 419.23
+    },
+    {
+      "word": "exactly",
+      "start": 419.23,
+      "end": 419.71
+    },
+    {
+      "word": "1",
+      "start": 419.71,
+      "end": 420.19
+    },
+    {
+      "word": "over",
+      "start": 420.19,
+      "end": 420.67
+    },
+    {
+      "word": "n",
+      "start": 420.67,
+      "end": 421.15
+    },
+    {
+      "word": "and",
+      "start": 421.15,
+      "end": 421.55
+    },
+    {
+      "word": "the",
+      "start": 421.55,
+      "end": 421.96
+    },
+    {
+      "word": "dkw",
+      "start": 421.96,
+      "end": 422.36
+    },
+    {
+      "word": "inequality",
+      "start": 422.36,
+      "end": 422.77
+    },
+    {
+      "word": "gives",
+      "start": 422.77,
+      "end": 423.17
+    },
+    {
+      "word": "us",
+      "start": 423.17,
+      "end": 423.58
+    },
+    {
+      "word": "a",
+      "start": 423.58,
+      "end": 423.98
+    },
+    {
+      "word": "uniform",
+      "start": 423.98,
+      "end": 424.38
+    },
+    {
+      "word": "confidence",
+      "start": 424.38,
+      "end": 424.79
+    },
+    {
+      "word": "band",
+      "start": 424.79,
+      "end": 425.19
+    },
+    {
+      "word": "that",
+      "start": 425.19,
+      "end": 425.6
+    },
+    {
+      "word": "brackets",
+      "start": 425.6,
+      "end": 426.0
+    },
+    {
+      "word": "the",
+      "start": 426.0,
+      "end": 426.41
+    },
+    {
+      "word": "true",
+      "start": 426.41,
+      "end": 426.81
+    },
+    {
+      "word": "distribution",
+      "start": 426.81,
+      "end": 427.22
+    },
+    {
+      "word": "across",
+      "start": 427.22,
+      "end": 427.62
+    },
+    {
+      "word": "all",
+      "start": 427.62,
+      "end": 428.02
+    },
+    {
+      "word": "x",
+      "start": 428.02,
+      "end": 428.43
+    },
+    {
+      "word": "simultaneously",
+      "start": 428.43,
+      "end": 428.83
+    },
+    {
+      "word": "how",
+      "start": 428.83,
+      "end": 429.24
+    },
+    {
+      "word": "wide",
+      "start": 429.24,
+      "end": 429.64
+    },
+    {
+      "word": "is",
+      "start": 429.64,
+      "end": 430.05
+    },
+    {
+      "word": "that",
+      "start": 430.05,
+      "end": 430.45
+    },
+    {
+      "word": "band",
+      "start": 430.45,
+      "end": 430.86
+    },
+    {
+      "word": "for",
+      "start": 430.85,
+      "end": 431.26
+    },
+    {
+      "word": "five",
+      "start": 431.26,
+      "end": 431.66
+    },
+    {
+      "word": "thousand",
+      "start": 431.66,
+      "end": 432.07
+    },
+    {
+      "word": "points",
+      "start": 432.07,
+      "end": 432.47
+    },
+    {
+      "word": "at",
+      "start": 432.47,
+      "end": 432.88
+    },
+    {
+      "word": "ninetyfive",
+      "start": 432.88,
+      "end": 433.28
+    },
+    {
+      "word": "percent",
+      "start": 433.28,
+      "end": 433.69
+    },
+    {
+      "word": "confidence",
+      "start": 433.69,
+      "end": 434.09
+    },
+    {
+      "word": "plugging",
+      "start": 434.09,
+      "end": 434.48
+    },
+    {
+      "word": "n",
+      "start": 434.48,
+      "end": 434.87
+    },
+    {
+      "word": "equals",
+      "start": 434.87,
+      "end": 435.26
+    },
+    {
+      "word": "5000",
+      "start": 435.26,
+      "end": 435.65
+    },
+    {
+      "word": "and",
+      "start": 435.65,
+      "end": 436.04
+    },
+    {
+      "word": "alpha",
+      "start": 436.04,
+      "end": 436.43
+    },
+    {
+      "word": "equals",
+      "start": 436.43,
+      "end": 436.82
+    },
+    {
+      "word": "005",
+      "start": 436.82,
+      "end": 437.22
+    },
+    {
+      "word": "into",
+      "start": 437.22,
+      "end": 437.61
+    },
+    {
+      "word": "epsilon",
+      "start": 437.61,
+      "end": 438.0
+    },
+    {
+      "word": "yields",
+      "start": 438.0,
+      "end": 438.39
+    },
+    {
+      "word": "about",
+      "start": 438.39,
+      "end": 438.78
+    },
+    {
+      "word": "one",
+      "start": 438.78,
+      "end": 439.17
+    },
+    {
+      "word": "point",
+      "start": 439.17,
+      "end": 439.56
+    },
+    {
+      "word": "nine",
+      "start": 439.56,
+      "end": 439.95
+    },
+    {
+      "word": "percent",
+      "start": 439.95,
+      "end": 440.34
+    },
+    {
+      "word": "we",
+      "start": 440.34,
+      "end": 440.73
+    },
+    {
+      "word": "can",
+      "start": 440.73,
+      "end": 441.12
+    },
+    {
+      "word": "state",
+      "start": 441.12,
+      "end": 441.51
+    },
+    {
+      "word": "with",
+      "start": 441.51,
+      "end": 441.9
+    },
+    {
+      "word": "ninetyfive",
+      "start": 441.9,
+      "end": 442.29
+    },
+    {
+      "word": "percent",
+      "start": 442.29,
+      "end": 442.68
+    },
+    {
+      "word": "confidence",
+      "start": 442.68,
+      "end": 443.07
+    },
+    {
+      "word": "that",
+      "start": 443.07,
+      "end": 443.47
+    },
+    {
+      "word": "the",
+      "start": 443.47,
+      "end": 443.86
+    },
+    {
+      "word": "true",
+      "start": 443.86,
+      "end": 444.25
+    },
+    {
+      "word": "continuous",
+      "start": 444.25,
+      "end": 444.64
+    },
+    {
+      "word": "cdf",
+      "start": 444.64,
+      "end": 445.03
+    },
+    {
+      "word": "never",
+      "start": 445.03,
+      "end": 445.42
+    },
+    {
+      "word": "deviates",
+      "start": 445.42,
+      "end": 445.81
+    },
+    {
+      "word": "from",
+      "start": 445.81,
+      "end": 446.2
+    },
+    {
+      "word": "our",
+      "start": 446.2,
+      "end": 446.59
+    },
+    {
+      "word": "empirical",
+      "start": 446.59,
+      "end": 446.98
+    },
+    {
+      "word": "curve",
+      "start": 446.98,
+      "end": 447.37
+    },
+    {
+      "word": "by",
+      "start": 447.37,
+      "end": 447.76
+    },
+    {
+      "word": "more",
+      "start": 447.76,
+      "end": 448.15
+    },
+    {
+      "word": "than",
+      "start": 448.15,
+      "end": 448.54
+    },
+    {
+      "word": "one",
+      "start": 448.54,
+      "end": 448.93
+    },
+    {
+      "word": "point",
+      "start": 448.93,
+      "end": 449.33
+    },
+    {
+      "word": "nine",
+      "start": 449.33,
+      "end": 449.72
+    },
+    {
+      "word": "percent",
+      "start": 449.72,
+      "end": 450.11
+    },
+    {
+      "word": "anywhere",
+      "start": 450.11,
+      "end": 450.5
+    },
+    {
+      "word": "on",
+      "start": 450.5,
+      "end": 450.89
+    },
+    {
+      "word": "the",
+      "start": 450.89,
+      "end": 451.28
+    },
+    {
+      "word": "real",
+      "start": 451.28,
+      "end": 451.67
+    },
+    {
+      "word": "line",
+      "start": 451.67,
+      "end": 452.06
+    },
+    {
+      "word": "i",
+      "start": 452.06,
+      "end": 452.4
+    },
+    {
+      "word": "tried",
+      "start": 452.4,
+      "end": 452.74
+    },
+    {
+      "word": "plotting",
+      "start": 452.74,
+      "end": 453.09
+    },
+    {
+      "word": "two",
+      "start": 453.09,
+      "end": 453.43
+    },
+    {
+      "word": "million",
+      "start": 453.43,
+      "end": 453.77
+    },
+    {
+      "word": "telemetry",
+      "start": 453.77,
+      "end": 454.11
+    },
+    {
+      "word": "points",
+      "start": 454.11,
+      "end": 454.45
+    },
+    {
+      "word": "on",
+      "start": 454.45,
+      "end": 454.8
+    },
+    {
+      "word": "a",
+      "start": 454.8,
+      "end": 455.14
+    },
+    {
+      "word": "scatter",
+      "start": 455.14,
+      "end": 455.48
+    },
+    {
+      "word": "plot",
+      "start": 455.48,
+      "end": 455.82
+    },
+    {
+      "word": "once",
+      "start": 455.82,
+      "end": 456.16
+    },
+    {
+      "word": "and",
+      "start": 456.16,
+      "end": 456.51
+    },
+    {
+      "word": "my",
+      "start": 456.51,
+      "end": 456.85
+    },
+    {
+      "word": "browser",
+      "start": 456.85,
+      "end": 457.19
+    },
+    {
+      "word": "froze",
+      "start": 457.19,
+      "end": 457.53
+    },
+    {
+      "word": "when",
+      "start": 457.53,
+      "end": 457.88
+    },
+    {
+      "word": "it",
+      "start": 457.88,
+      "end": 458.22
+    },
+    {
+      "word": "finally",
+      "start": 458.22,
+      "end": 458.56
+    },
+    {
+      "word": "rendered",
+      "start": 458.56,
+      "end": 458.9
+    },
+    {
+      "word": "it",
+      "start": 458.9,
+      "end": 459.24
+    },
+    {
+      "word": "was",
+      "start": 459.24,
+      "end": 459.59
+    },
+    {
+      "word": "just",
+      "start": 459.59,
+      "end": 459.93
+    },
+    {
+      "word": "a",
+      "start": 459.93,
+      "end": 460.27
+    },
+    {
+      "word": "solid",
+      "start": 460.27,
+      "end": 460.61
+    },
+    {
+      "word": "blob",
+      "start": 460.61,
+      "end": 460.95
+    },
+    {
+      "word": "of",
+      "start": 460.95,
+      "end": 461.3
+    },
+    {
+      "word": "black",
+      "start": 461.3,
+      "end": 461.64
+    },
+    {
+      "word": "ink",
+      "start": 461.64,
+      "end": 461.98
+    },
+    {
+      "word": "that",
+      "start": 461.98,
+      "end": 462.46
+    },
+    {
+      "word": "is",
+      "start": 462.46,
+      "end": 462.94
+    },
+    {
+      "word": "clevelands",
+      "start": 462.94,
+      "end": 463.41
+    },
+    {
+      "word": "ink",
+      "start": 463.41,
+      "end": 463.89
+    },
+    {
+      "word": "saturation",
+      "start": 463.89,
+      "end": 464.37
+    },
+    {
+      "word": "threshold",
+      "start": 464.37,
+      "end": 464.85
+    },
+    {
+      "word": "in",
+      "start": 464.85,
+      "end": 465.33
+    },
+    {
+      "word": "action",
+      "start": 465.33,
+      "end": 465.8
+    },
+    {
+      "word": "kaito",
+      "start": 465.8,
+      "end": 466.28
+    },
+    {
+      "word": "once",
+      "start": 466.28,
+      "end": 466.76
+    },
+    {
+      "word": "data",
+      "start": 466.76,
+      "end": 467.24
+    },
+    {
+      "word": "points",
+      "start": 467.24,
+      "end": 467.72
+    },
+    {
+      "word": "overlap",
+      "start": 467.72,
+      "end": 468.19
+    },
+    {
+      "word": "human",
+      "start": 468.19,
+      "end": 468.67
+    },
+    {
+      "word": "vision",
+      "start": 468.67,
+      "end": 469.15
+    },
+    {
+      "word": "cannot",
+      "start": 469.15,
+      "end": 469.63
+    },
+    {
+      "word": "distinguish",
+      "start": 469.63,
+      "end": 470.11
+    },
+    {
+      "word": "between",
+      "start": 470.11,
+      "end": 470.58
+    },
+    {
+      "word": "a",
+      "start": 470.58,
+      "end": 471.06
+    },
+    {
+      "word": "hundred",
+      "start": 471.06,
+      "end": 471.54
+    },
+    {
+      "word": "observations",
+      "start": 471.54,
+      "end": 472.02
+    },
+    {
+      "word": "and",
+      "start": 472.02,
+      "end": 472.5
+    },
+    {
+      "word": "ten",
+      "start": 472.5,
+      "end": 472.97
+    },
+    {
+      "word": "thousand",
+      "start": 472.97,
+      "end": 473.45
+    },
+    {
+      "word": "observations",
+      "start": 473.45,
+      "end": 473.93
+    },
+    {
+      "word": "and",
+      "start": 473.93,
+      "end": 474.35
+    },
+    {
+      "word": "why",
+      "start": 474.35,
+      "end": 474.77
+    },
+    {
+      "word": "are",
+      "start": 474.77,
+      "end": 475.18
+    },
+    {
+      "word": "hexagonal",
+      "start": 475.18,
+      "end": 475.6
+    },
+    {
+      "word": "bins",
+      "start": 475.6,
+      "end": 476.02
+    },
+    {
+      "word": "better",
+      "start": 476.02,
+      "end": 476.44
+    },
+    {
+      "word": "than",
+      "start": 476.44,
+      "end": 476.85
+    },
+    {
+      "word": "square",
+      "start": 476.85,
+      "end": 477.27
+    },
+    {
+      "word": "bins",
+      "start": 477.27,
+      "end": 477.69
+    },
+    {
+      "word": "both",
+      "start": 477.69,
+      "end": 478.11
+    },
+    {
+      "word": "partition",
+      "start": 478.11,
+      "end": 478.52
+    },
+    {
+      "word": "a",
+      "start": 478.52,
+      "end": 478.94
+    },
+    {
+      "word": "2d",
+      "start": 478.94,
+      "end": 479.36
+    },
+    {
+      "word": "plane",
+      "start": 479.36,
+      "end": 479.78
+    },
+    {
+      "word": "into",
+      "start": 479.78,
+      "end": 480.19
+    },
+    {
+      "word": "a",
+      "start": 480.19,
+      "end": 480.61
+    },
+    {
+      "word": "grid",
+      "start": 480.61,
+      "end": 481.03
+    },
+    {
+      "word": "because",
+      "start": 481.03,
+      "end": 481.45
+    },
+    {
+      "word": "hexagons",
+      "start": 481.45,
+      "end": 481.86
+    },
+    {
+      "word": "are",
+      "start": 481.86,
+      "end": 482.28
+    },
+    {
+      "word": "the",
+      "start": 482.28,
+      "end": 482.7
+    },
+    {
+      "word": "regular",
+      "start": 482.7,
+      "end": 483.11
+    },
+    {
+      "word": "polygon",
+      "start": 483.11,
+      "end": 483.53
+    },
+    {
+      "word": "closest",
+      "start": 483.53,
+      "end": 483.95
+    },
+    {
+      "word": "to",
+      "start": 483.95,
+      "end": 484.36
+    },
+    {
+      "word": "a",
+      "start": 484.36,
+      "end": 484.78
+    },
+    {
+      "word": "circle",
+      "start": 484.78,
+      "end": 485.2
+    },
+    {
+      "word": "that",
+      "start": 485.2,
+      "end": 485.62
+    },
+    {
+      "word": "tiles",
+      "start": 485.62,
+      "end": 486.03
+    },
+    {
+      "word": "a",
+      "start": 486.03,
+      "end": 486.45
+    },
+    {
+      "word": "plane",
+      "start": 486.45,
+      "end": 486.87
+    },
+    {
+      "word": "without",
+      "start": 486.87,
+      "end": 487.28
+    },
+    {
+      "word": "gaps",
+      "start": 487.28,
+      "end": 487.7
+    },
+    {
+      "word": "a",
+      "start": 487.7,
+      "end": 488.12
+    },
+    {
+      "word": "square",
+      "start": 488.12,
+      "end": 488.53
+    },
+    {
+      "word": "has",
+      "start": 488.53,
+      "end": 488.95
+    },
+    {
+      "word": "corners",
+      "start": 488.95,
+      "end": 489.37
+    },
+    {
+      "word": "that",
+      "start": 489.37,
+      "end": 489.78
+    },
+    {
+      "word": "are",
+      "start": 489.78,
+      "end": 490.2
+    },
+    {
+      "word": "fortyone",
+      "start": 490.2,
+      "end": 490.62
+    },
+    {
+      "word": "percent",
+      "start": 490.62,
+      "end": 491.03
+    },
+    {
+      "word": "further",
+      "start": 491.03,
+      "end": 491.45
+    },
+    {
+      "word": "from",
+      "start": 491.45,
+      "end": 491.87
+    },
+    {
+      "word": "the",
+      "start": 491.87,
+      "end": 492.28
+    },
+    {
+      "word": "center",
+      "start": 492.28,
+      "end": 492.7
+    },
+    {
+      "word": "than",
+      "start": 492.7,
+      "end": 493.12
+    },
+    {
+      "word": "its",
+      "start": 493.12,
+      "end": 493.53
+    },
+    {
+      "word": "edges",
+      "start": 493.53,
+      "end": 493.95
+    },
+    {
+      "word": "hexagons",
+      "start": 493.95,
+      "end": 494.37
+    },
+    {
+      "word": "have",
+      "start": 494.37,
+      "end": 494.79
+    },
+    {
+      "word": "six",
+      "start": 494.78,
+      "end": 495.2
+    },
+    {
+      "word": "equidistant",
+      "start": 495.2,
+      "end": 495.62
+    },
+    {
+      "word": "neighbors",
+      "start": 495.62,
+      "end": 496.04
+    },
+    {
+      "word": "giving",
+      "start": 496.04,
+      "end": 496.45
+    },
+    {
+      "word": "symmetric",
+      "start": 496.45,
+      "end": 496.87
+    },
+    {
+      "word": "radial",
+      "start": 496.87,
+      "end": 497.29
+    },
+    {
+      "word": "resolution",
+      "start": 497.29,
+      "end": 497.7
+    },
+    {
+      "word": "with",
+      "start": 497.7,
+      "end": 498.12
+    },
+    {
+      "word": "zero",
+      "start": 498.12,
+      "end": 498.54
+    },
+    {
+      "word": "directional",
+      "start": 498.54,
+      "end": 498.95
+    },
+    {
+      "word": "distortion",
+      "start": 498.95,
+      "end": 499.37
+    },
+    {
+      "word": "look",
+      "start": 499.37,
+      "end": 499.73
+    },
+    {
+      "word": "at",
+      "start": 499.73,
+      "end": 500.1
+    },
+    {
+      "word": "the",
+      "start": 500.1,
+      "end": 500.46
+    },
+    {
+      "word": "raw",
+      "start": 500.46,
+      "end": 500.83
+    },
+    {
+      "word": "scatter",
+      "start": 500.83,
+      "end": 501.19
+    },
+    {
+      "word": "mode",
+      "start": 501.19,
+      "end": 501.55
+    },
+    {
+      "word": "with",
+      "start": 501.55,
+      "end": 501.92
+    },
+    {
+      "word": "3000",
+      "start": 501.92,
+      "end": 502.28
+    },
+    {
+      "word": "points",
+      "start": 502.28,
+      "end": 502.65
+    },
+    {
+      "word": "its",
+      "start": 502.65,
+      "end": 503.01
+    },
+    {
+      "word": "pure",
+      "start": 503.01,
+      "end": 503.37
+    },
+    {
+      "word": "ink",
+      "start": 503.37,
+      "end": 503.74
+    },
+    {
+      "word": "saturation",
+      "start": 503.74,
+      "end": 504.1
+    },
+    {
+      "word": "i",
+      "start": 504.1,
+      "end": 504.46
+    },
+    {
+      "word": "cant",
+      "start": 504.46,
+      "end": 504.83
+    },
+    {
+      "word": "tell",
+      "start": 504.83,
+      "end": 505.19
+    },
+    {
+      "word": "where",
+      "start": 505.19,
+      "end": 505.56
+    },
+    {
+      "word": "the",
+      "start": 505.56,
+      "end": 505.92
+    },
+    {
+      "word": "points",
+      "start": 505.92,
+      "end": 506.28
+    },
+    {
+      "word": "are",
+      "start": 506.28,
+      "end": 506.65
+    },
+    {
+      "word": "clustering",
+      "start": 506.65,
+      "end": 507.01
+    },
+    {
+      "word": "at",
+      "start": 507.01,
+      "end": 507.38
+    },
+    {
+      "word": "all",
+      "start": 507.38,
+      "end": 507.74
+    },
+    {
+      "word": "now",
+      "start": 507.74,
+      "end": 508.1
+    },
+    {
+      "word": "toggle",
+      "start": 508.1,
+      "end": 508.46
+    },
+    {
+      "word": "to",
+      "start": 508.46,
+      "end": 508.82
+    },
+    {
+      "word": "hexbin",
+      "start": 508.82,
+      "end": 509.19
+    },
+    {
+      "word": "mode",
+      "start": 509.19,
+      "end": 509.55
+    },
+    {
+      "word": "kaito",
+      "start": 509.55,
+      "end": 509.91
+    },
+    {
+      "word": "see",
+      "start": 509.91,
+      "end": 510.27
+    },
+    {
+      "word": "how",
+      "start": 510.27,
+      "end": 510.63
+    },
+    {
+      "word": "the",
+      "start": 510.63,
+      "end": 510.99
+    },
+    {
+      "word": "hex",
+      "start": 510.99,
+      "end": 511.35
+    },
+    {
+      "word": "cells",
+      "start": 511.35,
+      "end": 511.71
+    },
+    {
+      "word": "light",
+      "start": 511.71,
+      "end": 512.08
+    },
+    {
+      "word": "up",
+      "start": 512.08,
+      "end": 512.44
+    },
+    {
+      "word": "in",
+      "start": 512.44,
+      "end": 512.8
+    },
+    {
+      "word": "yellow",
+      "start": 512.8,
+      "end": 513.16
+    },
+    {
+      "word": "and",
+      "start": 513.16,
+      "end": 513.52
+    },
+    {
+      "word": "crimson",
+      "start": 513.52,
+      "end": 513.88
+    },
+    {
+      "word": "where",
+      "start": 513.88,
+      "end": 514.24
+    },
+    {
+      "word": "the",
+      "start": 514.24,
+      "end": 514.6
+    },
+    {
+      "word": "true",
+      "start": 514.6,
+      "end": 514.97
+    },
+    {
+      "word": "density",
+      "start": 514.97,
+      "end": 515.33
+    },
+    {
+      "word": "peak",
+      "start": 515.33,
+      "end": 515.69
+    },
+    {
+      "word": "resides",
+      "start": 515.69,
+      "end": 516.05
+    },
+    {
+      "word": "thats",
+      "start": 516.05,
+      "end": 516.54
+    },
+    {
+      "word": "incredible",
+      "start": 516.54,
+      "end": 517.03
+    },
+    {
+      "word": "the",
+      "start": 517.03,
+      "end": 517.52
+    },
+    {
+      "word": "core",
+      "start": 517.52,
+      "end": 518.02
+    },
+    {
+      "word": "mode",
+      "start": 518.02,
+      "end": 518.51
+    },
+    {
+      "word": "emerges",
+      "start": 518.51,
+      "end": 519.0
+    },
+    {
+      "word": "immediately",
+      "start": 519.0,
+      "end": 519.49
+    },
+    {
+      "word": "now",
+      "start": 519.49,
+      "end": 519.98
+    },
+    {
+      "word": "let",
+      "start": 519.98,
+      "end": 520.47
+    },
+    {
+      "word": "me",
+      "start": 520.47,
+      "end": 520.96
+    },
+    {
+      "word": "switch",
+      "start": 520.96,
+      "end": 521.46
+    },
+    {
+      "word": "to",
+      "start": 521.46,
+      "end": 521.95
+    },
+    {
+      "word": "monotonic",
+      "start": 521.95,
+      "end": 522.44
+    },
+    {
+      "word": "exponential",
+      "start": 522.44,
+      "end": 522.93
+    },
+    {
+      "word": "data",
+      "start": 522.93,
+      "end": 523.42
+    },
+    {
+      "word": "spearman",
+      "start": 523.42,
+      "end": 523.91
+    },
+    {
+      "word": "rho",
+      "start": 523.91,
+      "end": 524.4
+    },
+    {
+      "word": "is",
+      "start": 524.4,
+      "end": 524.89
+    },
+    {
+      "word": "10",
+      "start": 524.89,
+      "end": 525.39
+    },
+    {
+      "word": "while",
+      "start": 525.39,
+      "end": 525.88
+    },
+    {
+      "word": "pearson",
+      "start": 525.88,
+      "end": 526.37
+    },
+    {
+      "word": "r",
+      "start": 526.37,
+      "end": 526.86
+    },
+    {
+      "word": "drops",
+      "start": 526.86,
+      "end": 527.35
+    },
+    {
+      "word": "to",
+      "start": 527.35,
+      "end": 527.84
+    },
+    {
+      "word": "079",
+      "start": 527.84,
+      "end": 528.33
+    },
+    {
+      "word": "because",
+      "start": 528.33,
+      "end": 528.83
+    },
+    {
+      "word": "of",
+      "start": 528.83,
+      "end": 529.32
+    },
+    {
+      "word": "nonlinear",
+      "start": 529.32,
+      "end": 529.81
+    },
+    {
+      "word": "curvature",
+      "start": 529.81,
+      "end": 530.3
+    },
+    {
+      "word": "and",
+      "start": 530.3,
+      "end": 530.7
+    },
+    {
+      "word": "if",
+      "start": 530.7,
+      "end": 531.11
+    },
+    {
+      "word": "you",
+      "start": 531.11,
+      "end": 531.51
+    },
+    {
+      "word": "drag",
+      "start": 531.51,
+      "end": 531.91
+    },
+    {
+      "word": "up",
+      "start": 531.91,
+      "end": 532.31
+    },
+    {
+      "word": "the",
+      "start": 532.31,
+      "end": 532.72
+    },
+    {
+      "word": "outlier",
+      "start": 532.72,
+      "end": 533.12
+    },
+    {
+      "word": "leverage",
+      "start": 533.12,
+      "end": 533.52
+    },
+    {
+      "word": "slider",
+      "start": 533.52,
+      "end": 533.92
+    },
+    {
+      "word": "pearson",
+      "start": 533.92,
+      "end": 534.33
+    },
+    {
+      "word": "r",
+      "start": 534.33,
+      "end": 534.73
+    },
+    {
+      "word": "collapses",
+      "start": 534.73,
+      "end": 535.13
+    },
+    {
+      "word": "negative",
+      "start": 535.13,
+      "end": 535.53
+    },
+    {
+      "word": "while",
+      "start": 535.53,
+      "end": 535.94
+    },
+    {
+      "word": "spearman",
+      "start": 535.94,
+      "end": 536.34
+    },
+    {
+      "word": "rho",
+      "start": 536.34,
+      "end": 536.74
+    },
+    {
+      "word": "stays",
+      "start": 536.74,
+      "end": 537.15
+    },
+    {
+      "word": "rock",
+      "start": 537.15,
+      "end": 537.55
+    },
+    {
+      "word": "solid",
+      "start": 537.55,
+      "end": 537.95
+    },
+    {
+      "word": "that",
+      "start": 537.95,
+      "end": 538.35
+    },
+    {
+      "word": "proves",
+      "start": 538.35,
+      "end": 538.76
+    },
+    {
+      "word": "the",
+      "start": 538.76,
+      "end": 539.16
+    },
+    {
+      "word": "resilience",
+      "start": 539.16,
+      "end": 539.56
+    },
+    {
+      "word": "of",
+      "start": 539.56,
+      "end": 539.96
+    },
+    {
+      "word": "rank",
+      "start": 539.96,
+      "end": 540.37
+    },
+    {
+      "word": "correlation",
+      "start": 540.37,
+      "end": 540.77
+    },
+    {
+      "word": "our",
+      "start": 540.77,
+      "end": 541.24
+    },
+    {
+      "word": "final",
+      "start": 541.24,
+      "end": 541.71
+    },
+    {
+      "word": "checkpoint",
+      "start": 541.71,
+      "end": 542.18
+    },
+    {
+      "word": "we",
+      "start": 542.18,
+      "end": 542.64
+    },
+    {
+      "word": "have",
+      "start": 542.64,
+      "end": 543.11
+    },
+    {
+      "word": "pearson",
+      "start": 543.11,
+      "end": 543.58
+    },
+    {
+      "word": "r",
+      "start": 543.58,
+      "end": 544.05
+    },
+    {
+      "word": "at",
+      "start": 544.05,
+      "end": 544.52
+    },
+    {
+      "word": "082",
+      "start": 544.52,
+      "end": 544.99
+    },
+    {
+      "word": "spearman",
+      "start": 544.99,
+      "end": 545.46
+    },
+    {
+      "word": "rho",
+      "start": 545.46,
+      "end": 545.93
+    },
+    {
+      "word": "at",
+      "start": 545.93,
+      "end": 546.39
+    },
+    {
+      "word": "098",
+      "start": 546.39,
+      "end": 546.86
+    },
+    {
+      "word": "and",
+      "start": 546.86,
+      "end": 547.33
+    },
+    {
+      "word": "kendall",
+      "start": 547.33,
+      "end": 547.8
+    },
+    {
+      "word": "tau",
+      "start": 547.8,
+      "end": 548.27
+    },
+    {
+      "word": "at",
+      "start": 548.27,
+      "end": 548.74
+    },
+    {
+      "word": "094",
+      "start": 548.74,
+      "end": 549.21
+    },
+    {
+      "word": "then",
+      "start": 549.21,
+      "end": 549.68
+    },
+    {
+      "word": "we",
+      "start": 549.67,
+      "end": 550.14
+    },
+    {
+      "word": "apply",
+      "start": 550.14,
+      "end": 550.61
+    },
+    {
+      "word": "a",
+      "start": 550.61,
+      "end": 551.08
+    },
+    {
+      "word": "strictly",
+      "start": 551.08,
+      "end": 551.55
+    },
+    {
+      "word": "increasing",
+      "start": 551.55,
+      "end": 552.02
+    },
+    {
+      "word": "exponential",
+      "start": 552.02,
+      "end": 552.49
+    },
+    {
+      "word": "transform",
+      "start": 552.49,
+      "end": 552.96
+    },
+    {
+      "word": "y",
+      "start": 552.96,
+      "end": 553.42
+    },
+    {
+      "word": "prime",
+      "start": 553.42,
+      "end": 553.89
+    },
+    {
+      "word": "equals",
+      "start": 553.89,
+      "end": 554.36
+    },
+    {
+      "word": "exp",
+      "start": 554.36,
+      "end": 554.83
+    },
+    {
+      "word": "of",
+      "start": 554.83,
+      "end": 555.3
+    },
+    {
+      "word": "y",
+      "start": 555.3,
+      "end": 555.77
+    },
+    {
+      "word": "what",
+      "start": 555.77,
+      "end": 556.24
+    },
+    {
+      "word": "happens",
+      "start": 556.24,
+      "end": 556.71
+    },
+    {
+      "word": "to",
+      "start": 556.71,
+      "end": 557.17
+    },
+    {
+      "word": "the",
+      "start": 557.17,
+      "end": 557.64
+    },
+    {
+      "word": "three",
+      "start": 557.64,
+      "end": 558.11
+    },
+    {
+      "word": "metrics",
+      "start": 558.11,
+      "end": 558.58
+    },
+    {
+      "word": "think",
+      "start": 558.58,
+      "end": 559.04
+    },
+    {
+      "word": "carefully",
+      "start": 559.04,
+      "end": 559.5
+    },
+    {
+      "word": "about",
+      "start": 559.5,
+      "end": 559.97
+    },
+    {
+      "word": "which",
+      "start": 559.97,
+      "end": 560.43
+    },
+    {
+      "word": "metrics",
+      "start": 560.43,
+      "end": 560.89
+    },
+    {
+      "word": "are",
+      "start": 560.89,
+      "end": 561.35
+    },
+    {
+      "word": "invariant",
+      "start": 561.35,
+      "end": 561.81
+    },
+    {
+      "word": "under",
+      "start": 561.81,
+      "end": 562.28
+    },
+    {
+      "word": "affine",
+      "start": 562.28,
+      "end": 562.74
+    },
+    {
+      "word": "linear",
+      "start": 562.74,
+      "end": 563.2
+    },
+    {
+      "word": "maps",
+      "start": 563.2,
+      "end": 563.66
+    },
+    {
+      "word": "versus",
+      "start": 563.66,
+      "end": 564.13
+    },
+    {
+      "word": "strictly",
+      "start": 564.13,
+      "end": 564.59
+    },
+    {
+      "word": "monotonic",
+      "start": 564.59,
+      "end": 565.05
+    },
+    {
+      "word": "maps",
+      "start": 565.05,
+      "end": 565.51
+    },
+    {
+      "word": "lock",
+      "start": 565.51,
+      "end": 565.97
+    },
+    {
+      "word": "in",
+      "start": 565.97,
+      "end": 566.44
+    },
+    {
+      "word": "your",
+      "start": 566.44,
+      "end": 566.9
+    },
+    {
+      "word": "choice",
+      "start": 566.9,
+      "end": 567.36
+    },
+    {
+      "word": "dr",
+      "start": 567.36,
+      "end": 567.72
+    },
+    {
+      "word": "nova",
+      "start": 567.72,
+      "end": 568.08
+    },
+    {
+      "word": "if",
+      "start": 568.08,
+      "end": 568.44
+    },
+    {
+      "word": "spearman",
+      "start": 568.44,
+      "end": 568.8
+    },
+    {
+      "word": "rho",
+      "start": 568.8,
+      "end": 569.16
+    },
+    {
+      "word": "and",
+      "start": 569.16,
+      "end": 569.52
+    },
+    {
+      "word": "kendall",
+      "start": 569.52,
+      "end": 569.88
+    },
+    {
+      "word": "tau",
+      "start": 569.88,
+      "end": 570.24
+    },
+    {
+      "word": "are",
+      "start": 570.24,
+      "end": 570.6
+    },
+    {
+      "word": "both",
+      "start": 570.6,
+      "end": 570.96
+    },
+    {
+      "word": "rankbased",
+      "start": 570.96,
+      "end": 571.32
+    },
+    {
+      "word": "and",
+      "start": 571.32,
+      "end": 571.68
+    },
+    {
+      "word": "invariant",
+      "start": 571.68,
+      "end": 572.04
+    },
+    {
+      "word": "to",
+      "start": 572.04,
+      "end": 572.4
+    },
+    {
+      "word": "monotonic",
+      "start": 572.4,
+      "end": 572.76
+    },
+    {
+      "word": "transformations",
+      "start": 572.76,
+      "end": 573.12
+    },
+    {
+      "word": "when",
+      "start": 573.12,
+      "end": 573.48
+    },
+    {
+      "word": "should",
+      "start": 573.48,
+      "end": 573.84
+    },
+    {
+      "word": "i",
+      "start": 573.84,
+      "end": 574.2
+    },
+    {
+      "word": "choose",
+      "start": 574.2,
+      "end": 574.56
+    },
+    {
+      "word": "kendall",
+      "start": 574.56,
+      "end": 574.92
+    },
+    {
+      "word": "tau",
+      "start": 574.92,
+      "end": 575.28
+    },
+    {
+      "word": "over",
+      "start": 575.28,
+      "end": 575.64
+    },
+    {
+      "word": "spearman",
+      "start": 575.64,
+      "end": 576.0
+    },
+    {
+      "word": "kendall",
+      "start": 576.0,
+      "end": 576.48
+    },
+    {
+      "word": "tau",
+      "start": 576.48,
+      "end": 576.96
+    },
+    {
+      "word": "is",
+      "start": 576.96,
+      "end": 577.44
+    },
+    {
+      "word": "vastly",
+      "start": 577.44,
+      "end": 577.93
+    },
+    {
+      "word": "superior",
+      "start": 577.93,
+      "end": 578.41
+    },
+    {
+      "word": "for",
+      "start": 578.41,
+      "end": 578.89
+    },
+    {
+      "word": "small",
+      "start": 578.89,
+      "end": 579.37
+    },
+    {
+      "word": "sample",
+      "start": 579.37,
+      "end": 579.85
+    },
+    {
+      "word": "sizes",
+      "start": 579.85,
+      "end": 580.33
+    },
+    {
+      "word": "and",
+      "start": 580.33,
+      "end": 580.81
+    },
+    {
+      "word": "hypothesis",
+      "start": 580.81,
+      "end": 581.3
+    },
+    {
+      "word": "testing",
+      "start": 581.3,
+      "end": 581.78
+    },
+    {
+      "word": "kaito",
+      "start": 581.78,
+      "end": 582.26
+    },
+    {
+      "word": "its",
+      "start": 582.26,
+      "end": 582.74
+    },
+    {
+      "word": "test",
+      "start": 582.74,
+      "end": 583.22
+    },
+    {
+      "word": "statistic",
+      "start": 583.22,
+      "end": 583.7
+    },
+    {
+      "word": "converges",
+      "start": 583.7,
+      "end": 584.19
+    },
+    {
+      "word": "to",
+      "start": 584.18,
+      "end": 584.67
+    },
+    {
+      "word": "normality",
+      "start": 584.67,
+      "end": 585.15
+    },
+    {
+      "word": "much",
+      "start": 585.15,
+      "end": 585.63
+    },
+    {
+      "word": "faster",
+      "start": 585.63,
+      "end": 586.11
+    },
+    {
+      "word": "and",
+      "start": 586.11,
+      "end": 586.59
+    },
+    {
+      "word": "its",
+      "start": 586.59,
+      "end": 587.07
+    },
+    {
+      "word": "denominator",
+      "start": 587.07,
+      "end": 587.56
+    },
+    {
+      "word": "directly",
+      "start": 587.56,
+      "end": 588.04
+    },
+    {
+      "word": "counts",
+      "start": 588.04,
+      "end": 588.52
+    },
+    {
+      "word": "concordant",
+      "start": 588.52,
+      "end": 589.0
+    },
+    {
+      "word": "versus",
+      "start": 589.0,
+      "end": 589.48
+    },
+    {
+      "word": "discordant",
+      "start": 589.48,
+      "end": 589.96
+    },
+    {
+      "word": "pairs",
+      "start": 589.96,
+      "end": 590.44
+    },
+    {
+      "word": "without",
+      "start": 590.44,
+      "end": 590.93
+    },
+    {
+      "word": "squaring",
+      "start": 590.93,
+      "end": 591.41
+    },
+    {
+      "word": "rank",
+      "start": 591.41,
+      "end": 591.89
+    },
+    {
+      "word": "differences",
+      "start": 591.89,
+      "end": 592.37
+    },
+    {
+      "word": "so",
+      "start": 592.37,
+      "end": 592.73
+    },
+    {
+      "word": "kendall",
+      "start": 592.73,
+      "end": 593.08
+    },
+    {
+      "word": "tau",
+      "start": 593.08,
+      "end": 593.44
+    },
+    {
+      "word": "gives",
+      "start": 593.44,
+      "end": 593.79
+    },
+    {
+      "word": "us",
+      "start": 593.79,
+      "end": 594.15
+    },
+    {
+      "word": "an",
+      "start": 594.15,
+      "end": 594.5
+    },
+    {
+      "word": "exact",
+      "start": 594.5,
+      "end": 594.86
+    },
+    {
+      "word": "probability",
+      "start": 594.86,
+      "end": 595.21
+    },
+    {
+      "word": "the",
+      "start": 595.21,
+      "end": 595.57
+    },
+    {
+      "word": "probability",
+      "start": 595.57,
+      "end": 595.92
+    },
+    {
+      "word": "that",
+      "start": 595.92,
+      "end": 596.28
+    },
+    {
+      "word": "two",
+      "start": 596.28,
+      "end": 596.63
+    },
+    {
+      "word": "random",
+      "start": 596.63,
+      "end": 596.99
+    },
+    {
+      "word": "observations",
+      "start": 596.99,
+      "end": 597.34
+    },
+    {
+      "word": "are",
+      "start": 597.34,
+      "end": 597.7
+    },
+    {
+      "word": "ordered",
+      "start": 597.7,
+      "end": 598.05
+    },
+    {
+      "word": "the",
+      "start": 598.05,
+      "end": 598.41
+    },
+    {
+      "word": "same",
+      "start": 598.41,
+      "end": 598.76
+    },
+    {
+      "word": "way",
+      "start": 598.76,
+      "end": 599.12
+    },
+    {
+      "word": "minus",
+      "start": 599.12,
+      "end": 599.47
+    },
+    {
+      "word": "the",
+      "start": 599.47,
+      "end": 599.83
+    },
+    {
+      "word": "probability",
+      "start": 599.83,
+      "end": 600.18
+    },
+    {
+      "word": "they",
+      "start": 600.18,
+      "end": 600.54
+    },
+    {
+      "word": "are",
+      "start": 600.54,
+      "end": 600.89
+    },
+    {
+      "word": "inverted",
+      "start": 600.89,
+      "end": 601.25
+    },
+    {
+      "word": "exactly",
+      "start": 601.25,
+      "end": 601.71
+    },
+    {
+      "word": "while",
+      "start": 601.71,
+      "end": 602.17
+    },
+    {
+      "word": "spearman",
+      "start": 602.17,
+      "end": 602.63
+    },
+    {
+      "word": "rho",
+      "start": 602.63,
+      "end": 603.09
+    },
+    {
+      "word": "is",
+      "start": 603.09,
+      "end": 603.55
+    },
+    {
+      "word": "easier",
+      "start": 603.55,
+      "end": 604.01
+    },
+    {
+      "word": "to",
+      "start": 604.01,
+      "end": 604.48
+    },
+    {
+      "word": "compute",
+      "start": 604.48,
+      "end": 604.94
+    },
+    {
+      "word": "on",
+      "start": 604.94,
+      "end": 605.4
+    },
+    {
+      "word": "millions",
+      "start": 605.4,
+      "end": 605.86
+    },
+    {
+      "word": "of",
+      "start": 605.86,
+      "end": 606.32
+    },
+    {
+      "word": "rows",
+      "start": 606.32,
+      "end": 606.78
+    },
+    {
+      "word": "using",
+      "start": 606.78,
+      "end": 607.24
+    },
+    {
+      "word": "on",
+      "start": 607.24,
+      "end": 607.7
+    },
+    {
+      "word": "log",
+      "start": 607.7,
+      "end": 608.16
+    },
+    {
+      "word": "n",
+      "start": 608.16,
+      "end": 608.62
+    },
+    {
+      "word": "sorting",
+      "start": 608.62,
+      "end": 609.08
+    },
+    {
+      "word": "kendall",
+      "start": 609.08,
+      "end": 609.54
+    },
+    {
+      "word": "tau",
+      "start": 609.54,
+      "end": 610.01
+    },
+    {
+      "word": "provides",
+      "start": 610.01,
+      "end": 610.47
+    },
+    {
+      "word": "the",
+      "start": 610.47,
+      "end": 610.93
+    },
+    {
+      "word": "cleanest",
+      "start": 610.93,
+      "end": 611.39
+    },
+    {
+      "word": "probabilistic",
+      "start": 611.39,
+      "end": 611.85
+    },
+    {
+      "word": "meaning",
+      "start": 611.85,
+      "end": 612.31
+    },
+    {
+      "word": "the",
+      "start": 612.31,
+      "end": 612.71
+    },
+    {
+      "word": "lidar",
+      "start": 612.71,
+      "end": 613.12
+    },
+    {
+      "word": "and",
+      "start": 613.12,
+      "end": 613.52
+    },
+    {
+      "word": "radar",
+      "start": 613.52,
+      "end": 613.92
+    },
+    {
+      "word": "case",
+      "start": 613.92,
+      "end": 614.33
+    },
+    {
+      "word": "study",
+      "start": 614.33,
+      "end": 614.73
+    },
+    {
+      "word": "is",
+      "start": 614.73,
+      "end": 615.13
+    },
+    {
+      "word": "terrifying",
+      "start": 615.13,
+      "end": 615.54
+    },
+    {
+      "word": "because",
+      "start": 615.54,
+      "end": 615.94
+    },
+    {
+      "word": "ninety",
+      "start": 615.94,
+      "end": 616.34
+    },
+    {
+      "word": "percent",
+      "start": 616.34,
+      "end": 616.75
+    },
+    {
+      "word": "of",
+      "start": 616.75,
+      "end": 617.15
+    },
+    {
+      "word": "driving",
+      "start": 617.15,
+      "end": 617.55
+    },
+    {
+      "word": "happened",
+      "start": 617.55,
+      "end": 617.96
+    },
+    {
+      "word": "on",
+      "start": 617.96,
+      "end": 618.36
+    },
+    {
+      "word": "dry",
+      "start": 618.36,
+      "end": 618.76
+    },
+    {
+      "word": "highways",
+      "start": 618.76,
+      "end": 619.17
+    },
+    {
+      "word": "aggregate",
+      "start": 619.17,
+      "end": 619.57
+    },
+    {
+      "word": "pearson",
+      "start": 619.57,
+      "end": 619.98
+    },
+    {
+      "word": "correlation",
+      "start": 619.98,
+      "end": 620.38
+    },
+    {
+      "word": "stayed",
+      "start": 620.38,
+      "end": 620.78
+    },
+    {
+      "word": "above",
+      "start": 620.78,
+      "end": 621.19
+    },
+    {
+      "word": "09",
+      "start": 621.19,
+      "end": 621.59
+    },
+    {
+      "word": "while",
+      "start": 621.59,
+      "end": 621.99
+    },
+    {
+      "word": "the",
+      "start": 621.99,
+      "end": 622.4
+    },
+    {
+      "word": "vehicle",
+      "start": 622.4,
+      "end": 622.8
+    },
+    {
+      "word": "was",
+      "start": 622.8,
+      "end": 623.2
+    },
+    {
+      "word": "practically",
+      "start": 623.2,
+      "end": 623.61
+    },
+    {
+      "word": "blind",
+      "start": 623.61,
+      "end": 624.01
+    },
+    {
+      "word": "in",
+      "start": 624.01,
+      "end": 624.41
+    },
+    {
+      "word": "the",
+      "start": 624.41,
+      "end": 624.82
+    },
+    {
+      "word": "rain",
+      "start": 624.82,
+      "end": 625.22
+    },
+    {
+      "word": "exactly",
+      "start": 625.22,
+      "end": 625.7
+    },
+    {
+      "word": "highspeed",
+      "start": 625.7,
+      "end": 626.19
+    },
+    {
+      "word": "highway",
+      "start": 626.19,
+      "end": 626.67
+    },
+    {
+      "word": "driving",
+      "start": 626.67,
+      "end": 627.16
+    },
+    {
+      "word": "created",
+      "start": 627.16,
+      "end": 627.64
+    },
+    {
+      "word": "massive",
+      "start": 627.64,
+      "end": 628.12
+    },
+    {
+      "word": "linear",
+      "start": 628.12,
+      "end": 628.61
+    },
+    {
+      "word": "scale",
+      "start": 628.61,
+      "end": 629.09
+    },
+    {
+      "word": "that",
+      "start": 629.09,
+      "end": 629.58
+    },
+    {
+      "word": "masked",
+      "start": 629.58,
+      "end": 630.06
+    },
+    {
+      "word": "the",
+      "start": 630.06,
+      "end": 630.54
+    },
+    {
+      "word": "rainy",
+      "start": 630.54,
+      "end": 631.03
+    },
+    {
+      "word": "segments",
+      "start": 631.03,
+      "end": 631.51
+    },
+    {
+      "word": "only",
+      "start": 631.51,
+      "end": 632.0
+    },
+    {
+      "word": "when",
+      "start": 632.0,
+      "end": 632.48
+    },
+    {
+      "word": "safety",
+      "start": 632.48,
+      "end": 632.96
+    },
+    {
+      "word": "engineers",
+      "start": 632.96,
+      "end": 633.45
+    },
+    {
+      "word": "segmented",
+      "start": 633.45,
+      "end": 633.93
+    },
+    {
+      "word": "by",
+      "start": 633.93,
+      "end": 634.42
+    },
+    {
+      "word": "precipitation",
+      "start": 634.42,
+      "end": 634.9
+    },
+    {
+      "word": "and",
+      "start": 634.9,
+      "end": 635.38
+    },
+    {
+      "word": "tracked",
+      "start": 635.38,
+      "end": 635.87
+    },
+    {
+      "word": "spearman",
+      "start": 635.87,
+      "end": 636.35
+    },
+    {
+      "word": "rank",
+      "start": 636.35,
+      "end": 636.84
+    },
+    {
+      "word": "did",
+      "start": 636.84,
+      "end": 637.32
+    },
+    {
+      "word": "the",
+      "start": 637.32,
+      "end": 637.8
+    },
+    {
+      "word": "sensor",
+      "start": 637.8,
+      "end": 638.29
+    },
+    {
+      "word": "disagreement",
+      "start": 638.29,
+      "end": 638.77
+    },
+    {
+      "word": "reveal",
+      "start": 638.77,
+      "end": 639.26
+    },
+    {
+      "word": "itself",
+      "start": 639.26,
+      "end": 639.74
+    },
+    {
+      "word": "and",
+      "start": 639.74,
+      "end": 640.17
+    },
+    {
+      "word": "with",
+      "start": 640.17,
+      "end": 640.6
+    },
+    {
+      "word": "the",
+      "start": 640.6,
+      "end": 641.02
+    },
+    {
+      "word": "database",
+      "start": 641.02,
+      "end": 641.45
+    },
+    {
+      "word": "contention",
+      "start": 641.45,
+      "end": 641.88
+    },
+    {
+      "word": "cpu",
+      "start": 641.88,
+      "end": 642.31
+    },
+    {
+      "word": "was",
+      "start": 642.31,
+      "end": 642.74
+    },
+    {
+      "word": "flat",
+      "start": 642.74,
+      "end": 643.16
+    },
+    {
+      "word": "until",
+      "start": 643.16,
+      "end": 643.59
+    },
+    {
+      "word": "a",
+      "start": 643.59,
+      "end": 644.02
+    },
+    {
+      "word": "sudden",
+      "start": 644.02,
+      "end": 644.45
+    },
+    {
+      "word": "vertical",
+      "start": 644.45,
+      "end": 644.88
+    },
+    {
+      "word": "cliff",
+      "start": 644.88,
+      "end": 645.3
+    },
+    {
+      "word": "at",
+      "start": 645.3,
+      "end": 645.73
+    },
+    {
+      "word": "1024",
+      "start": 645.73,
+      "end": 646.16
+    },
+    {
+      "word": "workers",
+      "start": 646.16,
+      "end": 646.59
+    },
+    {
+      "word": "pearson",
+      "start": 646.59,
+      "end": 647.02
+    },
+    {
+      "word": "correlation",
+      "start": 647.02,
+      "end": 647.44
+    },
+    {
+      "word": "thought",
+      "start": 647.44,
+      "end": 647.87
+    },
+    {
+      "word": "the",
+      "start": 647.87,
+      "end": 648.3
+    },
+    {
+      "word": "relationship",
+      "start": 648.3,
+      "end": 648.73
+    },
+    {
+      "word": "was",
+      "start": 648.73,
+      "end": 649.16
+    },
+    {
+      "word": "weak",
+      "start": 649.16,
+      "end": 649.58
+    },
+    {
+      "word": "but",
+      "start": 649.58,
+      "end": 650.01
+    },
+    {
+      "word": "spearman",
+      "start": 650.01,
+      "end": 650.44
+    },
+    {
+      "word": "rank",
+      "start": 650.44,
+      "end": 650.87
+    },
+    {
+      "word": "detected",
+      "start": 650.87,
+      "end": 651.3
+    },
+    {
+      "word": "the",
+      "start": 651.3,
+      "end": 651.72
+    },
+    {
+      "word": "monotonic",
+      "start": 651.72,
+      "end": 652.15
+    },
+    {
+      "word": "jump",
+      "start": 652.15,
+      "end": 652.58
+    },
+    {
+      "word": "and",
+      "start": 652.58,
+      "end": 653.02
+    },
+    {
+      "word": "the",
+      "start": 653.02,
+      "end": 653.46
+    },
+    {
+      "word": "hexagonal",
+      "start": 653.46,
+      "end": 653.9
+    },
+    {
+      "word": "binning",
+      "start": 653.9,
+      "end": 654.33
+    },
+    {
+      "word": "plot",
+      "start": 654.33,
+      "end": 654.77
+    },
+    {
+      "word": "showed",
+      "start": 654.77,
+      "end": 655.21
+    },
+    {
+      "word": "the",
+      "start": 655.21,
+      "end": 655.65
+    },
+    {
+      "word": "infrastructure",
+      "start": 655.65,
+      "end": 656.09
+    },
+    {
+      "word": "team",
+      "start": 656.09,
+      "end": 656.53
+    },
+    {
+      "word": "exactly",
+      "start": 656.53,
+      "end": 656.96
+    },
+    {
+      "word": "where",
+      "start": 656.96,
+      "end": 657.4
+    },
+    {
+      "word": "the",
+      "start": 657.4,
+      "end": 657.84
+    },
+    {
+      "word": "connection",
+      "start": 657.84,
+      "end": 658.28
+    },
+    {
+      "word": "pool",
+      "start": 658.28,
+      "end": 658.72
+    },
+    {
+      "word": "thread",
+      "start": 658.72,
+      "end": 659.16
+    },
+    {
+      "word": "wall",
+      "start": 659.16,
+      "end": 659.6
+    },
+    {
+      "word": "was",
+      "start": 659.6,
+      "end": 660.03
+    },
+    {
+      "word": "located",
+      "start": 660.03,
+      "end": 660.47
+    },
+    {
+      "word": "visual",
+      "start": 660.47,
+      "end": 660.91
+    },
+    {
+      "word": "geometry",
+      "start": 660.91,
+      "end": 661.35
+    },
+    {
+      "word": "and",
+      "start": 661.35,
+      "end": 661.79
+    },
+    {
+      "word": "robust",
+      "start": 661.79,
+      "end": 662.23
+    },
+    {
+      "word": "metrics",
+      "start": 662.23,
+      "end": 662.66
+    },
+    {
+      "word": "save",
+      "start": 662.66,
+      "end": 663.1
+    },
+    {
+      "word": "production",
+      "start": 663.1,
+      "end": 663.54
+    },
+    {
+      "word": "systems",
+      "start": 663.54,
+      "end": 663.98
+    },
+    {
+      "word": "what",
+      "start": 663.98,
+      "end": 664.46
+    },
+    {
+      "word": "an",
+      "start": 664.46,
+      "end": 664.94
+    },
+    {
+      "word": "eyeopening",
+      "start": 664.94,
+      "end": 665.42
+    },
+    {
+      "word": "masterclass",
+      "start": 665.42,
+      "end": 665.9
+    },
+    {
+      "word": "dr",
+      "start": 665.9,
+      "end": 666.39
+    },
+    {
+      "word": "nova",
+      "start": 666.39,
+      "end": 666.87
+    },
+    {
+      "word": "from",
+      "start": 666.87,
+      "end": 667.35
+    },
+    {
+      "word": "mise",
+      "start": 667.35,
+      "end": 667.83
+    },
+    {
+      "word": "taylor",
+      "start": 667.83,
+      "end": 668.31
+    },
+    {
+      "word": "expansions",
+      "start": 668.31,
+      "end": 668.79
+    },
+    {
+      "word": "and",
+      "start": 668.79,
+      "end": 669.27
+    },
+    {
+      "word": "parzenrosenblatt",
+      "start": 669.27,
+      "end": 669.75
+    },
+    {
+      "word": "kde",
+      "start": 669.75,
+      "end": 670.23
+    },
+    {
+      "word": "to",
+      "start": 670.23,
+      "end": 670.72
+    },
+    {
+      "word": "the",
+      "start": 670.72,
+      "end": 671.2
+    },
+    {
+      "word": "dkw",
+      "start": 671.2,
+      "end": 671.68
+    },
+    {
+      "word": "uniform",
+      "start": 671.68,
+      "end": 672.16
+    },
+    {
+      "word": "confidence",
+      "start": 672.16,
+      "end": 672.64
+    },
+    {
+      "word": "envelope",
+      "start": 672.64,
+      "end": 673.12
+    },
+    {
+      "word": "and",
+      "start": 673.12,
+      "end": 673.6
+    },
+    {
+      "word": "hexagonal",
+      "start": 673.6,
+      "end": 674.08
+    },
+    {
+      "word": "binning",
+      "start": 674.08,
+      "end": 674.56
+    },
+    {
+      "word": "our",
+      "start": 674.56,
+      "end": 675.05
+    },
+    {
+      "word": "visual",
+      "start": 675.05,
+      "end": 675.53
+    },
+    {
+      "word": "toolkit",
+      "start": 675.53,
+      "end": 676.01
+    },
+    {
+      "word": "is",
+      "start": 676.01,
+      "end": 676.49
+    },
+    {
+      "word": "complete",
+      "start": 676.49,
+      "end": 676.97
+    },
+    {
+      "word": "you",
+      "start": 676.97,
+      "end": 677.43
+    },
+    {
+      "word": "now",
+      "start": 677.43,
+      "end": 677.9
+    },
+    {
+      "word": "understand",
+      "start": 677.9,
+      "end": 678.36
+    },
+    {
+      "word": "that",
+      "start": 678.36,
+      "end": 678.83
+    },
+    {
+      "word": "visualization",
+      "start": 678.83,
+      "end": 679.29
+    },
+    {
+      "word": "is",
+      "start": 679.29,
+      "end": 679.75
+    },
+    {
+      "word": "not",
+      "start": 679.75,
+      "end": 680.22
+    },
+    {
+      "word": "mere",
+      "start": 680.22,
+      "end": 680.68
+    },
+    {
+      "word": "graphic",
+      "start": 680.68,
+      "end": 681.15
+    },
+    {
+      "word": "design",
+      "start": 681.15,
+      "end": 681.61
+    },
+    {
+      "word": "kaitoit",
+      "start": 681.61,
+      "end": 682.08
+    },
+    {
+      "word": "is",
+      "start": 682.08,
+      "end": 682.54
+    },
+    {
+      "word": "a",
+      "start": 682.54,
+      "end": 683.0
+    },
+    {
+      "word": "rigorous",
+      "start": 683.0,
+      "end": 683.47
+    },
+    {
+      "word": "branch",
+      "start": 683.47,
+      "end": 683.93
+    },
+    {
+      "word": "of",
+      "start": 683.93,
+      "end": 684.4
+    },
+    {
+      "word": "mathematical",
+      "start": 684.4,
+      "end": 684.86
+    },
+    {
+      "word": "estimation",
+      "start": 684.86,
+      "end": 685.32
+    },
+    {
+      "word": "theory",
+      "start": 685.32,
+      "end": 685.79
+    },
+    {
+      "word": "follow",
+      "start": 685.79,
+      "end": 686.25
+    },
+    {
+      "word": "our",
+      "start": 686.25,
+      "end": 686.72
+    },
+    {
+      "word": "four",
+      "start": 686.72,
+      "end": 687.18
+    },
+    {
+      "word": "cardinal",
+      "start": 687.18,
+      "end": 687.65
+    },
+    {
+      "word": "rules",
+      "start": 687.65,
+      "end": 688.11
+    },
+    {
+      "word": "whenever",
+      "start": 688.11,
+      "end": 688.57
+    },
+    {
+      "word": "you",
+      "start": 688.57,
+      "end": 689.04
+    },
+    {
+      "word": "visualize",
+      "start": 689.04,
+      "end": 689.5
+    },
+    {
+      "word": "empirical",
+      "start": 689.5,
+      "end": 689.97
+    },
+    {
+      "word": "distributions",
+      "start": 689.97,
+      "end": 690.43
+    },
+    {
+      "word": "freedmandiaconis",
+      "start": 690.43,
+      "end": 690.89
+    },
+    {
+      "word": "binning",
+      "start": 690.89,
+      "end": 691.36
+    },
+    {
+      "word": "violin",
+      "start": 691.36,
+      "end": 691.82
+    },
+    {
+      "word": "plots",
+      "start": 691.82,
+      "end": 692.28
+    },
+    {
+      "word": "for",
+      "start": 692.28,
+      "end": 692.74
+    },
+    {
+      "word": "multimodal",
+      "start": 692.74,
+      "end": 693.21
+    },
+    {
+      "word": "safety",
+      "start": 693.21,
+      "end": 693.67
+    },
+    {
+      "word": "pearson",
+      "start": 693.67,
+      "end": 694.13
+    },
+    {
+      "word": "paired",
+      "start": 694.13,
+      "end": 694.59
+    },
+    {
+      "word": "with",
+      "start": 694.59,
+      "end": 695.06
+    },
+    {
+      "word": "spearman",
+      "start": 695.06,
+      "end": 695.52
+    },
+    {
+      "word": "and",
+      "start": 695.52,
+      "end": 695.98
+    },
+    {
+      "word": "hexagonal",
+      "start": 695.98,
+      "end": 696.45
+    },
+    {
+      "word": "binning",
+      "start": 696.44,
+      "end": 696.91
+    },
+    {
+      "word": "above",
+      "start": 696.91,
+      "end": 697.37
+    },
+    {
+      "word": "ten",
+      "start": 697.37,
+      "end": 697.83
+    },
+    {
+      "word": "thousand",
+      "start": 697.83,
+      "end": 698.3
+    },
+    {
+      "word": "points",
+      "start": 698.3,
+      "end": 698.76
+    },
+    {
+      "word": "what",
+      "start": 698.76,
+      "end": 699.22
+    },
+    {
+      "word": "is",
+      "start": 699.22,
+      "end": 699.68
+    },
+    {
+      "word": "waiting",
+      "start": 699.68,
+      "end": 700.15
+    },
+    {
+      "word": "for",
+      "start": 700.15,
+      "end": 700.61
+    },
+    {
+      "word": "us",
+      "start": 700.61,
+      "end": 701.07
+    },
+    {
+      "word": "in",
+      "start": 701.07,
+      "end": 701.53
+    },
+    {
+      "word": "lesson",
+      "start": 701.53,
+      "end": 702.0
+    },
+    {
+      "word": "65",
+      "start": 702.0,
+      "end": 702.46
+    },
+    {
+      "word": "in",
+      "start": 702.46,
+      "end": 703.08
+    },
+    {
+      "word": "lesson",
+      "start": 703.08,
+      "end": 703.7
+    },
+    {
+      "word": "65",
+      "start": 703.7,
+      "end": 704.32
+    },
+    {
+      "word": "we",
+      "start": 704.32,
+      "end": 704.94
+    },
+    {
+      "word": "expand",
+      "start": 704.94,
+      "end": 705.56
+    },
+    {
+      "word": "into",
+      "start": 705.56,
+      "end": 706.17
+    },
+    {
+      "word": "higher",
+      "start": 706.17,
+      "end": 706.79
+    },
+    {
+      "word": "dimensions",
+      "start": 706.79,
+      "end": 707.41
+    },
+    {
+      "word": "multivariate",
+      "start": 707.41,
+      "end": 708.03
+    },
+    {
+      "word": "visualization",
+      "start": 708.03,
+      "end": 708.65
+    },
+    {
+      "word": "pca",
+      "start": 708.65,
+      "end": 709.27
+    },
+    {
+      "word": "biplots",
+      "start": 709.27,
+      "end": 709.89
+    },
+    {
+      "word": "tsne",
+      "start": 709.89,
+      "end": 710.51
+    },
+    {
+      "word": "manifolds",
+      "start": 710.51,
+      "end": 711.13
+    },
+    {
+      "word": "and",
+      "start": 711.13,
+      "end": 711.75
+    },
+    {
+      "word": "parallel",
+      "start": 711.75,
+      "end": 712.36
+    },
+    {
+      "word": "coordinates",
+      "start": 712.36,
+      "end": 712.98
+    },
+    {
+      "word": "see",
+      "start": 712.98,
+      "end": 713.6
+    },
+    {
+      "word": "you",
+      "start": 713.6,
+      "end": 714.22
+    },
+    {
+      "word": "there",
+      "start": 714.22,
+      "end": 714.84
+    }
+  ]
+}

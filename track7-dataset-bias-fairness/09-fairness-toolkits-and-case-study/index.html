@@ -8552,6 +8552,40 @@ If <span class="arithmatex">\(T_{\text{between}} = 0\)</span>, between-group dis
 </details>
 </details>
 <hr />
+<details class="question">
+<summary>Check 3: Cost-Sensitive Instance Weight Construction in Reductions Game</summary>
+<p>In Agarwal et al.'s reductions framework, how does the dual player's vector of Lagrange multipliers <span class="arithmatex">\(\vec{\lambda} \in \mathbb{R}_+^K\)</span> translate into instance-level sample reweighting for standard off-the-shelf cost-sensitive base classifiers?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>Mathematical Translation:</strong>
+Let the primary classification loss be <span class="arithmatex">\(0-1\)</span> loss with base weight <span class="arithmatex">\(w_i^{(0)} = 1\)</span>.
+For <span class="arithmatex">\(K\)</span> linear fairness constraints:
+$<span class="arithmatex">\(\mathbb{E}[\mathbf{M} h] \le \vec{c}\)</span>$
+each constraint <span class="arithmatex">\(k \in \{1, \dots, K\}\)</span> imposes a penalty matrix <span class="arithmatex">\(\mathbf{C}_k(a, y)\)</span> that assigns cost to individual predictions depending on group membership <span class="arithmatex">\(a\)</span> and true label <span class="arithmatex">\(y\)</span>.</p>
+<p>The dual variable <span class="arithmatex">\(\lambda_k \ge 0\)</span> represents the shadow price of violating constraint <span class="arithmatex">\(k\)</span>.
+The aggregated cost-sensitive weight assigned to training instance <span class="arithmatex">\(i\)</span> with features <span class="arithmatex">\(x_i\)</span>, sensitive attribute <span class="arithmatex">\(a_i\)</span>, and label <span class="arithmatex">\(y_i\)</span> is:
+$<span class="arithmatex">\(w_i = 1 + \sum_{k=1}^K \lambda_k \cdot \mathbf{C}_k(a_i, y_i)\)</span>$</p>
+<p><strong>Operational Insight:</strong>
+When a demographic group experiences higher disparate impact, the corresponding multiplier <span class="arithmatex">\(\lambda_k\)</span> increases. This directly boosts the instance weight <span class="arithmatex">\(w_i\)</span> of false rejections in that group, forcing the base learner (e.g., Logistic Regression or LightGBM) to prioritize correct predictions on those instances in the next game iteration.</p>
+</details>
+</details>
+<details class="question">
+<summary>Check 4: Fairlearn MetricFrame vs. Custom Auditing Scripts</summary>
+<p>Why is using Fairlearn's <code>MetricFrame</code> tensor architecture preferable to writing custom nested loops for intersectional subgroup evaluation in production ML pipelines?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>1. Vectorized Multi-Metric Disaggregation:</strong>
+<code>MetricFrame</code> takes arbitrary metric dictionaries (e.g., <code>{'accuracy': accuracy_score, 'fnr': false_negative_rate, 'selection_rate': selection_rate}</code>) and evaluates them simultaneously across multidimensional intersectional slices (<span class="arithmatex">\(A_1 \times A_2 \times \dots \times A_M\)</span>) in a single vectorized pass.</p>
+<p><strong>2. Automated Reduction Operations:</strong>
+<code>MetricFrame</code> provides mathematically rigorous reduction operators:
+- <code>.difference(method='between_groups')</code>: Evaluates <span class="arithmatex">\(\max_g M_g - \min_g M_g\)</span>.
+- <code>.ratio(method='to_overall')</code>: Evaluates disparate impact relative to baseline population rates.
+- <code>.group_min()</code> and <code>.group_max()</code>: Directly extracts worst-case subgroup risks for Group-DRO gating.</p>
+<p><strong>3. Prevention of Silent Masking Errors:</strong>
+Custom nested loops frequently encounter zero-division errors or silent empty slices on sparse intersections. <code>MetricFrame</code> standardizes missing value handling, NaN propagation, and sample weight support across all metrics uniformly.</p>
+</details>
+</details>
+<hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-weerts2023"></a><strong>[Weerts2023]</strong> H. Weerts, M. Dudík, R. Edgar, A. Jalali, R. Lutz, and M. Madaio, "Fairlearn: Assessing and Improving Fairness of AI Systems," <em>Journal of Machine Learning Research</em>, vol. 24, no. 257, pp. 1–8, 2023. <a href="https://doi.org/10.48550/arXiv.2303.16654">DOI: 10.48550/arXiv.2303.16654</a>.</li>

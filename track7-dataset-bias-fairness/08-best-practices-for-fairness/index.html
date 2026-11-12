@@ -8839,6 +8839,32 @@ Identify the specific sociotechnical abstraction traps at play.</p>
 </details>
 </details>
 <hr />
+<details class="question">
+<summary>Check 4: Automated CI/CD Gating Under Multi-Metric Trade-offs</summary>
+<p>A production deployment pipeline enforces four automated fairness gates:
+1. <span class="arithmatex">\(\Delta_{\text{DP}} \le 0.10\)</span>
+2. <span class="arithmatex">\(\rho_{\text{DI}} \ge 0.80\)</span>
+3. <span class="arithmatex">\(\Delta_{\text{EOD}} \le 0.05\)</span>
+4. <span class="arithmatex">\(R_{\text{worst}} \le 0.25\)</span></p>
+<p>During a release candidate audit, candidate model <span class="arithmatex">\(M_1\)</span> achieves overall test accuracy of <span class="arithmatex">\(94.2\%\)</span>, <span class="arithmatex">\(\Delta_{\text{DP}} = 0.08\)</span>, <span class="arithmatex">\(\rho_{\text{DI}} = 0.85\)</span>, and <span class="arithmatex">\(\Delta_{\text{EOD}} = 0.04\)</span>. However, on the intersectional cohort (Elderly Disadvantaged Female, <span class="arithmatex">\(n=45\)</span>), the observed error rate is <span class="arithmatex">\(R_{\text{worst}} = 0.311\)</span>, with a Wilson 95% confidence upper bound of <span class="arithmatex">\(0.442\)</span>.</p>
+<p>What is the required automated CI/CD gating decision, and what remedial engineering action must be triggered?</p>
+<details class="success">
+<summary>Reveal Detailed Solution</summary>
+<p><strong>1. CI/CD Gate Evaluation:</strong>
+- Gate 1: <span class="arithmatex">\(\Delta_{\text{DP}} = 0.08 \le 0.10 \implies\)</span> <strong>PASS</strong>
+- Gate 2: <span class="arithmatex">\(\rho_{\text{DI}} = 0.85 \ge 0.80 \implies\)</span> <strong>PASS</strong>
+- Gate 3: <span class="arithmatex">\(\Delta_{\text{EOD}} = 0.04 \le 0.05 \implies\)</span> <strong>PASS</strong>
+- Gate 4: <span class="arithmatex">\(R_{\text{worst}} = 0.311 &gt; 0.250 \implies\)</span> <strong>FAIL (BREACH)</strong></p>
+<p><strong>2. Automated Release Decision:</strong>
+<strong>BLOCKED (RELEASE REJECTED)</strong>. Under strict institutional governance contracts, fairness gates are non-compensatory: high global accuracy (<span class="arithmatex">\(94.2\%\)</span>) or satisfaction of marginal demographic parity cannot override severe subgroup risk violation (<span class="arithmatex">\(R_{\text{worst}} = 31.1\% &gt; 25\%\)</span>).</p>
+<p><strong>3. Required Remedial Engineering Action:</strong>
+- <strong>Targeted Subgroup Data Augmentation:</strong> The cohort sample size (<span class="arithmatex">\(n=45\)</span>) is dangerously small. Additional audited samples must be collected to reduce estimation uncertainty (Wilson upper bound <span class="arithmatex">\(= 44.2\%\)</span>).
+- <strong>Group Distributionally Robust Optimization (Group DRO):</strong> Retrain the model using minimax subgroup weighting to minimize worst-case risk:
+  $<span class="arithmatex">\(\min_\theta \max_{g \in \Omega} \mathbb{E}_{\mathcal{D}_g} [\ell(f_\theta(X), Y)]\)</span>$
+- Block production rollout until the retrained checkpoint satisfies all four release gates simultaneously.</p>
+</details>
+</details>
+<hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>
 <li><a id="ref-gebru2021"></a><strong>[Gebru2021]</strong> T. Gebru et al., "Datasheets for Datasets," <em>Communications of the ACM</em>, vol. 64, no. 12, pp. 86–92, 2021. <a href="https://doi.org/10.1145/3458723">DOI: 10.1145/3458723</a>.</li>

@@ -131,7 +131,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch2_p8",
     "title": "Modern Collection Tooling Stacks: Survey Engines, Headless Drivers & Scrapy Pipelines",
     "trackName": "Data Collection & Ingestion",
-    "slidesCount": 6,
+    "slidesCount": 16,
     "docPath": "track2-data-collection/08-tools-for-collection/"
   },
   {
@@ -140,7 +140,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch2_p9",
     "title": "Field Deployments: Pre-Ingestion Quality Cascades, Bias Audits & Domain Case Studies",
     "trackName": "Data Collection & Ingestion",
-    "slidesCount": 8,
+    "slidesCount": 16,
     "docPath": "track2-data-collection/09-challenges-and-case-studies/"
   },
   {
@@ -183,18 +183,18 @@ window.CURRICULUM_MANIFEST = [
     "chapter": 3,
     "part": 5,
     "key": "ch3_p5",
-    "title": "Privacy-Preserving Technologies: k-Anonymity, l-Diversity, t-Closeness & Differential Privacy",
+    "title": "Privacy-Preserving Dataset Engineering: k-Anonymity, l-Diversity, t-Closeness & Differential Privacy",
     "trackName": "Ethics, Privacy & Governance",
-    "slidesCount": 20,
+    "slidesCount": 16,
     "docPath": "track3-ethics-privacy/05-privacy-preserving-techniques/"
   },
   {
     "chapter": 3,
     "part": 6,
     "key": "ch3_p6",
-    "title": "Bias & Algorithmic Fairness: Harm Taxonomies, Proxy Leakage & Subgroup Disparity",
+    "title": "Bias, Fairness, and Representativeness in Datasets: Taxonomies, Impossibility Theorems & Proxy Auditing",
     "trackName": "Ethics, Privacy & Governance",
-    "slidesCount": 13,
+    "slidesCount": 16,
     "docPath": "track3-ethics-privacy/06-bias-and-fairness/"
   },
   {
@@ -203,7 +203,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch3_p7",
     "title": "Statutory Frameworks & Regulatory Compliance: GDPR, HIPAA & CCPA/CPRA",
     "trackName": "Ethics, Privacy & Governance",
-    "slidesCount": 11,
+    "slidesCount": 16,
     "docPath": "track3-ethics-privacy/07-real-world-privacy-laws/"
   },
   {
@@ -311,7 +311,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch4_p8",
     "title": "Domain-Specific Annotation: Medical Imaging, Autonomous Vehicles & Legal NLP",
     "trackName": "Data Annotation & Labeling",
-    "slidesCount": 10,
+    "slidesCount": 16,
     "docPath": "track4-data-annotation/08-use-cases-and-applications/"
   },
   {
@@ -320,7 +320,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch4_p9",
     "title": "Best Practices in Annotation: Guidelines, Golden Honeypots & Lifecycle Governance",
     "trackName": "Data Annotation & Labeling",
-    "slidesCount": 10,
+    "slidesCount": 16,
     "docPath": "track4-data-annotation/09-best-practices/"
   },
   {
@@ -354,9 +354,9 @@ window.CURRICULUM_MANIFEST = [
     "chapter": 5,
     "part": 3,
     "key": "ch5_p3",
-    "title": "Duplicates and Inconsistency: Fuzzy String Matching, Record Linkage & Fellegi-Sunter Theory",
+    "title": "Duplicates & Inconsistency: String Distance, Fellegi-Sunter & Deduplication",
     "trackName": "Data Cleaning & Preprocessing",
-    "slidesCount": 7,
+    "slidesCount": 16,
     "docPath": "track5-data-cleaning/03-duplicates-and-inconsistency/"
   },
   {
@@ -466,7 +466,7 @@ window.CURRICULUM_MANIFEST = [
     "trackName": "Exploratory Data Analysis",
     "slidesCount": 16,
     "docPath": "track6-exploratory-data-analysis/03-dispersion-shape-and-grouping/",
-    "badge": "16 Masterclass Slides \u2022 Socratic Dialogue \u2022 Interactive Sandbox",
+    "badge": "16 Masterclass Slides • Socratic Dialogue • Interactive Sandbox",
     "hasNeuralAudio": true
   },
   {
@@ -475,8 +475,10 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch6_p4",
     "title": "Univariate and Bivariate Visualization",
     "trackName": "Exploratory Data Analysis",
-    "slidesCount": 8,
-    "docPath": "track6-exploratory-data-analysis/04-univariate-and-bivariate-visualization/"
+    "slidesCount": 16,
+    "docPath": "track6-exploratory-data-analysis/04-univariate-and-bivariate-visualization/",
+    "badge": "16 Masterclass Slides • Socratic Dialogue • Interactive Sandbox",
+    "hasNeuralAudio": true
   },
   {
     "chapter": 6,
@@ -565,7 +567,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch7_p2",
     "title": "Types and Mechanisms of Dataset Bias",
     "trackName": "Dataset Bias & Fairness",
-    "slidesCount": 7,
+    "slidesCount": 16,
     "docPath": "track7-dataset-bias-fairness/02-types-of-dataset-bias/"
   },
   {
@@ -574,7 +576,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch7_p3",
     "title": "Detecting and Auditing Bias Statistically",
     "trackName": "Dataset Bias & Fairness",
-    "slidesCount": 8,
+    "slidesCount": 16,
     "docPath": "track7-dataset-bias-fairness/03-detecting-bias-statistically/"
   },
   {
@@ -646,7 +648,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch8_p1",
     "title": "Introduction to Dataset Documentation and Version Control",
     "trackName": "Documentation & Versioning",
-    "slidesCount": 6,
+    "slidesCount": 16,
     "docPath": "track8-documentation-versioning/01-introduction-to-documentation/"
   },
   {
@@ -655,7 +657,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch8_p2",
     "title": "Metadata and Data Dictionaries",
     "trackName": "Documentation & Versioning",
-    "slidesCount": 6,
+    "slidesCount": 16,
     "docPath": "track8-documentation-versioning/02-metadata-and-data-dictionaries/"
   },
   {
@@ -736,7 +738,7 @@ window.CURRICULUM_MANIFEST = [
     "key": "ch9_p1",
     "title": "From Fundamentals to Advanced Data Collection",
     "trackName": "Advanced Data Collection",
-    "slidesCount": 6,
+    "slidesCount": 16,
     "docPath": "track9-advanced-collection/01-from-fundamentals-to-advanced/"
   },
   {

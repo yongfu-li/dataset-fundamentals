@@ -1,0 +1,397 @@
+{
+  "duration": 719.88,
+  "sentences": [
+    {
+      "slideIndex": 0,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 7.3! Today, Kaito and I are formalizing how machine learning practitioners statistically detect, audit, and mathematically prove bias in real-world datasets.",
+      "start": 0.0,
+      "end": 12.6
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 1,
+      "speaker": "Kaito",
+      "text": "In industry, people often look at a simple histogram of scores across demographic groups and say: 'The curves look close enough, let's ship it!' But as we'll prove today, visual inspection can completely mask catastrophic tail exclusions and severe adverse regulatory violations.",
+      "start": 12.9,
+      "end": 29.244
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 2,
+      "speaker": "Dr. Nova",
+      "text": "Precisely, Kaito. An auditor must master continuous distribution divergence metrics like Wasserstein-1 distance, discrete threshold ratios like the EEOC 80 percent rule, and statistical power calculations. Let's begin by establishing our two-tier auditing architecture.",
+      "start": 29.544,
+      "end": 48.696
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Notice how the continuous and discrete tiers interact, Kaito. The continuous distribution is the intrinsic property of the trained model, while the discrete selection rate is a function of the operational threshold tau.",
+      "start": 49.196,
+      "end": 62.516
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 1,
+      "speaker": "Kaito",
+      "text": "Right! A team might tune their decision threshold tau to pass the legal 80% Disparate Impact rule today. But if the marketing team changes the target acceptance rate next month, that threshold shifts, and an unaddressed continuous divergence can instantly trigger a massive regulatory violation!",
+      "start": 62.816,
+      "end": 80.744
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 2,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. That is why enterprise auditors mandate continuous metrics like Kolmogorov-Smirnov and Wasserstein distance alongside discrete ratios. Let's examine the classical Kolmogorov-Smirnov statistic first.",
+      "start": 81.044,
+      "end": 95.372
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "The Kolmogorov-Smirnov test is standard in data science libraries like SciPy. You just run ks_2samp and get a p-value! Why shouldn't that be our only continuous fairness test, Dr. Nova?",
+      "start": 95.872,
+      "end": 110.104
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because D sub KS is fundamentally a vertical supremum measure, Kaito. It looks across the entire CDF support and picks the single x-coordinate where the vertical height between the two curves is greatest.",
+      "start": 110.404,
+      "end": 123.34
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And that means if the two curves have a wide horizontal separation or long-tail discrepancies that don't produce a tall vertical peak at a single point, D sub KS will dramatically underestimate the real-world disparity!",
+      "start": 123.64,
+      "end": 135.592
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Spot on. To capture horizontal displacement and the true physical transport work of shifting distributions, we must turn to optimal transport and the Wasserstein metric.",
+      "start": 135.892,
+      "end": 147.076
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "The Earth Mover's Distance makes so much intuitive sense physically! If I have a pile of dirt representing Group 0's score density, how much shovel-work does it take to move it so it exactly matches Group 1's density?",
+      "start": 147.576,
+      "end": 160.128
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "That physical intuition translates directly into engineering guarantees. Notice the Kantorovich-Rubinstein duality formula on the slide: it proves that the Wasserstein distance bounds the maximum possible expected disparity for any smooth downstream decision rule.",
+      "start": 160.428,
+      "end": 176.652
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And because it integrates horizontally, if the two groups have an average 50-point credit gap, the Wasserstein-1 distance is literally 50 points! Executives and regulators can understand that immediately, whereas a D_KS value of 0.28 is completely abstract.",
+      "start": 176.952,
+      "end": 194.088
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "This tail exclusion paradox is chilling, Dr. Nova. In elite hiring or loan approvals, we only hire the top five percent! So if Group zero has zero applicants in that elite tier, but looks similar everywhere else, KS gives it a clean bill of health?!",
+      "start": 194.588,
+      "end": 210.692
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Yes, Kaito. Because KS measures vertical height on the cumulative distribution function, and the cumulative probability in the upper five percent is bounded between zero and 0.05, the vertical gap literally cannot exceed 0.05!",
+      "start": 210.992,
+      "end": 228.104
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Whereas Wasserstein integrates the actual horizontal point distance, which could be fifty or a hundred points wide. That's why we built Simulator 7.3 Tab A: so learners can manipulate the mean shift and cutoff in real time!",
+      "start": 228.404,
+      "end": 242.324
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Here we are in Simulator 7.3 Tab A! You can drag the sliders below to adjust the privileged mean shift Delta mu, the group spread sigma zero, and the decision threshold tau.",
+      "start": 242.824,
+      "end": 254.224
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Notice how the canvas dynamically renders both the probability densities and the cumulative distribution functions. When Delta mu is set to plus 0.18, the Wasserstein transport work is exactly 0.180, and the Disparate Impact Ratio collapses to 0.38, violating the federal 80 percent rule.",
+      "start": 254.524,
+      "end": 275.356
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Try moving the decision threshold tau up to 0.70 while keeping Delta mu at 0.18. Even though the underlying distribution hasn't changed, the Disparate Impact Ratio gets dramatically worse because of the tail exclusion we just discussed!",
+      "start": 275.656,
+      "end": 290.752
+    },
+    {
+      "slideIndex": 6,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Time for our first active recall challenge! Let's see if you can articulate why optimal transport is essential when auditing high-stakes decision boundaries.",
+      "start": 291.252,
+      "end": 300.852
+    },
+    {
+      "slideIndex": 6,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Read the question carefully in the dock below. Pay close attention to how vertical CDF height differs from horizontal quantile transport work.",
+      "start": 301.152,
+      "end": 310.416
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Most people know the Gini coefficient from economics, Dr. Nova. Why is the Theil Index so much better for algorithmic fairness audits?",
+      "start": 310.916,
+      "end": 320.156
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because the Gini coefficient is not strictly additively decomposable, Kaito. When demographic distributions overlap, Gini contains an intractable cross-term called the transvariation coefficient.",
+      "start": 320.456,
+      "end": 333.464
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Whereas the Theil index splits cleanly into T-within and T-between with zero messy residuals! So if an executive asks: 'How much of our loan portfolio inequality is due to demographic disparity versus applicant income variation?', you can give them an exact, uncompromised percentage!",
+      "start": 333.764,
+      "end": 350.516
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. If T-between is non-zero, systemic demographic bias exists. Now that we have mastered continuous divergence and entropy metrics, let us turn to discrete decision audits and the famous EEOC 80 percent rule.",
+      "start": 350.816,
+      "end": 366.512
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Every compliance team knows the 80 percent rule, Dr. Nova! You divide the minority hire rate by the majority hire rate, and if it's below 0.80, legal steps in.",
+      "start": 367.012,
+      "end": 378.316
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Yes, Kaito. The 80 percent rule is legally critical, yet relying on a simple ratio alone creates dangerous blind spots. Notice what happens when acceptance rates are close to 0% or close to 100%.",
+      "start": 378.616,
+      "end": 394.072
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Right! If a tech company hires 90% of Group 1 and 81% of Group 0, DIR is 0.90, so it easily passes the 80% rule. Yet Group 0 is being rejected at 19% versus 10%—almost double the rejection rate! And furthermore, DIR says nothing about statistical significance or sample uncertainty. That's why we pair DIR with formal hypothesis testing.",
+      "start": 394.372,
+      "end": 421.228
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "The two-proportion Z-test is actually famous in legal history too, isn't it, Dr. Nova? In Castaneda versus Partida, the Supreme Court established the 'two or three standard deviations' rule!",
+      "start": 421.728,
+      "end": 434.064
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Correct, Kaito! Under the pooled Z-test, a Z-score exceeding two standard deviations roughly corresponds to a p-value below 0.05. Notice how the formula uses the pooled proportion p-hat because under the null hypothesis, both groups share the exact same underlying probability.",
+      "start": 434.364,
+      "end": 453.948
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Wait—look carefully at that denominator: 1 over n0 plus 1 over n1. What happens when a small startup audits a minority group where n0 is tiny, say only sixteen people?!",
+      "start": 454.248,
+      "end": 465.936
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 3,
+      "speaker": "Dr. Nova",
+      "text": "That question uncovers one of the most dangerous traps in statistical fairness auditing: the small-sample Type II error. Let us derive that vulnerability next.",
+      "start": 466.236,
+      "end": 476.676
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Hold on! Look at those numbers: 25 percent versus 45 percent acceptance is a DIR of 0.55—massive discrimination! Yet because there are only 16 applicants in the minority group, p is 0.118! If an auditor mechanically checks 'is p < 0.05?', they wrongly certify the model as compliant!",
+      "start": 477.176,
+      "end": 499.832
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "That is a catastrophic Type II error—failing to reject a false null hypothesis solely due to insufficient statistical power. Absence of statistical significance is never proof of fairness.",
+      "start": 500.132,
+      "end": 512.468
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And look at the Katz logarithmic confidence interval! With only 16 applicants, that confidence interval for DIR probably stretches from 0.23 all the way up to 1.30—telling the regulator immediately that our sample is far too small to prove safety!",
+      "start": 512.768,
+      "end": 528.824
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Let's dive into Simulator 7.3 Tab B! This runs one thousand Monte Carlo permutations in real time, plotting the exact empirical null histogram against our observed difference T-obs.",
+      "start": 529.324,
+      "end": 542.044
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Notice how cleanly it demonstrates statistical power. At n zero equal to 50 and a true bias gap of 0.08, the observed marker sits far outside the grey null distribution, easily proving disparity.",
+      "start": 542.344,
+      "end": 556.6
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Now watch what happens when you drag unprivileged sample size n0 down to 15! The null histogram flattens and stretches outward—swallowing up our biased difference so that it falsely passes the audit! Don't ever let an underpowered p-value fool you into shipping biased code.",
+      "start": 556.9,
+      "end": 573.676
+    },
+    {
+      "slideIndex": 12,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Alright, checkpoint number two! You just saw in Simulator 7.3 how shrinking n zero swallows up massive disparities inside the null histogram.",
+      "start": 574.176,
+      "end": 584.16
+    },
+    {
+      "slideIndex": 12,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Apply that exact reasoning to the audit scenario in the dock below. Why is a p-value of 0.118 coupled with a DIR of 0.55 a regulatory red flag rather than a green light?",
+      "start": 584.46,
+      "end": 597.612
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "What I love about permutation resampling is how intuitive it is to explain to non-technical stakeholders! You take the dataset, hide which candidate belonged to which demographic group, shuffle the labels randomly ten thousand times, and count how often random shuffling accidentally creates a disparity as extreme as the real model.",
+      "start": 598.112,
+      "end": 616.736
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "And mathematically, it relies on a single minimal assumption: exchangeability under the null hypothesis. No Gaussian bell-curve requirements, no variance homogeneity assumptions.",
+      "start": 617.036,
+      "end": 629.18
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Plus, adding the plus-one Phipson-Smyth correction prevents you from ever dividing to zero and claiming p equals 0.0000!",
+      "start": 629.48,
+      "end": 637.904
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "The automated resume screener case is so instructive! Even after engineers deleted the explicit gender column from the training data, the model recovered gender through proxy NLP tokens like 'women's chess club' and still violated the 80% rule!",
+      "start": 638.404,
+      "end": 653.452
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "And compare that with the HMDA mortgage underwriting studies, Kaito. Even when calibration matches, a large continuous Wasserstein-1 distance means systemic credit wealth gaps propagate directly into higher loan denial rates or exorbitant interest rate tiers.",
+      "start": 653.752,
+      "end": 670.288
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Every ML engineer needs both Tier 1 continuous optimal transport audits and Tier 2 discrete regulatory tests automated right inside their CI/CD evaluation suite!",
+      "start": 670.588,
+      "end": 680.884
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "What a complete statistical toolkit, Dr. Nova! From Wasserstein optimal transport and Theil entropy decomposition to the 80% rule, Katz confidence intervals, and exact Fisher-Pitman permutations.",
+      "start": 681.384,
+      "end": 694.464
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "And by wrapping all four checks into Pydantic V2 schema contracts inside the CI/CD pipeline, no model can silently bypass an audit on a small sample size or a hidden tail gap.",
+      "start": 694.764,
+      "end": 706.788
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "In our next lesson, 7.4, we bring these numbers to life with Fairness Visualization Dashboards and Exploratory Bias Toolkits! See you there!",
+      "start": 707.088,
+      "end": 717.144
+    }
+  ]
+}

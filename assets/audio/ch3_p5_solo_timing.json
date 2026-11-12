@@ -1,0 +1,229 @@
+{
+  "duration": 601.08,
+  "sentences": [
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Track 3, Lesson 3.5 of Dataset Fundamentals: Privacy-Preserving Technologies: k-Anonymity, l-Diversity, t-Closeness, and Differential Privacy. Today we bridge the divide between legal compliance and cryptographic engineering.",
+      "start": 0.0,
+      "end": 16.416,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "While legal frameworks like HIPAA and GDPR define organizational mandates, they provide zero cryptographic protection against adversarial reconstruction. We formalize the four cornerstone anonymization frameworks: Latanya Sweeney's k-Anonymity, Machanavajjhala's l-Diversity, Ninghui Li's t-Closeness, and Cynthia Dwork's epsilon-Differential Privacy, culminating in decentralized Federated Learning defenses.",
+      "start": 16.416,
+      "end": 41.904,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Here we establish the formal mathematics of k-anonymity introduced by Dr. Latanya Sweeney in 2002. Let relational table T have quasi-identifiers A-1 through A-m and sensitive attributes S.",
+      "start": 41.904,
+      "end": 55.272,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "An equivalence class consists of all tuples in T that are syntactically identical across all quasi-identifiers. The table satisfies k-anonymity if and only if the cardinality of every single equivalence class is at least k. This mathematically bounds the probability of deterministic re-identification to at most one over k.",
+      "start": 55.272,
+      "end": 75.96,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "To enforce k-anonymity, production pipelines utilize two primary operations: generalization and suppression. Generalization climbs a Value Generalization Hierarchy, replacing fine-grained values with broader ancestral intervals.",
+      "start": 75.96,
+      "end": 91.056,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "For example, a five-digit ZIP code generalized to a three-digit prefix expands the geographical cohort. Suppression removes stubborn outlier rows that cannot coalesce into k-sized buckets. However, every generalization step increases the Information Loss metric, diluting statistical utility for downstream machine learning.",
+      "start": 91.056,
+      "end": 111.816,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Slide 4 highlights the fatal Achilles heel of k-anonymity: it guarantees identity indistinguishability, but offers zero protection against attribute disclosure.",
+      "start": 111.816,
+      "end": 121.896,
+      "slideIndex": 3
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "In a homogeneity attack, even with k equal to four, ten, or one hundred, if every member of the equivalence class shares the exact same sensitive diagnosis, the attacker learns the diagnosis with one hundred percent certainty. Furthermore, background knowledge attacks allow an adversary to eliminate candidate diseases using known genetic traits or lifestyle factors, collapsing the effective crowd size to one.",
+      "start": 121.896,
+      "end": 146.976,
+      "slideIndex": 3
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "To solve the homogeneity attack, Machanavajjhala et al. formulated l-diversity in 2007. Under Distinct l-diversity, each equivalence class must feature at least l distinct sensitive values.",
+      "start": 146.976,
+      "end": 159.936,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Entropy l-diversity goes further by measuring Shannon entropy, preventing an adversary from discovering a patient's condition when one disease accounts for ninety-nine percent of the records. Yet l-diversity itself suffers from a fatal flaw: semantic similarity attacks. If an equivalence class contains stomach cancer, colon cancer, and esophageal cancer, l equals three syntactically, but semantically the adversary learns the patient has gastrointestinal cancer.",
+      "start": 159.936,
+      "end": 188.256,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to the PETs Multi-Metric Auditor! Here you can test k-Anonymity, l-Diversity, and t-Closeness across real patient cohorts. Toggle between the presets above to diagnose identity disclosure, homogeneity attacks, and semantic similarity clustering.",
+      "start": 188.256,
+      "end": 205.152,
+      "slideIndex": 5
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Observe how Preset 1 leaves singletons vulnerable to re-identification. In Preset 2, k reaches three, but zero entropy triggers a homogeneity alarm. Only in Preset 4 do we achieve certified privacy with Earth Mover's Distance under zero point fifteen.",
+      "start": 205.152,
+      "end": 222.072,
+      "slideIndex": 5
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "We have docked at Active Checkpoint 1! Evaluate how an equivalence class with three distinct diagnoses can still leak sensitive patient medical conditions through semantic clustering.",
+      "start": 222.072,
+      "end": 233.232,
+      "slideIndex": 6
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Carefully consider: an adversary knows Bob is in an equivalence class with Ulcerative Colitis, Crohn's Disease, and Colorectal Carcinoma. Select Option A, B, or C below to verify your analytical diagnosis.",
+      "start": 233.232,
+      "end": 247.608,
+      "slideIndex": 6
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "On Slide 8, we present Ninghui Li's t-closeness framework from 2007, which resolves the semantic similarity problem once and for all within partition-based models.",
+      "start": 247.608,
+      "end": 258.264,
+      "slideIndex": 7
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Under t-closeness, an equivalence class is only valid if the probability distribution of sensitive values inside the class does not stray from the global population distribution by more than threshold t. For ordered domains, distance is computed via the Earth Mover's Distance, which represents the L1 norm between cumulative distribution functions. If only two percent of the general population has cancer, an equivalence class where thirty-three percent of records have cancer is rejected for publishing.",
+      "start": 258.264,
+      "end": 288.168,
+      "slideIndex": 7
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Slide 9 demonstrates why modern data science moved beyond partition-based methods. In 2005, Charu Aggarwal published a seminal paper proving that k-anonymity collapses in high-dimensional spaces.",
+      "start": 288.168,
+      "end": 301.368,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "When a dataset tracks twenty or thirty attributes—such as browsing histories, genome loci, or purchase logs—the volume of the Cartesian space expands exponentially. Data points become hyper-sparse, isolated singletons. To force twenty-dimensional records into cohorts of size k, an algorithm must either delete ninety percent of the rows or generalize attributes until all predictive signal vanishes. This realization birthed differential privacy.",
+      "start": 301.368,
+      "end": 330.216,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Slide 10 introduces Differential Privacy, formulated by Cynthia Dwork and co-authors in 2006. Differential privacy is not a property of data; it is a mathematical property of an algorithm.",
+      "start": 330.216,
+      "end": 343.224,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Consider two neighboring datasets D and D-prime that differ by exactly one individual. A mechanism satisfies epsilon-differential privacy if the probability distribution over any output set S is virtually identical whether Alice is in the dataset or not, bounded by e to the epsilon. This provides plausible deniability: an adversary observing the query result cannot determine whether any single individual was included, regardless of what other auxiliary databases they acquire.",
+      "start": 343.224,
+      "end": 372.24,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Slide 11 shows the exact physics of noise injection. First, we calculate the Global Sensitivity of the query, which is the maximum amount the true answer could change by adding or removing a single person. For a counting query, sensitivity is exactly one.",
+      "start": 372.24,
+      "end": 389.304,
+      "slideIndex": 10
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "To satisfy pure epsilon-differential privacy, we add noise from a Laplace distribution scaled by Delta f divided by epsilon. Notice the inverse relationship: as epsilon approaches zero for near-infinite privacy, the noise variance approaches infinity, destroying utility. For vector queries in deep learning, we use the Gaussian mechanism with delta slack.",
+      "start": 389.304,
+      "end": 411.912,
+      "slideIndex": 10
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "We have arrived at the Laplace Differential Privacy Calibration Studio! Adjust the privacy loss budget epsilon and query sensitivity above us to observe how calibrated noise is added to real patient queries.",
+      "start": 411.912,
+      "end": 424.512,
+      "slideIndex": 11
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Watch how the reported private count fluctuates around the true patient count of eight. Under Preset 1, with epsilon equal to five, the reported number barely deviates from eight, but privacy is weak. Under Preset 3, with epsilon equal to zero point two, the noise variance jumps to fifty, masking the truth completely.",
+      "start": 424.512,
+      "end": 444.744,
+      "slideIndex": 11
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Active Checkpoint 2! Diagnose why the US Census Bureau discovered that releasing exact aggregate tables allowed researchers to reconstruct individual records for fifty-two million Americans.",
+      "start": 444.744,
+      "end": 457.344,
+      "slideIndex": 12
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Review Dinur and Nissim's foundational Database Reconstruction Theorem from 2003. Select Option A, B, or C below to verify why exact statistics fail without differential privacy.",
+      "start": 457.344,
+      "end": 469.992,
+      "slideIndex": 12
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Slide 14 exposes a critical modern misconception: that federated learning guarantees data privacy. In 2017, Google introduced FedAvg, where edge devices compute local gradients and transmit only model weights.",
+      "start": 469.992,
+      "end": 485.088,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "However, in 2019, Zhu and Han discovered Deep Leakage from Gradients. Because early layer gradients are direct outer products of the input tokens or pixels, an adversary on the server can initialize dummy noise and optimize it until its gradients match the received updates. In clinical applications, this reconstructs patient face scans and MRI images pixel for pixel. To make federated learning private, teams must clip gradients, inject differential privacy noise via DP-SGD, and use cryptographic Secure Aggregation.",
+      "start": 485.088,
+      "end": 519.048,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Slide 15 presents the production Python implementation from our companion textbook. We build a Mondrian k-anonymity partitioner, which operates like a recursive kd-tree. It scans the quasi-identifier columns, picks the dimension with the largest normalized range, and splits at the median as long as both child partitions contain at least k records.",
+      "start": 519.048,
+      "end": 541.368,
+      "slideIndex": 14
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Next, we implement the Laplace DP engine. Notice how we compute a private mean: we clip values to a predetermined range to bound sensitivity, then split the epsilon budget between the noisy numerator sum and the noisy denominator count.",
+      "start": 541.368,
+      "end": 556.44,
+      "slideIndex": 14
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Congratulations on completing Lesson 3.5! Let us synthesize the five foundational laws of privacy-preserving technologies.",
+      "start": 556.44,
+      "end": 565.536,
+      "slideIndex": 15
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "First, k-anonymity requires l-diversity to prevent attribute disclosure. Second, t-closeness bounds Earth Mover's Distance against semantic skew. Third, high dimensionality forces the transition from table partitioning to differential privacy. Fourth, the privacy loss budget epsilon is non-renewable and depletes with repeated queries. And fifth, federated learning must combine DP-SGD and Secure Aggregation to prevent gradient inversion. In our next lesson, we cross into Lesson 3.6: Dataset Bias and Algorithmic Fairness.",
+      "start": 565.536,
+      "end": 601.08,
+      "slideIndex": 15
+    }
+  ]
+}

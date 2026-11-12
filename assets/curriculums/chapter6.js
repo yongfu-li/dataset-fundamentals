@@ -2244,9 +2244,11 @@ window.CURRICULUM_CH6 = window.curriculum_chapter6 = {
     "chapter": 6,
     "part": 4,
     "key": "ch6_p4",
-    "badge": "\u25c6 TRACK 6 \u2022 LESSON 6.4: UNIVARIATE AND BIVARIATE VISUALIZATION",
     "index": "Lesson 4 of 12",
     "lessonTitle": "Univariate and Bivariate Visualization",
+    "title": "Univariate and Bivariate Visualization",
+    "badge": "16 Masterclass Slides \u2022 Socratic Dialogue \u2022 Interactive Sandbox",
+    "description": "Mastering histogram binning optimization (Scott, Freedman-Diaconis), Parzen-Rosenblatt KDE continuous smoothing, Silverman's bandwidth rule, boundary bias reflection, boxplot Tukey fences and bimodality masking, parameter-free ECDF with DKW confidence envelopes, and the bivariate association triad (Pearson, Spearman, Kendall) with 2D hexagonal binning.",
     "slides": [
       {
         "id": "s1",
@@ -2258,242 +2260,748 @@ window.CURRICULUM_CH6 = window.curriculum_chapter6 = {
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 6.4. Today we examine univariate and bivariate visualization, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>\u25c6 Track 6: Foundations</span>\n    <span>\u2022</span>\n    <span>Lesson 6.4</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Univariate and Bivariate Visualization\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into univariate and bivariate visualization with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udcd0 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">\u26a0\ufe0f Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udee1\ufe0f Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Univariate and Bivariate Visualization",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 6.4?"
+              "text": "Welcome to Lesson 6.4 of Dataset Fundamentals: Univariate and Bivariate Visualization. As we proved with Anscombe's quartet, numerical summary statistics can be completely blind to complex data geometry, non-linear manifolds, and multimodal mixtures.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 6.4. Today we examine univariate and bivariate visualization, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "Today we transition from scalar moments to visual geometry. We will derive Mean Integrated Squared Error binning optimizations for histograms, continuous Parzen-Rosenblatt kernel density estimation, Silverman's bandwidth rule, boxplot Tukey fences and their bimodal blindspots, parameter-free empirical distribution functions with Dvoretzky-Kiefer-Wolfowitz confidence bands, and the bivariate association triad comparing Pearson linear correlation with Spearman and Kendall rank metrics.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>\u25c6 Track 6: Foundations</span>\n    <span>\u2022</span>\n    <span>Lesson 6.4</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Univariate and Bivariate Visualization\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into univariate and bivariate visualization with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udcd0 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">\u26a0\ufe0f Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udee1\ufe0f Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 6 \u2022 Exploratory Data Analysis \u2022 Lesson 6.4</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Univariate and Bivariate Visualization\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Bridging Histogram MISE Optimization, Parzen-Rosenblatt KDE, ECDF DKW Envelopes, and the Bivariate Association Triad.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Density Binning</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Freedman-Diaconis $h_{\\text{FD}} = 2\\cdot\\text{IQR}\\cdot n^{-1/3}$ ($25\\%$ BP) vs. Sturges' normality fallacy.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Parzen-Rosenblatt KDE</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Continuous smoothing $\\hat{f}_h(x)$, Silverman's $h^* \\propto n^{-1/5}$, and boundary bias reflection.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. ECDF &amp; DKW Bands</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Parameter-free $F_n(x)$ with non-parametric uniform confidence margin $\\epsilon = \\sqrt{\\ln(2/\\alpha)/(2n)}$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Association Triad</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Pearson $r$ (linear) vs. Spearman $\\rho$ (monotonic) vs. Kendall $\\tau$ (concordance) and 2D hexbinning.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Roadmap: Univariate & Bivariate Visualization",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, in Lesson 6.3 we mastered variance, skewness, kurtosis, and Eve's Law. If we already know the numerical moments of our data, why do we need to visualize them?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because scalar moments project high-dimensional data geometry down to single numbers, Kaito! As Frank Anscombe famously demonstrated, completely different distributions\u2014linear, parabolic, outliers, and leverage clusters\u2014can share identical means, variances, and regression slopes.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Right! The human visual cortex can process topological manifolds, clusters, and boundaries that a variance calculation completely flattens. So visualization isn't just aesthetic; it's an empirical verification necessity.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Today we formalize the mathematics of visualization: optimal histogram bin widths, kernel density bandwidths, Tukey fence geometries, and overplotting mitigation in massive datasets.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Socratic Dialogue \u2022 Track 6 \u2022 Lesson 6.4</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Univariate and Bivariate Visualization\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Bridging Histogram MISE Optimization, Parzen-Rosenblatt KDE, ECDF DKW Envelopes, and the Bivariate Association Triad.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Density Binning</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Freedman-Diaconis $h_{\\text{FD}} = 2\\cdot\\text{IQR}\\cdot n^{-1/3}$ ($25\\%$ BP) vs. Sturges' normality fallacy.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Parzen-Rosenblatt KDE</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Continuous smoothing $\\hat{f}_h(x)$, Silverman's $h^* \\propto n^{-1/5}$, and boundary bias reflection.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. ECDF &amp; DKW Bands</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Parameter-free $F_n(x)$ with non-parametric uniform confidence margin $\\epsilon = \\sqrt{\\ln(2/\\alpha)/(2n)}$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Association Triad</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Pearson $r$ (linear) vs. Spearman $\\rho$ (monotonic) vs. Kendall $\\tau$ (concordance) and 2D hexbinning.</span>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s2",
-        "title": "Conceptual Overview & Mathematical Geometries: Histograms, KDE, and ECDFs",
-        "type": "equation",
+        "title": "The Geometry of Univariate Density: Histograms vs. KDE",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & Mathematical Geometries: Histograms, KDE, and ECDFs",
+          "title": "Univariate Density Representation",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & Mathematical Geometries: Histograms, KDE, and ECDFs. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{MISE}(h) = \\mathbb{E}\\left[ \\int (\\hat{f}_h(x) - f(x))^2 dx \\right] = \\frac{1}{n h} + \\frac{1}{12} h^2 \\int (f'(x))^2 dx + \\mathcal{O}(h^4)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$h_{\\text{Scott}} = 3.49 \\cdot s \\cdot n^{-1/3}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$h_{\\text{FD}} = 2 \\cdot \\frac{\\text{IQR}(\\mathbf{x})}{n^{1/3}}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Over-smoothing ($h \\to \\infty$)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">High bias, masks bimodal mixtures.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Under-smoothing ($h \\to 0$)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">High variance, produces spiky sample noise.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & Mathematical Geometries: Histograms, KDE, and ECDFs",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does conceptual overview & mathematical geometries: histograms, kde, and ecdfs protect our system against silent distribution shift in production?"
+              "text": "When reconstructing an unknown continuous probability density f of x from a finite sample, two fundamental visual geometries dominate: piecewise discrete histograms and continuous kernel smoothing.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
+              "text": "Histograms partition the real line into rigid, disjoint intervals of width h. Every observation falls into exactly one bin, producing a discontinuous step function. Kernel density estimation replaces rigid bin cutoffs with continuous, overlapping probability mass bumps centered at each observation, creating a smooth, differentiable density estimate.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{MISE}(h) = \\mathbb{E}\\left[ \\int (\\hat{f}_h(x) - f(x))^2 dx \\right] = \\frac{1}{n h} + \\frac{1}{12} h^2 \\int (f'(x))^2 dx + \\mathcal{O}(h^4)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$h_{\\text{Scott}} = 3.49 \\cdot s \\cdot n^{-1/3}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$h_{\\text{FD}} = 2 \\cdot \\frac{\\text{IQR}(\\mathbf{x})}{n^{1/3}}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Over-smoothing ($h \\to \\infty$)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">High bias, masks bimodal mixtures.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Under-smoothing ($h \\to 0$)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">High variance, produces spiky sample noise.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a71 Univariate Density \u2022 Discrete vs. Continuous</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Mathematical Foundations</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Discrete Histograms vs. Continuous Kernel Smoothing</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">1. Histogram Partitioning (Piecewise Constant):</strong>\n      $$\\hat{f}_h(x) = \\frac{\\nu_k}{n h} \\quad \\text{for } x \\in B_k = [x_0 + kh, x_0 + (k+1)h)$$\n      <ul class=\"list-disc pl-4 mt-2 space-y-1 text-[11px] text-[#475569]\">\n        <li>$\\nu_k = \\sum_{i=1}^n \\mathbb{I}(x_i \\in B_k)$ is the raw bin count.</li>\n        <li>Discontinuous step function: derivative $\\hat{f}'(x) = 0$ almost everywhere.</li>\n        <li>Highly sensitive to bin origin $x_0$ and bin width $h$.</li>\n      </ul>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-bold\">2. Kernel Smoothing (Continuous Superposition):</strong>\n      $$\\hat{f}_h(x) = \\frac{1}{n h} \\sum_{i=1}^n K\\left(\\frac{x - x_i}{h}\\right)$$\n      <ul class=\"list-disc pl-4 mt-2 space-y-1 text-[11px] text-[#151b20]\">\n        <li>Eliminates arbitrary bin boundary cutoffs entirely.</li>\n        <li>If kernel $K \\in C^\\infty$ (e.g. Gaussian), $\\hat{f}_h(x)$ is infinitely differentiable.</li>\n        <li>Preserves continuous topological shape, inflection points, and modes.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Histograms vs. Continuous Kernel Smoothing",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Histograms feel so natural, Dr. Nova! Why do statisticians often prefer Kernel Density Estimation over simple histogram bars?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because histograms suffer from an insidious artifact called origin sensitivity! If you shift your bin boundaries by just half a bin width to the right, unimodal data can suddenly appear bimodal, purely from bin edge quantization.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait, shifting the origin can fake a second mode? That's terrifying for automated anomaly detection!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. KDE places the smoothing window over each data point itself rather than fixing a rigid grid, making density estimation continuous, differentiable, and invariant to origin shifts.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a71 Univariate Density \u2022 Discrete vs. Continuous</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Mathematical Foundations</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Discrete Histograms vs. Continuous Kernel Smoothing</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">1. Histogram Partitioning (Piecewise Constant):</strong>\n      $$\\hat{f}_h(x) = \\frac{\\nu_k}{n h} \\quad \\text{for } x \\in B_k = [x_0 + kh, x_0 + (k+1)h)$$\n      <ul class=\"list-disc pl-4 mt-2 space-y-1 text-[11px] text-[#475569]\">\n        <li>$\\nu_k = \\sum_{i=1}^n \\mathbb{I}(x_i \\in B_k)$ is the raw bin count.</li>\n        <li>Discontinuous step function: derivative $\\hat{f}'(x) = 0$ almost everywhere.</li>\n        <li>Highly sensitive to bin origin $x_0$ and bin width $h$.</li>\n      </ul>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-bold\">2. Kernel Smoothing (Continuous Superposition):</strong>\n      $$\\hat{f}_h(x) = \\frac{1}{n h} \\sum_{i=1}^n K\\left(\\frac{x - x_i}{h}\\right)$$\n      <ul class=\"list-disc pl-4 mt-2 space-y-1 text-[11px] text-[#151b20]\">\n        <li>Eliminates arbitrary bin boundary cutoffs entirely.</li>\n        <li>If kernel $K \\in C^\\infty$ (e.g. Gaussian), $\\hat{f}_h(x)$ is infinitely differentiable.</li>\n        <li>Preserves continuous topological shape, inflection points, and modes.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s3",
-        "title": "Conceptual Overview & Mathematical Geometries: Architecture Flowchart",
-        "type": "figure",
+        "title": "Histogram Binning Optimization & MISE Derivation",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & Mathematical Geometries: Architecture Flowchart",
+          "title": "MISE Binning Optimization & Heuristic Rules",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & Mathematical Geometries: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>\ud83d\udcca Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">\u2022</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    subgraph Univariate [\"Univariate Density Geometries\"]\n        direction TB\n        U1[\"Freedman-Diaconis Histogram (Resistant Binning)\"]\n        U2[\"Parzen-Rosenblatt KDE (Continuous Mass)\"]\n        U3[\"ECDF with DKW Non-Parametric Confidence Envelopes\"]\n        U1 --> U2 --> U3\n    end\n\n    subgraph Bivariate [\"Bivariate Association Geometries\"]\n        direction TB\n        B1[\"Pearson Correlation (r): Strictly Linear Covariance\"]\n        B2[\"Spearman Rank (\u03c1): Monotonic Non-Linear Dependence\"]\n        B3[\"Kendall's Tau (\u03c4): Pairwise Concordance Probability\"]\n        B1 --> B2 --> B3\n    end\n\n  %% Top-alignment constraint across stages\n  U1 ~~~ B1\n\n    Univariate -->|Cross-Attribute Coupling| Bivariate\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class U1,U2,U3 blue;\n    class B1,B2,B3 amber;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Over-smoothing ($h \\to \\infty$)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">High bias, masks bimodal mixtures.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Under-smoothing ($h \\to 0$)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">High variance, produces spiky sample noise.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & Mathematical Geometries: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for conceptual overview & mathematical geometries: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "How do we choose the optimal histogram bin width h? We evaluate the Mean Integrated Squared Error, which decomposes into Integrated Variance and Integrated Squared Bias. By Taylor expanding f of x across each bin, integrated variance scales inversely with n times h, while integrated squared bias scales with h-squared times the roughness of the derivative f-prime.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Minimizing MISE yields an optimal bin width proportional to n to the negative one-third. Scott's normal rule sets h to 3.49 times s times n to the negative one-third. But because sample standard deviation s inflates to infinity under extreme outliers, Freedman and Diaconis substituted the interquartile range, giving two times IQR times n to the negative one-third with a twenty-five percent breakdown point.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>\ud83d\udcca Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">\u2022</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    subgraph Univariate [\"Univariate Density Geometries\"]\n        direction TB\n        U1[\"Freedman-Diaconis Histogram (Resistant Binning)\"]\n        U2[\"Parzen-Rosenblatt KDE (Continuous Mass)\"]\n        U3[\"ECDF with DKW Non-Parametric Confidence Envelopes\"]\n        U1 --> U2 --> U3\n    end\n\n    subgraph Bivariate [\"Bivariate Association Geometries\"]\n        direction TB\n        B1[\"Pearson Correlation (r): Strictly Linear Covariance\"]\n        B2[\"Spearman Rank (\u03c1): Monotonic Non-Linear Dependence\"]\n        B3[\"Kendall's Tau (\u03c4): Pairwise Concordance Probability\"]\n        B1 --> B2 --> B3\n    end\n\n  %% Top-alignment constraint across stages\n  U1 ~~~ B1\n\n    Univariate -->|Cross-Attribute Coupling| Bivariate\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class U1,U2,U3 blue;\n    class B1,B2,B3 amber;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Over-smoothing ($h \\to \\infty$)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">High bias, masks bimodal mixtures.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Under-smoothing ($h \\to 0$)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">High variance, produces spiky sample noise.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a72 Histogram Theory \u2022 Asymptotic MISE Derivation</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border border-[#151b20]\">$L_2$ Optimality</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Mean Integrated Squared Error (MISE) &amp; Binning Rules</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">Taylor MISE Decomposition:</strong>\n      $$\\text{MISE}(h) = \\text{IV}(h) + \\text{ISB}(h) \\approx \\frac{1}{nh} + \\frac{h^2}{12}\\mathcal{R}(f')$$\n      $$\\frac{d}{dh}\\text{MISE}(h) = -\\frac{1}{nh^2} + \\frac{h}{6}\\mathcal{R}(f') = 0$$\n      $$\\implies h^* = \\left(\\frac{6}{n\\mathcal{R}(f')}\\right)^{1/3} \\propto n^{-1/3}$$\n      <p class=\"text-[11px] text-[#475569] mt-2\">\n        Where $\\mathcal{R}(f') = \\int_{-\\infty}^\\infty (f'(x))^2 dx$ quantifies density curvature roughness.\n      </p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] space-y-2\">\n      <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block font-bold\">Scott's Normal Reference Rule (1979):</strong>\n        $$h_{\\text{Scott}} = 3.49 \\cdot s \\cdot n^{-1/3}$$\n        <span class=\"text-[10px] text-[#64748b]\">Assumes Gaussian $f(x)$. Vulnerable to outliers ($\\epsilon^* = 0\\%$).</span>\n      </div>\n      <div class=\"p-2 rounded bg-[#e7f4c8] border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block font-bold\">Freedman-Diaconis (FD) Rule (1981):</strong>\n        $$h_{\\text{FD}} = 2 \\cdot \\frac{\\text{IQR}(\\mathbf{x})}{n^{1/3}}$$\n        <span class=\"text-[10px] text-[#15803d] font-bold\">Robust scale estimator. $25\\%$ breakdown point against tail contamination.</span>\n      </div>\n      <div class=\"p-2 rounded bg-[#ffd8ce] border border-[#151b20]\">\n        <strong class=\"text-[#b91c1c] block font-bold\">Sturges' Fallacy: $k = 1 + \\lceil \\log_2 n \\rceil$</strong>\n        <span class=\"text-[10px] text-[#b91c1c]\">Logarithmic bin starvation: for $n=10^6$, gives only 21 bins! Flawed.</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "MISE Optimization & Freedman-Diaconis Binning",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Every spreadsheet defaults to Sturges' rule! Why do you call Sturges a fallacy?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because Sturges' rule was derived in 1926 by assuming a discrete binomial approximation to a Gaussian! For one million observations, Sturges allocates only 21 bins. That is catastrophic oversmoothing that obliterates fine sub-clusters.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Twenty-one bins for a million data points? That would turn complex multimodal web traffic into a featureless blob!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. And if a single outlier inflates the range, Sturges leaves twenty empty bins while packing ninety-nine point nine percent of data into bin one. Freedman-Diaconis uses the interquartile range instead of the total range, scaling with n to the negative one-third and resisting outliers with a twenty-five percent breakdown point.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a72 Histogram Theory \u2022 Asymptotic MISE Derivation</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border border-[#151b20]\">$L_2$ Optimality</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Mean Integrated Squared Error (MISE) &amp; Binning Rules</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">Taylor MISE Decomposition:</strong>\n      $$\\text{MISE}(h) = \\text{IV}(h) + \\text{ISB}(h) \\approx \\frac{1}{nh} + \\frac{h^2}{12}\\mathcal{R}(f')$$\n      $$\\frac{d}{dh}\\text{MISE}(h) = -\\frac{1}{nh^2} + \\frac{h}{6}\\mathcal{R}(f') = 0$$\n      $$\\implies h^* = \\left(\\frac{6}{n\\mathcal{R}(f')}\\right)^{1/3} \\propto n^{-1/3}$$\n      <p class=\"text-[11px] text-[#475569] mt-2\">\n        Where $\\mathcal{R}(f') = \\int_{-\\infty}^\\infty (f'(x))^2 dx$ quantifies density curvature roughness.\n      </p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] space-y-2\">\n      <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block font-bold\">Scott's Normal Reference Rule (1979):</strong>\n        $$h_{\\text{Scott}} = 3.49 \\cdot s \\cdot n^{-1/3}$$\n        <span class=\"text-[10px] text-[#64748b]\">Assumes Gaussian $f(x)$. Vulnerable to outliers ($\\epsilon^* = 0\\%$).</span>\n      </div>\n      <div class=\"p-2 rounded bg-[#e7f4c8] border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block font-bold\">Freedman-Diaconis (FD) Rule (1981):</strong>\n        $$h_{\\text{FD}} = 2 \\cdot \\frac{\\text{IQR}(\\mathbf{x})}{n^{1/3}}$$\n        <span class=\"text-[10px] text-[#15803d] font-bold\">Robust scale estimator. $25\\%$ breakdown point against tail contamination.</span>\n      </div>\n      <div class=\"p-2 rounded bg-[#ffd8ce] border border-[#151b20]\">\n        <strong class=\"text-[#b91c1c] block font-bold\">Sturges' Fallacy: $k = 1 + \\lceil \\log_2 n \\rceil$</strong>\n        <span class=\"text-[10px] text-[#b91c1c]\">Logarithmic bin starvation: for $n=10^6$, gives only 21 bins! Flawed.</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s4",
-        "title": "Bivariate Association: Linear vs. Monotonic vs. Concordance Metrics",
-        "type": "equation",
+        "title": "Continuous Density: Parzen-Rosenblatt KDE Mechanics",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Bivariate Association: Linear vs. Monotonic vs. Concordance Metrics",
+          "title": "Parzen-Rosenblatt Kernel Formulation",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Bivariate Association: Linear vs. Monotonic vs. Concordance Metrics. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$r = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum_{i=1}^n (x_i - \\bar{x})^2 \\sum_{i=1}^n (y_i - \\bar{y})^2}}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\rho = 1 - \\frac{6 \\sum_{i=1}^n d_i^2}{n(n^2 - 1)}, \\quad d_i = R(x_i) - R(y_i)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\tau = \\frac{C - D}{\\frac{1}{2} n (n - 1)} = \\Pr(\\text{concordance}) - \\Pr(\\text{discordance})$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">\ud83d\udca1 Industrial Best Practice</strong>\n  <span class=\"font-medium\">While Kernel Density Estimates (KDE) provide smooth, intuitive visuals, they suffer from boundary bias at positive physical thresholds (e.g., $x \\ge 0$ for response latency) and depend heavily on arbitrary bandwidth choices. Always plot the Empirical</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Failure Mode: A single extreme bivariate outlier can inflate $r$ from $0.0$ to $0.95$ or depress $r$ to $0.0$. Pearson $r$ is blind to nonlinear relationships (e.g., $y = x^2 \\implies r \\approx 0$).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Measures strictly linear</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">co-variation: - Failure Mode: A single extreme bivariate outlier can inflate $r$ from $0.0$ to $0.95$ or depress $r$ to $0.0$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Pearson $r$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is blind to nonlinear relationships (e.g., $y = x^2 \\implies r \\approx 0$).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\ud83d\udca1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Computes Pearson correlation</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">over empirical ranks $R(x_i), R(y_i)$ (Spearman, 1904): Spearman $\\rho$ captures any monotonic relationship ($y = \\exp(x)$ yields $\\rho = 1.0$) and resists extreme tail leverage.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Bivariate Association: Linear vs. Monotonic vs. Concordance Metrics",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does bivariate association: linear vs. monotonic vs. concordance metrics protect our system against silent distribution shift in production?"
+              "text": "The Parzen-Rosenblatt kernel density estimator constructs a continuous probability density by placing a symmetric kernel function K of u over each observation, scaled by bandwidth h. The kernel must integrate to one, have zero first moment for unbiased centering, and possess a finite second moment.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
+              "text": "While the Epanechnikov parabolic kernel mathematically minimizes asymptotic MISE, the standard Gaussian kernel is most common due to its infinite differentiability. By optimizing the bias-variance trade-off in KDE, the optimal bandwidth scales as n to the negative one-fifth, delivering a faster asymptotic convergence rate of n to the negative four-fifths compared to histograms.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$r = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum_{i=1}^n (x_i - \\bar{x})^2 \\sum_{i=1}^n (y_i - \\bar{y})^2}}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\rho = 1 - \\frac{6 \\sum_{i=1}^n d_i^2}{n(n^2 - 1)}, \\quad d_i = R(x_i) - R(y_i)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\tau = \\frac{C - D}{\\frac{1}{2} n (n - 1)} = \\Pr(\\text{concordance}) - \\Pr(\\text{discordance})$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">\ud83d\udca1 Industrial Best Practice</strong>\n  <span class=\"font-medium\">While Kernel Density Estimates (KDE) provide smooth, intuitive visuals, they suffer from boundary bias at positive physical thresholds (e.g., $x \\ge 0$ for response latency) and depend heavily on arbitrary bandwidth choices. Always plot the Empirical</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Failure Mode: A single extreme bivariate outlier can inflate $r$ from $0.0$ to $0.95$ or depress $r$ to $0.0$. Pearson $r$ is blind to nonlinear relationships (e.g., $y = x^2 \\implies r \\approx 0$).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Measures strictly linear</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">co-variation: - Failure Mode: A single extreme bivariate outlier can inflate $r$ from $0.0$ to $0.95$ or depress $r$ to $0.0$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Pearson $r$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is blind to nonlinear relationships (e.g., $y = x^2 \\implies r \\approx 0$).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\ud83d\udca1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Computes Pearson correlation</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">over empirical ranks $R(x_i), R(y_i)$ (Spearman, 1904): Spearman $\\rho$ captures any monotonic relationship ($y = \\exp(x)$ yields $\\rho = 1.0$) and resists extreme tail leverage.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a73 Continuous Smoothing \u2022 Parzen-Rosenblatt Form</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Rate $O(n^{-4/5})$</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Parzen-Rosenblatt Kernel Density Estimation</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">Mathematical Formulation:</strong>\n      $$\\hat{f}_h(x) = \\frac{1}{n h} \\sum_{i=1}^n K\\left(\\frac{x - x_i}{h}\\right)$$\n      <div class=\"text-[11px] text-[#475569] mt-2 space-y-1\">\n        <div>$\\int_{-\\infty}^\\infty K(u) du = 1$ (Total probability mass = 1)</div>\n        <div>$\\int_{-\\infty}^\\infty u K(u) du = 0$ (Symmetric zero centering)</div>\n        <div>$\\sigma_K^2 = \\int_{-\\infty}^\\infty u^2 K(u) du < \\infty$ (Finite kernel variance)</div>\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] space-y-2\">\n      <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block font-bold\">Gaussian Kernel:</strong>\n        $$K(u) = \\frac{1}{\\sqrt{2\\pi}} e^{-u^2/2} \\quad (C^\\infty \\text{ smoothness})$$\n      </div>\n      <div class=\"p-2 rounded bg-[#e7f4c8] border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block font-bold\">Epanechnikov Kernel (Optimal MISE):</strong>\n        $$K(u) = \\frac{3}{4}(1 - u^2) \\mathbb{I}(|u| \\le 1) \\quad (100\\% \\text{ efficiency})$$\n      </div>\n      <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block font-bold\">Optimal Asymptotic Bandwidth:</strong>\n        $$h^* = \\left(\\frac{\\mathcal{R}(K)}{n \\sigma_K^4 \\mathcal{R}(f'')}\\right)^{1/5} \\propto n^{-1/5}$$\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Kernel Properties & Asymptotic Convergence",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait, Dr. Nova! In histograms the optimal bin width scaled as n to the negative one-third, but in KDE the bandwidth scales as n to the negative one-fifth! Why the difference?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because symmetric kernels cancel out first-order bias terms, Kaito! The linear Taylor term vanishes due to kernel symmetry, so bias begins only at the second derivative f-double-prime of x.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Aha! That allows the bandwidth to shrink more slowly, which suppresses variance while bias stays small. So KDE converges at order n to the minus four-fifths, strictly beating histograms!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Brilliant deduction, Kaito! That rate advantage is why continuous KDE provides vastly superior density estimation for smooth distributions.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a73 Continuous Smoothing \u2022 Parzen-Rosenblatt Form</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Rate $O(n^{-4/5})$</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Parzen-Rosenblatt Kernel Density Estimation</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">Mathematical Formulation:</strong>\n      $$\\hat{f}_h(x) = \\frac{1}{n h} \\sum_{i=1}^n K\\left(\\frac{x - x_i}{h}\\right)$$\n      <div class=\"text-[11px] text-[#475569] mt-2 space-y-1\">\n        <div>$\\int_{-\\infty}^\\infty K(u) du = 1$ (Total probability mass = 1)</div>\n        <div>$\\int_{-\\infty}^\\infty u K(u) du = 0$ (Symmetric zero centering)</div>\n        <div>$\\sigma_K^2 = \\int_{-\\infty}^\\infty u^2 K(u) du < \\infty$ (Finite kernel variance)</div>\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] space-y-2\">\n      <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block font-bold\">Gaussian Kernel:</strong>\n        $$K(u) = \\frac{1}{\\sqrt{2\\pi}} e^{-u^2/2} \\quad (C^\\infty \\text{ smoothness})$$\n      </div>\n      <div class=\"p-2 rounded bg-[#e7f4c8] border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block font-bold\">Epanechnikov Kernel (Optimal MISE):</strong>\n        $$K(u) = \\frac{3}{4}(1 - u^2) \\mathbb{I}(|u| \\le 1) \\quad (100\\% \\text{ efficiency})$$\n      </div>\n      <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n        <strong class=\"text-[#b45309] block font-bold\">Optimal Asymptotic Bandwidth:</strong>\n        $$h^* = \\left(\\frac{\\mathcal{R}(K)}{n \\sigma_K^4 \\mathcal{R}(f'')}\\right)^{1/5} \\propto n^{-1/5}$$\n      </div>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s5",
-        "title": "Bivariate Association: Architecture Flowchart",
-        "type": "figure",
+        "title": "Bandwidth Selection & Boundary Bias Mechanics",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Bivariate Association: Architecture Flowchart",
+          "title": "Silverman's Rule & Boundary Reflection",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Bivariate Association: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>\ud83d\udcca Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">\u2022</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Pair[\"Paired Bivariate Observations (X, Y)\"] --> RelType{\"Nature of Dependency?\"}\n    \n    RelType -- \"Linear + Bivariate Normal\" --> Pearson[\"Pearson r<br/>Cov(X,Y) / (\u03c3_x \u03c3_y)<br/>Vulnerable to outliers\"]\n    RelType -- \"Non-linear Monotonic\" --> Spearman[\"Spearman Rank \u03c1<br/>Pearson on Ranks R(X), R(Y)<br/>Robust to monotonic curves\"]\n    RelType -- \"Rank Concordance / Small n\" --> Kendall[\"Kendall's Tau \u03c4<br/>(C - D) / [n(n-1)/2]<br/>Direct probabilistic meaning\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Pair blue;\n    class RelType amber;\n    class Pearson,Spearman,Kendall green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Failure Mode: A single extreme bivariate outlier can inflate $r$ from $0.0$ to $0.95$ or depress $r$ to $0.0$. Pearson $r$ is blind to nonlinear relationships (e.g., $y = x^2 \\implies r \\approx 0$).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Measures strictly linear</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">co-variation: - Failure Mode: A single extreme bivariate outlier can inflate $r$ from $0.0$ to $0.95$ or depress $r$ to $0.0$.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Bivariate Association: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for bivariate association: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "In practice, the choice of kernel is secondary; the choice of bandwidth h determines everything. Under-smoothing produces spurious high-frequency noise spikes, while over-smoothing merges distinct bimodal peaks into a single distorted mode.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Silverman's robust rule of thumb selects zero point nine times the minimum of sample standard deviation and IQR over 1.34, times n to the negative one-fifth. Crucially, on bounded domains such as latency where x is strictly non-negative, standard symmetric kernels leak probability mass below zero. At x equals zero, expected density collapses by half. We correct this boundary bias via boundary reflection, folding negative density back into the positive domain.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>\ud83d\udcca Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">\u2022</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Pair[\"Paired Bivariate Observations (X, Y)\"] --> RelType{\"Nature of Dependency?\"}\n    \n    RelType -- \"Linear + Bivariate Normal\" --> Pearson[\"Pearson r<br/>Cov(X,Y) / (\u03c3_x \u03c3_y)<br/>Vulnerable to outliers\"]\n    RelType -- \"Non-linear Monotonic\" --> Spearman[\"Spearman Rank \u03c1<br/>Pearson on Ranks R(X), R(Y)<br/>Robust to monotonic curves\"]\n    RelType -- \"Rank Concordance / Small n\" --> Kendall[\"Kendall's Tau \u03c4<br/>(C - D) / [n(n-1)/2]<br/>Direct probabilistic meaning\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Pair blue;\n    class RelType amber;\n    class Pearson,Spearman,Kendall green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Failure Mode: A single extreme bivariate outlier can inflate $r$ from $0.0$ to $0.95$ or depress $r$ to $0.0$. Pearson $r$ is blind to nonlinear relationships (e.g., $y = x^2 \\implies r \\approx 0$).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Measures strictly linear</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">co-variation: - Failure Mode: A single extreme bivariate outlier can inflate $r$ from $0.0$ to $0.95$ or depress $r$ to $0.0$.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a74 Bandwidth &amp; Boundary \u2022 Silverman &amp; Reflection</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#fff0b9] text-[#b45309] font-mono text-[11px] font-bold border border-[#151b20]\">Boundary Correction</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Silverman's Bandwidth &amp; The Boundary Leakage Dilemma</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">Silverman's Robust Rule of Thumb:</strong>\n      $$h_{\\text{Silverman}} = 0.9 \\cdot \\min\\left(s, \\; \\frac{\\text{IQR}}{1.34}\\right) \\cdot n^{-1/5}$$\n      <p class=\"text-[11px] text-[#475569] mt-2 leading-relaxed\">\n        Taking the minimum of $s$ and $\\text{IQR}/1.34$ prevents oversmoothing when data exhibits bimodal separation or heavy tails.\n      </p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-bold\">Boundary Bias &amp; The Reflection Principle:</strong>\n      $$\\text{If } X \\ge 0, \\quad \\mathbb{E}[\\hat{f}(0)] \\to \\frac{1}{2} f(0) \\quad \\text{(50\\% density leakage into } x < 0\\text{)}$$\n      <div class=\"mt-2 p-2 rounded bg-white border border-[#151b20] text-[#151b20]\">\n        <strong class=\"text-[#0e7490]\">Boundary Reflection Estimator:</strong>\n        $$\\hat{f}_{\\text{ref}}(x) = \\hat{f}(x) + \\hat{f}(-x) \\quad \\text{for } x \\ge 0$$\n        <span class=\"text-[10px] text-[#64748b] block mt-1\">Folds negative kernel mass back into the positive support, restoring boundary mass conservation.</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Bandwidth Tuning & Boundary Mass Leakage",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Boundary leakage sounds like a serious issue in engineering! If we measure API response times, latency can never be negative. But standard KDE draws a tail below zero milliseconds!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly, Kaito! Symmetric kernels center probability bumps on points near zero, and half of that bump extends into negative numbers where data cannot physically exist. That makes the density at zero appear artificially cut in half.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And boundary reflection fixes that by taking all the mass that leaked below zero and folding it over the boundary back into positive space!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Spot on. Let's enter the interactive laboratory next to test bandwidth tuning and witness boundary reflection in real time.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a74 Bandwidth &amp; Boundary \u2022 Silverman &amp; Reflection</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#fff0b9] text-[#b45309] font-mono text-[11px] font-bold border border-[#151b20]\">Boundary Correction</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Silverman's Bandwidth &amp; The Boundary Leakage Dilemma</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">Silverman's Robust Rule of Thumb:</strong>\n      $$h_{\\text{Silverman}} = 0.9 \\cdot \\min\\left(s, \\; \\frac{\\text{IQR}}{1.34}\\right) \\cdot n^{-1/5}$$\n      <p class=\"text-[11px] text-[#475569] mt-2 leading-relaxed\">\n        Taking the minimum of $s$ and $\\text{IQR}/1.34$ prevents oversmoothing when data exhibits bimodal separation or heavy tails.\n      </p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-bold\">Boundary Bias &amp; The Reflection Principle:</strong>\n      $$\\text{If } X \\ge 0, \\quad \\mathbb{E}[\\hat{f}(0)] \\to \\frac{1}{2} f(0) \\quad \\text{(50\\% density leakage into } x < 0\\text{)}$$\n      <div class=\"mt-2 p-2 rounded bg-white border border-[#151b20] text-[#151b20]\">\n        <strong class=\"text-[#0e7490]\">Boundary Reflection Estimator:</strong>\n        $$\\hat{f}_{\\text{ref}}(x) = \\hat{f}(x) + \\hat{f}(-x) \\quad \\text{for } x \\ge 0$$\n        <span class=\"text-[10px] text-[#64748b] block mt-1\">Folds negative kernel mass back into the positive support, restoring boundary mass conservation.</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s6",
-        "title": "Production Implementation: Density Estimator & Correlation Suite",
-        "type": "code",
+        "title": "Interactive Lab 1: KDE Bandwidth & Boundary Bias Studio",
+        "type": "lab",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Production Implementation: Density Estimator & Correlation Suite",
+          "title": "Interactive Lab: KDE Bandwidth & Boundary Studio",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Production Implementation: Density Estimator & Correlation Suite. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># visualization_math_suite.py\n# Freedman-Diaconis Binning, Silverman KDE, DKW Confidence Envelopes, and Correlation Triad\n\nfrom typing import Dict, Tuple\nimport numpy as np\nfrom scipy import stats\n\ndef compute_optimal_hist_bins(data: np.ndarray) -&gt; Dict[str, float]:\n    # Calculates Scott&#x27;s and Freedman-Diaconis optimal bin widths\n    x = np.asarray(data, dtype=float)\n    x = x[~np.isnan(x)]\n    n = len(x)\n    s = float(np.std(x, ddof=1))\n    q25, q75 = np.percentile(x, [25, 75])\n    iqr = float(q75 - q25)\n\n    h_scott = float(3.49 * s * (n ** (-1.0 / 3.0)))\n    h_fd = float(2.0 * iqr * (n ** (-1.0 / 3.0)))\n    \n    # Silverman&#x27;s KDE bandwidth\n    silverman_scale = min(s, iqr / 1.34) if iqr &gt; 0 else s\n    h_silverman = float(0.9 * silverman_scale * (n ** (-1.0 / 5.0)))\n\n    return {\n        &quot;n&quot;: n,\n        &quot;h_scott&quot;: round(h_scott, 4),\n  </code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Production Implementation: Density Estimator & Correlation Suite",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Welcome to the KDE Bandwidth and Boundary Bias Studio. On screen is a simulated distribution of server response latencies strictly bounded at zero. Adjust the bandwidth slider h and toggle between Gaussian, Epanechnikov, and Uniform kernels.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Notice what happens when bandwidth is too small: spurious spikes appear. When bandwidth is too large, the mode flattens. Most importantly, toggle boundary reflection to witness how negative probability leakage is completely eliminated.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># visualization_math_suite.py\n# Freedman-Diaconis Binning, Silverman KDE, DKW Confidence Envelopes, and Correlation Triad\n\nfrom typing import Dict, Tuple\nimport numpy as np\nfrom scipy import stats\n\ndef compute_optimal_hist_bins(data: np.ndarray) -&gt; Dict[str, float]:\n    # Calculates Scott&#x27;s and Freedman-Diaconis optimal bin widths\n    x = np.asarray(data, dtype=float)\n    x = x[~np.isnan(x)]\n    n = len(x)\n    s = float(np.std(x, ddof=1))\n    q25, q75 = np.percentile(x, [25, 75])\n    iqr = float(q75 - q25)\n\n    h_scott = float(3.49 * s * (n ** (-1.0 / 3.0)))\n    h_fd = float(2.0 * iqr * (n ** (-1.0 / 3.0)))\n    \n    # Silverman&#x27;s KDE bandwidth\n    silverman_scale = min(s, iqr / 1.34) if iqr &gt; 0 else s\n    h_silverman = float(0.9 * silverman_scale * (n ** (-1.0 / 5.0)))\n\n    return {\n        &quot;n&quot;: n,\n        &quot;h_scott&quot;: round(h_scott, 4),\n  </code></pre>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\ud83d\udd2c Interactive Laboratory 1 \u2022 Slide 6 of 16</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">KDE Simulation Workbench</span>\n  </div>\n  <p class=\"text-xs text-[#475569] font-mono mb-2\">\n    Use the interactive laboratory below to experiment with bandwidth smoothing regimes and observe boundary reflection at $x=0$.\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Interactive Lab: KDE Bandwidth & Boundary Studio",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Awesome! I have the bandwidth slider in my hands! Look what happens when I drag h down to 0.15: the curve turns into an oscillatory mountain range of spikes!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is classic under-smoothing, Kaito: high variance where every individual sample point creates its own mode. Now drag h up to 1.8.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Whoa, now it's a giant flat hill! That's over-smoothing: massive bias. And look at the zero boundary: without reflection, tons of probability is leaking below zero!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Check the Boundary Reflection box and watch the folded density restore exact mass conservation right at zero milliseconds.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\ud83d\udd2c Interactive Laboratory 1 \u2022 Slide 6 of 16</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">KDE Simulation Workbench</span>\n  </div>\n  <p class=\"text-xs text-[#475569] font-mono mb-2\">\n    Use the interactive laboratory below to experiment with bandwidth smoothing regimes and observe boundary reflection at $x=0$.\n  </p>\n</div>\n"
         }
       },
       {
         "id": "s7",
-        "title": "Empirical Case Study: Sensor Fusion Disconnect & Server Metrics",
-        "type": "bullets",
+        "title": "Active Checkpoint 1: Freedman-Diaconis vs. Sturges' Binning",
+        "type": "checkpoint",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Empirical Case Study: Sensor Fusion Disconnect & Server Metrics",
+          "title": "Active Recall Checkpoint 1",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Empirical Case Study: Sensor Fusion Disconnect & Server Metrics. Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
+              "text": "Time for Active Checkpoint 1. Review the scenario below regarding histogram binning on heavy-tailed web traffic data. Why does Sturges' rule fail catastrophically while Freedman-Diaconis succeeds?",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Autonomous Vehicle LiDAR-Radar Calibration Failure</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">During rainy highway trials, an autonomous vehicle perceived phantom obstacles. Aggregate logging showed a high Pearson correlation ($r = 0.91$) between LiDAR point counts and Radar reflectivity. However, exploratory bivariate scatterplots revealed an extreme outlier cluster: under wet road glare, LiDAR suffered total backscatter absorption ($x \\approx 0$), while Radar detected ground spray ($y \\approx 4,000$). The high Pearson correlation was artificially driven by high-speed highway segments. Computing Spearman $\\rho$ during rain collapsed to $0.18$, exposing the sensor fusion failure.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Database Connection Pool Exhaustion</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">A financial API suffered periodic connection timeouts. A graph of CPU utilization versus request volume showed low correlation ($r = 0.22$). However, replacing the scatterplot with a LOWESS-smoothed hexbin plot exposed a sharp non-linear threshold: CPU stayed flat at $15\\%$ until connections reached $1,024$, at which point lock contention triggered an exponential wall to $100\\%$. The non-linear relationship was invisible to summary correlation.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#b45309] tracking-wider\">\u26a1 Active Checkpoint 1 \u2022 Knowledge Verification</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#fff0b9] text-[#b45309] font-mono text-[11px] font-bold border border-[#151b20]\">Binning Theory</span>\n  </div>\n  <p class=\"text-xs text-[#475569] font-mono mb-2\">\n    Answer the conceptual question below to verify your mastery of histogram asymptotic theory and breakdown properties.\n  </p>\n</div>\n"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Empirical Case Study: Sensor Fusion Disconnect & Server Metrics",
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Active Checkpoint 1: Freedman-Diaconis vs. Sturges",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, what is the critical industrial lesson from this case study?"
+              "text": "Our first knowledge check! A data engineer used Sturges' rule on one million request records with long-tail timeouts, and the histogram look completely distorted. Why did Sturges fail?",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
+              "text": "Evaluate the mathematical reasons behind Sturges' failure and how Freedman-Diaconis resolves both sample size starvation and outlier inflation.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Autonomous Vehicle LiDAR-Radar Calibration Failure</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">During rainy highway trials, an autonomous vehicle perceived phantom obstacles. Aggregate logging showed a high Pearson correlation ($r = 0.91$) between LiDAR point counts and Radar reflectivity. However, exploratory bivariate scatterplots revealed an extreme outlier cluster: under wet road glare, LiDAR suffered total backscatter absorption ($x \\approx 0$), while Radar detected ground spray ($y \\approx 4,000$). The high Pearson correlation was artificially driven by high-speed highway segments. Computing Spearman $\\rho$ during rain collapsed to $0.18$, exposing the sensor fusion failure.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Database Connection Pool Exhaustion</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">A financial API suffered periodic connection timeouts. A graph of CPU utilization versus request volume showed low correlation ($r = 0.22$). However, replacing the scatterplot with a LOWESS-smoothed hexbin plot exposed a sharp non-linear threshold: CPU stayed flat at $15\\%$ until connections reached $1,024$, at which point lock contention triggered an exponential wall to $100\\%$. The non-linear relationship was invisible to summary correlation.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#b45309] tracking-wider\">\u26a1 Active Checkpoint 1 \u2022 Knowledge Verification</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#fff0b9] text-[#b45309] font-mono text-[11px] font-bold border border-[#151b20]\">Binning Theory</span>\n  </div>\n  <p class=\"text-xs text-[#475569] font-mono mb-2\">\n    Answer the conceptual question below to verify your mastery of histogram asymptotic theory and breakdown properties.\n  </p>\n</div>\n"
         }
       },
       {
         "id": "s8",
-        "title": "Interactive Lab: Explore Univariate & Bivariate Geometry Studio",
-        "type": "tool",
+        "title": "The Five-Number Summary & Boxplot Tukey Fence Mechanics",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Explore Univariate & Bivariate Geometry Studio",
+          "title": "Five-Number Summary & Tukey Fences",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Explore Univariate & Bivariate Geometry Studio. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">\ud83d\udd2c Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Univariate &amp; Bivariate Geometry Studio</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page \u2193</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Compare Freedman-Diaconis vs. Scott binning interactively, fit adaptive Gaussian KDEs, and observe Pearson vs. Spearman breakdown under outlier manipulation.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">\u26a1 Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch EDA Dashboard \u2192&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Explore Univariate & Bivariate Geometry Studio",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the explore univariate & bivariate geometry studio located below this player?"
+              "text": "John Tukey introduced the boxplot in 1977 as a resistant visual summary of ordinal location and dispersion. The central box spans the first quartile Q1 to the third quartile Q3, with the median dividing the box.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "A common misconception is that boxplot whiskers extend to the outer fence boundaries. They do not! Tukey defined inner fences at Q1 minus 1.5 times IQR and Q3 plus 1.5 times IQR. The whiskers extend strictly to the most extreme data points located within those fences. Any observation outside the fences is plotted individually as an outlier.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">\ud83d\udd2c Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Univariate &amp; Bivariate Geometry Studio</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page \u2193</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Compare Freedman-Diaconis vs. Scott binning interactively, fit adaptive Gaussian KDEs, and observe Pearson vs. Spearman breakdown under outlier manipulation.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">\u26a1 Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch EDA Dashboard \u2192&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a75 Order Statistics \u2022 Tukey's Boxplot Architecture</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Tukey (1977)</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">The Five-Number Summary &amp; Tukey Fence Geometry</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">The Five-Number Summary:</strong>\n      $$x_{(1)} \\le Q_1 \\le \\tilde{x} (Q_2) \\le Q_3 \\le x_{(n)}$$\n      <div class=\"text-[11px] text-[#475569] mt-2 space-y-1\">\n        <div>$Q_1$: 25th percentile ($P_{25}$) \u2022 $\\tilde{x}$: 50th percentile ($P_{50}$)</div>\n        <div>$Q_3$: 75th percentile ($P_{75}$) \u2022 $\\text{IQR} = Q_3 - Q_1$</div>\n        <div>Box length $=\\text{IQR}$ encapsulates the middle $50\\%$ of probability mass.</div>\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-bold\">Tukey Fence &amp; Whisker Mechanics:</strong>\n      $$\\text{LIF} = Q_1 - 1.5\\cdot\\text{IQR}, \\quad \\text{UIF} = Q_3 + 1.5\\cdot\\text{IQR}$$\n      <div class=\"mt-2 p-2 rounded bg-white border border-[#151b20] text-[#151b20]\">\n        <strong class=\"text-[#0e7490]\">Whisker Endpoints (Extreme In-Fence Points):</strong>\n        $$W_{\\text{lower}} = \\min \\{x_i \\mid x_i \\ge \\text{LIF}\\}, \\quad W_{\\text{upper}} = \\max \\{x_i \\mid x_i \\le \\text{UIF}\\}$$\n        <span class=\"text-[10px] text-[#64748b] block mt-1\">Points beyond $[W_{\\text{lower}}, W_{\\text{upper}}]$ are plotted individually as outliers.</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Tukey's Boxplot Architecture & Whisker Mechanics",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, I used to think the whiskers on a boxplot were drawn exactly at Q1 minus 1.5 times IQR and Q3 plus 1.5 times IQR!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is one of the most widespread myths in data science, Kaito! The fences are conceptual boundaries. The whiskers must stop at the furthest actual data point inside those fences.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So if our highest point inside the fence is 82, and the fence is at 90, the whisker stops at 82! And if a point sits at 95, it's plotted as a lone dot.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. That guarantees that whisker tips represent true empirical data, not theoretical empty space.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a75 Order Statistics \u2022 Tukey's Boxplot Architecture</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Tukey (1977)</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">The Five-Number Summary &amp; Tukey Fence Geometry</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">The Five-Number Summary:</strong>\n      $$x_{(1)} \\le Q_1 \\le \\tilde{x} (Q_2) \\le Q_3 \\le x_{(n)}$$\n      <div class=\"text-[11px] text-[#475569] mt-2 space-y-1\">\n        <div>$Q_1$: 25th percentile ($P_{25}$) \u2022 $\\tilde{x}$: 50th percentile ($P_{50}$)</div>\n        <div>$Q_3$: 75th percentile ($P_{75}$) \u2022 $\\text{IQR} = Q_3 - Q_1$</div>\n        <div>Box length $=\\text{IQR}$ encapsulates the middle $50\\%$ of probability mass.</div>\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-bold\">Tukey Fence &amp; Whisker Mechanics:</strong>\n      $$\\text{LIF} = Q_1 - 1.5\\cdot\\text{IQR}, \\quad \\text{UIF} = Q_3 + 1.5\\cdot\\text{IQR}$$\n      <div class=\"mt-2 p-2 rounded bg-white border border-[#151b20] text-[#151b20]\">\n        <strong class=\"text-[#0e7490]\">Whisker Endpoints (Extreme In-Fence Points):</strong>\n        $$W_{\\text{lower}} = \\min \\{x_i \\mid x_i \\ge \\text{LIF}\\}, \\quad W_{\\text{upper}} = \\max \\{x_i \\mid x_i \\le \\text{UIF}\\}$$\n        <span class=\"text-[10px] text-[#64748b] block mt-1\">Points beyond $[W_{\\text{lower}}, W_{\\text{upper}}]$ are plotted individually as outliers.</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s9",
+        "title": "Boxplot Blindspots: Bimodality Masking & Violin Plots",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Bimodality Masking & Violin Plot Geometry",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Despite their popularity, boxplots possess a dangerous blindspot: they encode only cumulative quantiles, leaving continuous density variation invisible. Consider a unimodal Gaussian distribution and an equal-weight bimodal mixture with peaks at 35 and 65. Both can possess the exact same minimum, Q1, median, Q3, and maximum.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Their boxplots will look identical! A data scientist inspecting only the boxplot will completely miss the bimodal split. To resolve this, Hintze and Nelson developed the violin plot, which overlays mirrored continuous kernel density curves around a miniature boxplot core, immediately exposing multimodal valleys and peaks.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a76 Diagnostic Blindspots \u2022 Multimodal Masking</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#ffd8ce] text-[#b91c1c] font-mono text-[11px] font-bold border border-[#151b20]\">Critical Trap</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">The Boxplot Bimodality Blindspot &amp; Violin Overlays</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-bold\">The Boxplot Masking Paradox:</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed mb-2\">\n        Two radically different distributions can yield <strong>identical</strong> 5-number summaries:\n      </p>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#151b20]\">\n        <li><strong>Distribution A:</strong> Unimodal Gaussian $\\mathcal{N}(50, 12^2)$</li>\n        <li><strong>Distribution B:</strong> Bimodal Mixture $0.5\\mathcal{N}(35, 6^2) + 0.5\\mathcal{N}(65, 6^2)$</li>\n      </ul>\n      <div class=\"mt-2 p-2 rounded bg-[#ffd8ce] text-[11px] text-[#b91c1c] font-bold\">\n        \u26a0\ufe0f Boxplots are completely blind to intermediate density valleys!\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-bold\">The Violin Plot Solution (Hintze &amp; Nelson, 1998):</strong>\n      <p class=\"text-[11px] text-[#151b20] leading-relaxed mb-2\">\n        Combines ordinal five-number summary with continuous Parzen-Rosenblatt KDE:\n      </p>\n      $$\\text{Violin Width}(y) = \\pm \\frac{1}{2} \\hat{f}_h(y)$$\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#475569] mt-2\">\n        <li>Mirrored density wings reveal bimodal peaks and asymmetry immediately.</li>\n        <li>Central miniature boxplot displays $Q_1$, Median, and $Q_3$.</li>\n        <li>Ridgeline plots (joyplots) stack multiple KDEs for multi-class comparison.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Bimodality Blindspots & Violin Plot Geometry",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait, Dr. Nova! A unimodal Gaussian and a bimodal mixture can have the exact same boxplot? How is that mathematically possible?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because quantiles care only about rank ordering, Kaito! If twenty-five percent of observations fall below forty, fifty percent below fifty, and seventy-five percent below sixty, the boxplot is identical whether probability mass fills the middle or splits into two separate peaks.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So if our customers are split into budget users and enterprise users, a boxplot would show a healthy middle-class customer base that doesn't actually exist!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! That's why violin plots and KDE overlays are mandatory whenever evaluating multi-modal customer or system telemetry.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a76 Diagnostic Blindspots \u2022 Multimodal Masking</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#ffd8ce] text-[#b91c1c] font-mono text-[11px] font-bold border border-[#151b20]\">Critical Trap</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">The Boxplot Bimodality Blindspot &amp; Violin Overlays</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-bold\">The Boxplot Masking Paradox:</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed mb-2\">\n        Two radically different distributions can yield <strong>identical</strong> 5-number summaries:\n      </p>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#151b20]\">\n        <li><strong>Distribution A:</strong> Unimodal Gaussian $\\mathcal{N}(50, 12^2)$</li>\n        <li><strong>Distribution B:</strong> Bimodal Mixture $0.5\\mathcal{N}(35, 6^2) + 0.5\\mathcal{N}(65, 6^2)$</li>\n      </ul>\n      <div class=\"mt-2 p-2 rounded bg-[#ffd8ce] text-[11px] text-[#b91c1c] font-bold\">\n        \u26a0\ufe0f Boxplots are completely blind to intermediate density valleys!\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-bold\">The Violin Plot Solution (Hintze &amp; Nelson, 1998):</strong>\n      <p class=\"text-[11px] text-[#151b20] leading-relaxed mb-2\">\n        Combines ordinal five-number summary with continuous Parzen-Rosenblatt KDE:\n      </p>\n      $$\\text{Violin Width}(y) = \\pm \\frac{1}{2} \\hat{f}_h(y)$$\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#475569] mt-2\">\n        <li>Mirrored density wings reveal bimodal peaks and asymmetry immediately.</li>\n        <li>Central miniature boxplot displays $Q_1$, Median, and $Q_3$.</li>\n        <li>Ridgeline plots (joyplots) stack multiple KDEs for multi-class comparison.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s10",
+        "title": "The Parameter-Free Benchmark: ECDF & DKW Inequality",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "ECDF & Non-Parametric DKW Confidence Bands",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Unlike histograms and KDEs, which require choosing bin widths or bandwidths, the Empirical Cumulative Distribution Function requires zero tuning parameters. Every single observation contributes an exact step of size 1 over n.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "By the Glivenko-Cantelli theorem, the empirical CDF converges uniformly almost surely to the true latent CDF. Furthermore, the Dvoretzky-Kiefer-Wolfowitz inequality with Massart's tight constant allows us to compute exact non-parametric uniform confidence bands. With margin epsilon equal to the square root of natural log of 2 over alpha divided by 2n, the true CDF is guaranteed to lie entirely within the band.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a77 Parameter-Free Benchmark \u2022 DKW Confidence Envelopes</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Zero Tuning Parameters</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Empirical CDF &amp; Dvoretzky-Kiefer-Wolfowitz (DKW) Bands</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">Empirical Cumulative Distribution Function:</strong>\n      $$F_n(x) = \\frac{1}{n} \\sum_{i=1}^n \\mathbb{I}(x_i \\le x)$$\n      <div class=\"text-[11px] text-[#475569] mt-2 space-y-1\">\n        <div><strong>Glivenko-Cantelli Theorem:</strong> Uniform almost sure convergence:</div>\n        $$\\sup_{x \\in \\mathbb{R}} |F_n(x) - F(x)| \\xrightarrow{\\text{a.s.}} 0 \\quad \\text{as } n \\to \\infty$$\n        <div>Zero bin choices, zero bandwidth heuristics, zero loss of information.</div>\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-bold\">DKW Inequality (Massart, 1990 Tight Constant $C=2$):</strong>\n      $$\\Pr\\left(\\sup_{x \\in \\mathbb{R}} |F_n(x) - F(x)| > \\epsilon\\right) \\le 2 e^{-2n\\epsilon^2} = \\alpha$$\n      $$\\implies \\epsilon = \\sqrt{\\frac{\\ln(2 / \\alpha)}{2n}}$$\n      <div class=\"mt-2 p-2 rounded bg-white border border-[#151b20] text-[#151b20]\">\n        <strong class=\"text-[#15803d]\">Simultaneous Uniform Confidence Band:</strong>\n        $$L(x) = \\max(0, F_n(x) - \\epsilon), \\quad U(x) = \\min(1, F_n(x) + \\epsilon)$$\n        <span class=\"text-[10px] text-[#64748b] block mt-1\">Covers the true latent $F(x)$ across all $x \\in \\mathbb{R}$ simultaneously at $1-\\alpha$ coverage!</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "ECDF Ground Truth & DKW Confidence Bands",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait, Dr. Nova! If histograms need bin tuning and KDE needs bandwidth tuning, does the Empirical CDF need any tuning at all?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Zero tuning parameters, Kaito! The empirical CDF is the definitive non-parametric ground truth. Every single data point steps the function up by exactly 1 over n.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And the DKW inequality gives us a uniform confidence band that brackets the true distribution across all x simultaneously! How wide is that band for five thousand points at ninety-five percent confidence?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Plugging n equals 5000 and alpha equals 0.05 into epsilon yields about one point nine percent. We can state with ninety-five percent confidence that the true continuous CDF never deviates from our empirical curve by more than one point nine percent anywhere on the real line.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a77 Parameter-Free Benchmark \u2022 DKW Confidence Envelopes</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Zero Tuning Parameters</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Empirical CDF &amp; Dvoretzky-Kiefer-Wolfowitz (DKW) Bands</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">Empirical Cumulative Distribution Function:</strong>\n      $$F_n(x) = \\frac{1}{n} \\sum_{i=1}^n \\mathbb{I}(x_i \\le x)$$\n      <div class=\"text-[11px] text-[#475569] mt-2 space-y-1\">\n        <div><strong>Glivenko-Cantelli Theorem:</strong> Uniform almost sure convergence:</div>\n        $$\\sup_{x \\in \\mathbb{R}} |F_n(x) - F(x)| \\xrightarrow{\\text{a.s.}} 0 \\quad \\text{as } n \\to \\infty$$\n        <div>Zero bin choices, zero bandwidth heuristics, zero loss of information.</div>\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-bold\">DKW Inequality (Massart, 1990 Tight Constant $C=2$):</strong>\n      $$\\Pr\\left(\\sup_{x \\in \\mathbb{R}} |F_n(x) - F(x)| > \\epsilon\\right) \\le 2 e^{-2n\\epsilon^2} = \\alpha$$\n      $$\\implies \\epsilon = \\sqrt{\\frac{\\ln(2 / \\alpha)}{2n}}$$\n      <div class=\"mt-2 p-2 rounded bg-white border border-[#151b20] text-[#151b20]\">\n        <strong class=\"text-[#15803d]\">Simultaneous Uniform Confidence Band:</strong>\n        $$L(x) = \\max(0, F_n(x) - \\epsilon), \\quad U(x) = \\min(1, F_n(x) + \\epsilon)$$\n        <span class=\"text-[10px] text-[#64748b] block mt-1\">Covers the true latent $F(x)$ across all $x \\in \\mathbb{R}$ simultaneously at $1-\\alpha$ coverage!</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s11",
+        "title": "Bivariate Scatter Plots & Overplotting Pitfalls in Massive Datasets",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Overplotting Breakdown & Mitigation Strategies",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "When moving from univariate to bivariate analysis, scatter plots are the classical tool for paired continuous variables x and y. However, scatter plots collapse catastrophically when sample size N exceeds ten thousand points.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "This failure mode is overplotting: data points saturate the screen into solid black ink. A region containing fifty overlapping points becomes visually indistinguishable from a region containing fifty thousand points. To overcome overplotting, we employ alpha blending, 2D density contours, or 2D hexagonal binning. Hexbins partition the plane into regular hexagons, which have six equidistant neighbors, minimizing orientation artifacts.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a78 Bivariate Geometry \u2022 Massive Data Overplotting</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#ffd8ce] text-[#b91c1c] font-mono text-[11px] font-bold border border-[#151b20]\">Overplotting Threshold $N \\ge 10^4$</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">The Overplotting Breakdown &amp; 2D Hexagonal Binning</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-bold\">The Overplotting Failure Mode:</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed mb-2\">\n        When $N \\ge 10,000$, discrete scatter glyphs coalesce into solid ink saturation:\n      </p>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#151b20]\">\n        <li><strong>Loss of Density Contrast:</strong> 50 points and 5,000 points render as identical solid black pixels.</li>\n        <li><strong>Hidden Core Modes:</strong> Dense operational sweet spots are concealed beneath outer peripheral noise.</li>\n        <li><strong>Browser Render Choke:</strong> Rendering 100k DOM canvas elements exhausts GPU memory.</li>\n      </ul>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] space-y-2\">\n      <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block font-bold\">1. Alpha Transparency:</strong>\n        <span class=\"text-[10px] text-[#64748b]\">Scale opacity $\\alpha \\propto 1/\\sqrt{N}$ so overlapping dots accumulate density.</span>\n      </div>\n      <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block font-bold\">2. 2D Kernel Density Contours:</strong>\n        <span class=\"text-[10px] text-[#64748b]\">Isodensity elevation lines displaying joint probability mass $\\hat{f}(x, y)$.</span>\n      </div>\n      <div class=\"p-2 rounded bg-[#e7f4c8] border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block font-bold\">3. 2D Hexagonal Binning (Hexbin):</strong>\n        <span class=\"text-[10px] text-[#15803d] font-bold\">Regular hexagonal tessellation. 6 equidistant neighbors minimize radial distortion compared to squares!</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Overplotting Hazards & Hexagonal Binning",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "I tried plotting two million telemetry points on a scatter plot once, and my browser froze! When it finally rendered, it was just a solid blob of black ink.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is Cleveland's ink saturation threshold in action, Kaito! Once data points overlap, human vision cannot distinguish between a hundred observations and ten thousand observations.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And why are hexagonal bins better than square bins? Both partition a 2D plane into a grid!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because hexagons are the regular polygon closest to a circle that tiles a plane without gaps! A square has corners that are forty-one percent further from the center than its edges. Hexagons have six equidistant neighbors, giving symmetric radial resolution with zero directional distortion.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a78 Bivariate Geometry \u2022 Massive Data Overplotting</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#ffd8ce] text-[#b91c1c] font-mono text-[11px] font-bold border border-[#151b20]\">Overplotting Threshold $N \\ge 10^4$</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">The Overplotting Breakdown &amp; 2D Hexagonal Binning</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-bold\">The Overplotting Failure Mode:</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed mb-2\">\n        When $N \\ge 10,000$, discrete scatter glyphs coalesce into solid ink saturation:\n      </p>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#151b20]\">\n        <li><strong>Loss of Density Contrast:</strong> 50 points and 5,000 points render as identical solid black pixels.</li>\n        <li><strong>Hidden Core Modes:</strong> Dense operational sweet spots are concealed beneath outer peripheral noise.</li>\n        <li><strong>Browser Render Choke:</strong> Rendering 100k DOM canvas elements exhausts GPU memory.</li>\n      </ul>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] space-y-2\">\n      <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block font-bold\">1. Alpha Transparency:</strong>\n        <span class=\"text-[10px] text-[#64748b]\">Scale opacity $\\alpha \\propto 1/\\sqrt{N}$ so overlapping dots accumulate density.</span>\n      </div>\n      <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n        <strong class=\"text-[#0e7490] block font-bold\">2. 2D Kernel Density Contours:</strong>\n        <span class=\"text-[10px] text-[#64748b]\">Isodensity elevation lines displaying joint probability mass $\\hat{f}(x, y)$.</span>\n      </div>\n      <div class=\"p-2 rounded bg-[#e7f4c8] border border-[#151b20]\">\n        <strong class=\"text-[#15803d] block font-bold\">3. 2D Hexagonal Binning (Hexbin):</strong>\n        <span class=\"text-[10px] text-[#15803d] font-bold\">Regular hexagonal tessellation. 6 equidistant neighbors minimize radial distortion compared to squares!</span>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Interactive Lab 2: Bivariate Overplotting & Hexbin Workbench",
+        "type": "lab",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Interactive Lab: Overplotting & Hexbinning",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to the Bivariate Overplotting and Hexbinning Workbench. In this laboratory, you can scale sample size from 500 up to 5,000 points and toggle between Raw Scatter, Alpha Transparency, and 2D Hexagonal Binning.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Observe how Raw Scatter saturates into an undifferentiated block of points. Switch to 2D Hexbin to see the density surface pop into vivid logarithmic color. Then inject leverage outliers or select exponential non-linear data to compare Pearson r with Spearman rank rho in the live telemetry panel.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\ud83d\udd2c Interactive Laboratory 2 \u2022 Slide 12 of 16</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Overplotting &amp; Hexbin Workbench</span>\n  </div>\n  <p class=\"text-xs text-[#475569] font-mono mb-2\">\n    Use the interactive laboratory below to experiment with overplotting mitigation and bivariate correlation metrics.\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Interactive Lab: Overplotting & Hexbin Workbench",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look at the Raw Scatter mode with 3,000 points: it's pure ink saturation! I can't tell where the points are clustering at all.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now toggle to Hexbin Mode, Kaito. See how the hex cells light up in yellow and crimson where the true density peak resides?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "That's incredible! The core mode emerges immediately. Now let me switch to Monotonic Exponential data: Spearman rho is 1.0, while Pearson r drops to 0.79 because of non-linear curvature!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And if you drag up the outlier leverage slider, Pearson r collapses negative, while Spearman rho stays rock solid. That proves the resilience of rank correlation.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\ud83d\udd2c Interactive Laboratory 2 \u2022 Slide 12 of 16</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Overplotting &amp; Hexbin Workbench</span>\n  </div>\n  <p class=\"text-xs text-[#475569] font-mono mb-2\">\n    Use the interactive laboratory below to experiment with overplotting mitigation and bivariate correlation metrics.\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: The Bivariate Association Triad",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Recall Checkpoint 2",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Active Checkpoint 2. Consider bivariate data with Pearson r of 0.82, Spearman rho of 0.98, and Kendall tau of 0.94. If the response feature is transformed by taking its natural exponential, how will each metric respond?",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#15803d] tracking-wider\">\u26a1 Active Checkpoint 2 \u2022 Knowledge Verification</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border border-[#151b20]\">Correlation Invariants</span>\n  </div>\n  <p class=\"text-xs text-[#475569] font-mono mb-2\">\n    Answer the conceptual question below to verify your mastery of monotonic group invariants and the correlation triad.\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Active Checkpoint 2: The Bivariate Association Triad",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Our final checkpoint! We have Pearson r at 0.82, Spearman rho at 0.98, and Kendall tau at 0.94. Then we apply a strictly increasing exponential transform: Y prime equals exp of Y. What happens to the three metrics?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Think carefully about which metrics are invariant under affine linear maps versus strictly monotonic maps. Lock in your choice!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#15803d] tracking-wider\">\u26a1 Active Checkpoint 2 \u2022 Knowledge Verification</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border border-[#151b20]\">Correlation Invariants</span>\n  </div>\n  <p class=\"text-xs text-[#475569] font-mono mb-2\">\n    Answer the conceptual question below to verify your mastery of monotonic group invariants and the correlation triad.\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "The Association Triad: Pearson r, Spearman rho, and Kendall tau",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "The Association Triad Comparison",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To rigorously quantify bivariate associations, statisticians rely on three distinct metrics: Pearson product-moment r, Spearman rank-order rho, and Kendall rank concordance tau.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Pearson r measures strictly linear covariance and is invariant only under affine transformations. It has a zero percent breakdown point: a single distant point can flip r from positive to negative. Spearman rho converts observations to integer ranks, making it invariant under all strictly monotonic transformations. Kendall tau directly measures the difference between concordant and discordant pair probabilities, providing unbiased hypothesis testing and rapid normal convergence in small samples.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a79 Association Theory \u2022 The Correlation Triad</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Group Invariants</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Mathematical Formulations &amp; Breakdown Points</h3>\n  <div class=\"overflow-x-auto text-xs font-mono mb-3\">\n    <table class=\"w-full border-collapse border-2 border-[#151b20] bg-white text-left\">\n      <thead>\n        <tr class=\"bg-[#c9f3f4] border-b-2 border-[#151b20]\">\n          <th class=\"p-2 border-r-2 border-[#151b20] font-black\">Metric</th>\n          <th class=\"p-2 border-r-2 border-[#151b20] font-black\">Mathematical Definition</th>\n          <th class=\"p-2 border-r-2 border-[#151b20] font-black\">Invariant Group</th>\n          <th class=\"p-2 border-r-2 border-[#151b20] font-black\">Breakdown $\\epsilon^*$</th>\n          <th class=\"p-2 font-black\">Ideal Production Use</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr class=\"border-b border-[#151b20]\">\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#dc2626]\">Pearson $r$</td>\n          <td class=\"p-2 border-r-2 border-[#151b20]\">$\\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum(x_i-\\bar{x})^2 \\sum(y_i-\\bar{y})^2}}$</td>\n          <td class=\"p-2 border-r-2 border-[#151b20]\">Linear Affine ($ax + b$)</td>\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#dc2626]\">$\\epsilon^* = 0\\%$</td>\n          <td class=\"p-2 text-[11px]\">Strictly linear bivariate Gaussian data.</td>\n        </tr>\n        <tr class=\"border-b border-[#151b20] bg-[#fffaf0]\">\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#2563eb]\">Spearman $\\rho$</td>\n          <td class=\"p-2 border-r-2 border-[#151b20]\">$1 - \\frac{6 \\sum d_i^2}{n(n^2 - 1)}, \\ d_i = R(x_i) - R(y_i)$</td>\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#2563eb]\">Strictly Monotonic</td>\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#2563eb]\">Resistant</td>\n          <td class=\"p-2 text-[11px]\">Nonlinear monotonic scaling (exponential, Pareto).</td>\n        </tr>\n        <tr class=\"bg-white\">\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#16a34a]\">Kendall $\\tau$</td>\n          <td class=\"p-2 border-r-2 border-[#151b20]\">$\\frac{C - D}{\\frac{1}{2} n(n - 1)}$</td>\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#16a34a]\">Strictly Monotonic</td>\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#16a34a]\">Resistant</td>\n          <td class=\"p-2 text-[11px]\">Small samples, hypothesis testing, tied ranks.</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <p class=\"text-[11px] text-[#475569] font-mono leading-relaxed\">\n    Kendall's $\\tau$ directly represents $\\Pr(\\text{Concordance}) - \\Pr(\\text{Discordance})$, offering transparent probabilistic interpretation.\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "The Correlation Triad: Linear vs. Rank Monotonicity",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, if Spearman rho and Kendall tau are both rank-based and invariant to monotonic transformations, when should I choose Kendall tau over Spearman?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Kendall tau is vastly superior for small sample sizes and hypothesis testing, Kaito! Its test statistic converges to normality much faster, and its denominator directly counts concordant versus discordant pairs without squaring rank differences.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So Kendall tau gives us an exact probability: the probability that two random observations are ordered the same way minus the probability they are inverted!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. While Spearman rho is easier to compute on millions of rows using O(n log n) sorting, Kendall tau provides the cleanest probabilistic meaning.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a79 Association Theory \u2022 The Correlation Triad</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Group Invariants</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Mathematical Formulations &amp; Breakdown Points</h3>\n  <div class=\"overflow-x-auto text-xs font-mono mb-3\">\n    <table class=\"w-full border-collapse border-2 border-[#151b20] bg-white text-left\">\n      <thead>\n        <tr class=\"bg-[#c9f3f4] border-b-2 border-[#151b20]\">\n          <th class=\"p-2 border-r-2 border-[#151b20] font-black\">Metric</th>\n          <th class=\"p-2 border-r-2 border-[#151b20] font-black\">Mathematical Definition</th>\n          <th class=\"p-2 border-r-2 border-[#151b20] font-black\">Invariant Group</th>\n          <th class=\"p-2 border-r-2 border-[#151b20] font-black\">Breakdown $\\epsilon^*$</th>\n          <th class=\"p-2 font-black\">Ideal Production Use</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr class=\"border-b border-[#151b20]\">\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#dc2626]\">Pearson $r$</td>\n          <td class=\"p-2 border-r-2 border-[#151b20]\">$\\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum(x_i-\\bar{x})^2 \\sum(y_i-\\bar{y})^2}}$</td>\n          <td class=\"p-2 border-r-2 border-[#151b20]\">Linear Affine ($ax + b$)</td>\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#dc2626]\">$\\epsilon^* = 0\\%$</td>\n          <td class=\"p-2 text-[11px]\">Strictly linear bivariate Gaussian data.</td>\n        </tr>\n        <tr class=\"border-b border-[#151b20] bg-[#fffaf0]\">\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#2563eb]\">Spearman $\\rho$</td>\n          <td class=\"p-2 border-r-2 border-[#151b20]\">$1 - \\frac{6 \\sum d_i^2}{n(n^2 - 1)}, \\ d_i = R(x_i) - R(y_i)$</td>\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#2563eb]\">Strictly Monotonic</td>\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#2563eb]\">Resistant</td>\n          <td class=\"p-2 text-[11px]\">Nonlinear monotonic scaling (exponential, Pareto).</td>\n        </tr>\n        <tr class=\"bg-white\">\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#16a34a]\">Kendall $\\tau$</td>\n          <td class=\"p-2 border-r-2 border-[#151b20]\">$\\frac{C - D}{\\frac{1}{2} n(n - 1)}$</td>\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#16a34a]\">Strictly Monotonic</td>\n          <td class=\"p-2 border-r-2 border-[#151b20] font-bold text-[#16a34a]\">Resistant</td>\n          <td class=\"p-2 text-[11px]\">Small samples, hypothesis testing, tied ranks.</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <p class=\"text-[11px] text-[#475569] font-mono leading-relaxed\">\n    Kendall's $\\tau$ directly represents $\\Pr(\\text{Concordance}) - \\Pr(\\text{Discordance})$, offering transparent probabilistic interpretation.\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Diagnostic Pipelines & Sensor Fusion Case Studies",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Pipelines & Empirical Case Studies",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us examine two critical production case studies where relying on Pearson correlation caused near-catastrophic system failures. In autonomous vehicles, LiDAR and Radar point counts showed high Pearson correlation during highway driving. But in heavy rain, LiDAR was absorbed by water while Radar picked up spray noise. Spearman rank collapsed from 0.91 to 0.14, revealing that sensor agreement had completely disintegrated.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In a second case study involving database lock contention, CPU usage stayed flat at 18 percent until precisely 1,024 concurrent workers, where row-level locking triggered a vertical spike to 100 percent. Pearson correlation was only 0.24, completely missing the threat, whereas Spearman rank was 0.88 and a hexbin plot pinpointed the exact cliff.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a710 Production Engineering \u2022 Real-World Failures</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#fff0b9] text-[#b45309] font-mono text-[11px] font-bold border border-[#151b20]\">Case Studies</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Sensor Fusion Disconnect &amp; Database Lock Contention</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">Case 1: Autonomous Vehicle LiDAR-Radar Fallacy:</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed mb-2\">\n        Automated data quality pipelines monitored Pearson correlation between LiDAR point cloud density and Radar reflectivity:\n      </p>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#151b20]\">\n        <li><strong>Dry Highway:</strong> Both scaled together $\\implies$ Aggregate $r = 0.91$.</li>\n        <li><strong>Wet Surface Failure:</strong> Rain absorbed LiDAR ($x \\approx 0$), spray created Radar noise ($y \\approx 4200$).</li>\n        <li><strong>Spearman Recovery:</strong> $\\rho = 0.14$ during rain triggered emergency perception failover!</li>\n      </ul>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-bold\">Case 2: DB Connection Pool Lock Contention:</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed mb-2\">\n        Monitoring CPU utilization vs. concurrent requests:\n      </p>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#151b20]\">\n        <li>Below 1,024 connections: CPU was flat at $18\\%$.</li>\n        <li>At 1,024 connections: Row-level lock contention spiked CPU vertically to $100\\%$.</li>\n        <li>Pearson $r = 0.24$ (blind to step threshold!).</li>\n        <li>Spearman $\\rho = 0.88$ + <strong>Hexbin plot</strong> pinpointed the exact thread cliff!</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Sensor Fusion Failover & Database Contention Cliffs",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "The LiDAR and Radar case study is terrifying! Because ninety percent of driving happened on dry highways, aggregate Pearson correlation stayed above 0.9, while the vehicle was practically blind in the rain!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. High-speed highway driving created massive linear scale that masked the rainy segments. Only when safety engineers segmented by precipitation and tracked Spearman rank did the sensor disagreement reveal itself.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And with the database contention, CPU was flat until a sudden vertical cliff at 1,024 workers. Pearson correlation thought the relationship was weak, but Spearman rank detected the monotonic jump!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And the hexagonal binning plot showed the infrastructure team exactly where the connection pool thread wall was located. Visual geometry and robust metrics save production systems.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a710 Production Engineering \u2022 Real-World Failures</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#fff0b9] text-[#b45309] font-mono text-[11px] font-bold border border-[#151b20]\">Case Studies</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Sensor Fusion Disconnect &amp; Database Lock Contention</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">Case 1: Autonomous Vehicle LiDAR-Radar Fallacy:</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed mb-2\">\n        Automated data quality pipelines monitored Pearson correlation between LiDAR point cloud density and Radar reflectivity:\n      </p>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#151b20]\">\n        <li><strong>Dry Highway:</strong> Both scaled together $\\implies$ Aggregate $r = 0.91$.</li>\n        <li><strong>Wet Surface Failure:</strong> Rain absorbed LiDAR ($x \\approx 0$), spray created Radar noise ($y \\approx 4200$).</li>\n        <li><strong>Spearman Recovery:</strong> $\\rho = 0.14$ during rain triggered emergency perception failover!</li>\n      </ul>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-bold\">Case 2: DB Connection Pool Lock Contention:</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed mb-2\">\n        Monitoring CPU utilization vs. concurrent requests:\n      </p>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#151b20]\">\n        <li>Below 1,024 connections: CPU was flat at $18\\%$.</li>\n        <li>At 1,024 connections: Row-level lock contention spiked CPU vertically to $100\\%$.</li>\n        <li>Pearson $r = 0.24$ (blind to step threshold!).</li>\n        <li>Spearman $\\rho = 0.88$ + <strong>Hexbin plot</strong> pinpointed the exact thread cliff!</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Capstone Synthesis: The Visual EDA Taxonomy & 4 Cardinal Rules",
+        "type": "summary",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Visual EDA Capstone & Production Architecture",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "We conclude Lesson 6.4 with four cardinal rules that must govern all visual and bivariate exploratory data analysis in production systems.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "First, never use Sturges' rule; always choose Freedman-Diaconis or continuous KDE. Second, never deploy boxplots alone without checking unimodality via violin or KDE overlays. Third, always pair Pearson correlation with Spearman rank to catch non-linear monotonicity and leverage outliers. And fourth, transition from scatter plots to 2D hexagonal binning whenever sample size exceeds ten thousand points. See you in Lesson 6.5 for Multivariate Visualization!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a711 Masterclass Capstone \u2022 Production Rules</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border border-[#151b20]\">Production Certified</span>\n  </div>\n  <h3 class=\"text-xl font-black text-[#151b20] mb-3\">4 Cardinal Production Rules for Visualization</h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono mb-4\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Rule 1: Freedman-Diaconis or KDE Over Sturges</strong>\n      Sturges starves large $n$ with logarithmic bins ($k = 1 + \\log_2 n$). Always set $h_{\\text{FD}} = 2\\cdot\\text{IQR}\\cdot n^{-1/3}$ or Silverman KDE ($h^* \\propto n^{-1/5}$).\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">Rule 2: Never Deploy Boxplots Alone</strong>\n      Boxplots cannot distinguish unimodal Gaussian from bimodal mixture. Always overlay continuous KDE wings (Violin plot) to verify unimodality.\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Rule 3: Pair Pearson $r$ with Spearman $\\rho$</strong>\n      If $|r - \\rho| > 0.20$, severe non-linear curvature or leverage outlier contamination exists. Never make modeling decisions on Pearson alone.\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Rule 4: Hexbin Above $N = 10,000$</strong>\n      Scatter plots suffer total ink saturation at $N \\ge 10^4$. Transition to 2D hexagonal binning to preserve true perceptual probability density.\n    </div>\n  </div>\n  <div class=\"text-center pt-2\">\n    <a href=\"../05-multivariate-visualization/\" class=\"inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#2563eb] text-white border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono font-bold text-xs hover:translate-y-[-1px] transition\">\n      <span>Proceed to Lesson 6.5: Multivariate Visualization \u2192</span>\n    </a>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Capstone: 4 Cardinal Rules for Visualization",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "What an eye-opening masterclass, Dr. Nova! From MISE Taylor expansions and Parzen-Rosenblatt KDE to the DKW uniform confidence envelope and hexagonal binning, our visual toolkit is complete.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "You now understand that visualization is not mere graphic design, Kaito\u2014it is a rigorous branch of mathematical estimation theory. Follow our four cardinal rules whenever you visualize empirical distributions.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Freedman-Diaconis binning, violin plots for multimodal safety, Pearson paired with Spearman, and hexagonal binning above ten thousand points. What is waiting for us in Lesson 6.5?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In Lesson 6.5, we expand into higher dimensions: Multivariate Visualization, PCA biplots, t-SNE manifolds, and parallel coordinates. See you there!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a711 Masterclass Capstone \u2022 Production Rules</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border border-[#151b20]\">Production Certified</span>\n  </div>\n  <h3 class=\"text-xl font-black text-[#151b20] mb-3\">4 Cardinal Production Rules for Visualization</h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono mb-4\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Rule 1: Freedman-Diaconis or KDE Over Sturges</strong>\n      Sturges starves large $n$ with logarithmic bins ($k = 1 + \\log_2 n$). Always set $h_{\\text{FD}} = 2\\cdot\\text{IQR}\\cdot n^{-1/3}$ or Silverman KDE ($h^* \\propto n^{-1/5}$).\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">Rule 2: Never Deploy Boxplots Alone</strong>\n      Boxplots cannot distinguish unimodal Gaussian from bimodal mixture. Always overlay continuous KDE wings (Violin plot) to verify unimodality.\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Rule 3: Pair Pearson $r$ with Spearman $\\rho$</strong>\n      If $|r - \\rho| > 0.20$, severe non-linear curvature or leverage outlier contamination exists. Never make modeling decisions on Pearson alone.\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Rule 4: Hexbin Above $N = 10,000$</strong>\n      Scatter plots suffer total ink saturation at $N \\ge 10^4$. Transition to 2D hexagonal binning to preserve true perceptual probability density.\n    </div>\n  </div>\n  <div class=\"text-center pt-2\">\n    <a href=\"../05-multivariate-visualization/\" class=\"inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#2563eb] text-white border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono font-bold text-xs hover:translate-y-[-1px] transition\">\n      <span>Proceed to Lesson 6.5: Multivariate Visualization \u2192</span>\n    </a>\n  </div>\n</div>\n"
         }
       }
     ]

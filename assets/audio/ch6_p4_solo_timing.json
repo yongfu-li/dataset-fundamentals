@@ -1,0 +1,7067 @@
+{
+  "duration": 627.19,
+  "sentences": [
+    {
+      "slide": 1,
+      "turn": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 6.4 of Dataset Fundamentals: Univariate and Bivariate Visualization. As we proved with Anscombe's quartet, numerical summary statistics can be completely blind to complex data geometry, non-linear manifolds, and multimodal mixtures.",
+      "start": 0.0,
+      "end": 17.52,
+      "duration": 17.52
+    },
+    {
+      "slide": 1,
+      "turn": 1,
+      "speaker": "Dr. Nova",
+      "text": "Today we transition from scalar moments to visual geometry. We will derive Mean Integrated Squared Error binning optimizations for histograms, continuous Parzen-Rosenblatt kernel density estimation, Silverman's bandwidth rule, boxplot Tukey fences and their bimodal blindspots, parameter-free empirical distribution functions with Dvoretzky-Kiefer-Wolfowitz confidence bands, and the bivariate association triad comparing Pearson linear correlation with Spearman and Kendall rank metrics.",
+      "start": 17.52,
+      "end": 46.97,
+      "duration": 29.45
+    },
+    {
+      "slide": 2,
+      "turn": 2,
+      "speaker": "Dr. Nova",
+      "text": "When reconstructing an unknown continuous probability density f of x from a finite sample, two fundamental visual geometries dominate: piecewise discrete histograms and continuous kernel smoothing.",
+      "start": 46.97,
+      "end": 59.3,
+      "duration": 12.34
+    },
+    {
+      "slide": 2,
+      "turn": 3,
+      "speaker": "Dr. Nova",
+      "text": "Histograms partition the real line into rigid, disjoint intervals of width h. Every observation falls into exactly one bin, producing a discontinuous step function. Kernel density estimation replaces rigid bin cutoffs with continuous, overlapping probability mass bumps centered at each observation, creating a smooth, differentiable density estimate.",
+      "start": 59.3,
+      "end": 82.15,
+      "duration": 22.85
+    },
+    {
+      "slide": 3,
+      "turn": 4,
+      "speaker": "Dr. Nova",
+      "text": "How do we choose the optimal histogram bin width h? We evaluate the Mean Integrated Squared Error, which decomposes into Integrated Variance and Integrated Squared Bias. By Taylor expanding f of x across each bin, integrated variance scales inversely with n times h, while integrated squared bias scales with h-squared times the roughness of the derivative f-prime.",
+      "start": 82.15,
+      "end": 105.22,
+      "duration": 23.06
+    },
+    {
+      "slide": 3,
+      "turn": 5,
+      "speaker": "Dr. Nova",
+      "text": "Minimizing MISE yields an optimal bin width proportional to n to the negative one-third. Scott's normal rule sets h to 3.49 times s times n to the negative one-third. But because sample standard deviation s inflates to infinity under extreme outliers, Freedman and Diaconis substituted the interquartile range, giving two times IQR times n to the negative one-third with a twenty-five percent breakdown point.",
+      "start": 105.22,
+      "end": 131.78,
+      "duration": 26.57
+    },
+    {
+      "slide": 4,
+      "turn": 6,
+      "speaker": "Dr. Nova",
+      "text": "The Parzen-Rosenblatt kernel density estimator constructs a continuous probability density by placing a symmetric kernel function K of u over each observation, scaled by bandwidth h. The kernel must integrate to one, have zero first moment for unbiased centering, and possess a finite second moment.",
+      "start": 131.78,
+      "end": 150.43,
+      "duration": 18.65
+    },
+    {
+      "slide": 4,
+      "turn": 7,
+      "speaker": "Dr. Nova",
+      "text": "While the Epanechnikov parabolic kernel mathematically minimizes asymptotic MISE, the standard Gaussian kernel is most common due to its infinite differentiability. By optimizing the bias-variance trade-off in KDE, the optimal bandwidth scales as n to the negative one-fifth, delivering a faster asymptotic convergence rate of n to the negative four-fifths compared to histograms.",
+      "start": 150.43,
+      "end": 173.57,
+      "duration": 23.14
+    },
+    {
+      "slide": 5,
+      "turn": 8,
+      "speaker": "Dr. Nova",
+      "text": "In practice, the choice of kernel is secondary; the choice of bandwidth h determines everything. Under-smoothing produces spurious high-frequency noise spikes, while over-smoothing merges distinct bimodal peaks into a single distorted mode.",
+      "start": 173.57,
+      "end": 188.45,
+      "duration": 14.88
+    },
+    {
+      "slide": 5,
+      "turn": 9,
+      "speaker": "Dr. Nova",
+      "text": "Silverman's robust rule of thumb selects zero point nine times the minimum of sample standard deviation and IQR over 1.34, times n to the negative one-fifth. Crucially, on bounded domains such as latency where x is strictly non-negative, standard symmetric kernels leak probability mass below zero. At x equals zero, expected density collapses by half. We correct this boundary bias via boundary reflection, folding negative density back into the positive domain.",
+      "start": 188.45,
+      "end": 220.06,
+      "duration": 31.61
+    },
+    {
+      "slide": 6,
+      "turn": 10,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to the KDE Bandwidth and Boundary Bias Studio. On screen is a simulated distribution of server response latencies strictly bounded at zero. Adjust the bandwidth slider h and toggle between Gaussian, Epanechnikov, and Uniform kernels.",
+      "start": 220.06,
+      "end": 236.42,
+      "duration": 16.37
+    },
+    {
+      "slide": 6,
+      "turn": 11,
+      "speaker": "Dr. Nova",
+      "text": "Notice what happens when bandwidth is too small: spurious spikes appear. When bandwidth is too large, the mode flattens. Most importantly, toggle boundary reflection to witness how negative probability leakage is completely eliminated.",
+      "start": 236.42,
+      "end": 251.9,
+      "duration": 15.48
+    },
+    {
+      "slide": 7,
+      "turn": 12,
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 1. Review the scenario below regarding histogram binning on heavy-tailed web traffic data. Why does Sturges' rule fail catastrophically while Freedman-Diaconis succeeds?",
+      "start": 251.9,
+      "end": 264.67,
+      "duration": 12.77
+    },
+    {
+      "slide": 8,
+      "turn": 13,
+      "speaker": "Dr. Nova",
+      "text": "John Tukey introduced the boxplot in 1977 as a resistant visual summary of ordinal location and dispersion. The central box spans the first quartile Q1 to the third quartile Q3, with the median dividing the box.",
+      "start": 264.67,
+      "end": 279.77,
+      "duration": 15.1
+    },
+    {
+      "slide": 8,
+      "turn": 14,
+      "speaker": "Dr. Nova",
+      "text": "A common misconception is that boxplot whiskers extend to the outer fence boundaries. They do not! Tukey defined inner fences at Q1 minus 1.5 times IQR and Q3 plus 1.5 times IQR. The whiskers extend strictly to the most extreme data points located within those fences. Any observation outside the fences is plotted individually as an outlier.",
+      "start": 279.77,
+      "end": 305.57,
+      "duration": 25.8
+    },
+    {
+      "slide": 9,
+      "turn": 15,
+      "speaker": "Dr. Nova",
+      "text": "Despite their popularity, boxplots possess a dangerous blindspot: they encode only cumulative quantiles, leaving continuous density variation invisible. Consider a unimodal Gaussian distribution and an equal-weight bimodal mixture with peaks at 35 and 65. Both can possess the exact same minimum, Q1, median, Q3, and maximum.",
+      "start": 305.57,
+      "end": 329.26,
+      "duration": 23.69
+    },
+    {
+      "slide": 9,
+      "turn": 16,
+      "speaker": "Dr. Nova",
+      "text": "Their boxplots will look identical! A data scientist inspecting only the boxplot will completely miss the bimodal split. To resolve this, Hintze and Nelson developed the violin plot, which overlays mirrored continuous kernel density curves around a miniature boxplot core, immediately exposing multimodal valleys and peaks.",
+      "start": 329.26,
+      "end": 350.23,
+      "duration": 20.98
+    },
+    {
+      "slide": 10,
+      "turn": 17,
+      "speaker": "Dr. Nova",
+      "text": "Unlike histograms and KDEs, which require choosing bin widths or bandwidths, the Empirical Cumulative Distribution Function requires zero tuning parameters. Every single observation contributes an exact step of size 1 over n.",
+      "start": 350.23,
+      "end": 365.18,
+      "duration": 14.95
+    },
+    {
+      "slide": 10,
+      "turn": 18,
+      "speaker": "Dr. Nova",
+      "text": "By the Glivenko-Cantelli theorem, the empirical CDF converges uniformly almost surely to the true latent CDF. Furthermore, the Dvoretzky-Kiefer-Wolfowitz inequality with Massart's tight constant allows us to compute exact non-parametric uniform confidence bands. With margin epsilon equal to the square root of natural log of 2 over alpha divided by 2n, the true CDF is guaranteed to lie entirely within the band.",
+      "start": 365.18,
+      "end": 392.4,
+      "duration": 27.22
+    },
+    {
+      "slide": 11,
+      "turn": 19,
+      "speaker": "Dr. Nova",
+      "text": "When moving from univariate to bivariate analysis, scatter plots are the classical tool for paired continuous variables x and y. However, scatter plots collapse catastrophically when sample size N exceeds ten thousand points.",
+      "start": 392.4,
+      "end": 407.45,
+      "duration": 15.05
+    },
+    {
+      "slide": 11,
+      "turn": 20,
+      "speaker": "Dr. Nova",
+      "text": "This failure mode is overplotting: data points saturate the screen into solid black ink. A region containing fifty overlapping points becomes visually indistinguishable from a region containing fifty thousand points. To overcome overplotting, we employ alpha blending, 2D density contours, or 2D hexagonal binning. Hexbins partition the plane into regular hexagons, which have six equidistant neighbors, minimizing orientation artifacts.",
+      "start": 407.45,
+      "end": 436.63,
+      "duration": 29.18
+    },
+    {
+      "slide": 12,
+      "turn": 21,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to the Bivariate Overplotting and Hexbinning Workbench. In this laboratory, you can scale sample size from 500 up to 5,000 points and toggle between Raw Scatter, Alpha Transparency, and 2D Hexagonal Binning.",
+      "start": 436.63,
+      "end": 451.61,
+      "duration": 14.98
+    },
+    {
+      "slide": 12,
+      "turn": 22,
+      "speaker": "Dr. Nova",
+      "text": "Observe how Raw Scatter saturates into an undifferentiated block of points. Switch to 2D Hexbin to see the density surface pop into vivid logarithmic color. Then inject leverage outliers or select exponential non-linear data to compare Pearson r with Spearman rank rho in the live telemetry panel.",
+      "start": 451.61,
+      "end": 470.69,
+      "duration": 19.08
+    },
+    {
+      "slide": 13,
+      "turn": 23,
+      "speaker": "Dr. Nova",
+      "text": "Active Checkpoint 2. Consider bivariate data with Pearson r of 0.82, Spearman rho of 0.98, and Kendall tau of 0.94. If the response feature is transformed by taking its natural exponential, how will each metric respond?",
+      "start": 470.69,
+      "end": 488.71,
+      "duration": 18.02
+    },
+    {
+      "slide": 14,
+      "turn": 24,
+      "speaker": "Dr. Nova",
+      "text": "To rigorously quantify bivariate associations, statisticians rely on three distinct metrics: Pearson product-moment r, Spearman rank-order rho, and Kendall rank concordance tau.",
+      "start": 488.71,
+      "end": 500.42,
+      "duration": 11.71
+    },
+    {
+      "slide": 14,
+      "turn": 25,
+      "speaker": "Dr. Nova",
+      "text": "Pearson r measures strictly linear covariance and is invariant only under affine transformations. It has a zero percent breakdown point: a single distant point can flip r from positive to negative. Spearman rho converts observations to integer ranks, making it invariant under all strictly monotonic transformations. Kendall tau directly measures the difference between concordant and discordant pair probabilities, providing unbiased hypothesis testing and rapid normal convergence in small samples.",
+      "start": 500.42,
+      "end": 531.46,
+      "duration": 31.03
+    },
+    {
+      "slide": 15,
+      "turn": 26,
+      "speaker": "Dr. Nova",
+      "text": "Let us examine two critical production case studies where relying on Pearson correlation caused near-catastrophic system failures. In autonomous vehicles, LiDAR and Radar point counts showed high Pearson correlation during highway driving. But in heavy rain, LiDAR was absorbed by water while Radar picked up spray noise. Spearman rank collapsed from 0.91 to 0.14, revealing that sensor agreement had completely disintegrated.",
+      "start": 531.46,
+      "end": 560.06,
+      "duration": 28.61
+    },
+    {
+      "slide": 15,
+      "turn": 27,
+      "speaker": "Dr. Nova",
+      "text": "In a second case study involving database lock contention, CPU usage stayed flat at 18 percent until precisely 1,024 concurrent workers, where row-level locking triggered a vertical spike to 100 percent. Pearson correlation was only 0.24, completely missing the threat, whereas Spearman rank was 0.88 and a hexbin plot pinpointed the exact cliff.",
+      "start": 560.06,
+      "end": 585.14,
+      "duration": 25.08
+    },
+    {
+      "slide": 16,
+      "turn": 28,
+      "speaker": "Dr. Nova",
+      "text": "We conclude Lesson 6.4 with four cardinal rules that must govern all visual and bivariate exploratory data analysis in production systems.",
+      "start": 585.14,
+      "end": 594.62,
+      "duration": 9.48
+    },
+    {
+      "slide": 16,
+      "turn": 29,
+      "speaker": "Dr. Nova",
+      "text": "First, never use Sturges' rule; always choose Freedman-Diaconis or continuous KDE. Second, never deploy boxplots alone without checking unimodality via violin or KDE overlays. Third, always pair Pearson correlation with Spearman rank to catch non-linear monotonicity and leverage outliers. And fourth, transition from scatter plots to 2D hexagonal binning whenever sample size exceeds ten thousand points. See you in Lesson 6.5 for Multivariate Visualization!",
+      "start": 594.62,
+      "end": 627.19,
+      "duration": 32.57
+    }
+  ],
+  "words": [
+    {
+      "word": "welcome",
+      "start": 0.0,
+      "end": 0.53
+    },
+    {
+      "word": "to",
+      "start": 0.53,
+      "end": 1.06
+    },
+    {
+      "word": "lesson",
+      "start": 1.06,
+      "end": 1.59
+    },
+    {
+      "word": "64",
+      "start": 1.59,
+      "end": 2.12
+    },
+    {
+      "word": "of",
+      "start": 2.12,
+      "end": 2.65
+    },
+    {
+      "word": "dataset",
+      "start": 2.65,
+      "end": 3.19
+    },
+    {
+      "word": "fundamentals",
+      "start": 3.19,
+      "end": 3.72
+    },
+    {
+      "word": "univariate",
+      "start": 3.72,
+      "end": 4.25
+    },
+    {
+      "word": "and",
+      "start": 4.25,
+      "end": 4.78
+    },
+    {
+      "word": "bivariate",
+      "start": 4.78,
+      "end": 5.31
+    },
+    {
+      "word": "visualization",
+      "start": 5.31,
+      "end": 5.84
+    },
+    {
+      "word": "as",
+      "start": 5.84,
+      "end": 6.37
+    },
+    {
+      "word": "we",
+      "start": 6.37,
+      "end": 6.9
+    },
+    {
+      "word": "proved",
+      "start": 6.9,
+      "end": 7.43
+    },
+    {
+      "word": "with",
+      "start": 7.43,
+      "end": 7.96
+    },
+    {
+      "word": "anscombes",
+      "start": 7.96,
+      "end": 8.49
+    },
+    {
+      "word": "quartet",
+      "start": 8.49,
+      "end": 9.03
+    },
+    {
+      "word": "numerical",
+      "start": 9.03,
+      "end": 9.56
+    },
+    {
+      "word": "summary",
+      "start": 9.56,
+      "end": 10.09
+    },
+    {
+      "word": "statistics",
+      "start": 10.09,
+      "end": 10.62
+    },
+    {
+      "word": "can",
+      "start": 10.62,
+      "end": 11.15
+    },
+    {
+      "word": "be",
+      "start": 11.15,
+      "end": 11.68
+    },
+    {
+      "word": "completely",
+      "start": 11.68,
+      "end": 12.21
+    },
+    {
+      "word": "blind",
+      "start": 12.21,
+      "end": 12.74
+    },
+    {
+      "word": "to",
+      "start": 12.74,
+      "end": 13.27
+    },
+    {
+      "word": "complex",
+      "start": 13.27,
+      "end": 13.8
+    },
+    {
+      "word": "data",
+      "start": 13.8,
+      "end": 14.33
+    },
+    {
+      "word": "geometry",
+      "start": 14.33,
+      "end": 14.87
+    },
+    {
+      "word": "nonlinear",
+      "start": 14.87,
+      "end": 15.4
+    },
+    {
+      "word": "manifolds",
+      "start": 15.4,
+      "end": 15.93
+    },
+    {
+      "word": "and",
+      "start": 15.93,
+      "end": 16.46
+    },
+    {
+      "word": "multimodal",
+      "start": 16.46,
+      "end": 16.99
+    },
+    {
+      "word": "mixtures",
+      "start": 16.99,
+      "end": 17.52
+    },
+    {
+      "word": "today",
+      "start": 17.52,
+      "end": 18.03
+    },
+    {
+      "word": "we",
+      "start": 18.03,
+      "end": 18.54
+    },
+    {
+      "word": "transition",
+      "start": 18.54,
+      "end": 19.04
+    },
+    {
+      "word": "from",
+      "start": 19.04,
+      "end": 19.55
+    },
+    {
+      "word": "scalar",
+      "start": 19.55,
+      "end": 20.06
+    },
+    {
+      "word": "moments",
+      "start": 20.06,
+      "end": 20.57
+    },
+    {
+      "word": "to",
+      "start": 20.57,
+      "end": 21.07
+    },
+    {
+      "word": "visual",
+      "start": 21.07,
+      "end": 21.58
+    },
+    {
+      "word": "geometry",
+      "start": 21.58,
+      "end": 22.09
+    },
+    {
+      "word": "we",
+      "start": 22.09,
+      "end": 22.6
+    },
+    {
+      "word": "will",
+      "start": 22.6,
+      "end": 23.11
+    },
+    {
+      "word": "derive",
+      "start": 23.11,
+      "end": 23.61
+    },
+    {
+      "word": "mean",
+      "start": 23.61,
+      "end": 24.12
+    },
+    {
+      "word": "integrated",
+      "start": 24.12,
+      "end": 24.63
+    },
+    {
+      "word": "squared",
+      "start": 24.63,
+      "end": 25.14
+    },
+    {
+      "word": "error",
+      "start": 25.14,
+      "end": 25.64
+    },
+    {
+      "word": "binning",
+      "start": 25.64,
+      "end": 26.15
+    },
+    {
+      "word": "optimizations",
+      "start": 26.15,
+      "end": 26.66
+    },
+    {
+      "word": "for",
+      "start": 26.66,
+      "end": 27.17
+    },
+    {
+      "word": "histograms",
+      "start": 27.17,
+      "end": 27.68
+    },
+    {
+      "word": "continuous",
+      "start": 27.68,
+      "end": 28.18
+    },
+    {
+      "word": "parzenrosenblatt",
+      "start": 28.18,
+      "end": 28.69
+    },
+    {
+      "word": "kernel",
+      "start": 28.69,
+      "end": 29.2
+    },
+    {
+      "word": "density",
+      "start": 29.2,
+      "end": 29.71
+    },
+    {
+      "word": "estimation",
+      "start": 29.71,
+      "end": 30.21
+    },
+    {
+      "word": "silvermans",
+      "start": 30.21,
+      "end": 30.72
+    },
+    {
+      "word": "bandwidth",
+      "start": 30.72,
+      "end": 31.23
+    },
+    {
+      "word": "rule",
+      "start": 31.23,
+      "end": 31.74
+    },
+    {
+      "word": "boxplot",
+      "start": 31.74,
+      "end": 32.24
+    },
+    {
+      "word": "tukey",
+      "start": 32.24,
+      "end": 32.75
+    },
+    {
+      "word": "fences",
+      "start": 32.75,
+      "end": 33.26
+    },
+    {
+      "word": "and",
+      "start": 33.26,
+      "end": 33.77
+    },
+    {
+      "word": "their",
+      "start": 33.77,
+      "end": 34.28
+    },
+    {
+      "word": "bimodal",
+      "start": 34.28,
+      "end": 34.78
+    },
+    {
+      "word": "blindspots",
+      "start": 34.78,
+      "end": 35.29
+    },
+    {
+      "word": "parameterfree",
+      "start": 35.29,
+      "end": 35.8
+    },
+    {
+      "word": "empirical",
+      "start": 35.8,
+      "end": 36.31
+    },
+    {
+      "word": "distribution",
+      "start": 36.31,
+      "end": 36.81
+    },
+    {
+      "word": "functions",
+      "start": 36.81,
+      "end": 37.32
+    },
+    {
+      "word": "with",
+      "start": 37.32,
+      "end": 37.83
+    },
+    {
+      "word": "dvoretzkykieferwolfowitz",
+      "start": 37.83,
+      "end": 38.34
+    },
+    {
+      "word": "confidence",
+      "start": 38.34,
+      "end": 38.85
+    },
+    {
+      "word": "bands",
+      "start": 38.85,
+      "end": 39.35
+    },
+    {
+      "word": "and",
+      "start": 39.35,
+      "end": 39.86
+    },
+    {
+      "word": "the",
+      "start": 39.86,
+      "end": 40.37
+    },
+    {
+      "word": "bivariate",
+      "start": 40.37,
+      "end": 40.88
+    },
+    {
+      "word": "association",
+      "start": 40.88,
+      "end": 41.38
+    },
+    {
+      "word": "triad",
+      "start": 41.38,
+      "end": 41.89
+    },
+    {
+      "word": "comparing",
+      "start": 41.89,
+      "end": 42.4
+    },
+    {
+      "word": "pearson",
+      "start": 42.4,
+      "end": 42.91
+    },
+    {
+      "word": "linear",
+      "start": 42.91,
+      "end": 43.42
+    },
+    {
+      "word": "correlation",
+      "start": 43.42,
+      "end": 43.92
+    },
+    {
+      "word": "with",
+      "start": 43.92,
+      "end": 44.43
+    },
+    {
+      "word": "spearman",
+      "start": 44.43,
+      "end": 44.94
+    },
+    {
+      "word": "and",
+      "start": 44.94,
+      "end": 45.45
+    },
+    {
+      "word": "kendall",
+      "start": 45.45,
+      "end": 45.95
+    },
+    {
+      "word": "rank",
+      "start": 45.95,
+      "end": 46.46
+    },
+    {
+      "word": "metrics",
+      "start": 46.46,
+      "end": 46.97
+    },
+    {
+      "word": "when",
+      "start": 46.97,
+      "end": 47.44
+    },
+    {
+      "word": "reconstructing",
+      "start": 47.44,
+      "end": 47.92
+    },
+    {
+      "word": "an",
+      "start": 47.92,
+      "end": 48.39
+    },
+    {
+      "word": "unknown",
+      "start": 48.39,
+      "end": 48.87
+    },
+    {
+      "word": "continuous",
+      "start": 48.87,
+      "end": 49.34
+    },
+    {
+      "word": "probability",
+      "start": 49.34,
+      "end": 49.82
+    },
+    {
+      "word": "density",
+      "start": 49.82,
+      "end": 50.29
+    },
+    {
+      "word": "f",
+      "start": 50.29,
+      "end": 50.76
+    },
+    {
+      "word": "of",
+      "start": 50.76,
+      "end": 51.24
+    },
+    {
+      "word": "x",
+      "start": 51.24,
+      "end": 51.71
+    },
+    {
+      "word": "from",
+      "start": 51.71,
+      "end": 52.19
+    },
+    {
+      "word": "a",
+      "start": 52.19,
+      "end": 52.66
+    },
+    {
+      "word": "finite",
+      "start": 52.66,
+      "end": 53.13
+    },
+    {
+      "word": "sample",
+      "start": 53.13,
+      "end": 53.61
+    },
+    {
+      "word": "two",
+      "start": 53.61,
+      "end": 54.08
+    },
+    {
+      "word": "fundamental",
+      "start": 54.08,
+      "end": 54.56
+    },
+    {
+      "word": "visual",
+      "start": 54.56,
+      "end": 55.03
+    },
+    {
+      "word": "geometries",
+      "start": 55.03,
+      "end": 55.51
+    },
+    {
+      "word": "dominate",
+      "start": 55.51,
+      "end": 55.98
+    },
+    {
+      "word": "piecewise",
+      "start": 55.98,
+      "end": 56.45
+    },
+    {
+      "word": "discrete",
+      "start": 56.45,
+      "end": 56.93
+    },
+    {
+      "word": "histograms",
+      "start": 56.93,
+      "end": 57.4
+    },
+    {
+      "word": "and",
+      "start": 57.4,
+      "end": 57.88
+    },
+    {
+      "word": "continuous",
+      "start": 57.88,
+      "end": 58.35
+    },
+    {
+      "word": "kernel",
+      "start": 58.35,
+      "end": 58.83
+    },
+    {
+      "word": "smoothing",
+      "start": 58.83,
+      "end": 59.3
+    },
+    {
+      "word": "histograms",
+      "start": 59.3,
+      "end": 59.79
+    },
+    {
+      "word": "partition",
+      "start": 59.79,
+      "end": 60.27
+    },
+    {
+      "word": "the",
+      "start": 60.27,
+      "end": 60.76
+    },
+    {
+      "word": "real",
+      "start": 60.76,
+      "end": 61.24
+    },
+    {
+      "word": "line",
+      "start": 61.24,
+      "end": 61.73
+    },
+    {
+      "word": "into",
+      "start": 61.73,
+      "end": 62.22
+    },
+    {
+      "word": "rigid",
+      "start": 62.22,
+      "end": 62.7
+    },
+    {
+      "word": "disjoint",
+      "start": 62.7,
+      "end": 63.19
+    },
+    {
+      "word": "intervals",
+      "start": 63.19,
+      "end": 63.68
+    },
+    {
+      "word": "of",
+      "start": 63.68,
+      "end": 64.16
+    },
+    {
+      "word": "width",
+      "start": 64.16,
+      "end": 64.65
+    },
+    {
+      "word": "h",
+      "start": 64.65,
+      "end": 65.13
+    },
+    {
+      "word": "every",
+      "start": 65.13,
+      "end": 65.62
+    },
+    {
+      "word": "observation",
+      "start": 65.62,
+      "end": 66.11
+    },
+    {
+      "word": "falls",
+      "start": 66.11,
+      "end": 66.59
+    },
+    {
+      "word": "into",
+      "start": 66.59,
+      "end": 67.08
+    },
+    {
+      "word": "exactly",
+      "start": 67.08,
+      "end": 67.56
+    },
+    {
+      "word": "one",
+      "start": 67.56,
+      "end": 68.05
+    },
+    {
+      "word": "bin",
+      "start": 68.05,
+      "end": 68.54
+    },
+    {
+      "word": "producing",
+      "start": 68.54,
+      "end": 69.02
+    },
+    {
+      "word": "a",
+      "start": 69.02,
+      "end": 69.51
+    },
+    {
+      "word": "discontinuous",
+      "start": 69.51,
+      "end": 70.0
+    },
+    {
+      "word": "step",
+      "start": 70.0,
+      "end": 70.48
+    },
+    {
+      "word": "function",
+      "start": 70.48,
+      "end": 70.97
+    },
+    {
+      "word": "kernel",
+      "start": 70.97,
+      "end": 71.45
+    },
+    {
+      "word": "density",
+      "start": 71.45,
+      "end": 71.94
+    },
+    {
+      "word": "estimation",
+      "start": 71.94,
+      "end": 72.43
+    },
+    {
+      "word": "replaces",
+      "start": 72.43,
+      "end": 72.91
+    },
+    {
+      "word": "rigid",
+      "start": 72.91,
+      "end": 73.4
+    },
+    {
+      "word": "bin",
+      "start": 73.4,
+      "end": 73.89
+    },
+    {
+      "word": "cutoffs",
+      "start": 73.89,
+      "end": 74.37
+    },
+    {
+      "word": "with",
+      "start": 74.37,
+      "end": 74.86
+    },
+    {
+      "word": "continuous",
+      "start": 74.86,
+      "end": 75.34
+    },
+    {
+      "word": "overlapping",
+      "start": 75.34,
+      "end": 75.83
+    },
+    {
+      "word": "probability",
+      "start": 75.83,
+      "end": 76.32
+    },
+    {
+      "word": "mass",
+      "start": 76.32,
+      "end": 76.8
+    },
+    {
+      "word": "bumps",
+      "start": 76.8,
+      "end": 77.29
+    },
+    {
+      "word": "centered",
+      "start": 77.29,
+      "end": 77.77
+    },
+    {
+      "word": "at",
+      "start": 77.77,
+      "end": 78.26
+    },
+    {
+      "word": "each",
+      "start": 78.26,
+      "end": 78.75
+    },
+    {
+      "word": "observation",
+      "start": 78.75,
+      "end": 79.23
+    },
+    {
+      "word": "creating",
+      "start": 79.23,
+      "end": 79.72
+    },
+    {
+      "word": "a",
+      "start": 79.72,
+      "end": 80.21
+    },
+    {
+      "word": "smooth",
+      "start": 80.21,
+      "end": 80.69
+    },
+    {
+      "word": "differentiable",
+      "start": 80.69,
+      "end": 81.18
+    },
+    {
+      "word": "density",
+      "start": 81.18,
+      "end": 81.66
+    },
+    {
+      "word": "estimate",
+      "start": 81.66,
+      "end": 82.15
+    },
+    {
+      "word": "how",
+      "start": 82.15,
+      "end": 82.55
+    },
+    {
+      "word": "do",
+      "start": 82.55,
+      "end": 82.96
+    },
+    {
+      "word": "we",
+      "start": 82.96,
+      "end": 83.36
+    },
+    {
+      "word": "choose",
+      "start": 83.36,
+      "end": 83.77
+    },
+    {
+      "word": "the",
+      "start": 83.77,
+      "end": 84.17
+    },
+    {
+      "word": "optimal",
+      "start": 84.17,
+      "end": 84.58
+    },
+    {
+      "word": "histogram",
+      "start": 84.58,
+      "end": 84.98
+    },
+    {
+      "word": "bin",
+      "start": 84.98,
+      "end": 85.39
+    },
+    {
+      "word": "width",
+      "start": 85.39,
+      "end": 85.79
+    },
+    {
+      "word": "h",
+      "start": 85.79,
+      "end": 86.2
+    },
+    {
+      "word": "we",
+      "start": 86.2,
+      "end": 86.6
+    },
+    {
+      "word": "evaluate",
+      "start": 86.6,
+      "end": 87.01
+    },
+    {
+      "word": "the",
+      "start": 87.01,
+      "end": 87.41
+    },
+    {
+      "word": "mean",
+      "start": 87.41,
+      "end": 87.82
+    },
+    {
+      "word": "integrated",
+      "start": 87.82,
+      "end": 88.22
+    },
+    {
+      "word": "squared",
+      "start": 88.22,
+      "end": 88.63
+    },
+    {
+      "word": "error",
+      "start": 88.63,
+      "end": 89.03
+    },
+    {
+      "word": "which",
+      "start": 89.03,
+      "end": 89.44
+    },
+    {
+      "word": "decomposes",
+      "start": 89.44,
+      "end": 89.84
+    },
+    {
+      "word": "into",
+      "start": 89.84,
+      "end": 90.24
+    },
+    {
+      "word": "integrated",
+      "start": 90.24,
+      "end": 90.65
+    },
+    {
+      "word": "variance",
+      "start": 90.65,
+      "end": 91.05
+    },
+    {
+      "word": "and",
+      "start": 91.05,
+      "end": 91.46
+    },
+    {
+      "word": "integrated",
+      "start": 91.46,
+      "end": 91.86
+    },
+    {
+      "word": "squared",
+      "start": 91.86,
+      "end": 92.27
+    },
+    {
+      "word": "bias",
+      "start": 92.27,
+      "end": 92.67
+    },
+    {
+      "word": "by",
+      "start": 92.67,
+      "end": 93.08
+    },
+    {
+      "word": "taylor",
+      "start": 93.08,
+      "end": 93.48
+    },
+    {
+      "word": "expanding",
+      "start": 93.48,
+      "end": 93.89
+    },
+    {
+      "word": "f",
+      "start": 93.89,
+      "end": 94.29
+    },
+    {
+      "word": "of",
+      "start": 94.29,
+      "end": 94.7
+    },
+    {
+      "word": "x",
+      "start": 94.7,
+      "end": 95.1
+    },
+    {
+      "word": "across",
+      "start": 95.1,
+      "end": 95.51
+    },
+    {
+      "word": "each",
+      "start": 95.51,
+      "end": 95.91
+    },
+    {
+      "word": "bin",
+      "start": 95.91,
+      "end": 96.32
+    },
+    {
+      "word": "integrated",
+      "start": 96.32,
+      "end": 96.72
+    },
+    {
+      "word": "variance",
+      "start": 96.72,
+      "end": 97.13
+    },
+    {
+      "word": "scales",
+      "start": 97.13,
+      "end": 97.53
+    },
+    {
+      "word": "inversely",
+      "start": 97.53,
+      "end": 97.93
+    },
+    {
+      "word": "with",
+      "start": 97.93,
+      "end": 98.34
+    },
+    {
+      "word": "n",
+      "start": 98.34,
+      "end": 98.74
+    },
+    {
+      "word": "times",
+      "start": 98.74,
+      "end": 99.15
+    },
+    {
+      "word": "h",
+      "start": 99.15,
+      "end": 99.55
+    },
+    {
+      "word": "while",
+      "start": 99.55,
+      "end": 99.96
+    },
+    {
+      "word": "integrated",
+      "start": 99.96,
+      "end": 100.36
+    },
+    {
+      "word": "squared",
+      "start": 100.36,
+      "end": 100.77
+    },
+    {
+      "word": "bias",
+      "start": 100.77,
+      "end": 101.17
+    },
+    {
+      "word": "scales",
+      "start": 101.17,
+      "end": 101.58
+    },
+    {
+      "word": "with",
+      "start": 101.58,
+      "end": 101.98
+    },
+    {
+      "word": "hsquared",
+      "start": 101.98,
+      "end": 102.39
+    },
+    {
+      "word": "times",
+      "start": 102.39,
+      "end": 102.79
+    },
+    {
+      "word": "the",
+      "start": 102.79,
+      "end": 103.2
+    },
+    {
+      "word": "roughness",
+      "start": 103.2,
+      "end": 103.6
+    },
+    {
+      "word": "of",
+      "start": 103.6,
+      "end": 104.01
+    },
+    {
+      "word": "the",
+      "start": 104.01,
+      "end": 104.41
+    },
+    {
+      "word": "derivative",
+      "start": 104.41,
+      "end": 104.82
+    },
+    {
+      "word": "fprime",
+      "start": 104.82,
+      "end": 105.22
+    },
+    {
+      "word": "minimizing",
+      "start": 105.22,
+      "end": 105.64
+    },
+    {
+      "word": "mise",
+      "start": 105.64,
+      "end": 106.05
+    },
+    {
+      "word": "yields",
+      "start": 106.05,
+      "end": 106.47
+    },
+    {
+      "word": "an",
+      "start": 106.47,
+      "end": 106.88
+    },
+    {
+      "word": "optimal",
+      "start": 106.88,
+      "end": 107.3
+    },
+    {
+      "word": "bin",
+      "start": 107.3,
+      "end": 107.71
+    },
+    {
+      "word": "width",
+      "start": 107.71,
+      "end": 108.12
+    },
+    {
+      "word": "proportional",
+      "start": 108.12,
+      "end": 108.54
+    },
+    {
+      "word": "to",
+      "start": 108.54,
+      "end": 108.95
+    },
+    {
+      "word": "n",
+      "start": 108.95,
+      "end": 109.37
+    },
+    {
+      "word": "to",
+      "start": 109.37,
+      "end": 109.79
+    },
+    {
+      "word": "the",
+      "start": 109.78,
+      "end": 110.2
+    },
+    {
+      "word": "negative",
+      "start": 110.2,
+      "end": 110.62
+    },
+    {
+      "word": "onethird",
+      "start": 110.61,
+      "end": 111.03
+    },
+    {
+      "word": "scotts",
+      "start": 111.03,
+      "end": 111.45
+    },
+    {
+      "word": "normal",
+      "start": 111.44,
+      "end": 111.86
+    },
+    {
+      "word": "rule",
+      "start": 111.86,
+      "end": 112.28
+    },
+    {
+      "word": "sets",
+      "start": 112.28,
+      "end": 112.69
+    },
+    {
+      "word": "h",
+      "start": 112.69,
+      "end": 113.11
+    },
+    {
+      "word": "to",
+      "start": 113.11,
+      "end": 113.52
+    },
+    {
+      "word": "349",
+      "start": 113.52,
+      "end": 113.94
+    },
+    {
+      "word": "times",
+      "start": 113.94,
+      "end": 114.35
+    },
+    {
+      "word": "s",
+      "start": 114.35,
+      "end": 114.77
+    },
+    {
+      "word": "times",
+      "start": 114.77,
+      "end": 115.18
+    },
+    {
+      "word": "n",
+      "start": 115.18,
+      "end": 115.6
+    },
+    {
+      "word": "to",
+      "start": 115.59,
+      "end": 116.01
+    },
+    {
+      "word": "the",
+      "start": 116.01,
+      "end": 116.43
+    },
+    {
+      "word": "negative",
+      "start": 116.42,
+      "end": 116.84
+    },
+    {
+      "word": "onethird",
+      "start": 116.84,
+      "end": 117.26
+    },
+    {
+      "word": "but",
+      "start": 117.25,
+      "end": 117.67
+    },
+    {
+      "word": "because",
+      "start": 117.67,
+      "end": 118.09
+    },
+    {
+      "word": "sample",
+      "start": 118.09,
+      "end": 118.5
+    },
+    {
+      "word": "standard",
+      "start": 118.5,
+      "end": 118.92
+    },
+    {
+      "word": "deviation",
+      "start": 118.91,
+      "end": 119.33
+    },
+    {
+      "word": "s",
+      "start": 119.33,
+      "end": 119.75
+    },
+    {
+      "word": "inflates",
+      "start": 119.75,
+      "end": 120.16
+    },
+    {
+      "word": "to",
+      "start": 120.16,
+      "end": 120.58
+    },
+    {
+      "word": "infinity",
+      "start": 120.58,
+      "end": 120.99
+    },
+    {
+      "word": "under",
+      "start": 120.99,
+      "end": 121.41
+    },
+    {
+      "word": "extreme",
+      "start": 121.41,
+      "end": 121.82
+    },
+    {
+      "word": "outliers",
+      "start": 121.82,
+      "end": 122.23
+    },
+    {
+      "word": "freedman",
+      "start": 122.23,
+      "end": 122.65
+    },
+    {
+      "word": "and",
+      "start": 122.65,
+      "end": 123.07
+    },
+    {
+      "word": "diaconis",
+      "start": 123.06,
+      "end": 123.48
+    },
+    {
+      "word": "substituted",
+      "start": 123.48,
+      "end": 123.9
+    },
+    {
+      "word": "the",
+      "start": 123.89,
+      "end": 124.31
+    },
+    {
+      "word": "interquartile",
+      "start": 124.31,
+      "end": 124.73
+    },
+    {
+      "word": "range",
+      "start": 124.72,
+      "end": 125.14
+    },
+    {
+      "word": "giving",
+      "start": 125.14,
+      "end": 125.56
+    },
+    {
+      "word": "two",
+      "start": 125.56,
+      "end": 125.97
+    },
+    {
+      "word": "times",
+      "start": 125.97,
+      "end": 126.39
+    },
+    {
+      "word": "iqr",
+      "start": 126.39,
+      "end": 126.8
+    },
+    {
+      "word": "times",
+      "start": 126.8,
+      "end": 127.22
+    },
+    {
+      "word": "n",
+      "start": 127.22,
+      "end": 127.63
+    },
+    {
+      "word": "to",
+      "start": 127.63,
+      "end": 128.04
+    },
+    {
+      "word": "the",
+      "start": 128.05,
+      "end": 128.46
+    },
+    {
+      "word": "negative",
+      "start": 128.46,
+      "end": 128.88
+    },
+    {
+      "word": "onethird",
+      "start": 128.88,
+      "end": 129.29
+    },
+    {
+      "word": "with",
+      "start": 129.29,
+      "end": 129.7
+    },
+    {
+      "word": "a",
+      "start": 129.71,
+      "end": 130.12
+    },
+    {
+      "word": "twentyfive",
+      "start": 130.12,
+      "end": 130.53
+    },
+    {
+      "word": "percent",
+      "start": 130.53,
+      "end": 130.95
+    },
+    {
+      "word": "breakdown",
+      "start": 130.95,
+      "end": 131.36
+    },
+    {
+      "word": "point",
+      "start": 131.37,
+      "end": 131.78
+    },
+    {
+      "word": "the",
+      "start": 131.78,
+      "end": 132.19
+    },
+    {
+      "word": "parzenrosenblatt",
+      "start": 132.19,
+      "end": 132.61
+    },
+    {
+      "word": "kernel",
+      "start": 132.61,
+      "end": 133.02
+    },
+    {
+      "word": "density",
+      "start": 133.02,
+      "end": 133.44
+    },
+    {
+      "word": "estimator",
+      "start": 133.44,
+      "end": 133.85
+    },
+    {
+      "word": "constructs",
+      "start": 133.85,
+      "end": 134.27
+    },
+    {
+      "word": "a",
+      "start": 134.27,
+      "end": 134.68
+    },
+    {
+      "word": "continuous",
+      "start": 134.68,
+      "end": 135.1
+    },
+    {
+      "word": "probability",
+      "start": 135.1,
+      "end": 135.51
+    },
+    {
+      "word": "density",
+      "start": 135.51,
+      "end": 135.92
+    },
+    {
+      "word": "by",
+      "start": 135.92,
+      "end": 136.34
+    },
+    {
+      "word": "placing",
+      "start": 136.34,
+      "end": 136.75
+    },
+    {
+      "word": "a",
+      "start": 136.75,
+      "end": 137.17
+    },
+    {
+      "word": "symmetric",
+      "start": 137.17,
+      "end": 137.58
+    },
+    {
+      "word": "kernel",
+      "start": 137.58,
+      "end": 138.0
+    },
+    {
+      "word": "function",
+      "start": 138.0,
+      "end": 138.41
+    },
+    {
+      "word": "k",
+      "start": 138.41,
+      "end": 138.83
+    },
+    {
+      "word": "of",
+      "start": 138.83,
+      "end": 139.24
+    },
+    {
+      "word": "u",
+      "start": 139.24,
+      "end": 139.65
+    },
+    {
+      "word": "over",
+      "start": 139.65,
+      "end": 140.07
+    },
+    {
+      "word": "each",
+      "start": 140.07,
+      "end": 140.48
+    },
+    {
+      "word": "observation",
+      "start": 140.48,
+      "end": 140.9
+    },
+    {
+      "word": "scaled",
+      "start": 140.9,
+      "end": 141.31
+    },
+    {
+      "word": "by",
+      "start": 141.31,
+      "end": 141.73
+    },
+    {
+      "word": "bandwidth",
+      "start": 141.73,
+      "end": 142.14
+    },
+    {
+      "word": "h",
+      "start": 142.14,
+      "end": 142.56
+    },
+    {
+      "word": "the",
+      "start": 142.56,
+      "end": 142.97
+    },
+    {
+      "word": "kernel",
+      "start": 142.97,
+      "end": 143.38
+    },
+    {
+      "word": "must",
+      "start": 143.38,
+      "end": 143.8
+    },
+    {
+      "word": "integrate",
+      "start": 143.8,
+      "end": 144.21
+    },
+    {
+      "word": "to",
+      "start": 144.21,
+      "end": 144.63
+    },
+    {
+      "word": "one",
+      "start": 144.63,
+      "end": 145.04
+    },
+    {
+      "word": "have",
+      "start": 145.04,
+      "end": 145.46
+    },
+    {
+      "word": "zero",
+      "start": 145.46,
+      "end": 145.87
+    },
+    {
+      "word": "first",
+      "start": 145.87,
+      "end": 146.29
+    },
+    {
+      "word": "moment",
+      "start": 146.29,
+      "end": 146.7
+    },
+    {
+      "word": "for",
+      "start": 146.7,
+      "end": 147.11
+    },
+    {
+      "word": "unbiased",
+      "start": 147.11,
+      "end": 147.53
+    },
+    {
+      "word": "centering",
+      "start": 147.53,
+      "end": 147.94
+    },
+    {
+      "word": "and",
+      "start": 147.94,
+      "end": 148.36
+    },
+    {
+      "word": "possess",
+      "start": 148.36,
+      "end": 148.77
+    },
+    {
+      "word": "a",
+      "start": 148.77,
+      "end": 149.19
+    },
+    {
+      "word": "finite",
+      "start": 149.19,
+      "end": 149.6
+    },
+    {
+      "word": "second",
+      "start": 149.6,
+      "end": 150.02
+    },
+    {
+      "word": "moment",
+      "start": 150.02,
+      "end": 150.43
+    },
+    {
+      "word": "while",
+      "start": 150.43,
+      "end": 150.87
+    },
+    {
+      "word": "the",
+      "start": 150.87,
+      "end": 151.3
+    },
+    {
+      "word": "epanechnikov",
+      "start": 151.3,
+      "end": 151.74
+    },
+    {
+      "word": "parabolic",
+      "start": 151.74,
+      "end": 152.18
+    },
+    {
+      "word": "kernel",
+      "start": 152.18,
+      "end": 152.61
+    },
+    {
+      "word": "mathematically",
+      "start": 152.61,
+      "end": 153.05
+    },
+    {
+      "word": "minimizes",
+      "start": 153.05,
+      "end": 153.49
+    },
+    {
+      "word": "asymptotic",
+      "start": 153.49,
+      "end": 153.92
+    },
+    {
+      "word": "mise",
+      "start": 153.92,
+      "end": 154.36
+    },
+    {
+      "word": "the",
+      "start": 154.36,
+      "end": 154.8
+    },
+    {
+      "word": "standard",
+      "start": 154.8,
+      "end": 155.23
+    },
+    {
+      "word": "gaussian",
+      "start": 155.23,
+      "end": 155.67
+    },
+    {
+      "word": "kernel",
+      "start": 155.67,
+      "end": 156.11
+    },
+    {
+      "word": "is",
+      "start": 156.11,
+      "end": 156.54
+    },
+    {
+      "word": "most",
+      "start": 156.54,
+      "end": 156.98
+    },
+    {
+      "word": "common",
+      "start": 156.98,
+      "end": 157.42
+    },
+    {
+      "word": "due",
+      "start": 157.42,
+      "end": 157.85
+    },
+    {
+      "word": "to",
+      "start": 157.85,
+      "end": 158.29
+    },
+    {
+      "word": "its",
+      "start": 158.29,
+      "end": 158.73
+    },
+    {
+      "word": "infinite",
+      "start": 158.73,
+      "end": 159.16
+    },
+    {
+      "word": "differentiability",
+      "start": 159.16,
+      "end": 159.6
+    },
+    {
+      "word": "by",
+      "start": 159.6,
+      "end": 160.04
+    },
+    {
+      "word": "optimizing",
+      "start": 160.04,
+      "end": 160.47
+    },
+    {
+      "word": "the",
+      "start": 160.47,
+      "end": 160.91
+    },
+    {
+      "word": "biasvariance",
+      "start": 160.91,
+      "end": 161.35
+    },
+    {
+      "word": "tradeoff",
+      "start": 161.35,
+      "end": 161.78
+    },
+    {
+      "word": "in",
+      "start": 161.78,
+      "end": 162.22
+    },
+    {
+      "word": "kde",
+      "start": 162.22,
+      "end": 162.65
+    },
+    {
+      "word": "the",
+      "start": 162.65,
+      "end": 163.09
+    },
+    {
+      "word": "optimal",
+      "start": 163.09,
+      "end": 163.53
+    },
+    {
+      "word": "bandwidth",
+      "start": 163.53,
+      "end": 163.96
+    },
+    {
+      "word": "scales",
+      "start": 163.96,
+      "end": 164.4
+    },
+    {
+      "word": "as",
+      "start": 164.4,
+      "end": 164.84
+    },
+    {
+      "word": "n",
+      "start": 164.84,
+      "end": 165.27
+    },
+    {
+      "word": "to",
+      "start": 165.27,
+      "end": 165.71
+    },
+    {
+      "word": "the",
+      "start": 165.71,
+      "end": 166.15
+    },
+    {
+      "word": "negative",
+      "start": 166.15,
+      "end": 166.58
+    },
+    {
+      "word": "onefifth",
+      "start": 166.58,
+      "end": 167.02
+    },
+    {
+      "word": "delivering",
+      "start": 167.02,
+      "end": 167.46
+    },
+    {
+      "word": "a",
+      "start": 167.46,
+      "end": 167.89
+    },
+    {
+      "word": "faster",
+      "start": 167.89,
+      "end": 168.33
+    },
+    {
+      "word": "asymptotic",
+      "start": 168.33,
+      "end": 168.77
+    },
+    {
+      "word": "convergence",
+      "start": 168.77,
+      "end": 169.2
+    },
+    {
+      "word": "rate",
+      "start": 169.2,
+      "end": 169.64
+    },
+    {
+      "word": "of",
+      "start": 169.64,
+      "end": 170.08
+    },
+    {
+      "word": "n",
+      "start": 170.08,
+      "end": 170.51
+    },
+    {
+      "word": "to",
+      "start": 170.51,
+      "end": 170.95
+    },
+    {
+      "word": "the",
+      "start": 170.95,
+      "end": 171.39
+    },
+    {
+      "word": "negative",
+      "start": 171.39,
+      "end": 171.82
+    },
+    {
+      "word": "fourfifths",
+      "start": 171.82,
+      "end": 172.26
+    },
+    {
+      "word": "compared",
+      "start": 172.26,
+      "end": 172.7
+    },
+    {
+      "word": "to",
+      "start": 172.7,
+      "end": 173.13
+    },
+    {
+      "word": "histograms",
+      "start": 173.13,
+      "end": 173.57
+    },
+    {
+      "word": "in",
+      "start": 173.57,
+      "end": 174.03
+    },
+    {
+      "word": "practice",
+      "start": 174.03,
+      "end": 174.5
+    },
+    {
+      "word": "the",
+      "start": 174.5,
+      "end": 174.97
+    },
+    {
+      "word": "choice",
+      "start": 174.97,
+      "end": 175.43
+    },
+    {
+      "word": "of",
+      "start": 175.43,
+      "end": 175.9
+    },
+    {
+      "word": "kernel",
+      "start": 175.89,
+      "end": 176.36
+    },
+    {
+      "word": "is",
+      "start": 176.36,
+      "end": 176.82
+    },
+    {
+      "word": "secondary",
+      "start": 176.82,
+      "end": 177.29
+    },
+    {
+      "word": "the",
+      "start": 177.29,
+      "end": 177.75
+    },
+    {
+      "word": "choice",
+      "start": 177.75,
+      "end": 178.22
+    },
+    {
+      "word": "of",
+      "start": 178.22,
+      "end": 178.69
+    },
+    {
+      "word": "bandwidth",
+      "start": 178.69,
+      "end": 179.15
+    },
+    {
+      "word": "h",
+      "start": 179.15,
+      "end": 179.61
+    },
+    {
+      "word": "determines",
+      "start": 179.61,
+      "end": 180.08
+    },
+    {
+      "word": "everything",
+      "start": 180.08,
+      "end": 180.54
+    },
+    {
+      "word": "undersmoothing",
+      "start": 180.54,
+      "end": 181.01
+    },
+    {
+      "word": "produces",
+      "start": 181.01,
+      "end": 181.47
+    },
+    {
+      "word": "spurious",
+      "start": 181.47,
+      "end": 181.94
+    },
+    {
+      "word": "highfrequency",
+      "start": 181.94,
+      "end": 182.41
+    },
+    {
+      "word": "noise",
+      "start": 182.41,
+      "end": 182.87
+    },
+    {
+      "word": "spikes",
+      "start": 182.87,
+      "end": 183.34
+    },
+    {
+      "word": "while",
+      "start": 183.33,
+      "end": 183.8
+    },
+    {
+      "word": "oversmoothing",
+      "start": 183.8,
+      "end": 184.26
+    },
+    {
+      "word": "merges",
+      "start": 184.26,
+      "end": 184.73
+    },
+    {
+      "word": "distinct",
+      "start": 184.73,
+      "end": 185.19
+    },
+    {
+      "word": "bimodal",
+      "start": 185.19,
+      "end": 185.66
+    },
+    {
+      "word": "peaks",
+      "start": 185.66,
+      "end": 186.12
+    },
+    {
+      "word": "into",
+      "start": 186.12,
+      "end": 186.59
+    },
+    {
+      "word": "a",
+      "start": 186.59,
+      "end": 187.05
+    },
+    {
+      "word": "single",
+      "start": 187.05,
+      "end": 187.52
+    },
+    {
+      "word": "distorted",
+      "start": 187.52,
+      "end": 187.98
+    },
+    {
+      "word": "mode",
+      "start": 187.98,
+      "end": 188.45
+    },
+    {
+      "word": "silvermans",
+      "start": 188.45,
+      "end": 188.9
+    },
+    {
+      "word": "robust",
+      "start": 188.9,
+      "end": 189.34
+    },
+    {
+      "word": "rule",
+      "start": 189.34,
+      "end": 189.79
+    },
+    {
+      "word": "of",
+      "start": 189.79,
+      "end": 190.23
+    },
+    {
+      "word": "thumb",
+      "start": 190.23,
+      "end": 190.68
+    },
+    {
+      "word": "selects",
+      "start": 190.68,
+      "end": 191.12
+    },
+    {
+      "word": "zero",
+      "start": 191.12,
+      "end": 191.57
+    },
+    {
+      "word": "point",
+      "start": 191.57,
+      "end": 192.01
+    },
+    {
+      "word": "nine",
+      "start": 192.01,
+      "end": 192.46
+    },
+    {
+      "word": "times",
+      "start": 192.46,
+      "end": 192.9
+    },
+    {
+      "word": "the",
+      "start": 192.9,
+      "end": 193.35
+    },
+    {
+      "word": "minimum",
+      "start": 193.35,
+      "end": 193.79
+    },
+    {
+      "word": "of",
+      "start": 193.79,
+      "end": 194.24
+    },
+    {
+      "word": "sample",
+      "start": 194.24,
+      "end": 194.68
+    },
+    {
+      "word": "standard",
+      "start": 194.68,
+      "end": 195.13
+    },
+    {
+      "word": "deviation",
+      "start": 195.13,
+      "end": 195.57
+    },
+    {
+      "word": "and",
+      "start": 195.57,
+      "end": 196.02
+    },
+    {
+      "word": "iqr",
+      "start": 196.02,
+      "end": 196.46
+    },
+    {
+      "word": "over",
+      "start": 196.46,
+      "end": 196.91
+    },
+    {
+      "word": "134",
+      "start": 196.91,
+      "end": 197.35
+    },
+    {
+      "word": "times",
+      "start": 197.35,
+      "end": 197.8
+    },
+    {
+      "word": "n",
+      "start": 197.8,
+      "end": 198.24
+    },
+    {
+      "word": "to",
+      "start": 198.24,
+      "end": 198.69
+    },
+    {
+      "word": "the",
+      "start": 198.69,
+      "end": 199.14
+    },
+    {
+      "word": "negative",
+      "start": 199.14,
+      "end": 199.58
+    },
+    {
+      "word": "onefifth",
+      "start": 199.58,
+      "end": 200.03
+    },
+    {
+      "word": "crucially",
+      "start": 200.03,
+      "end": 200.47
+    },
+    {
+      "word": "on",
+      "start": 200.47,
+      "end": 200.92
+    },
+    {
+      "word": "bounded",
+      "start": 200.92,
+      "end": 201.36
+    },
+    {
+      "word": "domains",
+      "start": 201.36,
+      "end": 201.81
+    },
+    {
+      "word": "such",
+      "start": 201.81,
+      "end": 202.25
+    },
+    {
+      "word": "as",
+      "start": 202.25,
+      "end": 202.7
+    },
+    {
+      "word": "latency",
+      "start": 202.7,
+      "end": 203.14
+    },
+    {
+      "word": "where",
+      "start": 203.14,
+      "end": 203.59
+    },
+    {
+      "word": "x",
+      "start": 203.59,
+      "end": 204.03
+    },
+    {
+      "word": "is",
+      "start": 204.03,
+      "end": 204.48
+    },
+    {
+      "word": "strictly",
+      "start": 204.48,
+      "end": 204.92
+    },
+    {
+      "word": "nonnegative",
+      "start": 204.92,
+      "end": 205.37
+    },
+    {
+      "word": "standard",
+      "start": 205.37,
+      "end": 205.81
+    },
+    {
+      "word": "symmetric",
+      "start": 205.81,
+      "end": 206.26
+    },
+    {
+      "word": "kernels",
+      "start": 206.26,
+      "end": 206.7
+    },
+    {
+      "word": "leak",
+      "start": 206.7,
+      "end": 207.15
+    },
+    {
+      "word": "probability",
+      "start": 207.15,
+      "end": 207.59
+    },
+    {
+      "word": "mass",
+      "start": 207.59,
+      "end": 208.04
+    },
+    {
+      "word": "below",
+      "start": 208.04,
+      "end": 208.48
+    },
+    {
+      "word": "zero",
+      "start": 208.48,
+      "end": 208.93
+    },
+    {
+      "word": "at",
+      "start": 208.93,
+      "end": 209.37
+    },
+    {
+      "word": "x",
+      "start": 209.37,
+      "end": 209.82
+    },
+    {
+      "word": "equals",
+      "start": 209.82,
+      "end": 210.27
+    },
+    {
+      "word": "zero",
+      "start": 210.27,
+      "end": 210.71
+    },
+    {
+      "word": "expected",
+      "start": 210.71,
+      "end": 211.16
+    },
+    {
+      "word": "density",
+      "start": 211.16,
+      "end": 211.6
+    },
+    {
+      "word": "collapses",
+      "start": 211.6,
+      "end": 212.05
+    },
+    {
+      "word": "by",
+      "start": 212.05,
+      "end": 212.49
+    },
+    {
+      "word": "half",
+      "start": 212.49,
+      "end": 212.94
+    },
+    {
+      "word": "we",
+      "start": 212.94,
+      "end": 213.38
+    },
+    {
+      "word": "correct",
+      "start": 213.38,
+      "end": 213.83
+    },
+    {
+      "word": "this",
+      "start": 213.83,
+      "end": 214.27
+    },
+    {
+      "word": "boundary",
+      "start": 214.27,
+      "end": 214.72
+    },
+    {
+      "word": "bias",
+      "start": 214.72,
+      "end": 215.16
+    },
+    {
+      "word": "via",
+      "start": 215.16,
+      "end": 215.61
+    },
+    {
+      "word": "boundary",
+      "start": 215.61,
+      "end": 216.05
+    },
+    {
+      "word": "reflection",
+      "start": 216.05,
+      "end": 216.5
+    },
+    {
+      "word": "folding",
+      "start": 216.5,
+      "end": 216.94
+    },
+    {
+      "word": "negative",
+      "start": 216.94,
+      "end": 217.39
+    },
+    {
+      "word": "density",
+      "start": 217.39,
+      "end": 217.83
+    },
+    {
+      "word": "back",
+      "start": 217.83,
+      "end": 218.28
+    },
+    {
+      "word": "into",
+      "start": 218.28,
+      "end": 218.72
+    },
+    {
+      "word": "the",
+      "start": 218.72,
+      "end": 219.17
+    },
+    {
+      "word": "positive",
+      "start": 219.17,
+      "end": 219.61
+    },
+    {
+      "word": "domain",
+      "start": 219.61,
+      "end": 220.06
+    },
+    {
+      "word": "welcome",
+      "start": 220.06,
+      "end": 220.51
+    },
+    {
+      "word": "to",
+      "start": 220.51,
+      "end": 220.97
+    },
+    {
+      "word": "the",
+      "start": 220.97,
+      "end": 221.42
+    },
+    {
+      "word": "kde",
+      "start": 221.42,
+      "end": 221.88
+    },
+    {
+      "word": "bandwidth",
+      "start": 221.88,
+      "end": 222.33
+    },
+    {
+      "word": "and",
+      "start": 222.33,
+      "end": 222.79
+    },
+    {
+      "word": "boundary",
+      "start": 222.79,
+      "end": 223.24
+    },
+    {
+      "word": "bias",
+      "start": 223.24,
+      "end": 223.7
+    },
+    {
+      "word": "studio",
+      "start": 223.7,
+      "end": 224.15
+    },
+    {
+      "word": "on",
+      "start": 224.15,
+      "end": 224.6
+    },
+    {
+      "word": "screen",
+      "start": 224.6,
+      "end": 225.06
+    },
+    {
+      "word": "is",
+      "start": 225.06,
+      "end": 225.51
+    },
+    {
+      "word": "a",
+      "start": 225.51,
+      "end": 225.97
+    },
+    {
+      "word": "simulated",
+      "start": 225.97,
+      "end": 226.42
+    },
+    {
+      "word": "distribution",
+      "start": 226.42,
+      "end": 226.88
+    },
+    {
+      "word": "of",
+      "start": 226.88,
+      "end": 227.33
+    },
+    {
+      "word": "server",
+      "start": 227.33,
+      "end": 227.79
+    },
+    {
+      "word": "response",
+      "start": 227.79,
+      "end": 228.24
+    },
+    {
+      "word": "latencies",
+      "start": 228.24,
+      "end": 228.69
+    },
+    {
+      "word": "strictly",
+      "start": 228.69,
+      "end": 229.15
+    },
+    {
+      "word": "bounded",
+      "start": 229.15,
+      "end": 229.6
+    },
+    {
+      "word": "at",
+      "start": 229.6,
+      "end": 230.06
+    },
+    {
+      "word": "zero",
+      "start": 230.06,
+      "end": 230.51
+    },
+    {
+      "word": "adjust",
+      "start": 230.51,
+      "end": 230.97
+    },
+    {
+      "word": "the",
+      "start": 230.97,
+      "end": 231.42
+    },
+    {
+      "word": "bandwidth",
+      "start": 231.42,
+      "end": 231.88
+    },
+    {
+      "word": "slider",
+      "start": 231.88,
+      "end": 232.33
+    },
+    {
+      "word": "h",
+      "start": 232.33,
+      "end": 232.78
+    },
+    {
+      "word": "and",
+      "start": 232.78,
+      "end": 233.24
+    },
+    {
+      "word": "toggle",
+      "start": 233.24,
+      "end": 233.69
+    },
+    {
+      "word": "between",
+      "start": 233.69,
+      "end": 234.15
+    },
+    {
+      "word": "gaussian",
+      "start": 234.15,
+      "end": 234.6
+    },
+    {
+      "word": "epanechnikov",
+      "start": 234.6,
+      "end": 235.06
+    },
+    {
+      "word": "and",
+      "start": 235.06,
+      "end": 235.51
+    },
+    {
+      "word": "uniform",
+      "start": 235.51,
+      "end": 235.97
+    },
+    {
+      "word": "kernels",
+      "start": 235.97,
+      "end": 236.42
+    },
+    {
+      "word": "notice",
+      "start": 236.42,
+      "end": 236.89
+    },
+    {
+      "word": "what",
+      "start": 236.89,
+      "end": 237.36
+    },
+    {
+      "word": "happens",
+      "start": 237.36,
+      "end": 237.83
+    },
+    {
+      "word": "when",
+      "start": 237.83,
+      "end": 238.3
+    },
+    {
+      "word": "bandwidth",
+      "start": 238.3,
+      "end": 238.77
+    },
+    {
+      "word": "is",
+      "start": 238.77,
+      "end": 239.23
+    },
+    {
+      "word": "too",
+      "start": 239.23,
+      "end": 239.7
+    },
+    {
+      "word": "small",
+      "start": 239.7,
+      "end": 240.17
+    },
+    {
+      "word": "spurious",
+      "start": 240.17,
+      "end": 240.64
+    },
+    {
+      "word": "spikes",
+      "start": 240.64,
+      "end": 241.11
+    },
+    {
+      "word": "appear",
+      "start": 241.11,
+      "end": 241.58
+    },
+    {
+      "word": "when",
+      "start": 241.58,
+      "end": 242.05
+    },
+    {
+      "word": "bandwidth",
+      "start": 242.05,
+      "end": 242.52
+    },
+    {
+      "word": "is",
+      "start": 242.52,
+      "end": 242.99
+    },
+    {
+      "word": "too",
+      "start": 242.99,
+      "end": 243.46
+    },
+    {
+      "word": "large",
+      "start": 243.46,
+      "end": 243.93
+    },
+    {
+      "word": "the",
+      "start": 243.93,
+      "end": 244.39
+    },
+    {
+      "word": "mode",
+      "start": 244.39,
+      "end": 244.86
+    },
+    {
+      "word": "flattens",
+      "start": 244.86,
+      "end": 245.33
+    },
+    {
+      "word": "most",
+      "start": 245.33,
+      "end": 245.8
+    },
+    {
+      "word": "importantly",
+      "start": 245.8,
+      "end": 246.27
+    },
+    {
+      "word": "toggle",
+      "start": 246.27,
+      "end": 246.74
+    },
+    {
+      "word": "boundary",
+      "start": 246.74,
+      "end": 247.21
+    },
+    {
+      "word": "reflection",
+      "start": 247.21,
+      "end": 247.68
+    },
+    {
+      "word": "to",
+      "start": 247.68,
+      "end": 248.15
+    },
+    {
+      "word": "witness",
+      "start": 248.15,
+      "end": 248.62
+    },
+    {
+      "word": "how",
+      "start": 248.62,
+      "end": 249.09
+    },
+    {
+      "word": "negative",
+      "start": 249.09,
+      "end": 249.55
+    },
+    {
+      "word": "probability",
+      "start": 249.55,
+      "end": 250.02
+    },
+    {
+      "word": "leakage",
+      "start": 250.02,
+      "end": 250.49
+    },
+    {
+      "word": "is",
+      "start": 250.49,
+      "end": 250.96
+    },
+    {
+      "word": "completely",
+      "start": 250.96,
+      "end": 251.43
+    },
+    {
+      "word": "eliminated",
+      "start": 251.43,
+      "end": 251.9
+    },
+    {
+      "word": "time",
+      "start": 251.9,
+      "end": 252.39
+    },
+    {
+      "word": "for",
+      "start": 252.39,
+      "end": 252.88
+    },
+    {
+      "word": "active",
+      "start": 252.88,
+      "end": 253.37
+    },
+    {
+      "word": "checkpoint",
+      "start": 253.37,
+      "end": 253.86
+    },
+    {
+      "word": "1",
+      "start": 253.86,
+      "end": 254.36
+    },
+    {
+      "word": "review",
+      "start": 254.36,
+      "end": 254.85
+    },
+    {
+      "word": "the",
+      "start": 254.85,
+      "end": 255.34
+    },
+    {
+      "word": "scenario",
+      "start": 255.34,
+      "end": 255.83
+    },
+    {
+      "word": "below",
+      "start": 255.83,
+      "end": 256.32
+    },
+    {
+      "word": "regarding",
+      "start": 256.32,
+      "end": 256.81
+    },
+    {
+      "word": "histogram",
+      "start": 256.81,
+      "end": 257.3
+    },
+    {
+      "word": "binning",
+      "start": 257.3,
+      "end": 257.79
+    },
+    {
+      "word": "on",
+      "start": 257.79,
+      "end": 258.29
+    },
+    {
+      "word": "heavytailed",
+      "start": 258.29,
+      "end": 258.78
+    },
+    {
+      "word": "web",
+      "start": 258.78,
+      "end": 259.27
+    },
+    {
+      "word": "traffic",
+      "start": 259.27,
+      "end": 259.76
+    },
+    {
+      "word": "data",
+      "start": 259.76,
+      "end": 260.25
+    },
+    {
+      "word": "why",
+      "start": 260.25,
+      "end": 260.74
+    },
+    {
+      "word": "does",
+      "start": 260.74,
+      "end": 261.23
+    },
+    {
+      "word": "sturges",
+      "start": 261.23,
+      "end": 261.72
+    },
+    {
+      "word": "rule",
+      "start": 261.72,
+      "end": 262.21
+    },
+    {
+      "word": "fail",
+      "start": 262.21,
+      "end": 262.71
+    },
+    {
+      "word": "catastrophically",
+      "start": 262.71,
+      "end": 263.2
+    },
+    {
+      "word": "while",
+      "start": 263.2,
+      "end": 263.69
+    },
+    {
+      "word": "freedmandiaconis",
+      "start": 263.69,
+      "end": 264.18
+    },
+    {
+      "word": "succeeds",
+      "start": 264.18,
+      "end": 264.67
+    },
+    {
+      "word": "john",
+      "start": 264.67,
+      "end": 265.09
+    },
+    {
+      "word": "tukey",
+      "start": 265.09,
+      "end": 265.51
+    },
+    {
+      "word": "introduced",
+      "start": 265.51,
+      "end": 265.93
+    },
+    {
+      "word": "the",
+      "start": 265.93,
+      "end": 266.35
+    },
+    {
+      "word": "boxplot",
+      "start": 266.35,
+      "end": 266.77
+    },
+    {
+      "word": "in",
+      "start": 266.77,
+      "end": 267.19
+    },
+    {
+      "word": "1977",
+      "start": 267.19,
+      "end": 267.61
+    },
+    {
+      "word": "as",
+      "start": 267.61,
+      "end": 268.03
+    },
+    {
+      "word": "a",
+      "start": 268.03,
+      "end": 268.44
+    },
+    {
+      "word": "resistant",
+      "start": 268.44,
+      "end": 268.86
+    },
+    {
+      "word": "visual",
+      "start": 268.86,
+      "end": 269.28
+    },
+    {
+      "word": "summary",
+      "start": 269.28,
+      "end": 269.7
+    },
+    {
+      "word": "of",
+      "start": 269.7,
+      "end": 270.12
+    },
+    {
+      "word": "ordinal",
+      "start": 270.12,
+      "end": 270.54
+    },
+    {
+      "word": "location",
+      "start": 270.54,
+      "end": 270.96
+    },
+    {
+      "word": "and",
+      "start": 270.96,
+      "end": 271.38
+    },
+    {
+      "word": "dispersion",
+      "start": 271.38,
+      "end": 271.8
+    },
+    {
+      "word": "the",
+      "start": 271.8,
+      "end": 272.22
+    },
+    {
+      "word": "central",
+      "start": 272.22,
+      "end": 272.64
+    },
+    {
+      "word": "box",
+      "start": 272.64,
+      "end": 273.06
+    },
+    {
+      "word": "spans",
+      "start": 273.06,
+      "end": 273.48
+    },
+    {
+      "word": "the",
+      "start": 273.48,
+      "end": 273.9
+    },
+    {
+      "word": "first",
+      "start": 273.9,
+      "end": 274.32
+    },
+    {
+      "word": "quartile",
+      "start": 274.32,
+      "end": 274.74
+    },
+    {
+      "word": "q1",
+      "start": 274.74,
+      "end": 275.16
+    },
+    {
+      "word": "to",
+      "start": 275.16,
+      "end": 275.58
+    },
+    {
+      "word": "the",
+      "start": 275.58,
+      "end": 275.99
+    },
+    {
+      "word": "third",
+      "start": 276.0,
+      "end": 276.41
+    },
+    {
+      "word": "quartile",
+      "start": 276.41,
+      "end": 276.83
+    },
+    {
+      "word": "q3",
+      "start": 276.83,
+      "end": 277.25
+    },
+    {
+      "word": "with",
+      "start": 277.25,
+      "end": 277.67
+    },
+    {
+      "word": "the",
+      "start": 277.67,
+      "end": 278.09
+    },
+    {
+      "word": "median",
+      "start": 278.09,
+      "end": 278.51
+    },
+    {
+      "word": "dividing",
+      "start": 278.51,
+      "end": 278.93
+    },
+    {
+      "word": "the",
+      "start": 278.93,
+      "end": 279.35
+    },
+    {
+      "word": "box",
+      "start": 279.35,
+      "end": 279.77
+    },
+    {
+      "word": "a",
+      "start": 279.77,
+      "end": 280.22
+    },
+    {
+      "word": "common",
+      "start": 280.22,
+      "end": 280.68
+    },
+    {
+      "word": "misconception",
+      "start": 280.68,
+      "end": 281.13
+    },
+    {
+      "word": "is",
+      "start": 281.13,
+      "end": 281.58
+    },
+    {
+      "word": "that",
+      "start": 281.58,
+      "end": 282.03
+    },
+    {
+      "word": "boxplot",
+      "start": 282.03,
+      "end": 282.49
+    },
+    {
+      "word": "whiskers",
+      "start": 282.49,
+      "end": 282.94
+    },
+    {
+      "word": "extend",
+      "start": 282.94,
+      "end": 283.39
+    },
+    {
+      "word": "to",
+      "start": 283.39,
+      "end": 283.84
+    },
+    {
+      "word": "the",
+      "start": 283.84,
+      "end": 284.3
+    },
+    {
+      "word": "outer",
+      "start": 284.3,
+      "end": 284.75
+    },
+    {
+      "word": "fence",
+      "start": 284.75,
+      "end": 285.2
+    },
+    {
+      "word": "boundaries",
+      "start": 285.2,
+      "end": 285.65
+    },
+    {
+      "word": "they",
+      "start": 285.65,
+      "end": 286.11
+    },
+    {
+      "word": "do",
+      "start": 286.11,
+      "end": 286.56
+    },
+    {
+      "word": "not",
+      "start": 286.56,
+      "end": 287.01
+    },
+    {
+      "word": "tukey",
+      "start": 287.01,
+      "end": 287.46
+    },
+    {
+      "word": "defined",
+      "start": 287.46,
+      "end": 287.92
+    },
+    {
+      "word": "inner",
+      "start": 287.92,
+      "end": 288.37
+    },
+    {
+      "word": "fences",
+      "start": 288.37,
+      "end": 288.82
+    },
+    {
+      "word": "at",
+      "start": 288.82,
+      "end": 289.28
+    },
+    {
+      "word": "q1",
+      "start": 289.28,
+      "end": 289.73
+    },
+    {
+      "word": "minus",
+      "start": 289.73,
+      "end": 290.18
+    },
+    {
+      "word": "15",
+      "start": 290.18,
+      "end": 290.63
+    },
+    {
+      "word": "times",
+      "start": 290.63,
+      "end": 291.09
+    },
+    {
+      "word": "iqr",
+      "start": 291.09,
+      "end": 291.54
+    },
+    {
+      "word": "and",
+      "start": 291.54,
+      "end": 291.99
+    },
+    {
+      "word": "q3",
+      "start": 291.99,
+      "end": 292.44
+    },
+    {
+      "word": "plus",
+      "start": 292.44,
+      "end": 292.9
+    },
+    {
+      "word": "15",
+      "start": 292.9,
+      "end": 293.35
+    },
+    {
+      "word": "times",
+      "start": 293.35,
+      "end": 293.8
+    },
+    {
+      "word": "iqr",
+      "start": 293.8,
+      "end": 294.25
+    },
+    {
+      "word": "the",
+      "start": 294.25,
+      "end": 294.71
+    },
+    {
+      "word": "whiskers",
+      "start": 294.71,
+      "end": 295.16
+    },
+    {
+      "word": "extend",
+      "start": 295.16,
+      "end": 295.61
+    },
+    {
+      "word": "strictly",
+      "start": 295.61,
+      "end": 296.06
+    },
+    {
+      "word": "to",
+      "start": 296.06,
+      "end": 296.52
+    },
+    {
+      "word": "the",
+      "start": 296.52,
+      "end": 296.97
+    },
+    {
+      "word": "most",
+      "start": 296.97,
+      "end": 297.42
+    },
+    {
+      "word": "extreme",
+      "start": 297.42,
+      "end": 297.88
+    },
+    {
+      "word": "data",
+      "start": 297.88,
+      "end": 298.33
+    },
+    {
+      "word": "points",
+      "start": 298.33,
+      "end": 298.78
+    },
+    {
+      "word": "located",
+      "start": 298.78,
+      "end": 299.23
+    },
+    {
+      "word": "within",
+      "start": 299.23,
+      "end": 299.69
+    },
+    {
+      "word": "those",
+      "start": 299.69,
+      "end": 300.14
+    },
+    {
+      "word": "fences",
+      "start": 300.14,
+      "end": 300.59
+    },
+    {
+      "word": "any",
+      "start": 300.59,
+      "end": 301.04
+    },
+    {
+      "word": "observation",
+      "start": 301.04,
+      "end": 301.5
+    },
+    {
+      "word": "outside",
+      "start": 301.5,
+      "end": 301.95
+    },
+    {
+      "word": "the",
+      "start": 301.95,
+      "end": 302.4
+    },
+    {
+      "word": "fences",
+      "start": 302.4,
+      "end": 302.85
+    },
+    {
+      "word": "is",
+      "start": 302.85,
+      "end": 303.31
+    },
+    {
+      "word": "plotted",
+      "start": 303.31,
+      "end": 303.76
+    },
+    {
+      "word": "individually",
+      "start": 303.76,
+      "end": 304.21
+    },
+    {
+      "word": "as",
+      "start": 304.21,
+      "end": 304.66
+    },
+    {
+      "word": "an",
+      "start": 304.66,
+      "end": 305.12
+    },
+    {
+      "word": "outlier",
+      "start": 305.12,
+      "end": 305.57
+    },
+    {
+      "word": "despite",
+      "start": 305.57,
+      "end": 306.08
+    },
+    {
+      "word": "their",
+      "start": 306.08,
+      "end": 306.6
+    },
+    {
+      "word": "popularity",
+      "start": 306.6,
+      "end": 307.11
+    },
+    {
+      "word": "boxplots",
+      "start": 307.12,
+      "end": 307.63
+    },
+    {
+      "word": "possess",
+      "start": 307.63,
+      "end": 308.14
+    },
+    {
+      "word": "a",
+      "start": 308.14,
+      "end": 308.66
+    },
+    {
+      "word": "dangerous",
+      "start": 308.66,
+      "end": 309.17
+    },
+    {
+      "word": "blindspot",
+      "start": 309.18,
+      "end": 309.69
+    },
+    {
+      "word": "they",
+      "start": 309.69,
+      "end": 310.2
+    },
+    {
+      "word": "encode",
+      "start": 310.2,
+      "end": 310.72
+    },
+    {
+      "word": "only",
+      "start": 310.72,
+      "end": 311.23
+    },
+    {
+      "word": "cumulative",
+      "start": 311.24,
+      "end": 311.75
+    },
+    {
+      "word": "quantiles",
+      "start": 311.75,
+      "end": 312.26
+    },
+    {
+      "word": "leaving",
+      "start": 312.26,
+      "end": 312.78
+    },
+    {
+      "word": "continuous",
+      "start": 312.78,
+      "end": 313.29
+    },
+    {
+      "word": "density",
+      "start": 313.3,
+      "end": 313.81
+    },
+    {
+      "word": "variation",
+      "start": 313.81,
+      "end": 314.32
+    },
+    {
+      "word": "invisible",
+      "start": 314.32,
+      "end": 314.84
+    },
+    {
+      "word": "consider",
+      "start": 314.84,
+      "end": 315.35
+    },
+    {
+      "word": "a",
+      "start": 315.36,
+      "end": 315.87
+    },
+    {
+      "word": "unimodal",
+      "start": 315.87,
+      "end": 316.38
+    },
+    {
+      "word": "gaussian",
+      "start": 316.38,
+      "end": 316.9
+    },
+    {
+      "word": "distribution",
+      "start": 316.9,
+      "end": 317.41
+    },
+    {
+      "word": "and",
+      "start": 317.41,
+      "end": 317.93
+    },
+    {
+      "word": "an",
+      "start": 317.93,
+      "end": 318.44
+    },
+    {
+      "word": "equalweight",
+      "start": 318.44,
+      "end": 318.96
+    },
+    {
+      "word": "bimodal",
+      "start": 318.96,
+      "end": 319.47
+    },
+    {
+      "word": "mixture",
+      "start": 319.47,
+      "end": 319.99
+    },
+    {
+      "word": "with",
+      "start": 319.99,
+      "end": 320.5
+    },
+    {
+      "word": "peaks",
+      "start": 320.5,
+      "end": 321.02
+    },
+    {
+      "word": "at",
+      "start": 321.02,
+      "end": 321.53
+    },
+    {
+      "word": "35",
+      "start": 321.53,
+      "end": 322.05
+    },
+    {
+      "word": "and",
+      "start": 322.05,
+      "end": 322.56
+    },
+    {
+      "word": "65",
+      "start": 322.56,
+      "end": 323.08
+    },
+    {
+      "word": "both",
+      "start": 323.08,
+      "end": 323.59
+    },
+    {
+      "word": "can",
+      "start": 323.59,
+      "end": 324.11
+    },
+    {
+      "word": "possess",
+      "start": 324.11,
+      "end": 324.62
+    },
+    {
+      "word": "the",
+      "start": 324.62,
+      "end": 325.14
+    },
+    {
+      "word": "exact",
+      "start": 325.14,
+      "end": 325.65
+    },
+    {
+      "word": "same",
+      "start": 325.65,
+      "end": 326.17
+    },
+    {
+      "word": "minimum",
+      "start": 326.17,
+      "end": 326.68
+    },
+    {
+      "word": "q1",
+      "start": 326.69,
+      "end": 327.2
+    },
+    {
+      "word": "median",
+      "start": 327.2,
+      "end": 327.71
+    },
+    {
+      "word": "q3",
+      "start": 327.71,
+      "end": 328.23
+    },
+    {
+      "word": "and",
+      "start": 328.23,
+      "end": 328.75
+    },
+    {
+      "word": "maximum",
+      "start": 328.75,
+      "end": 329.26
+    },
+    {
+      "word": "their",
+      "start": 329.26,
+      "end": 329.72
+    },
+    {
+      "word": "boxplots",
+      "start": 329.72,
+      "end": 330.17
+    },
+    {
+      "word": "will",
+      "start": 330.17,
+      "end": 330.63
+    },
+    {
+      "word": "look",
+      "start": 330.63,
+      "end": 331.08
+    },
+    {
+      "word": "identical",
+      "start": 331.08,
+      "end": 331.54
+    },
+    {
+      "word": "a",
+      "start": 331.54,
+      "end": 332.0
+    },
+    {
+      "word": "data",
+      "start": 332.0,
+      "end": 332.45
+    },
+    {
+      "word": "scientist",
+      "start": 332.45,
+      "end": 332.91
+    },
+    {
+      "word": "inspecting",
+      "start": 332.91,
+      "end": 333.36
+    },
+    {
+      "word": "only",
+      "start": 333.36,
+      "end": 333.82
+    },
+    {
+      "word": "the",
+      "start": 333.82,
+      "end": 334.27
+    },
+    {
+      "word": "boxplot",
+      "start": 334.27,
+      "end": 334.73
+    },
+    {
+      "word": "will",
+      "start": 334.73,
+      "end": 335.19
+    },
+    {
+      "word": "completely",
+      "start": 335.19,
+      "end": 335.64
+    },
+    {
+      "word": "miss",
+      "start": 335.64,
+      "end": 336.1
+    },
+    {
+      "word": "the",
+      "start": 336.1,
+      "end": 336.55
+    },
+    {
+      "word": "bimodal",
+      "start": 336.55,
+      "end": 337.01
+    },
+    {
+      "word": "split",
+      "start": 337.01,
+      "end": 337.47
+    },
+    {
+      "word": "to",
+      "start": 337.47,
+      "end": 337.92
+    },
+    {
+      "word": "resolve",
+      "start": 337.92,
+      "end": 338.38
+    },
+    {
+      "word": "this",
+      "start": 338.38,
+      "end": 338.83
+    },
+    {
+      "word": "hintze",
+      "start": 338.83,
+      "end": 339.29
+    },
+    {
+      "word": "and",
+      "start": 339.29,
+      "end": 339.75
+    },
+    {
+      "word": "nelson",
+      "start": 339.75,
+      "end": 340.2
+    },
+    {
+      "word": "developed",
+      "start": 340.2,
+      "end": 340.66
+    },
+    {
+      "word": "the",
+      "start": 340.66,
+      "end": 341.11
+    },
+    {
+      "word": "violin",
+      "start": 341.11,
+      "end": 341.57
+    },
+    {
+      "word": "plot",
+      "start": 341.57,
+      "end": 342.02
+    },
+    {
+      "word": "which",
+      "start": 342.02,
+      "end": 342.48
+    },
+    {
+      "word": "overlays",
+      "start": 342.48,
+      "end": 342.94
+    },
+    {
+      "word": "mirrored",
+      "start": 342.94,
+      "end": 343.39
+    },
+    {
+      "word": "continuous",
+      "start": 343.39,
+      "end": 343.85
+    },
+    {
+      "word": "kernel",
+      "start": 343.85,
+      "end": 344.3
+    },
+    {
+      "word": "density",
+      "start": 344.3,
+      "end": 344.76
+    },
+    {
+      "word": "curves",
+      "start": 344.76,
+      "end": 345.22
+    },
+    {
+      "word": "around",
+      "start": 345.22,
+      "end": 345.67
+    },
+    {
+      "word": "a",
+      "start": 345.67,
+      "end": 346.13
+    },
+    {
+      "word": "miniature",
+      "start": 346.13,
+      "end": 346.58
+    },
+    {
+      "word": "boxplot",
+      "start": 346.58,
+      "end": 347.04
+    },
+    {
+      "word": "core",
+      "start": 347.04,
+      "end": 347.49
+    },
+    {
+      "word": "immediately",
+      "start": 347.49,
+      "end": 347.95
+    },
+    {
+      "word": "exposing",
+      "start": 347.95,
+      "end": 348.41
+    },
+    {
+      "word": "multimodal",
+      "start": 348.41,
+      "end": 348.86
+    },
+    {
+      "word": "valleys",
+      "start": 348.86,
+      "end": 349.32
+    },
+    {
+      "word": "and",
+      "start": 349.32,
+      "end": 349.77
+    },
+    {
+      "word": "peaks",
+      "start": 349.77,
+      "end": 350.23
+    },
+    {
+      "word": "unlike",
+      "start": 350.23,
+      "end": 350.7
+    },
+    {
+      "word": "histograms",
+      "start": 350.7,
+      "end": 351.16
+    },
+    {
+      "word": "and",
+      "start": 351.16,
+      "end": 351.63
+    },
+    {
+      "word": "kdes",
+      "start": 351.63,
+      "end": 352.1
+    },
+    {
+      "word": "which",
+      "start": 352.1,
+      "end": 352.57
+    },
+    {
+      "word": "require",
+      "start": 352.57,
+      "end": 353.03
+    },
+    {
+      "word": "choosing",
+      "start": 353.03,
+      "end": 353.5
+    },
+    {
+      "word": "bin",
+      "start": 353.5,
+      "end": 353.97
+    },
+    {
+      "word": "widths",
+      "start": 353.97,
+      "end": 354.43
+    },
+    {
+      "word": "or",
+      "start": 354.43,
+      "end": 354.9
+    },
+    {
+      "word": "bandwidths",
+      "start": 354.9,
+      "end": 355.37
+    },
+    {
+      "word": "the",
+      "start": 355.37,
+      "end": 355.84
+    },
+    {
+      "word": "empirical",
+      "start": 355.84,
+      "end": 356.3
+    },
+    {
+      "word": "cumulative",
+      "start": 356.3,
+      "end": 356.77
+    },
+    {
+      "word": "distribution",
+      "start": 356.77,
+      "end": 357.24
+    },
+    {
+      "word": "function",
+      "start": 357.24,
+      "end": 357.71
+    },
+    {
+      "word": "requires",
+      "start": 357.71,
+      "end": 358.17
+    },
+    {
+      "word": "zero",
+      "start": 358.17,
+      "end": 358.64
+    },
+    {
+      "word": "tuning",
+      "start": 358.64,
+      "end": 359.11
+    },
+    {
+      "word": "parameters",
+      "start": 359.11,
+      "end": 359.57
+    },
+    {
+      "word": "every",
+      "start": 359.57,
+      "end": 360.04
+    },
+    {
+      "word": "single",
+      "start": 360.04,
+      "end": 360.51
+    },
+    {
+      "word": "observation",
+      "start": 360.51,
+      "end": 360.98
+    },
+    {
+      "word": "contributes",
+      "start": 360.98,
+      "end": 361.44
+    },
+    {
+      "word": "an",
+      "start": 361.44,
+      "end": 361.91
+    },
+    {
+      "word": "exact",
+      "start": 361.91,
+      "end": 362.38
+    },
+    {
+      "word": "step",
+      "start": 362.38,
+      "end": 362.84
+    },
+    {
+      "word": "of",
+      "start": 362.84,
+      "end": 363.31
+    },
+    {
+      "word": "size",
+      "start": 363.31,
+      "end": 363.78
+    },
+    {
+      "word": "1",
+      "start": 363.78,
+      "end": 364.25
+    },
+    {
+      "word": "over",
+      "start": 364.25,
+      "end": 364.71
+    },
+    {
+      "word": "n",
+      "start": 364.71,
+      "end": 365.18
+    },
+    {
+      "word": "by",
+      "start": 365.18,
+      "end": 365.62
+    },
+    {
+      "word": "the",
+      "start": 365.62,
+      "end": 366.06
+    },
+    {
+      "word": "glivenkocantelli",
+      "start": 366.06,
+      "end": 366.5
+    },
+    {
+      "word": "theorem",
+      "start": 366.5,
+      "end": 366.94
+    },
+    {
+      "word": "the",
+      "start": 366.94,
+      "end": 367.38
+    },
+    {
+      "word": "empirical",
+      "start": 367.38,
+      "end": 367.81
+    },
+    {
+      "word": "cdf",
+      "start": 367.81,
+      "end": 368.25
+    },
+    {
+      "word": "converges",
+      "start": 368.25,
+      "end": 368.69
+    },
+    {
+      "word": "uniformly",
+      "start": 368.69,
+      "end": 369.13
+    },
+    {
+      "word": "almost",
+      "start": 369.13,
+      "end": 369.57
+    },
+    {
+      "word": "surely",
+      "start": 369.57,
+      "end": 370.01
+    },
+    {
+      "word": "to",
+      "start": 370.01,
+      "end": 370.45
+    },
+    {
+      "word": "the",
+      "start": 370.45,
+      "end": 370.89
+    },
+    {
+      "word": "true",
+      "start": 370.89,
+      "end": 371.33
+    },
+    {
+      "word": "latent",
+      "start": 371.33,
+      "end": 371.77
+    },
+    {
+      "word": "cdf",
+      "start": 371.77,
+      "end": 372.2
+    },
+    {
+      "word": "furthermore",
+      "start": 372.2,
+      "end": 372.64
+    },
+    {
+      "word": "the",
+      "start": 372.64,
+      "end": 373.08
+    },
+    {
+      "word": "dvoretzkykieferwolfowitz",
+      "start": 373.08,
+      "end": 373.52
+    },
+    {
+      "word": "inequality",
+      "start": 373.52,
+      "end": 373.96
+    },
+    {
+      "word": "with",
+      "start": 373.96,
+      "end": 374.4
+    },
+    {
+      "word": "massarts",
+      "start": 374.4,
+      "end": 374.84
+    },
+    {
+      "word": "tight",
+      "start": 374.84,
+      "end": 375.28
+    },
+    {
+      "word": "constant",
+      "start": 375.28,
+      "end": 375.72
+    },
+    {
+      "word": "allows",
+      "start": 375.72,
+      "end": 376.16
+    },
+    {
+      "word": "us",
+      "start": 376.16,
+      "end": 376.59
+    },
+    {
+      "word": "to",
+      "start": 376.59,
+      "end": 377.03
+    },
+    {
+      "word": "compute",
+      "start": 377.03,
+      "end": 377.47
+    },
+    {
+      "word": "exact",
+      "start": 377.47,
+      "end": 377.91
+    },
+    {
+      "word": "nonparametric",
+      "start": 377.91,
+      "end": 378.35
+    },
+    {
+      "word": "uniform",
+      "start": 378.35,
+      "end": 378.79
+    },
+    {
+      "word": "confidence",
+      "start": 378.79,
+      "end": 379.23
+    },
+    {
+      "word": "bands",
+      "start": 379.23,
+      "end": 379.67
+    },
+    {
+      "word": "with",
+      "start": 379.67,
+      "end": 380.11
+    },
+    {
+      "word": "margin",
+      "start": 380.11,
+      "end": 380.55
+    },
+    {
+      "word": "epsilon",
+      "start": 380.55,
+      "end": 380.99
+    },
+    {
+      "word": "equal",
+      "start": 380.99,
+      "end": 381.42
+    },
+    {
+      "word": "to",
+      "start": 381.42,
+      "end": 381.86
+    },
+    {
+      "word": "the",
+      "start": 381.86,
+      "end": 382.3
+    },
+    {
+      "word": "square",
+      "start": 382.3,
+      "end": 382.74
+    },
+    {
+      "word": "root",
+      "start": 382.74,
+      "end": 383.18
+    },
+    {
+      "word": "of",
+      "start": 383.18,
+      "end": 383.62
+    },
+    {
+      "word": "natural",
+      "start": 383.62,
+      "end": 384.06
+    },
+    {
+      "word": "log",
+      "start": 384.06,
+      "end": 384.5
+    },
+    {
+      "word": "of",
+      "start": 384.5,
+      "end": 384.94
+    },
+    {
+      "word": "2",
+      "start": 384.94,
+      "end": 385.38
+    },
+    {
+      "word": "over",
+      "start": 385.38,
+      "end": 385.81
+    },
+    {
+      "word": "alpha",
+      "start": 385.81,
+      "end": 386.25
+    },
+    {
+      "word": "divided",
+      "start": 386.25,
+      "end": 386.69
+    },
+    {
+      "word": "by",
+      "start": 386.69,
+      "end": 387.13
+    },
+    {
+      "word": "2n",
+      "start": 387.13,
+      "end": 387.57
+    },
+    {
+      "word": "the",
+      "start": 387.57,
+      "end": 388.01
+    },
+    {
+      "word": "true",
+      "start": 388.01,
+      "end": 388.45
+    },
+    {
+      "word": "cdf",
+      "start": 388.45,
+      "end": 388.89
+    },
+    {
+      "word": "is",
+      "start": 388.89,
+      "end": 389.33
+    },
+    {
+      "word": "guaranteed",
+      "start": 389.33,
+      "end": 389.77
+    },
+    {
+      "word": "to",
+      "start": 389.77,
+      "end": 390.2
+    },
+    {
+      "word": "lie",
+      "start": 390.2,
+      "end": 390.64
+    },
+    {
+      "word": "entirely",
+      "start": 390.64,
+      "end": 391.08
+    },
+    {
+      "word": "within",
+      "start": 391.08,
+      "end": 391.52
+    },
+    {
+      "word": "the",
+      "start": 391.52,
+      "end": 391.96
+    },
+    {
+      "word": "band",
+      "start": 391.96,
+      "end": 392.4
+    },
+    {
+      "word": "when",
+      "start": 392.4,
+      "end": 392.86
+    },
+    {
+      "word": "moving",
+      "start": 392.86,
+      "end": 393.31
+    },
+    {
+      "word": "from",
+      "start": 393.31,
+      "end": 393.77
+    },
+    {
+      "word": "univariate",
+      "start": 393.77,
+      "end": 394.22
+    },
+    {
+      "word": "to",
+      "start": 394.22,
+      "end": 394.68
+    },
+    {
+      "word": "bivariate",
+      "start": 394.68,
+      "end": 395.14
+    },
+    {
+      "word": "analysis",
+      "start": 395.14,
+      "end": 395.59
+    },
+    {
+      "word": "scatter",
+      "start": 395.59,
+      "end": 396.05
+    },
+    {
+      "word": "plots",
+      "start": 396.05,
+      "end": 396.5
+    },
+    {
+      "word": "are",
+      "start": 396.5,
+      "end": 396.96
+    },
+    {
+      "word": "the",
+      "start": 396.96,
+      "end": 397.42
+    },
+    {
+      "word": "classical",
+      "start": 397.42,
+      "end": 397.87
+    },
+    {
+      "word": "tool",
+      "start": 397.87,
+      "end": 398.33
+    },
+    {
+      "word": "for",
+      "start": 398.33,
+      "end": 398.78
+    },
+    {
+      "word": "paired",
+      "start": 398.78,
+      "end": 399.24
+    },
+    {
+      "word": "continuous",
+      "start": 399.24,
+      "end": 399.7
+    },
+    {
+      "word": "variables",
+      "start": 399.7,
+      "end": 400.15
+    },
+    {
+      "word": "x",
+      "start": 400.15,
+      "end": 400.61
+    },
+    {
+      "word": "and",
+      "start": 400.61,
+      "end": 401.07
+    },
+    {
+      "word": "y",
+      "start": 401.07,
+      "end": 401.52
+    },
+    {
+      "word": "however",
+      "start": 401.52,
+      "end": 401.98
+    },
+    {
+      "word": "scatter",
+      "start": 401.98,
+      "end": 402.43
+    },
+    {
+      "word": "plots",
+      "start": 402.43,
+      "end": 402.89
+    },
+    {
+      "word": "collapse",
+      "start": 402.89,
+      "end": 403.35
+    },
+    {
+      "word": "catastrophically",
+      "start": 403.35,
+      "end": 403.8
+    },
+    {
+      "word": "when",
+      "start": 403.8,
+      "end": 404.26
+    },
+    {
+      "word": "sample",
+      "start": 404.26,
+      "end": 404.71
+    },
+    {
+      "word": "size",
+      "start": 404.71,
+      "end": 405.17
+    },
+    {
+      "word": "n",
+      "start": 405.17,
+      "end": 405.63
+    },
+    {
+      "word": "exceeds",
+      "start": 405.63,
+      "end": 406.08
+    },
+    {
+      "word": "ten",
+      "start": 406.08,
+      "end": 406.54
+    },
+    {
+      "word": "thousand",
+      "start": 406.54,
+      "end": 406.99
+    },
+    {
+      "word": "points",
+      "start": 406.99,
+      "end": 407.45
+    },
+    {
+      "word": "this",
+      "start": 407.45,
+      "end": 407.94
+    },
+    {
+      "word": "failure",
+      "start": 407.94,
+      "end": 408.44
+    },
+    {
+      "word": "mode",
+      "start": 408.44,
+      "end": 408.93
+    },
+    {
+      "word": "is",
+      "start": 408.93,
+      "end": 409.43
+    },
+    {
+      "word": "overplotting",
+      "start": 409.43,
+      "end": 409.92
+    },
+    {
+      "word": "data",
+      "start": 409.92,
+      "end": 410.42
+    },
+    {
+      "word": "points",
+      "start": 410.42,
+      "end": 410.91
+    },
+    {
+      "word": "saturate",
+      "start": 410.91,
+      "end": 411.41
+    },
+    {
+      "word": "the",
+      "start": 411.41,
+      "end": 411.9
+    },
+    {
+      "word": "screen",
+      "start": 411.9,
+      "end": 412.4
+    },
+    {
+      "word": "into",
+      "start": 412.4,
+      "end": 412.89
+    },
+    {
+      "word": "solid",
+      "start": 412.89,
+      "end": 413.38
+    },
+    {
+      "word": "black",
+      "start": 413.38,
+      "end": 413.88
+    },
+    {
+      "word": "ink",
+      "start": 413.88,
+      "end": 414.37
+    },
+    {
+      "word": "a",
+      "start": 414.37,
+      "end": 414.87
+    },
+    {
+      "word": "region",
+      "start": 414.87,
+      "end": 415.36
+    },
+    {
+      "word": "containing",
+      "start": 415.36,
+      "end": 415.86
+    },
+    {
+      "word": "fifty",
+      "start": 415.86,
+      "end": 416.35
+    },
+    {
+      "word": "overlapping",
+      "start": 416.35,
+      "end": 416.85
+    },
+    {
+      "word": "points",
+      "start": 416.85,
+      "end": 417.34
+    },
+    {
+      "word": "becomes",
+      "start": 417.34,
+      "end": 417.84
+    },
+    {
+      "word": "visually",
+      "start": 417.84,
+      "end": 418.33
+    },
+    {
+      "word": "indistinguishable",
+      "start": 418.33,
+      "end": 418.83
+    },
+    {
+      "word": "from",
+      "start": 418.83,
+      "end": 419.32
+    },
+    {
+      "word": "a",
+      "start": 419.32,
+      "end": 419.81
+    },
+    {
+      "word": "region",
+      "start": 419.81,
+      "end": 420.31
+    },
+    {
+      "word": "containing",
+      "start": 420.31,
+      "end": 420.8
+    },
+    {
+      "word": "fifty",
+      "start": 420.8,
+      "end": 421.3
+    },
+    {
+      "word": "thousand",
+      "start": 421.3,
+      "end": 421.79
+    },
+    {
+      "word": "points",
+      "start": 421.79,
+      "end": 422.29
+    },
+    {
+      "word": "to",
+      "start": 422.29,
+      "end": 422.78
+    },
+    {
+      "word": "overcome",
+      "start": 422.78,
+      "end": 423.28
+    },
+    {
+      "word": "overplotting",
+      "start": 423.28,
+      "end": 423.77
+    },
+    {
+      "word": "we",
+      "start": 423.77,
+      "end": 424.27
+    },
+    {
+      "word": "employ",
+      "start": 424.27,
+      "end": 424.76
+    },
+    {
+      "word": "alpha",
+      "start": 424.76,
+      "end": 425.25
+    },
+    {
+      "word": "blending",
+      "start": 425.25,
+      "end": 425.75
+    },
+    {
+      "word": "2d",
+      "start": 425.75,
+      "end": 426.24
+    },
+    {
+      "word": "density",
+      "start": 426.24,
+      "end": 426.74
+    },
+    {
+      "word": "contours",
+      "start": 426.74,
+      "end": 427.23
+    },
+    {
+      "word": "or",
+      "start": 427.23,
+      "end": 427.73
+    },
+    {
+      "word": "2d",
+      "start": 427.73,
+      "end": 428.22
+    },
+    {
+      "word": "hexagonal",
+      "start": 428.22,
+      "end": 428.72
+    },
+    {
+      "word": "binning",
+      "start": 428.72,
+      "end": 429.21
+    },
+    {
+      "word": "hexbins",
+      "start": 429.21,
+      "end": 429.71
+    },
+    {
+      "word": "partition",
+      "start": 429.71,
+      "end": 430.2
+    },
+    {
+      "word": "the",
+      "start": 430.2,
+      "end": 430.7
+    },
+    {
+      "word": "plane",
+      "start": 430.7,
+      "end": 431.19
+    },
+    {
+      "word": "into",
+      "start": 431.19,
+      "end": 431.68
+    },
+    {
+      "word": "regular",
+      "start": 431.68,
+      "end": 432.18
+    },
+    {
+      "word": "hexagons",
+      "start": 432.18,
+      "end": 432.67
+    },
+    {
+      "word": "which",
+      "start": 432.67,
+      "end": 433.17
+    },
+    {
+      "word": "have",
+      "start": 433.17,
+      "end": 433.66
+    },
+    {
+      "word": "six",
+      "start": 433.66,
+      "end": 434.16
+    },
+    {
+      "word": "equidistant",
+      "start": 434.16,
+      "end": 434.65
+    },
+    {
+      "word": "neighbors",
+      "start": 434.65,
+      "end": 435.15
+    },
+    {
+      "word": "minimizing",
+      "start": 435.15,
+      "end": 435.64
+    },
+    {
+      "word": "orientation",
+      "start": 435.64,
+      "end": 436.14
+    },
+    {
+      "word": "artifacts",
+      "start": 436.14,
+      "end": 436.63
+    },
+    {
+      "word": "welcome",
+      "start": 436.63,
+      "end": 437.08
+    },
+    {
+      "word": "to",
+      "start": 437.08,
+      "end": 437.54
+    },
+    {
+      "word": "the",
+      "start": 437.54,
+      "end": 437.99
+    },
+    {
+      "word": "bivariate",
+      "start": 437.99,
+      "end": 438.45
+    },
+    {
+      "word": "overplotting",
+      "start": 438.45,
+      "end": 438.9
+    },
+    {
+      "word": "and",
+      "start": 438.9,
+      "end": 439.35
+    },
+    {
+      "word": "hexbinning",
+      "start": 439.35,
+      "end": 439.81
+    },
+    {
+      "word": "workbench",
+      "start": 439.81,
+      "end": 440.26
+    },
+    {
+      "word": "in",
+      "start": 440.26,
+      "end": 440.72
+    },
+    {
+      "word": "this",
+      "start": 440.72,
+      "end": 441.17
+    },
+    {
+      "word": "laboratory",
+      "start": 441.17,
+      "end": 441.62
+    },
+    {
+      "word": "you",
+      "start": 441.62,
+      "end": 442.08
+    },
+    {
+      "word": "can",
+      "start": 442.08,
+      "end": 442.53
+    },
+    {
+      "word": "scale",
+      "start": 442.53,
+      "end": 442.99
+    },
+    {
+      "word": "sample",
+      "start": 442.99,
+      "end": 443.44
+    },
+    {
+      "word": "size",
+      "start": 443.44,
+      "end": 443.89
+    },
+    {
+      "word": "from",
+      "start": 443.89,
+      "end": 444.35
+    },
+    {
+      "word": "500",
+      "start": 444.35,
+      "end": 444.8
+    },
+    {
+      "word": "up",
+      "start": 444.8,
+      "end": 445.25
+    },
+    {
+      "word": "to",
+      "start": 445.25,
+      "end": 445.71
+    },
+    {
+      "word": "5000",
+      "start": 445.71,
+      "end": 446.16
+    },
+    {
+      "word": "points",
+      "start": 446.16,
+      "end": 446.62
+    },
+    {
+      "word": "and",
+      "start": 446.62,
+      "end": 447.07
+    },
+    {
+      "word": "toggle",
+      "start": 447.07,
+      "end": 447.52
+    },
+    {
+      "word": "between",
+      "start": 447.52,
+      "end": 447.98
+    },
+    {
+      "word": "raw",
+      "start": 447.98,
+      "end": 448.43
+    },
+    {
+      "word": "scatter",
+      "start": 448.43,
+      "end": 448.89
+    },
+    {
+      "word": "alpha",
+      "start": 448.89,
+      "end": 449.34
+    },
+    {
+      "word": "transparency",
+      "start": 449.34,
+      "end": 449.79
+    },
+    {
+      "word": "and",
+      "start": 449.79,
+      "end": 450.25
+    },
+    {
+      "word": "2d",
+      "start": 450.25,
+      "end": 450.7
+    },
+    {
+      "word": "hexagonal",
+      "start": 450.7,
+      "end": 451.16
+    },
+    {
+      "word": "binning",
+      "start": 451.16,
+      "end": 451.61
+    },
+    {
+      "word": "observe",
+      "start": 451.61,
+      "end": 452.02
+    },
+    {
+      "word": "how",
+      "start": 452.02,
+      "end": 452.42
+    },
+    {
+      "word": "raw",
+      "start": 452.42,
+      "end": 452.83
+    },
+    {
+      "word": "scatter",
+      "start": 452.83,
+      "end": 453.23
+    },
+    {
+      "word": "saturates",
+      "start": 453.23,
+      "end": 453.64
+    },
+    {
+      "word": "into",
+      "start": 453.64,
+      "end": 454.05
+    },
+    {
+      "word": "an",
+      "start": 454.05,
+      "end": 454.45
+    },
+    {
+      "word": "undifferentiated",
+      "start": 454.45,
+      "end": 454.86
+    },
+    {
+      "word": "block",
+      "start": 454.86,
+      "end": 455.26
+    },
+    {
+      "word": "of",
+      "start": 455.26,
+      "end": 455.67
+    },
+    {
+      "word": "points",
+      "start": 455.67,
+      "end": 456.08
+    },
+    {
+      "word": "switch",
+      "start": 456.08,
+      "end": 456.48
+    },
+    {
+      "word": "to",
+      "start": 456.48,
+      "end": 456.89
+    },
+    {
+      "word": "2d",
+      "start": 456.89,
+      "end": 457.29
+    },
+    {
+      "word": "hexbin",
+      "start": 457.29,
+      "end": 457.7
+    },
+    {
+      "word": "to",
+      "start": 457.7,
+      "end": 458.11
+    },
+    {
+      "word": "see",
+      "start": 458.11,
+      "end": 458.51
+    },
+    {
+      "word": "the",
+      "start": 458.51,
+      "end": 458.92
+    },
+    {
+      "word": "density",
+      "start": 458.92,
+      "end": 459.32
+    },
+    {
+      "word": "surface",
+      "start": 459.32,
+      "end": 459.73
+    },
+    {
+      "word": "pop",
+      "start": 459.73,
+      "end": 460.14
+    },
+    {
+      "word": "into",
+      "start": 460.14,
+      "end": 460.54
+    },
+    {
+      "word": "vivid",
+      "start": 460.54,
+      "end": 460.95
+    },
+    {
+      "word": "logarithmic",
+      "start": 460.95,
+      "end": 461.35
+    },
+    {
+      "word": "color",
+      "start": 461.35,
+      "end": 461.76
+    },
+    {
+      "word": "then",
+      "start": 461.76,
+      "end": 462.16
+    },
+    {
+      "word": "inject",
+      "start": 462.16,
+      "end": 462.57
+    },
+    {
+      "word": "leverage",
+      "start": 462.57,
+      "end": 462.98
+    },
+    {
+      "word": "outliers",
+      "start": 462.98,
+      "end": 463.38
+    },
+    {
+      "word": "or",
+      "start": 463.38,
+      "end": 463.79
+    },
+    {
+      "word": "select",
+      "start": 463.79,
+      "end": 464.19
+    },
+    {
+      "word": "exponential",
+      "start": 464.19,
+      "end": 464.6
+    },
+    {
+      "word": "nonlinear",
+      "start": 464.6,
+      "end": 465.01
+    },
+    {
+      "word": "data",
+      "start": 465.01,
+      "end": 465.41
+    },
+    {
+      "word": "to",
+      "start": 465.41,
+      "end": 465.82
+    },
+    {
+      "word": "compare",
+      "start": 465.82,
+      "end": 466.22
+    },
+    {
+      "word": "pearson",
+      "start": 466.22,
+      "end": 466.63
+    },
+    {
+      "word": "r",
+      "start": 466.63,
+      "end": 467.04
+    },
+    {
+      "word": "with",
+      "start": 467.04,
+      "end": 467.44
+    },
+    {
+      "word": "spearman",
+      "start": 467.44,
+      "end": 467.85
+    },
+    {
+      "word": "rank",
+      "start": 467.85,
+      "end": 468.25
+    },
+    {
+      "word": "rho",
+      "start": 468.25,
+      "end": 468.66
+    },
+    {
+      "word": "in",
+      "start": 468.66,
+      "end": 469.07
+    },
+    {
+      "word": "the",
+      "start": 469.07,
+      "end": 469.47
+    },
+    {
+      "word": "live",
+      "start": 469.47,
+      "end": 469.88
+    },
+    {
+      "word": "telemetry",
+      "start": 469.88,
+      "end": 470.28
+    },
+    {
+      "word": "panel",
+      "start": 470.28,
+      "end": 470.69
+    },
+    {
+      "word": "active",
+      "start": 470.69,
+      "end": 471.19
+    },
+    {
+      "word": "checkpoint",
+      "start": 471.19,
+      "end": 471.69
+    },
+    {
+      "word": "2",
+      "start": 471.69,
+      "end": 472.19
+    },
+    {
+      "word": "consider",
+      "start": 472.19,
+      "end": 472.69
+    },
+    {
+      "word": "bivariate",
+      "start": 472.69,
+      "end": 473.19
+    },
+    {
+      "word": "data",
+      "start": 473.19,
+      "end": 473.69
+    },
+    {
+      "word": "with",
+      "start": 473.69,
+      "end": 474.19
+    },
+    {
+      "word": "pearson",
+      "start": 474.19,
+      "end": 474.69
+    },
+    {
+      "word": "r",
+      "start": 474.69,
+      "end": 475.19
+    },
+    {
+      "word": "of",
+      "start": 475.19,
+      "end": 475.7
+    },
+    {
+      "word": "082",
+      "start": 475.7,
+      "end": 476.2
+    },
+    {
+      "word": "spearman",
+      "start": 476.2,
+      "end": 476.7
+    },
+    {
+      "word": "rho",
+      "start": 476.7,
+      "end": 477.2
+    },
+    {
+      "word": "of",
+      "start": 477.2,
+      "end": 477.7
+    },
+    {
+      "word": "098",
+      "start": 477.7,
+      "end": 478.2
+    },
+    {
+      "word": "and",
+      "start": 478.2,
+      "end": 478.7
+    },
+    {
+      "word": "kendall",
+      "start": 478.7,
+      "end": 479.2
+    },
+    {
+      "word": "tau",
+      "start": 479.2,
+      "end": 479.7
+    },
+    {
+      "word": "of",
+      "start": 479.7,
+      "end": 480.2
+    },
+    {
+      "word": "094",
+      "start": 480.2,
+      "end": 480.7
+    },
+    {
+      "word": "if",
+      "start": 480.7,
+      "end": 481.2
+    },
+    {
+      "word": "the",
+      "start": 481.2,
+      "end": 481.7
+    },
+    {
+      "word": "response",
+      "start": 481.7,
+      "end": 482.2
+    },
+    {
+      "word": "feature",
+      "start": 482.2,
+      "end": 482.7
+    },
+    {
+      "word": "is",
+      "start": 482.7,
+      "end": 483.2
+    },
+    {
+      "word": "transformed",
+      "start": 483.2,
+      "end": 483.7
+    },
+    {
+      "word": "by",
+      "start": 483.7,
+      "end": 484.2
+    },
+    {
+      "word": "taking",
+      "start": 484.2,
+      "end": 484.71
+    },
+    {
+      "word": "its",
+      "start": 484.71,
+      "end": 485.21
+    },
+    {
+      "word": "natural",
+      "start": 485.21,
+      "end": 485.71
+    },
+    {
+      "word": "exponential",
+      "start": 485.71,
+      "end": 486.21
+    },
+    {
+      "word": "how",
+      "start": 486.21,
+      "end": 486.71
+    },
+    {
+      "word": "will",
+      "start": 486.71,
+      "end": 487.21
+    },
+    {
+      "word": "each",
+      "start": 487.21,
+      "end": 487.71
+    },
+    {
+      "word": "metric",
+      "start": 487.71,
+      "end": 488.21
+    },
+    {
+      "word": "respond",
+      "start": 488.21,
+      "end": 488.71
+    },
+    {
+      "word": "to",
+      "start": 488.71,
+      "end": 489.24
+    },
+    {
+      "word": "rigorously",
+      "start": 489.24,
+      "end": 489.77
+    },
+    {
+      "word": "quantify",
+      "start": 489.77,
+      "end": 490.31
+    },
+    {
+      "word": "bivariate",
+      "start": 490.31,
+      "end": 490.84
+    },
+    {
+      "word": "associations",
+      "start": 490.84,
+      "end": 491.37
+    },
+    {
+      "word": "statisticians",
+      "start": 491.37,
+      "end": 491.9
+    },
+    {
+      "word": "rely",
+      "start": 491.9,
+      "end": 492.44
+    },
+    {
+      "word": "on",
+      "start": 492.44,
+      "end": 492.97
+    },
+    {
+      "word": "three",
+      "start": 492.97,
+      "end": 493.5
+    },
+    {
+      "word": "distinct",
+      "start": 493.5,
+      "end": 494.03
+    },
+    {
+      "word": "metrics",
+      "start": 494.03,
+      "end": 494.56
+    },
+    {
+      "word": "pearson",
+      "start": 494.56,
+      "end": 495.1
+    },
+    {
+      "word": "productmoment",
+      "start": 495.1,
+      "end": 495.63
+    },
+    {
+      "word": "r",
+      "start": 495.63,
+      "end": 496.16
+    },
+    {
+      "word": "spearman",
+      "start": 496.16,
+      "end": 496.69
+    },
+    {
+      "word": "rankorder",
+      "start": 496.69,
+      "end": 497.23
+    },
+    {
+      "word": "rho",
+      "start": 497.23,
+      "end": 497.76
+    },
+    {
+      "word": "and",
+      "start": 497.76,
+      "end": 498.29
+    },
+    {
+      "word": "kendall",
+      "start": 498.29,
+      "end": 498.82
+    },
+    {
+      "word": "rank",
+      "start": 498.82,
+      "end": 499.36
+    },
+    {
+      "word": "concordance",
+      "start": 499.36,
+      "end": 499.89
+    },
+    {
+      "word": "tau",
+      "start": 499.89,
+      "end": 500.42
+    },
+    {
+      "word": "pearson",
+      "start": 500.42,
+      "end": 500.87
+    },
+    {
+      "word": "r",
+      "start": 500.87,
+      "end": 501.32
+    },
+    {
+      "word": "measures",
+      "start": 501.32,
+      "end": 501.77
+    },
+    {
+      "word": "strictly",
+      "start": 501.77,
+      "end": 502.22
+    },
+    {
+      "word": "linear",
+      "start": 502.22,
+      "end": 502.67
+    },
+    {
+      "word": "covariance",
+      "start": 502.67,
+      "end": 503.12
+    },
+    {
+      "word": "and",
+      "start": 503.12,
+      "end": 503.57
+    },
+    {
+      "word": "is",
+      "start": 503.57,
+      "end": 504.02
+    },
+    {
+      "word": "invariant",
+      "start": 504.02,
+      "end": 504.47
+    },
+    {
+      "word": "only",
+      "start": 504.47,
+      "end": 504.92
+    },
+    {
+      "word": "under",
+      "start": 504.92,
+      "end": 505.37
+    },
+    {
+      "word": "affine",
+      "start": 505.37,
+      "end": 505.82
+    },
+    {
+      "word": "transformations",
+      "start": 505.82,
+      "end": 506.27
+    },
+    {
+      "word": "it",
+      "start": 506.27,
+      "end": 506.72
+    },
+    {
+      "word": "has",
+      "start": 506.72,
+      "end": 507.17
+    },
+    {
+      "word": "a",
+      "start": 507.17,
+      "end": 507.62
+    },
+    {
+      "word": "zero",
+      "start": 507.62,
+      "end": 508.07
+    },
+    {
+      "word": "percent",
+      "start": 508.07,
+      "end": 508.52
+    },
+    {
+      "word": "breakdown",
+      "start": 508.52,
+      "end": 508.97
+    },
+    {
+      "word": "point",
+      "start": 508.97,
+      "end": 509.42
+    },
+    {
+      "word": "a",
+      "start": 509.42,
+      "end": 509.87
+    },
+    {
+      "word": "single",
+      "start": 509.87,
+      "end": 510.32
+    },
+    {
+      "word": "distant",
+      "start": 510.32,
+      "end": 510.77
+    },
+    {
+      "word": "point",
+      "start": 510.77,
+      "end": 511.22
+    },
+    {
+      "word": "can",
+      "start": 511.22,
+      "end": 511.67
+    },
+    {
+      "word": "flip",
+      "start": 511.67,
+      "end": 512.12
+    },
+    {
+      "word": "r",
+      "start": 512.12,
+      "end": 512.57
+    },
+    {
+      "word": "from",
+      "start": 512.57,
+      "end": 513.02
+    },
+    {
+      "word": "positive",
+      "start": 513.02,
+      "end": 513.47
+    },
+    {
+      "word": "to",
+      "start": 513.47,
+      "end": 513.92
+    },
+    {
+      "word": "negative",
+      "start": 513.92,
+      "end": 514.37
+    },
+    {
+      "word": "spearman",
+      "start": 514.37,
+      "end": 514.82
+    },
+    {
+      "word": "rho",
+      "start": 514.82,
+      "end": 515.27
+    },
+    {
+      "word": "converts",
+      "start": 515.27,
+      "end": 515.72
+    },
+    {
+      "word": "observations",
+      "start": 515.72,
+      "end": 516.16
+    },
+    {
+      "word": "to",
+      "start": 516.16,
+      "end": 516.61
+    },
+    {
+      "word": "integer",
+      "start": 516.61,
+      "end": 517.06
+    },
+    {
+      "word": "ranks",
+      "start": 517.06,
+      "end": 517.51
+    },
+    {
+      "word": "making",
+      "start": 517.51,
+      "end": 517.96
+    },
+    {
+      "word": "it",
+      "start": 517.96,
+      "end": 518.41
+    },
+    {
+      "word": "invariant",
+      "start": 518.41,
+      "end": 518.86
+    },
+    {
+      "word": "under",
+      "start": 518.86,
+      "end": 519.31
+    },
+    {
+      "word": "all",
+      "start": 519.31,
+      "end": 519.76
+    },
+    {
+      "word": "strictly",
+      "start": 519.76,
+      "end": 520.21
+    },
+    {
+      "word": "monotonic",
+      "start": 520.21,
+      "end": 520.66
+    },
+    {
+      "word": "transformations",
+      "start": 520.66,
+      "end": 521.11
+    },
+    {
+      "word": "kendall",
+      "start": 521.11,
+      "end": 521.56
+    },
+    {
+      "word": "tau",
+      "start": 521.56,
+      "end": 522.01
+    },
+    {
+      "word": "directly",
+      "start": 522.01,
+      "end": 522.46
+    },
+    {
+      "word": "measures",
+      "start": 522.46,
+      "end": 522.91
+    },
+    {
+      "word": "the",
+      "start": 522.91,
+      "end": 523.36
+    },
+    {
+      "word": "difference",
+      "start": 523.36,
+      "end": 523.81
+    },
+    {
+      "word": "between",
+      "start": 523.81,
+      "end": 524.26
+    },
+    {
+      "word": "concordant",
+      "start": 524.26,
+      "end": 524.71
+    },
+    {
+      "word": "and",
+      "start": 524.71,
+      "end": 525.16
+    },
+    {
+      "word": "discordant",
+      "start": 525.16,
+      "end": 525.61
+    },
+    {
+      "word": "pair",
+      "start": 525.61,
+      "end": 526.06
+    },
+    {
+      "word": "probabilities",
+      "start": 526.06,
+      "end": 526.51
+    },
+    {
+      "word": "providing",
+      "start": 526.51,
+      "end": 526.96
+    },
+    {
+      "word": "unbiased",
+      "start": 526.96,
+      "end": 527.41
+    },
+    {
+      "word": "hypothesis",
+      "start": 527.41,
+      "end": 527.86
+    },
+    {
+      "word": "testing",
+      "start": 527.86,
+      "end": 528.31
+    },
+    {
+      "word": "and",
+      "start": 528.31,
+      "end": 528.76
+    },
+    {
+      "word": "rapid",
+      "start": 528.76,
+      "end": 529.21
+    },
+    {
+      "word": "normal",
+      "start": 529.21,
+      "end": 529.66
+    },
+    {
+      "word": "convergence",
+      "start": 529.66,
+      "end": 530.11
+    },
+    {
+      "word": "in",
+      "start": 530.11,
+      "end": 530.56
+    },
+    {
+      "word": "small",
+      "start": 530.56,
+      "end": 531.01
+    },
+    {
+      "word": "samples",
+      "start": 531.01,
+      "end": 531.46
+    },
+    {
+      "word": "let",
+      "start": 531.46,
+      "end": 531.93
+    },
+    {
+      "word": "us",
+      "start": 531.93,
+      "end": 532.4
+    },
+    {
+      "word": "examine",
+      "start": 532.4,
+      "end": 532.87
+    },
+    {
+      "word": "two",
+      "start": 532.87,
+      "end": 533.34
+    },
+    {
+      "word": "critical",
+      "start": 533.34,
+      "end": 533.8
+    },
+    {
+      "word": "production",
+      "start": 533.8,
+      "end": 534.27
+    },
+    {
+      "word": "case",
+      "start": 534.27,
+      "end": 534.74
+    },
+    {
+      "word": "studies",
+      "start": 534.74,
+      "end": 535.21
+    },
+    {
+      "word": "where",
+      "start": 535.21,
+      "end": 535.68
+    },
+    {
+      "word": "relying",
+      "start": 535.68,
+      "end": 536.15
+    },
+    {
+      "word": "on",
+      "start": 536.15,
+      "end": 536.62
+    },
+    {
+      "word": "pearson",
+      "start": 536.62,
+      "end": 537.09
+    },
+    {
+      "word": "correlation",
+      "start": 537.09,
+      "end": 537.56
+    },
+    {
+      "word": "caused",
+      "start": 537.56,
+      "end": 538.02
+    },
+    {
+      "word": "nearcatastrophic",
+      "start": 538.02,
+      "end": 538.49
+    },
+    {
+      "word": "system",
+      "start": 538.49,
+      "end": 538.96
+    },
+    {
+      "word": "failures",
+      "start": 538.96,
+      "end": 539.43
+    },
+    {
+      "word": "in",
+      "start": 539.43,
+      "end": 539.9
+    },
+    {
+      "word": "autonomous",
+      "start": 539.9,
+      "end": 540.37
+    },
+    {
+      "word": "vehicles",
+      "start": 540.37,
+      "end": 540.84
+    },
+    {
+      "word": "lidar",
+      "start": 540.84,
+      "end": 541.31
+    },
+    {
+      "word": "and",
+      "start": 541.31,
+      "end": 541.77
+    },
+    {
+      "word": "radar",
+      "start": 541.77,
+      "end": 542.24
+    },
+    {
+      "word": "point",
+      "start": 542.24,
+      "end": 542.71
+    },
+    {
+      "word": "counts",
+      "start": 542.71,
+      "end": 543.18
+    },
+    {
+      "word": "showed",
+      "start": 543.18,
+      "end": 543.65
+    },
+    {
+      "word": "high",
+      "start": 543.65,
+      "end": 544.12
+    },
+    {
+      "word": "pearson",
+      "start": 544.12,
+      "end": 544.59
+    },
+    {
+      "word": "correlation",
+      "start": 544.59,
+      "end": 545.06
+    },
+    {
+      "word": "during",
+      "start": 545.06,
+      "end": 545.53
+    },
+    {
+      "word": "highway",
+      "start": 545.53,
+      "end": 545.99
+    },
+    {
+      "word": "driving",
+      "start": 545.99,
+      "end": 546.46
+    },
+    {
+      "word": "but",
+      "start": 546.46,
+      "end": 546.93
+    },
+    {
+      "word": "in",
+      "start": 546.93,
+      "end": 547.4
+    },
+    {
+      "word": "heavy",
+      "start": 547.4,
+      "end": 547.87
+    },
+    {
+      "word": "rain",
+      "start": 547.87,
+      "end": 548.34
+    },
+    {
+      "word": "lidar",
+      "start": 548.34,
+      "end": 548.81
+    },
+    {
+      "word": "was",
+      "start": 548.81,
+      "end": 549.28
+    },
+    {
+      "word": "absorbed",
+      "start": 549.28,
+      "end": 549.75
+    },
+    {
+      "word": "by",
+      "start": 549.75,
+      "end": 550.21
+    },
+    {
+      "word": "water",
+      "start": 550.21,
+      "end": 550.68
+    },
+    {
+      "word": "while",
+      "start": 550.68,
+      "end": 551.15
+    },
+    {
+      "word": "radar",
+      "start": 551.15,
+      "end": 551.62
+    },
+    {
+      "word": "picked",
+      "start": 551.62,
+      "end": 552.09
+    },
+    {
+      "word": "up",
+      "start": 552.09,
+      "end": 552.56
+    },
+    {
+      "word": "spray",
+      "start": 552.56,
+      "end": 553.03
+    },
+    {
+      "word": "noise",
+      "start": 553.03,
+      "end": 553.5
+    },
+    {
+      "word": "spearman",
+      "start": 553.5,
+      "end": 553.96
+    },
+    {
+      "word": "rank",
+      "start": 553.96,
+      "end": 554.43
+    },
+    {
+      "word": "collapsed",
+      "start": 554.43,
+      "end": 554.9
+    },
+    {
+      "word": "from",
+      "start": 554.9,
+      "end": 555.37
+    },
+    {
+      "word": "091",
+      "start": 555.37,
+      "end": 555.84
+    },
+    {
+      "word": "to",
+      "start": 555.84,
+      "end": 556.31
+    },
+    {
+      "word": "014",
+      "start": 556.31,
+      "end": 556.78
+    },
+    {
+      "word": "revealing",
+      "start": 556.78,
+      "end": 557.25
+    },
+    {
+      "word": "that",
+      "start": 557.25,
+      "end": 557.72
+    },
+    {
+      "word": "sensor",
+      "start": 557.72,
+      "end": 558.18
+    },
+    {
+      "word": "agreement",
+      "start": 558.18,
+      "end": 558.65
+    },
+    {
+      "word": "had",
+      "start": 558.65,
+      "end": 559.12
+    },
+    {
+      "word": "completely",
+      "start": 559.12,
+      "end": 559.59
+    },
+    {
+      "word": "disintegrated",
+      "start": 559.59,
+      "end": 560.06
+    },
+    {
+      "word": "in",
+      "start": 560.06,
+      "end": 560.53
+    },
+    {
+      "word": "a",
+      "start": 560.53,
+      "end": 561.01
+    },
+    {
+      "word": "second",
+      "start": 561.01,
+      "end": 561.48
+    },
+    {
+      "word": "case",
+      "start": 561.48,
+      "end": 561.95
+    },
+    {
+      "word": "study",
+      "start": 561.95,
+      "end": 562.43
+    },
+    {
+      "word": "involving",
+      "start": 562.43,
+      "end": 562.9
+    },
+    {
+      "word": "database",
+      "start": 562.9,
+      "end": 563.37
+    },
+    {
+      "word": "lock",
+      "start": 563.37,
+      "end": 563.85
+    },
+    {
+      "word": "contention",
+      "start": 563.85,
+      "end": 564.32
+    },
+    {
+      "word": "cpu",
+      "start": 564.32,
+      "end": 564.79
+    },
+    {
+      "word": "usage",
+      "start": 564.79,
+      "end": 565.27
+    },
+    {
+      "word": "stayed",
+      "start": 565.27,
+      "end": 565.74
+    },
+    {
+      "word": "flat",
+      "start": 565.74,
+      "end": 566.21
+    },
+    {
+      "word": "at",
+      "start": 566.21,
+      "end": 566.68
+    },
+    {
+      "word": "18",
+      "start": 566.68,
+      "end": 567.16
+    },
+    {
+      "word": "percent",
+      "start": 567.16,
+      "end": 567.63
+    },
+    {
+      "word": "until",
+      "start": 567.63,
+      "end": 568.1
+    },
+    {
+      "word": "precisely",
+      "start": 568.1,
+      "end": 568.58
+    },
+    {
+      "word": "1024",
+      "start": 568.58,
+      "end": 569.05
+    },
+    {
+      "word": "concurrent",
+      "start": 569.05,
+      "end": 569.52
+    },
+    {
+      "word": "workers",
+      "start": 569.52,
+      "end": 570.0
+    },
+    {
+      "word": "where",
+      "start": 570.0,
+      "end": 570.47
+    },
+    {
+      "word": "rowlevel",
+      "start": 570.47,
+      "end": 570.94
+    },
+    {
+      "word": "locking",
+      "start": 570.94,
+      "end": 571.42
+    },
+    {
+      "word": "triggered",
+      "start": 571.42,
+      "end": 571.89
+    },
+    {
+      "word": "a",
+      "start": 571.89,
+      "end": 572.36
+    },
+    {
+      "word": "vertical",
+      "start": 572.36,
+      "end": 572.84
+    },
+    {
+      "word": "spike",
+      "start": 572.84,
+      "end": 573.31
+    },
+    {
+      "word": "to",
+      "start": 573.31,
+      "end": 573.78
+    },
+    {
+      "word": "100",
+      "start": 573.78,
+      "end": 574.26
+    },
+    {
+      "word": "percent",
+      "start": 574.26,
+      "end": 574.73
+    },
+    {
+      "word": "pearson",
+      "start": 574.73,
+      "end": 575.2
+    },
+    {
+      "word": "correlation",
+      "start": 575.2,
+      "end": 575.68
+    },
+    {
+      "word": "was",
+      "start": 575.68,
+      "end": 576.15
+    },
+    {
+      "word": "only",
+      "start": 576.15,
+      "end": 576.62
+    },
+    {
+      "word": "024",
+      "start": 576.62,
+      "end": 577.1
+    },
+    {
+      "word": "completely",
+      "start": 577.1,
+      "end": 577.57
+    },
+    {
+      "word": "missing",
+      "start": 577.57,
+      "end": 578.04
+    },
+    {
+      "word": "the",
+      "start": 578.04,
+      "end": 578.52
+    },
+    {
+      "word": "threat",
+      "start": 578.52,
+      "end": 578.99
+    },
+    {
+      "word": "whereas",
+      "start": 578.99,
+      "end": 579.46
+    },
+    {
+      "word": "spearman",
+      "start": 579.46,
+      "end": 579.93
+    },
+    {
+      "word": "rank",
+      "start": 579.93,
+      "end": 580.41
+    },
+    {
+      "word": "was",
+      "start": 580.41,
+      "end": 580.88
+    },
+    {
+      "word": "088",
+      "start": 580.88,
+      "end": 581.35
+    },
+    {
+      "word": "and",
+      "start": 581.35,
+      "end": 581.83
+    },
+    {
+      "word": "a",
+      "start": 581.83,
+      "end": 582.3
+    },
+    {
+      "word": "hexbin",
+      "start": 582.3,
+      "end": 582.77
+    },
+    {
+      "word": "plot",
+      "start": 582.77,
+      "end": 583.25
+    },
+    {
+      "word": "pinpointed",
+      "start": 583.25,
+      "end": 583.72
+    },
+    {
+      "word": "the",
+      "start": 583.72,
+      "end": 584.19
+    },
+    {
+      "word": "exact",
+      "start": 584.19,
+      "end": 584.67
+    },
+    {
+      "word": "cliff",
+      "start": 584.67,
+      "end": 585.14
+    },
+    {
+      "word": "we",
+      "start": 585.14,
+      "end": 585.59
+    },
+    {
+      "word": "conclude",
+      "start": 585.59,
+      "end": 586.04
+    },
+    {
+      "word": "lesson",
+      "start": 586.04,
+      "end": 586.49
+    },
+    {
+      "word": "64",
+      "start": 586.49,
+      "end": 586.95
+    },
+    {
+      "word": "with",
+      "start": 586.95,
+      "end": 587.4
+    },
+    {
+      "word": "four",
+      "start": 587.4,
+      "end": 587.85
+    },
+    {
+      "word": "cardinal",
+      "start": 587.85,
+      "end": 588.3
+    },
+    {
+      "word": "rules",
+      "start": 588.3,
+      "end": 588.75
+    },
+    {
+      "word": "that",
+      "start": 588.75,
+      "end": 589.2
+    },
+    {
+      "word": "must",
+      "start": 589.2,
+      "end": 589.65
+    },
+    {
+      "word": "govern",
+      "start": 589.65,
+      "end": 590.11
+    },
+    {
+      "word": "all",
+      "start": 590.11,
+      "end": 590.56
+    },
+    {
+      "word": "visual",
+      "start": 590.56,
+      "end": 591.01
+    },
+    {
+      "word": "and",
+      "start": 591.01,
+      "end": 591.46
+    },
+    {
+      "word": "bivariate",
+      "start": 591.46,
+      "end": 591.91
+    },
+    {
+      "word": "exploratory",
+      "start": 591.91,
+      "end": 592.36
+    },
+    {
+      "word": "data",
+      "start": 592.36,
+      "end": 592.81
+    },
+    {
+      "word": "analysis",
+      "start": 592.81,
+      "end": 593.27
+    },
+    {
+      "word": "in",
+      "start": 593.27,
+      "end": 593.72
+    },
+    {
+      "word": "production",
+      "start": 593.72,
+      "end": 594.17
+    },
+    {
+      "word": "systems",
+      "start": 594.17,
+      "end": 594.62
+    },
+    {
+      "word": "first",
+      "start": 594.62,
+      "end": 595.13
+    },
+    {
+      "word": "never",
+      "start": 595.13,
+      "end": 595.64
+    },
+    {
+      "word": "use",
+      "start": 595.64,
+      "end": 596.15
+    },
+    {
+      "word": "sturges",
+      "start": 596.15,
+      "end": 596.66
+    },
+    {
+      "word": "rule",
+      "start": 596.66,
+      "end": 597.16
+    },
+    {
+      "word": "always",
+      "start": 597.16,
+      "end": 597.67
+    },
+    {
+      "word": "choose",
+      "start": 597.67,
+      "end": 598.18
+    },
+    {
+      "word": "freedmandiaconis",
+      "start": 598.18,
+      "end": 598.69
+    },
+    {
+      "word": "or",
+      "start": 598.69,
+      "end": 599.2
+    },
+    {
+      "word": "continuous",
+      "start": 599.2,
+      "end": 599.71
+    },
+    {
+      "word": "kde",
+      "start": 599.71,
+      "end": 600.22
+    },
+    {
+      "word": "second",
+      "start": 600.22,
+      "end": 600.73
+    },
+    {
+      "word": "never",
+      "start": 600.73,
+      "end": 601.24
+    },
+    {
+      "word": "deploy",
+      "start": 601.24,
+      "end": 601.74
+    },
+    {
+      "word": "boxplots",
+      "start": 601.74,
+      "end": 602.25
+    },
+    {
+      "word": "alone",
+      "start": 602.25,
+      "end": 602.76
+    },
+    {
+      "word": "without",
+      "start": 602.76,
+      "end": 603.27
+    },
+    {
+      "word": "checking",
+      "start": 603.27,
+      "end": 603.78
+    },
+    {
+      "word": "unimodality",
+      "start": 603.78,
+      "end": 604.29
+    },
+    {
+      "word": "via",
+      "start": 604.29,
+      "end": 604.8
+    },
+    {
+      "word": "violin",
+      "start": 604.8,
+      "end": 605.31
+    },
+    {
+      "word": "or",
+      "start": 605.31,
+      "end": 605.82
+    },
+    {
+      "word": "kde",
+      "start": 605.82,
+      "end": 606.32
+    },
+    {
+      "word": "overlays",
+      "start": 606.32,
+      "end": 606.83
+    },
+    {
+      "word": "third",
+      "start": 606.83,
+      "end": 607.34
+    },
+    {
+      "word": "always",
+      "start": 607.34,
+      "end": 607.85
+    },
+    {
+      "word": "pair",
+      "start": 607.85,
+      "end": 608.36
+    },
+    {
+      "word": "pearson",
+      "start": 608.36,
+      "end": 608.87
+    },
+    {
+      "word": "correlation",
+      "start": 608.87,
+      "end": 609.38
+    },
+    {
+      "word": "with",
+      "start": 609.38,
+      "end": 609.89
+    },
+    {
+      "word": "spearman",
+      "start": 609.89,
+      "end": 610.4
+    },
+    {
+      "word": "rank",
+      "start": 610.4,
+      "end": 610.9
+    },
+    {
+      "word": "to",
+      "start": 610.9,
+      "end": 611.41
+    },
+    {
+      "word": "catch",
+      "start": 611.41,
+      "end": 611.92
+    },
+    {
+      "word": "nonlinear",
+      "start": 611.92,
+      "end": 612.43
+    },
+    {
+      "word": "monotonicity",
+      "start": 612.43,
+      "end": 612.94
+    },
+    {
+      "word": "and",
+      "start": 612.94,
+      "end": 613.45
+    },
+    {
+      "word": "leverage",
+      "start": 613.45,
+      "end": 613.96
+    },
+    {
+      "word": "outliers",
+      "start": 613.96,
+      "end": 614.47
+    },
+    {
+      "word": "and",
+      "start": 614.47,
+      "end": 614.98
+    },
+    {
+      "word": "fourth",
+      "start": 614.98,
+      "end": 615.49
+    },
+    {
+      "word": "transition",
+      "start": 615.49,
+      "end": 615.99
+    },
+    {
+      "word": "from",
+      "start": 615.99,
+      "end": 616.5
+    },
+    {
+      "word": "scatter",
+      "start": 616.5,
+      "end": 617.01
+    },
+    {
+      "word": "plots",
+      "start": 617.01,
+      "end": 617.52
+    },
+    {
+      "word": "to",
+      "start": 617.52,
+      "end": 618.03
+    },
+    {
+      "word": "2d",
+      "start": 618.03,
+      "end": 618.54
+    },
+    {
+      "word": "hexagonal",
+      "start": 618.54,
+      "end": 619.05
+    },
+    {
+      "word": "binning",
+      "start": 619.05,
+      "end": 619.56
+    },
+    {
+      "word": "whenever",
+      "start": 619.56,
+      "end": 620.07
+    },
+    {
+      "word": "sample",
+      "start": 620.07,
+      "end": 620.57
+    },
+    {
+      "word": "size",
+      "start": 620.57,
+      "end": 621.08
+    },
+    {
+      "word": "exceeds",
+      "start": 621.08,
+      "end": 621.59
+    },
+    {
+      "word": "ten",
+      "start": 621.59,
+      "end": 622.1
+    },
+    {
+      "word": "thousand",
+      "start": 622.1,
+      "end": 622.61
+    },
+    {
+      "word": "points",
+      "start": 622.61,
+      "end": 623.12
+    },
+    {
+      "word": "see",
+      "start": 623.12,
+      "end": 623.63
+    },
+    {
+      "word": "you",
+      "start": 623.63,
+      "end": 624.14
+    },
+    {
+      "word": "in",
+      "start": 624.14,
+      "end": 624.65
+    },
+    {
+      "word": "lesson",
+      "start": 624.65,
+      "end": 625.15
+    },
+    {
+      "word": "65",
+      "start": 625.15,
+      "end": 625.66
+    },
+    {
+      "word": "for",
+      "start": 625.66,
+      "end": 626.17
+    },
+    {
+      "word": "multivariate",
+      "start": 626.17,
+      "end": 626.68
+    },
+    {
+      "word": "visualization",
+      "start": 626.68,
+      "end": 627.19
+    }
+  ]
+}

@@ -1,0 +1,349 @@
+{
+  "duration": 557.376,
+  "sentences": [
+    {
+      "slideIndex": 0,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome back Kaito! In our last session, we proved how feedback loops amplify initial errors. Today, we zoom into where bias actually originates inside the dataset itself.",
+      "start": 0.0,
+      "end": 12.312
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 1,
+      "speaker": "Kaito",
+      "text": "Most engineers I know just say their dataset has 'bias', like it's a single bug you can fix with a re-weighting flag or data augmentation. Is it really that multifaceted?",
+      "start": 12.612,
+      "end": 23.22
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 2,
+      "speaker": "Dr. Nova",
+      "text": "It is profoundly multifaceted. A sampling selection error requires Horvitz-Thompson inverse weighting; a sensor measurement error requires errors-in-variables deconvolution; and an aggregation bias requires subgroup stratification. If you confuse them, your mitigation will fail.",
+      "start": 23.52,
+      "end": 41.856
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 3,
+      "speaker": "Kaito",
+      "text": "That means treating bias requires precise structural diagnosis. Let's map out the entire data lifecycle to see exactly where each distortion enters!",
+      "start": 42.156,
+      "end": 52.02
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Looking at this pipeline, Dr. Nova, it seems like data gets corrupted at every single handoff! If our training set has both selection bias and measurement error, which one dominates?",
+      "start": 52.52,
+      "end": 64.088
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "They compound multiplicatively! Selection bias distorts who is in the dataset, while measurement error distorts what you measure about them. If you only correct for selection with inverse propensity weights, you amplify the noisy sensor readings of underrepresented units!",
+      "start": 64.388,
+      "end": 81.116
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "So reweighting without cleaning sensor noise actually inflates the noise variance! Let's examine the first boundary: historical bias.",
+      "start": 81.416,
+      "end": 90.416
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Wait Dr. Nova, if our model achieves 98% accuracy on historical credit data, isn't it technically doing its job? How can an engineer be blamed for predicting what actually happened?",
+      "start": 90.916,
+      "end": 103.108
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because historical defaults were not driven by intrinsic unworthiness—they were driven by redlining, predatory lending terms, and lack of capital! By treating historical data as neutral truth, the algorithm treats systemic injustice as an immutable natural law.",
+      "start": 103.408,
+      "end": 120.088
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And worse, because the model denies them credit today, they can never build credit tomorrow. That proves the model isn't just predicting the world—it is enforcing it!",
+      "start": 120.388,
+      "end": 130.636
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "In computer vision or web scraping, almost everyone uses convenience datasets like ImageNet or Common Crawl. Does that automatically induce selection bias?",
+      "start": 131.136,
+      "end": 141.792
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Absolutely! People who upload high-resolution photos to social media are overwhelmingly affluent, urban, and concentrated in North America and Western Europe. That means your selection propensity pi is tiny for rural populations in the Global South.",
+      "start": 142.092,
+      "end": 158.676
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And when an unweighted model trains on that data, it learns features that work amazingly well on Western users, but completely fails on everyone else. How do we mathematically correct for this?",
+      "start": 158.976,
+      "end": 170.664
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "The proof is so clean! But wait, Dr. Nova—what happens if an underrepresented group has a tiny propensity, like pi equals 0.001?",
+      "start": 171.164,
+      "end": 181.316
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Then its inverse weight is one thousand! A single outlier with noisy measurements gets multiplied by one thousand, causing the estimator's variance to explode. That is why production systems use weight trimming and self-normalized Hajek weighting.",
+      "start": 181.616,
+      "end": 197.12
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Weight trimming trades a tiny amount of bias to prevent catastrophic variance inflation. Let's explore how sensor noise interacts with this in our first interactive lab!",
+      "start": 197.42,
+      "end": 207.788
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Look at the orange line for Group 0, Dr. Nova! It's almost completely flat! The true underlying relationship between X and Y is identical for both groups, but the noisy sensor makes Group 0 look completely unresponsive!",
+      "start": 208.288,
+      "end": 223.024
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. That is the tragedy of differential attenuation. The algorithm isn't being malicious; mathematically, it minimizes squared error by shrinking the noisy coefficient toward zero. In multi-variable models, it drops feature X entirely for Group 0 and substitutes demographic stereotypes instead.",
+      "start": 223.324,
+      "end": 244.588
+    },
+    {
+      "slideIndex": 6,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, this is the exact proof we derived earlier using covariance expansion. Let's test whether our learners can identify the asymptotic OLS slope under zero-mean independent sensor noise!",
+      "start": 245.088,
+      "end": 257.4
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "This isn't just theory, right? Where do we see differential sensor noise in the physical world?",
+      "start": 257.9,
+      "end": 264.596
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Everywhere from pulse oximeters whose optical sensors misread oxygen levels through melanin, to voice recognition systems calibrated on male Californian accents that fail on regional female speakers. Hardware calibrations embody the bodies of their original test subjects.",
+      "start": 264.896,
+      "end": 281.768
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Now let's examine another form of label distortion: proxy label bias, where we substitute an operational metric for unobservable health need.",
+      "start": 282.068,
+      "end": 290.588
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Why did the engineers use cost instead of illness in the first place? Illness seems like the obvious label!",
+      "start": 291.088,
+      "end": 298.312
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because financial billing records are complete, clean, digitized, and sitting in the SQL database, while clinical illness requires complex physician notes and lab charts! Engineers substituted the convenient metric for the correct metric.",
+      "start": 298.612,
+      "end": 313.636
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "And by predicting cost, the model learned that if society spends less on someone, they deserve less care! That is a profound lesson in why label engineering is safety-critical.",
+      "start": 313.936,
+      "end": 324.832
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "If annotators disagree on subjective labels like toxicity or sentiment, taking the majority vote seems like the obvious standard. Why isn't majority vote enough?",
+      "start": 325.332,
+      "end": 335.892
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because if 90% of your crowdsourced annotators belong to the cultural majority, their majority vote simply silences the cultural nuance of the minority dialect! You end up codifying majority prejudice as ground truth.",
+      "start": 336.192,
+      "end": 349.824
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Now let's examine aggregation bias, where pooling datasets causes the overall model to completely invert the truth for all subgroups!",
+      "start": 350.124,
+      "end": 358.068
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Wait Dr. Nova, how is it mathematically possible for a feature to help every single subgroup individually, but hurt everyone when combined into a single dataset?",
+      "start": 358.568,
+      "end": 368.216
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because the pooled regression line doesn't just fit the scatter within each group—it also fits the gap between the groups! If Group 1 has higher income on average but lower overall loan amounts due to regional differences, the pooled line draws a downward slope connecting Group 0 to Group 1.",
+      "start": 368.516,
+      "end": 385.652
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "That's incredible! Let's fire up our second interactive lab to see this sign reversal happen dynamically!",
+      "start": 385.952,
+      "end": 393.344
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, this is amazing! Both groups clearly point upwards, but the global line slants downwards! If we deployed this model, an applicant who increases their score would actually get a lower probability of approval!",
+      "start": 393.844,
+      "end": 407.98
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. The global model learns the exact opposite of the true causal mechanism for every individual in the population. That is why fitting a single unstratified model across heterogeneous demographic subgroups is so dangerous.",
+      "start": 408.28,
+      "end": 423.64
+    },
+    {
+      "slideIndex": 12,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "This is one of the most famous real-world paradoxes in statistics history, Dr. Nova! Let's see if our learners can distinguish between department-level confounding and overt institutional bias.",
+      "start": 424.14,
+      "end": 436.068
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "34.7% error on darker females while lighter males had less than 1% error! That means the commercial models were essentially guessing at random for darker women!",
+      "start": 436.568,
+      "end": 447.776
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Yes! And the providers had advertised their models as having 99% accuracy, because their evaluation benchmark was 90% lighter males! When you test on the same biased distribution you trained on, your benchmark acts as a confirmation mirror rather than an audit.",
+      "start": 448.076,
+      "end": 466.196
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "That proves benchmark diversity is just as critical as training data diversity. Let's look at real physical hardware case studies next!",
+      "start": 466.496,
+      "end": 475.52
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "The Street Bump case is so telling! The city thought they were being modern and data-driven, but their sensor was literally a luxury smartphone! If you only listen to data from smartphones, you only serve smartphone owners.",
+      "start": 476.02,
+      "end": 490.156
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. And in the pulse oximeter case, physical physics met calibration neglect with lethal consequences. When data collection devices are tested on narrow cohorts, their physical calibration curve becomes a structural inequality vector.",
+      "start": 490.456,
+      "end": 506.896
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "Now let's synthesize our complete production verification suite with Pydantic V2 and the four cardinal rules of bias auditing!",
+      "start": 507.196,
+      "end": 514.732
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 0,
+      "speaker": "Kaito",
+      "text": "What a masterclass, Dr. Nova! We went from mathematical proofs of Horvitz-Thompson weighting and errors-in-variables attenuation, through interactive simulators of Simpson's paradox, all the way to production Pydantic schemas!",
+      "start": 515.232,
+      "end": 529.32
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "And remember Kaito: the most elegant neural network architecture in the world cannot compensate for a dataset that systematically erases or misrepresents the people it serves. Algorithmic fairness begins at the data layer.",
+      "start": 529.62,
+      "end": 543.516
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 2,
+      "speaker": "Kaito",
+      "text": "In our next lesson, we will dive into statistical tests for detecting bias—from disparate impact ratios to permutation testing. See you in Lesson 7.3!",
+      "start": 543.816,
+      "end": 555.0
+    }
+  ]
+}

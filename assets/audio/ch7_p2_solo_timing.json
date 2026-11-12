@@ -1,0 +1,245 @@
+{
+  "duration": 669.432,
+  "sentences": [
+    {
+      "slideIndex": 0,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 7.2 of Dataset Fundamentals: Types and Mechanisms of Dataset Bias. In modern machine learning, bias is frequently treated as an amorphous, single flaw. In reality, it is a family of distinct structural distortions entering the machine learning pipeline at identifiable phases of the data lifecycle.",
+      "start": 0.0,
+      "end": 21.024
+    },
+    {
+      "slideIndex": 0,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Auditing and mitigating bias requires establishing a precise mathematical taxonomy that separates societal realities, sampling selection functions, sensor measurement errors, proxy label corruptions, and statistical aggregation artifacts. Today, we trace each mechanism across the entire lifecycle, derive rigorous statistical rectifications, and explore real-time interactive simulations.",
+      "start": 21.324,
+      "end": 46.932
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "To systematically diagnose bias, we must trace data transformation across six distinct lifecycle boundaries. First, the physical world undergoes historical distortion before generating raw events.",
+      "start": 47.432,
+      "end": 60.584
+    },
+    {
+      "slideIndex": 1,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Second, the sampling selection function determines which observations enter dataset D. Third, physical sensors and human annotators inject measurement and labeling noise. Fourth, empirical loss minimization pools heterogeneous groups into model f of x. Fifth, evaluation benchmarks suffer geographic skew. And finally, deployment distribution shift completes the pipeline.",
+      "start": 60.884,
+      "end": 85.316
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Historical bias occurs when the data-generation process accurately and faithfully reflects existing socio-economic disparities, systemic prejudices, or historical inequities. In mathematical notation, the conditional probability of target Y given protected attribute A differs in the real world: Probability of Y equals 1 given A equals 0 does not equal Probability of Y equals 1 given A equals 1.",
+      "start": 85.816,
+      "end": 111.664
+    },
+    {
+      "slideIndex": 2,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Crucially, in historical bias, there are no bugs in your sensors, and sampling was mathematically uniform. Yet an empirical risk minimizer optimizes for historical status-quo reproduction rather than normative equity. An algorithm that accurately predicts historical lending defaults under redlining will institutionalize past discrimination into future loan denials.",
+      "start": 111.964,
+      "end": 135.196
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Sampling selection bias occurs when the probability of an observation being selected into the training dataset, denoted S equals 1, is conditionally dependent on features X or protected attribute A. That is, Probability of S equals 1 given X and A does not equal Probability of S equals 1.",
+      "start": 135.696,
+      "end": 154.776
+    },
+    {
+      "slideIndex": 3,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Let pi of x comma a denote the propensity of selection, defined as the probability of S equals 1 given X equals x and A equals a. If pi is strictly positive, the missingness mechanism satisfies Missing at Random, or MAR. But because convenience sampling disproportionately captures privileged groups, the sampled distribution diverges from the target population.",
+      "start": 155.076,
+      "end": 178.644
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "To recover unbiased population estimates under selection bias, we deploy the Horvitz-Thompson Inverse Probability Weighting estimator. Each observed unit is weighted inversely by its selection propensity pi of X sub i comma A sub i.",
+      "start": 179.144,
+      "end": 193.688
+    },
+    {
+      "slideIndex": 4,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Let us step through the unbiasedness proof. Taking the expectation of mu-hat Horvitz-Thompson, we apply the law of iterated expectations over X, A, and Y. Under the Missing-at-Random assumption, the expectation of S sub i given covariates equals pi sub i. The propensity terms cancel exactly in numerator and denominator, leaving the true population mean mu sub Y. In production, we use the self-normalized Hajek estimator to stabilize finite-sample variance.",
+      "start": 193.988,
+      "end": 225.14
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 1: Simulator 7.2 Tab A. Here, we simulate classical errors-in-variables. When physical sensor noise corrupts predictor X-star equals X plus u, Ordinary Least Squares slope collapses by the reliability ratio lambda equals sigma-X squared over sigma-X squared plus sigma-u squared.",
+      "start": 225.64,
+      "end": 247.264
+    },
+    {
+      "slideIndex": 5,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Adjust the sliders below. Set true beta to 2.0. Notice that for Group 1 with clean sensors where noise is 0.4, the slope is preserved at 1.85. But for Group 0 with noisy sensors where noise is 2.5, the estimated slope collapses by 76% down to 0.48! An automated system will conclude that this feature is useless for Group 0.",
+      "start": 247.564,
+      "end": 274.516
+    },
+    {
+      "slideIndex": 6,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 1. In a simple linear regression Y equals beta X plus epsilon, suppose X is measured through a noisy sensor X-star equals X plus u, where noise u is independent of X and disturbance epsilon. What is the probability limit of the OLS slope estimator beta-hat?",
+      "start": 275.016,
+      "end": 294.36
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "In socio-technical engineering, measurement noise is almost never classical. It is differential: sensor noise variance conditioned on protected attribute A equals 0 is significantly higher than noise variance on A equals 1.",
+      "start": 294.86,
+      "end": 309.164
+    },
+    {
+      "slideIndex": 7,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "This creates diverging reliability ratios: lambda-1 is near 1.0, while lambda-0 collapses. The automated scoring system concludes that feature X is substantially less predictive for Group 0. In multi-feature models, the estimator discards X for Group 0 in favor of spurious demographic correlates, driving predictive inequality.",
+      "start": 309.464,
+      "end": 332.264
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Proxy label bias occurs when the true target concept Y-star is unobservable or legally restricted, forcing engineers to substitute an accessible operational proxy Y-tilde. In 2019, Obermeyer and colleagues uncovered a commercial algorithm affecting over two hundred million patients.",
+      "start": 332.764,
+      "end": 351.676
+    },
+    {
+      "slideIndex": 8,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "The target concept was true healthcare need, but the engineered proxy was annual healthcare costs. Due to unequal access to care, insurance disparities, and discriminatory physician patterns, less money was historically spent on Black patients relative to White patients at identical illness levels. As a result, Black patients had to be significantly sicker to qualify for high-risk care management programs.",
+      "start": 351.976,
+      "end": 377.704
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Annotation bias occurs when human annotators introduce subjective cultural norms, cognitive stereotypes, or fatigue into the ground truth labeling process. We model this via an asymmetric transition matrix T-sub-j-k, defined as the probability of observed label k given true latent label j and demographic attribute A.",
+      "start": 378.204,
+      "end": 398.82
+    },
+    {
+      "slideIndex": 9,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "A prime example is toxic language detection in natural language processing. Crowdsourced annotators who are unfamiliar with African American English routinely flag benign cultural idioms as abusive or toxic at more than double the rate of standard American English, baking linguistic prejudice directly into training sets.",
+      "start": 399.12,
+      "end": 418.8
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Aggregation bias occurs when a single model is fitted across heterogeneous sub-populations where the true underlying conditional mapping varies by group. That is, Expected value of Y given X and A equals 0 does not equal Expected value of Y given X and A equals 1.",
+      "start": 419.3,
+      "end": 436.964
+    },
+    {
+      "slideIndex": 10,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "When an empirical risk minimizer pools these groups without stratification, group centroid offsets can cause Simpson's Paradox. Both subgroups can have positive slopes, yet the global pooled regression fits a negative slope! Minimizing aggregate loss sacrifices the subgroup whose local conditional relationship is completely reversed.",
+      "start": 437.264,
+      "end": 458.096
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 2: Simulator 7.2 Tab B. Here, you can directly manipulate subgroup slope and centroid offsets to trigger Simpson's Paradox.",
+      "start": 458.596,
+      "end": 469.924
+    },
+    {
+      "slideIndex": 11,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Notice the sliders below. Set subgroup intra-slope to plus 1.2. Then increase centroid offset Delta X to plus 5, and Delta Y to minus 6. Watch the canvas: both orange Group 0 and blue Group 1 have positive slopes of plus 1.2. Yet the global pooled dashed red line collapses into a negative slope of minus 0.45, triggering the Simpson's Paradox warning!",
+      "start": 470.224,
+      "end": 497.32
+    },
+    {
+      "slideIndex": 12,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us test your understanding in Active Checkpoint 2. In the famous 1975 UC Berkeley graduate admissions audit, aggregate university statistics showed male applicants were admitted at 44% compared to 35% for female applicants. Yet within individual departments, female applicants were admitted at equal or higher rates! What statistical phenomenon caused this reversal?",
+      "start": 497.82,
+      "end": 523.596
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Representation bias scales exponentially across intersectional demographic identities. Even if a dataset achieves marginal balance—50% female and 50% darker skin phenotypes—the intersectional slice of darker females is frequently severely depleted.",
+      "start": 524.096,
+      "end": 541.256
+    },
+    {
+      "slideIndex": 13,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "In the landmark Gender Shades study by Joy Buolamwini and Timnit Gebru, commercial facial classification APIs achieved over 99% accuracy on lighter males, but error rates exploded to 34.7% on darker females. Furthermore, standard benchmarks like ImageNet and Open Images contain over 80% imagery from the US and Europe, creating benchmark evaluation skew that completely hides these intersectional failures.",
+      "start": 541.556,
+      "end": 569.708
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us examine two landmark empirical case studies showing how dataset bias manifests in physical and civic infrastructure. First, pulse oximetry during COVID-19. Pulse oximeters calibrate oxygen saturation using red and infrared optical absorption.",
+      "start": 570.208,
+      "end": 587.704
+    },
+    {
+      "slideIndex": 14,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because calibration was conducted almost exclusively on fair-skinned cohorts, melanin absorption caused sensors to systematically overestimate blood oxygen levels in Black and Hispanic patients. This caused undetected occult hypoxemia to go unnoticed at triple the rate of White patients, delaying critical ICU admissions. Second, Boston's Street Bump app crowdsourced pothole detection via smartphone accelerometers, but because smartphone ownership was concentrated in affluent suburbs, the city only repaired roads in wealthy districts until the sampling bias was audited.",
+      "start": 588.004,
+      "end": 623.356
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "To institutionalize these audits in production, we deploy automated data validation schemas using Pydantic V2. Our test suite validates three core quantitative audits: Sampling Bias with Horvitz-Thompson recovery, Measurement Error with theoretical reliability ratio bounds, and Proxy Label Disparity with illness severity thresholds.",
+      "start": 623.856,
+      "end": 644.808
+    },
+    {
+      "slideIndex": 15,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "We conclude Lesson 7.2 with the Four Cardinal Rules of Dataset Bias: First, audit the data-generating process before modeling; Second, never assume sensor errors are classical; Third, always stratify evaluations across intersectional subgroups to prevent Simpson's reversal; and Fourth, accompany every dataset with a standardized Datasheet for Datasets.",
+      "start": 645.108,
+      "end": 667.836
+    }
+  ]
+}
