@@ -1,0 +1,386 @@
+{
+  "duration": 817.752,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Chapter 5, Lesson 5: Techniques for Data Cleaning. Production data cleaning is never a fragmented patchwork of ad-hoc regex hacks; it is a mathematically grounded transformation mapping a dirty dataset D raw onto a certified instance D star satisfying formal relational integrity constraints Sigma.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 19.704
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Today we unite four foundational pillars: canonical character and Unicode normalization, first-order Denial Constraints and Functional Dependencies, Bohannon's Minimum Modification Principle for repairing constraint violations without destroying historical tuples, and variance-preserving 1-nearest-neighbor Hot-Deck donor imputation.",
+          "dock": "main",
+          "start": 19.704,
+          "end": 39.384
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us trace the end-to-end declarative cleaning architecture step by step. Notice the strict causal ordering of operations from raw bytes on disk down to model-ready tuples.",
+          "dock": "main",
+          "start": 39.384,
+          "end": 50.256
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Stage 1 ingests the raw corpus D raw. Stage 2 performs character and format canonicalization\u2014NFKC compatibility composition, zero-width stripping, and domain regex unit extraction\u2014because relational equality checks cannot function before identical strings normalize to identical UTF-8 bytes!",
+          "dock": "main",
+          "start": 50.256,
+          "end": 70.344
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Stage 3 audits First-Order Denial Constraints and Functional Dependencies. Whenever violations appear, Stage 4 computes Bohannon's Minimum Modification Cost assignment r star rather than truncating records. Stage 5 fills unresolved cells via 1-NN Hot-Deck donor imputation, emitting Certified Production Dataset D star in Stage 6.",
+          "dock": "main",
+          "start": 70.344,
+          "end": 93.216
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Given a declarative rule set Sigma and a dirty relational instance r where r fails Sigma, how do we choose which cells to edit? Deleting every conflicting tuple destroys valuable historical telemetry, while mutating columns uniformly corrupts trusted primary keys.",
+          "dock": "main",
+          "start": 93.216,
+          "end": 109.608
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Bohannon and colleagues formalized the Minimum Modification Principle in ACM SIGMOD 2005: find a repaired instance r star satisfying Sigma that minimizes the total domain-weighted modification distance from the observed table r.",
+          "dock": "main",
+          "start": 109.608,
+          "end": 123.984
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Each column A carries a positive confidence weight w sub A. Immutable verified identifiers like a postal TaxID or API-validated ZIP code receive a steep penalty w equals 5, whereas mutable free-text labels like City or administrative notes carry low weight w equals 1\u2014guiding the solver to preserve high-trust fields intact.",
+          "dock": "main",
+          "start": 123.984,
+          "end": 145.296
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "How do enterprise frameworks like HoloClean and Amazon Deequ specify what a valid table actually looks like? Through First-Order Denial Constraints, or DCs, unified by Chu, Ilyas, Krishnan, and Wang.",
+          "dock": "main",
+          "start": 145.296,
+          "end": 159.48
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "A Denial Constraint declares what MUST NOT occur anywhere across pairs of tuples t sub 1 and t sub 2: for all tuples, it is false that predicates phi sub 1 AND phi sub 2 ... AND phi sub k hold simultaneously.",
+          "dock": "main",
+          "start": 159.48,
+          "end": 174.024
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Why are DCs so expressive? Because a single logical template subsumes single-tuple temporal ordering checks\u2014such as forbidding DischargeDate less than AdmissionDate\u2014physiological inequalities requiring Systolic greater than Diastolic blood pressure, AND classical Functional Dependencies forcing identical ZIP codes to map to identical cities!",
+          "dock": "main",
+          "start": 174.024,
+          "end": 194.808
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Before any constraint check runs, heterogeneous pipelines face an insidious character-encoding hazard: discordant UTF-8 byte sequences that render identically on screen yet differ cleanly at the codepoint level.",
+          "dock": "main",
+          "start": 194.808,
+          "end": 207.72
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Consider three escalation tiers. First, canonical equivalence NFC versus NFD: precomposed e-acute U+00E9 renders identically to base letter e plus combining acute U+0301, yet takes one codepoint instead of two. Second, compatibility equivalence NFKC collapses typographic fi ligatures U+FB01, superscripts, and full-width Japanese or Chinese digits into plain ASCII.",
+          "dock": "main",
+          "start": 207.72,
+          "end": 237.672
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now for the classic production bug: Python unicodedata normalize NFKC does NOT remove zero-width non-printing characters such as U+200B Zero-Width Space or U+FEFF Byte Order Marks! A production sanitizer MUST compose NFKC first, then explicitly strip zero-width regex characters, and finally collapse whitespace.",
+          "dock": "main",
+          "start": 237.672,
+          "end": 259.68
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our interactive Unicode NFKC and Byte Inspector Studio below. Here you can dissect invisible traps character by character on a live codepoint inspector canvas.",
+          "dock": "main",
+          "start": 259.68,
+          "end": 271.296
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Click Trap 1 to inspect Alice-ZeroWidth-Smith plus the fi ligature, Trap 2 for combining acute accents plus full-width digits, or Trap 3 for BOM headers and non-breaking spaces. Notice that selecting Naive NFKC Only keeps SQL join equality failing RED whenever U+200B or U+FEFF persists\u2014whereas composing NFKC with Zero-Width Stripping turns the SQL Join badge green!",
+          "dock": "main",
+          "start": 271.296,
+          "end": 297.024
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for Active Checkpoint 1. Suppose a data engineer normalizes customer usernames with Python unicodedata normalize NFKC before deduplication\u2014yet a web submission reading AliceSmith visually fails to match AliceSmith in your SQL user table!",
+          "dock": "main",
+          "start": 297.024,
+          "end": 312.888
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Identify the exact Unicode class surviving NFKC and select the verified engineering fix below.",
+          "dock": "main",
+          "start": 312.888,
+          "end": 319.824
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Once textual strings are canonicalized, quantitative cleaning must prevent catastrophic physical unit mismatches and regex false positives. Heterogeneous telemetry pipelines routinely mix Fahrenheit and Celsius or pounds and kilograms in the same feature column.",
+          "dock": "main",
+          "start": 319.824,
+          "end": 336.312
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Formalizing unit harmonization as an explicit affine matrix mapping x SI equals A x obs plus b guarantees clean dimensional alignment\u2014such as converting Fahrenheit to Celsius via five-ninths T sub F minus 160 over 9 prior to vector concatenation.",
+          "dock": "main",
+          "start": 336.312,
+          "end": 353.664
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Equally vital when mining clinical vitals like blood pressure: never trust a bare regex like two-to-three digits slash two-to-three digits alone! Legacy monitors log broken cuffs as 999 slash 999 or 000 slash 000, and calendar dates like 10 slash 12 match identical regex patterns. Always gate extractions inside physiological bounds and enforce Systolic strictly greater than Diastolic!",
+          "dock": "main",
+          "start": 353.664,
+          "end": 382.728
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "When nullification marks unrecoverable corrupted cells like 999 slash 999 blood pressures as missing, what mathematical tradeoffs govern repair? Let us compare all four statistical regimes carefully.",
+          "dock": "main",
+          "start": 382.728,
+          "end": 397.536
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Complete-case listwise deletion remains unbiased ONLY under MCAR, introduces severe selection bias under MAR, and amputates massive cohort volume. Pairwise available-case deletion is even trickier: computing separate correlations over misaligned row subsets frequently destroys Positive Semi-Definiteness, producing negative eigenvalues that crash PCA, Cholesky factorization, and Mahalanobis inversion!",
+          "dock": "main",
+          "start": 397.536,
+          "end": 424.2
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Univariate mean or median imputation retains sample count yet triggers artificial variance collapse! By contrast, 1-Nearest-Neighbor Hot-Deck imputation pairs each incomplete record i with its closest validated observed donor j star, preserving exact empirical variance, skewed tails, integer discreteness, and multi-feature quantiles.",
+          "dock": "main",
+          "start": 424.2,
+          "end": 445.92
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us see how Minimum Modification Cost Optimization operates jointly across relational keys, temporal checks, and physiological range gates on real Electronic Health Records.",
+          "dock": "main",
+          "start": 445.92,
+          "end": 457.32
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Suppose a four-patient EHR ward table contains three distinct violations: Patient 102 combines ZIP 94305 with City Palo Alto instead of Stanford; Patient 103 shows Admission Day 10 yet Discharge Day 7; and Patient 104 logs blood pressure 999 slash 999 plus missing Age alongside BMI 25.0.",
+          "dock": "main",
+          "start": 457.32,
+          "end": 482.064
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Setting attribute weights w ZIP equals 5, w Admit equals 4, w City equals 1, and w Disch equals 1 yields an unambiguous argmin solution r star of total weight cost 3.0: flip Palo Alto to Stanford, minimally advance Discharge past Admission to Day 11, nullify sentinel BP 999 slash 999, and fill Age equals 45.0 from Patient 101's closest BMI donor 24.5!",
+          "dock": "main",
+          "start": 482.064,
+          "end": 512.28
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "At million-row production scale, how do modern ML data platforms deploy declarative cleaning within strict human budget constraints? Through a Two-Tier Deterministic Blocking plus Constraint Repair architecture inspired by ActiveClean and Amazon Deequ.",
+          "dock": "main",
+          "start": 512.28,
+          "end": 527.88
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Tier 1 handles high-throughput deterministic coercion in sub-millisecond streaming passes: canonical Unicode composition NFKC, zero-width regex stripping, affine SI unit alignment, and hard Denial Constraint gates.",
+          "dock": "main",
+          "start": 527.88,
+          "end": 542.232
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Tier 2 handles tied multi-attribute conflicts\u2014where two conflicting repair candidates yield equal cost\u2014by scoring records with ActiveClean expected model gradient magnitude, escalating ONLY high-impact boundary tuples to human reviewers while maintaining zero blocking latency on deterministic repairs!",
+          "dock": "main",
+          "start": 542.232,
+          "end": 560.856
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our second interactive workbench: the Minimum-Cost Constraint Repair and Hot-Deck Manifold Studio. Inside this live Clinical EHR cohort table, observe four patients spanning three distinct constraint and sentinel errors.",
+          "dock": "main",
+          "start": 560.856,
+          "end": 575.616
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Compare all three pipeline actions using the controls below: Raw Unrepaired leaves three active violations blocking training. Naive Listwise Drop purges 75% of patients, collapsing retention to 25%. Clicking Execute Minimum Modification Repair r star resolves every violation at minimum weighted cost 3.0 while imputing Patient 104's missing Age as exact donor value 45.0 at 100% cohort retention!",
+          "dock": "main",
+          "start": 575.616,
+          "end": 605.808
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for Active Checkpoint 2. Three hospital visits share ZIP code 94305: Records 1 and 3 list City as Stanford, while Record 2 lists Palo Alto. Postal ZIP carries domain weight w ZIP equals 5.0 and mutable City carries weight w City equals 1.0.",
+          "dock": "main",
+          "start": 605.808,
+          "end": 626.232
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Under Bohannon's Minimum Modification Principle enforcing the Functional Dependency ZIP determines City, compute the optimal repair assignment r star and its minimum modification cost.",
+          "dock": "main",
+          "start": 626.232,
+          "end": 637.248
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us inspect how declarative cleaning performs at full clinical scale in the PhysioNet MIMIC-III Critical Care Database covering 46,520 ICU hospital stays.",
+          "dock": "main",
+          "start": 637.248,
+          "end": 648.48
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "First, Temporal Denial Constraints immediately caught over 340 patient stays logging DischargeTime prior to AdmissionTime due to retrospective billing edits\u2014eliminating negative Length-of-Stay crashes. Second, declarative regex parsers with physiological bounds unified 14 distinct blood pressure formatting variants across nursing notes, raising valid vital sign coverage from 68.4% straight up to 99.1%!",
+          "dock": "main",
+          "start": 648.48,
+          "end": 676.296
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at the downstream mortality benchmark: complete-case dropping retained only 36.0% of stays and scored 0.692 ROC-AUC. Mean imputation inflated MSE to 142.3 and stalled at 0.741 ROC-AUC. Our combined Declarative NFKC/Regex plus 1-NN Hot-Deck pipeline retained 100.0% of patients, slashed Age imputation MSE by 70% down to 41.7, and lifted Mortality ROC-AUC to 0.838!",
+          "dock": "main",
+          "start": 676.296,
+          "end": 711.072
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us examine our production Python module implementing every invariant from Lesson 5.5 using Pydantic V2 schemas and Scikit-Learn NearestNeighbors.",
+          "dock": "main",
+          "start": 711.072,
+          "end": 721.008
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "First, CleaningAuditReport tracks exact violation telemetry counts: processed rows, temporal Denial Constraints, ZIP-to-City Functional Dependencies, invalid blood pressures, Unicode traps normalized, and donor-imputed ages.",
+          "dock": "main",
+          "start": 721.008,
+          "end": 736.032
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Second, DeclarativeDataCleaner encapsulates canonicalize text\u2014running NFKC followed by explicit zero-width regex removal\u2014parse blood pressure checking systolic over diastolic inside bounds, groupby FD auditing, and 1-NN Hot-Deck donor imputation verified by unit assertions!",
+          "dock": "main",
+          "start": 736.032,
+          "end": 754.92
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Congratulations on completing Chapter 5, Lesson 5: Techniques for Data Cleaning! You have mastered formal Minimum Modification Cost database repair, First-Order Denial Constraints, two-stage Unicode NFKC plus zero-width stripping, affine unit checks, and variance-preserving 1-NN Hot-Deck donor matching.",
+          "dock": "main",
+          "start": 754.92,
+          "end": 775.56
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Carry these Four Golden Engineering Rules into production: Rule 1: Repair relational violations via lowest-weight attributes r star rather than dropping rows. Rule 2: Always compose NFKC with explicit zero-width regex stripping. Rule 3: Preserve distribution geometry with 1-NN Hot-Deck and physiological gates. And Rule 4: Declare constraints explicitly as auditable first-order Denial Constraints.",
+          "dock": "main",
+          "start": 775.56,
+          "end": 803.496
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now that our records are clean, consistent, and complete, Lesson 5.6 takes the next crucial step toward ML modeling: Preprocessing\u2014Scaling, Centering, and Categorical Encoding. See you there!",
+          "dock": "main",
+          "start": 803.496,
+          "end": 817.752
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,4 @@
-window.curriculum = window.curriculum || {};
-window.curriculum.chapter1 = {
+window.CURRICULUM_CH1 = window.CHAPTER1_CURRICULUM = window.curriculum_chapter1 = window.currentChapterData = {
   "ch1_p1": {
     "chapter": 1,
     "part": 1,

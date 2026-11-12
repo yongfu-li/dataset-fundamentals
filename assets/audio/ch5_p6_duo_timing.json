@@ -1,0 +1,533 @@
+{
+  "duration": 791.472,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, in our previous lessons we repaired missing nulls, stripped zero-width characters, and aligned SI units. If every cell in our table is perfectly clean and verified, why can't we feed it directly into gradient descent or neural networks?",
+          "dock": "main",
+          "start": 0.0,
+          "end": 14.736
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Think about the geometry of the optimization objective, Kaito! Suppose feature X 1 is customer age between 18 and 80, while feature X 2 is annual income between 20,000 and 2,000,000 dollars. What happens to Euclidean distance calculations in k-nearest neighbors or SVM margins?",
+          "dock": "main",
+          "start": 14.736,
+          "end": 34.44
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Income completely overwhelms age! A one-dollar salary difference counts just as much as a one-year age gap\u2014so a 5,000 dollar difference completely dwarfs fifty years of life experience! Distance metrics become a single-variable projection!",
+          "dock": "main",
+          "start": 34.44,
+          "end": 50.016
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. And for gradient descent, the loss surface stretches into an impossibly narrow canyon with condition number 10 to the twelfth\u2014causing gradients to oscillate uncontrollably across the walls instead of progressing toward the minimum!",
+          "dock": "main",
+          "start": 50.016,
+          "end": 64.632
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Looking at this triage graph, Dr. Nova, it seems like One-Hot Encoding is only recommended for low cardinality under 15 categories! What goes wrong if someone applies One-Hot Encoding to 3,000 postal ZIP codes or 50,000 product SKUs?",
+          "dock": "main",
+          "start": 64.632,
+          "end": 79.92
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Two catastrophic failures occur, Kaito. First, memory bloat: adding 3,000 sparse binary columns explodes the memory footprint by three orders of magnitude. Second, tree starvation: decision trees isolate rare categories into tiny leaf nodes with 1 sample each, causing severe overfitting!",
+          "dock": "main",
+          "start": 79.92,
+          "end": 100.464
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And that is why the diagram branches into Empirical Bayes Target Encoding\u2014which collapses all 3,000 ZIP codes down to a single informative continuous feature while smoothing rare categories toward the global prior!",
+          "dock": "main",
+          "start": 100.464,
+          "end": 112.368
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Let us examine the optimization mathematics of the numerical branch first.",
+          "dock": "main",
+          "start": 112.368,
+          "end": 119.064
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at that convergence formula: kappa minus 1 divided by kappa plus 1 to the power of t! If kappa is 1, the numerator is zero, so gradient descent reaches the exact optimum in a single step!",
+          "dock": "main",
+          "start": 119.064,
+          "end": 132.672
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely, Kaito! Under exact spherical quadratic contours with kappa equal to 1, optimal step size alpha equals 1 over lambda achieves immediate convergence. But what happens if kappa is 10,000?",
+          "dock": "main",
+          "start": 132.672,
+          "end": 147.624
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Then 9,999 over 10,001 is 0.9998! Each iteration only shrinks parameter error by 0.02%\u2014meaning you need over 20,000 iterations just to cut the initial error in half!",
+          "dock": "main",
+          "start": 147.624,
+          "end": 162.576
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And that is why unscaled neural networks explode or stall. Scaling is not an aesthetic polish; it is a prerequisite for numerical conditioning.",
+          "dock": "main",
+          "start": 162.576,
+          "end": 172.056
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I used to think MinMaxScaler was the safest scaler because it guarantees all values land between 0 and 1! Why do you call it the most fragile scaler in production?",
+          "dock": "main",
+          "start": 172.056,
+          "end": 183.48
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because it sets its denominator purely using the two most extreme points in the sample: min and max! Suppose fifteen patient heart rates sit tightly between 60 and 100 beats per minute, but an uncalibrated monitor logs a sensor spike of 5,000!",
+          "dock": "main",
+          "start": 183.48,
+          "end": 199.944
+        },
+        {
+          "speaker": "Kaito",
+          "text": "The denominator becomes 5,000 minus 60, which is 4,940! So every single normal patient between 60 and 100 gets mapped into the tiny sliver between 0.000 and 0.008! All physiological heart rate differences vanish!",
+          "dock": "main",
+          "start": 199.944,
+          "end": 218.088
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And that is exactly what our first interactive Canvas lab lets you simulate live: drag the outlier slider and watch MinMaxScaler collapse while RobustScaler holds firm!",
+          "dock": "main",
+          "start": 218.088,
+          "end": 228.576
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I've trained Random Forests on full One-Hot matrices with all K columns and never saw a singular matrix crash! Why does linear regression fail while tree models succeed?",
+          "dock": "main",
+          "start": 228.576,
+          "end": 240.192
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because decision trees never invert matrices, Kaito! A tree splits on individual features one by one using greedy impurity reduction. It does not calculate X transpose X inverse!",
+          "dock": "main",
+          "start": 240.192,
+          "end": 253.224
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Whereas linear regression, logistic regression, and Kalman filters rely on matrix inversion! If column 1 plus column 2 plus column 3 equals the intercept column, you have two identical ways to represent the same prediction, creating infinite parameter solutions!",
+          "dock": "main",
+          "start": 253.224,
+          "end": 269.304
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And in production, either drop the first dummy indicator or add L2 ridge regularization to force strictly positive eigenvalues.",
+          "dock": "main",
+          "start": 269.304,
+          "end": 277.824
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Look at the canvas when I switch to Raw Unscaled or MinMaxScaler at an outlier of 5,000, Dr. Nova! The optimization contours stretch into an absurdly thin needle, and the red gradient trajectory zig-zags back and forth dozens of times without reaching the target!",
+          "dock": "main",
+          "start": 277.824,
+          "end": 293.52
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now switch to RobustScaler, Kaito! Watch what happens to the condition number and the loss contours.",
+          "dock": "main",
+          "start": 293.52,
+          "end": 300.888
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Instant transformation! The condition number drops from millions down to 1.35! The level curves become circular concentric rings, and the optimization path marches straight to the minimum in just five clean steps!",
+          "dock": "main",
+          "start": 300.888,
+          "end": 315.48
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That visual contrast is the exact reason production systems use RobustScaler for financial and medical telemetry. Test yourself on Active Checkpoint 1 next!",
+          "dock": "main",
+          "start": 315.48,
+          "end": 326.184
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "We just proved this in Slide 5, Dr. Nova! Every single row in the dataset belongs to exactly one color, so summing the Red, Green, and Blue dummy columns produces a vector of all ones!",
+          "dock": "main",
+          "start": 326.184,
+          "end": 338.232
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And how does that vector relate to the intercept column?",
+          "dock": "main",
+          "start": 338.232,
+          "end": 341.736
+        },
+        {
+          "speaker": "Kaito",
+          "text": "It IS the intercept column! That means column 1 equals column 2 plus column 3 plus column 4! So the vector negative one, one, one, one is in the null space, which forces the determinant of X transpose X to be zero!",
+          "dock": "main",
+          "start": 341.736,
+          "end": 357.048
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Brilliant derivation, Kaito. Lock in Option A below to advance to high-cardinality encodings!",
+          "dock": "main",
+          "start": 357.048,
+          "end": 364.248
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I see people try to get around One-Hot sparsity by just assigning arbitrary integers: ZIP 94305 becomes 0, ZIP 94301 becomes 1, and so on. Why is that so dangerous for regression models?",
+          "dock": "main",
+          "start": 364.248,
+          "end": 379.176
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because linear regression and neural networks assume numerical values possess geometric distance and ordering! If Palo Alto is 1 and Stanford is 2, a linear model assumes Stanford is twice as large as Palo Alto!",
+          "dock": "main",
+          "start": 379.176,
+          "end": 393.144
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Which is totally meaningless! Postal codes are nominal labels, not physical quantities! So arbitrary integers create hallucinated linear trends that degrade generalization!",
+          "dock": "main",
+          "start": 393.144,
+          "end": 405.432
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. The mathematically rigorous answer is Empirical Bayes Target Encoding, which we derive in Slide 9.",
+          "dock": "main",
+          "start": 405.432,
+          "end": 413.76
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, this m-parameter formula is brilliant! It acts like a gravitational pull. If a ZIP code only has 1 transaction, it doesn't get to pretend its average house price is $5 million just because of one mansion!",
+          "dock": "main",
+          "start": 413.76,
+          "end": 428.448
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly, Kaito. With m=15, that single observation receives only one-sixteenth of the total weight, while fifteen-sixteenths is anchored securely to the regional baseline average.",
+          "dock": "main",
+          "start": 428.448,
+          "end": 441.288
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And when a major metropolitan ZIP code has 5,000 transactions, the m-weight of 15 is negligible, letting the local data shine through!",
+          "dock": "main",
+          "start": 441.288,
+          "end": 449.688
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. But beware: calculating this on the training set without split protection introduces a deadly pitfall called Target Leakage, which we examine next.",
+          "dock": "main",
+          "start": 449.688,
+          "end": 460.752
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Whoa, Dr. Nova! If a model sees its own target label baked into the feature during training, it's essentially cheating on an open-book exam where the questions contain the answers!",
+          "dock": "main",
+          "start": 460.752,
+          "end": 471.912
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "A perfect metaphor, Kaito. The decision tree learns to simply copy the encoded feature straight to the output leaf, ignoring all other genuine predictor signals.",
+          "dock": "main",
+          "start": 471.912,
+          "end": 482.904
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And when you ship to production, the test data doesn't have labels, so the tree's memorized cheat sheet is completely useless!",
+          "dock": "main",
+          "start": 482.904,
+          "end": 489.96
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. Out-of-Fold encoding combined with additive Gaussian jitter ensures your validation metrics reflect genuine generalization.",
+          "dock": "main",
+          "start": 489.96,
+          "end": 499.224
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, if we compress 100,000 unique categorical strings into only 4,096 buckets, collisions are guaranteed by the Pigeonhole Principle! Won't that ruin the model?",
+          "dock": "main",
+          "start": 499.224,
+          "end": 511.392
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "If we used unsigned hashing, yes! Because collision counts would strictly add up, artificially inflating dot products and distorting feature weights.",
+          "dock": "main",
+          "start": 511.392,
+          "end": 521.208
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Ah! But because xi randomly gives a plus-one or a minus-one to each string, when two unrelated strings collide, their cross-terms average out to zero across the dataset!",
+          "dock": "main",
+          "start": 521.208,
+          "end": 531.984
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on. The signal reinforces constructively, while random collisions cancel destructively. That is the beauty of randomized linear algebra in production ML.",
+          "dock": "main",
+          "start": 531.984,
+          "end": 543.6
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at the canvas! When I set n sub c to 2 with a sample mean of 1.0, the naive calculation claims this category is a guaranteed 100 percent hit! That's a massive overfit trap!",
+          "dock": "sim",
+          "start": 543.6,
+          "end": 557.712
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Indeed. But look at the Bayes Score below it: with m set to 15, the credibility weight lambda is only 11.8 percent. The model assigns 88.2 percent of the weight to the global prior of 0.20, giving a stabilized score of 0.294!",
+          "dock": "sim",
+          "start": 557.712,
+          "end": 576.456
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And when I slide n sub c up to 50, the credibility weight leaps to 76.9 percent, and the Bayes score climbs to 0.815! It smoothly transitions from skepticism to confidence!",
+          "dock": "sim",
+          "start": 576.456,
+          "end": 589.128
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is the exact mathematical property that makes Empirical Bayes the gold standard for high-cardinality preprocessing in production systems.",
+          "dock": "sim",
+          "start": 589.128,
+          "end": 597.624
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, this engineer had an R-squared of almost ninety-nine percent during training, but in production the model failed miserably! That's devastating!",
+          "dock": "quiz",
+          "start": 597.624,
+          "end": 607.416
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "It is the classic fingerprint of in-sample target leakage. Kaito, if a single observation's label is embedded directly into its own input feature, what is the tree actually learning?",
+          "dock": "quiz",
+          "start": 607.416,
+          "end": 618.912
+        },
+        {
+          "speaker": "Kaito",
+          "text": "It's not learning anything about real estate! It's just learning the identity function: predict input column X! But on the test set, that identity mapping fails completely!",
+          "dock": "quiz",
+          "start": 618.912,
+          "end": 630.864
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. Select the correct option below that enforces Out-of-Fold isolation and Bayesian prior smoothing.",
+          "dock": "quiz",
+          "start": 630.864,
+          "end": 638.808
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Look at those numbers, Dr. Nova! One-Hot Encoding chewed up 1.4 gigabytes of memory and only got an R-squared of 0.421, while OOF Empirical Bayes crushed it with 0.887!",
+          "dock": "main",
+          "start": 638.808,
+          "end": 651.672
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because when a tree splits on 3,142 one-hot flags, each split isolates tiny crumbs of data, starving subsequent nodes. But Empirical Bayes orders every ZIP code onto a smooth continuous spectrum of real estate purchasing power.",
+          "dock": "main",
+          "start": 651.672,
+          "end": 667.992
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And because we used Out-of-Fold cross-validation, the model couldn't cheat by memorizing luxury outliers in rare ZIPs! The test RMSE dropped from $88,000 all the way to $44,000!",
+          "dock": "main",
+          "start": 667.992,
+          "end": 680.52
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "A fifty percent reduction in pricing error. Next, we package this entire mathematical framework into a production-grade Python engine.",
+          "dock": "main",
+          "start": 680.52,
+          "end": 689.928
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I love how clean this transformer is! In fit_transform, it uses KFold so no observation ever sees its own label, but then fits on the full dataset so the production model has maximum statistical power!",
+          "dock": "main",
+          "start": 689.928,
+          "end": 704.304
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And examine line 45 in transform: self.mapping_.get(val, self.global_prior_). What happens when a brand-new postal code appears next year in production?",
+          "dock": "main",
+          "start": 704.304,
+          "end": 717.528
+        },
+        {
+          "speaker": "Kaito",
+          "text": "It doesn't crash or throw a KeyError! It gracefully defaults to the global prior mean! That keeps our real-time inference latency under 2 milliseconds with zero downtime!",
+          "dock": "main",
+          "start": 717.528,
+          "end": 729.096
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Resilient engineering turns theoretical math into enterprise reliability. Now let us synthesize our four golden axioms.",
+          "dock": "main",
+          "start": 729.096,
+          "end": 739.392
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, this lesson connected so many dots! Scaling isn't just about making numbers look tidy between 0 and 1; it directly controls the condition number of the Hessian matrix and prevents gradient descent from thrashing in deep ravines!",
+          "dock": "main",
+          "start": 739.392,
+          "end": 753.624
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely, Kaito. And in categorical projection, we moved from naive one-hot explosion to leak-free Empirical Bayes and signed hashing, eliminating both singular Gram matrices and target leakage.",
+          "dock": "main",
+          "start": 753.624,
+          "end": 767.28
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Now our loss surfaces are spherical, our categorical features are compressed and regularized, and our data matrix is completely conditioned! What's next in Lesson 5.7?",
+          "dock": "main",
+          "start": 767.28,
+          "end": 778.584
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In Lesson 5.7, we construct new signal from existing columns: polynomial splines, temporal Fourier features, and cross-column interactions. Excellent work today, Kaito!",
+          "dock": "main",
+          "start": 778.584,
+          "end": 791.472
+        }
+      ]
+    }
+  ]
+}

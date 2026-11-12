@@ -1,0 +1,414 @@
+{
+  "duration": 795.768,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Chapter 5, Lesson 6: Preprocessing: Scaling, Centering, and Categorical Encoding. Once a dataset is clean, deduplicated, and constraint-compliant, raw columns remain treacherous for machine learning algorithms.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 15.552
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Continuous numerical features spanning disparate orders of magnitude\u2014such as annual income in hundreds of thousands versus patient age under one hundred\u2014severely distort Euclidean distance metrics and warp loss surface curvature into hyper-elongated valleys. Meanwhile, discrete categorical strings cannot participate in matrix multiplication or gradient computation without algebraic transformation.",
+          "dock": "main",
+          "start": 15.552,
+          "end": 39.72
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Today we establish the rigorous mathematical foundation of feature engineering: stabilizing Hessian condition numbers kappa of H, proving the breakdown point of robust order-statistic scalers, eliminating the Dummy Variable Trap in linear regression, and deploying leak-free Empirical Bayes target shrinkage alongside signed Weinberger feature hashing.",
+          "dock": "main",
+          "start": 39.72,
+          "end": 60.168
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Production machine learning platforms do not apply a single scaler universally. They execute a deterministic Preprocessing Triage Directed Acyclic Graph that inspects statistical distributions, outlier profiles, and categorical cardinality.",
+          "dock": "main",
+          "start": 60.168,
+          "end": 76.008
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Continuous numerical columns split based on skewness and heavy tails: symmetric distributions route to StandardScaler; bounded sensor signals or pixel intensities route to MinMaxScaler; heavy-tailed or outlier-prone financial streams route to RobustScaler; and extreme power-law distributions route to Yeo-Johnson transformations.",
+          "dock": "main",
+          "start": 76.008,
+          "end": 96.288
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Discrete categorical columns split by cardinality K: low-cardinality nominals under 15 classes use One-Hot Encoding with first-category drop; ordered categories use monotonic integer mappings; while high-cardinality features like postal codes route to K-fold Empirical Bayes target encoding or signed Weinberger hashing.",
+          "dock": "main",
+          "start": 96.288,
+          "end": 116.04
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Why does feature scaling matter so fundamentally for gradient-based machine learning? The answer lies in the curvature of the loss function, governed by the Hessian matrix H equals the second partial derivatives of loss J of w.",
+          "dock": "main",
+          "start": 116.04,
+          "end": 129.768
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "For linear models, the Hessian is directly proportional to the feature Gram matrix X transpose X over n. The condition number kappa of H is defined as the ratio of the maximum eigenvalue lambda max to the minimum eigenvalue lambda min.",
+          "dock": "main",
+          "start": 129.768,
+          "end": 144.864
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Classical optimization theory proves that gradient descent error decays at rate kappa minus 1 over kappa plus 1 raised to the power of t. When features are unscaled, kappa can exceed 10 to the eighth, driving this convergence factor to 0.9999999 and requiring tens of thousands of iterations. Scaling features normalizes eigenvalues so kappa approaches 1, turning elongated valleys into spherical bowls for rapid linear convergence.",
+          "dock": "main",
+          "start": 144.864,
+          "end": 174.024
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Not all scalers behave identically under contamination. Robust statistics defines the breakdown point epsilon star as the smallest fraction of arbitrary outlier values that can drive an estimator to infinity.",
+          "dock": "main",
+          "start": 174.024,
+          "end": 187.392
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "StandardScaler computes sample mean and standard deviation, which both have a breakdown point of 1 over n, or zero percent asymptotically. A single massive outlier\u2014such as a 50,000-dollar telemetry spike\u2014swells standard deviation to infinity, crushing all genuine inliers into an indistinguishable spike at zero.",
+          "dock": "main",
+          "start": 187.392,
+          "end": 208.032
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "MinMaxScaler fares even worse: the outlier sets maximum of x, forcing all normal data points into a narrow interval between zero and 0.001. In contrast, RobustScaler uses the median and Interquartile Range, achieving a 25% breakdown point that preserves inlier variance even when heavy-tailed anomalies corrupt the stream.",
+          "dock": "main",
+          "start": 208.032,
+          "end": 230.568
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Turning now to categorical encoding, consider the canonical mapping: One-Hot Encoding, which converts each discrete category symbol into an orthogonal indicator vector.",
+          "dock": "main",
+          "start": 230.568,
+          "end": 240.984
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now for the classic linear algebra trap: if a regression design matrix X contains an intercept column of all ones, summing all K one-hot columns yields the intercept vector identically, because every observation belongs to exactly one category!",
+          "dock": "main",
+          "start": 240.984,
+          "end": 256.176
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "This perfect multicollinearity means the columns of X are linearly dependent: there exists a non-zero vector v such that X v equals zero. Consequently, the Gram matrix X transpose X is rank-deficient and singular, with determinant zero! The normal equations cannot be inverted uniquely. Dropping one reference category restores full rank K minus 1 plus intercept.",
+          "dock": "main",
+          "start": 256.176,
+          "end": 281.256
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our first interactive workbench: the Scaler Breakdown and Optimization Contours Studio. Below, fifteen clean feature values sit tightly between 35 and 65, while an injected outlier simulates extreme sensor malfunction.",
+          "dock": "main",
+          "start": 281.256,
+          "end": 297.192
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Select each scaler from the dropdown and sweep the outlier slider from 100 up to 10,000. Notice how MinMaxScaler and StandardScaler see their retained inlier standard deviation crushed toward zero as the condition number kappa explodes into millions\u2014while RobustScaler holds inlier spread rock-solid at 0.742 and keeps optimization contours perfectly spherical!",
+          "dock": "main",
+          "start": 297.192,
+          "end": 320.832
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for Active Checkpoint 1. Suppose a regression design matrix X contains an intercept column of all ones alongside full One-Hot columns for all K equals 3 colors: Red, Green, and Blue.",
+          "dock": "main",
+          "start": 320.832,
+          "end": 334.176
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Prove why unregularized Ordinary Least Squares cannot yield a unique coefficient solution, and identify the required mathematical remediation below.",
+          "dock": "main",
+          "start": 334.176,
+          "end": 343.584
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "While One-Hot Encoding is elegant for low-cardinality features like blood type or device operating system, it collapses completely when cardinality K scales into hundreds or thousands.",
+          "dock": "main",
+          "start": 343.584,
+          "end": 354.648
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Consider a national real estate dataset with 3,142 postal ZIP codes. Expanding ZIP into One-Hot columns injects over 3,000 sparse binary dimensions\u201499.97% of which contain zeros in any given row.",
+          "dock": "main",
+          "start": 354.648,
+          "end": 371.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "This sparsity explosion inflicts three distinct pathologies: matrix storage expands by gigabytes; gradient descent updates become sparse and sluggish; and gradient boosted trees fragment into single-observation leaves that severely overfit rare ZIP codes while failing on holdout test sets.",
+          "dock": "main",
+          "start": 371.328,
+          "end": 388.728
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "When categorical cardinality reaches thousands of levels, One-Hot Encoding produces a catastrophic memory footprint and dilutes tree split search. Target encoding offers an elegant alternative: replacing each category c with the expected value of the target given that category, E of Y given C equals c.",
+          "dock": "main",
+          "start": 388.728,
+          "end": 408.312
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "However, the naive sample mean y-bar sub c suffers from extreme sample variance when category frequency n sub c is small. If a rare postal code contains only two houses that happened to sell for luxury prices, the naive estimate yields an extreme outlier that overfits violently to training noise.",
+          "dock": "main",
+          "start": 408.312,
+          "end": 427.32
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The rigorous Bayesian remedy is Empirical Bayes shrinkage, also known as the m-estimate. We compute a convex combination between the category sample mean y-bar sub c and the global target prior y-bar, weighted by lambda of n sub c equals n sub c divided by n sub c plus m.",
+          "dock": "main",
+          "start": 427.32,
+          "end": 445.752
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "If target encoding is computed in-sample across the entire training dataset, disaster strikes. For singleton categories where n sub c equals one, the feature value directly contains that sample's label y sub i.",
+          "dock": "main",
+          "start": 445.752,
+          "end": 460.152
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Gradient boosted trees quickly discover this perfect correlation and assign infinite importance to the encoded column. Training R-squared shoots up to ninety-nine percent, but on test data, the model collapses into complete failure because the singleton memorization channel disappears.",
+          "dock": "main",
+          "start": 460.152,
+          "end": 477.168
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The ironclad defense is Out-of-Fold K-Fold target encoding. We partition training data into K disjoint folds. For fold k, the encoder statistics are computed strictly from the remaining K minus one folds. Each sample's feature is computed without ever seeing its own target value.",
+          "dock": "main",
+          "start": 477.168,
+          "end": 496.656
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "What happens when you encounter streaming data with unbounded vocabularies, such as user agent strings, text search queries, or high-cardinality ad identifiers? Target encoding requires storing state, while One-Hot encoding is impossible.",
+          "dock": "main",
+          "start": 496.656,
+          "end": 512.256
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The solution is Feature Hashing, formalized by Weinberger and colleagues in 2009. We project an unbounded categorical string into a fixed B-dimensional vector using a hash function h that maps string s to an integer from zero to B minus one.",
+          "dock": "main",
+          "start": 512.256,
+          "end": 528.12
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Crucially, naive hashing introduces positive collision bias whenever two tokens hash to the same index. Weinberger's breakthrough was introducing an auxiliary Rademacher hash function xi mapping to plus or minus one. Because collisions have expectation zero, the inner product between hashed vectors is an unbiased estimator of the true inner product.",
+          "dock": "main",
+          "start": 528.12,
+          "end": 550.032
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to the Empirical Bayes Target Shrinkage Studio. This simulator allows you to explore how prior smoothing m dynamically shields predictive models from rare-category noise.",
+          "dock": "sim",
+          "start": 550.032,
+          "end": 561.288
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Adjust the category sample size n sub c from one to fifty, and vary the observed category mean y-bar sub c against the regional population prior y-bar. Observe the live shrinkage weight lambda and the resulting Bayes score S sub c.",
+          "dock": "sim",
+          "start": 561.288,
+          "end": 576.12
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice that when n sub c is small, say two observations, a naive mean of one hundred percent is aggressively pulled down toward the prior, preventing severe target leakage.",
+          "dock": "sim",
+          "start": 576.12,
+          "end": 586.944
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Active Checkpoint 2. An engineer encodes high-cardinality postal codes by computing the mean house price for each ZIP code across the entire training dataset.",
+          "dock": "quiz",
+          "start": 586.944,
+          "end": 598.008
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "For 42 rare ZIP codes containing exactly one house, the encoded column perfectly equals the target label. The training R-squared reaches 0.985, but test R-squared collapses to 0.410.",
+          "dock": "quiz",
+          "start": 598.008,
+          "end": 613.44
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Analyze the underlying mathematical vulnerability and select the only architecturally sound production remediation.",
+          "dock": "quiz",
+          "start": 613.44,
+          "end": 620.784
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "To ground these mathematical principles in real-world engineering, we benchmark four preprocessing strategies on the King County and Ames housing valuation datasets, comprising eighty-two thousand properties across 3,142 high-cardinality postal codes.",
+          "dock": "main",
+          "start": 620.784,
+          "end": 637.152
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "One-Hot Encoding exploded matrix columns to 3,142 dimensions, exhausting tree split exploration and yielding a dismal test R-squared of 0.421 with 1.4 gigabytes of RAM. Naive Target Encoding collapsed from a fraudulent 0.978 training R-squared to 0.612 on the test set due to target leakage.",
+          "dock": "main",
+          "start": 637.152,
+          "end": 661.056
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Signed Feature Hashing with 256 buckets delivered lightweight, competitive performance at 0.765. But K-Fold Empirical Bayes with m=15 emerged as the undisputed winner: achieving a test R-squared of 0.887, reducing RMSE by 22.4 percent, with a tiny 8.4 megabyte footprint and 1.2 millisecond inference latency.",
+          "dock": "main",
+          "start": 661.056,
+          "end": 686.784
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "To guarantee reliable deployments, we engineer a production-ready, scikit-learn compatible transformer: LeakFreeTargetEncoder. It integrates K-Fold cross-validation during fit_transform and persists global shrinkage parameters for downstream production inference.",
+          "dock": "main",
+          "start": 686.784,
+          "end": 703.368
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Furthermore, we validate preprocessing contracts with a Pydantic V2 model, PreprocessingVerificationReport. It enforces bounds on Hessian condition numbers, asserts zero nulls, verifies positive inlier variance, and proves the absence of target leakage before weights are committed to disk.",
+          "dock": "main",
+          "start": 703.368,
+          "end": 722.112
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Study the implementation below. Notice how fallback mechanisms smoothly route novel, unseen categories encountered in production directly to the global prior, guaranteeing robust inference without runtime exceptions.",
+          "dock": "main",
+          "start": 722.112,
+          "end": 736.032
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Congratulations on completing Lesson 5.6: Preprocessing, Scaling, and Categorical Encoding. We have bridged the gap between raw data tables and stable optimization geometry.",
+          "dock": "main",
+          "start": 736.032,
+          "end": 748.728
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Remember our Four Golden Axioms: First, condition numbers dictate optimization convergence. When outliers threaten to stretch loss contours, deploy RobustScaler or Yeo-Johnson to keep kappa of H bounded.",
+          "dock": "main",
+          "start": 748.728,
+          "end": 762.672
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Second, eliminate the Dummy Variable Trap by dropping the reference category or applying L2 ridge regularization. Third, never compute target encodings in-sample: Out-of-Fold splitting and Empirical Bayes shrinkage are mandatory.",
+          "dock": "main",
+          "start": 762.672,
+          "end": 777.528
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Fourth, apply Rademacher signs in feature hashing to cancel collision cross-talk. With numerical scale and discrete symbols conditioned, you are prepared for Lesson 5.7: Feature Engineering and Transformations, where we synthesize high-order polynomial interactions and domain embeddings.",
+          "dock": "main",
+          "start": 777.528,
+          "end": 795.768
+        }
+      ]
+    }
+  ]
+}

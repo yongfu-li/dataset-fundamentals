@@ -1,4 +1,4 @@
-window.CURRICULUM_CH8 = window.curriculum_chapter8 = {
+window.CURRICULUM_CH8 = window.CHAPTER8_CURRICULUM = window.curriculum_chapter8 = window.currentChapterData = {
   "ch8_p1": {
     "chapter": 8,
     "part": 1,
@@ -2856,9 +2856,11 @@ window.CURRICULUM_CH8 = window.curriculum_chapter8 = {
     "chapter": 8,
     "part": 5,
     "key": "ch8_p5",
-    "badge": "◆ TRACK 8 • LESSON 8.5: VERSION CONTROL FUNDAMENTALS FOR DATA",
     "index": "Lesson 5 of 10",
     "lessonTitle": "Version Control Fundamentals for Data",
+    "title": "Version Control Fundamentals for Data",
+    "badge": "16 Masterclass Slides • Socratic Dialogue • Interactive Sandbox",
+    "description": "Formalizing Content-Addressable Storage (CAS), Merkle DAGs, Logarithmic Inclusion Proofs, and Deduplication Scaling Laws.",
     "slides": [
       {
         "id": "s1",
@@ -2870,180 +2872,653 @@ window.CURRICULUM_CH8 = window.curriculum_chapter8 = {
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 8.5. Today we examine version control fundamentals for data, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 8: Foundations</span>\n    <span>•</span>\n    <span>Lesson 8.5</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Version Control Fundamentals for Data\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into version control fundamentals for data with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Version Control Fundamentals for Data",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 8.5?"
+              "text": "Welcome to Lesson 8.5 of Dataset Fundamentals: Version Control Fundamentals for Data. Traditional software version control was built for kilobyte text diffs. When applied naively to gigabyte parquet files or multi-terabyte imagery, standard Git breaks down with repository bloat, binary merge failures, and computational irreproducibility.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 8.5. Today we examine version control fundamentals for data, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "Today we decouple the lightweight cryptographic Control Plane versioned in Git from the immutable Data Plane in Content-Addressable Object Storage, unifying SHA-256 mappings, Merkle DAGs, logarithmic audit paths, deduplication scaling laws, and Semantic Versioning state transitions.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 8: Foundations</span>\n    <span>•</span>\n    <span>Lesson 8.5</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Version Control Fundamentals for Data\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into version control fundamentals for data with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 8 • Documentation &amp; Versioning • Lesson 8.5</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Version Control Fundamentals for Data\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Decoupling the Control Plane from the Data Plane via Content-Addressable Storage, Merkle DAGs, Logarithmic Inclusion Proofs, and Deduplication Scaling Laws.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. CAS &amp; SHA-256</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Pre-image &amp; collision resistance with Birthday bound $\\Pr &lt; 2^{-128}$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e2dfff] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#4338ca] block mb-1 font-black\">2. Merkle DAGs</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Hierarchical commit-tree-blob hashes with 50% avalanche tamper evidence.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">3. Audit Paths</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Logarithmic verification $\\mathcal{O}(\\log_2 N)$ saving $99.999\\%$ network bandwidth.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Deduplication</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Scaling ratio $\\rho_{\\text{dedup}} = (1 - 1/K)(1 - \\delta) \\to 1 - \\delta$.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Why Standard Git Fails on Large Datasets",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, why can't ML teams just commit our CSV and Parquet files directly into standard Git repositories? Git is already the gold standard for software version control!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because Git stores a full compressed copy of every modified binary file in the dot-git packfile! When you edit a 10-gigabyte feature matrix, your repository clone size doubles. After a dozen sprints, developers face 100-gigabyte clones and out-of-memory crashes!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And standard line-by-line diffs like git diff are totally useless on dense binary floating-point tensors and compressed parquet blocks!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! That is why we decouple the lightweight Control Plane in Git from the immutable Data Plane in Content-Addressable Object Storage, using Merkle trees to guarantee end-to-end cryptographic integrity.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 8 • Documentation &amp; Versioning • Lesson 8.5</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Version Control Fundamentals for Data\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Defeating Repository Bloat &amp; Reproducibility Divergence via Decoupled Control/Data Planes and Merkle Tree Hashing.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. CAS &amp; SHA-256</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Deterministic addressing by byte content rather than file paths or timestamps.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e2dfff] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#4338ca] block mb-1 font-black\">2. Merkle DAGs</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Cryptographic avalanche prevents silent tampering in deep directory structures.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">3. Audit Paths</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Verifies individual frames in $\\mathcal{O}(\\log_2 N)$ time without full dataset transfer.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Deduplication</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Reclaims up to $95\\%$ storage savings by referencing shared binary chunks.</span>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s2",
-        "title": "Conceptual Overview & Derivation: The Mathematics of Content-Addressable Storage (CAS)",
-        "type": "equation",
+        "title": "Decoupled Architecture: Control Plane vs. Data Plane",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & Derivation: The Mathematics of Content-Addressable Storage (CAS)",
+          "title": "Decoupled Architecture: Control Plane vs. Data Plane",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & Derivation: The Mathematics of Content-Addressable Storage (CAS). Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$h = \\mathcal{H}(B) = \\text{SHA-256}(B)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Pr\\left[\\exists \\, B_1  \\neq B_2 : \\mathcal{H}(B_1) = \\mathcal{H}(B_2)\\right] < 2^{-128}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{H}(N_v) = \\mathcal{H}\\left( \\text{metadata}(N_v) \\,\\|\\, \\bigoplus_{i=1}^k \\left(\\text{name}(c_i) \\,\\|\\, \\mathcal{H}(c_i) \\,\\|\\, \\text{size}(c_i)\\right) \\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Version multi-gigabyte datasets using Content-Addressable Storage (CAS): chunk files into content-defined blocks (e.g., FastCDC) and index by cryptographic hash. If a new dataset version modifies only 2% of records, CAS stores only the newly changed </span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Standard software version</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">control tools like Git were architected for small, human-readable source code files.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">When applied</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">to machine learning datasets—which feature massive binary files, high-cardinality tensors, and multi-gigabyte embeddings—traditional Git repositories choke: the .git directory duplicates entire objects upon each mutation, quickly degrading clone, push, and checkout speeds to unusable levels ((Pacheco et al., 2024)).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">To establish reproducible</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">computational science ((Peng, 2011)), modern data architectures employ dedicated versioned storage engines such as OrpheusDB ((Huang et al., 2017)) and Delta Lake ((Armbrust et al., 2020)).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">To overcome these</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">physical bottlenecks, modern dataset versioning decouples the control plane (lightweight Git tracking metadata, pointer files, and Merkle DAG commits) from the data plane (immutable Content-Addressable Storage residing in scalable cloud object stores) ((Einziger et al., 2021)).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & Derivation: The Mathematics of Content-Addressable Storage (CAS)",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does conceptual overview & derivation: the mathematics of content-addressable storage (cas) protect our system against silent distribution shift in production?"
+              "text": "Modern data version control fundamentally separates the lightweight metadata Control Plane from the massive binary Data Plane.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Follow the three tiers left to right: in the Data Science Workspace, code and small pointer files like dataset dot dvc live alongside local reflink or hardlink caches. The Control Plane commits these pointers into Git, locking the exact SHA-256 Merkle root. The Data Plane stores the actual immutable blobs in cloud object storage like S3 or GCS, synchronizing only on demand!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$h = \\mathcal{H}(B) = \\text{SHA-256}(B)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Pr\\left[\\exists \\, B_1  \\neq B_2 : \\mathcal{H}(B_1) = \\mathcal{H}(B_2)\\right] < 2^{-128}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{H}(N_v) = \\mathcal{H}\\left( \\text{metadata}(N_v) \\,\\|\\, \\bigoplus_{i=1}^k \\left(\\text{name}(c_i) \\,\\|\\, \\mathcal{H}(c_i) \\,\\|\\, \\text{size}(c_i)\\right) \\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Version multi-gigabyte datasets using Content-Addressable Storage (CAS): chunk files into content-defined blocks (e.g., FastCDC) and index by cryptographic hash. If a new dataset version modifies only 2% of records, CAS stores only the newly changed </span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Standard software version</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">control tools like Git were architected for small, human-readable source code files.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">When applied</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">to machine learning datasets—which feature massive binary files, high-cardinality tensors, and multi-gigabyte embeddings—traditional Git repositories choke: the .git directory duplicates entire objects upon each mutation, quickly degrading clone, push, and checkout speeds to unusable levels ((Pacheco et al., 2024)).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">To establish reproducible</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">computational science ((Peng, 2011)), modern data architectures employ dedicated versioned storage engines such as OrpheusDB ((Huang et al., 2017)) and Delta Lake ((Armbrust et al., 2020)).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">To overcome these</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">physical bottlenecks, modern dataset versioning decouples the control plane (lightweight Git tracking metadata, pointer files, and Merkle DAG commits) from the data plane (immutable Content-Addressable Storage residing in scalable cloud object stores) ((Einziger et al., 2021)).</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#0e7490] uppercase tracking-wide\">\n      Decoupled Architecture: Control Plane vs. Data Plane\n    </h3>\n    <span class=\"text-xs font-mono bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Huang (2017) • Pacheco (2024)</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs items-stretch\">\n    <div class=\"p-3 rounded-lg bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex flex-col justify-between\">\n      <div>\n        <div class=\"font-black text-[#0e7490] mb-1.5\">1. Workspace &amp; Local Cache</div>\n        <div class=\"space-y-1.5 text-[11px] text-[#151b20]\">\n          <div class=\"p-2 rounded bg-white border border-[#151b20]/40\"><strong>train_model.py:</strong> Python code versioned directly in Git</div>\n          <div class=\"p-2 rounded bg-white border border-[#151b20]/40\"><strong>dataset.dvc / .gitattributes:</strong> 150-byte pointer text with SHA-256 OID</div>\n          <div class=\"p-2 rounded bg-[#fff0b9] border border-[#151b20]\"><strong>Local .dvc/cache:</strong> Hardlinks or copy-on-write reflinks to disk</div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#e2dfff] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-black text-[#4338ca] mb-1.5\">2. Control Plane (Git &amp; Merkle DAG)</div>\n      <div class=\"space-y-1.5 text-[11px] text-[#151b20]\">\n        <div class=\"p-2 rounded bg-white border border-[#151b20]/50\">\n          <strong>Git Commit (HEAD):</strong><br/>\n          Cryptographically binds code state + dataset pointer hash together.\n        </div>\n        <div class=\"p-2 rounded bg-white border border-[#151b20]/50\">\n          <strong>Merkle Directory Tree:</strong><br/>\n          Hierarchical SHA-256 directory hashes guaranteeing auditability.\n        </div>\n        <div class=\"p-2 rounded bg-[#e7f4c8] border border-[#151b20] text-[#15803d] font-bold\">\n          ✓ Microsecond Git Branching &amp; Merging\n        </div>\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-lg bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] flex flex-col justify-between\">\n      <div>\n        <div class=\"font-black text-[#15803d] mb-1.5\">3. Data Plane (Object Storage)</div>\n        <div class=\"space-y-1.5 text-[11px] text-[#151b20]\">\n          <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n            <strong>s3://bucket/cache/7a/8f3b...:</strong><br/>\n            12.4 GB immutable feature parquet blob\n          </div>\n          <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n            <strong>s3://bucket/cache/3e/1c0a...:</strong><br/>\n            4.2 GB immutable embedding matrix blob\n          </div>\n          <div class=\"p-2 rounded bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-bold\">\n            ✓ Content-Addressed De-duplication\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: How Pointers Prevent Disk Duplication",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait, Dr. Nova! If the 12-gigabyte feature parquet file is stored in S3, does my workstation download the entire 12 gigabytes every time I checkout a new Git branch?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Never! Your workspace uses reflinks or hardlinks pointing into the local cache. When you switch branches, Git only updates a tiny 150-byte text pointer file. If the underlying data did not change, zero bytes are transferred or duplicated on disk!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So Git stays blazing fast, while DVC or Git-LFS handles fetching only the mutated blobs from S3 when explicitly requested with dvc pull!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#4338ca] uppercase tracking-wide\">\n      Zero-Copy Workspace Links &amp; On-Demand Fetching\n    </h3>\n    <span class=\"text-xs font-mono bg-[#e2dfff] text-[#4338ca] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Reflinks • Hardlinks</span>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Local Linking Layer:</strong>\n      <p class=\"font-sans text-[11px] text-[#151b20]\">\n        Files in the working directory point directly into <code>.dvc/cache</code> using filesystem hardlinks or copy-on-write reflinks (APFS/Btrfs/XFS), occupying zero extra disk space.\n      </p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Remote On-Demand Pull:</strong>\n      <p class=\"font-sans text-[11px] text-[#151b20]\">\n        Running <code>git checkout</code> takes milliseconds. Developers only run <code>dvc pull</code> when they need to materialize modified training partitions locally.\n      </p>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s3",
-        "title": "Conceptual Overview & Derivation: Architecture Flowchart",
-        "type": "figure",
+        "title": "Definition 8.5.1: Content-Addressable Storage (CAS) & SHA-256",
+        "type": "math",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & Derivation: Architecture Flowchart",
+          "title": "Definition 8.5.1: Content-Addressable Storage (CAS) & SHA-256",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & Derivation: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  subgraph LocalWorkspace [\"1. Local Developer Workspace & Git Repo\"]\n    TrainCode[\"train_model.py (Tracked in Git)\"]\n    DVCPointer[\"dataset.dvc (Tracked in Git)<br/><code>hash: 7a8f3b... size: 12.4 GB</code>\"]\n    LocalCache[(\"Local CAS Cache<br/>.dvc/cache/7a/8f3b...\")]\n  end\n\n  subgraph MerkleControl [\"2. Control Plane (Git & Merkle DAG)\"]\n    GitCommit[\"Git Commit (HEAD)<br/>Cryptographically binds Code + Data Pointer\"]\n    MerkleTree[\"Merkle Directory Tree<br/>SHA-256 Hierarchical Node Hashes\"]\n  end\n\n  subgraph RemoteStorage [\"3. Immutable Cloud Blob Store (S3 / GCS)\"]\n    CloudBlob1[(\"s3://bucket/cache/7a/8f3b...<br/>(12.4 GB Feature Tensor)\")]\n    CloudBlob2[(\"s3://bucket/cache/3e/1c0a...<br/>(4.2 GB Embedding Matrix)\")]\n  end\n\n  TrainCode --> GitCommit\n  DVCPointer --> GitCommit\n  GitCommit --> MerkleTree\n  DVCPointer --> LocalCache\n  LocalCache <--> CloudBlob1\n  MerkleTree -.-> CloudBlob2\n\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  class TrainCode,DVCPointer,LocalCache blue;\n  class GitCommit,MerkleTree amber;\n  class CloudBlob1,CloudBlob2 green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Standard software version</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">control tools like Git were architected for small, human-readable source code files.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">When applied</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">to machine learning datasets—which feature massive binary files, high-cardinality tensors, and multi-gigabyte embeddings—traditional Git repositories choke: the .git directory duplicates entire objects upon each mutation, quickly degrading clone, push, and checkout speeds to unusable levels ((Pacheco et al., 2024)).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & Derivation: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for conceptual overview & derivation: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "Definition 8.5.1 establishes the foundation of Content-Addressable Storage: an arbitrary binary payload B is addressed strictly by its cryptographic digest h produced by a collision-resistant hash function like SHA-256.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "This hash satisfies three mandatory cryptographic guarantees: First, Pre-image resistance: finding the original payload given a digest requires 2 to the 256th operations. Second, Second pre-image resistance: finding another payload with the same digest requires 2 to the 256th operations. Third, Collision resistance: by the Birthday Paradox, finding any arbitrary pair of colliding payloads requires 2 to the 128th operations. The collision probability is strictly under 2 to the minus 128th—effectively zero in modern physics!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  subgraph LocalWorkspace [\"1. Local Developer Workspace & Git Repo\"]\n    TrainCode[\"train_model.py (Tracked in Git)\"]\n    DVCPointer[\"dataset.dvc (Tracked in Git)<br/><code>hash: 7a8f3b... size: 12.4 GB</code>\"]\n    LocalCache[(\"Local CAS Cache<br/>.dvc/cache/7a/8f3b...\")]\n  end\n\n  subgraph MerkleControl [\"2. Control Plane (Git & Merkle DAG)\"]\n    GitCommit[\"Git Commit (HEAD)<br/>Cryptographically binds Code + Data Pointer\"]\n    MerkleTree[\"Merkle Directory Tree<br/>SHA-256 Hierarchical Node Hashes\"]\n  end\n\n  subgraph RemoteStorage [\"3. Immutable Cloud Blob Store (S3 / GCS)\"]\n    CloudBlob1[(\"s3://bucket/cache/7a/8f3b...<br/>(12.4 GB Feature Tensor)\")]\n    CloudBlob2[(\"s3://bucket/cache/3e/1c0a...<br/>(4.2 GB Embedding Matrix)\")]\n  end\n\n  TrainCode --> GitCommit\n  DVCPointer --> GitCommit\n  GitCommit --> MerkleTree\n  DVCPointer --> LocalCache\n  LocalCache <--> CloudBlob1\n  MerkleTree -.-> CloudBlob2\n\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  class TrainCode,DVCPointer,LocalCache blue;\n  class GitCommit,MerkleTree amber;\n  class CloudBlob1,CloudBlob2 green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Standard software version</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">control tools like Git were architected for small, human-readable source code files.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">When applied</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">to machine learning datasets—which feature massive binary files, high-cardinality tensors, and multi-gigabyte embeddings—traditional Git repositories choke: the .git directory duplicates entire objects upon each mutation, quickly degrading clone, push, and checkout speeds to unusable levels ((Pacheco et al., 2024)).</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#0e7490] uppercase tracking-wide\">\n      Cryptographic Digest Mapping &amp; Invariance Guarantees\n    </h3>\n    <span class=\"text-xs font-mono bg-[#fff0b9] text-[#b45309] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Def 8.5.1 • Merkle (1987)</span>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] text-xs mb-3 text-center\">\n    $$h = \\mathcal{H}(B) = \\text{SHA-256}(B) \\in \\{0, 1\\}^{256}$$\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">1. Pre-image Resistance</strong>\n      <div class=\"text-[11px] font-sans text-[#151b20]\">\n        Given $h$, inverting to find $B$ requires $\\mathcal{O}(2^{256})$ work. Payload data cannot be reverse-engineered from hashes.\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e2dfff] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#4338ca] block mb-1\">2. Second Pre-image</strong>\n      <div class=\"text-[11px] font-sans text-[#151b20]\">\n        Given $B_1$, finding $B_2 \\neq B_1$ with $\\mathcal{H}(B_1) = \\mathcal{H}(B_2)$ takes $\\mathcal{O}(2^{256})$ ops. Prevents forging.\n      </div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">3. Collision Resistance</strong>\n      <div class=\"text-[11px] font-sans text-[#151b20]\">\n        Finding any $B_1 \\neq B_2$ takes $\\mathcal{O}(2^{128})$ ops via Birthday Paradox:\n        $$\\Pr[\\text{collision}] &lt; 2^{-128}$$\n      </div>\n    </div>\n  </div>\n\n  <div class=\"mt-3 p-2.5 rounded-lg bg-[#fffaf0] border border-[#151b20] text-[11px] font-mono\">\n    <strong>Fundamental Invariance:</strong> Any two byte-identical files produce identical cryptographic addresses regardless of filename, directory path, or local modification timestamp.\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Why Content Addressing Beats Filename Paths",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Why do we call it Content-Addressable Storage? What makes an address based on content so much better than traditional filesystem paths like slash data slash train dot csv?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because file paths are mutable labels! A developer can overwrite train dot csv in place, silently corrupting your training data while keeping the exact same filename. In CAS, the address is the hash of the raw bytes. If you change a single byte, the address changes completely!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And if two engineers have the same 5-gigabyte embeddings file under different names, CAS immediately detects they have the same hash and stores only one copy!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#0e7490] uppercase tracking-wide\">\n      Path Addressing vs. Content Addressing\n    </h3>\n    <span class=\"text-xs font-mono bg-[#ffd8ce] text-[#b91c1c] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Immutability</span>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Fragile: Path Addressing</strong>\n      <p class=\"font-sans text-[11px] text-[#151b20]\">\n        <code>/data/train_v1.parquet</code> can be silently overwritten in-place, leading to unversioned feature leakage and non-reproducible training runs.\n      </p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Robust: Content Addressing (CAS)</strong>\n      <p class=\"font-sans text-[11px] text-[#151b20]\">\n        <code>s3://cache/7a/8f3b20c918...</code> is physically immutable. Modifying the data produces a totally new hash address without touching the original blob.\n      </p>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s4",
-        "title": "Runnable Executable Python Implementation",
-        "type": "code",
+        "title": "Definition 8.5.2: Merkle Directed Acyclic Graph (DAG) Formulation",
+        "type": "math",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Runnable Executable Python Implementation",
+          "title": "Definition 8.5.2: Merkle Directed Acyclic Graph Formulation",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Runnable Executable Python Implementation. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code>import hashlib\nimport json\nfrom typing import Dict, List, Tuple\n\nclass ContentAddressableStore:\n    &quot;&quot;&quot;Implements Content-Addressable Storage (CAS) and Merkle DAG hashing.&quot;&quot;&quot;\n\n    def __init__(self):\n        self.blob_store: Dict[str, bytes] = {}\n        self.version_manifests: Dict[str, dict] = {}\n\n    @staticmethod\n    def sha256_hash(data: bytes) -&gt; str:\n        return hashlib.sha256(data).hexdigest()\n\n    def put_blob(self, payload: bytes) -&gt; str:\n        &quot;&quot;&quot;Stores blob immutably by its content hash.&quot;&quot;&quot;\n        digest = self.sha256_hash(payload)\n        if digest not in self.blob_store:\n            self.blob_store[digest] = payload\n        return digest\n\n    def commit_version(self, version_tag: str, files: Dict[str, bytes]) -&gt; str:\n        &quot;&quot;&quot;Commits dataset version and returns Merkle root hash.&quot;&quot;&quot;\n        manifest_entries = []\n     </code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Runnable Executable Python Implementation",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "To organize thousands of individual files into a tamper-evident repository, Definition 8.5.2 formulates the Merkle Directed Acyclic Graph over commits, directory trees, and file blobs.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "At the leaves, raw file blobs are hashed directly. A directory tree node hashes the sorted concatenation of its entry permissions, filenames, and child hashes. Finally, a commit node binds the root tree hash, author metadata, timestamp, and parent commit hash. By induction, changing even a single byte in any leaf blob triggers a cryptographic avalanche effect, flipping roughly 50 percent of the bits at the commit root!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code>import hashlib\nimport json\nfrom typing import Dict, List, Tuple\n\nclass ContentAddressableStore:\n    &quot;&quot;&quot;Implements Content-Addressable Storage (CAS) and Merkle DAG hashing.&quot;&quot;&quot;\n\n    def __init__(self):\n        self.blob_store: Dict[str, bytes] = {}\n        self.version_manifests: Dict[str, dict] = {}\n\n    @staticmethod\n    def sha256_hash(data: bytes) -&gt; str:\n        return hashlib.sha256(data).hexdigest()\n\n    def put_blob(self, payload: bytes) -&gt; str:\n        &quot;&quot;&quot;Stores blob immutably by its content hash.&quot;&quot;&quot;\n        digest = self.sha256_hash(payload)\n        if digest not in self.blob_store:\n            self.blob_store[digest] = payload\n        return digest\n\n    def commit_version(self, version_tag: str, files: Dict[str, bytes]) -&gt; str:\n        &quot;&quot;&quot;Commits dataset version and returns Merkle root hash.&quot;&quot;&quot;\n        manifest_entries = []\n     </code></pre>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#4338ca] uppercase tracking-wide\">\n      Hierarchical Merkle DAG Node Formulations ($G = (V, E)$)\n    </h3>\n    <span class=\"text-xs font-mono bg-[#e2dfff] text-[#4338ca] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Def 8.5.2</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 mb-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">1. Leaf Blob Node ($f \\in V_{\\text{blob}}$)</strong>\n      <div class=\"p-2 rounded bg-white border border-[#151b20] text-center my-1\">\n        $$h(f) = \\mathcal{H}(\\text{payload}(f))$$\n      </div>\n      <div class=\"text-[10px] font-sans text-[#151b20]\">Direct SHA-256 over raw binary payload bytes.</div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#e2dfff] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#4338ca] block mb-1\">2. Directory Tree ($u \\in V_{\\text{tree}}$)</strong>\n      <div class=\"p-2 rounded bg-white border border-[#151b20] text-center my-1 text-[11px]\">\n        $$h(u) = \\mathcal{H}\\left( \\bigparallel_{i=1}^m (\\mu_i \\parallel n_i \\parallel h(c_i)) \\right)$$\n      </div>\n      <div class=\"text-[10px] font-sans text-[#151b20]\">Sorted concatenation of modes $\\mu$, names $n$, and child hashes $h(c)$.</div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">3. Commit Node ($C \\in V_{\\text{commit}}$)</strong>\n      <div class=\"p-2 rounded bg-white border border-[#151b20] text-center my-1 text-[11px]\">\n        $$h(C) = \\mathcal{H}(h(u_{\\text{root}}) \\parallel h(C_{\\text{parent}}) \\parallel \\alpha \\parallel \\tau)$$\n      </div>\n      <div class=\"text-[10px] font-sans text-[#151b20]\">Binds root tree, parent commit, author $\\alpha$, and timestamp $\\tau$.</div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-lg bg-[#e7f4c8] border-2 border-[#151b20] text-xs font-mono\">\n    <strong>Cryptographic Avalanche Guarantee:</strong> Mutating even 1 single bit in any partition cascades through parent trees into the commit root $h(C)$, flipping $\\approx 50\\%$ of digest bits and making silent tampering mathematically impossible!\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Avalanche Effect in Action",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "So if our dataset contains ten thousand image files, and one single pixel changes in image nine thousand, what happens to the Merkle tree?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "The hash of that single image changes. Because that image is an entry in its parent directory, the directory hash changes. And because the directory hash changes, the root tree hash and the commit hash change completely!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And all the other nine thousand nine hundred and ninety-nine images retain their exact same SHA-256 hashes, so we only store one new blob while the rest are deduplicated!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#4338ca] uppercase tracking-wide\">\n      Tamper Evidence via Recursive Hashing\n    </h3>\n    <span class=\"text-xs font-mono bg-[#e2dfff] text-[#4338ca] px-2 py-0.5 rounded border border-[#151b20] font-bold\">50% Bit Avalanche</span>\n  </div>\n  <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] text-xs font-sans leading-relaxed\">\n    By mathematical induction, any change in payload data propagates directly up the directed acyclic graph. Downstream machine learning pipelines verify only the single 32-byte commit root hash to prove that every one of the ten thousand constituent files is bit-identical to the original training distribution.\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s5",
-        "title": "Empirical Case Study: Autonomous Driving Point Cloud Versioning (nuScenes)",
-        "type": "bullets",
+        "title": "Definition 8.5.3: Merkle Audit Paths & Logarithmic Complexity",
+        "type": "math",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Empirical Case Study: Autonomous Driving Point Cloud Versioning (nuScenes)",
+          "title": "Definition 8.5.3: Merkle Audit Paths & Logarithmic Complexity",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Empirical Case Study: Autonomous Driving Point Cloud Versioning (nuScenes). Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Volume</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The nuScenes dataset contains 1,000 driving scenes encompassing 1.4 million camera images and 400,000 LiDAR point clouds, consuming over $500\\text{ Gigabytes}$ of raw sensor telemetry.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Naive Failure</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Storing distinct releases of the benchmark directly in standard Git repositories caused Git clone operations to crash with out-of-memory errors on developer machines.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The CAS Architecture</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Motional migrated nuScenes versioning to an S3-backed Content-Addressable Storage architecture. Lightweight JSON annotation tables are versioned in Git, while massive point cloud tensors are stored immutably in S3 by SHA-256 hash. Researchers switch branches in sub-seconds while downloading only the specific sensor modalities required for their experiment ((Pacheco et al., 2024)).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Empirical Case Study: Autonomous Driving Point Cloud Versioning (nuScenes)",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the critical industrial lesson from this case study?"
+              "text": "How can an edge device or audit client verify that a specific chunk belongs to a multi-terabyte dataset without downloading the whole corpus? Definition 8.5.3 formalizes the Merkle Audit Path.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
+              "text": "For a dataset partitioned into N chunks, a verifier needs only the target chunk itself and its Merkle Audit Path: a list of exactly d equals log base 2 of N sibling hashes along the path from leaf to root. Verification takes order log 2 of N time, and the bandwidth transferred is just the chunk plus d times 32 bytes—eliminating over 99.999 percent of network transfer!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Volume</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The nuScenes dataset contains 1,000 driving scenes encompassing 1.4 million camera images and 400,000 LiDAR point clouds, consuming over $500\\text{ Gigabytes}$ of raw sensor telemetry.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Naive Failure</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Storing distinct releases of the benchmark directly in standard Git repositories caused Git clone operations to crash with out-of-memory errors on developer machines.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The CAS Architecture</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Motional migrated nuScenes versioning to an S3-backed Content-Addressable Storage architecture. Lightweight JSON annotation tables are versioned in Git, while massive point cloud tensors are stored immutably in S3 by SHA-256 hash. Researchers switch branches in sub-seconds while downloading only the specific sensor modalities required for their experiment ((Pacheco et al., 2024)).</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#b45309] uppercase tracking-wide\">\n      Logarithmic Audit Paths ($\\Pi(k)$) &amp; Zero-Trust Bandwidth Savings\n    </h3>\n    <span class=\"text-xs font-mono bg-[#fff0b9] text-[#b45309] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Def 8.5.3 • $\\mathcal{O}(\\log_2 N)$</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mb-3\">\n    <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20]\">\n      <div class=\"text-xs font-mono font-black text-[#0e7490] mb-1\">Audit Path Proof Construction</div>\n      <div class=\"text-xs text-[#151b20] font-sans leading-relaxed mb-2\">\n        For chunk $c_k$ in a tree of $N = 2^d$ leaves with root $h_{\\text{root}}$:\n      </div>\n      <div class=\"p-2 rounded bg-white border border-[#151b20] text-center text-xs font-mono\">\n        $$\\Pi(k) = (\\sigma_1, \\sigma_2, \\dots, \\sigma_d), \\quad d = \\lceil \\log_2 N \\rceil$$\n        $$T_{\\text{verify}} = \\mathcal{O}(d) = \\mathcal{O}(\\log_2 N)$$\n      </div>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20]\">\n      <div class=\"text-xs font-mono font-black text-[#15803d] mb-1\">Transferred Proof Bandwidth</div>\n      <div class=\"p-2 rounded bg-white border border-[#151b20] text-center text-xs font-mono mb-2\">\n        $$\\text{Bandwidth}_{\\text{proof}} = B_{\\text{chunk}} + \\lceil \\log_2 N \\rceil \\cdot 32\\text{ bytes} \\ll |D|$$\n      </div>\n      <div class=\"text-[11px] font-sans text-[#151b20]\">\n        For $N = 2^{20} = 1{,}048{,}576$ chunks, the audit path requires only $20 \\times 32 = 640$ bytes of cryptographic sibling proofs!\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-lg bg-[#c9f3f4] border-2 border-[#151b20] text-xs font-mono\">\n    <strong>Zero-Trust Client Audit:</strong> Edge devices and clinical monitors verify that inference batches originate from the authentic published training root without needing multi-terabyte dataset storage.\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Proving Inclusion with 20 Hashes Instead of 10 Terabytes",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait—you mean an edge vehicle with limited LTE cellular bandwidth can verify that a new 10-megabyte LiDAR frame belongs to a 10-terabyte training corpus by downloading only 640 bytes?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! In a balanced Merkle tree of 1,048,576 frames, depth d is log 2 of 2 to the 20th, which is exactly 20. The edge client hashes its frame, hashes it with 20 sibling hashes up the tree, and checks if the result matches the published 32-byte root hash!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "That eliminates 99.9999 percent of data transfer! Tampering with a single byte in the frame breaks the root match immediately!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#b45309] uppercase tracking-wide\">\n      $\\mathcal{O}(\\log_2 N)$ Inclusion Proof Efficiency\n    </h3>\n    <span class=\"text-xs font-mono bg-[#fff0b9] text-[#b45309] px-2 py-0.5 rounded border border-[#151b20] font-bold\">20 Hashes = 640 Bytes</span>\n  </div>\n  <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] text-xs font-sans leading-relaxed\">\n    Because proof size scales logarithmically ($\\lceil \\log_2 N \\rceil$), verifying membership in a million-item perception dataset requires transmitting only 20 SHA-256 hashes (640 bytes). An edge client computes 20 consecutive hashes in under 100 microseconds.\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s6",
-        "title": "Interactive Lab: Explore Dataset Version Timeline (DVC)",
-        "type": "tool",
+        "title": "Interactive Lab 1: Merkle DAG & Git-LFS Pointer Studio",
+        "type": "concept",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Explore Dataset Version Timeline (DVC)",
+          "title": "Interactive Lab 1: Merkle DAG & Git-LFS Pointer Studio",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Explore Dataset Version Timeline (DVC). Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Dataset Version Timeline (DVC)</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate Git-LFS pointer files, Merkle DAG commit trees, and content-addressable storage deduplication client-side.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Version Timeline →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Explore Dataset Version Timeline (DVC)",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the explore dataset version timeline (dvc) located below this player?"
+              "text": "Let us inspect Interactive Laboratory 1 below me: the Merkle DAG and Git-LFS Pointer Studio, matching Simulator 8.5 Tab A.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Trigger release actions above: commit v1.0.0 Base, Mutate Labels in v1.1.0, and Major Schema Overhaul in v2.0.0. Inspect how Git-LFS pointer files track 64-character SHA-256 OIDs while unchanged blobs retain identical addresses, and click Tamper 1 Byte to witness the red checksum failure!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Dataset Version Timeline (DVC)</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate Git-LFS pointer files, Merkle DAG commit trees, and content-addressable storage deduplication client-side.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Version Timeline →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#0e7490] uppercase tracking-wide\">\n      Simulator 8.5 Tab A: Merkle DAG &amp; Git-LFS Pointer Ledger\n    </h3>\n    <span class=\"text-xs font-mono bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Lab 1 • Interactive</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans leading-relaxed\">\n    Observe how Git separates control metadata from binary payloads across <code>features.parquet</code> (12.4 GB), <code>embeddings.npy</code> (4.2 GB), and <code>labels.csv</code> (85 MB). Mutate labels or tamper 1 byte below to witness the cryptographic avalanche effect in real time.\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Interactive Debate: Watching Merkle Roots Mutate Across Commits",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Below us in Lab 1, the golden commit node at the top connects through the teal Merkle directory tree down to three large binary blobs!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Click Mutate Labels v1.1.0 below: notice how labels dot csv turns coral with a new hash, causing the tree and commit root to update while features and embeddings remain untouched in white! Then click Tamper 1 Byte to watch the red integrity alert fire!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#0e7490] uppercase tracking-wide\">\n      Simulator 8.5 Tab A: Merkle DAG &amp; Git-LFS Pointer Ledger\n    </h3>\n    <span class=\"text-xs font-mono bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Lab 1 • Socratic</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans leading-relaxed\">\n    Test commit actions below to watch how unchanged blobs retain identical SHA-256 addresses, and inspect the exact 3-line Git-LFS pointer files committed to Git.\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s7",
+        "title": "Active Checkpoint 1: Cryptographic Avalanche & Second Pre-Image Resistance",
+        "type": "quiz",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Checkpoint 1: Cryptographic Avalanche & Second Pre-Image Resistance",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us pause for Active Checkpoint 1 covering Self-Assessment 8.5.1 on cryptographic Merkle roots.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "A dataset directory contains three partitions: part 0, part 1, and part 2 with directory root h root equals hash of h1, h2, h3. An engineer modifies a single scalar float in row 4,912 of part 1. Which blob hashes change, does h root change, and why can't an adversary forge a malicious row? Choose Option A, B, or C below me!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#0e7490] uppercase tracking-wide\">\n      Formative Verification: Cryptographic Avalanche in Merkle Tree Roots\n    </h3>\n    <span class=\"text-xs font-mono bg-[#fff0b9] text-[#b45309] px-2 py-0.5 rounded border border-[#151b20] font-bold\">SA 8.5.1</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans\">\n    Evaluate partition modifications on $h_1, h_2, h_3$, root reaction $h_{\\text{root}} = \\mathcal{H}(h_1 \\parallel h_2 \\parallel h_3)$, and second pre-image security bounds.\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Active Checkpoint 1: Analyzing Single-Byte Partition Mutation",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Checkpoint 1 tests SA 8.5.1! Watch carefully: only part 1 has a modified float in row 4,912, while part 0 and part 2 are totally untouched! Select the correct diagnosis in the quiz below me!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#0e7490] uppercase tracking-wide\">\n      Formative Verification: Cryptographic Avalanche in Merkle Tree Roots\n    </h3>\n    <span class=\"text-xs font-mono bg-[#fff0b9] text-[#b45309] px-2 py-0.5 rounded border border-[#151b20] font-bold\">SA 8.5.1</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans\">\n    Determine exact blob hash mutations and cryptographic preimage resistance limits before continuing to deduplication scaling.\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s8",
+        "title": "Definition 8.5.4: CAS Deduplication Storage Scaling Laws",
+        "type": "math",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Definition 8.5.4: CAS Deduplication Storage Scaling Laws",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "How much physical storage does Content-Addressable deduplication actually save across multiple project releases? Definition 8.5.4 establishes the scaling laws.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "For a dataset with baseline size S 0 evolving across K releases with average mutation fraction delta, naive snapshots scale linearly as K times S 0. CAS stores the baseline once plus incremental churn, scaling as S 0 times 1 plus K minus 1 times delta. The deduplication savings ratio rho dedup is 1 minus 1 over K times 1 minus delta, converging asymptotically to 1 minus delta. At 5 percent churn, deduplication captures 95 percent storage savings!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#15803d] uppercase tracking-wide\">\n      CAS Storage Scaling Formulation &amp; Asymptotic Savings Ratio\n    </h3>\n    <span class=\"text-xs font-mono bg-[#e7f4c8] text-[#15803d] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Def 8.5.4 • Einziger (2021)</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mb-3\">\n    <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20]\">\n      <div class=\"text-xs font-mono font-black text-[#0e7490] mb-1\">Naive vs. CAS Storage Growth</div>\n      <div class=\"text-xs text-[#151b20] font-sans leading-relaxed mb-2\">\n        Baseline $S_0$, $K$ releases, mutation fraction $\\delta \\in (0, 1]$:\n      </div>\n      <div class=\"p-2 rounded bg-white border border-[#151b20] text-center text-xs font-mono\">\n        $$\\mathcal{S}_{\\text{naive}}(K) = K \\cdot S_0$$\n        $$\\mathcal{S}_{\\text{CAS}}(K) = S_0 \\cdot [1 + (K - 1)\\delta]$$\n      </div>\n    </div>\n\n    <div class=\"p-3.5 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20]\">\n      <div class=\"text-xs font-mono font-black text-[#15803d] mb-1\">Deduplication Savings Ratio $\\rho_{\\text{dedup}}(K)$</div>\n      <div class=\"p-2 rounded bg-white border border-[#151b20] text-center text-xs font-mono mb-2\">\n        $$\\rho_{\\text{dedup}}(K) = 1 - \\frac{\\mathcal{S}_{\\text{CAS}}(K)}{\\mathcal{S}_{\\text{naive}}(K)} = \\left( 1 - \\frac{1}{K} \\right)(1 - \\delta)$$\n        $$\\lim_{K \\to \\infty} \\rho_{\\text{dedup}}(K) = 1 - \\delta$$\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-lg bg-[#c9f3f4] border-2 border-[#151b20] text-xs font-mono\">\n    <strong>5% Enterprise Churn Benchmark ($\\delta = 0.05$):</strong> As $K \\to \\infty$, asymptotic savings reach $1 - 0.05 = \\mathbf{95.0\\%}$, converting exponential disk consumption into near-flat storage costs.\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: The Mathematical Geometry of Churn Deduplication",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look at the formula: 1 minus 1 over K times 1 minus delta! That means the more releases you make, the closer your savings get to 1 minus delta!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! With naive snapshots, twenty releases of a 100-gigabyte dataset consumes two terabytes. With CAS at 5 percent churn, it takes only 195 gigabytes. That is over 90 percent savings on physical storage and cloud transfer bills!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And because unchanged chunks share the exact same hash address, multiple pipelines can train on different historical snapshots without duplicating data!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#15803d] uppercase tracking-wide\">\n      Linear Storage Growth vs. Naive Multiplication\n    </h3>\n    <span class=\"text-xs font-mono bg-[#e7f4c8] text-[#15803d] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Cost Economics</span>\n  </div>\n  <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] text-xs font-sans leading-relaxed\">\n    Under naive snapshots, storage scales as $\\mathcal{O}(K \\cdot S_0)$. Under CAS block-level deduplication, shared immutable chunks ensure storage scales strictly as $\\mathcal{O}(S_0 + K \\cdot \\delta \\cdot S_0)$, preserving historical provenance at marginal incremental cost.\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s9",
+        "title": "Definition 8.5.5: Semantic Versioning State Transitions for Datasets",
+        "type": "math",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Definition 8.5.5: Semantic Versioning State Transitions for Datasets",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To prevent downstream machine learning pipelines from crashing, Definition 8.5.5 formalizes Semantic Versioning state transitions for datasets as an integer triplet M, m, p.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "A Major bump increments M and resets minor and patch to zero whenever there is a breaking schema change—like column deletion or attribute rename—or a label distribution shift that invalidates trained models. A Minor bump increments m whenever backwards-compatible features or additional sample batches are appended. A Patch bump increments p for typo corrections, corrupted entry repairs, or metadata errata fixes with zero structural alterations!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#4338ca] uppercase tracking-wide\">\n      Dataset Semantic Versioning State Transition Triple ($(M, m, p)$)\n    </h3>\n    <span class=\"text-xs font-mono bg-[#e2dfff] text-[#4338ca] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Def 8.5.5 • Preston-Werner (2013)</span>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] text-xs mb-3 text-center font-mono\">\n    $$(M', m', p') = \\begin{cases}\n    (M + 1, \\, 0, \\, 0), & \\text{if } \\text{BreakingSchema}(\\Delta_{\\text{schema}}) \\lor \\text{LabelShift}(\\Delta_Y)\\\\\n    (M, \\, m + 1, \\, 0), & \\text{if } \\text{AdditiveFeature}(\\Delta_{\\text{schema}}) \\lor \\text{SampleExtension}(\\Delta_X)\\\\\n    (M, \\, m, \\, p + 1), & \\text{if } \\text{ErrataCorrection}(\\Delta_D) \\lor \\text{MetadataUpdate}(\\Delta_M)\n    \\end{cases}$$\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">Major ($M \\to M+1$)</strong>\n      <p class=\"font-sans text-[11px] text-[#151b20]\">\n        Column deletion, attribute rename, or target redefinition that breaks downstream model inference.\n      </p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">Minor ($m \\to m+1$)</strong>\n      <p class=\"font-sans text-[11px] text-[#151b20]\">\n        Backwards-compatible optional feature additions or appended cohort sample extensions.\n      </p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">Patch ($p \\to p+1$)</strong>\n      <p class=\"font-sans text-[11px] text-[#151b20]\">\n        Typographical spelling fixes or repair of corrupted cells with zero schema alterations.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Why Renaming a Column Demands a Major Bump",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "If a team renames a column like SystolicBP to systolic_blood_pressure_mmhg, why can't that just be a Minor bump? It's just a name change!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Think of downstream inference! Any automated production model expecting df bracket SystolicBP will immediately throw a KeyError and crash the entire pipeline! Any breaking change that invalidates existing consumer code requires a Major bump from v2 dot 4 dot 1 straight to v3 dot 0 dot 0!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Whereas appending ten thousand new patient rows with the exact same columns is a backwards-compatible Minor bump to v2 dot 5 dot 0!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#4338ca] uppercase tracking-wide\">\n      Preventing Pipeline KeyErrors via SemVer Contracts\n    </h3>\n    <span class=\"text-xs font-mono bg-[#ffd8ce] text-[#b91c1c] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Breaking vs. Compatible</span>\n  </div>\n  <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] text-xs font-sans leading-relaxed\">\n    Downstream machine learning models treat dataset schemas as rigid contracts. Semantic versioning guarantees that automated retraining pipelines can safely ingest <code>v2.x.x</code> releases without breaking feature extraction pipelines or failing schema validations.\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s10",
+        "title": "Interactive Lab 2: CAS Deduplication Scaling Studio",
+        "type": "concept",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Interactive Lab 2: CAS Deduplication Scaling Studio",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now let us explore Interactive Laboratory 2 below me: the Content-Addressable Storage Deduplication Scaling Studio, matching Simulator 8.5 Tab B.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Adjust baseline dataset size S 0, release iterations K, and per-release churn delta above. Watch the red naive snapshot line soar linearly while the teal CAS curve grows with a much flatter slope, and see the asymptotic savings ratio approach 1 minus delta in real time!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#15803d] uppercase tracking-wide\">\n      Simulator 8.5 Tab B: CAS Deduplication Storage Scaling Studio\n    </h3>\n    <span class=\"text-xs font-mono bg-[#e7f4c8] text-[#15803d] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Lab 2 • Interactive</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans leading-relaxed\">\n    Simulate storage growth across $K$ development releases below: compare naive full snapshots ($\\mathcal{S}_{\\text{naive}} = K \\cdot S_0$) against Content-Addressable Storage ($\\mathcal{S}_{\\text{CAS}} = S_0[1 + (K-1)\\delta]$) and verify the asymptotic savings limit $1 - \\delta$.\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Interactive Debate: Watching Storage Savings Grow Across Sprints",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look at the scaling curves in Lab 2 below! The red line shows naive copying rocketing upward to 500 gigabytes after 10 releases of a 50-gigabyte dataset!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now look at the teal CAS curve: with 10 percent churn, storage is only 95 gigabytes, capturing 81 percent savings! Slide the releases slider up to 25 and watch savings approach the 90 percent asymptotic ceiling!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#15803d] uppercase tracking-wide\">\n      Simulator 8.5 Tab B: CAS Deduplication Storage Scaling Studio\n    </h3>\n    <span class=\"text-xs font-mono bg-[#e7f4c8] text-[#15803d] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Lab 2 • Socratic</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans leading-relaxed\">\n    Tune baseline size $S_0$, release count $K$, and churn $\\delta$ below to watch the gap between naive copying and CAS widen into hundreds of gigabytes of saved disk.\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s11",
+        "title": "Active Checkpoint 2: Merkle Audit Path Logarithmic Complexity (SA 8.5.2)",
+        "type": "quiz",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Checkpoint 2: Merkle Audit Path Logarithmic Complexity (SA 8.5.2)",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now let us solve Self-Assessment 8.5.2 in Active Checkpoint 2.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "An autonomous perception corpus contains 1,048,576 LiDAR frames, each 10 megabytes, totaling 10 terabytes. A remote audit client needs to verify inclusion of one frame against the published root hash without downloading the 10-terabyte corpus. Calculate the number of sibling hashes in the audit path, transferred verification bandwidth, and bandwidth reduction ratio. Select Option A, B, or C below me!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#b45309] uppercase tracking-wide\">\n      Logarithmic Proof Complexity &amp; Network Bandwidth Reduction\n    </h3>\n    <span class=\"text-xs font-mono bg-[#fff0b9] text-[#b45309] px-2 py-0.5 rounded border border-[#151b20] font-bold\">SA 8.5.2</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans\">\n    Evaluate $N = 2^{20} = 1{,}048{,}576$ point cloud frames against depth $d = \\log_2(N)$ and compute exact proof bandwidth and reduction ratio.\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Active Checkpoint 2: Verifying Inclusion in a 10-Terabyte Corpus",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Time for Checkpoint 2! N equals 2 to the 20th frames, and each SHA-256 sibling hash is 32 bytes! Compute depth d and transferred bandwidth in the quiz below me!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#b45309] uppercase tracking-wide\">\n      Logarithmic Proof Complexity &amp; Network Bandwidth Reduction\n    </h3>\n    <span class=\"text-xs font-mono bg-[#fff0b9] text-[#b45309] px-2 py-0.5 rounded border border-[#151b20] font-bold\">SA 8.5.2</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans\">\n    Calculate exact bytes transferred ($10\\text{ MB} + d \\times 32\\text{ B}$) and reduction ratio versus downloading the full $10\\text{ TB}$ corpus.\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Industrial Case Studies: nuScenes Autonomous Driving & BLOOM Foundation Model",
+        "type": "concept",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Industrial Case Studies: nuScenes Autonomous Driving & BLOOM Foundation Model",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Two massive real-world projects demonstrate why Content-Addressable Storage is mandatory in modern AI engineering.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "First, Motional's nuScenes autonomous driving dataset captures 1.4 million camera frames and 400,000 LiDAR point clouds across 1,000 scenes, totaling over 500 gigabytes. Storing point clouds directly in standard Git crashed clones with fatal out-of-memory errors. Motional adopted a hybrid CAS architecture where Git tracks lightweight JSON annotation tables while immutable LiDAR arrays reside in S3, enabling millisecond branch switching. Second, during training of the 176-billion parameter BLOOM model, the BigScience workshop hashed 50-gigabyte text shards, saving over 60 percent in trans-European cloud network bandwidth!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#b91c1c] uppercase tracking-wide\">\n      Industrial Case Studies: High-Bandwidth Perception &amp; LLM Checkpoints\n    </h3>\n    <span class=\"text-xs font-mono bg-[#ffd8ce] text-[#b91c1c] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Autonomous Driving &amp; LLMs</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs\">\n    <div class=\"p-3.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-black text-[#b45309] mb-1\">Case 1: nuScenes Perception Dataset (500+ GB)</div>\n      <ul class=\"list-disc pl-4 space-y-1 font-sans text-[#151b20]\">\n        <li><strong>Scale &amp; Failure:</strong> $1.4\\text{M}$ camera frames, $400\\text{k}$ LiDAR sweeps. Storing raw binary arrays in Git crashed local engineer workstations with out-of-memory.</li>\n        <li><strong>Hybrid CAS Fix:</strong> Git tracks small JSON annotation tables; LiDAR point clouds are addressed immutably in S3 via SHA-256 hashes with millisecond branch switching.</li>\n      </ul>\n    </div>\n    <div class=\"p-3.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-black text-[#b91c1c] mb-1\">Case 2: BLOOM 176B Foundation Model (BigScience)</div>\n      <ul class=\"list-disc pl-4 space-y-1 font-sans text-[#151b20]\">\n        <li><strong>Distributed Sync:</strong> Multi-petabyte text shards synchronized across European high-performance compute clusters without duplicate transfers.</li>\n        <li><strong>CAS Bandwidth Savings:</strong> Hashing tokenized shards into $50\\text{ GB}$ blocks allowed nodes to share identical base shards, saving over $60\\%$ in network bandwidth.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: How Hybrid CAS Solved nuScenes and BLOOM",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, both case studies prove that large models cannot survive without Content-Addressable Storage! If BigScience had cloned full snapshots for every evaluation run, trans-European network lines would have choked completely!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yes! Hashing tokenized chunks into 50-gigabyte immutable blocks meant distributed compute nodes downloaded each shard exactly once. Unchanged data was shared seamlessly across training and evaluation runs!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#b91c1c] uppercase tracking-wide\">\n      Scaling to Petabyte Workloads via Immutable Chunk Sharding\n    </h3>\n    <span class=\"text-xs font-mono bg-[#ffd8ce] text-[#b91c1c] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Motional • BigScience</span>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-sans\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20]\">\n      <strong class=\"font-mono text-[#b45309] block mb-1\">Selective Modality Download</strong>\n      LiDAR perception teams download only the sensor sweeps relevant to their task, bypassing multi-terabyte camera video archives entirely.\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20]\">\n      <strong class=\"font-mono text-[#b91c1c] block mb-1\">Network Deduplication</strong>\n      Distributed GPU nodes verify identical 50 GB block digests locally, preventing redundant cross-cluster transfer of petabyte token datasets.\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 3: Deduplication Efficiency (SA 8.5.3) & SemVer (SA 8.5.4)",
+        "type": "quiz",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Active Checkpoint 3: Deduplication Efficiency (SA 8.5.3) & SemVer (SA 8.5.4)",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us complete Active Checkpoint 3 combining Self-Assessments 8.5.3 and 8.5.4.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "A genomics reference dataset with baseline size 120 gigabytes evolves across 15 releases with 8 percent churn per release. Calculate naive storage, CAS storage, and the deduplication savings ratio. Next, classify a modification to version 2.4.1 that renames SystolicBP and drops PatientZipCode. Choose Option A, B, or C below me!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#4338ca] uppercase tracking-wide\">\n      Genomics Churn Deduplication &amp; Schema SemVer Classification\n    </h3>\n    <span class=\"text-xs font-mono bg-[#e2dfff] text-[#4338ca] px-2 py-0.5 rounded border border-[#151b20] font-bold\">SA 8.5.3 &amp; SA 8.5.4</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans\">\n    Compute $\\mathcal{S}_{\\text{naive}}(15)$ vs $\\mathcal{S}_{\\text{CAS}}(15)$ under $S_0=120\\text{ GB}, \\delta=0.08$ and classify breaking column renames/deletions from `v2.4.1`.\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Active Checkpoint 3: Churn Math & Schema Breaking Bumps",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Final Checkpoint! Compute 120 times 1 plus 14 times 0.08, and remember what happens to a downstream model when a column is renamed or deleted! Select the right answer below me!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#4338ca] uppercase tracking-wide\">\n      Genomics Churn Deduplication &amp; Schema SemVer Classification\n    </h3>\n    <span class=\"text-xs font-mono bg-[#e2dfff] text-[#4338ca] px-2 py-0.5 rounded border border-[#151b20] font-bold\">SA 8.5.3 &amp; SA 8.5.4</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans\">\n    Evaluate 15-release deduplication savings against the asymptotic limit and enforce proper SemVer bump rules.\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Production Stack: Git-LFS, DVC, Lakehouse & Reflink Caching",
+        "type": "concept",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Stack: Git-LFS, DVC, Lakehouse & Reflink Caching",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "In enterprise ML engineering, how do tools like Git-LFS, DVC, and Delta Lake fit together into a unified data versioning pipeline?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Git-LFS uses standard HTTP pointer protocols for medium binaries. DVC provides advanced data pipelines with multi-cloud remotes and DAG execution caching. Delta Lake and Apache Iceberg version columnar parquet files using ACID transaction logs. Underneath all of them, modern filesystems use copy-on-write reflinks to eliminate duplicate disk usage locally!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#0e7490] uppercase tracking-wide\">\n      Enterprise Tool Comparison: Git-LFS vs. DVC vs. Lakehouse\n    </h3>\n    <span class=\"text-xs font-mono bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Ecosystem Taxonomy</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Git-LFS (Large File Storage)</strong>\n      <span class=\"font-sans text-[11px] text-[#151b20]\">\n        Standard GitHub/GitLab integration; replaces binary files with 3-line pointer texts; ideal for medium binary assets (&lt; 2 GB).\n      </span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e2dfff] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#4338ca] block mb-1\">DVC (Data Version Control)</strong>\n      <span class=\"font-sans text-[11px] text-[#151b20]\">\n        Multi-cloud remotes (S3/GCS/Azure/SSH); tracks pipeline dependencies via <code>dvc.yaml</code>; caches intermediate DAG stages.\n      </span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">Delta Lake / Apache Iceberg</strong>\n      <span class=\"font-sans text-[11px] text-[#151b20]\">\n        ACID transaction logs over Parquet tables; time-travel queries (<code>AS OF timestamp</code>); ideal for tabular data warehouses.\n      </span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Filesystem Reflinks (CoW)</strong>\n      <span class=\"font-sans text-[11px] text-[#151b20]\">\n        Copy-on-write filesystem pointers (APFS, XFS, Btrfs); instant zero-copy workspace materialization via <code>cp --reflink</code>.\n      </span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Choosing the Right Versioning Primitive",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "So if we are working with tabular data in Spark or Trino, we use Delta Lake time-travel. But for raw images, audio, and multimodal datasets, we use DVC or Git-LFS with Content-Addressable remotes!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! Choose the tool matched to your payload: ACID table logs for tabular data warehouses, and Content-Addressable Merkle DAGs for unstructured binary corpora!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#0e7490] uppercase tracking-wide\">\n      Matching Tooling to Data Payload Modalities\n    </h3>\n    <span class=\"text-xs font-mono bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Architecture Fit</span>\n  </div>\n  <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] text-xs font-sans leading-relaxed\">\n    Enterprise data architectures employ a multi-layered versioning strategy: <strong>Git</strong> tracks pipeline code and pointer hashes; <strong>DVC</strong> orchestrates multimodal preprocessing pipelines; and <strong>Cloud CAS Stores</strong> guarantee tamper-proof, immutable blob persistence.\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Implementation: CASStorageEngine & Merkle Proofs (Pydantic V2)",
+        "type": "code",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Implementation: CASStorageEngine & Merkle Proofs (Pydantic V2)",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Slide 15 presents the executable Python verification suite from Section 8.5: GitLFSPointer, MerkleTreeNode, and CASStorageEngine built with Pydantic V2.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice how format_pointer_file produces the standard 3-line Git-LFS text. The commit_version method computes deterministic Merkle roots and stores unique SHA-256 digests in the blob pool. Look at the verified assertions: mutating labels changes the root hash while features and embeddings retain identical OIDs, deduplication captures 45 percent savings across two releases, and verify_merkle_audit_path verifies authentic chunks in logarithmic time while rejecting tampered payloads!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#151b20] uppercase tracking-wide\">\n      Pydantic V2 Content-Addressable Storage (CAS) &amp; Merkle DAG Engine\n    </h3>\n    <span class=\"text-xs font-mono bg-[#e7f4c8] text-[#15803d] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Verified CAS Benchmark</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 lg:grid-cols-12 gap-3\">\n    <div class=\"lg:col-span-7 bg-[#151b20] text-[#f8fafc] p-3 rounded-xl border-2 border-[#151b20] font-mono text-[10px] leading-relaxed overflow-x-auto\">\n<pre class=\"m-0\">class GitLFSPointer(BaseModel):\n    version: str = \"https://git-lfs.github.com/spec/v1\"\n    oid: str = Field(..., pattern=r\"^[0-9a-f]{64}&#36;\")\n    size_bytes: int = Field(..., ge=0); filename: str\n    def format_pointer_file(self) -&gt; str:\n        return f\"version {self.version}\\noid sha256:{self.oid}\\nsize {self.size_bytes}\\n\"\n\nclass MerkleTreeNode(BaseModel):\n    pointers: List[GitLFSPointer]\n    def compute_merkle_root(self) -&gt; str:\n        sorted_ptrs = sorted(self.pointers, key=lambda p: p.filename)\n        data = \"\".join(f\"{p.filename}:{p.oid}:{p.size_bytes};\" for p in sorted_ptrs)\n        return hashlib.sha256(data.encode()).hexdigest()\n\nclass CASStorageEngine(BaseModel):\n    blob_pool: Dict[str, int] = {}; commits: Dict[str, str] = {}\n    commit_manifests: Dict[str, List[GitLFSPointer]] = {}\n    def commit_version(self, tag: str, files: List[Tuple[str, bytes]]):\n        ptrs = [GitLFSPointer(oid=hashlib.sha256(d).hexdigest(), size_bytes=len(d), filename=n) for n, d in files]\n        for p in ptrs: self.blob_pool[p.oid] = p.size_bytes\n        root = MerkleTreeNode(pointers=ptrs).compute_merkle_root()\n        self.commits[tag] = root; self.commit_manifests[tag] = ptrs; return root, ptrs\n    def compute_storage_metrics(self) -&gt; Tuple[int, int, float]:\n        naive = sum(sum(p.size_bytes for p in pl) for pl in self.commit_manifests.values())\n        cas = sum(self.blob_pool.values()); return naive, cas, (1.0 - cas / naive) if naive else 0.0</pre>\n    </div>\n\n    <div class=\"lg:col-span-5 p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] font-mono text-[10px] space-y-1.5\">\n      <div class=\"font-black text-[#0e7490] uppercase mb-1\">Verified Execution Log:</div>\n      <div class=\"p-1.5 rounded bg-white border border-[#151b20]/40\"><code>Root v1.0.0:</code> <strong>a4f18c20...</strong> | <code>v1.1.0:</code> <strong>c902b41f...</strong></div>\n      <div class=\"p-1.5 rounded bg-white border border-[#151b20]/40\"><code>Avalanche Assertion:</code> <strong class=\"text-[#15803d]\">root_v1 != root_v2 (PASS)</strong></div>\n      <div class=\"p-1.5 rounded bg-white border border-[#151b20]/40\"><code>Unchanged OID Check:</code> <strong class=\"text-[#15803d]\">ptrs_v1[0].oid == ptrs_v2[0].oid</strong></div>\n      <div class=\"p-1.5 rounded bg-white border border-[#151b20]/40\"><code>Deduplication Savings:</code> <strong class=\"text-[#15803d]\">45.2% (Naive 6.6MB vs CAS 3.6MB)</strong></div>\n      <div class=\"p-1.5 rounded bg-white border border-[#151b20]/40\"><code>Audit Path Verification:</code> <strong class=\"text-[#15803d]\">O(log N) Authentic PASS | Tampered FAIL</strong></div>\n      <div class=\"p-1.5 rounded bg-[#e7f4c8] border border-[#151b20] font-bold text-[#15803d]\">✅ ALL CAS &amp; MERKLE INVARIANTS VERIFIED</div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Debate: Verifying Deduplication in Thirty Lines of Code",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look at the CASStorageEngine implementation: the blob_pool dictionary indexes solely by digest! When Version 1.1.0 commits with unchanged features and embeddings, the dictionary keys already exist, so zero extra memory is allocated!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And look at the verified assertions on the right: naive storage records 6.6 megabytes across the two versions, while CAS stores only 3.6 megabytes—capturing 45 percent deduplication savings on the very first release!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#151b20] uppercase tracking-wide\">\n      Pydantic V2 Content-Addressable Storage (CAS) &amp; Merkle DAG Engine\n    </h3>\n    <span class=\"text-xs font-mono bg-[#e7f4c8] text-[#15803d] px-2 py-0.5 rounded border border-[#151b20] font-bold\">Executable Reference</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 lg:grid-cols-12 gap-3\">\n    <div class=\"lg:col-span-7 bg-[#151b20] text-[#f8fafc] p-3 rounded-xl border-2 border-[#151b20] font-mono text-[10px] leading-relaxed overflow-x-auto\">\n<pre class=\"m-0\">class GitLFSPointer(BaseModel):\n    oid: str = Field(..., pattern=r\"^[0-9a-f]{64}&#36;\")\n    size_bytes: int = Field(..., ge=0); filename: str\n\nclass CASStorageEngine(BaseModel):\n    blob_pool: Dict[str, int] = {}; commits: Dict[str, str] = {}\n    def commit_version(self, tag: str, files: List[Tuple[str, bytes]]):\n        ptrs = [GitLFSPointer(oid=hashlib.sha256(d).hexdigest(), size_bytes=len(d), filename=n) for n, d in files]\n        for p in ptrs: self.blob_pool[p.oid] = p.size_bytes\n        root = MerkleTreeNode(pointers=ptrs).compute_merkle_root()\n        self.commits[tag] = root; return root, ptrs</pre>\n    </div>\n\n    <div class=\"lg:col-span-5 p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] font-mono text-[10px] space-y-1.5\">\n      <div class=\"font-black text-[#0e7490] uppercase mb-1\">Execution Highlights:</div>\n      <div class=\"p-1.5 rounded bg-white border border-[#151b20]/40\"><code>Root v1.0.0 != v1.1.0:</code> <strong class=\"text-[#15803d]\">Avalanche Verified</strong></div>\n      <div class=\"p-1.5 rounded bg-white border border-[#151b20]/40\"><code>Feature OID Identical:</code> <strong class=\"text-[#15803d]\">True (7a8f3b...)</strong></div>\n      <div class=\"p-1.5 rounded bg-white border border-[#151b20]/40\"><code>Deduplication Savings:</code> <strong class=\"text-[#15803d]\">45.2% Storage Reduction</strong></div>\n      <div class=\"p-1.5 rounded bg-[#e7f4c8] border border-[#151b20] font-bold text-[#15803d]\">✅ ALL PYDANTIC V2 CAS ASSERTIONS PASSED</div>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Production Summary: The 4 Cardinal Rules of Data Version Control",
+        "type": "summary",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Production Summary: The 4 Cardinal Rules of Data Version Control",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To conclude Lesson 8.5, remember the Four Cardinal Rules of Data Version Control.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "First, always decouple the Control Plane from the Data Plane by committing lightweight pointer files in Git while storing binary payloads in Content-Addressable Object Storage. Second, rely on Merkle DAG avalanche hashing to verify integrity and detect tampering. Third, leverage block-level deduplication to capture up to 95 percent storage savings. Fourth, strictly enforce Semantic Versioning rules so breaking schema changes never crash downstream models. Next up in Lesson 8.6, we explore Version Control Tools: DVC, remote cloud remotes, and pipeline automation!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#0e7490] uppercase tracking-wide\">\n      The 4 Cardinal Rules of Production Data Version Control\n    </h3>\n    <span class=\"text-xs font-mono bg-[#ffc83e] text-[#151b20] px-2.5 py-0.5 rounded-full border border-[#151b20] font-black\">Production Manifesto</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"font-mono text-[#0e7490] block mb-1\">Rule 1: Decouple Control &amp; Data Planes</strong>\n      <p class=\"font-sans text-[#151b20]\">Version lightweight pointer files in Git; store immutable binary payloads in Content-Addressable Object Storage.</p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e2dfff] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"font-mono text-[#4338ca] block mb-1\">Rule 2: Enforce Merkle Avalanche Integrity</strong>\n      <p class=\"font-sans text-[#151b20]\">Use hierarchical commit-tree-blob hashes so any single-byte mutation immediately invalidates the commit root.</p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"font-mono text-[#b45309] block mb-1\">Rule 3: Maximize Deduplication ($\\lim \\rho_{\\text{dedup}} = 1 - \\delta$)</strong>\n      <p class=\"font-sans text-[#151b20]\">Reuse identical cryptographic blobs across releases, curbing multi-terabyte storage growth to linear incremental churn.</p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"font-mono text-[#15803d] block mb-1\">Rule 4: Adhere to SemVer $(M, m, p)$ Transitions</strong>\n      <p class=\"font-sans text-[#151b20]\">Enforce Major version bumps on breaking column drops or renames to protect downstream training pipelines.</p>\n    </div>\n  </div>\n\n  <div class=\"mt-3 p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] text-center font-mono text-xs font-bold text-[#151b20]\">\n    Next Lesson: 8.6 Version Control Tools — DVC CLI, Remote Cloud Storage, and Pipeline Automation.\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
+          "title": "Socratic Wrap-Up: The Four Invariants of Data Version Control",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "What a masterclass! We transformed data version control from messy, crashing Git repositories into a clean decoupled architecture with Merkle trees, logarithmic audit paths, deduplication scaling, and SemVer contracts!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Spot on, Kaito! Now that we have mastered the mathematical foundations, Lesson 8.6 puts them into practice with hands-on DVC commands, multi-cloud remotes, and automated reproducible pipelines!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b border-[#151b20]/20\">\n    <h3 class=\"font-mono font-bold text-sm text-[#0e7490] uppercase tracking-wide\">\n      The 4 Cardinal Rules of Production Data Version Control\n    </h3>\n    <span class=\"text-xs font-mono bg-[#ffc83e] text-[#151b20] px-2.5 py-0.5 rounded-full border border-[#151b20] font-black\">Capstone Synthesis</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20]\">\n      <strong class=\"font-mono text-[#0e7490] block mb-1\">1. Decouple Control &amp; Data Planes</strong>\n      <p class=\"font-sans\">Git stores pointer metadata; S3 stores immutable binary blobs.</p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e2dfff] border-2 border-[#151b20]\">\n      <strong class=\"font-mono text-[#4338ca] block mb-1\">2. Merkle Avalanche Security</strong>\n      <p class=\"font-sans\">Hierarchical SHA-256 trees detect single-byte corruptions instantly.</p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20]\">\n      <strong class=\"font-mono text-[#b45309] block mb-1\">3. Churn Deduplication Economics</strong>\n      <p class=\"font-sans\">Block-level CAS saves up to 95% disk space across releases.</p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20]\">\n      <strong class=\"font-mono text-[#15803d] block mb-1\">4. Semantic Versioning Contracts</strong>\n      <p class=\"font-sans\">Major bumps guard downstream models against breaking schema changes.</p>\n    </div>\n  </div>\n\n  <div class=\"mt-3 p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] text-center font-mono text-xs font-bold text-[#151b20]\">\n    Next Lesson: 8.6 Version Control Tools — DVC CLI, Remote Cloud Storage, and Pipeline Automation.\n  </div>\n</div>\n"
         }
       }
     ]
@@ -3131,7 +3606,7 @@ window.CURRICULUM_CH8 = window.curriculum_chapter8 = {
               "text": "Conceptual Overview & Derivation: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  subgraph PointerTools [\"1. File-Pointer Versioning (DVC & Git LFS)\"]\n    GitRepo[\"Git Repository<br/>Stores code & .dvc hash pointers\"]\n    CASStore[(\"Content-Addressable Store<br/>S3 / GCS / Ceph Blobs\")]\n  end\n\n  subgraph ObjectBranching [\"2. Zero-Copy Object Storage Branching (LakeFS)\"]\n    GravelerEngine{\"Graveler Commit Engine<br/>Merkle Tree of S3 Keys\"}\n    IsolatedBranch[(\"Isolated S3 Branch<br/>Zero physical duplication\")]\n  end\n\n  subgraph TableEngines [\"3. ACID Table Storage (Delta Lake / Iceberg)\"]\n    CommitLog[(\"ACID Commit Log<br/>JSON Transaction Journal\")]\n    ParquetData[(\"Parquet Columnar Data<br/>Snapshot Time-Travel\")]\n  end\n\n  GitRepo <--> CASStore\n  GravelerEngine <--> IsolatedBranch\n  CommitLog <--> ParquetData\n\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  class GitRepo,GravelerEngine,CommitLog blue;\n  class CASStore,IsolatedBranch,ParquetData green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">No single data</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">version control tool satisfies all production constraints.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Different version control</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">paradigms exhibit fundamentally distinct time and storage complexities: Git Large File Storage (LFS) intercepts checkouts via HTTP pointer replacement filters (&quot;smudge&quot; and &quot;clean&quot;).</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  subgraph PointerTools [\"1. File-Pointer Versioning (DVC & Git LFS)\"]\n    GitRepo[\"Git Repository<br/>Stores code & .dvc hash pointers\"]\n    CASStore[(\"Content-Addressable Store<br/>S3 / GCS / Ceph Blobs\")]\n  end\n\n  subgraph ObjectBranching [\"2. Zero-Copy Branching<br/>(LakeFS Object Storage)\"]\n    GravelerEngine{\"Graveler Commit Engine<br/>Merkle Tree of S3 Keys\"}\n    IsolatedBranch[(\"Isolated S3 Branch<br/>Zero physical duplication\")]\n  end\n\n  subgraph TableEngines [\"3. ACID Table Storage<br/>(Delta Lake / Iceberg)\"]\n    CommitLog[(\"ACID Commit Log<br/>JSON Transaction Journal\")]\n    ParquetData[(\"Parquet Columnar Data<br/>Snapshot Time-Travel\")]\n  end\n\n  GitRepo <--> CASStore\n  GravelerEngine <--> IsolatedBranch\n  CommitLog <--> ParquetData\n\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  class GitRepo,GravelerEngine,CommitLog blue;\n  class CASStore,IsolatedBranch,ParquetData green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">No single data</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">version control tool satisfies all production constraints.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Different version control</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">paradigms exhibit fundamentally distinct time and storage complexities: Git Large File Storage (LFS) intercepts checkouts via HTTP pointer replacement filters (&quot;smudge&quot; and &quot;clean&quot;).</span>\n  </div>\n</div>"
         },
         "duo": {
           "speaker": "Socratic Debate (Dr. Nova & Kaito)",
@@ -3146,7 +3621,7 @@ window.CURRICULUM_CH8 = window.curriculum_chapter8 = {
               "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  subgraph PointerTools [\"1. File-Pointer Versioning (DVC & Git LFS)\"]\n    GitRepo[\"Git Repository<br/>Stores code & .dvc hash pointers\"]\n    CASStore[(\"Content-Addressable Store<br/>S3 / GCS / Ceph Blobs\")]\n  end\n\n  subgraph ObjectBranching [\"2. Zero-Copy Object Storage Branching (LakeFS)\"]\n    GravelerEngine{\"Graveler Commit Engine<br/>Merkle Tree of S3 Keys\"}\n    IsolatedBranch[(\"Isolated S3 Branch<br/>Zero physical duplication\")]\n  end\n\n  subgraph TableEngines [\"3. ACID Table Storage (Delta Lake / Iceberg)\"]\n    CommitLog[(\"ACID Commit Log<br/>JSON Transaction Journal\")]\n    ParquetData[(\"Parquet Columnar Data<br/>Snapshot Time-Travel\")]\n  end\n\n  GitRepo <--> CASStore\n  GravelerEngine <--> IsolatedBranch\n  CommitLog <--> ParquetData\n\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  class GitRepo,GravelerEngine,CommitLog blue;\n  class CASStore,IsolatedBranch,ParquetData green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">No single data</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">version control tool satisfies all production constraints.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Different version control</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">paradigms exhibit fundamentally distinct time and storage complexities: Git Large File Storage (LFS) intercepts checkouts via HTTP pointer replacement filters (&quot;smudge&quot; and &quot;clean&quot;).</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  subgraph PointerTools [\"1. File-Pointer Versioning (DVC & Git LFS)\"]\n    GitRepo[\"Git Repository<br/>Stores code & .dvc hash pointers\"]\n    CASStore[(\"Content-Addressable Store<br/>S3 / GCS / Ceph Blobs\")]\n  end\n\n  subgraph ObjectBranching [\"2. Zero-Copy Branching<br/>(LakeFS Object Storage)\"]\n    GravelerEngine{\"Graveler Commit Engine<br/>Merkle Tree of S3 Keys\"}\n    IsolatedBranch[(\"Isolated S3 Branch<br/>Zero physical duplication\")]\n  end\n\n  subgraph TableEngines [\"3. ACID Table Storage<br/>(Delta Lake / Iceberg)\"]\n    CommitLog[(\"ACID Commit Log<br/>JSON Transaction Journal\")]\n    ParquetData[(\"Parquet Columnar Data<br/>Snapshot Time-Travel\")]\n  end\n\n  GitRepo <--> CASStore\n  GravelerEngine <--> IsolatedBranch\n  CommitLog <--> ParquetData\n\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  class GitRepo,GravelerEngine,CommitLog blue;\n  class CASStore,IsolatedBranch,ParquetData green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">No single data</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">version control tool satisfies all production constraints.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Different version control</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">paradigms exhibit fundamentally distinct time and storage complexities: Git Large File Storage (LFS) intercepts checkouts via HTTP pointer replacement filters (&quot;smudge&quot; and &quot;clean&quot;).</span>\n  </div>\n</div>"
         }
       },
       {
@@ -3915,7 +4390,7 @@ window.CURRICULUM_CH8 = window.curriculum_chapter8 = {
               "text": "Conceptual Overview & Derivation: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  subgraph ACIDCore [\"1. Unified ACID Storage Fabric (Delta / Iceberg)\"]\n    CloudObj[(\"Cloud Object Storage (S3 / GCS)<br/>Parquet Payloads\")]\n    CommitLog[(\"ACID Commit Log<br/>Atomic Manifest Snapshots\")]\n  end\n\n  subgraph VectorFabric [\"2. High-Dimensional Vector Search Fabric\"]\n    HNSWGraph[\"HNSW Navigable Small World Graph<br/>Multi-layer Proximity Search\"]\n    PQTable[\"Product Quantization (PQ)<br/>Compressed Centroid Codes\"]\n  end\n\n  subgraph GovernanceConsumer [\"3. Multi-Engine Analytics & Mesh Serving\"]\n    SQLQuery[\"Interactive SQL Analytics<br/>(Trino / DuckDB)\"]\n    LLMServing[\"RAG & LLM Agents<br/>(vLLM / LangChain)\"]\n    MeshContract[\"Data Mesh Product Contract<br/>(Schema SLAs & Verification)\"]\n  end\n\n  CloudObj <--> CommitLog\n  CommitLog --> SQLQuery\n  CommitLog --> HNSWGraph\n  HNSWGraph --> PQTable\n  PQTable --> LLMServing\n  CommitLog --> MeshContract\n\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  class CloudObj,CommitLog green;\n  class HNSWGraph,PQTable purple;\n  class SQLQuery,LLMServing,MeshContract blue;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">ACID Lakehouses &amp; Historical Time Travel</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Transaction journals enabling deterministic point-in-time snapshot reconstruction on cloud object stores.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Dense Vector Indexes &amp; Product Quantization</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Scaling nearest-neighbor search ($k\\text{-NN}$) over billion-scale embedding vectors via Hierarchical Navigable Small World (HNSW) graphs ((Malkov &amp; Yashunin, 2018)).</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  subgraph ACIDCore [\"1. Unified ACID Storage<br/>(Delta / Iceberg)\"]\n    CloudObj[(\"Cloud Object Storage (S3 / GCS)<br/>Parquet Payloads\")]\n    CommitLog[(\"ACID Commit Log<br/>Atomic Manifest Snapshots\")]\n  end\n\n  subgraph VectorFabric [\"2. High-Dimensional Vector Search Fabric\"]\n    HNSWGraph[\"HNSW Navigable Small World Graph<br/>Multi-layer Proximity Search\"]\n    PQTable[\"Product Quantization (PQ)<br/>Compressed Centroid Codes\"]\n  end\n\n  subgraph GovernanceConsumer [\"3. Multi-Engine Analytics & Mesh Serving\"]\n    SQLQuery[\"Interactive SQL Analytics<br/>(Trino / DuckDB)\"]\n    LLMServing[\"RAG & LLM Agents<br/>(vLLM / LangChain)\"]\n    MeshContract[\"Data Mesh Product Contract<br/>(Schema SLAs & Verification)\"]\n  end\n\n  CloudObj <--> CommitLog\n  CommitLog --> SQLQuery\n  CommitLog --> HNSWGraph\n  HNSWGraph --> PQTable\n  PQTable --> LLMServing\n  CommitLog --> MeshContract\n\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  class CloudObj,CommitLog green;\n  class HNSWGraph,PQTable purple;\n  class SQLQuery,LLMServing,MeshContract blue;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">ACID Lakehouses &amp; Historical Time Travel</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Transaction journals enabling deterministic point-in-time snapshot reconstruction on cloud object stores.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Dense Vector Indexes &amp; Product Quantization</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Scaling nearest-neighbor search ($k\\text{-NN}$) over billion-scale embedding vectors via Hierarchical Navigable Small World (HNSW) graphs ((Malkov &amp; Yashunin, 2018)).</span>\n  </div>\n</div>"
         },
         "duo": {
           "speaker": "Socratic Debate (Dr. Nova & Kaito)",
@@ -3930,7 +4405,7 @@ window.CURRICULUM_CH8 = window.curriculum_chapter8 = {
               "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  subgraph ACIDCore [\"1. Unified ACID Storage Fabric (Delta / Iceberg)\"]\n    CloudObj[(\"Cloud Object Storage (S3 / GCS)<br/>Parquet Payloads\")]\n    CommitLog[(\"ACID Commit Log<br/>Atomic Manifest Snapshots\")]\n  end\n\n  subgraph VectorFabric [\"2. High-Dimensional Vector Search Fabric\"]\n    HNSWGraph[\"HNSW Navigable Small World Graph<br/>Multi-layer Proximity Search\"]\n    PQTable[\"Product Quantization (PQ)<br/>Compressed Centroid Codes\"]\n  end\n\n  subgraph GovernanceConsumer [\"3. Multi-Engine Analytics & Mesh Serving\"]\n    SQLQuery[\"Interactive SQL Analytics<br/>(Trino / DuckDB)\"]\n    LLMServing[\"RAG & LLM Agents<br/>(vLLM / LangChain)\"]\n    MeshContract[\"Data Mesh Product Contract<br/>(Schema SLAs & Verification)\"]\n  end\n\n  CloudObj <--> CommitLog\n  CommitLog --> SQLQuery\n  CommitLog --> HNSWGraph\n  HNSWGraph --> PQTable\n  PQTable --> LLMServing\n  CommitLog --> MeshContract\n\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  class CloudObj,CommitLog green;\n  class HNSWGraph,PQTable purple;\n  class SQLQuery,LLMServing,MeshContract blue;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">ACID Lakehouses &amp; Historical Time Travel</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Transaction journals enabling deterministic point-in-time snapshot reconstruction on cloud object stores.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Dense Vector Indexes &amp; Product Quantization</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Scaling nearest-neighbor search ($k\\text{-NN}$) over billion-scale embedding vectors via Hierarchical Navigable Small World (HNSW) graphs ((Malkov &amp; Yashunin, 2018)).</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  subgraph ACIDCore [\"1. Unified ACID Storage<br/>(Delta / Iceberg)\"]\n    CloudObj[(\"Cloud Object Storage (S3 / GCS)<br/>Parquet Payloads\")]\n    CommitLog[(\"ACID Commit Log<br/>Atomic Manifest Snapshots\")]\n  end\n\n  subgraph VectorFabric [\"2. High-Dimensional Vector Search Fabric\"]\n    HNSWGraph[\"HNSW Navigable Small World Graph<br/>Multi-layer Proximity Search\"]\n    PQTable[\"Product Quantization (PQ)<br/>Compressed Centroid Codes\"]\n  end\n\n  subgraph GovernanceConsumer [\"3. Multi-Engine Analytics & Mesh Serving\"]\n    SQLQuery[\"Interactive SQL Analytics<br/>(Trino / DuckDB)\"]\n    LLMServing[\"RAG & LLM Agents<br/>(vLLM / LangChain)\"]\n    MeshContract[\"Data Mesh Product Contract<br/>(Schema SLAs & Verification)\"]\n  end\n\n  CloudObj <--> CommitLog\n  CommitLog --> SQLQuery\n  CommitLog --> HNSWGraph\n  HNSWGraph --> PQTable\n  PQTable --> LLMServing\n  CommitLog --> MeshContract\n\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  class CloudObj,CommitLog green;\n  class HNSWGraph,PQTable purple;\n  class SQLQuery,LLMServing,MeshContract blue;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">ACID Lakehouses &amp; Historical Time Travel</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Transaction journals enabling deterministic point-in-time snapshot reconstruction on cloud object stores.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Dense Vector Indexes &amp; Product Quantization</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Scaling nearest-neighbor search ($k\\text{-NN}$) over billion-scale embedding vectors via Hierarchical Navigable Small World (HNSW) graphs ((Malkov &amp; Yashunin, 2018)).</span>\n  </div>\n</div>"
         }
       },
       {

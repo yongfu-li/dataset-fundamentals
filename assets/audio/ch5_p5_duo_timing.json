@@ -1,0 +1,533 @@
+{
+  "duration": 811.464,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, most engineers think data cleaning just means writing a few pandas replace calls, dropping rows with weird timestamps, and running strip on strings. Why does that break in large clinical or financial pipelines?",
+          "dock": "main",
+          "start": 0.0,
+          "end": 13.152
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Consider what happens when you blindly delete every record that violates a timestamp order constraint or carries unparsed blood pressure text, Kaito! On PhysioNet MIMIC-III ICU records, naive listwise dropping discarded 64% of the entire hospital cohort!",
+          "dock": "main",
+          "start": 13.152,
+          "end": 30.168
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Deleting 64% of your patients?! And even worse, if someone copied a customer name from a PDF with an invisible zero-width space U+200B inside it, Python equality and SQL joins fail silently without raising a single error!",
+          "dock": "main",
+          "start": 30.168,
+          "end": 45.264
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! Declarative cleaning replaces destructive guesswork with auditable invariants: canonical byte normalization, minimum-cost repair weights, and manifold-safe donor imputation.",
+          "dock": "main",
+          "start": 45.264,
+          "end": 57.84
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why can't we run Functional Dependency and Denial Constraint checks FIRST, and clean strings afterward?",
+          "dock": "main",
+          "start": 57.84,
+          "end": 64.68
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Think about grouping records by City under a ZIP code check, Kaito! If Record 1 says S-t-a-n-f-o-r-d and Record 2 has a hidden zero-width space inside S-t-a-n-f-o-r-d, Python groupby reports two distinct cities under the same ZIP\u2014triggering phantom violations\u2014OR fails to group keys sharing the same noisy ZIP!",
+          "dock": "main",
+          "start": 64.68,
+          "end": 85.368
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Aha! And similarly, you can't check if Systolic Blood Pressure exceeds Diastolic until regex parsing extracts 120 and 80 from free-text strings like 'BP: 120-80 mmHg'!",
+          "dock": "main",
+          "start": 85.368,
+          "end": 99.0
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely: canonical bytes and physical units establish clean domains first; logic constraints audit relations second; minimum-cost repair resolves conflicts third.",
+          "dock": "main",
+          "start": 99.0,
+          "end": 109.752
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, walk me through an example of Bohannon's cost weights! Suppose three hospital visits share ZIP 94305: two list City as Stanford, while one lists Palo Alto.",
+          "dock": "main",
+          "start": 109.752,
+          "end": 121.608
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us compare every consistent repair! If ZIP has confidence weight 5 and City has weight 1, option one updates just that single conflicting City from Palo Alto to Stanford at total cost 1.0.",
+          "dock": "main",
+          "start": 121.608,
+          "end": 135.144
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Whereas rewriting the other two records' Cities to Palo Alto costs 2.0, and overriding the verified ZIP code on the single row costs 5.0! So minimum-cost argmin picks 1.0 every time!",
+          "dock": "main",
+          "start": 135.144,
+          "end": 148.296
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And notice that not a single patient encounter row was deleted\u2014all clinical vitals remain intact for downstream cohort modeling!",
+          "dock": "main",
+          "start": 148.296,
+          "end": 156.528
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why do database theorists phrase constraints negatively\u2014forbidding conjunctions\u2014instead of writing positive if-then implications?",
+          "dock": "main",
+          "start": 156.528,
+          "end": 164.88
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because in SQL query translation, Kaito, every negated conjunction maps one-to-one onto a direct violation-detection query! Finding rows violating ZIP implies City is literally SELECT t1, t2 WHERE t1.ZIP = t2.ZIP AND t1.City != t2.City!",
+          "dock": "main",
+          "start": 164.88,
+          "end": 184.224
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Oh, clever! The predicate conjunction inside the negation IS the exact SQL WHERE clause of a dirty-tuple detector!",
+          "dock": "main",
+          "start": 184.224,
+          "end": 192.672
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And even domain-specific rules like higher tax brackets cannot earn lower net salaries translate straight into SQL Denial Constraints automatically!",
+          "dock": "main",
+          "start": 192.672,
+          "end": 201.72
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Wait a second, Dr. Nova\u2014I always assumed NFKC normalization in Python handled every messy web copy-paste quirk! Are you saying U+200B Zero-Width Space survives NFKC completely untouched?",
+          "dock": "main",
+          "start": 201.72,
+          "end": 215.136
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "One hundred percent untouched, Kaito! Zero-width spaces and zero-width joiners carry intentional formatting semantics in Unicode cursive and right-to-left scripts, so the Unicode standard explicitly excludes them from NFKC compatibility folding.",
+          "dock": "main",
+          "start": 215.136,
+          "end": 231.336
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So when a user copies their email or username from Slack or a PDF with a hidden U+200B or U+FEFF Byte Order Mark, their profile renders identically on screen\u2014yet SQL join equality fails silently!",
+          "dock": "main",
+          "start": 231.336,
+          "end": 243.624
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us inspect those exact invisible hex codepoints live inside our first interactive Canvas lab!",
+          "dock": "main",
+          "start": 243.624,
+          "end": 249.912
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Whoa, Dr. Nova! Look at Trap 1 in the canvas when I click Naive NFKC Only: the fi ligature U+FB01 folds cleanly into f and i, yet that red U+200B block sits stubbornly between e and S\u2014and the SQL Join badge still flashes FAILED!",
+          "dock": "main",
+          "start": 249.912,
+          "end": 265.512
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now switch to Two-Stage Canonicalize, Kaito, and look at Trap 3 with the BOM header U+FEFF and non-breaking space U+00A0!",
+          "dock": "main",
+          "start": 265.512,
+          "end": 275.304
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Instant green PASS! Superscript 2 normalized to regular ASCII 2, U+00A0 collapsed cleanly to standard ASCII space U+0020, and U+FEFF disappeared completely!",
+          "dock": "main",
+          "start": 275.304,
+          "end": 288.48
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That two-stage invariant is non-negotiable on every string join key. Test yourself on Active Checkpoint 1 next!",
+          "dock": "main",
+          "start": 288.48,
+          "end": 296.448
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "We just proved this in Lab 1, Dr. Nova! Even though NFKC decomposes compatibility ligatures like fi and converts full-width digits to ASCII, formatting characters like U+200B Zero-Width Space and U+FEFF Byte Order Mark survive NFKC untouched!",
+          "dock": "main",
+          "start": 296.448,
+          "end": 312.864
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely, Kaito! Why don't regular whitespace strippers like Python's dot-strip catch U+200B either?",
+          "dock": "main",
+          "start": 312.864,
+          "end": 321.048
+        },
+        {
+          "speaker": "Kaito",
+          "text": "First, U+200B is buried inside the middle of the string, and second, neither NFKC nor default trim strips invisible formatting characters! You have to run an explicit regex removing Unicode range 200B through 200D and FEFF right after NFKC!",
+          "dock": "main",
+          "start": 321.048,
+          "end": 337.848
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on! Lock in Option A below to advance to Module Part 2.",
+          "dock": "main",
+          "start": 337.848,
+          "end": 343.272
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I noticed something clever in our MIMIC-III blood pressure parser: checking Systolic between 50 and 260 plus Diastolic between 30 and 160 rejects broken 999 slash 999 cuff errors\u2014AND catches October 12 written as 10 slash 12 too!",
+          "dock": "main",
+          "start": 343.272,
+          "end": 359.928
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes, and look closely at the THIRD guard condition: Systolic strictly greater than Diastolic! What slips past individual min-max range bounds if you forget that inequality, Kaito?",
+          "dock": "main",
+          "start": 359.928,
+          "end": 372.144
+        },
+        {
+          "speaker": "Kaito",
+          "text": "A nurse accidentally typing diastolic first and systolic second\u2014like 80 slash 120\u2014or a numeric calendar note like 55 slash 110! Both individual numbers lie comfortably inside 30 to 260, yet physiologically Systolic cannot fall below Diastolic!",
+          "dock": "main",
+          "start": 372.144,
+          "end": 389.88
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Regex extracts candidate syntax; physical inequalities certify semantic truth. Next, let us compare deletion against donor-preserving imputation.",
+          "dock": "main",
+          "start": 389.88,
+          "end": 400.632
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, wait\u2014why would Pairwise Available-Case correlation ever produce an invalid non-positive-semi-definite covariance matrix? Isn't every Pearson correlation strictly bounded between minus one and plus one?",
+          "dock": "main",
+          "start": 400.632,
+          "end": 413.736
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Individually yes, Kaito\u2014yet pairwise deletion mixes DIFFERENT row subsets for every matrix cell! Suppose covariance of X1 and X2 is estimated over patients 1 to 600, while X2 and X3 uses patients 400 to 1,000, and X1 and X3 uses rows 1 to 300!",
+          "dock": "main",
+          "start": 413.736,
+          "end": 434.424
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Because each pair lives on a different subset geometry, they can form mathematically impossible correlation triangles! When you pass that stitched matrix to PCA or Cholesky decomposition, linear algebra explodes with a negative eigenvalue!",
+          "dock": "main",
+          "start": 434.424,
+          "end": 448.944
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on! Completing cells deterministically via 1-NN Hot-Deck donor records guarantees a single coherent n-row matrix before computing any covariance.",
+          "dock": "main",
+          "start": 448.944,
+          "end": 460.032
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Look closely at those 4 EHR rows, Dr. Nova! Only Patient 101 started cleanly! If someone ran naive listwise deletion, Patients 102, 103, and 104 would ALL get dropped\u2014leaving only 25% of the ward table!",
+          "dock": "main",
+          "start": 460.032,
+          "end": 476.832
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Wait until you notice WHY weighted constraints solve each error without guessing, Kaito: Patient 102 had two peer visits certifying Stanford for 94305; Patient 103's immutable Intake Admit timestamp proves Discharge cannot be Day 7; and Patient 104's unparseable cuff sentinel 999 slash 999 nullifies safely rather than pretending to be blood pressure!",
+          "dock": "main",
+          "start": 476.832,
+          "end": 501.984
+        },
+        {
+          "speaker": "Kaito",
+          "text": "AND then Patient 104's missing Age matches Patient 101\u2014whose BMI is 24.5 right next to 25.0\u2014giving exact donor Age 45.0 instead of smearing an arbitrary sample average!",
+          "dock": "main",
+          "start": 501.984,
+          "end": 514.848
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That exact 4-patient scenario awaits in Lab 2 right after we inspect enterprise escalation tiers.",
+          "dock": "main",
+          "start": 514.848,
+          "end": 521.736
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, suppose a legacy hospital migration leaves 2,000 ambiguous conflict rows where weights tie evenly\u2014so automated Bohannon repair cannot pick a unique winner safely. Can doctors manually verify all 2,000 charts?",
+          "dock": "main",
+          "start": 521.736,
+          "end": 536.088
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Never, Kaito\u2014physician review hours are our scarcest resource! That is exactly what Krishnan's ActiveClean framework solves: estimate how strongly cleaning each dirty record shifts your downstream predictor gradient!",
+          "dock": "main",
+          "start": 536.088,
+          "end": 550.128
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So records deep inside a settled region barely change model decision boundaries, while boundary anomalies near high mortality risk swing gradient norms hugely! Fixing those top 5% delivers 90% of downstream AUC gains!",
+          "dock": "main",
+          "start": 550.128,
+          "end": 564.48
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Deterministic automation handles 99% of dirt at zero labor cost; ActiveClean steers scarce human expertise cleanly onto high-stakes tied conflicts!",
+          "dock": "main",
+          "start": 564.48,
+          "end": 574.92
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Look at that comparison in the studio Canvas below, Dr. Nova! When I switch to Naive Listwise Drop, the red bar drops cohort retention straight down to 25%\u2014only Patient 101 remains!",
+          "dock": "main",
+          "start": 574.92,
+          "end": 588.024
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now trigger Execute Minimum Modification Repair r star, Kaito! Watch how each attribute weight steers repairs cleanly onto lowest-cost mutable fields.",
+          "dock": "main",
+          "start": 588.024,
+          "end": 598.632
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Boom! Patient 102 flips Palo Alto to Stanford at cost 1, Patient 103 fixes Discharge from Day 7 to Day 11 at cost 1, Patient 104 nullifies cuff error 999 slash 999 at cost 1 and inherits Age 45 from nearest BMI neighbor P_101! Total cost equals 3.0, zero violations remain, and 100% of patients are preserved!",
+          "dock": "main",
+          "start": 598.632,
+          "end": 624.312
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now apply that exact cost calculus in Active Checkpoint 2!",
+          "dock": "main",
+          "start": 624.312,
+          "end": 628.944
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Let me calculate all three candidate repairs carefully, Dr. Nova! First: change Record 2's City from Palo Alto to Stanford\u2014that modifies one City cell so cost equals 1 times 1.0 equals 1.0.",
+          "dock": "main",
+          "start": 628.944,
+          "end": 642.696
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And what about the competing valid repairs?",
+          "dock": "main",
+          "start": 642.696,
+          "end": 645.864
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Flipping Records 1 and 3 from Stanford to Palo Alto edits two City cells for cost 2.0, while altering Record 2's postal-verified ZIP code costs 5.0! Deletion throws away a patient chart unnecessarily!",
+          "dock": "main",
+          "start": 645.864,
+          "end": 659.712
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Minimum cost 1.0 wins cleanly\u2014and guarantees no negative pairwise eigenvalues downstream! Choose Option A below!",
+          "dock": "main",
+          "start": 659.712,
+          "end": 668.88
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Look at that leap on MIMIC-III, Dr. Nova: dropping unparsed records erased 64% of patients and crippled mortality ROC-AUC at 0.692! Even univariate mean imputation left MSE huge at 142.3!",
+          "dock": "main",
+          "start": 668.88,
+          "end": 684.096
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And think clinically about WHY complete-case deletion collapsed AUC so badly, Kaito: hurried emergency ICU notes were the exact encounters with shorthand blood pressures and backward billing timestamps! Deleting unparsed charts disproportionately erased the sickest patients!",
+          "dock": "main",
+          "start": 684.096,
+          "end": 701.064
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Which created MNAR selection bias on top of losing two-thirds of training sample size! Declarative regex + 1-NN donor matching lifted coverage to 99.1%, kept 100% cohort retention, and shot ROC-AUC up to 0.838!",
+          "dock": "main",
+          "start": 701.064,
+          "end": 717.384
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us translate every single guarantee into our production Pydantic V2 Python verification module next.",
+          "dock": "main",
+          "start": 717.384,
+          "end": 724.584
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Look how concise and auditable DeclarativeDataCleaner is, Dr. Nova! Every single lesson theorem maps to an explicit method and CI unit assertion!",
+          "dock": "main",
+          "start": 724.584,
+          "end": 734.904
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And look at the order inside test declarative cleaning assertions: canonicalize text runs BEFORE audit functional dependency, parse blood pressure explicitly rejects both INVALID and 999 slash 999, and NearestNeighbors imputes exact integer Age from validated donors!",
+          "dock": "main",
+          "start": 734.904,
+          "end": 753.192
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Finally, CleaningAuditReport serializes clean Pydantic telemetry straight into production observability logs\u2014catching silent zero-width or timestamp regressions before training starts!",
+          "dock": "main",
+          "start": 753.192,
+          "end": 763.944
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Ready to graduate Chapter 5.5 and preview Feature Scaling and Encoding in Lesson 5.6!",
+          "dock": "main",
+          "start": 763.944,
+          "end": 771.0
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, linking Unicode bytes, First-Order Denial Constraints, Bohannon weights, and 1-NN Hot-Deck into one coherent pipeline makes complete architectural sense now!",
+          "dock": "main",
+          "start": 771.0,
+          "end": 781.056
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And remember what MIMIC-III taught us empirically, Kaito: rescuing those messy records without mean-smearing lifted mortality ROC-AUC from 0.692 straight to 0.838!",
+          "dock": "main",
+          "start": 781.056,
+          "end": 793.704
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Never delete rows blindly, never trust NFKC alone without zero-width stripping, and validate regex extractions inside physical bounds! Ready for Lesson 5.6: Scaling, Centering, and Categorical Encoding!",
+          "dock": "main",
+          "start": 793.704,
+          "end": 807.936
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "See you in Lesson 5.6, Kaito!",
+          "dock": "main",
+          "start": 807.936,
+          "end": 811.464
+        }
+      ]
+    }
+  ]
+}

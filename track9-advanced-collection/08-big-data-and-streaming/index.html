@@ -4305,15 +4305,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mathematical-formulations-hardware-sampling-bounds" class="md-nav__link">
+  <a href="#mathematical-formulations-stream-windowing-bounds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📐 Mathematical Formulations &amp; Hardware Sampling Bounds
+        📐 Mathematical Formulations &amp; Stream Windowing Bounds
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📐 Mathematical Formulations &amp; Hardware Sampling Bounds">
+    <nav class="md-nav" aria-label="📐 Mathematical Formulations &amp; Stream Windowing Bounds">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -7484,15 +7484,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mathematical-formulations-hardware-sampling-bounds" class="md-nav__link">
+  <a href="#mathematical-formulations-stream-windowing-bounds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📐 Mathematical Formulations &amp; Hardware Sampling Bounds
+        📐 Mathematical Formulations &amp; Stream Windowing Bounds
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📐 Mathematical Formulations &amp; Hardware Sampling Bounds">
+    <nav class="md-nav" aria-label="📐 Mathematical Formulations &amp; Stream Windowing Bounds">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -7648,24 +7648,20 @@
 
 
 <h1 id="98-big-data-and-streaming-ingestion">9.8 Big Data and Streaming Ingestion</h1>
-<div class="p-4 md:p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
-  <div class="space-y-1">
-    <div class="flex items-center gap-2">
-      <span class="px-2.5 py-0.5 rounded-full bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-mono text-xs font-black uppercase tracking-wider shadow-[1px_1px_0px_#151b20]">§9.8 Monograph Companion</span>
-      <span class="text-xs font-mono text-[#334155] font-bold">Chapter 9 • Advanced Data Collection</span>
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+  <div>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <h3 class="text-base md:text-lg font-black text-[#151b20] tracking-tight">Big Data Ingestion, Watermarking &amp; Distributed Streaming</h3>
-    <p class="text-xs text-[#334155] max-w-2xl font-medium">Covers distributed commit logs (Apache Kafka), event-time watermarking mechanics, sliding and tumbling window state management, and stream backpressure queue stability.</p>
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 9: Advanced Data Collection Techniques (§9.8: Big Data Ingestion &amp; Distributed Streaming)</strong> in the official Springer Nature monograph, covering distributed commit logs (Apache Kafka), event-time watermarking mechanics, sliding and tumbling window state management, and stream backpressure queue stability.
+    </div>
   </div>
-  <a href="../../textbook/" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] text-xs font-black shadow-[2px_2px_0px_#151b20] hover:translate-x-0.5 hover:translate-y-0.5 transition-transform no-underline">
-    <span>Monograph Reference</span>
-    <span>→</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+    <span>Explore Chapter 9 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Duration:</strong> ~30 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter09/chapter09.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter09/chapter09.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-98">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 9.8</h3>
 <p>Experience Chapter 9 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
@@ -7690,7 +7686,7 @@
 
 <hr />
 <h2 id="conceptual-overview-stream-processing-topology">🎯 Conceptual Overview &amp; Stream Processing Topology</h2>
-<p>Modern big data collection platforms must ingest unbounded, high-velocity event streams generated by millions of concurrent edge devices, mobile applications, and database change data capture (CDC) connectors (<a href="#ref-wang2015">Wang et al., 2015</a>; <a href="#ref-babcock2002">Babcock et al., 2002</a>; <a href="#ref-armbrust2020">Armbrust et al., 2020</a>). Ingesting and curating these real-time streams introduces the fundamental challenge of <strong>out-of-order event delivery</strong>: network jitter, wireless disconnections, and client clock skew mean that the order in which events physically reach ingestion brokers rarely reflects the true chronological sequence in which events occurred in the physical world (<a href="#ref-carbone2017">Carbone et al., 2017</a>; <a href="#ref-akidau2015">Akidau et al., 2015</a>).</p>
+<p>Modern big data collection platforms must ingest unbounded, high-velocity event streams generated by millions of concurrent edge devices, mobile applications, and database change data capture (CDC) connectors (<a href="#ref-wang2015">Wang et al., 2015</a>; <a href="#ref-babcock2002">Babcock et al., 2002</a>; <a href="#ref-armbrust2021">Armbrust et al., 2021</a>). Ingesting and curating these real-time streams introduces the fundamental challenge of <strong>out-of-order event delivery</strong>: network jitter, wireless disconnections, and client clock skew mean that the order in which events physically reach ingestion brokers rarely reflects the true chronological sequence in which events occurred in the physical world (<a href="#ref-carbone2017">Carbone et al., 2017</a>; <a href="#ref-akidau2015">Akidau et al., 2015</a>).</p>
 <p>To ensure deterministic, reproducible dataset curation, modern data streaming platforms enforce three distinct temporal dimensions:</p>
 <ol>
 <li><strong>Event Time (<span class="arithmatex">\(t_{\text{event}}\)</span>):</strong> The exact physical wall-clock timestamp at which the event occurred on the client device or sensor transducer.</li>
@@ -7746,7 +7742,7 @@
   class WatermarkEngine,SlidingWindow purple;
   class DeltaLake,DLQStore green;</code></pre>
 <hr />
-<h2 id="mathematical-formulations-hardware-sampling-bounds">📐 Mathematical Formulations &amp; Hardware Sampling Bounds</h2>
+<h2 id="mathematical-formulations-stream-windowing-bounds">📐 Mathematical Formulations &amp; Stream Windowing Bounds</h2>
 <h3 id="definition-981-bounded-out-of-orderness-event-time-watermarks">Definition 9.8.1 (Bounded Out-of-Orderness Event-Time Watermarks)</h3>
 <p>Let <span class="arithmatex">\(\mathcal{E}(t) = \{e_1, e_2, \dots, e_N\}\)</span> denote the set of all streaming events observed by a stream processor partition up to system processing time <span class="arithmatex">\(t\)</span>, where each event <span class="arithmatex">\(e\)</span> carries an event timestamp <span class="arithmatex">\(t_{\text{event}}(e) \in \mathbb{R}\)</span>.</p>
 <p>For a configured bounded out-of-orderness lateness tolerance <span class="arithmatex">\(\Delta t_{\text{lateness}} &gt; 0\)</span>, the <strong>Event-Time Watermark</strong> <span class="arithmatex">\(W(t)\)</span> emitted by the stream engine is defined as (<a href="#ref-carbone2017">Carbone et al., 2017</a>; <a href="#ref-akidau2015">Akidau et al., 2015</a>):</p>
@@ -8642,7 +8638,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <li><a id="ref-babcock2002"></a><strong>[Babcock2002]</strong> B. Babcock, S. Babu, M. Datar, R. Motwani, and J. Widom, "Models and Issues in Data Stream Systems," in <em>Proceedings of the 21st ACM SIGMOD-SIGACT-SIGART Symposium on Principles of Database Systems (PODS '02)</em>, June 2002, pp. 1–16. <a href="https://doi.org/10.1145/543613.543615">DOI: 10.1145/543613.543615</a>.</li>
 <li><a id="ref-zaharia2016"></a><strong>[Zaharia2016]</strong> M. Zaharia et al., "Apache Spark: A Unified Engine for Big Data Processing," <em>Communications of the ACM</em>, vol. 59, no. 11, pp. 56–65, Oct. 2016. <a href="https://doi.org/10.1145/2934664">DOI: 10.1145/2934664</a>.</li>
 <li><a id="ref-little1961"></a><strong>[Little1961]</strong> J. D. C. Little, "A Proof for the Queuing Formula: <span class="arithmatex">\(L = \lambda W\)</span>," <em>Operations Research</em>, vol. 9, no. 3, pp. 383–387, June 1961. <a href="https://doi.org/10.1287/opre.9.3.383">DOI: 10.1287/opre.9.3.383</a>.</li>
-<li><a id="ref-armbrust2020"></a><strong>[Armbrust2020]</strong> M. Armbrust, A. Ghodsi, R. Xin, and M. Zaharia, "Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics," in <em>Proceedings of the 11th Conference on Innovative Data Systems Research (CIDR '21)</em>, Jan. 2021.</li>
+<li><a id="ref-armbrust2021"></a><strong>[Armbrust2021]</strong> M. Armbrust, A. Ghodsi, R. Xin, and M. Zaharia, "Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics," in <em>Proceedings of the 11th Conference on Innovative Data Systems Research (CIDR '21)</em>, Jan. 2021. <a href="https://www.cidrdb.org/cidr2021/papers/cidr2021_paper17.pdf">URL: https://www.cidrdb.org/cidr2021/papers/cidr2021_paper17.pdf</a>.</li>
 <li><a id="ref-akidau2015"></a><strong>[Akidau2015]</strong> T. Akidau et al., "The Dataflow Model: A Practical Approach to Balancing Correctness, Latency, and Cost in Massive-Scale, Unbounded, Out-of-Order Data Processing," <em>Proceedings of the VLDB Endowment</em>, vol. 8, no. 12, pp. 1792–1803, Aug. 2015. <a href="https://doi.org/10.14778/2824032.2824076">DOI: 10.14778/2824032.2824076</a>.</li>
 <li><a id="ref-kreps2011"></a><strong>[Kreps2011]</strong> J. Kreps, N. Narkhede, and J. Rao, "Kafka: A Distributed Messaging System for Log Processing," in <em>Proceedings of 6th International Workshop on Networking Meets Databases (NetDB '11)</em>, June 2011, pp. 1–7.</li>
 </ol>

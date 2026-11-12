@@ -1,0 +1,134 @@
+{
+  "ch5_p6_solo_lab1.mp3": {
+    "duration": 23.424,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the Scaler Breakdown and Optimization Contours Studio! Adjust the outlier magnitude slider from one hundred to ten thousand, and switch between Raw, Min-Max, Standard, and Robust scalers. Observe how extreme outliers collapse inlier variance in Min-Max, blow up the condition number in Standard scaling, while RobustScaler preserves inlier geometry.",
+        "start": 0.0,
+        "end": 23.424
+      }
+    ]
+  },
+  "ch5_p6_duo_lab1.mp3": {
+    "duration": 20.16,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Kaito, look at that loss contour! When the outlier hits five thousand, MinMax squashes our normal points into a sliver of eight thousandths of a unit, and the Hessian condition number explodes past fourteen million! Try selecting RobustScaler to see the elongated ravine snap back into an isotropic spherical bowl!",
+        "start": 0.0,
+        "end": 20.16
+      }
+    ]
+  },
+  "ch5_p6_solo_chk1.mp3": {
+    "duration": 16.464,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Active Checkpoint 1. Review the linear regression equation with all K one-hot columns and an explicit intercept. Identify the linear dependence vector that drives the Gram matrix determinant to zero and select the correct algebraic diagnostic.",
+        "start": 0.0,
+        "end": 16.464
+      }
+    ]
+  },
+  "ch5_p6_duo_chk1.mp3": {
+    "duration": 10.8,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Kaito, this is the classic Dummy Variable Trap! If we sum all four dummy columns, what vector do we get, and why does ordinary least squares completely break down?",
+        "start": 0.0,
+        "end": 10.8
+      }
+    ]
+  },
+  "ch5_p6_chk1_correct.mp3": {
+    "duration": 23.016,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Brilliant! You identified the exact null space eigenvector! Because the sum of all dummy indicators equals the intercept column vector of ones, the columns are linearly dependent. The Gram matrix is singular with determinant zero, causing ordinary least squares to fail unless one category is dropped or L2 ridge regularization is applied.",
+        "start": 0.0,
+        "end": 23.016
+      }
+    ]
+  },
+  "ch5_p6_chk1_incorrect.mp3": {
+    "duration": 15.84,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Not quite. Remember that the Dummy Variable Trap occurs because the sum of all one-hot columns equals the intercept column of ones. This creates perfect multicollinearity, making the Gram matrix X transpose X singular and non-invertible.",
+        "start": 0.0,
+        "end": 15.84
+      }
+    ]
+  },
+  "ch5_p6_solo_lab2.mp3": {
+    "duration": 17.712,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the Empirical Bayes Target Shrinkage Studio! Manipulate the category sample size n sub c, the observed category mean, and the smoothing parameter m. Notice how rare categories with few observations are gracefully shrunk toward the global prior, preventing severe overfitting.",
+        "start": 0.0,
+        "end": 17.712
+      }
+    ]
+  },
+  "ch5_p6_duo_lab2.mp3": {
+    "duration": 18.024,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Look at this, Kaito! When a zip code has only two observations that both bought a house, the raw sample mean is one hundred percent. But with an m-smoothing of fifteen, our Bayes score shrinks that wild estimate down to twenty-nine percent, blending it with the global population prior!",
+        "start": 0.0,
+        "end": 18.024
+      }
+    ]
+  },
+  "ch5_p6_solo_chk2.mp3": {
+    "duration": 12.696,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to Active Checkpoint 2. Analyze the severe train-versus-test performance collapse caused by naive target encoding on rare zip codes, and identify the production-grade remediation protocol.",
+        "start": 0.0,
+        "end": 12.696
+      }
+    ]
+  },
+  "ch5_p6_duo_chk2.mp3": {
+    "duration": 13.416,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Kaito, look at that disaster! A ninety-eight percent training R-squared collapsing to forty-one percent on the test set! Why did naive target encoding fail so catastrophically on rare categories?",
+        "start": 0.0,
+        "end": 13.416
+      }
+    ]
+  },
+  "ch5_p6_chk2_correct.mp3": {
+    "duration": 20.544,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Spot on! Naive target encoding allows rare categories to memorize individual label values, creating severe target leakage. The mathematically rigorous fix is Out-of-Fold K-fold target encoding combined with Empirical Bayes shrinkage, isolating each fold's target statistics from its training observations.",
+        "start": 0.0,
+        "end": 20.544
+      }
+    ]
+  },
+  "ch5_p6_chk2_incorrect.mp3": {
+    "duration": 20.4,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Incorrect. Adding more tree depth or standardizing the target does not solve target leakage. The fundamental flaw was calculating the target statistic using the observation's own label. You must isolate folds with Out-of-Fold encoding and regularize small sample categories toward the global prior with Empirical Bayes.",
+        "start": 0.0,
+        "end": 20.4
+      }
+    ]
+  }
+}

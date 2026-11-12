@@ -1,0 +1,134 @@
+{
+  "ch5_p5_solo_lab1.mp3": {
+    "duration": 15.864,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the Unicode NFKC and Zero-Width Byte Inspector Studio. Test all three Unicode traps and switch between Naive NFKC Only and Full Canonicalize with Zero-Width Stripping to see why invisible characters break SQL joins until stripped.",
+        "start": 0.0,
+        "end": 15.864
+      }
+    ]
+  },
+  "ch5_p5_duo_lab1.mp3": {
+    "duration": 14.376,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Look at Trap 1 in the inspector canvas! Even after NFKC collapses the fi ligature, that red U+200B Zero-Width Space survives untouched\u2014and SQL join equality keeps failing until Two-Stage Zero-Width Stripping kicks in!",
+        "start": 0.0,
+        "end": 14.376
+      }
+    ]
+  },
+  "ch5_p5_solo_chk1.mp3": {
+    "duration": 16.68,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Checkpoint 1. A pipeline applies Python unicodedata normalize NFKC before deduplication, yet visually identical customer usernames fail equality in SQL joins. Identify the surviving character class and the exact remediation.",
+        "start": 0.0,
+        "end": 16.68
+      }
+    ]
+  },
+  "ch5_p5_duo_chk1.mp3": {
+    "duration": 13.296,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Check the byte sequence we just inspected in Lab 1! NFKC handles typographic ligatures and full-width digits, but skips invisible formatting controls like U+200B Zero-Width Space and Byte Order Marks!",
+        "start": 0.0,
+        "end": 13.296
+      }
+    ]
+  },
+  "ch5_p5_chk1_correct.mp3": {
+    "duration": 19.944,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Exact diagnosis! Unicode compatibility normalization skips zero-width formatting characters like U+200B and Byte Order Marks U+FEFF because they carry bidirectional formatting roles. Composing NFKC with explicit zero-width regex stripping restores deterministic SQL join equality.",
+        "start": 0.0,
+        "end": 19.944
+      }
+    ]
+  },
+  "ch5_p5_chk1_incorrect.mp3": {
+    "duration": 19.464,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Not quite. Remember that compatibility normalization folds typographic ligatures like fi and full-width numbers, yet deliberately leaves formatting control characters like U+200B zero-width space and U+FEFF intact. You must compose NFKC with an explicit zero-width regex strip.",
+        "start": 0.0,
+        "end": 19.464
+      }
+    ]
+  },
+  "ch5_p5_solo_lab2.mp3": {
+    "duration": 17.616,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the Minimum-Cost Constraint Repair and Hot-Deck Studio. Compare raw violations, naive listwise dropping that erases 75% of the EHR ward cohort, and Bohannon Minimum Modification Repair r star paired with 1-nearest-neighbor Hot-Deck donor imputation.",
+        "start": 0.0,
+        "end": 17.616
+      }
+    ]
+  },
+  "ch5_p5_duo_lab2.mp3": {
+    "duration": 18.096,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Watch that cohort retention bar leap from 25% under naive deletion straight up to 100% under Bohannon Minimum Repair r star! Total weighted modification cost is only 3.0 and Patient 104 receives exact donor Age 45 from closest neighbor P_101!",
+        "start": 0.0,
+        "end": 18.096
+      }
+    ]
+  },
+  "ch5_p5_solo_chk2.mp3": {
+    "duration": 19.92,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Checkpoint 2. Three clinic records share ZIP 94305 with weight 5.0: Records 1 and 3 list Stanford, while Record 2 lists Palo Alto at weight 1.0. Select the repair satisfying the functional dependency at minimum Bohannon modification cost.",
+        "start": 0.0,
+        "end": 19.92
+      }
+    ]
+  },
+  "ch5_p5_duo_chk2.mp3": {
+    "duration": 12.576,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Remember to sum domain attribute weights across all three valid repairs: editing Record 2's City costs 1.0, flipping two rows' Cities costs 2.0, and mutating a verified ZIP costs 5.0!",
+        "start": 0.0,
+        "end": 12.576
+      }
+    ]
+  },
+  "ch5_p5_chk2_correct.mp3": {
+    "duration": 18.192,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Brilliant optimization! Modifying Record 2's low-weight City attribute from Palo Alto to Stanford incurs a total Bohannon modification cost of only 1.0\u2014strictly beating the 2.0 majority flip and the 5.0 ZIP mutation while preserving 100% of records.",
+        "start": 0.0,
+        "end": 18.192
+      }
+    ]
+  },
+  "ch5_p5_chk2_incorrect.mp3": {
+    "duration": 22.032,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Incorrect cost derivation. Let us sum the modification distance across consistent states: updating only Record 2's City to Stanford costs 1.0, flipping both Stanford rows costs 2.0, and modifying a verified ZIP key costs 5.0. Bohannon's principle selects Option A at cost 1.0.",
+        "start": 0.0,
+        "end": 22.032
+      }
+    ]
+  }
+}
