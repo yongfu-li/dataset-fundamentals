@@ -1,4 +1,4 @@
-window.ALL_CURRICULUMS = {
+window.CURRICULUM_DATA = {
   "ch1_p1": {
     "chapter": 1,
     "part": 1,
@@ -56380,154 +56380,216 @@ window.ALL_CURRICULUMS = {
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 10.7. Today we examine large language models (llms) for synthetic text, code, and tabular generation, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "Welcome to Lesson 10.7. Today we explore how decoder-only Large Language Models generate synthetic text corpora, algorithmic code, and relational tabular tables, examining sampling thermodynamics, prompt mutation protocols, and the perils of recursive model collapse."
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 10: Foundations</span>\n    <span>•</span>\n    <span>Lesson 10.7</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Large Language Models (LLMs) for Synthetic Text, Code, and Tabular Generation\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into large language models (llms) for synthetic text, code, and tabular generation with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 10: Synthetic Data</span>\n    <span>•</span>\n    <span>Lesson 10.7</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Large Language Models (LLMs) for Synthetic Text, Code, and Tabular Generation\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Formal thermodynamic sampling, Self-Instruct and Evol-Instruct mutation pipelines, Constitutional AI preference generation, and mathematical prevention of recursive model collapse.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs text-[#0e7490]\">\n    <span class=\"px-2.5 py-1 rounded-md bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">Self-Instruct</span>\n    <span class=\"px-2.5 py-1 rounded-md bg-[#e7f4c8] border border-[#151b20] font-bold text-[#151b20]\">Evol-Instruct</span>\n    <span class=\"px-2.5 py-1 rounded-md bg-[#e2dfff] border border-[#151b20] font-bold text-[#151b20]\">Constitutional AI</span>\n    <span class=\"px-2.5 py-1 rounded-md bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">Model Collapse</span>\n  </div>\n</div>"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Large Language Models (LLMs) for Synthetic Text, Code, and Tabular Generation",
+          "speaker": "Socratic Dialogue",
+          "title": "Large Language Models (LLMs) for Synthetic Text, Code, and Tabular Generation",
           "turns": [
             {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 10.7?"
+              "speaker": "Dr. Nova",
+              "text": "Kaito, the paradigm of data collection has fundamentally inverted: rather than scraping noisy, uncurated internet text, we now engineer teacher LLMs to synthesize pristine algorithmic curricula and instruction-tuning pairs."
             },
             {
-              "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 10.7. Today we examine large language models (llms) for synthetic text, code, and tabular generation, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "speaker": "Kaito",
+              "text": "That sounds extraordinarily powerful, Dr. Nova! But if LLMs train on synthetic data generated by other LLMs, don't we risk amplifying hallucinations or triggering model collapse?"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 10: Foundations</span>\n    <span>•</span>\n    <span>Lesson 10.7</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Large Language Models (LLMs) for Synthetic Text, Code, and Tabular Generation\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into large language models (llms) for synthetic text, code, and tabular generation with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 10: Synthetic Data</span>\n    <span>•</span>\n    <span>Lesson 10.7</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Large Language Models (LLMs) for Synthetic Text, Code, and Tabular Generation\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Socratic exploration of frontier synthetic text generation, prompt mutation mechanics, and mathematical bounds on recursive synthetic degradation.\n  </p>\n</div>"
         }
       },
       {
         "id": "s2",
-        "title": "Conceptual Overview & Autoregressive Data Generation: Key Methodological Frameworks",
-        "type": "figure",
+        "title": "Conceptual Overview: The Synthetic Data Paradigm Shift",
+        "type": "conceptual",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & Autoregressive Data Generation: Key Methodological Frameworks",
+          "title": "Conceptual Overview: The Synthetic Data Paradigm Shift",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & Autoregressive Data Generation: Key Methodological Frameworks. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "The transition to synthetic pretraining, epitomized by Microsoft's 'Textbooks Are All You Need', demonstrates that high-quality, pedagogically structured synthetic tokens allow a 1.3B model to beat 15.5B models trained on raw web crawls."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  subgraph SeedCorpus [\"1. Seed Prompt Engineering\"]\n    SeedTasks[\"Curated Human Seed Prompts<br/>Instruction-Response Pairs\"]\n    TaskSampler[\"Prompt Mutation Engine<br/>Task Expansion & Paraphrasing\"]\n  end\n\n  subgraph LLMInference [\"2. Stochastic Generation Engine\"]\n    TeacherLLM[\"Frontier Teacher Model<br/>Autoregressive Token Generator\"]\n    TemperatureSampling[\"Thermodynamic Sampling<br/>Temperature T & Top-p Nucleus\"]\n  end\n\n  subgraph QualityGates [\"3. Automated Quality & Diversity Gate\"]\n    PerplexityFilter[\"Perplexity & Length Filter<br/>PPL <= tau_ppl\"]\n    SemanticDeDup[\"Embedding Deduplication<br/>Cosine Similarity <= 0.85\"]\n    StaticAnalysis[\"Code / Schema Validation<br/>AST Parsing & Unit Test Execution\"]\n  end\n\n  subgraph DeploymentCohort [\"4. Fine-Tuning Cohort\"]\n    CertifiedCorpus[\"Certified Synthetic Corpus D_synth<br/>High Perceptual & Reasoning Quality\"]\n    StudentModel[\"Downstream Student Fine-Tuning<br/>Phi-1 / LLaMA Instruction Tuning\"]\n  end\n\n  SeedTasks --> TaskSampler\n  TaskSampler --> TeacherLLM\n  TeacherLLM --> TemperatureSampling\n  TemperatureSampling --> PerplexityFilter\n  PerplexityFilter --> SemanticDeDup\n  SemanticDeDup --> StaticAnalysis\n  StaticAnalysis -- Pass --> CertifiedCorpus\n  CertifiedCorpus --> StudentModel\n\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  class SeedTasks,TaskSampler blue;\n  class TeacherLLM,TemperatureSampling purple;\n  class PerplexityFilter,SemanticDeDup,StaticAnalysis amber;\n  class CertifiedCorpus,StudentModel green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Generate synthetic NLP instruction tuning datasets using Self-Instruct ((Wang et al., 2022)): seed an LLM with 100 human-written tasks, prompt it to brainstorm new instruction-input-output triplets, and filter candidates via automated ROUGE-L similar</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Self-Instruct</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Bootstraps an initial set of 175 human-written seed instruction tasks, iteratively prompting an LLM to generate new instructions, input contexts, and outputs, followed by automated deduplication and pruning ((Wang et al., 2023)).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Synthetic Textbook Curation (Phi-Series)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Uses frontier LLMs to write clear, pedagocially structured &quot;synthetic textbooks&quot; and step-by-step synthetic Python programming tutorials, filtering out web noise ((Gunasekar et al., 2023)).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Direct Preference Optimization (DPO) Data Synthesis</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Generates pairs of candidate completions $(y_w, y_l)$ from varied model checkpoints, rating winners ($y_w$) and losers ($y_l$) via automated reward modeling or execution unit tests ((Rafailov et al., 2023)).</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-3\">\n  <h3 class=\"text-lg font-black text-[#151b20]\">Four Cornerstones of Synthetic LLM Generation</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs\">\n    <div class=\"p-3 bg-[#c9f3f4] border border-[#151b20] rounded-lg\">\n      <div class=\"font-black text-[#0e7490]\">1. Synthetic Pretraining</div>\n      <div class=\"text-[#151b20] mt-1\">Curated pedagogical textbooks, synthetic coding exercises, and step-by-step reasoning explanations that eliminate web noise.</div>\n    </div>\n    <div class=\"p-3 bg-[#fff0b9] border border-[#151b20] rounded-lg\">\n      <div class=\"font-black text-[#854d0e]\">2. Instruction Bootstrapping</div>\n      <div class=\"text-[#151b20] mt-1\">Self-Instruct and Evol-Instruct mutation pipelines multiplying 100 human seed tasks into 100,000 diverse instruction-tuning pairs.</div>\n    </div>\n    <div class=\"p-3 bg-[#e2dfff] border border-[#151b20] rounded-lg\">\n      <div class=\"font-black text-[#6b21a8]\">3. Alignment Preference Generation</div>\n      <div class=\"text-[#151b20] mt-1\">Constitutional AI self-critique loops and UltraFeedback generating paired preferences (chosen vs rejected) for direct DPO tuning.</div>\n    </div>\n    <div class=\"p-3 bg-[#e7f4c8] border border-[#151b20] rounded-lg\">\n      <div class=\"font-black text-[#3f6212]\">4. Structured & Tabular Synthesis</div>\n      <div class=\"text-[#151b20] mt-1\">Serialization of relational schemas into natural language tuples (GReaT) with permutation-invariant tabular modeling.</div>\n    </div>\n  </div>\n</div>"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & Autoregressive Data Generation: Key Methodological Frameworks",
+          "speaker": "Socratic Dialogue",
+          "title": "Conceptual Overview: The Synthetic Data Paradigm Shift",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for conceptual overview & autoregressive data generation: key methodological frameworks, how does the architectural flow enforce system stability?"
+              "text": "Wait, Dr. Nova, if synthetic textbooks are so superior to raw web data, why didn't we train models this way from the very beginning?"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Because generating coherent synthetic data requires a sufficiently intelligent teacher model! Only after GPT-4 and Claude reached critical reasoning thresholds could they reliably author million-token textbook corpora."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  subgraph SeedCorpus [\"1. Seed Prompt Engineering\"]\n    SeedTasks[\"Curated Human Seed Prompts<br/>Instruction-Response Pairs\"]\n    TaskSampler[\"Prompt Mutation Engine<br/>Task Expansion & Paraphrasing\"]\n  end\n\n  subgraph LLMInference [\"2. Stochastic Generation Engine\"]\n    TeacherLLM[\"Frontier Teacher Model<br/>Autoregressive Token Generator\"]\n    TemperatureSampling[\"Thermodynamic Sampling<br/>Temperature T & Top-p Nucleus\"]\n  end\n\n  subgraph QualityGates [\"3. Automated Quality & Diversity Gate\"]\n    PerplexityFilter[\"Perplexity & Length Filter<br/>PPL <= tau_ppl\"]\n    SemanticDeDup[\"Embedding Deduplication<br/>Cosine Similarity <= 0.85\"]\n    StaticAnalysis[\"Code / Schema Validation<br/>AST Parsing & Unit Test Execution\"]\n  end\n\n  subgraph DeploymentCohort [\"4. Fine-Tuning Cohort\"]\n    CertifiedCorpus[\"Certified Synthetic Corpus D_synth<br/>High Perceptual & Reasoning Quality\"]\n    StudentModel[\"Downstream Student Fine-Tuning<br/>Phi-1 / LLaMA Instruction Tuning\"]\n  end\n\n  SeedTasks --> TaskSampler\n  TaskSampler --> TeacherLLM\n  TeacherLLM --> TemperatureSampling\n  TemperatureSampling --> PerplexityFilter\n  PerplexityFilter --> SemanticDeDup\n  SemanticDeDup --> StaticAnalysis\n  StaticAnalysis -- Pass --> CertifiedCorpus\n  CertifiedCorpus --> StudentModel\n\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  class SeedTasks,TaskSampler blue;\n  class TeacherLLM,TemperatureSampling purple;\n  class PerplexityFilter,SemanticDeDup,StaticAnalysis amber;\n  class CertifiedCorpus,StudentModel green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Generate synthetic NLP instruction tuning datasets using Self-Instruct ((Wang et al., 2022)): seed an LLM with 100 human-written tasks, prompt it to brainstorm new instruction-input-output triplets, and filter candidates via automated ROUGE-L similar</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Self-Instruct</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Bootstraps an initial set of 175 human-written seed instruction tasks, iteratively prompting an LLM to generate new instructions, input contexts, and outputs, followed by automated deduplication and pruning ((Wang et al., 2023)).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Synthetic Textbook Curation (Phi-Series)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Uses frontier LLMs to write clear, pedagocially structured &quot;synthetic textbooks&quot; and step-by-step synthetic Python programming tutorials, filtering out web noise ((Gunasekar et al., 2023)).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Direct Preference Optimization (DPO) Data Synthesis</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Generates pairs of candidate completions $(y_w, y_l)$ from varied model checkpoints, rating winners ($y_w$) and losers ($y_l$) via automated reward modeling or execution unit tests ((Rafailov et al., 2023)).</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-3\">\n  <h3 class=\"text-lg font-black text-[#151b20]\">The Teacher-Student Evolution Cycle</h3>\n  <p class=\"text-xs text-[#334155]\">Frontier foundation models act as cognitive compression engines, synthesizing verified domain knowledge to train smaller, specialized downstream student architectures.</p>\n</div>"
         }
       },
       {
         "id": "s3",
-        "title": "Mathematical Formulations of Autoregressive Synthesis: Autoregressive Joint Factorization",
-        "type": "equation",
+        "title": "Architecture Flowchart: LLM Synthetic Instruction & Alignment Generation Pipeline",
+        "type": "flowchart",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Mathematical Formulations of Autoregressive Synthesis: Autoregressive Joint Factorization",
+          "title": "Architecture Flowchart: Synthetic Instruction & Alignment Pipeline",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Mathematical Formulations of Autoregressive Synthesis: Autoregressive Joint Factorization. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "This architectural pipeline outlines the progression from curated seed tasks, through thermodynamic temperature sampling and Evol-Instruct mutation, past rigorous deduplication gates, to Constitutional AI critique and DPO alignment."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$P_\\theta(\\mathbf{x}) = \\prod_{t=1}^T P_\\theta(x_t \\mid x_1, \\dots, x_{t-1}) = \\prod_{t=1}^T \\text{Softmax}\\left( \\frac{\\mathbf{z}_{t}}{\\tau} \\right)_{x_t}$$\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-3 font-mono text-xs\">\n  <div class=\"p-3 bg-[#f8fafc] border border-[#151b20] rounded-lg\">\n    <div class=\"font-bold text-[#0e7490]\">[Phase 1] Seed Corpus & Mutation:</div>\n    <div class=\"text-[#334155]\">175 Curated Human Prompts → Evol-Instruct Depth (+Constraints, +Reasoning) & Breadth (Domain Transfer)</div>\n  </div>\n  <div class=\"p-3 bg-[#f8fafc] border border-[#151b20] rounded-lg\">\n    <div class=\"font-bold text-[#6b21a8]\">[Phase 2] Stochastic Decoding:</div>\n    <div class=\"text-[#334155]\">Temperature Scaling (τ ∈ [0.7, 0.9]) → Top-p Nucleus Truncation (p = 0.85) → Repetition Penalty</div>\n  </div>\n  <div class=\"p-3 bg-[#f8fafc] border border-[#151b20] rounded-lg\">\n    <div class=\"font-bold text-[#854d0e]\">[Phase 3] Quality & Diversity Gates:</div>\n    <div class=\"text-[#334155]\">ROUGE-L Overlap &le; 0.70 → Perplexity Gate (PPL &le; 25.0) → AST Static Analysis & Unit Tests</div>\n  </div>\n  <div class=\"p-3 bg-[#f8fafc] border border-[#151b20] rounded-lg\">\n    <div class=\"font-bold text-[#3f6212]\">[Phase 4] Constitutional Alignment & DPO:</div>\n    <div class=\"text-[#334155]\">Critique & Revision Loop → Pair Construction (y_w, y_l) → Direct Preference Optimization Dataset</div>\n  </div>\n</div>"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Mathematical Formulations of Autoregressive Synthesis: Autoregressive Joint Factorization",
+          "speaker": "Socratic Dialogue",
+          "title": "Architecture Flowchart: Synthetic Instruction & Alignment Pipeline",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, how does mathematical formulations of autoregressive synthesis: autoregressive joint factorization protect our system against silent distribution shift in production?"
+              "text": "Notice the multiple filtering layers in Phase 3! If a newly generated prompt is 75% identical to an existing prompt in ROUGE-L, it gets discarded immediately."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Precisely. Without strict semantic and lexical deduplication, the model wastes capacity memorizing syntactic permutations of the same seed question."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$P_\\theta(\\mathbf{x}) = \\prod_{t=1}^T P_\\theta(x_t \\mid x_1, \\dots, x_{t-1}) = \\prod_{t=1}^T \\text{Softmax}\\left( \\frac{\\mathbf{z}_{t}}{\\tau} \\right)_{x_t}$$\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-3 font-mono text-xs\">\n  <div class=\"text-[#151b20] font-bold\">Key Architectural Invariant: Quality Filters Outperform Scale</div>\n  <p class=\"text-[#334155]\">Rejecting 40% of low-entropy or redundant synthetic candidates yields dramatically higher student accuracy than uncurated volume.</p>\n</div>"
         }
       },
       {
         "id": "s4",
-        "title": "Temperature-Scaled Stochastic Sampling",
+        "title": "Definition 10.7.1: Autoregressive Generation & Nucleus Sampling Thermodynamics",
         "type": "equation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Temperature-Scaled Stochastic Sampling",
+          "title": "Definition 10.7.1: Autoregressive Sampling Thermodynamics",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Temperature-Scaled Stochastic Sampling. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Definition 10.7.1 formalizes the joint autoregressive probability factorization, logit temperature scaling, and nucleus top-p probability renormalization."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$P_\\tau(x_t = v \\mid x_{< t}) = \\frac{\\exp(z_{t, v} / \\tau)}{\\sum_{j \\in \\mathcal{V}} \\exp(z_{t, j} / \\tau)}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">As $\\tau \\to 0$ (greedy decoding), entropy collapses to 0, producing repetitive, deterministic sequences.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Optimal synthetic diversity occurs at $\\tau \\in [0.7, 1.0]$ combined with nucleus filtering: $\\sum_{v \\in \\mathcal{V}^{(p)}} P(v) \\ge p$ where $p = 0.95$.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-3\">\n  <div class=\"inline-block px-2.5 py-0.5 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs font-bold border border-[#151b20]\">Definition 10.7.1</div>\n  <h4 class=\"text-sm font-black text-[#151b20]\">Autoregressive Factorization & Nucleus Truncation</h4>\n  <div class=\"p-3 bg-[#f8fafc] border border-[#151b20] rounded-lg font-mono text-xs text-[#151b20] space-y-2\">\n    <div>P_θ(x) = ∏_{t=1}^T P_θ(x_t | x_{&lt;t})</div>\n    <div>P_τ(x_t = v | x_{&lt;t}) = exp(z_{t,v} / τ) / ∑_{j} exp(z_{t,j} / τ)</div>\n    <div>V^(p)(x_{&lt;t}) = min { U ⊆ V : ∑_{u ∈ U} P_τ(u) ≥ p }</div>\n  </div>\n  <p class=\"text-xs text-[#334155]\">Temperature τ controls distribution entropy; top-p nucleus truncation discards the unreliable long tail of the vocabulary while dynamically adapting candidate set size to context confidence.</p>\n</div>"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Temperature-Scaled Stochastic Sampling",
+          "speaker": "Socratic Dialogue",
+          "title": "Definition 10.7.1: Autoregressive Sampling Thermodynamics",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, how does temperature-scaled stochastic sampling protect our system against silent distribution shift in production?"
+              "text": "Why use Top-p nucleus sampling instead of fixed Top-k sampling?"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Because when the model is confident, a fixed k=50 forces it to sample from low-probability tail tokens. Top-p dynamically shrinks to 1 or 2 tokens when confident, and expands when entropy is high."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$P_\\tau(x_t = v \\mid x_{< t}) = \\frac{\\exp(z_{t, v} / \\tau)}{\\sum_{j \\in \\mathcal{V}} \\exp(z_{t, j} / \\tau)}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">As $\\tau \\to 0$ (greedy decoding), entropy collapses to 0, producing repetitive, deterministic sequences.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Optimal synthetic diversity occurs at $\\tau \\in [0.7, 1.0]$ combined with nucleus filtering: $\\sum_{v \\in \\mathcal{V}^{(p)}} P(v) \\ge p$ where $p = 0.95$.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2 text-xs\">\n  <div class=\"font-bold text-[#151b20]\">Nucleus Dynamic Support Property</div>\n  <p class=\"text-[#334155]\">Top-p ensures that the probability mass of discarded tokens is strictly bounded by (1 - p), preventing hallucinated vocabulary choices.</p>\n</div>"
         }
       },
       {
         "id": "s5",
-        "title": "Corpus Perplexity Filtering",
+        "title": "Definition 10.7.2: Instruction Evolution Dynamics in Evol-Instruct",
         "type": "equation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Corpus Perplexity Filtering",
+          "title": "Definition 10.7.2: Instruction Evolution Dynamics",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Corpus Perplexity Filtering. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Definition 10.7.2 formalizes the prompt mutation operators introduced by WizardLM: In-Depth Evolution adding constraints, reasoning steps, and concretization, alongside In-Breadth Evolution for domain transfer."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{PPL}(\\mathbf{x}) = \\exp\\left( - \\frac{1}{T} \\sum_{t=1}^T \\ln P_{\\text{eval}}(x_t \\mid x_{< t}) \\right)$$\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-3\">\n  <div class=\"inline-block px-2.5 py-0.5 rounded-full bg-[#fff0b9] text-[#854d0e] font-mono text-xs font-bold border border-[#151b20]\">Definition 10.7.2</div>\n  <h4 class=\"text-sm font-black text-[#151b20]\">Evol-Instruct Mutation Operators & Complexity Bounds</h4>\n  <div class=\"p-3 bg-[#f8fafc] border border-[#151b20] rounded-lg font-mono text-xs text-[#151b20] space-y-2\">\n    <div>T_depth(I) ∈ { AddConstraints(I), DeepenReasoning(I), Concretize(I) }</div>\n    <div>T_breadth(I) = DomainTransfer(I, D_target)</div>\n    <div>Constraint: Complexity(I') &gt; Complexity(I) ∧ CosSim(e(I), e(I')) ≥ τ_sim</div>\n  </div>\n  <p class=\"text-xs text-[#334155]\">Evol-Instruct autonomously synthesizes deep, multi-step problem solving prompts from shallow conversational seeds, expanding the difficulty frontier for student models.</p>\n</div>"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Corpus Perplexity Filtering",
+          "speaker": "Socratic Dialogue",
+          "title": "Definition 10.7.2: Instruction Evolution Dynamics",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, how does corpus perplexity filtering protect our system against silent distribution shift in production?"
+              "text": "What stops the mutation engine from creating prompts that are impossible to solve?"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "An eliminative verification filter! If the teacher model cannot generate a verified, logically sound solution to its own mutated prompt, the prompt is pruned."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{PPL}(\\mathbf{x}) = \\exp\\left( - \\frac{1}{T} \\sum_{t=1}^T \\ln P_{\\text{eval}}(x_t \\mid x_{< t}) \\right)$$\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2 text-xs\">\n  <div class=\"font-bold text-[#151b20]\">Eliminative Verification Rule</div>\n  <p class=\"text-[#334155]\">Unanswerable, circular, or logically defective prompts are filtered automatically using reciprocal self-critique.</p>\n</div>"
         }
       },
       {
         "id": "s6",
-        "title": "Runnable Executable Python Implementation",
+        "title": "Definition 10.7.3: Constitutional AI Critique-Revision & DPO Preference Synthesis",
+        "type": "equation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Definition 10.7.3: Constitutional AI & DPO Synthesis",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Definition 10.7.3 covers Constitutional AI's automated critique-revision loop and the Direct Preference Optimization loss that trains policy models directly on synthetic pairwise completions."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-3\">\n  <div class=\"inline-block px-2.5 py-0.5 rounded-full bg-[#e2dfff] text-[#6b21a8] font-mono text-xs font-bold border border-[#151b20]\">Definition 10.7.3</div>\n  <h4 class=\"text-sm font-black text-[#151b20]\">Constitutional Operator & Direct Preference Optimization</h4>\n  <div class=\"p-3 bg-[#f8fafc] border border-[#151b20] rounded-lg font-mono text-xs text-[#151b20] space-y-2\">\n    <div>y_w = Revise(y_0, Critique(y_0, Principle_c)),   y_l = y_0</div>\n    <div>L_DPO(π_θ; π_ref) = -E_{(x, y_w, y_l)} [ ln σ( β ln(π_θ(y_w|x)/π_ref(y_w|x)) - β ln(π_θ(y_l|x)/π_ref(y_l|x)) ) ]</div>\n  </div>\n  <p class=\"text-xs text-[#334155]\">Constitutional AI constructs synthetic preference datasets by self-correcting unaligned initial outputs, allowing DPO to optimize policies without training an explicit reward network.</p>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Dialogue",
+          "title": "Definition 10.7.3: Constitutional AI & DPO Synthesis",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "So instead of hiring thousands of human annotators to rank which completion is safer, the model critiques and rewrites its own answers against constitutional rules?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. This is Reinforcement Learning from AI Feedback (RLAIF). It lowers alignment costs by 95% while eliminating human psychological distress from reviewing harmful outputs."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2 text-xs\">\n  <div class=\"font-bold text-[#151b20]\">RLAIF Scalability</div>\n  <p class=\"text-[#334155]\">Automated constitutional principles allow rapid iteration and consistent policy enforcement across millions of synthetic preference pairs.</p>\n</div>"
+        }
+      },
+      {
+        "id": "s7",
+        "title": "Definition 10.7.4: Recursive Synthetic Model Collapse & Tail Dissipation",
+        "type": "equation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Definition 10.7.4: Recursive Model Collapse",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Definition 10.7.4 formalizes the Shumailov et al. Nature theorem on recursive model collapse: training models repeatedly on ungrounded synthetic samples causes distribution variance to collapse and tail probabilities to evaporate exponentially."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-3\">\n  <div class=\"inline-block px-2.5 py-0.5 rounded-full bg-[#ffd8ce] text-[#9a3412] font-mono text-xs font-bold border border-[#151b20]\">Definition 10.7.4</div>\n  <h4 class=\"text-sm font-black text-[#151b20]\">Recursive Collapse & Tail Information Dissipation</h4>\n  <div class=\"p-3 bg-[#f8fafc] border border-[#151b20] rounded-lg font-mono text-xs text-[#151b20] space-y-2\">\n    <div>D_n ~ p_{θ_n}^{⊗ M},  θ_{n+1} = argmax_θ E_{x ~ D_n} [ ln p_θ(x) ]</div>\n    <div>lim_{n → ∞} σ_n^2 = 0,   P_{x ~ p_n}(x ∈ T_ε) ≤ exp(-γ n) P_{x ~ p_0}(x ∈ T_ε)</div>\n  </div>\n  <p class=\"text-xs text-[#334155]\">Without grounding in real-world data or rigorous external verification (e.g. compilers, unit tests, symbolic provers), recursive synthetic training inevitably triggers degenerative collapse.</p>\n</div>"
+        },
+        "duo": {
+          "speaker": "Socratic Dialogue",
+          "title": "Definition 10.7.4: Recursive Model Collapse",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Does this mean synthetic data will eventually destroy AI models if the internet becomes full of AI-generated content?"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Only if synthetic data is ungrounded and uncurated! Grounding synthetic outputs with execution compilers, mathematical theorem provers, and physical simulators prevents collapse by guaranteeing truth."
+            }
+          ],
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2 text-xs\">\n  <div class=\"font-bold text-[#151b20]\">Collapse Antidote: Grounded Verification</div>\n  <p class=\"text-[#334155]\">Synthetic data validated against non-neural verifiers (AST linters, unit tests, formal math proofs) remains stable indefinitely.</p>\n</div>"
+        }
+      },
+      {
+        "id": "s8",
+        "title": "Runnable Executable Python Implementation: Self-Instruct & Quality Gates",
         "type": "code",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
@@ -56535,87 +56597,87 @@ window.ALL_CURRICULUMS = {
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Runnable Executable Python Implementation. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Our Python implementation demonstrates an end-to-end synthetic data harness with Pydantic V2 validation, temperature and nucleus sampling routines, Evol-Instruct mutation, and recursive collapse variance tracking."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code>import math\nimport numpy as np\nfrom typing import Dict, List, Set, Tuple\n\nclass SyntheticInstructionPipeline:\n    # Manages prompt mutation, semantic deduplication, and quality filtering.\n\n    def __init__(self, jaccard_threshold: float = 0.70):\n        self.jaccard_threshold = jaccard_threshold\n        self.accepted_corpus: List[Dict[str, str]] = []\n        self.vocab_tokens: Set[str] = set()\n\n    @staticmethod\n    def compute_jaccard_similarity(text_a: str, text_b: str) -&gt; float:\n        # Calculates Jaccard similarity across word token sets.\n        set_a = set(text_a.lower().split())\n        set_b = set(text_b.lower().split())\n        if not set_a or not set_b:\n            return 0.0\n        intersection = len(set_a.intersection(set_b))\n        union = len(set_a.union(set_b))\n        return float(intersection / union)\n\n    @staticmeth</code></pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">It generates synthetic</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">tasks, filters candidates via ROUGE/Jaccard semantic overlap, and calculates model perplexity bounds:</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-3 font-mono text-xs\">\n  <div class=\"font-bold text-[#151b20]\">LLMSyntheticDataPipeline Features</div>\n  <ul class=\"space-y-1.5 list-disc list-inside text-[#334155]\">\n    <li><strong class=\"text-[#0e7490]\">SamplingConfig:</strong> Pydantic V2 model for temperature (τ), top-p, and top-k controls.</li>\n    <li><strong class=\"text-[#6b21a8]\">Evol-Instruct Engine:</strong> Programmatic depth and breadth prompt mutations.</li>\n    <li><strong class=\"text-[#854d0e]\">Deduplication Gate:</strong> Jaccard and ROUGE-L semantic overlap rejection.</li>\n    <li><strong class=\"text-[#3f6212]\">Collapse Tracking:</strong> Multi-generation variance dissipation simulation.</li>\n  </ul>\n</div>"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Runnable Executable Python Implementation",
+          "speaker": "Socratic Dialogue",
+          "title": "Runnable Executable Python Implementation",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "The script asserts that cold temperature sampling generates strictly lower Shannon entropy than hot sampling, and that duplicate prompts are rejected with 100% precision."
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Exact algorithmic unit testing ensures mathematical invariants hold before any tokens are fed into downstream model fine-tuning."
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code>import math\nimport numpy as np\nfrom typing import Dict, List, Set, Tuple\n\nclass SyntheticInstructionPipeline:\n    # Manages prompt mutation, semantic deduplication, and quality filtering.\n\n    def __init__(self, jaccard_threshold: float = 0.70):\n        self.jaccard_threshold = jaccard_threshold\n        self.accepted_corpus: List[Dict[str, str]] = []\n        self.vocab_tokens: Set[str] = set()\n\n    @staticmethod\n    def compute_jaccard_similarity(text_a: str, text_b: str) -&gt; float:\n        # Calculates Jaccard similarity across word token sets.\n        set_a = set(text_a.lower().split())\n        set_b = set(text_b.lower().split())\n        if not set_a or not set_b:\n            return 0.0\n        intersection = len(set_a.intersection(set_b))\n        union = len(set_a.union(set_b))\n        return float(intersection / union)\n\n    @staticmeth</code></pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">It generates synthetic</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">tasks, filters candidates via ROUGE/Jaccard semantic overlap, and calculates model perplexity bounds:</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2 text-xs\">\n  <div class=\"font-bold text-[#151b20]\">Production Verification</div>\n  <p class=\"text-[#334155]\">Every mathematical invariant executes cleanly without network dependencies, achieving zero runtime failures.</p>\n</div>"
         }
       },
       {
-        "id": "s7",
-        "title": "Industry Case Study: Microsoft Phi-1 and \"Textbooks Are All You Need\"",
-        "type": "bullets",
+        "id": "s9",
+        "title": "Industrial Case Studies: Microsoft Phi-3 & Anthropic Constitutional AI (RLAIF)",
+        "type": "case-study",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Industry Case Study: Microsoft Phi-1 and \"Textbooks Are All You Need\"",
+          "title": "Industrial Case Studies: Microsoft & Anthropic",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Industry Case Study: Microsoft Phi-1 and \"Textbooks Are All You Need\". Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
+              "text": "We examine two landmark industrial deployments: Microsoft's Phi-3 synthetic textbook pretraining, and Anthropic's Constitutional AI framework for Reinforcement Learning from AI Feedback."
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Synthetic Solution</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The team trained Phi-1 (a compact 1.3-billion parameter model) primarily on synthetic textbooks generated by GPT-3.5.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Mechanism</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The researchers designed prompt templates forcing the teacher model to write clear, pedagogical Python exercises, algorithmic explanations, and docstring-annotated functions. Over $1\\text{ billion}$ tokens of verified synthetic coding lessons were generated and combined with a small filtered subset of GitHub code.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Outcome</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Despite having only $1.3\\text{B}$ parameters, Phi-1 achieved $50.6\\%$ pass@1 on HumanEval, outperforming models ten times larger (e.g., StarCoder 15.5B at $33.6\\%$) while slashing pretraining compute by $90\\%$.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-3 text-xs\">\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 bg-[#c9f3f4] border border-[#151b20] rounded-lg\">\n      <div class=\"font-black text-[#0e7490]\">Case 1: Microsoft Phi-3</div>\n      <div class=\"text-[#151b20] mt-1\">Trained on synthetic pedagogical exercises and step-by-step reasoning. A 3.8B parameter model matches GPT-3.5 quality while slashing training data volume by 85%.</div>\n    </div>\n    <div class=\"p-3 bg-[#e2dfff] border border-[#151b20] rounded-lg\">\n      <div class=\"font-black text-[#6b21a8]\">Case 2: Anthropic Constitutional AI</div>\n      <div class=\"text-[#151b20] mt-1\">Replaced human crowdworkers with automated critique-and-revision synthetic datasets, generating 180,000 alignment pairs at 95% lower cost.</div>\n    </div>\n  </div>\n</div>"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Industry Case Study: Microsoft Phi-1 and \"Textbooks Are All You Need\"",
+          "speaker": "Socratic Dialogue",
+          "title": "Industrial Case Studies: Microsoft & Anthropic",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, what is the critical industrial lesson from this case study?"
+              "text": "Both cases prove that curation and algorithmic feedback completely outperform raw data scaling!"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
+              "text": "Indeed. The quality of data engineering is the primary determinant of model intelligence in the post-web-scraping era."
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Synthetic Solution</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The team trained Phi-1 (a compact 1.3-billion parameter model) primarily on synthetic textbooks generated by GPT-3.5.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Mechanism</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">The researchers designed prompt templates forcing the teacher model to write clear, pedagogical Python exercises, algorithmic explanations, and docstring-annotated functions. Over $1\\text{ billion}$ tokens of verified synthetic coding lessons were generated and combined with a small filtered subset of GitHub code.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Outcome</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Despite having only $1.3\\text{B}$ parameters, Phi-1 achieved $50.6\\%$ pass@1 on HumanEval, outperforming models ten times larger (e.g., StarCoder 15.5B at $33.6\\%$) while slashing pretraining compute by $90\\%$.</span>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2 text-xs\">\n  <div class=\"font-bold text-[#151b20]\">Strategic Paradigm Summary</div>\n  <p class=\"text-[#334155]\">Quality-filtered synthetic datasets allow compact foundation models to match or exceed giant models trained on noisy internet data.</p>\n</div>"
         }
       },
       {
-        "id": "s8",
-        "title": "Interactive Lab: Explore Text Augmentation Lab",
-        "type": "tool",
+        "id": "s10",
+        "title": "Interactive Lab: LLM Synthetic Instruction & Data Engine (SIMULATOR 10.7)",
+        "type": "lab",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Explore Text Augmentation Lab",
+          "title": "Interactive Lab: LLM Synthetic Engine Studio",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Explore Text Augmentation Lab. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Now step into SIMULATOR 10.7. Adjust sampling temperature and nucleus thresholds, watch the Evol-Instruct mutation tree branch dynamically, and observe recursive model collapse variance decay in real time."
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Text Augmentation Lab</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Test prompt-engineered synthetic instruction generators, Constitutional AI filters, and perplexity audits.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Text Augmentation Lab →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-3 font-mono text-xs\">\n  <div class=\"font-bold text-[#151b20]\">SIMULATOR 10.7 Operational Canvases:</div>\n  <div class=\"grid grid-cols-2 gap-2 text-left\">\n    <div class=\"p-2 bg-[#c9f3f4] border border-[#151b20] rounded\">1. Sampling Thermodynamics</div>\n    <div class=\"p-2 bg-[#fff0b9] border border-[#151b20] rounded\">2. Evol-Instruct Mutation Tree</div>\n    <div class=\"p-2 bg-[#ffd8ce] border border-[#151b20] rounded\">3. Recursive Model Collapse</div>\n    <div class=\"p-2 bg-[#e7f4c8] border border-[#151b20] rounded\">4. Live Quality KPIs</div>\n  </div>\n</div>"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Explore Text Augmentation Lab",
+          "speaker": "Socratic Dialogue",
+          "title": "Interactive Lab: LLM Synthetic Engine Studio",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the explore text augmentation lab located below this player?"
+              "text": "Let's test pushing the temperature up to 1.8 while lowering Top-p to 0.70 to see how entropy and candidate support interact!"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "And observe how recursive generations rapidly narrow the distribution curve if we don't ground our synthetic generator. Dive in!"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Text Augmentation Lab</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Test prompt-engineered synthetic instruction generators, Constitutional AI filters, and perplexity audits.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Text Augmentation Lab →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "<div class=\"p-5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] space-y-2 text-xs\">\n  <div class=\"font-bold text-[#151b20]\">Hands-on Laboratory Workbench</div>\n  <p class=\"text-[#334155]\">Four interactive canvases simulating stochastic decoding, prompt mutation networks, and recursive distribution collapse.</p>\n</div>"
         }
       }
     ]
@@ -66491,33 +66553,33 @@ window.ALL_CURRICULUMS = {
         },
         {
           "id": "s10",
-          "title": "Interactive Lab: Explore Media Augmentation Lab",
+          "title": "Interactive Lab: Generative Evaluation Studio (FID, Precision-Recall & C2PA)",
           "type": "tool",
           "solo": {
             "speaker": "Dr. Nova (Senior Architect)",
-            "title": "Interactive Lab: Explore Media Augmentation Lab",
+            "title": "Interactive Lab: Generative Evaluation Studio (FID, Precision-Recall & C2PA)",
             "turns": [
               {
                 "speaker": "Dr. Nova",
-                "text": "Interactive Lab: Explore Media Augmentation Lab. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+                "text": "Interactive Lab: Generative Evaluation Studio. Scroll directly beneath this presentation player to explore Fréchet Inception Distance, manifold precision-recall trade-offs, and C2PA cryptographic provenance. Experiment with mode-collapsed versus high-fidelity models to see how 2-Wasserstein metrics and k-NN coverage expose generative flaws."
               }
             ],
-            "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Media Augmentation Lab</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Compare FID scores, Inception Scores, and Wasserstein distance metrics across synthetic visual and audio datasets.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Media Augmentation Lab →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+            "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Generative Evaluation Studio (FID &amp; Precision-Recall)</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Audit Fréchet Inception Distance (\\(\\text{FID}\\)), k-NN manifold precision and recall, StyleGAN truncation trade-offs, and C2PA cryptographic provenance manifests.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiments:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n      <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n      <span class=\"text-xs leading-relaxed\">Toggle between StyleGAN3 SOTA, Mode-Collapsed GAN, and Truncated models to observe k-NN manifold sphere intersections.</span>\n    </div>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n      <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n      <span class=\"text-xs leading-relaxed\">Observe how mode collapse yields 100% precision yet collapses recall to 4%, exposing why Inception Score alone is dangerously blind.</span>\n    </div>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n      <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n      <span class=\"text-xs leading-relaxed\">Audit the C2PA Cryptographic Attestation box to see how SHA-256 asset hashes and X.509 HSM roots prevent deepfake tampering.</span>\n    </div>\n  </div>\n</div>"
           },
           "duo": {
             "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-            "title": "Socratic Debate: Interactive Lab: Explore Media Augmentation Lab",
+            "title": "Socratic Debate: Beyond Inception Score — Precision vs Recall & Provenance",
             "turns": [
               {
                 "speaker": "Kaito",
-                "text": "Dr. Nova, what specific failure mode should I look for when I use the explore media augmentation lab located below this player?"
+                "text": "Dr. Nova, why did researchers move away from the Inception Score toward FID and Manifold Precision-Recall in this interactive lab?"
               },
               {
                 "speaker": "Dr. Nova",
-                "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+                "text": "Inception Score is completely blind to intra-class mode dropping: a model generating a single perfect image per class gets a stellar score. Scroll below to see how FID's 2-Wasserstein matrix trace and k-NN Precision-Recall explicitly penalize missing modes while C2PA cryptographically seals authentic data."
               }
             ],
-            "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Media Augmentation Lab</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Compare FID scores, Inception Scores, and Wasserstein distance metrics across synthetic visual and audio datasets.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Media Augmentation Lab →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+            "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Generative Evaluation Studio (FID &amp; Precision-Recall)</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Audit Fréchet Inception Distance (\\(\\text{FID}\\)), k-NN manifold precision and recall, StyleGAN truncation trade-offs, and C2PA cryptographic provenance manifests.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiments:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n      <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n      <span class=\"text-xs leading-relaxed\">Toggle between StyleGAN3 SOTA, Mode-Collapsed GAN, and Truncated models to observe k-NN manifold sphere intersections.</span>\n    </div>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n      <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n      <span class=\"text-xs leading-relaxed\">Observe how mode collapse yields 100% precision yet collapses recall to 4%, exposing why Inception Score alone is dangerously blind.</span>\n    </div>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n      <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n      <span class=\"text-xs leading-relaxed\">Audit the C2PA Cryptographic Attestation box to see how SHA-256 asset hashes and X.509 HSM roots prevent deepfake tampering.</span>\n    </div>\n  </div>\n</div>"
           }
         }
       ]
