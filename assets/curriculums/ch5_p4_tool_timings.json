@@ -1,0 +1,134 @@
+{
+  "ch5_p4_solo_lab1.mp3": {
+    "duration": 20.28,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the Mahalanobis Ellipsoids and Masking Breakdown Studio. Inspect how an off-axis outlier stays inside the grey univariate box yet violates the tilted green 99% Mahalanobis ellipse, then switch to Masking Cluster mode and slide contamination p past 10% to observe classical Z-score failure.",
+        "start": 0.0,
+        "end": 20.28
+      }
+    ]
+  },
+  "ch5_p4_duo_lab1.mp3": {
+    "duration": 13.896,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Whoa! Switch to Masking Cluster mode and push contamination past 10%\u2014the red dashed Z-score box stretches straight over the entire outlier cluster so classical catch rate crashes to zero while Modified MAD catches 100%!",
+        "start": 0.0,
+        "end": 13.896
+      }
+    ]
+  },
+  "ch5_p4_solo_chk1.mp3": {
+    "duration": 19.464,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Checkpoint 1. With 85 nominal temperature readings at 22 degrees Celsius and 15 broken readings stuck at plus 500 degrees\u2014a 15% contamination rate\u2014explain mathematically why classical 3-sigma catches zero spikes while Modified MAD exposes every corrupted point.",
+        "start": 0.0,
+        "end": 19.464
+      }
+    ]
+  },
+  "ch5_p4_duo_chk1.mp3": {
+    "duration": 14.712,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Remember the Masking Limit Theorem! Fifteen percent exceeds the 10% limit for tau equals 3, inflating standard deviation to 170.8 and capping Z at 2.38! Select the correct option below!",
+        "start": 0.0,
+        "end": 14.712
+      }
+    ]
+  },
+  "ch5_p4_chk1_correct.mp3": {
+    "duration": 24.888,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Outstanding derivation! Because 15% exceeds the 10% masking threshold, contaminated mean and standard deviation swell to 93.7 and 170.8, capping the Z-score of 500 degrees at only 2.38, strictly below 3.0. Meanwhile Modified MAD maintains a robust scale and exposes M over 450!",
+        "start": 0.0,
+        "end": 24.888
+      }
+    ]
+  },
+  "ch5_p4_chk1_incorrect.mp3": {
+    "duration": 21.36,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Not quite. Under 15% extreme contamination at 500 degrees, empirical variance swells dramatically so that the classical Z-score converges below 2.38, under the 3.0 threshold. Because p exceeds the 10% masking ceiling, zero spikes are flagged unless you switch to Modified MAD.",
+        "start": 0.0,
+        "end": 21.36
+      }
+    ]
+  },
+  "ch5_p4_solo_lab2.mp3": {
+    "duration": 15.936,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the Class Imbalance and SMOTE Resampling Studio. Compare Baseline 5.6 to 1 skew, Naive Random Oversampling pockets, SMOTE convex line interpolation, and Borderline-SMOTE frontier expansion across the live 2D Canvas.",
+        "start": 0.0,
+        "end": 15.936
+      }
+    ]
+  },
+  "ch5_p4_duo_lab2.mp3": {
+    "duration": 15.456,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Look at those yellow synthetic SMOTE segments bridging the orange minority neighborhood! Minority sensitivity jumps from 37.5% on raw skew up to 87.5%, and Borderline-SMOTE pushes the frontier fence to 100%!",
+        "start": 0.0,
+        "end": 15.456
+      }
+    ]
+  },
+  "ch5_p4_solo_chk2.mp3": {
+    "duration": 18.576,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Checkpoint 2. A practitioner applies SMOTE across 10,000 records to balance 18,000 records before running 5-fold cross-validation, yielding 98% validation recall that collapses in deployment. Diagnose the leakage mechanism and select the invariant fix.",
+        "start": 0.0,
+        "end": 18.576
+      }
+    ]
+  },
+  "ch5_p4_duo_chk2.mp3": {
+    "duration": 12.048,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Trace where synthetic child nodes sit! If x new lands in validation Fold 5 while its parent anchors stay in training Folds 1 through 4, validation metrics evaluate leaked convex neighbors!",
+        "start": 0.0,
+        "end": 12.048
+      }
+    ]
+  },
+  "ch5_p4_chk2_correct.mp3": {
+    "duration": 17.784,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Spot on! Generating synthetic SMOTE neighbors prior to splitting leaks convex interpolations across training and validation fold boundaries, inflating CV recall through memorization. Wrapping SMOTE strictly inside an imbalanced-learn Pipeline eliminates fold leakage completely!",
+        "start": 0.0,
+        "end": 17.784
+      }
+    ]
+  },
+  "ch5_p4_chk2_incorrect.mp3": {
+    "duration": 18.936,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Incorrect diagnosis. Synthesizing SMOTE instances on the full dataset creates geometric interpolations whose parent endpoints land in training folds while synthetic children land in validation folds. You must encapsulate resampling strictly inside each training fold using imbalanced-learn Pipeline.",
+        "start": 0.0,
+        "end": 18.936
+      }
+    ]
+  }
+}

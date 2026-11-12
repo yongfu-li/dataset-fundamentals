@@ -1,0 +1,379 @@
+{
+  "duration": 884.712,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Chapter 5, Lesson 4: Outliers, Irrelevant Features, and Severe Class Imbalance. Once missing entries are imputed and duplicate entities are resolved, production datasets routinely exhibit three structural pathologies that destabilize downstream machine learning estimators.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 18.264
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "First, outliers: extreme spatial or statistical deviations spanning both corrupted telemetry spikes and rare fraudulent signatures. Second, irrelevant dimensions: high-entropy noise features that inflate hypothesis volume and trigger Euclidean distance concentration. And third, severe class imbalance: acute label prior skew that induces the Accuracy Paradox. Blindly trimming extremes or training unweighted objectives causes catastrophic failures across clinical triage and financial fraud detection.",
+          "dock": "main",
+          "start": 18.264,
+          "end": 50.88
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Before calling clip or drop on any extreme observation, production engineers deploy a three-branch Diagnostic Screening Pipeline. Starting from the cleaned matrix X in R to the N by D, data passes simultaneously through Outlier Detection Geometry, Noise Feature Filtering, and Class Imbalance Remediation.",
+          "dock": "main",
+          "start": 50.88,
+          "end": 70.56
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Crucially, the Outlier branch enforces a semantic fork: Error versus Rare Event. If an extreme spike is a physical sensor artifact, we Winsorize or NaN-impute it. But if the extreme point is a genuine rare event, such as an enterprise wire fraud or sudden turbine breakdown, deleting it blinds the classifier! Instead, we preserve the record and emit an explicit binary indicator feature, is_outlier.",
+          "dock": "main",
+          "start": 70.56,
+          "end": 97.776
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us inspect univariate anomaly detection and prove why classical parametric Z-scores fail under contamination. The classical Z-score computes x sub i minus the empirical mean mu, divided by the empirical standard deviation sigma, typically flagging observations whose absolute value exceeds threshold tau equals 3.0.",
+          "dock": "main",
+          "start": 97.776,
+          "end": 118.944
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "However, both the empirical mean and empirical standard deviation have a finite-sample breakdown point epsilon star of only 1 over n. A single corrupted reading moving toward infinity drags mu and inflates sigma without bound!",
+          "dock": "main",
+          "start": 118.944,
+          "end": 133.488
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Even worse, when a cluster of outliers enters at contamination fraction p, they trigger the Mathematical Masking Limit. As outlier distance delta approaches infinity, the Z-score of those extreme outliers converges strictly to the square root of 1 minus p over p! Setting this below tau equals 3 proves that whenever p exceeds 1 over 1 plus tau squared\u2014namely 10%\u2014classical Z-scores catch ZERO outliers regardless of magnitude!",
+          "dock": "main",
+          "start": 133.488,
+          "end": 161.856
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "To achieve the highest possible theoretical breakdown point of epsilon star equals 50%, robust statistics replaces mean and standard deviation with the sample median and the Median Absolute Deviation, or MAD.",
+          "dock": "main",
+          "start": 161.856,
+          "end": 175.392
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "We compute MAD as the median absolute distance from the sample median, and construct the Modified Z-score M sub i using the Gaussian normalizing constant 0.6745, which equals the inverse normal CDF at 0.75. Any point with absolute M sub i exceeding 3.5 is flagged cleanly, even under 45% cluster contamination!",
+          "dock": "main",
+          "start": 175.392,
+          "end": 199.032
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "For skewed non-parametric distributions, John Tukey's Fences construct acceptance bands from the interquartile range Q3 minus Q1, marking inner fences at 1.5 IQR. Finally, beware a dangerous anti-pattern: never apply 3-sigma trimming to heavy-tailed or power-law domains like e-commerce spending or latency! In power-law domains, high values are real signals\u2014apply natural log scaling ln of 1 plus x or MAD Winsorization instead.",
+          "dock": "main",
+          "start": 199.032,
+          "end": 228.912
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Suppose we monitor engine RPM and Fuel Flow Rate, which exhibit a tight positive correlation of r equals 0.96. A corrupted sensor reports RPM at plus 2.2 standard deviations alongside Fuel Flow at minus 2.2 standard deviations. Every univariate 1D filter passes this reading because both numbers sit comfortably inside plus or minus 3 sigma!",
+          "dock": "main",
+          "start": 228.912,
+          "end": 254.088
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Why do 1D detectors fail? Because checking axes independently draws an axis-aligned rectangular acceptance box that leaves empty diagonal corners unguarded. To detect off-axis anomalies, we compute Mahalanobis Distance, measuring standardized ellipsoidal separation adjusted by the inverse covariance matrix Sigma inverse.",
+          "dock": "main",
+          "start": 254.088,
+          "end": 275.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Under multivariate normality in d dimensions, squared Mahalanobis distance follows a chi-squared distribution with d degrees of freedom. Crucially, to stop outlier clusters from poisoning Sigma itself, Rousseeuw's Minimum Covariance Determinant, or MCD, estimates covariance solely from the tightest h sub-sample having the smallest matrix determinant!",
+          "dock": "main",
+          "start": 275.328,
+          "end": 297.312
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our first interactive Canvas laboratory: the Mahalanobis Ellipsoids and Masking Breakdown Studio. In the Off-Axis Anomaly regime, inspect the blue correlated core wrapped tightly by the green 99% Mahalanobis ellipse, inside a wide axis-aligned univariate box.",
+          "dock": "main",
+          "start": 297.312,
+          "end": 315.408
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice how the red off-axis anomaly at plus 2.1, minus 2.1 sits safely inside the rectangular univariate box yet blasts far beyond the tilted covariance ellipse! Next, switch to the Masking Cluster regime and drag the contamination slider p from 4% past 10% up to 20% to watch the classical red dashed Z-score box swell catastrophically until catch rate hits zero!",
+          "dock": "main",
+          "start": 315.408,
+          "end": 340.824
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us pause for Active Checkpoint 1. Consider a live telemetry stream containing 85 nominal indoor temperature measurements centered around 22.0 degrees Celsius with standard deviation 1.0, corrupted by 15 malfunctioning sensor readings stuck at plus 500 degrees Celsius\u2014a 15% contamination rate.",
+          "dock": "main",
+          "start": 340.824,
+          "end": 362.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Your alerting script checks absolute Z-score greater than 3.0. Explain mathematically why classical 3-sigma catches ZERO of the 500-degree errors, and identify how Modified MAD responds.",
+          "dock": "main",
+          "start": 362.328,
+          "end": 376.056
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "When high-dimensional data forms multimodal clusters, curved manifolds, or L-shaped regimes rather than a single multivariate Gaussian cloud, ellipsoidal Mahalanobis boundaries fail. For arbitrary non-linear distributions, production pipelines deploy Isolation Forests and Local Outlier Factor, or LOF.",
+          "dock": "main",
+          "start": 376.056,
+          "end": 396.336
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Instead of profiling normal density, Isolation Forests randomly select a feature and recursively partition between minimum and maximum coordinate values. Dense inliers overlap heavily, requiring dozens of hyperplane cuts\u2014yielding path length h of x proportional to natural log of n. In contrast, sparse anomalies occupy wide empty regions, allowing random cuts to isolate them near the tree root!",
+          "dock": "main",
+          "start": 396.336,
+          "end": 422.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Averaged across trees, the normalized anomaly score 2 to the power of minus expected path length over c of n approaches 1.0 whenever h of x is tiny. Complementarily, LOF compares a point's local k-nearest-neighbor density against the density of its neighbors to flag subtle outliers perched beside dense clusters.",
+          "dock": "main",
+          "start": 422.328,
+          "end": 442.776
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us turn to the second structural pathology: irrelevant features. Injecting pure random noise dimensions into high-dimensional tables expands the enclosing hypervolume exponentially and triggers Distance Concentration, proven formally by Kevin Beyer and colleagues in 1999.",
+          "dock": "main",
+          "start": 442.776,
+          "end": 460.776
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "As feature dimension d grows toward infinity under broad distributions, the relative contrast between the farthest point and the nearest neighbor converges strictly to zero! When every observation becomes nearly equidistant from every other observation, distance-driven estimators like k-nearest neighbors, RBF kernel SVMs, and k-means clustering lose discriminative sharpness completely.",
+          "dock": "main",
+          "start": 460.776,
+          "end": 484.176
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "To defend geometric signal, production preprocessors apply two deterministic filters inside each training fold: Variance Thresholding to strip constant or near-constant dimensions where variance falls below epsilon, and Shannon Mutual Information I of X and Y to prune covariates carrying zero predictive bit dependence on target labels.",
+          "dock": "main",
+          "start": 484.176,
+          "end": 504.24
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Our third pathology is severe class imbalance. Define the Imbalance Ratio IR as the majority class count divided by the minority class count. Whenever IR is much greater than 1\u2014such as 99 to 1 in medical diagnostics or 1,000 to 1 in fraudulent wires\u2014standard empirical risk minimization collapses onto the trivial majority prior.",
+          "dock": "main",
+          "start": 504.24,
+          "end": 527.376
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "This creates the Accuracy Paradox documented by He and Garcia: a completely useless classifier predicting 'Negative' on every input scores 99.0% raw accuracy, yet achieves 0.0% minority recall!",
+          "dock": "main",
+          "start": 527.376,
+          "end": 540.672
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Just as dangerously, standard ROC-AUC can remain deceptively high under skew because False Positive Rate divides false alarms by a gigantic pool of true negatives. In imbalanced pipelines, evaluate on Precision-Recall Area Under Curve, PR-AUC, which directly penalizes false positives relative to true minority hits!",
+          "dock": "main",
+          "start": 540.672,
+          "end": 561.432
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "To rescue minority class recall without degenerating into naive duplicate memorization, Chawla and co-authors introduced SMOTE: Synthetic Minority Over-sampling Technique. Whereas random oversampling stamps identical minority coordinates repeatedly\u2014forcing decision trees to carve tight, overfitted hyper-rectangles\u2014SMOTE generates novel synthetic points along convex line segments connecting each minority anchor x sub i to its k-nearest minority neighbors x sub zi.",
+          "dock": "main",
+          "start": 561.432,
+          "end": 590.136
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Mathematically, x new equals x sub i plus lambda times the difference vector x sub zi minus x sub i, with lambda drawn uniformly on 0 to 1. Even stronger in production, Borderline-SMOTE and ADASYN synthesize points selectively along the ambiguous majority-minority frontier to widen decision margin geometry.",
+          "dock": "main",
+          "start": 590.136,
+          "end": 610.536
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "As an alternative that avoids modifying input geometry or slowing tree training, Cost-Sensitive Cross-Entropy weights gradients inversely with class counts w sub c equals N divided by C times N sub c\u2014achieving high PR-AUC in a fraction of the compute time!",
+          "dock": "main",
+          "start": 610.536,
+          "end": 627.384
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our second interactive Canvas studio: the Class Imbalance and SMOTE Resampling Workbench. Here we observe 45 majority blue records dominating 8 minority orange records\u2014an initial imbalance ratio of 5.6 to 1.",
+          "dock": "main",
+          "start": 627.384,
+          "end": 642.96
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Switch between all four mitigation strategies in the studio below: Baseline Raw Skew compresses the dashed decision boundary into the corner, dropping recall to 37.5%. Random Oversampling carves tight yellow overfitted rings. SMOTE generates smooth convex yellow nodes raising recall to 87.5%, and Borderline-SMOTE pushes the frontier straight across the margin to reach 100%!",
+          "dock": "main",
+          "start": 642.96,
+          "end": 669.576
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for Active Checkpoint 2. A data scientist takes an imbalanced dataset of 10,000 records at a 90 to 10 split, applies SMOTE across the entire array to balance it up to 18,000 records, and THEN executes 5-fold cross-validation.",
+          "dock": "main",
+          "start": 669.576,
+          "end": 685.896
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Cross-validation reports an astonishing 98% recall, yet production recall collapses catastrophically upon deployment. Diagnose the exact geometric leakage mechanism and select the architectural remedy.",
+          "dock": "main",
+          "start": 685.896,
+          "end": 699.792
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us examine how these theorems perform at industrial scale in the IEEE-CIS Fraud Detection benchmark: 590,540 financial transactions exhibiting a 28 to 1 imbalance ratio with 3.5% fraud prevalence.",
+          "dock": "main",
+          "start": 699.792,
+          "end": 715.8
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "First, applying a naive univariate absolute Z-score greater than 3 filter was catastrophic: valid corporate invoices above 10,000 dollars registered Z over 15, while automated botnet fraud operated via 50-cent micro-transactions! Extreme trimming discarded 83% of legitimate fraud monitoring targets, crashing PR-AUC from 0.612 down to 0.389.",
+          "dock": "main",
+          "start": 715.8,
+          "end": 742.104
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In contrast, combining transaction size with device velocity under MCD robust covariance cleanly isolated bot swarms with D sub M squared above 45.2! Finally, Robust MAD Winsorization paired with Cost-Sensitive Class Weights reached the top PR-AUC of 0.835 in just 17.1 seconds\u2014beating SMOTE's 0.826 PR-AUC while training over three times faster!",
+          "dock": "main",
+          "start": 742.104,
+          "end": 769.296
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us inspect our production-grade Python suite implementing every theorem from this lesson cleanly with Pydantic V2 contracts and leak-free scikit-learn transformers.",
+          "dock": "main",
+          "start": 769.296,
+          "end": 779.352
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "First, OutlierVerificationReport validates the contamination regime strictly above 10% and logs exact unit assertions proving that classical Z-score catches zero corrupted spikes while Modified MAD catches 100%, alongside off-axis Minimum Covariance Determinant isolation.",
+          "dock": "main",
+          "start": 779.352,
+          "end": 797.784
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Second, RobustOutlierFilter inherits BaseEstimator and TransformerMixin, fitting feature medians and MADs strictly on training splits to clip extremes via the 0.6745 factor, paired with leak-free SMOTE linear interpolation inside training partitions only.",
+          "dock": "main",
+          "start": 797.784,
+          "end": 815.064
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Congratulations on completing Chapter 5, Lesson 4: Outliers, Irrelevant Features, and Severe Class Imbalance. You have mastered the breakdown point proofs behind the 10% Masking Limit, MCD multivariate ellipsoids, Isolation Forest path scaling, Beyer's distance concentration, SMOTE convex manifolds, and the IEEE-CIS fraud detection benchmarks.",
+          "dock": "main",
+          "start": 815.064,
+          "end": 839.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Anchor these Four Golden Rules into every ML pipeline you architect: Rule 1: Replace brittle 1D Z-scores with Modified MAD, MCD Mahalanobis distance, or Isolation Forests. Rule 2: Distinguish sensor artifacts from authentic tail realizations before clipping, emitting is_outlier indicators when rare events matter. Rule 3: Prune zero-variance and zero-Mutual-Information dimensions inside training folds. And Rule 4: Wrap SMOTE strictly inside training folds and optimize PR-AUC with Cost-Sensitive Weights.",
+          "dock": "main",
+          "start": 839.328,
+          "end": 874.032
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In Lesson 5.5, we bring every cleaning discipline together into Practical Data Cleaning Techniques and Domain Regex Canonicalization. See you there!",
+          "dock": "main",
+          "start": 874.032,
+          "end": 884.712
+        }
+      ]
+    }
+  ]
+}

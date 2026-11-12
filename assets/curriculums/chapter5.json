@@ -2310,256 +2310,844 @@
     "chapter": 5,
     "part": 4,
     "key": "ch5_p4",
-    "badge": "\u25c6 TRACK 5 \u2022 LESSON 5.4: OUTLIERS, IRRELEVANT FEATURES, AND IMBALANCE",
+    "badge": "\u25c6 TRACK 5 \u2022 LESSON 5.4: OUTLIERS, IRRELEVANT FEATURES & SEVERE CLASS IMBALANCE",
     "index": "Lesson 4 of 12",
-    "lessonTitle": "Outliers, Irrelevant Features, and Imbalance",
+    "lessonTitle": "Outliers, Irrelevant Features, and Severe Class Imbalance",
+    "title": "Outliers, Irrelevant Features, and Severe Class Imbalance",
+    "audioPath": "./audio/ch5_p4_solo.mp3",
     "slides": [
       {
         "id": "s1",
-        "title": "Outliers, Irrelevant Features, and Imbalance",
-        "type": "title",
+        "title": "Outliers, Irrelevant Features & Severe Class Imbalance",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Outliers, Irrelevant Features, and Imbalance",
+          "title": "The Three Structural Pathologies of Dirty Feature & Label Geometry",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 5.4. Today we examine outliers, irrelevant features, and imbalance, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>\u25c6 Track 5: Foundations</span>\n    <span>\u2022</span>\n    <span>Lesson 5.4</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Outliers, Irrelevant Features, and Imbalance\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into outliers, irrelevant features, and imbalance with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udcd0 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">\u26a0\ufe0f Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udee1\ufe0f Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Outliers, Irrelevant Features, and Imbalance",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 5.4?"
+              "text": "Welcome to Chapter 5, Lesson 4: Outliers, Irrelevant Features, and Severe Class Imbalance. Once missing entries are imputed and duplicate entities are resolved, production datasets routinely exhibit three structural pathologies that destabilize downstream machine learning estimators.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 5.4. Today we examine outliers, irrelevant features, and imbalance, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "First, outliers: extreme spatial or statistical deviations spanning both corrupted telemetry spikes and rare fraudulent signatures. Second, irrelevant dimensions: high-entropy noise features that inflate hypothesis volume and trigger Euclidean distance concentration. And third, severe class imbalance: acute label prior skew that induces the Accuracy Paradox. Blindly trimming extremes or training unweighted objectives causes catastrophic failures across clinical triage and financial fraud detection.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>\u25c6 Track 5: Foundations</span>\n    <span>\u2022</span>\n    <span>Lesson 5.4</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Outliers, Irrelevant Features, and Imbalance\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into outliers, irrelevant features, and imbalance with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udcd0 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">\u26a0\ufe0f Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udee1\ufe0f Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-4\">\n                <div class=\"p-4 rounded-xl bg-gradient-to-r from-[#c9f3f4]/40 to-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#0e7490]\">\n                  <div class=\"flex items-center gap-2 text-xs font-mono font-black uppercase text-[#0e7490] mb-1\">\n                    <span>\ud83d\udd2c</span> Post-Imputation Geometric Conditioning\n                  </div>\n                  <h3 class=\"text-sm md:text-base font-black text-[#151b20]\">\n                    Resolving Spatial Anomalies, High-Dimensional Noise &amp; Label Prior Skew\n                  </h3>\n                  <p class=\"text-xs text-[#151b20]/80 mt-1 leading-relaxed\">\n                    Syntactically valid records can still break gradient descent, distort decision boundaries, and blind classifiers if extreme geometry, noise axes, and rare minority signals go unconditioned.\n                  </p>\n                </div>\n\n                <div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs\">\n                  <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#dc2626] text-xs uppercase mb-1\">1. Structural Outliers</div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      Break classical moments ($\\epsilon^* = 1/n$) and trigger the Masking Limit ($p > 10\\%$). Guarded via Modified MAD ($0.6745$), MCD Ellipsoids, and Isolation Forests.\n                    </p>\n                  </div>\n                  <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#d97706] text-xs uppercase mb-1\">2. Noise Dimensions</div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      Trigger Beyer's Distance Concentration as $d \\to \\infty$. Pruned via Variance Thresholding ($\\operatorname{Var}(X) < \\epsilon$) and Mutual Information $I(X;Y)$.\n                    </p>\n                  </div>\n                  <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#2563eb] text-xs uppercase mb-1\">3. Class Imbalance</div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      Extreme Imbalance Ratio ($\\text{IR} = N_{\\text{maj}} / N_{\\text{min}} \\gg 1$) triggers the Accuracy Paradox ($99\\%$ acc / $0\\%$ recall). Resolved via leak-free SMOTE and Cost-Sensitive Loss.\n                    </p>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why Clean Tables Still Fail ML Estimators",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, we have already handled missing values with MICE and merged duplicates using Fellegi-Sunter. Once a dataset has zero nulls and zero duplicates, aren't we ready to train XGBoost or a neural network?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Not even close, Kaito! Imagine a fraud dataset with zero missing values and zero duplicates, where 99% of transactions are legitimate and only 1% are fraudulent, surrounded by 50 useless telemetry columns and a few corrupted million-dollar invoice glitches.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait\u2014if a model simply guesses 'Legitimate' for every single transaction, it gets 99% accuracy while missing 100% of all fraud! And those million-dollar spikes would skew linear weights or variance scalers!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Today we build formal statistical armor against three invisible killers: outliers, noise dimensions, and severe class imbalance.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Three Failure Scenarios After Deduplication</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>Outlier Masking Collapse:</b> A $15\\%$ batch of stuck $+500^\\circ\\text{C}$ thermometer readings swells $\\sigma$ so violently that $|Z| > 3$ catches <b>zero</b> faulty rows!</div>\n                    <div><b>Nearest-Neighbor Collapse:</b> Adding $100$ uninformative random columns washes out the contrast between nearest and farthest points.</div>\n                    <div><b>Accuracy Paradox:</b> Unweighted cross-entropy achieves $99.0\\%$ accuracy on $99:1$ clinical triage by ignoring every sick patient.</div>\n                  </div>\n                </div>\n              </div>\n            "
         }
       },
       {
         "id": "s2",
-        "title": "Conceptual Overview & Mathematical Derivations: Univariate vs. Multivariate Geometry",
-        "type": "equation",
+        "title": "End-to-End Diagnostic Pathology Screening Pipeline",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & Mathematical Derivations: Univariate vs. Multivariate Geometry",
+          "title": "Differentiating Corrupt Artifacts from Rare Authentic Signals",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & Mathematical Derivations: Univariate vs. Multivariate Geometry. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$z_i = \\frac{x_i - \\mu}{\\sigma}, \\quad \\text{flagged if } |z_i| > \\tau \\ (\\text{typically } \\tau = 3)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{MAD} = \\text{median}\\left(|x_i - \\text{median}(x)|\\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$M_i = \\frac{0.6745 \\cdot (x_i - \\tilde{x})}{\\text{MAD}}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Blindly deleting extreme</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">values or computing unweighted metrics leads to catastrophic model failure.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">An outlier</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is an observation that deviates so significantly from other observations as to arouse suspicion that it was generated by a different mechanism ((Hawkins, 1980)).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Observations with $|M_i|</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">&gt; 3.5$ are flagged.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\ud83d\udca1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">For high-dimensional, non-Gaussian</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">spaces, Isolation Forests ((Liu et al., 2008)) isolate anomalies by recursively partitioning feature space via random axis-aligned splits.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & Mathematical Derivations: Univariate vs. Multivariate Geometry",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does conceptual overview & mathematical derivations: univariate vs. multivariate geometry protect our system against silent distribution shift in production?"
+              "text": "Before calling clip or drop on any extreme observation, production engineers deploy a three-branch Diagnostic Screening Pipeline. Starting from the cleaned matrix X in R to the N by D, data passes simultaneously through Outlier Detection Geometry, Noise Feature Filtering, and Class Imbalance Remediation.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
+              "text": "Crucially, the Outlier branch enforces a semantic fork: Error versus Rare Event. If an extreme spike is a physical sensor artifact, we Winsorize or NaN-impute it. But if the extreme point is a genuine rare event, such as an enterprise wire fraud or sudden turbine breakdown, deleting it blinds the classifier! Instead, we preserve the record and emit an explicit binary indicator feature, is_outlier.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$z_i = \\frac{x_i - \\mu}{\\sigma}, \\quad \\text{flagged if } |z_i| > \\tau \\ (\\text{typically } \\tau = 3)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{MAD} = \\text{median}\\left(|x_i - \\text{median}(x)|\\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$M_i = \\frac{0.6745 \\cdot (x_i - \\tilde{x})}{\\text{MAD}}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Blindly deleting extreme</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">values or computing unweighted metrics leads to catastrophic model failure.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">An outlier</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is an observation that deviates so significantly from other observations as to arouse suspicion that it was generated by a different mechanism ((Hawkins, 1980)).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Observations with $|M_i|</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">&gt; 3.5$ are flagged.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\ud83d\udca1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">For high-dimensional, non-Gaussian</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">spaces, Isolation Forests ((Liu et al., 2008)) isolate anomalies by recursively partitioning feature space via random axis-aligned splits.</span>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-3\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#0e7490]\">\n                  <div class=\"font-mono font-black text-xs text-[#0e7490] uppercase mb-1\">\n                    \ud83c\udfdb\ufe0f End-to-End Pathology Triage Workflow\n                  </div>\n                  <pre class=\"mermaid text-xs\">\nflowchart TD\n    Raw[\"Raw Cleaned Corpus X in R^(N x D)\"] --> Branch{\"Diagnostic Pathology Screening\"}\n\n    Branch --> Out[\"1. Outlier Detection Geometry - MAD / MCD Ellipsoid / iForest\"]\n    Branch --> Rel[\"2. Noise Feature Filtering - Var(X) &amp; Mutual Info I(X; Y)\"]\n    Branch --> Imb[\"3. Imbalance Remediation - SMOTE &amp; Cost-Sensitive Loss\"]\n\n    Out --> OutAction{\"Error vs Rare Event?\"}\n    OutAction -->|Sensor Artifact| Wins[\"Winsorize / Clip / Impute\"]\n    OutAction -->|Genuine Anomaly| Flag[\"Preserve &amp; Emit is_outlier Flag\"]\n\n    Rel --> CleanFeat[\"Pruned Informative Subspace\"]\n    Imb --> Balance[\"Leak-Free Train-Fold Resampling\"]\n\n    Wins &amp; Flag &amp; CleanFeat &amp; Balance --> ModelReady[(\"Robust Model-Ready Fold\")]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef purple fill:#f3e8ff,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef red fill:#fee2e2,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw,Branch purple;\n    class Out,OutAction red;\n    class Rel,CleanFeat amber;\n    class Imb,Balance blue;\n    class Wins,Flag,ModelReady green;\n                  </pre>\n                </div>\n                <div class=\"p-2.5 rounded-lg bg-[#fff0b9] border-2 border-[#151b20] font-mono text-[11px]\">\n                  <b>First Architectural Law:</b> Never drop extreme values blindly. Distinguish <i>sensor measurement artifacts</i> (clip/impute) from <i>genuine tail realizations</i> (preserve + add <code>is_outlier</code> indicator).\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why Deleting Outliers Often Deletes the Target Class!",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at that fork after Outlier Detection: Error versus Rare Event. Why wouldn't we just filter out every record above 3 standard deviations automatically?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because in anomaly detection, cybersecurity intrusion, and high-value fraud, the extreme outlier IS the very signal we are trying to predict! If a corporate fraudster drains 500,000 dollars while normal buyers spend 45 dollars, blindly dropping top outliers throws away every fraud example in your training split!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Whoa\u2014we would literally clean away our target label! So if it's a physically impossible sensor glitch like minus 999 Kelvin, we clip or impute it; but if it's genuine, we keep it and flag is_outlier!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely right. Domain semantics always dictate whether an outlier is garbage to scrub or gold to model.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#dc2626] uppercase mb-2\">Semantic Fork: Artifact vs. Tail Event</h4>\n                  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-sans text-[11px]\">\n                    <div class=\"p-2.5 rounded bg-red-50 border border-red-200\">\n                      <div class=\"font-bold text-[#dc2626] mb-1\">Sensor / ETL Artifact (Scrub)</div>\n                      <p>Heart rate $= 999\\text{ bpm}$, age $= -5$, sentinel code $+500^\\circ\\text{C}$ indoor reading. Physically impossible $\\implies$ Winsorize, clip, or route to NaN imputation.</p>\n                    </div>\n                    <div class=\"p-2.5 rounded bg-emerald-50 border border-emerald-200\">\n                      <div class=\"font-bold text-[#16a34a] mb-1\">Genuine Rare Event (Preserve)</div>\n                      <p>Enterprise <span>$</span>250,000 wire transfer, turbine vibration spike, rare biomarker elevation. Valid domain extreme $\\implies$ Retain row + emit <code>is_outlier = 1</code> flag.</p>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            "
         }
       },
       {
         "id": "s3",
-        "title": "Conceptual Overview & Mathematical Derivations: Architecture Flowchart",
-        "type": "figure",
+        "title": "Univariate Breakdown Points & The Mathematical Masking Theorem",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & Mathematical Derivations: Architecture Flowchart",
+          "title": "Why Classical Z-Scores Collapse Past 10% Contamination",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & Mathematical Derivations: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>\ud83d\udcca Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">\u2022</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Raw[\"Raw Tabular Ingestion\"] --> S1[\"1. Outlier Screening\"]\n    Raw --> S2[\"2. Relevance Filtering\"]\n    Raw --> S3[\"3. Imbalance Mitigation\"]\n\n    subgraph Outliers [\"1. Outlier Screening\"]\n        direction TB\n        O1[\"Erroneous Artifact? -> Winsorize / Trim / Nullify\"]\n        O2[\"Genuine Rare Event? -> Robust Scaling / Tree Models\"]\n        O1 ~~~ O2\n    end\n\n    subgraph Relevance [\"2. Feature Relevance Filtering\"]\n        direction TB\n        R1[\"Variance Threshold: Var(X) < \u03b5 -> Drop\"]\n        R2[\"Mutual Information: I(X; Y) \u2248 0 -> Drop\"]\n        R1 ~~~ R2\n    end\n\n    subgraph Imbalance [\"3. Class Imbalance Mitigation\"]\n        direction TB\n        I1[\"Imbalance Ratio: IR = N_maj / N_min >> 1\"]\n        I2[\"Resampling: SMOTE / Tomek Links\"]\n        I3[\"Loss Re-weighting: w_c = N / (C * N_c)\"]\n        I1 --> I2 --> I3\n    end\n\n    S1 --> Outliers\n    S2 --> Relevance\n    S3 --> Imbalance\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw purple;\n    class S1,Outliers,O1,O2 red;\n    class S2,Relevance,R1,R2 amber;\n    class S3,Imbalance,I1,I2,I3 blue;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Blindly deleting extreme</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">values or computing unweighted metrics leads to catastrophic model failure.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">An outlier</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is an observation that deviates so significantly from other observations as to arouse suspicion that it was generated by a different mechanism ((Hawkins, 1980)).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & Mathematical Derivations: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for conceptual overview & mathematical derivations: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "Let us inspect univariate anomaly detection and prove why classical parametric Z-scores fail under contamination. The classical Z-score computes x sub i minus the empirical mean mu, divided by the empirical standard deviation sigma, typically flagging observations whose absolute value exceeds threshold tau equals 3.0.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "However, both the empirical mean and empirical standard deviation have a finite-sample breakdown point epsilon star of only 1 over n. A single corrupted reading moving toward infinity drags mu and inflates sigma without bound!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Even worse, when a cluster of outliers enters at contamination fraction p, they trigger the Mathematical Masking Limit. As outlier distance delta approaches infinity, the Z-score of those extreme outliers converges strictly to the square root of 1 minus p over p! Setting this below tau equals 3 proves that whenever p exceeds 1 over 1 plus tau squared\u2014namely 10%\u2014classical Z-scores catch ZERO outliers regardless of magnitude!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>\ud83d\udcca Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">\u2022</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Raw[\"Raw Tabular Ingestion\"] --> S1[\"1. Outlier Screening\"]\n    Raw --> S2[\"2. Relevance Filtering\"]\n    Raw --> S3[\"3. Imbalance Mitigation\"]\n\n    subgraph Outliers [\"1. Outlier Screening\"]\n        direction TB\n        O1[\"Erroneous Artifact? -> Winsorize / Trim / Nullify\"]\n        O2[\"Genuine Rare Event? -> Robust Scaling / Tree Models\"]\n        O1 ~~~ O2\n    end\n\n    subgraph Relevance [\"2. Feature Relevance Filtering\"]\n        direction TB\n        R1[\"Variance Threshold: Var(X) < \u03b5 -> Drop\"]\n        R2[\"Mutual Information: I(X; Y) \u2248 0 -> Drop\"]\n        R1 ~~~ R2\n    end\n\n    subgraph Imbalance [\"3. Class Imbalance Mitigation\"]\n        direction TB\n        I1[\"Imbalance Ratio: IR = N_maj / N_min >> 1\"]\n        I2[\"Resampling: SMOTE / Tomek Links\"]\n        I3[\"Loss Re-weighting: w_c = N / (C * N_c)\"]\n        I1 --> I2 --> I3\n    end\n\n    S1 --> Outliers\n    S2 --> Relevance\n    S3 --> Imbalance\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Raw purple;\n    class S1,Outliers,O1,O2 red;\n    class S2,Relevance,R1,R2 amber;\n    class S3,Imbalance,I1,I2,I3 blue;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Blindly deleting extreme</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">values or computing unweighted metrics leads to catastrophic model failure.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">An outlier</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">is an observation that deviates so significantly from other observations as to arouse suspicion that it was generated by a different mechanism ((Hawkins, 1980)).</span>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-3.5\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#dc2626]\">\n                  <div class=\"font-mono font-black text-xs text-[#dc2626] uppercase mb-1\">\n                    \u26a0\ufe0f The Mathematical Masking Limit Theorem\n                  </div>\n                  <div class=\"p-2.5 bg-red-50 border border-red-200 rounded font-mono text-xs text-center space-y-1\">\n                    <div>$$z_i = \\frac{x_i - \\mu}{\\sigma}, \\qquad \\epsilon^*(\\mu) = \\epsilon^*(\\sigma) = \\frac{1}{n} \\to 0\\%$$</div>\n                    <div>$$\\lim_{\\Delta \\to \\infty} |z_{\\text{outlier}}| = \\sqrt{\\frac{1 - p}{p}}$$</div>\n                  </div>\n                  <p class=\"text-[11px] text-[#151b20]/85 font-sans mt-2 leading-relaxed\">\n                    Suppose fraction $p$ of identical extreme spikes sit at offset $\\Delta \\to \\infty$. Contamination variance $\\sigma^2 \\approx p(1-p)\\Delta^2$ cancels $\\Delta$ inside $(1-p)\\Delta / \\sigma$!\n                  </p>\n                </div>\n\n                <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n                  <div class=\"p-3 rounded-lg bg-[#fff0b9] border-2 border-[#151b20]\">\n                    <div class=\"font-black text-[#b45309] uppercase mb-1\">Exact Complete Masking Threshold</div>\n                    <div class=\"text-[11px] text-slate-800 space-y-1\">\n                      <div>$$\\sqrt{\\frac{1-p}{p}} \\le \\tau \\implies p_{\\text{mask}} > \\frac{1}{1 + \\tau^2}$$</div>\n                      <div>For standard $|Z| > 3$ ($\\tau = 3.0$):</div>\n                      <div class=\"font-black text-[#dc2626]\">$$p_{\\text{mask}} = \\frac{1}{1 + 3^2} = \\mathbf{10.0\\%}$$</div>\n                    </div>\n                  </div>\n                  <div class=\"p-3 rounded-lg bg-white border-2 border-[#151b20]\">\n                    <div class=\"font-black text-[#0e7490] uppercase mb-1\">Zero-Detection Catastrophe</div>\n                    <p class=\"text-[11px] text-slate-700 font-sans leading-relaxed\">\n                      Once contamination exceeds $10\\%$ (e.g., $15\\%$ broken sensors outputting $+500^\\circ\\text{C}$ or $+10^{12}$), <b>zero</b> outliers ever exceed $|Z| > 3.0$\u2014the inflated $\\pm 3\\sigma$ gate absorbs every extreme point!\n                    </p>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Kaito's Algebraic Shock: Why Bigger Spikes Become Harder to Catch?",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Hold on, Dr. Nova! Does that equation mean that if 15% of our IoT sensors break and report plus one million degrees, a classic 3-sigma Z-score filter catches ZERO of them?!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Plug p equals 0.15 into the Masking Limit Theorem, Kaito! One minus 0.15 is 0.85, divided by 0.15 gives 5.67, and its square root is strictly 2.38!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Whoa! Wait\u20142.38 is independent of delta! Whether the broken sensors emit 500 degrees or 1 billion degrees, they warp sigma proportionally so their Z-score hits a hard ceiling of 2.38, which is strictly below 3.0!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exact algebraic cancellation! Those 15% anomalies literally mask themselves from the very detector built to find them. That is why classical Z-score filters must never guard dirty ETL pipelines.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#dc2626]\">\n                  <h4 class=\"font-black text-xs text-[#dc2626] uppercase mb-1\">Plug-and-Check at $p = 15\\%$ Contamination</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>Maximum Possible Outlier Z-Score:</b> $\\sqrt{(1 - 0.15)/0.15} = \\sqrt{5.667} \\approx \\mathbf{2.380}$</div>\n                    <div><b>Even if outlier $\\Delta = +10^{12}$:</b> Empirical $\\mu$ and $\\sigma$ scale linearly with $\\Delta$, freezing $|Z|$ permanently below $3.0$!</div>\n                    <div><b>Consequence:</b> Every anomaly slips silently past automated $3\\sigma$ quality gates.</div>\n                  </div>\n                </div>\n              </div>\n            "
         }
       },
       {
         "id": "s4",
-        "title": "Irrelevant Features and the Curse of Dimensionality",
-        "type": "equation",
+        "title": "Maximum Breakdown Robustness (MAD, Tukey IQR) & Heavy-Tail Pitfalls",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Irrelevant Features and the Curse of Dimensionality",
+          "title": "Achieving the Theoretical 50% Breakdown Ceiling",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Irrelevant Features and the Curse of Dimensionality. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\lim_{d \\to \\infty} \\frac{\\text{dist}_{\\max} - \\text{dist}_{\\min}}{\\text{dist}_{\\min}} \\to 0$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Var}(X) = \\frac{1}{n} \\sum_{i=1}^n (x_i - \\bar{x})^2 < \\epsilon \\quad (\\text{e.g., constant columns or quasi-identifiers})$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$I(X; Y) = \\sum_{x \\in \\mathcal{X}} \\sum_{y \\in \\mathcal{Y}} p(x, y) \\log_2 \\frac{p(x, y)}{p(x)p(y)}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Irrelevant features increase</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">hypothesis space volume without contributing mutual information to the response $Y$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">As dimension $d$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">grows, distance metrics degenerate: causing nearest-neighbor and kernel methods to lose discriminative capability ((Beyer et al., 1999)).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Filtering criteria include</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">1.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Irrelevant Features and the Curse of Dimensionality",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does irrelevant features and the curse of dimensionality protect our system against silent distribution shift in production?"
+              "text": "To achieve the highest possible theoretical breakdown point of epsilon star equals 50%, robust statistics replaces mean and standard deviation with the sample median and the Median Absolute Deviation, or MAD.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
+              "text": "We compute MAD as the median absolute distance from the sample median, and construct the Modified Z-score M sub i using the Gaussian normalizing constant 0.6745, which equals the inverse normal CDF at 0.75. Any point with absolute M sub i exceeding 3.5 is flagged cleanly, even under 45% cluster contamination!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "For skewed non-parametric distributions, John Tukey's Fences construct acceptance bands from the interquartile range Q3 minus Q1, marking inner fences at 1.5 IQR. Finally, beware a dangerous anti-pattern: never apply 3-sigma trimming to heavy-tailed or power-law domains like e-commerce spending or latency! In power-law domains, high values are real signals\u2014apply natural log scaling ln of 1 plus x or MAD Winsorization instead.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\lim_{d \\to \\infty} \\frac{\\text{dist}_{\\max} - \\text{dist}_{\\min}}{\\text{dist}_{\\min}} \\to 0$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Var}(X) = \\frac{1}{n} \\sum_{i=1}^n (x_i - \\bar{x})^2 < \\epsilon \\quad (\\text{e.g., constant columns or quasi-identifiers})$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$I(X; Y) = \\sum_{x \\in \\mathcal{X}} \\sum_{y \\in \\mathcal{Y}} p(x, y) \\log_2 \\frac{p(x, y)}{p(x)p(y)}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Irrelevant features increase</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">hypothesis space volume without contributing mutual information to the response $Y$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">As dimension $d$</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">grows, distance metrics degenerate: causing nearest-neighbor and kernel methods to lose discriminative capability ((Beyer et al., 1999)).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Filtering criteria include</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">1.</span>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-3.5\">\n                <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n                  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#16a34a]\">\n                    <div class=\"font-mono font-black text-xs text-[#16a34a] uppercase mb-1\">\n                      \ud83d\udee1\ufe0f Modified MAD ($\\epsilon^* = 50\\%$)\n                    </div>\n                    <div class=\"p-2 bg-green-50 border border-green-200 rounded font-mono text-[11px]\">\n                      $$\\text{MAD} = \\operatorname{median}\\big(|x_i - \\tilde{x}|\\big)$$\n                      $$M_i = \\frac{0.6745 \\cdot (x_i - \\tilde{x})}{\\text{MAD}}, \\quad |M_i| > 3.5$$\n                    </div>\n                    <p class=\"text-[10px] text-slate-700 font-sans mt-1.5\">\n                      Factor $0.6745 = \\Phi^{-1}(0.75)$ ensures consistency with Gaussian $\\sigma$: $\\mathbb{E}[\\text{MAD}] = 0.6745\\sigma$.\n                    </p>\n                  </div>\n\n                  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#2563eb]\">\n                    <div class=\"font-mono font-black text-xs text-[#2563eb] uppercase mb-1\">\n                      \ud83d\udce6 Tukey's Non-Parametric Fences ($\\text{IQR}$)\n                    </div>\n                    <div class=\"p-2 bg-blue-50 border border-blue-200 rounded font-mono text-[11px]\">\n                      $$\\text{IQR} = Q_3 - Q_1$$\n                      $$\\left[ Q_1 - 1.5 \\cdot \\text{IQR}, \\; Q_3 + 1.5 \\cdot \\text{IQR} \\right]$$\n                    </div>\n                    <p class=\"text-[10px] text-slate-700 font-sans mt-1.5\">\n                      $25\\%$ breakdown point; naturally tracks asymmetric quartiles without normality assumptions.\n                    </p>\n                  </div>\n                </div>\n\n                <div class=\"p-3 rounded-xl bg-[#fee2e2] border-2 border-[#151b20] font-mono text-xs\">\n                  <div class=\"font-black text-[#dc2626] uppercase mb-1\">\u26a0\ufe0f Heavy-Tailed Domain Anti-Pattern (Pareto / Log-Normal)</div>\n                  <p class=\"text-[11px] text-[#151b20] font-sans leading-relaxed\">\n                    Never apply $\\pm 3\\sigma$ trimming to e-commerce order totals, API latency, or transaction velocity. Extreme points are <b>authentic tail realizations</b>\u2014deploy $\\ln(1 + x)$ transformation or quantile Winsorization rather than deleting VIP signals!\n                  </p>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why Order Statistics Survive Up to Half the Dataset Being Corrupted",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, I see how MAD uses the median twice\u2014once for the center, and once for the absolute deviations! Why is the magic constant 0.6745 needed?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Great question, Kaito! Under a standard bell curve, half of all probability mass lies between minus 0.6745 sigma and plus 0.6745 sigma. By multiplying deviations by 0.6745, the Modified Z-score aligns cleanly with classical Z-score units when data really IS Gaussian!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And because both medians ignore the top 49% most extreme values completely, an entire botnet or broken sensor rack can output plus ten million, and the MAD barely flinches!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Wait until we go multi-dimensional, though\u2014even a 50%-robust 1D MAD filter has a glaring blind spot when features are correlated!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#16a34a]\">\n                  <h4 class=\"font-black text-xs text-[#16a34a] uppercase mb-1\">Gaussian Calibration &amp; Edge Guardrail</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>Why $\\Phi^{-1}(0.75) = 0.6745$:</b> $50\\%$ of $\\mathcal{N}(0, 1)$ falls inside $[-0.6745, +0.6745]$, so $\\text{MAD}/0.6745$ is an unbiased estimator of $\\sigma$.</div>\n                    <div><b>Production Edge Case ($\\text{MAD} = 0$):</b> If $>50\\%$ of values are identical (e.g., sparse zero-inflated clicks), fall back to mean absolute deviation or clamp $\\text{MAD} \\ge 10^{-6}$.</div>\n                  </div>\n                </div>\n              </div>\n            "
         }
       },
       {
         "id": "s5",
-        "title": "Class Imbalance and the Accuracy Paradox",
-        "type": "equation",
+        "title": "Multivariate Geometry: Off-Axis Anomalies, Mahalanobis & MCD",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Class Imbalance and the Accuracy Paradox",
+          "title": "Rotating Into the Covariance Eigenbasis with Minimum Covariance Determinant",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Class Imbalance and the Accuracy Paradox. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{IR} = \\frac{N_{\\text{majority}}}{N_{\\text{minority}}}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbf{x}_{\\text{new}} = \\mathbf{x}_i + \\lambda (\\mathbf{x}_{zi} - \\mathbf{x}_i), \\quad \\lambda \\sim \\mathcal{U}(0, 1)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{L}_{\\text{CS}}(\\theta) = -\\frac{1}{n} \\sum_{i=1}^n w_{y_i} \\left[ y_i \\log \\hat{p}_i + (1 - y_i) \\log(1 - \\hat{p}_i) \\right]$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">\ud83d\udca1 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Naive random oversampling duplicates existing minority class instances, causing decision trees to overfit to narrow geometric points. Deploy Borderline-SMOTE or ADASYN: synthesize examples only along the decision boundary where minority instances are</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Alternatively, modifying</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">the empirical risk objective incorporates class priors directly without modifying physical batch distributions: where balanced weighting sets: with $C$ equal to total classes and $N_c$ observations in class $c$.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Class Imbalance and the Accuracy Paradox",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does class imbalance and the accuracy paradox protect our system against silent distribution shift in production?"
+              "text": "Suppose we monitor engine RPM and Fuel Flow Rate, which exhibit a tight positive correlation of r equals 0.96. A corrupted sensor reports RPM at plus 2.2 standard deviations alongside Fuel Flow at minus 2.2 standard deviations. Every univariate 1D filter passes this reading because both numbers sit comfortably inside plus or minus 3 sigma!",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
+              "text": "Why do 1D detectors fail? Because checking axes independently draws an axis-aligned rectangular acceptance box that leaves empty diagonal corners unguarded. To detect off-axis anomalies, we compute Mahalanobis Distance, measuring standardized ellipsoidal separation adjusted by the inverse covariance matrix Sigma inverse.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Under multivariate normality in d dimensions, squared Mahalanobis distance follows a chi-squared distribution with d degrees of freedom. Crucially, to stop outlier clusters from poisoning Sigma itself, Rousseeuw's Minimum Covariance Determinant, or MCD, estimates covariance solely from the tightest h sub-sample having the smallest matrix determinant!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{IR} = \\frac{N_{\\text{majority}}}{N_{\\text{minority}}}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbf{x}_{\\text{new}} = \\mathbf{x}_i + \\lambda (\\mathbf{x}_{zi} - \\mathbf{x}_i), \\quad \\lambda \\sim \\mathcal{U}(0, 1)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{L}_{\\text{CS}}(\\theta) = -\\frac{1}{n} \\sum_{i=1}^n w_{y_i} \\left[ y_i \\log \\hat{p}_i + (1 - y_i) \\log(1 - \\hat{p}_i) \\right]$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">\ud83d\udca1 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Naive random oversampling duplicates existing minority class instances, causing decision trees to overfit to narrow geometric points. Deploy Borderline-SMOTE or ADASYN: synthesize examples only along the decision boundary where minority instances are</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Alternatively, modifying</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">the empirical risk objective incorporates class priors directly without modifying physical batch distributions: where balanced weighting sets: with $C$ equal to total classes and $N_c$ observations in class $c$.</span>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-3.5\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n                  <div class=\"font-mono font-black text-xs text-[#0e7490] uppercase mb-1\">\n                    \ud83e\udded Mahalanobis Distance &amp; $\\chi^2_d$ Rejection Ellipsoid\n                  </div>\n                  <div class=\"p-2 bg-cyan-50 border border-cyan-200 rounded font-mono text-xs text-center\">\n                    $$D_M(\\mathbf{x}) = \\sqrt{(\\mathbf{x} - \\boldsymbol{\\mu})^\\top \\boldsymbol{\\Sigma}^{-1} (\\mathbf{x} - \\boldsymbol{\\mu})}, \\qquad D_M^2(\\mathbf{x}) \\sim \\chi^2_d$$\n                  </div>\n                  <p class=\"text-[11px] text-[#151b20]/80 font-sans mt-2 leading-relaxed\">\n                    Observations exceeding quantile $\\chi^2_d(1 - \\alpha)$ violate the joint linear correlation manifold even when every single 1D coordinate lies near zero.\n                  </p>\n                </div>\n\n                <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n                  <div class=\"p-3 rounded-lg bg-white border-2 border-[#151b20]\">\n                    <div class=\"font-black text-[#dc2626] uppercase mb-1\">RPM vs Fuel Flow ($r = 0.96$)</div>\n                    <p class=\"text-[11px] text-slate-700 font-sans leading-tight\">\n                      Vector $\\mathbf{x} = [+2.2, -2.2]^\\top$ passes $|z_1| < 3$ &amp; $|z_2| < 3$, yet perpendicular axis scales by $(1 - r^2)^{-1}$ yielding $D_M^2 \\approx \\mathbf{245.5} \\gg \\chi^2_{2, 0.999} = 13.82$!\n                    </p>\n                  </div>\n                  <div class=\"p-3 rounded-lg bg-white border-2 border-[#151b20]\">\n                    <div class=\"font-black text-[#16a34a] uppercase mb-1\">MCD Robust Covariance (1999)</div>\n                    <p class=\"text-[11px] text-slate-700 font-sans leading-tight\">\n                      Rousseeuw &amp; Van Driessen's <b>Minimum Covariance Determinant</b> fits $(\\boldsymbol{\\mu}_{\\text{MCD}}, \\boldsymbol{\\Sigma}_{\\text{MCD}})$ from subset $h \\in (0.5n, n)$ minimizing $\\det(\\boldsymbol{\\Sigma})$.\n                    </p>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why Orthogonal Movement Multiplies Mahalanobis Distance by 1/(1 - r\u00b2)",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at that telemetry case: RPM is high at plus 2.2 sigma and Fuel Flow is idle at minus 2.2 sigma. Neither number is extreme on its own! Why did Mahalanobis distance jump to 245.5?!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because high RPM and low fuel flow cannot happen together physically in a running engine! Mathematically, inverting a 2-by-2 correlation matrix with r equals 0.96 divides off-diagonal discrepancies by 1 minus r squared, which is only 0.0784\u2014multiplying squared deviations perpendicular to the correlation cigar by nearly 13x!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Aha! That rotates our acceptance box into a tilted ellipsoid! Any impossible anti-correlated pair bursts straight out the thin waist of the ellipse!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And using MCD ensures even a swarm of off-axis anomalies cannot tilt that green ellipse away from the genuine correlation core!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Precision Matrix Eigen-Expansion</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div>$$D_M^2([+2.2, -2.2]^\\top) = \\frac{z_1^2 - 2 r z_1 z_2 + z_2^2}{1 - r^2} = \\frac{4.84 - 2(0.96)(-4.84) + 4.84}{1 - 0.9216} \\approx \\mathbf{245.5}$$</div>\n                    <div>Compare against chi-squared critical cutoff at $\\alpha = 0.001$: $\\chi^2_{2, 0.999} = \\mathbf{13.82}$!</div>\n                  </div>\n                </div>\n              </div>\n            "
         }
       },
       {
         "id": "s6",
-        "title": "Production Implementation: Robust Detection & Resampling Pipeline",
-        "type": "code",
+        "title": "Interactive Lab: Mahalanobis Ellipsoids & Masking Breakdown Studio",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Production Implementation: Robust Detection & Resampling Pipeline",
+          "title": "Visualizing Off-Axis Ellipsoids & The 10% Z-Score Masking Threshold",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Production Implementation: Robust Detection & Resampling Pipeline. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code>&quot;&quot;&quot;\nrobust_cleaning_pipeline.py\nProduction-grade Outlier Screening and Imbalance-Aware Feature Preprocessing\n&quot;&quot;&quot;\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nfrom sklearn.base import BaseEstimator, TransformerMixin\nfrom sklearn.covariance import MinCovDet\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import classification_report, roc_auc_score\ntry:\n    from imblearn.over_sampling import SMOTE\n    HAS_IMBLEARN = True\nexcept ImportError:\n    HAS_IMBLEARN = False\nfrom sklearn.ensemble import RandomForestClassifier\n\nclass RobustOutlierFilter(BaseEstimator, TransformerMixin):\n    &quot;&quot;&quot;\n    Robust Multimodal Outlier Detection using MAD and Minimum Covariance Determinant (MCD).\n    Prevents data leakage by fitting parameters strictly on training partitions.\n    &quot;&quot;&quot;\n    def __init__(self, mad_threshold</code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Production Implementation: Robust Detection & Resampling Pipeline",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Welcome to our first interactive Canvas laboratory: the Mahalanobis Ellipsoids and Masking Breakdown Studio. In the Off-Axis Anomaly regime, inspect the blue correlated core wrapped tightly by the green 99% Mahalanobis ellipse, inside a wide axis-aligned univariate box.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Notice how the red off-axis anomaly at plus 2.1, minus 2.1 sits safely inside the rectangular univariate box yet blasts far beyond the tilted covariance ellipse! Next, switch to the Masking Cluster regime and drag the contamination slider p from 4% past 10% up to 20% to watch the classical red dashed Z-score box swell catastrophically until catch rate hits zero!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code>&quot;&quot;&quot;\nrobust_cleaning_pipeline.py\nProduction-grade Outlier Screening and Imbalance-Aware Feature Preprocessing\n&quot;&quot;&quot;\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nfrom sklearn.base import BaseEstimator, TransformerMixin\nfrom sklearn.covariance import MinCovDet\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import classification_report, roc_auc_score\ntry:\n    from imblearn.over_sampling import SMOTE\n    HAS_IMBLEARN = True\nexcept ImportError:\n    HAS_IMBLEARN = False\nfrom sklearn.ensemble import RandomForestClassifier\n\nclass RobustOutlierFilter(BaseEstimator, TransformerMixin):\n    &quot;&quot;&quot;\n    Robust Multimodal Outlier Detection using MAD and Minimum Covariance Determinant (MCD).\n    Prevents data leakage by fitting parameters strictly on training partitions.\n    &quot;&quot;&quot;\n    def __init__(self, mad_threshold</code></pre>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#0e7490]\">\n                  <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/15\">\n                    <span class=\"font-black text-[#0e7490] uppercase text-xs\">\ud83d\udd2c Multivariate Geometry &amp; Breakdown Simulator</span>\n                    <span class=\"px-2 py-0.5 bg-[#c9f3f4] text-[#0e7490] border border-[#151b20] rounded font-bold text-[10px]\">LIVE CANVAS</span>\n                  </div>\n                  <p class=\"text-[11px] text-slate-700 font-sans leading-relaxed\">\n                    Explore both structural failure mechanisms interactively in the live Canvas below: (1) Off-axis correlation anomalies missed by 1D bounds, and (2) Complete classical $Z$-score masking collapse once contamination $p > 10\\%$.\n                  </p>\n                  <div class=\"grid grid-cols-2 md:grid-cols-4 gap-2 mt-2 text-center\">\n                    <div class=\"p-2 bg-white rounded border border-[#151b20]\">\n                      <div class=\"text-[9px] text-slate-500 font-bold uppercase\">1D Marginal Box</div>\n                      <div class=\"text-xs font-black text-[#64748b]\">Axis-Aligned</div>\n                    </div>\n                    <div class=\"p-2 bg-white rounded border border-[#151b20]\">\n                      <div class=\"text-[9px] text-slate-500 font-bold uppercase\">MCD Covariance</div>\n                      <div class=\"text-xs font-black text-[#16a34a]\">99% Ellipsoid</div>\n                    </div>\n                    <div class=\"p-2 bg-white rounded border border-[#151b20]\">\n                      <div class=\"text-[9px] text-slate-500 font-bold uppercase\">Masking Cutoff</div>\n                      <div class=\"text-xs font-black text-[#dc2626]\">p &gt; 10.0%</div>\n                    </div>\n                    <div class=\"p-2 bg-white rounded border border-[#151b20]\">\n                      <div class=\"text-[9px] text-slate-500 font-bold uppercase\">Modified MAD</div>\n                      <div class=\"text-xs font-black text-[#2563eb]\">50% Breakdown</div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Testing the 10% Contamination Phase Transition Live",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, I switched to Masking Cluster mode! When contamination p is 6%, the classical Z-score still catches the outlier swarm because square root of 0.94 over 0.06 is nearly 4.0!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now slide p past 10% up to 15%, Kaito! Watch that red dashed rectangle stretch horizontally and vertically until it swallows the entire outlier cluster!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Unbelievable! Classical Z-score catch rate just snapped straight to 0 out of 15 caught, while the green MAD and MCD boundary stayed frozen right around the blue nominal cloud and caught 100%!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That step-function transition at p equals 10% is why every industrial anomaly detector must replace parametric variance with MAD and MCD.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Interactive Lab Inspection Checklist</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>Regime A (Off-Axis):</b> Verify the red outlier sits strictly inside the grey $\\pm 3\\sigma$ square, yet far outside the tilted green $\\chi^2$ ellipse ($D_M^2 = 34.8$).</div>\n                    <div><b>Regime B (Masking at $p = 15\\%$):</b> Observe theoretical bound $|Z|_{\\max} = 2.38 < 3.0 \\implies 0\\%$ classical catch vs. $100\\%$ MAD recovery!</div>\n                  </div>\n                </div>\n              </div>\n            "
         }
       },
       {
         "id": "s7",
-        "title": "Empirical Case Study: Credit Card Fraud & Sensor Telemetry",
-        "type": "bullets",
+        "title": "Active Checkpoint 1: Breakdown Point & Masking Threshold Diagnostic",
+        "type": "checkpoint",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Empirical Case Study: Credit Card Fraud & Sensor Telemetry",
+          "title": "Formative Assessment: Diagnosing Complete Z-Score Masking Failure",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Empirical Case Study: Credit Card Fraud & Sensor Telemetry. Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Univariate Z-scores failed</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">In transaction amount (TransactionAmt), valid corporate transactions ($>\\$10,000$) exhibited $Z &gt; 15$, while bot attacks occurred in tiny micropayments ($\\$0.50$). Deleting values with $Z > 3$ eliminated $83\\%$ of commercial transaction fraud detection capability.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Multivariate MCD Resolution</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Pairing transaction amount with device velocity (V_cols) using robust covariance revealed that bot swarms formed a dense off-axis multivariate anomaly cluster ($D_M^2 > 45.2, p < 0.0001$).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Naive Random Oversampling: Produced severe memorization and overfitting on tree depths $>12$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\ud83d\udca1</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Class-Weighted Cross-Entropy ($w_1 = 28.0$): Matched SMOTE ROC-AUC ($0.942$) while reducing preprocessing time by $87\\%$.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Empirical Case Study: Credit Card Fraud & Sensor Telemetry",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the critical industrial lesson from this case study?"
+              "text": "Let us pause for Active Checkpoint 1. Consider a live telemetry stream containing 85 nominal indoor temperature measurements centered around 22.0 degrees Celsius with standard deviation 1.0, corrupted by 15 malfunctioning sensor readings stuck at plus 500 degrees Celsius\u2014a 15% contamination rate.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
+              "text": "Your alerting script checks absolute Z-score greater than 3.0. Explain mathematically why classical 3-sigma catches ZERO of the 500-degree errors, and identify how Modified MAD responds.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Univariate Z-scores failed</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">In transaction amount (TransactionAmt), valid corporate transactions ($>\\$10,000$) exhibited $Z &gt; 15$, while bot attacks occurred in tiny micropayments ($\\$0.50$). Deleting values with $Z > 3$ eliminated $83\\%$ of commercial transaction fraud detection capability.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Multivariate MCD Resolution</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Pairing transaction amount with device velocity (V_cols) using robust covariance revealed that bot swarms formed a dense off-axis multivariate anomaly cluster ($D_M^2 > 45.2, p < 0.0001$).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Naive Random Oversampling: Produced severe memorization and overfitting on tree depths $>12$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\ud83d\udca1</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Class-Weighted Cross-Entropy ($w_1 = 28.0$): Matched SMOTE ROC-AUC ($0.942$) while reducing preprocessing time by $87\\%$.</span>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n                  <div class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Diagnostic Scenario: Broken Telemetry Spike</div>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1 leading-relaxed\">\n                    Given $n = 100$ temperature readings: $85$ nominal around $22.0^\\circ\\text{C}$ ($\\sigma_{\\text{clean}} = 1.0$) and $15$ broken readings stuck at $+500^\\circ\\text{C}$ ($p = 15\\%$).<br/>\n                    Why does flagging $|Z| > 3.0$ catch <b>zero</b> corrupted sensors, and how does Modified MAD resolve it?\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Kaito Solves the +500\u00b0C Sensor Masking Puzzle",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, 15 broken readings out of 100 equals p equals 15%! Wait\u2014the Masking Limit for Z greater than 3 is 1 divided by 1 plus 9, which is 10%!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Spot on! Compute the contaminated empirical mean and standard deviation across those 100 readings.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "With 15 spikes at 500, the mean jumps to 93.7 and standard deviation explodes to 170.8! So Z at 500 is only 500 minus 93.7 divided by 170.8, which equals 2.38\u2014strictly less than 3.0! Meanwhile Modified MAD keeps the median at 22.0 and flags M over 450!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Flawless derivation, Kaito! Confirm your selection inside Active Checkpoint 1 below.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Checkpoint Moment Reference</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1 mt-2\">\n                    <div><b>Masking Limit ($\\tau = 3$):</b> $p_{\\text{mask}} = \\frac{1}{1+3^2} = 10\\% < 15\\%$.</div>\n                    <div><b>Contaminated Stats:</b> $\\mu \\approx 93.7^\\circ\\text{C}$, $\\sigma \\approx 170.8^\\circ\\text{C} \\implies$ Upper bound $= 93.7 + 3(170.8) = 606.1^\\circ\\text{C}$!</div>\n                    <div><b>Result:</b> $Z(500) = 2.38 < 3.0$ ($0\\%$ caught) vs. Modified MAD $M_i > 450$ ($100\\%$ caught).</div>\n                  </div>\n                </div>\n              </div>\n            "
         }
       },
       {
         "id": "s8",
-        "title": "Interactive Lab: Explore Class Imbalance Resampling Lab",
-        "type": "tool",
+        "title": "Non-Linear Manifolds: Isolation Forests & Local Outlier Factor (LOF)",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Explore Class Imbalance Resampling Lab",
+          "title": "Path-Length Isolation & Density-Relative Local Anomalies",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Explore Class Imbalance Resampling Lab. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">\ud83d\udd2c Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Class Imbalance Resampling Lab</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page \u2193</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate SMOTE, ADASYN, and Tomek Links on synthetic 2D datasets and visualize decision boundary adaptations.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">\u26a1 Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Imbalance Workbench \u2192&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Explore Class Imbalance Resampling Lab",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the explore class imbalance resampling lab located below this player?"
+              "text": "When high-dimensional data forms multimodal clusters, curved manifolds, or L-shaped regimes rather than a single multivariate Gaussian cloud, ellipsoidal Mahalanobis boundaries fail. For arbitrary non-linear distributions, production pipelines deploy Isolation Forests and Local Outlier Factor, or LOF.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Instead of profiling normal density, Isolation Forests randomly select a feature and recursively partition between minimum and maximum coordinate values. Dense inliers overlap heavily, requiring dozens of hyperplane cuts\u2014yielding path length h of x proportional to natural log of n. In contrast, sparse anomalies occupy wide empty regions, allowing random cuts to isolate them near the tree root!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Averaged across trees, the normalized anomaly score 2 to the power of minus expected path length over c of n approaches 1.0 whenever h of x is tiny. Complementarily, LOF compares a point's local k-nearest-neighbor density against the density of its neighbors to flag subtle outliers perched beside dense clusters.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">\ud83d\udd2c Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Class Imbalance Resampling Lab</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page \u2193</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate SMOTE, ADASYN, and Tomek Links on synthetic 2D datasets and visualize decision boundary adaptations.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">\u26a1 Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Imbalance Workbench \u2192&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n              <div class=\"space-y-3.5\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#9333ea]\">\n                  <div class=\"font-mono font-black text-xs text-[#9333ea] uppercase mb-1\">\n                    \ud83c\udf32 Isolation Forest Path-Length Normalization (Liu et al. 2008)\n                  </div>\n                  <div class=\"p-2.5 bg-purple-50 border border-purple-200 rounded font-mono text-xs text-center\">\n                    $$s(\\mathbf{x}, n) = 2^{-\\frac{\\mathbb{E}[h(\\mathbf{x})]}{c(n)}}, \\qquad c(n) = 2 H_{n-1} - \\frac{2(n - 1)}{n}$$\n                  </div>\n                  <p class=\"text-[11px] text-[#151b20]/80 font-sans mt-2 leading-relaxed\">\n                    Where $H_k \\approx \\ln k + 0.5772$ is the $k$-th harmonic number and $c(n)$ is average BST unsuccessful search depth.\n                  </p>\n                </div>\n\n                <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n                  <div class=\"p-3 rounded-lg bg-white border-2 border-[#151b20]\">\n                    <div class=\"font-black text-[#16a34a] uppercase mb-1\">Short Paths ($s \\to 1.0$) = Anomaly</div>\n                    <p class=\"text-[11px] text-slate-700 font-sans leading-tight\">\n                      Sparse perimeter points span vast empty coordinate intervals; almost any random hyperplane cut isolates them near the root ($\\mathbb{E}[h(\\mathbf{x})] \\ll c(n)$).\n                    </p>\n                  </div>\n                  <div class=\"p-3 rounded-lg bg-white border-2 border-[#151b20]\">\n                    <div class=\"font-black text-[#0e7490] uppercase mb-1\">Local Outlier Factor (Breunig 2000)</div>\n                    <p class=\"text-[11px] text-slate-700 font-sans leading-tight\">\n                      Evaluates local reachability density relative to $k$-neighbors. Detects <b>local anomalies</b> sitting just outside ultra-dense sub-clusters even when global bounds fail.\n                    </p>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why Few Splits Mean High Anomaly\u2014Inverting Normal Density Estimation",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, Isolation Forests feel counterintuitive at first! Decision trees usually try to minimize impurity, yet Isolation Forest picks features and thresholds purely at random!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Think geometrically, Kaito! Suppose 999 commuters cluster tightly near downtown, while one lone outlier stands miles out in an empty desert. If I throw random north-south or east-west fences across the map, how many cuts will isolate the lone desert outlier versus separating two commuters standing shoulder-to-shoulder?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Oh! Almost any fence placed between downtown and the desert immediately isolates the lone outlier on split number one! While separating overlapping downtown commuters takes dozens of surgical slices!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Spot on! Few cuts equals small path length h, so 2 to the minus h over c rushes straight toward 1.0\u2014flagging the anomaly in linear time without covariance inversion!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#9333ea]\">\n                  <h4 class=\"font-black text-xs text-[#9333ea] uppercase mb-1\">Score Interpretation Cheat Sheet</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>$\\mathbb{E}[h(\\mathbf{x})] \\to 0 \\implies s(\\mathbf{x}, n) \\to 1.0$:</b> Isolated immediately at root; guaranteed sparse anomaly.</div>\n                    <div><b>$\\mathbb{E}[h(\\mathbf{x})] \\approx c(n) \\implies s(\\mathbf{x}, n) \\approx 0.5$:</b> Standard random depth; nominal density region.</div>\n                    <div><b>$\\mathbb{E}[h(\\mathbf{x})] \\gg c(n) \\implies s(\\mathbf{x}, n) \\to 0.0$:</b> Embedded deep inside dense core cluster.</div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s9",
+        "title": "Irrelevant Features & Beyer's Distance Concentration Theorem",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Why Uninformative Noise Axes Collapse Geometric Neighborhoods",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us turn to the second structural pathology: irrelevant features. Injecting pure random noise dimensions into high-dimensional tables expands the enclosing hypervolume exponentially and triggers Distance Concentration, proven formally by Kevin Beyer and colleagues in 1999.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "As feature dimension d grows toward infinity under broad distributions, the relative contrast between the farthest point and the nearest neighbor converges strictly to zero! When every observation becomes nearly equidistant from every other observation, distance-driven estimators like k-nearest neighbors, RBF kernel SVMs, and k-means clustering lose discriminative sharpness completely.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "To defend geometric signal, production preprocessors apply two deterministic filters inside each training fold: Variance Thresholding to strip constant or near-constant dimensions where variance falls below epsilon, and Shannon Mutual Information I of X and Y to prune covariates carrying zero predictive bit dependence on target labels.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3.5\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#d97706]\">\n                  <div class=\"font-mono font-black text-xs text-[#d97706] uppercase mb-1\">\n                    \ud83d\udcc9 Distance Concentration Theorem (Beyer et al. 1999)\n                  </div>\n                  <div class=\"p-2.5 bg-amber-50 border border-amber-200 rounded font-mono text-xs text-center\">\n                    $$\\lim_{d \\to \\infty} \\mathbb{P}\\left(\\frac{\\text{dist}_{\\max}(d) - \\text{dist}_{\\min}(d)}{\\text{dist}_{\\min}(d)} \\to 0\\right) = 1$$\n                  </div>\n                  <p class=\"text-[11px] text-[#151b20]/80 font-sans mt-2 leading-relaxed\">\n                    Noise features inflate $\\text{dist}_{\\min}$ by adding orthogonal variance components while leaving class-separation signal unchanged, flattening nearest-neighbor contrast to $0$.\n                  </p>\n                </div>\n\n                <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n                  <div class=\"p-3 rounded-lg bg-white border-2 border-[#151b20]\">\n                    <div class=\"font-black text-[#2563eb] uppercase mb-1\">1. Variance Thresholding</div>\n                    <div class=\"text-[11px] font-mono bg-slate-50 p-1.5 rounded border border-slate-200\">\n                      $$\\operatorname{Var}(X_j) < \\epsilon \\implies \\text{Drop Column } j$$\n                    </div>\n                    <p class=\"text-[10px] text-slate-600 font-sans mt-1\">\n                      Removes constant sensor flags and zero-variance indicators in $\\mathcal{O}(ND)$ unsupervised pass.\n                    </p>\n                  </div>\n                  <div class=\"p-3 rounded-lg bg-white border-2 border-[#151b20]\">\n                    <div class=\"font-black text-[#16a34a] uppercase mb-1\">2. Shannon Mutual Information</div>\n                    <div class=\"text-[11px] font-mono bg-slate-50 p-1.5 rounded border border-slate-200\">\n                      $$I(X; Y) = \\sum_{x, y} p(x, y) \\log_2 \\frac{p(x, y)}{p(x)p(y)}$$\n                    </div>\n                    <p class=\"text-[10px] text-slate-600 font-sans mt-1\">\n                      Captures arbitrary non-linear statistical dependency; independent pure noise yields $I(X; Y) \\approx 0$.\n                    </p>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why Extra Features Can Actively Hurt Tree and Distance Models",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, I always assumed giving a machine learning model MORE features couldn't hurt\u2014wouldn't it just learn zero weights on the irrelevant noise columns?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In finite samples, noise is lethal, Kaito! Suppose you use k-nearest neighbors to classify medical scans using 5 genuine clinical metrics alongside 200 pure random ID or metadata noise columns.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Each of those 200 random numbers contributes random distance offsets, drowning out the 5 genuine metrics! So two completely dissimilar patients end up just as far apart as identical twins!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly\u2014that is Beyer's Distance Concentration! Pruning zero-variance and zero-Mutual-Information columns inside training folds rescues signal-to-noise ratio before modeling.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#d97706]\">\n                  <h4 class=\"font-black text-xs text-[#d97706] uppercase mb-1\">Non-Linear Screening Advantage</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>Pearson $r$ Blind Spot:</b> $Y = X^2$ yields Pearson correlation $r = 0$, tempting linear filters to drop key quadratic predictors!</div>\n                    <div><b>Mutual Information Rescue:</b> $I(X; X^2) > 0$ preserves any non-linear functional bond while still rejecting independent noise axes ($I \\approx 0$).</div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s10",
+        "title": "Class Imbalance, The Accuracy Paradox & Evaluation Geometry",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Why Unweighted Accuracy & ROC-AUC Mask Minority Collapse",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Our third pathology is severe class imbalance. Define the Imbalance Ratio IR as the majority class count divided by the minority class count. Whenever IR is much greater than 1\u2014such as 99 to 1 in medical diagnostics or 1,000 to 1 in fraudulent wires\u2014standard empirical risk minimization collapses onto the trivial majority prior.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "This creates the Accuracy Paradox documented by He and Garcia: a completely useless classifier predicting 'Negative' on every input scores 99.0% raw accuracy, yet achieves 0.0% minority recall!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Just as dangerously, standard ROC-AUC can remain deceptively high under skew because False Positive Rate divides false alarms by a gigantic pool of true negatives. In imbalanced pipelines, evaluate on Precision-Recall Area Under Curve, PR-AUC, which directly penalizes false positives relative to true minority hits!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3.5\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#2563eb]\">\n                  <div class=\"font-mono font-black text-xs text-[#2563eb] uppercase mb-1\">\n                    \u2696\ufe0f Imbalance Ratio &amp; The Accuracy Paradox (He &amp; Garcia 2009)\n                  </div>\n                  <div class=\"p-2 bg-blue-50 border border-blue-200 rounded font-mono text-xs text-center\">\n                    $$\\text{IR} = \\frac{N_{\\text{majority}}}{N_{\\text{minority}}} \\gg 1 \\implies \\text{Null Classifier Accuracy} = \\frac{\\text{IR}}{1 + \\text{IR}} \\to 99\\%\\text{ while Recall} = 0\\%$$\n                  </div>\n                </div>\n\n                <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n                  <div class=\"p-3 rounded-lg bg-[#fee2e2] border-2 border-[#151b20]\">\n                    <div class=\"font-black text-[#dc2626] uppercase mb-1\">\u274c Why ROC-AUC Lies Under Skew</div>\n                    <div class=\"text-[11px] font-sans text-slate-800 space-y-1\">\n                      <div>$$\\text{FPR} = \\frac{\\text{FP}}{\\text{FP} + \\mathbf{\\text{TN}}}$$</div>\n                      <p>If $\\text{TN} = 100{,}000$ and $\\text{FP} = 1{,}000$, $\\text{FPR} = 0.01$ looks stellar\u2014hiding $1{,}000$ false alerts drowning $100$ real frauds!</p>\n                    </div>\n                  </div>\n                  <div class=\"p-3 rounded-lg bg-[#dcfce7] border-2 border-[#151b20]\">\n                    <div class=\"font-black text-[#166534] uppercase mb-1\">\u2705 Why PR-AUC Tells the Truth</div>\n                    <div class=\"text-[11px] font-sans text-slate-800 space-y-1\">\n                      <div>$$\\text{Precision} = \\frac{\\text{TP}}{\\text{TP} + \\text{FP}}, \\quad \\text{Recall} = \\frac{\\text{TP}}{\\text{TP} + \\text{FN}}$$</div>\n                      <p>Denominator excludes $\\text{TN}$ completely, revealing precision crashing to $\\frac{100}{100 + 1{,}000} = 9.1\\%$ immediately!</p>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Exposing the ROC-AUC Illusion vs. Precision-Recall Honesty",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, I knew accuracy fails on 99-to-1 datasets, so I switched to ROC-AUC! Why can even ROC-AUC be misleading when class skew is extreme?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Look closely at the False Positive Rate denominator, Kaito. Suppose you have 100 real cancer cases and 100,000 healthy scans. If your detector raises 1,000 false alarms just to catch 90 cancers, your False Positive Rate is 1,000 divided by 100,000, which equals only 1%!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait\u2014a 90% True Positive Rate paired with a 1% False Positive Rate gives a gorgeous ROC-AUC above 0.95! Yet doctors still have to audit 1,000 false alarms for just 90 positive hits\u2014precision is under 9%!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely why PR-AUC replaces False Positive Rate with Precision! PR-AUC strips out the massive True Negative pool and stares straight at real clinical signal-to-noise.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#2563eb]\">\n                  <h4 class=\"font-black text-xs text-[#2563eb] uppercase mb-1\">Confusion Matrix Under 1,000 : 1 Skew</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1 mt-2\">\n                    <div><b>Counts:</b> $\\text{TP} = 90, \\text{FN} = 10, \\text{FP} = 1{,}000, \\text{TN} = 99{,}000$.</div>\n                    <div><b>Deceptive ROC View:</b> $\\text{TPR} = 90\\%, \\text{FPR} = 1.0\\% \\implies$ Passes typical ROC screening gates!</div>\n                    <div><b>Honest PR View:</b> $\\text{Recall} = 90\\%, \\text{Precision} = \\frac{90}{1{,}090} = \\mathbf{8.3\\%} \\implies$ Alert fatigue detected immediately!</div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s11",
+        "title": "SMOTE Convex Interpolation, Borderline-SMOTE & Cost-Sensitive Loss",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Expanding Decision Margins Without Memorization Overfit",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To rescue minority class recall without degenerating into naive duplicate memorization, Chawla and co-authors introduced SMOTE: Synthetic Minority Over-sampling Technique. Whereas random oversampling stamps identical minority coordinates repeatedly\u2014forcing decision trees to carve tight, overfitted hyper-rectangles\u2014SMOTE generates novel synthetic points along convex line segments connecting each minority anchor x sub i to its k-nearest minority neighbors x sub zi.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Mathematically, x new equals x sub i plus lambda times the difference vector x sub zi minus x sub i, with lambda drawn uniformly on 0 to 1. Even stronger in production, Borderline-SMOTE and ADASYN synthesize points selectively along the ambiguous majority-minority frontier to widen decision margin geometry.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "As an alternative that avoids modifying input geometry or slowing tree training, Cost-Sensitive Cross-Entropy weights gradients inversely with class counts w sub c equals N divided by C times N sub c\u2014achieving high PR-AUC in a fraction of the compute time!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3.5\">\n                <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n                  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#d97706]\">\n                    <div class=\"font-mono font-black text-xs text-[#d97706] uppercase mb-1\">\n                      \ud83d\udd17 SMOTE Convex Synthesis (Chawla 2002)\n                    </div>\n                    <div class=\"p-2 bg-amber-50 border border-amber-200 rounded font-mono text-[11px] text-center\">\n                      $$\\mathbf{x}_{\\text{new}} = \\mathbf{x}_i + \\lambda \\cdot (\\mathbf{x}_{zi} - \\mathbf{x}_i), \\quad \\lambda \\sim \\mathcal{U}(0, 1)$$\n                    </div>\n                    <p class=\"text-[10px] text-slate-700 font-sans mt-1.5\">\n                      <b>Borderline-SMOTE / ADASYN:</b> Prioritize synthesis near difficult boundary neighborhoods rather than safe interior clusters.\n                    </p>\n                  </div>\n\n                  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#16a34a]\">\n                    <div class=\"font-mono font-black text-xs text-[#16a34a] uppercase mb-1\">\n                      \u26a1 Cost-Sensitive Cross-Entropy\n                    </div>\n                    <div class=\"p-2 bg-green-50 border border-green-200 rounded font-mono text-[11px] text-center\">\n                      $$\\mathcal{L}_{\\text{CS}}(\\theta) = -\\frac{1}{n}\\sum_{i=1}^n w_{y_i}\\big[y_i\\log\\hat{p}_i + (1-y_i)\\log(1-\\hat{p}_i)\\big]$$\n                    </div>\n                    <p class=\"text-[10px] text-slate-700 font-sans mt-1.5\">\n                      Inverse frequency weights $w_c = \\frac{N}{C \\cdot N_c}$ balance gradient magnitude without inflating row count $n$.\n                    </p>\n                  </div>\n                </div>\n\n                <div class=\"p-3 rounded-lg bg-[#fff0b9] border-2 border-[#151b20] font-mono text-[11px]\">\n                  <b>Decision Geometry Contrast:</b> Naive random oversampling forms brittle overfitted pockets around exact duplicates; SMOTE stretches convex manifold hulls; Cost-Sensitive loss re-weights Bayes optimality cleanly!\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "SMOTE vs. Class Weights: Compute Budget vs. Manifold Expansion",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, why does naive random oversampling cause overfitting in Random Forests or gradient-boosted trees? Aren't duplicate rows basically the same thing as multiplying class weights?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Wait\u2014for linear logistic regression they produce similar average gradients, EXCEPT in nearest-neighbor and decision tree learners, duplicating exact points freezes splits right around identical coordinates! SMOTE draws bridges between distinct minority examples so a tree can generalize across the gap between them.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And why does Cost-Sensitive Loss still beat SMOTE in runtime?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Imagine a 28-to-1 fraud table with 590,000 rows! Oversampling the minority class up to match the majority balloons your table to over 1.1 million rows and slows training by 3x! Inverse-frequency class weighting preserves exact runtime speed while keeping calibration crisp!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#16a34a]\">\n                  <h4 class=\"font-black text-xs text-[#16a34a] uppercase mb-1\">Engineering Tradeoff Matrix</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>Random Oversampling:</b> $1:1$ balance, fast setup, high risk of leaf-node memorization pockets.</div>\n                    <div><b>SMOTE / Borderline-SMOTE:</b> Expands minority manifold margin, moderate $k$-NN &amp; row explosion runtime cost.</div>\n                    <div><b>Cost-Sensitive Objective ($w_c$):</b> Zero synthetic row memory overhead, preserves raw feature manifold, often wins on PR-AUC in large tabular datasets.</div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Interactive Lab: Class Imbalance & SMOTE Resampling Studio",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Hands-On Exploration of Decision Boundaries & Resampling Geometry",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to our second interactive Canvas studio: the Class Imbalance and SMOTE Resampling Workbench. Here we observe 45 majority blue records dominating 8 minority orange records\u2014an initial imbalance ratio of 5.6 to 1.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Switch between all four mitigation strategies in the studio below: Baseline Raw Skew compresses the dashed decision boundary into the corner, dropping recall to 37.5%. Random Oversampling carves tight yellow overfitted rings. SMOTE generates smooth convex yellow nodes raising recall to 87.5%, and Borderline-SMOTE pushes the frontier straight across the margin to reach 100%!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#2563eb]\">\n                  <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b border-[#151b20]/15\">\n                    <span class=\"font-black text-[#2563eb] uppercase text-xs\">\ud83d\udcca SMOTE Convex Synthesis &amp; Frontier Studio</span>\n                    <span class=\"px-2 py-0.5 bg-[#c9f3f4] text-[#0e7490] border border-[#151b20] rounded font-bold text-[10px]\">CANVAS STUDIO</span>\n                  </div>\n                  <p class=\"text-[11px] text-slate-700 font-sans leading-relaxed\">\n                    Toggle resampling regimes in the interactive workbench below to inspect synthetic interpolation segments ($\\mathbf{x}_i + \\lambda(\\mathbf{x}_{zi} - \\mathbf{x}_i)$), overfitting rings, effective IR, and minority sensitivity!\n                  </p>\n                  <div class=\"grid grid-cols-2 md:grid-cols-4 gap-2 mt-2 text-center\">\n                    <div class=\"p-2 bg-white rounded border border-[#151b20]\">\n                      <div class=\"text-[9px] text-slate-500 font-bold uppercase\">Baseline Raw</div>\n                      <div class=\"text-xs font-black text-[#dc2626]\">37.5% Recall</div>\n                    </div>\n                    <div class=\"p-2 bg-white rounded border border-[#151b20]\">\n                      <div class=\"text-[9px] text-slate-500 font-bold uppercase\">Random Duplicate</div>\n                      <div class=\"text-xs font-black text-[#d97706]\">62.5% (Overfit)</div>\n                    </div>\n                    <div class=\"p-2 bg-white rounded border border-[#151b20]\">\n                      <div class=\"text-[9px] text-slate-500 font-bold uppercase\">SMOTE (k=3)</div>\n                      <div class=\"text-xs font-black text-[#16a34a]\">87.5% Convex</div>\n                    </div>\n                    <div class=\"p-2 bg-white rounded border border-[#151b20]\">\n                      <div class=\"text-[9px] text-slate-500 font-bold uppercase\">Borderline-SMOTE</div>\n                      <div class=\"text-xs font-black text-[#2563eb]\">100% Frontier</div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Observing Frontier Margin Shift Across All Four Strategies",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, switching from Baseline to Random Oversampling shows exactly what you warned about! Those little dashed orange rings only hug the exact 8 dots without covering the empty space between them!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now select SMOTE Convex Interpolation, Kaito! Look at those golden interpolation lines bridging nearest-neighbor orange points\u2014immediately forming a smooth continuous minority region!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Recall leaps straight from 37.5% to 87.5%, and Borderline-SMOTE pushes the frontier fence out to 100%! Wait\u2014when should we apply SMOTE inside a cross-validation pipeline?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Hold that thought\u2014that is the exact security bug waiting in Active Checkpoint 2 right after this lab!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#2563eb]\">\n                  <h4 class=\"font-black text-xs text-[#2563eb] uppercase mb-1\">Studio Experiment Walkthrough</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>Baseline (`5.6 : 1`):</b> Decision fence retreats toward minority upper-right core, abandoning 5 frontier observations.</div>\n                    <div><b>SMOTE (`1.0 : 1`):</b> Convex line segments generate yellow bridge nodes spanning interior gaps cleanly.</div>\n                    <div><b>Leakage Warning:</b> Never synthesize yellow interpolation dots across the whole dataset prior to K-Fold validation splits!</div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: SMOTE Cross-Validation Leakage Diagnostic",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Formative Assessment: Identifying Data Leakage Before K-Fold Splitting",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Time for Active Checkpoint 2. A data scientist takes an imbalanced dataset of 10,000 records at a 90 to 10 split, applies SMOTE across the entire array to balance it up to 18,000 records, and THEN executes 5-fold cross-validation.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Cross-validation reports an astonishing 98% recall, yet production recall collapses catastrophically upon deployment. Diagnose the exact geometric leakage mechanism and select the architectural remedy.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n                  <div class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Diagnostic Scenario: Pre-Split SMOTE Inflation</div>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1 leading-relaxed\">\n                    Pipeline order bug: <code>SMOTE(10,000) -&gt; 18,000 rows -&gt; 5-Fold Cross-Validation</code> produces $0.98+$ CV recall, followed by production failure.<br/>\n                    Why does pre-split oversampling invalidate CV metrics, and what is the invariant pipeline fix?\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Kaito Traces Parent-Child Geometric Bleed Across Folds",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait, Dr. Nova! Look at what SMOTE does: every synthetic yellow dot x new sits directly on the straight line connecting parent anchor x sub i and neighbor x sub zi!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! Now imagine splitting those 18,000 records randomly into 5 folds after SMOTE already ran.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Oh no! The synthetic child point x new can land in Validation Fold 5 while its two real parents x sub i and x sub zi sit inside Training Folds 1 through 4! The model gets tested on near-identical convex duplicates of its own training neighbors!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Bingo! Validation recall inflates artificially to 98%+, while unseen test deployment crashes! Wrap SMOTE strictly inside each training fold via imbalanced-learn Pipeline. Choose Option A below to pass!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Fold Boundary Invariant</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>Broken Order:</b> <code>fit_resample(X, y)</code> $\\to$ <code>cross_val_score()</code> bleeds interpolated clones across train/val folds.</div>\n                    <div><b>Leak-Free Invariant:</b> <code>imblearn.pipeline.Pipeline([('smote', SMOTE()), ('clf', clf)])</code> synthesizes points <i>only</i> inside $K-1$ training folds, keeping validation fold strictly raw!</div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Industrial Case Study: IEEE-CIS Fraud Detection (N = 590,540)",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Benchmarking Z-Score Failure, MCD Bot Swarms & Cost-Sensitive PR-AUC",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us examine how these theorems perform at industrial scale in the IEEE-CIS Fraud Detection benchmark: 590,540 financial transactions exhibiting a 28 to 1 imbalance ratio with 3.5% fraud prevalence.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "First, applying a naive univariate absolute Z-score greater than 3 filter was catastrophic: valid corporate invoices above 10,000 dollars registered Z over 15, while automated botnet fraud operated via 50-cent micro-transactions! Extreme trimming discarded 83% of legitimate fraud monitoring targets, crashing PR-AUC from 0.612 down to 0.389.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In contrast, combining transaction size with device velocity under MCD robust covariance cleanly isolated bot swarms with D sub M squared above 45.2! Finally, Robust MAD Winsorization paired with Cost-Sensitive Class Weights reached the top PR-AUC of 0.835 in just 17.1 seconds\u2014beating SMOTE's 0.826 PR-AUC while training over three times faster!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3.5\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#dc2626] font-sans text-xs\">\n                  <div class=\"font-mono font-black text-[#dc2626] uppercase mb-1\">\n                    \ud83d\udcb3 IEEE-CIS Fraud Failure Analysis ($N = 590{,}540$, $\\text{IR} \\approx 28:1$)\n                  </div>\n                  <div class=\"text-[11px] text-slate-700 leading-relaxed space-y-1\">\n                    <div><b>1. Univariate $Z$-Score Failure:</b> Valid corporate wires (&gt;<span>$</span>10,000) hit $Z > 15$ while bot fraud fired <span>$</span>0.50 micro-transactions\u2014$|Z| > 3$ dropped <b>$83\\%$ of valid targets</b>!</div>\n                    <div><b>2. MCD Multivariate Separation:</b> Combining amount with device velocity isolated off-axis bot swarms ($D_M^2 > 45.2, p < 0.0001$).</div>\n                  </div>\n                </div>\n\n                <div class=\"overflow-x-auto rounded-xl border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] bg-white\">\n                  <table class=\"w-full text-left border-collapse font-mono text-[10.5px]\">\n                    <thead>\n                      <tr class=\"bg-[#fff0b9] border-b-2 border-[#151b20] text-[#151b20]\">\n                        <th class=\"p-2 border-r border-[#151b20]\">Mitigation Strategy</th>\n                        <th class=\"p-2 border-r border-[#151b20] text-center\">Precision</th>\n                        <th class=\"p-2 border-r border-[#151b20] text-center\">Recall</th>\n                        <th class=\"p-2 border-r border-[#151b20] text-center\">PR-AUC</th>\n                        <th class=\"p-2 text-center\">Train Time</th>\n                      </tr>\n                    </thead>\n                    <tbody>\n                      <tr class=\"border-b border-slate-200\">\n                        <td class=\"p-2 border-r border-slate-200\">Baseline (Raw Unweighted)</td>\n                        <td class=\"p-2 border-r border-slate-200 text-center\">0.842</td>\n                        <td class=\"p-2 border-r border-slate-200 text-center text-[#dc2626] font-bold\">0.412</td>\n                        <td class=\"p-2 border-r border-slate-200 text-center\">0.612</td>\n                        <td class=\"p-2 text-center\">14.2 s</td>\n                      </tr>\n                      <tr class=\"border-b border-slate-200 bg-red-50/70\">\n                        <td class=\"p-2 border-r border-slate-200 font-bold text-[#dc2626]\">Extreme Trim ($|Z| &gt; 3$ Dropped)</td>\n                        <td class=\"p-2 border-r border-slate-200 text-center\">0.518</td>\n                        <td class=\"p-2 border-r border-slate-200 text-center text-[#dc2626] font-bold\">0.284</td>\n                        <td class=\"p-2 border-r border-slate-200 text-center font-bold text-[#dc2626]\">0.389</td>\n                        <td class=\"p-2 text-center\">11.8 s (Loss)</td>\n                      </tr>\n                      <tr class=\"border-b border-slate-200\">\n                        <td class=\"p-2 border-r border-slate-200\">Robust MAD Winsorization Only</td>\n                        <td class=\"p-2 border-r border-slate-200 text-center\">0.855</td>\n                        <td class=\"p-2 border-r border-slate-200 text-center\">0.490</td>\n                        <td class=\"p-2 border-r border-slate-200 text-center\">0.684</td>\n                        <td class=\"p-2 text-center\">16.5 s</td>\n                      </tr>\n                      <tr class=\"border-b border-slate-200\">\n                        <td class=\"p-2 border-r border-slate-200\">Robust MAD + SMOTE Oversampling</td>\n                        <td class=\"p-2 border-r border-slate-200 text-center\">0.792</td>\n                        <td class=\"p-2 border-r border-slate-200 text-center font-bold text-[#16a34a]\">0.814</td>\n                        <td class=\"p-2 border-r border-slate-200 text-center\">0.826</td>\n                        <td class=\"p-2 text-center text-[#d97706] font-bold\">54.3 s</td>\n                      </tr>\n                      <tr class=\"bg-[#dcfce7]\">\n                        <td class=\"p-2 border-r border-[#151b20] font-black text-[#166534]\">Robust MAD + Cost-Sensitive Weights</td>\n                        <td class=\"p-2 border-r border-[#151b20] text-center font-bold\">0.821</td>\n                        <td class=\"p-2 border-r border-[#151b20] text-center font-bold\">0.806</td>\n                        <td class=\"p-2 border-r border-[#151b20] text-center font-black text-[#166534]\">0.835</td>\n                        <td class=\"p-2 text-center font-black text-[#166534]\">17.1 s</td>\n                      </tr>\n                    </tbody>\n                  </table>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why Cost-Sensitive MAD Beat SMOTE on Both PR-AUC and Latency",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at the benchmark table: dropping Z over 3 literally chopped PR-AUC nearly in half\u2014from 0.612 down to 0.389! And Robust MAD plus Cost-Sensitive Weights beat SMOTE at 0.835 PR-AUC in one-third the time!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is real-world data geometry at scale, Kaito. Financial transactions follow heavy-tailed power laws\u201410,000-dollar corporate wires look like statistical Z-score anomalies, while rapid 50-cent card-testing bots look numerically mild on amount alone until MCD combines amount with velocity!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And instead of doubling table size to 1.1 million rows with synthetic points in 54 seconds, weighting cross-entropy keeps exact distribution support and hits higher precision in 17 seconds!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Now let us translate all of these statistical invariants into our production-grade Pydantic V2 verification codebase.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#16a34a]\">\n                  <h4 class=\"font-black text-xs text-[#16a34a] uppercase mb-1\">Key Takeaways From IEEE-CIS ($N = 590{,}540$)</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>1. Naive Trimming Destroys Signal:</b> Pruning $|Z| &gt; 3$ drops enterprise accounts while ignoring subtle automated card attacks ($\\text{PR-AUC} \\downarrow 0.389$).</div>\n                    <div><b>2. MCD Pinpoints Off-Axis Fraud:</b> High device velocity combined with small ticket amounts yields $D_M^2 &gt; 45.2$.</div>\n                    <div><b>3. Winning Recipe:</b> Modified MAD clipping preserves real records while Cost-Sensitive gradient scaling locks peak $0.835$ PR-AUC in $17.1\\text{ s}$.</div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Python Verification Engine: Pydantic V2 & Scikit-Learn Transformers",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Type-Safe Contracts for Masking Proofs, MCD Ellipsoids & Leak-Free SMOTE",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us inspect our production-grade Python suite implementing every theorem from this lesson cleanly with Pydantic V2 contracts and leak-free scikit-learn transformers.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "First, OutlierVerificationReport validates the contamination regime strictly above 10% and logs exact unit assertions proving that classical Z-score catches zero corrupted spikes while Modified MAD catches 100%, alongside off-axis Minimum Covariance Determinant isolation.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Second, RobustOutlierFilter inherits BaseEstimator and TransformerMixin, fitting feature medians and MADs strictly on training splits to clip extremes via the 0.6745 factor, paired with leak-free SMOTE linear interpolation inside training partitions only.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#151b20] text-[#c9f3f4] border-2 border-[#151b20] shadow-[4px_4px_0px_#0e7490]\">\n                  <div class=\"flex items-center justify-between pb-1.5 mb-2 border-b border-white/20\">\n                    <span class=\"font-bold text-xs uppercase tracking-wide\">\ud83d\udce6 production_outliers_and_imbalance.py</span>\n                    <span class=\"text-[10px] bg-[#0e7490] text-white px-2 py-0.5 rounded font-black\">PYDANTIC V2</span>\n                  </div>\n                  <pre class=\"overflow-x-auto\"><code class=\"language-python\" style=\"color: #f8fafc; font-size: 11px; line-height: 1.45; display: block;\"><span style=\"color: #38bdf8;\">class</span> <span style=\"color: #fcd34d;\">OutlierVerificationReport</span>(BaseModel):\n    contamination_fraction: <span style=\"color: #38bdf8;\">float</span> = Field(..., gt=0.10, lt=0.50)\n    classical_z_caught: <span style=\"color: #38bdf8;\">int</span>       <span style=\"color: #94a3b8;\"># Asserts == 0 past 10% limit</span>\n    modified_mad_caught: <span style=\"color: #38bdf8;\">int</span>      <span style=\"color: #94a3b8;\"># Asserts == n_outliers (100%)</span>\n    off_axis_mahalanobis_sq: <span style=\"color: #38bdf8;\">float</span>\n    chi2_critical_bound: <span style=\"color: #38bdf8;\">float</span>\n    off_axis_detected_by_mcd: <span style=\"color: #38bdf8;\">bool</span>\n\n<span style=\"color: #38bdf8;\">class</span> <span style=\"color: #fcd34d;\">RobustOutlierFilter</span>(BaseEstimator, TransformerMixin):\n    <span style=\"color: #38bdf8;\">def</span> <span style=\"color: #4ade80;\">fit</span>(<span style=\"color: #c4b5fd;\">self</span>, X, y=<span style=\"color: #38bdf8;\">None</span>):\n        <span style=\"color: #c4b5fd;\">self</span>.medians_ = np.median(X, axis=0)\n        <span style=\"color: #c4b5fd;\">self</span>.mads_ = np.median(np.abs(X - <span style=\"color: #c4b5fd;\">self</span>.medians_), axis=0)\n        <span style=\"color: #c4b5fd;\">self</span>.mcd_ = MinCovDet(random_state=42).fit(X)\n        <span style=\"color: #c4b5fd;\">self</span>.chi2_threshold_ = stats.chi2.ppf(1.0 - <span style=\"color: #c4b5fd;\">self</span>.mcd_alpha, df=X.shape[1])\n        <span style=\"color: #38bdf8;\">return</span> <span style=\"color: #c4b5fd;\">self</span></code></pre>\n                </div>\n\n                <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2 text-slate-700 font-sans text-xs\">\n                  <div class=\"p-2.5 rounded bg-white border border-[#151b20]\">\n                    <b>Leak-Free Fitting Invariant:</b> Fit <code>medians_</code>, <code>mads_</code>, and <code>MinCovDet</code> exclusively on <code>X_train</code>; reuse frozen thresholds on <code>X_test</code>!\n                  </div>\n                  <div class=\"p-2.5 rounded bg-white border border-[#151b20]\">\n                    <b>Zero-MAD Protection:</b> Clamping zero MAD to $10^{-6}$ prevents division-by-zero exceptions on discrete zero-inflated features.\n                  </div>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Enforcing Split-Safe Transformers & Zero-MAD Resilience in Production",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at RobustOutlierFilter inheriting sklearn's BaseEstimator and TransformerMixin! Why is putting fit and transform inside a Scikit-Learn transformer class so vital here?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because plugging RobustOutlierFilter directly into a Pipeline guarantees that sample medians, MAD boundaries, and MinCovDet precision matrices are estimated strictly inside each training fold! Even a robust statistic leaks information if fitted before train-test splitting.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And look at the guard rail in the fit method\u2014setting any zero MAD equal to 1e-6 stops division-by-zero crashes when over half a column equals zero! And OutlierVerificationReport automates CI unit checks!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Mathematical theory enforced directly by CI runtime assertions\u2014zero blind spots allowed in production.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Automated Assertion Verification Suite</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>Assertion 1 (Masking Proof):</b> $15.2\\%$ spikes $\\implies$ <code>classical_z_caught == 0</code> vs. <code>modified_mad_caught == 18</code>.</div>\n                    <div><b>Assertion 2 (Off-Axis MCD):</b> `[+2.0, -2.0]` inside $\\pm 3\\sigma$ 1D margins triggers <code>off_axis_detected_by_mcd == True</code> via $\\chi^2_2$.</div>\n                    <div><b>Assertion 3 (Leak-Free SMOTE):</b> <code>smote_oversample_minority(X_tr, y_tr)</code> executes strictly post-split, preserving unseen holdout integrity.</div>\n                  </div>\n                </div>\n              </div>\n            "
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Capstone Synthesis: Four Golden Rules & Path to Lesson 5.5",
+        "type": "summary",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Mastering Anomaly Geometry, Dimensionality Hygiene & Skew Remediation",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Congratulations on completing Chapter 5, Lesson 4: Outliers, Irrelevant Features, and Severe Class Imbalance. You have mastered the breakdown point proofs behind the 10% Masking Limit, MCD multivariate ellipsoids, Isolation Forest path scaling, Beyer's distance concentration, SMOTE convex manifolds, and the IEEE-CIS fraud detection benchmarks.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Anchor these Four Golden Rules into every ML pipeline you architect: Rule 1: Replace brittle 1D Z-scores with Modified MAD, MCD Mahalanobis distance, or Isolation Forests. Rule 2: Distinguish sensor artifacts from authentic tail realizations before clipping, emitting is_outlier indicators when rare events matter. Rule 3: Prune zero-variance and zero-Mutual-Information dimensions inside training folds. And Rule 4: Wrap SMOTE strictly inside training folds and optimize PR-AUC with Cost-Sensitive Weights.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "In Lesson 5.5, we bring every cleaning discipline together into Practical Data Cleaning Techniques and Domain Regex Canonicalization. See you there!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-4\">\n                <div class=\"p-4 rounded-xl bg-gradient-to-r from-[#c9f3f4]/50 to-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#0e7490]\">\n                  <div class=\"font-mono font-black text-xs text-[#0e7490] uppercase mb-1\">\n                    \ud83c\udf93 Masterclass Graduation: The 4 Golden Rules\n                  </div>\n                  <h3 class=\"text-sm md:text-base font-black text-[#151b20]\">\n                    Architectural Playbook for Anomaly Geometry &amp; Imbalanced Modeling\n                  </h3>\n                </div>\n\n                <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs\">\n                  <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#dc2626] text-xs uppercase mb-1\">Rule 1: Abandon Unprotected Z-Scores</div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      $Z$-scores collapse past $10\\%$ masking and ignore off-axis vectors. Use Modified MAD ($\\epsilon^* = 50\\%$), MCD Ellipsoids ($D_M^2 \\sim \\chi^2_d$), or Isolation Forests.\n                    </p>\n                  </div>\n\n                  <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#16a34a] text-xs uppercase mb-1\">Rule 2: Triage Artifacts vs. Rare Signals</div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      Never drop authentic heavy-tailed extremes ($Z$-trim lost $83\\%$ of IEEE-CIS targets). Log-scale power laws or preserve rows with <code>is_outlier</code> flags.\n                    </p>\n                  </div>\n\n                  <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#d97706] text-xs uppercase mb-1\">Rule 3: Prune Concentrated Noise</div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      Prevent Beyer's Distance Concentration by dropping constant axes ($\\operatorname{Var} < \\epsilon$) and uninformative columns ($I(X;Y) \\approx 0$).\n                    </p>\n                  </div>\n\n                  <div class=\"p-3 rounded-lg bg-[#fffdf7] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n                    <div class=\"font-black text-[#2563eb] text-xs uppercase mb-1\">Rule 4: Leak-Free Resample &amp; PR-AUC</div>\n                    <p class=\"text-[11px] text-[#151b20]/80 font-sans leading-relaxed\">\n                      Wrap SMOTE inside <code>imblearn.pipeline.Pipeline</code> folds or deploy Cost-Sensitive Loss ($\\mathcal{L}_{\\text{CS}}$) evaluated strictly via PR-AUC.\n                    </p>\n                  </div>\n                </div>\n\n                <div class=\"p-3 rounded-lg bg-[#e7f4c8] border-2 border-[#151b20] font-mono text-xs flex justify-between items-center\">\n                  <span><b>Next Module:</b> Lesson 5.5: Practical Data Cleaning Techniques</span>\n                  <span class=\"px-2 py-0.5 bg-white border border-[#151b20] rounded font-bold text-[10px]\">UP NEXT</span>\n                </div>\n              </div>\n            "
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Kaito's Mastery Synthesis & Advance to Lesson 5.5",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, everything clicked today! Seeing how a 15% sensor glitch makes Z-scores mathematically invisible, while off-axis RPM spikes sneak past 1D bounds yet trigger MCD distances of 245, completely reshaped how I inspect data!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And remember the dual lesson from IEEE-CIS fraud detection, Kaito: combine mathematical rigor with domain awareness so you never clean away your rare positive signals!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Always keep SMOTE strictly inside training folds, trust PR-AUC over accuracy on skewed labels, and check Cost-Sensitive weights! Ready for Lesson 5.5: Practical Data Cleaning Techniques!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Fantastic synthesis, Kaito. Onward to Lesson 5.5!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n              <div class=\"space-y-3 font-mono text-xs\">\n                <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n                  <h4 class=\"font-black text-xs text-[#0e7490] uppercase mb-1\">Lesson 5.4 Mastery Checklist</h4>\n                  <div class=\"text-[11px] text-slate-700 font-sans space-y-1.5 mt-2\">\n                    <div><b>Univariate &amp; Robust:</b> Masking Limit $p > 1/(1+\\tau^2) = 10\\%$, Modified MAD ($0.6745$, $\\epsilon^* = 50\\%$), Tukey $\\text{IQR}$.</div>\n                    <div><b>Multivariate &amp; Non-Linear:</b> Mahalanobis $D_M^2 \\sim \\chi^2_d$, Rousseeuw MCD, Isolation Forests ($s(\\mathbf{x}, n)$) &amp; LOF.</div>\n                    <div><b>High-Dim &amp; Skew:</b> Beyer Distance Concentration, Mutual Info $I(X;Y)$, PR-AUC, Borderline-SMOTE &amp; $\\mathcal{L}_{\\text{CS}}$.</div>\n                  </div>\n                </div>\n              </div>\n            "
         }
       }
     ]

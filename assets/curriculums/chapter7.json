@@ -2134,9 +2134,11 @@
     "chapter": 7,
     "part": 4,
     "key": "ch7_p4",
-    "badge": "◆ TRACK 7 • LESSON 7.4: BIAS VISUALIZATION AND AUDITING TOOLS",
     "index": "Lesson 4 of 10",
     "lessonTitle": "Bias Visualization and Auditing Tools",
+    "title": "Bias Visualization and Auditing Tools",
+    "badge": "16 Masterclass Slides • Socratic Dialogue • Interactive Sandbox",
+    "description": "Multi-Metric Disparity Matrices, Subgroup Reliability Calibration Diagrams, ROC Convex Hull Optimization, and Enterprise Fairness Toolkits.",
     "slides": [
       {
         "id": "s1",
@@ -2148,273 +2150,618 @@
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 7.4. Today we examine bias visualization and auditing tools, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 7: Foundations</span>\n    <span>•</span>\n    <span>Lesson 7.4</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Bias Visualization and Auditing Tools\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into bias visualization and auditing tools with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Bias Visualization and Auditing Tools",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 7.4?"
+              "text": "Welcome to Lesson 7.4 of Dataset Fundamentals: Bias Visualization and Auditing Tools. In Lesson 7.3, we established the quantitative hypothesis tests and optimal transport metrics needed to detect bias statistically. Today, we elevate our toolkit into visual fairness engineering—translating multi-dimensional disparities into intuitive, mathematically rigorous diagnostic displays.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 7.4. Today we examine bias visualization and auditing tools, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "Tabular accuracy aggregates systematically conceal harm across intersecting demographic cohorts. Throughout this lecture, we will construct rank-2 disparity metric tensors, diagnose miscalibration through subgroup reliability diagrams and Expected Calibration Error, intersect group-specific Receiver Operating Characteristic convex hulls to solve Equalized Odds, and audit production pipelines using Fairlearn, AIF360, Google's What-If Tool, and Aequitas.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 7: Foundations</span>\n    <span>•</span>\n    <span>Lesson 7.4</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Bias Visualization and Auditing Tools\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into bias visualization and auditing tools with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 7 • Dataset Bias &amp; Fairness • Lesson 7.4</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Bias Visualization &amp; Auditing Tools\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Multi-Metric Disparity Matrices, Subgroup Reliability Calibration Diagrams, ROC Convex Hull Optimization, and Enterprise Fairness Toolkits.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Metric Tensor $\\mathbf{M}$</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Rank-2 disparity matrices quantifying extreme spreads $\\Delta_k$ and ratios $\\rho_k$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Calibration ECE</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Subgroup reliability curves exposing localized risk distortion hidden by pooled means.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. ROC Convex Hulls</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Hardt-Price-Srebro threshold Pareto optimization minimizing $\\Delta_{\\text{AOD}}$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Auditing Toolkits</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Fairlearn, AIF360, What-If Tool, Aequitas, and automated Pydantic CI/CD contracts.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito (Pair Lecture)",
+          "title": "Bias Visualization and Auditing Tools",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Lesson 7.4! Today, Kaito and I explore how fairness engineering visualizes demographic disparities so legal officers, clinicians, and product engineers can act decisively on complex tradeoffs.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait—if we already know how to run a pooled Z-test or Wasserstein distance in code, why do we need dedicated visualization engines? Can't teams just read a summary table with 92 percent accuracy?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because aggregate tables hide intersectional failures and mathematical incompatibilities! A model can look globally calibrated while systematically over-estimating risk for minorities, or pass an aggregate threshold while devastating darker-skinned women in facial recognition. Let's inspect how visual geometries unlock those hidden dynamics.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 7 • Lesson 7.4 • Socratic Visual Auditing Studio</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Bias Visualization &amp; Auditing Tools\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Multi-Metric Disparity Matrices, Subgroup Reliability Calibration Diagrams, ROC Convex Hull Optimization, and Enterprise Fairness Toolkits.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Metric Tensor $\\mathbf{M}$</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Rank-2 disparity matrices quantifying extreme spreads $\\Delta_k$ and ratios $\\rho_k$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Calibration ECE</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Subgroup reliability curves exposing localized risk distortion hidden by pooled means.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. ROC Convex Hulls</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Hardt-Price-Srebro threshold Pareto optimization minimizing $\\Delta_{\\text{AOD}}$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Auditing Toolkits</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Fairlearn, AIF360, What-If Tool, Aequitas, and automated Pydantic CI/CD contracts.</span>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s2",
-        "title": "Conceptual Overview & Visual Geometries: Mathematical Formulations of Visual Geometries",
-        "type": "equation",
+        "title": "Intersectional Grids & Fairness Visual Engines",
+        "type": "concept",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & Visual Geometries: Mathematical Formulations of Visual Geometries",
+          "speaker": "Dr. Nova",
+          "title": "From Siloed Accuracy to Intersectional Visual Architecture",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & Visual Geometries: Mathematical Formulations of Visual Geometries. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Delta_{g, m} = M_g - M_{\\text{baseline}}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\|\\boldsymbol{\\Delta}\\|_2 = \\sqrt{\\sum_{g=1}^K (M_g - M_{\\text{baseline}})^2}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Pr(Y = 1 \\mid R = r, A = a) = r \\quad \\forall a \\in \\{0, 1\\}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">under-estimation of risk</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Deviations above the diagonal ($45^\\circ$ line) indicate under-estimation of risk.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">over-estimation of risk</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Deviations below the diagonal indicate over-estimation of risk (systematic punitive bias).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & Visual Geometries: Mathematical Formulations of Visual Geometries",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does conceptual overview & visual geometries: mathematical formulations of visual geometries protect our system against silent distribution shift in production?"
+              "text": "Visualizing algorithmic disparity bridges the communication gap between machine learning architects, compliance lawyers, and product stakeholders. Rather than publishing single global accuracy scalars, visual fairness auditing couples two structured stages.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Stage 1 partitions test populations across an Intersectional Demographic Grid spanning gender, race or ethnicity, and age cohorts. Stage 2 projects those sliced distributions onto three visual engines: Multi-Metric Disparity Heatmap Matrices, Subgroup Reliability Calibration Diagrams, and Multi-Objective Receiver Operating Characteristic Pareto Frontiers.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Delta_{g, m} = M_g - M_{\\text{baseline}}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\|\\boldsymbol{\\Delta}\\|_2 = \\sqrt{\\sum_{g=1}^K (M_g - M_{\\text{baseline}})^2}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Pr(Y = 1 \\mid R = r, A = a) = r \\quad \\forall a \\in \\{0, 1\\}$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">under-estimation of risk</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Deviations above the diagonal ($45^\\circ$ line) indicate under-estimation of risk.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">over-estimation of risk</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Deviations below the diagonal indicate over-estimation of risk (systematic punitive bias).</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wider\">Conceptual Architecture • Two-Stage Visual Synthesis</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Slicing ➔ Geometry</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <div class=\"p-4 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-black text-[#0369a1] mb-2\">1. Intersectional Demographic Grid</div>\n      <div class=\"space-y-2 text-xs font-mono\">\n        <div class=\"p-2 rounded bg-[#ffffff] border border-[#0284c7]/40 text-[#0c4a6e]\">\n          <strong>Gender Axis:</strong> Male, Female, Non-Binary\n        </div>\n        <div class=\"p-2 rounded bg-[#ffffff] border border-[#0284c7]/40 text-[#0c4a6e]\">\n          <strong>Race/Ethnicity Axis:</strong> Black, White, Hispanic, Asian\n        </div>\n        <div class=\"p-2 rounded bg-[#ffffff] border border-[#0284c7]/40 text-[#0c4a6e]\">\n          <strong>Age Cohort Axis:</strong> Young (&lt;25), Prime (25–55), Senior (&gt;55)\n        </div>\n      </div>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#d97706] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-black text-[#b45309] mb-2\">2. Fairness Visual Engines</div>\n      <div class=\"space-y-2 text-xs font-mono\">\n        <div class=\"p-2 rounded bg-[#ffffff] border border-[#d97706]/40 text-[#78350f]\">\n          <strong>Heatmap Matrix:</strong> Selection, Accuracy, TPR &amp; FPR across slices\n        </div>\n        <div class=\"p-2 rounded bg-[#ffffff] border border-[#d97706]/40 text-[#78350f]\">\n          <strong>Calibration Diagram:</strong> Predicted confidence vs. observed frequency\n        </div>\n        <div class=\"p-2 rounded bg-[#ffffff] border border-[#d97706]/40 text-[#78350f]\">\n          <strong>ROC Pareto Frontier:</strong> Optimal $(\\tau_0^*, \\tau_1^*)$ operating boundary\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"mt-3 p-3 rounded-lg bg-[#fff0b9] border border-[#151b20] text-xs font-sans text-[#151b20]\">\n    <strong>Why Tabular Averages Fail:</strong> Global accuracy numbers completely obscure the tension between <em>false-positive burdens</em> inflicted on historically penalized cohorts and <em>true-positive opportunity allocations</em>. Visual geometries make those trade-offs auditable at a glance.\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "From Siloed Accuracy to Intersectional Visual Architecture",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "I love how cleanly Stage 1 and Stage 2 connect here! Instead of looking at Gender alone or Race alone, we slice along the full Cartesian intersection—like Age times Gender times Ethnicity—before plotting anything.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly right, Kaito. Once we slice those cohorts in Stage 1, our three Visual Engines attack distinct geometric questions: heatmaps uncover error asymmetries, calibration curves reveal whether probability scores mean the same thing across groups, and ROC Pareto curves guide post-processing threshold alignment.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wider\">Conceptual Architecture • Two-Stage Visual Synthesis</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Slicing ➔ Geometry</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n    <div class=\"p-4 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-black text-[#0369a1] mb-2\">1. Intersectional Demographic Grid</div>\n      <div class=\"space-y-2 text-xs font-mono\">\n        <div class=\"p-2 rounded bg-[#ffffff] border border-[#0284c7]/40 text-[#0c4a6e]\">\n          <strong>Gender Axis:</strong> Male, Female, Non-Binary\n        </div>\n        <div class=\"p-2 rounded bg-[#ffffff] border border-[#0284c7]/40 text-[#0c4a6e]\">\n          <strong>Race/Ethnicity Axis:</strong> Black, White, Hispanic, Asian\n        </div>\n        <div class=\"p-2 rounded bg-[#ffffff] border border-[#0284c7]/40 text-[#0c4a6e]\">\n          <strong>Age Cohort Axis:</strong> Young (&lt;25), Prime (25–55), Senior (&gt;55)\n        </div>\n      </div>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#d97706] shadow-[3px_3px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-black text-[#b45309] mb-2\">2. Fairness Visual Engines</div>\n      <div class=\"space-y-2 text-xs font-mono\">\n        <div class=\"p-2 rounded bg-[#ffffff] border border-[#d97706]/40 text-[#78350f]\">\n          <strong>Heatmap Matrix:</strong> Selection, Accuracy, TPR &amp; FPR across slices\n        </div>\n        <div class=\"p-2 rounded bg-[#ffffff] border border-[#d97706]/40 text-[#78350f]\">\n          <strong>Calibration Diagram:</strong> Predicted confidence vs. observed frequency\n        </div>\n        <div class=\"p-2 rounded bg-[#ffffff] border border-[#d97706]/40 text-[#78350f]\">\n          <strong>ROC Pareto Frontier:</strong> Optimal $(\\tau_0^*, \\tau_1^*)$ operating boundary\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"mt-3 p-3 rounded-lg bg-[#fff0b9] border border-[#151b20] text-xs font-sans text-[#151b20]\">\n    <strong>Why Tabular Averages Fail:</strong> Global accuracy numbers completely obscure the tension between <em>false-positive burdens</em> inflicted on historically penalized cohorts and <em>true-positive opportunity allocations</em>. Visual geometries make those trade-offs auditable at a glance.\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s3",
-        "title": "Conceptual Overview & Visual Geometries: Architecture Flowchart",
-        "type": "figure",
+        "title": "The Rank-2 Metric Disparity Tensor",
+        "type": "equation",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & Visual Geometries: Architecture Flowchart",
+          "speaker": "Dr. Nova",
+          "title": "Formalizing Multi-Metric Heatmaps via Rank-2 Tensors",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & Visual Geometries: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    subgraph SlicingGrid [\"Intersectional Demographic Grid\"]\n    direction TB\n        G1[\"Gender: Male, Female, Non-Binary\"]\n        G2[\"Race/Ethnicity: Black, White, Hispanic, Asian\"]\n        G3[\"Age Cohort: < 25, 25-50, > 50\"]\n        G1 --- G2 --- G3\n    end\n\n    subgraph VisualDisplays [\"Fairness Visual Engines\"]\n    direction TB\n        V1[\"Disparity Heatmap Matrices\"]\n        V2[\"Subgroup Calibration Curves\"]\n        V3[\"Multi-Objective ROC Pareto Frontiers\"]\n        V1 --> V2 --> V3\n    end\n\n  %% Top-alignment constraint across stages\n  G1 ~~~ V1\n\n    SlicingGrid --> VisualDisplays\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class G1,G2,G3 blue;\n    class V1,V2,V3 amber;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">under-estimation of risk</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Deviations above the diagonal ($45^\\circ$ line) indicate under-estimation of risk.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">over-estimation of risk</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Deviations below the diagonal indicate over-estimation of risk (systematic punitive bias).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & Visual Geometries: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for conceptual overview & visual geometries: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "Every multi-metric disparity heatmap used in frameworks like Fairlearn MetricFrame is powered mathematically by a Rank-2 Disparity Metric Tensor M in R to the G by K.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Each row g indexes one demographic subgroup, while each column k evaluates a specific conditional metric expectation, such as Selection Rate, Accuracy, True Positive Rate, or False Positive Rate. Auditing engines scan each column k to compute two summary invariants: the Extreme Disparity Spread Delta k—subtracting the minimum subgroup metric from the maximum—and the column-wise Disparate Impact Ratio rho k. Regulatory deployment gates mandate that rho selection remains at least 0.80 while Delta TPR and Delta FPR remain strictly within tolerance epsilon.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    subgraph SlicingGrid [\"Intersectional Demographic Grid\"]\n    direction TB\n        G1[\"Gender: Male, Female, Non-Binary\"]\n        G2[\"Race/Ethnicity: Black, White, Hispanic, Asian\"]\n        G3[\"Age Cohort: < 25, 25-50, > 50\"]\n        G1 --- G2 --- G3\n    end\n\n    subgraph VisualDisplays [\"Fairness Visual Engines\"]\n    direction TB\n        V1[\"Disparity Heatmap Matrices\"]\n        V2[\"Subgroup Calibration Curves\"]\n        V3[\"Multi-Objective ROC Pareto Frontiers\"]\n        V1 --> V2 --> V3\n    end\n\n  %% Top-alignment constraint across stages\n  G1 ~~~ V1\n\n    SlicingGrid --> VisualDisplays\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class G1,G2,G3 blue;\n    class V1,V2,V3 amber;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">under-estimation of risk</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Deviations above the diagonal ($45^\\circ$ line) indicate under-estimation of risk.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">over-estimation of risk</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Deviations below the diagonal indicate over-estimation of risk (systematic punitive bias).</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wider\">Tensor Algebra • Intersectional Heatmaps</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">$\\mathbf{M} \\in \\mathbb{R}^{G \\times K}$</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7] mb-3 text-center\">\n    <div class=\"font-mono text-xs font-bold text-[#0369a1] mb-1\">Rank-2 Disparity Metric Tensor Entry ($g \\in \\{1,\\dots,G\\}, \\; k \\in \\{1,\\dots,K\\}$)</div>\n    <div class=\"text-base sm:text-lg font-mono font-black text-[#0c4a6e]\">\n      $$\\mathbf{M}_{g, k} = \\mathbb{E}_{(X, Y) \\sim \\mathcal{D}_g}\\left[ \\mu_k\\big(f(X), Y\\big) \\right]$$\n    </div>\n    <div class=\"text-sm font-mono font-bold text-[#0e7490] mt-2 pt-2 border-t border-[#0284c7]/30\">\n      $$\\Delta_k = \\max_{g} \\mathbf{M}_{g, k} - \\min_{g'} \\mathbf{M}_{g', k}, \\qquad \\rho_k = \\frac{\\min_{g'} \\mathbf{M}_{g', k}}{\\max_{g} \\mathbf{M}_{g, k}}$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#ffffff] border-2 border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">Disparate Impact Gate ($\\rho_{\\text{selection}}$)</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        The EEOC Four-Fifths rule mandates $\\rho_{\\text{selection}} \\ge 0.80$ between the lowest-selected slice $\\min_{g'}$ and highest-selected benchmark slice $\\max_g$.\n      </p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffffff] border-2 border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Equalized Odds Bounds ($\\Delta_{\\text{TPR}}, \\Delta_{\\text{FPR}}$)</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        Strict error-rate parity checks verify both $\\Delta_{\\text{TPR}} \\le \\epsilon$ and $\\Delta_{\\text{FPR}} \\le \\epsilon$ simultaneously across all $G$ rows.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Formalizing Multi-Metric Heatmaps via Rank-2 Tensors",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Viewing an auditing dashboard as a Rank-2 matrix M of shape G subgroups by K evaluation metrics makes everything click! In Fairlearn, MetricFrame is literally constructing this matrix M.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely, Kaito. Once you construct M, reducing any column k takes two operators: Extreme Disparity Spread Delta k calculates maximum minus minimum, and Ratio rho k divides minimum by maximum. Notice why comparing min against max across intersectional slices is so important: you prevent bad performance in a single vulnerable minority group from hiding behind three privileged slices!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wider\">Tensor Algebra • Intersectional Heatmaps</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">$\\mathbf{M} \\in \\mathbb{R}^{G \\times K}$</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7] mb-3 text-center\">\n    <div class=\"font-mono text-xs font-bold text-[#0369a1] mb-1\">Rank-2 Disparity Metric Tensor Entry ($g \\in \\{1,\\dots,G\\}, \\; k \\in \\{1,\\dots,K\\}$)</div>\n    <div class=\"text-base sm:text-lg font-mono font-black text-[#0c4a6e]\">\n      $$\\mathbf{M}_{g, k} = \\mathbb{E}_{(X, Y) \\sim \\mathcal{D}_g}\\left[ \\mu_k\\big(f(X), Y\\big) \\right]$$\n    </div>\n    <div class=\"text-sm font-mono font-bold text-[#0e7490] mt-2 pt-2 border-t border-[#0284c7]/30\">\n      $$\\Delta_k = \\max_{g} \\mathbf{M}_{g, k} - \\min_{g'} \\mathbf{M}_{g', k}, \\qquad \\rho_k = \\frac{\\min_{g'} \\mathbf{M}_{g', k}}{\\max_{g} \\mathbf{M}_{g, k}}$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#ffffff] border-2 border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">Disparate Impact Gate ($\\rho_{\\text{selection}}$)</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        The EEOC Four-Fifths rule mandates $\\rho_{\\text{selection}} \\ge 0.80$ between the lowest-selected slice $\\min_{g'}$ and highest-selected benchmark slice $\\max_g$.\n      </p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffffff] border-2 border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Equalized Odds Bounds ($\\Delta_{\\text{TPR}}, \\Delta_{\\text{FPR}}$)</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        Strict error-rate parity checks verify both $\\Delta_{\\text{TPR}} \\le \\epsilon$ and $\\Delta_{\\text{FPR}} \\le \\epsilon$ simultaneously across all $G$ rows.\n      </p>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s4",
-        "title": "The Open-Source Fairness Toolkit Ecosystem",
-        "type": "bullets",
+        "title": "Subgroup Calibration Geometry & Expected Calibration Error",
+        "type": "equation",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The Open-Source Fairness Toolkit Ecosystem",
+          "speaker": "Dr. Nova",
+          "title": "Reliability Diagrams & Binned ECE Quantification",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Open-Source Fairness Toolkit Ecosystem. In production engineering, this principle establishes reliability and reproducibility. Primary Maintainer | Strengths | Visualization Capabilities | | :--- | :--- | :--- | :--- | | Fairlearn | Microsoft / NumFOCUS | Tight scikit-learn integration, in-processing exponentiated gradient | Disparity dashboards, metric frames, trade-off curves (Weerts, 2023) | | AIF360 | IBM Research | 70+ metrics, industrial pre/in/post-processing algorithms | Metric visualizer, interactive web audit console (Bellamy, 2019) | | What-If Tool (WIT)| Google PAIR | TensorBoard integration, counterfactual exploration | Interactive 3D scatterplots, individual counterfactual toggles | | Aequitas | Univ."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">| Toolkit |</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Primary Maintainer | Strengths | Visualization Capabilities | | :--- | :--- | :--- | :--- | | Fairlearn | Microsoft / NumFOCUS | Tight scikit-learn integration, in-processing exponentiated gradient | Disparity dashboards, metric frames, trade-off curves (Weerts, 2023) | | AIF360 | IBM Research | 70+ metrics, industrial pre/in/post-processing algorithms | Metric visualizer, interactive web audit console (Bellamy, 2019) | | What-If Tool (WIT)| Google PAIR | TensorBoard integration, counterfactual exploration | Interactive 3D scatterplots, individual counterfactual toggles | | Aequitas | Univ.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">of Chicago |</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Public policy bias auditing, disparate impact classification ( Barocas &amp; Selbst, 2016 ) | Disparity treemaps, risk score equity charts |</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Open-Source Fairness Toolkit Ecosystem",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what makes the open-source fairness toolkit ecosystem essential for robust machine learning?"
+              "text": "Our second visual engine is the subgroup calibration plot, also called a reliability diagram. A continuous risk score R in zero to one is perfectly calibrated within protected demographic group a if the observed conditional probability of a positive outcome equals the nominal predicted score r everywhere.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "In production engineering, this principle establishes reliability and reproducibility. Primary Maintainer | Strengths | Visualization Capabilities | | :--- | :--- | :--- | :--- | | Fairlearn | Microsoft / NumFOCUS | Tight scikit-learn integration, in-processing exponentiated gradient | Disparity dashboards, metric frames, trade-off curves (Weerts, 2023) | | AIF360 | IBM Research | 70+ metrics, industrial pre/in/post-processing algorithms | Metric visualizer, interactive web audit console (Bellamy, 2019) | | What-If Tool (WIT)| Google PAIR | TensorBoard integration, counterfactual exploration | Interactive 3D scatterplots, individual counterfactual toggles | | Aequitas | Univ."
+              "text": "Geometrically, perfect calibration traces the 45-degree diagonal y equals x. Points sitting above the diagonal mean the model under-estimates a subgroup's true success rate—for example, predicting 40 percent loan repayment when empirical repayment reaches 60 percent. Points sagging below the diagonal mean the model over-estimates positive likelihood or risk, injecting systematic punitive bias. To quantify this curve into a scalar metric, we partition predictions into B confidence bins and compute Subgroup Expected Calibration Error, or ECE sub a, taking a bin-size weighted average of absolute accuracy minus confidence gaps.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">| Toolkit |</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Primary Maintainer | Strengths | Visualization Capabilities | | :--- | :--- | :--- | :--- | | Fairlearn | Microsoft / NumFOCUS | Tight scikit-learn integration, in-processing exponentiated gradient | Disparity dashboards, metric frames, trade-off curves (Weerts, 2023) | | AIF360 | IBM Research | 70+ metrics, industrial pre/in/post-processing algorithms | Metric visualizer, interactive web audit console (Bellamy, 2019) | | What-If Tool (WIT)| Google PAIR | TensorBoard integration, counterfactual exploration | Interactive 3D scatterplots, individual counterfactual toggles | | Aequitas | Univ.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">of Chicago |</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Public policy bias auditing, disparate impact classification ( Barocas &amp; Selbst, 2016 ) | Disparity treemaps, risk score equity charts |</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#b45309] uppercase tracking-wider\">Reliability Geometry • Pleiss et al. (2017)</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#fff0b9] text-[#b45309] border border-[#151b20]\">$\\text{ECE}_a$ Formulation</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#d97706] mb-3 text-center\">\n    <div class=\"font-mono text-xs font-bold text-[#92400e] mb-1\">Demographic Calibration Identity &amp; Binned Expected Calibration Error</div>\n    <div class=\"text-sm sm:text-base font-mono font-black text-[#78350f]\">\n      $$\\Pr(Y = 1 \\mid R = r, \\, A = a) = r \\quad \\forall a \\in \\{0, 1\\}, \\; \\forall r \\in [0, 1]$$\n    </div>\n    <div class=\"text-base sm:text-lg font-mono font-black text-[#92400e] mt-2 pt-2 border-t border-[#d97706]/30\">\n      $$\\text{ECE}_a = \\sum_{b=1}^{B} \\frac{|I_b^{(a)}|}{|D_a|} \\left| \\text{acc}\\!\\left(I_b^{(a)}\\right) - \\text{conf}\\!\\left(I_b^{(a)}\\right) \\right|$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs font-mono\">\n    <div class=\"p-2.5 rounded-xl bg-[#ffffff] border border-[#151b20]\">\n      <strong class=\"text-[#475569] block mb-1\">45° Diagonal ($y = x$)</strong>\n      <span class=\"text-[11px] text-[#334155]\">Perfect probabilistic reliability: score $r$ means identical risk across groups.</span>\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#ffffff] border border-[#15803d]\">\n      <strong class=\"text-[#15803d] block mb-1\">Above Diagonal ($y > x$)</strong>\n      <span class=\"text-[11px] text-[#166534]\">Under-estimates capability (e.g. predicts $40\\%$ repayment when group repays $60\\%$).</span>\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#ffffff] border border-[#dc2626]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Below Diagonal ($y < x$)</strong>\n      <span class=\"text-[11px] text-[#7f1d1d]\">Over-estimates score/risk, inflicting systematic punitive bias.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Reliability Diagrams & Binned ECE Quantification",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Let me make sure I read the reliability curve direction correctly, Dr. Nova. If my predicted score is on the horizontal x-axis as confidence, and observed empirical outcome is on the y-axis as accuracy...",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Then the 45-degree line is exact equality: accuracy equals confidence. If Group zero sits above the diagonal when Y equals loan repayment, they actually repay 60 percent of the time even though the model only assigned them a 40 percent probability score—so the model is systematically under-estimating their creditworthiness! And ECE sub a weights each bin discrepancy by how many samples fell in that bin.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#b45309] uppercase tracking-wider\">Reliability Geometry • Pleiss et al. (2017)</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#fff0b9] text-[#b45309] border border-[#151b20]\">$\\text{ECE}_a$ Formulation</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#d97706] mb-3 text-center\">\n    <div class=\"font-mono text-xs font-bold text-[#92400e] mb-1\">Demographic Calibration Identity &amp; Binned Expected Calibration Error</div>\n    <div class=\"text-sm sm:text-base font-mono font-black text-[#78350f]\">\n      $$\\Pr(Y = 1 \\mid R = r, \\, A = a) = r \\quad \\forall a \\in \\{0, 1\\}, \\; \\forall r \\in [0, 1]$$\n    </div>\n    <div class=\"text-base sm:text-lg font-mono font-black text-[#92400e] mt-2 pt-2 border-t border-[#d97706]/30\">\n      $$\\text{ECE}_a = \\sum_{b=1}^{B} \\frac{|I_b^{(a)}|}{|D_a|} \\left| \\text{acc}\\!\\left(I_b^{(a)}\\right) - \\text{conf}\\!\\left(I_b^{(a)}\\right) \\right|$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs font-mono\">\n    <div class=\"p-2.5 rounded-xl bg-[#ffffff] border border-[#151b20]\">\n      <strong class=\"text-[#475569] block mb-1\">45° Diagonal ($y = x$)</strong>\n      <span class=\"text-[11px] text-[#334155]\">Perfect probabilistic reliability: score $r$ means identical risk across groups.</span>\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#ffffff] border border-[#15803d]\">\n      <strong class=\"text-[#15803d] block mb-1\">Above Diagonal ($y > x$)</strong>\n      <span class=\"text-[11px] text-[#166534]\">Under-estimates capability (e.g. predicts $40\\%$ repayment when group repays $60\\%$).</span>\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#ffffff] border border-[#dc2626]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Below Diagonal ($y < x$)</strong>\n      <span class=\"text-[11px] text-[#7f1d1d]\">Over-estimates score/risk, inflicting systematic punitive bias.</span>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s5",
-        "title": "Disparity Metric Tensor and Calibration ECE Formulation",
-        "type": "equation",
+        "title": "The Subgroup Calibration Paradox",
+        "type": "pitfall",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Disparity Metric Tensor and Calibration ECE Formulation",
+          "speaker": "Dr. Nova",
+          "title": "Why Global Reliability Plots Hide Minority Miscalibration",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Disparity Metric Tensor and Calibration ECE Formulation. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbf{M}_{g, k} = \\mathbb{E}_{(X, Y) \\sim \\mathcal{D}_g}\\left[ \\mu_k(f(X), Y) \\right]$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Delta_k = \\max_{g} \\mathbf{M}_{g, k} - \\min_{g'} \\mathbf{M}_{g', k}, \\qquad \\rho_k = \\frac{\\min_{g'} \\mathbf{M}_{g', k}}{\\max_{g} \\mathbf{M}_{g, k}}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{ECE}_g = \\sum_{b=1}^B \\frac{|I_b^{(g)}|}{|D_g|} \\left| \\text{acc}(I_b^{(g)}) - \\text{conf}(I_b^{(g)}) \\right|$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Disparity Metric Tensor and Calibration ECE Formulation",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does disparity metric tensor and calibration ece formulation protect our system against silent distribution shift in production?"
+              "text": "One of the gravest anti-patterns in machine learning observability is plotting a single global calibration curve without subgroup disaggregation. Consider what Pleiss and colleagues call the Subgroup Calibration Paradox.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Because pooled Expected Calibration Error averages over all individuals regardless of group membership, a privileged majority group representing 85 percent of instances with near-zero calibration error of 0.01 will numerically swamp an unprivileged minority cohort of 15 percent suffering massive miscalibration of 0.15—yielding a benign pooled ECE around 0.031! Only by plotting separate subgroup curves and applying group-specific Isotonic Regression when divergence appears can auditors detect and eliminate this hidden harm.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbf{M}_{g, k} = \\mathbb{E}_{(X, Y) \\sim \\mathcal{D}_g}\\left[ \\mu_k(f(X), Y) \\right]$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Delta_k = \\max_{g} \\mathbf{M}_{g, k} - \\min_{g'} \\mathbf{M}_{g', k}, \\qquad \\rho_k = \\frac{\\min_{g'} \\mathbf{M}_{g', k}}{\\max_{g} \\mathbf{M}_{g, k}}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{ECE}_g = \\sum_{b=1}^B \\frac{|I_b^{(g)}|}{|D_g|} \\left| \\text{acc}(I_b^{(g)}) - \\text{conf}(I_b^{(g)}) \\right|$$\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#dc2626] uppercase tracking-wider\">Critical Pitfall • Pooled Masking Effect</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#fee2e2] text-[#b91c1c] border border-[#151b20]\">Anti-Pattern Alert</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fff5f5] border-2 border-[#dc2626] mb-3\">\n    <div class=\"font-mono text-xs font-black text-[#991b1b] mb-1\">The Subgroup Calibration Paradox</div>\n    <p class=\"text-xs text-[#7f1d1d] leading-relaxed\">\n      Suppose Group 1 ($85\\%$ of population) is tightly calibrated ($\\text{ECE}_1 = 0.01$), while Group 0 ($15\\%$ of population) experiences systematic distortion ($\\text{ECE}_0 = 0.15$). Notice how global averaging masks the harm:\n    </p>\n    <div class=\"text-center font-mono font-black text-sm text-[#7f1d1d] mt-2 py-1.5 bg-[#ffffff] rounded-lg border border-[#dc2626]/40\">\n      $$\\text{ECE}_{\\text{pooled}} \\approx 0.85(0.01) + 0.15(0.15) = \\mathbf{0.031} \\quad (\\text{False Safe Harbor!})$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#ffffff] border-2 border-[#151b20]\">\n      <strong class=\"text-[#dc2626] block mb-1\">⚠️ Pooled Diagnostic Failure</strong>\n      <span class=\"text-[11px] text-[#475569] leading-relaxed\">Even opposite-signed bias offsets ($\\text{bias}_0 = -0.15$, $\\text{bias}_1 = +0.03$) can partially cancel out inside shared probability bins!</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ecfdf5] border-2 border-[#059669]\">\n      <strong class=\"text-[#047857] block mb-1\">✅ Remediation Protocol</strong>\n      <span class=\"text-[11px] text-[#065f46] leading-relaxed\">Disaggregate calibration curves per slice $A=a$, flag $\\Delta\\text{ECE} = |\\text{ECE}_0 - \\text{ECE}_1| &gt; 0.03$, and apply group-specific <strong>Isotonic Regression</strong>.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why Global Reliability Plots Hide Minority Miscalibration",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Oh! So when people plot one global reliability curve for their entire validation set, they think everything is healthy because the majority class dominates the bin sample weights!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And worse: if Group zero sits slightly below the 45-degree diagonal while Group one sits slightly above it, inside each confidence bin the weighted positive outcomes can cancel each other out, making global calibration look near-zero while both subgroups suffer opposite bias errors! Let's launch Simulator 7.4 Tab A next to watch subgroup calibration distortion and Isotonic Recalibration live.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#dc2626] uppercase tracking-wider\">Critical Pitfall • Pooled Masking Effect</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#fee2e2] text-[#b91c1c] border border-[#151b20]\">Anti-Pattern Alert</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fff5f5] border-2 border-[#dc2626] mb-3\">\n    <div class=\"font-mono text-xs font-black text-[#991b1b] mb-1\">The Subgroup Calibration Paradox</div>\n    <p class=\"text-xs text-[#7f1d1d] leading-relaxed\">\n      Suppose Group 1 ($85\\%$ of population) is tightly calibrated ($\\text{ECE}_1 = 0.01$), while Group 0 ($15\\%$ of population) experiences systematic distortion ($\\text{ECE}_0 = 0.15$). Notice how global averaging masks the harm:\n    </p>\n    <div class=\"text-center font-mono font-black text-sm text-[#7f1d1d] mt-2 py-1.5 bg-[#ffffff] rounded-lg border border-[#dc2626]/40\">\n      $$\\text{ECE}_{\\text{pooled}} \\approx 0.85(0.01) + 0.15(0.15) = \\mathbf{0.031} \\quad (\\text{False Safe Harbor!})$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#ffffff] border-2 border-[#151b20]\">\n      <strong class=\"text-[#dc2626] block mb-1\">⚠️ Pooled Diagnostic Failure</strong>\n      <span class=\"text-[11px] text-[#475569] leading-relaxed\">Even opposite-signed bias offsets ($\\text{bias}_0 = -0.15$, $\\text{bias}_1 = +0.03$) can partially cancel out inside shared probability bins!</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ecfdf5] border-2 border-[#059669]\">\n      <strong class=\"text-[#047857] block mb-1\">✅ Remediation Protocol</strong>\n      <span class=\"text-[11px] text-[#065f46] leading-relaxed\">Disaggregate calibration curves per slice $A=a$, flag $\\Delta\\text{ECE} = |\\text{ECE}_0 - \\text{ECE}_1| &gt; 0.03$, and apply group-specific <strong>Isotonic Regression</strong>.</span>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s6",
-        "title": "Diagnostic Framework: Visual Fairness Pipeline",
-        "type": "figure",
+        "title": "Interactive Lab: Subgroup Calibration & ECE Studio",
+        "type": "interactive_lab",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Diagnostic Framework: Visual Fairness Pipeline",
+          "speaker": "Dr. Nova",
+          "title": "Simulator 7.4 Tab A: Subgroup Calibration & ECE",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Diagnostic Framework: Visual Fairness Pipeline. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Model[\"Trained Model Probabilities S\"] --> SliceData[\"1. Slice Observations Across Intersectional Subgroups\"]\n    SliceData --> MetricMatrix[\"2. Construct Multi-Metric Disparity Heatmap\"]\n    MetricMatrix --> CalibCheck{\"Check Calibration Curves\"}\n    CalibCheck -- \"Calibration Disparities Detected\" --> CalibRepair[\"Apply Group-Specific Isotonic Regression\"]\n    CalibCheck -- \"Calibration Satisfied\" --> ROCCheck[\"3. Intersect ROC Convex Hulls for Threshold Optimization\"]\n    ROCCheck --> Deploy{\"Disparity Within Legal Limits?\"}\n    Deploy -- \"DIR >= 0.80 and AOD <= 0.05\" --> Production[\"Approved for Regulated Production Deployment\"]\n    Deploy -- \"Disparities Violate Thresholds\" --> InProcessing[\"Trigger In-Processing Adversarial / Reductions Retraining\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Model,SliceData blue;\n    class MetricMatrix,CalibCheck,ROCCheck,Deploy amber;\n    class Production,CalibRepair,InProcessing green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Never compute aggregate accuracy without grouping. In continuous integration pipelines, instantiate a MetricFrame tracking selection rate, false positive rate, and error rate across every demographic slice on every model checkpoint commit (Weerts, 20</span>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Diagnostic Framework: Visual Fairness Pipeline",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for diagnostic framework: visual fairness pipeline, how does the architectural flow enforce system stability?"
+              "text": "Welcome to Interactive Lab 1: Subgroup Calibration and Expected Calibration Error Studio. In the interactive canvas below, we plot disaggregated 10-bin reliability diagrams for Group zero in amber and Group one in blue against the dashed gray 45-degree perfect calibration diagonal.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Drag the Group zero Risk Distortion slider below zero to simulate punitive under-prediction, then observe how Group zero ECE and the Calibration Disparity Delta ECE rise while Global Pooled ECE remains deceptively modest. Click Apply Isotonic Recalibration to snap both subgroup curves smoothly back onto the calibrated diagonal.",
+              "dock": "sim"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Model[\"Trained Model Probabilities S\"] --> SliceData[\"1. Slice Observations Across Intersectional Subgroups\"]\n    SliceData --> MetricMatrix[\"2. Construct Multi-Metric Disparity Heatmap\"]\n    MetricMatrix --> CalibCheck{\"Check Calibration Curves\"}\n    CalibCheck -- \"Calibration Disparities Detected\" --> CalibRepair[\"Apply Group-Specific Isotonic Regression\"]\n    CalibCheck -- \"Calibration Satisfied\" --> ROCCheck[\"3. Intersect ROC Convex Hulls for Threshold Optimization\"]\n    ROCCheck --> Deploy{\"Disparity Within Legal Limits?\"}\n    Deploy -- \"DIR >= 0.80 and AOD <= 0.05\" --> Production[\"Approved for Regulated Production Deployment\"]\n    Deploy -- \"Disparities Violate Thresholds\" --> InProcessing[\"Trigger In-Processing Adversarial / Reductions Retraining\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Model,SliceData blue;\n    class MetricMatrix,CalibCheck,ROCCheck,Deploy amber;\n    class Production,CalibRepair,InProcessing green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">Never compute aggregate accuracy without grouping. In continuous integration pipelines, instantiate a MetricFrame tracking selection rate, false positive rate, and error rate across every demographic slice on every model checkpoint commit (Weerts, 20</span>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0284c7] uppercase tracking-wide\">\n      <span>🔬</span> Interactive Lab 1: Subgroup Calibration &amp; ECE Studio\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#0e7490] border-2 border-[#151b20]\">\n      Simulator 7.4 Tab A\n    </span>\n  </div>\n\n  <p class=\"text-xs text-[#151b20]/80 font-sans mb-3\">\n    Inspect subgroup reliability curves across 10 nominal confidence bins. Deviations from the $45^\\circ$ diagonal trigger localized calibration disparities measured via $\\text{ECE}_0$, $\\text{ECE}_1$, and $\\Delta\\text{ECE}$.\n  </p>\n\n  <div class=\"p-3 rounded-lg bg-[#f0f9ff] border border-[#0284c7] text-xs font-mono text-[#0369a1] mb-2\">\n    <strong>Lab Objectives:</strong>\n    <ol class=\"list-decimal pl-5 space-y-1 mt-1\">\n      <li>Inspect default distortion ($\\delta_0 = -0.12$, $\\delta_1 = +0.02$): observe $\\text{ECE}_0 \\approx 0.086$ (<code>MISCALIBRATED</code>) vs. $\\text{ECE}_1 \\approx 0.015$.</li>\n      <li>Shift Group 0 distortion toward $+0.20$ to visualize systematic under-estimation of capability ($y &gt; x$).</li>\n      <li>Click <strong>Apply Isotonic Recalibration</strong> to collapse both distortions to $0.00$ ($\\Delta\\text{ECE} = 0.000$).</li>\n    </ol>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Simulator 7.4 Tab A: Subgroup Calibration & ECE",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Here is Simulator 7.4 Tab A! Right now Group zero's amber curve sags below the diagonal with distortion at minus 0.12, while Group one's blue curve hugs the diagonal cleanly.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! Try dragging Group zero distortion all the way up or down to inspect both directions of bias, and notice how Pooled ECE hides the full extent of ECE sub zero. Then click Apply Isotonic Recalibration to snap both curves cleanly back to parity.",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#0284c7] uppercase tracking-wide\">\n      <span>🔬</span> Interactive Lab 1: Subgroup Calibration &amp; ECE Studio\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#0e7490] border-2 border-[#151b20]\">\n      Simulator 7.4 Tab A\n    </span>\n  </div>\n\n  <p class=\"text-xs text-[#151b20]/80 font-sans mb-3\">\n    Inspect subgroup reliability curves across 10 nominal confidence bins. Deviations from the $45^\\circ$ diagonal trigger localized calibration disparities measured via $\\text{ECE}_0$, $\\text{ECE}_1$, and $\\Delta\\text{ECE}$.\n  </p>\n\n  <div class=\"p-3 rounded-lg bg-[#f0f9ff] border border-[#0284c7] text-xs font-mono text-[#0369a1] mb-2\">\n    <strong>Lab Objectives:</strong>\n    <ol class=\"list-decimal pl-5 space-y-1 mt-1\">\n      <li>Inspect default distortion ($\\delta_0 = -0.12$, $\\delta_1 = +0.02$): observe $\\text{ECE}_0 \\approx 0.086$ (<code>MISCALIBRATED</code>) vs. $\\text{ECE}_1 \\approx 0.015$.</li>\n      <li>Shift Group 0 distortion toward $+0.20$ to visualize systematic under-estimation of capability ($y &gt; x$).</li>\n      <li>Click <strong>Apply Isotonic Recalibration</strong> to collapse both distortions to $0.00$ ($\\Delta\\text{ECE} = 0.000$).</li>\n    </ol>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s7",
-        "title": "Production Implementation: Fairlearn Disparity Engine & ROC Frontier",
-        "type": "code",
+        "title": "Active Checkpoint 1: Subgroup Calibration Paradox",
+        "type": "checkpoint",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Production Implementation: Fairlearn Disparity Engine & ROC Frontier",
+          "speaker": "Dr. Nova",
+          "title": "Active Checkpoint 1: Pooled vs. Subgroup Calibration",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Production Implementation: Fairlearn Disparity Engine & ROC Frontier. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Let us verify your diagnostic reasoning in Active Checkpoint 1. Why can a model with an apparently benign overall pooled Expected Calibration Error of 0.015 still inflict severe systematic miscalibration on an unprivileged demographic cohort?",
+              "dock": "quiz"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># fairness_visualization_engine.py\n# Multi-Metric Disparity Matrix, Subgroup Calibration, and ROC Convex Hull Intersector\n\nfrom typing import Dict, Any, Tuple, List\nimport numpy as np\nimport pandas as pd\nfrom sklearn.metrics import roc_curve\n\nclass FairnessVisualAuditor:\n    # Computes group-specific performance curves, disparity matrices, and Equalized Odds thresholds\n    def __init__(self, y_true: np.ndarray, y_prob: np.ndarray, group: np.ndarray):\n        self.y = np.asarray(y_true, dtype=int)\n        self.p = np.asarray(y_prob, dtype=float)\n        self.g = np.asarray(group, dtype=int)\n\n    def compute_metric_disparity_table(self, threshold: float = 0.50) -&gt; pd.DataFrame:\n        # Generates a comprehensive comparative metric frame across groups\n        y_pred = (self.p &gt;= threshold).astype(int)\n        df = pd.DataFrame({&quot;y&quot;: self.y,</code></pre>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wider\">Active Checkpoint 7.4.1 • Calibration Paradox Audit</span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#0e7490] border-2 border-[#151b20]\">Self-Assessment</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans mb-1\">\n    Diagnose the Subgroup Calibration Paradox ($\\text{ECE}_{\\text{pooled}}$ vs. $\\text{ECE}_0$) in the interactive checkpoint dock below:\n  </p>\n</div>\n"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Production Implementation: Fairlearn Disparity Engine & ROC Frontier",
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Active Checkpoint 1: Subgroup Calibration Paradox",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Checkpoint 1 time! Think back to how sample weights behave when 85 percent of users belong to Group one.",
+              "dock": "quiz"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Evaluate all four choices carefully in the dock below and select the rigorous explanation for why disaggregated reliability curves are indispensable.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># fairness_visualization_engine.py\n# Multi-Metric Disparity Matrix, Subgroup Calibration, and ROC Convex Hull Intersector\n\nfrom typing import Dict, Any, Tuple, List\nimport numpy as np\nimport pandas as pd\nfrom sklearn.metrics import roc_curve\n\nclass FairnessVisualAuditor:\n    # Computes group-specific performance curves, disparity matrices, and Equalized Odds thresholds\n    def __init__(self, y_true: np.ndarray, y_prob: np.ndarray, group: np.ndarray):\n        self.y = np.asarray(y_true, dtype=int)\n        self.p = np.asarray(y_prob, dtype=float)\n        self.g = np.asarray(group, dtype=int)\n\n    def compute_metric_disparity_table(self, threshold: float = 0.50) -&gt; pd.DataFrame:\n        # Generates a comprehensive comparative metric frame across groups\n        y_pred = (self.p &gt;= threshold).astype(int)\n        df = pd.DataFrame({&quot;y&quot;: self.y,</code></pre>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wider\">Active Checkpoint 7.4.1 • Calibration Paradox Audit</span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#0e7490] border-2 border-[#151b20]\">Self-Assessment</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans mb-1\">\n    Diagnose the Subgroup Calibration Paradox ($\\text{ECE}_{\\text{pooled}}$ vs. $\\text{ECE}_0$) in the interactive checkpoint dock below:\n  </p>\n</div>\n"
         }
       },
       {
         "id": "s8",
-        "title": "Empirical Case Study: Facial Analysis Systems & Healthcare Slicing",
-        "type": "bullets",
+        "title": "Group-Specific ROC Curves & Equalized Odds Divergence",
+        "type": "equation",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Empirical Case Study: Facial Analysis Systems & Healthcare Slicing",
+          "speaker": "Dr. Nova",
+          "title": "Parameterized Operating Points Across Cohorts",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Empirical Case Study: Facial Analysis Systems & Healthcare Slicing. Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Gender Shades Intersectional Benchmark</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">((Buolamwini &amp; Gebru, 2018)): Auditing commercial computer vision systems (IBM, Microsoft, Face++) using overall aggregate error rates ($8\\%-12\\%$) concealed severe intersectional failure. Visualizing error rates across an intersectional $2 \\times 2$ grid (Skin Type $\\times$ Gender) revealed that lighter males achieved near-perfect accuracy ($99.2\\%$), while darker females suffered catastrophic error rates up to $34.7\\%$. The visual clarity of the disparity charts forced tech companies to overhaul facial recognition architectures within 7 months (Buolamwini, 2018).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Clinical Sepsis Triage Tooling Disparities</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">A multi-hospital healthcare network implemented a sepsis early-warning dashboard. Aggregate ROC-AUC was $0.86$. Slicing by age and race using Fairlearn exposed that for elderly psychiatric patients, the false alarm rate was $64\\%$ versus $18\\%$ for general medical patients, causing severe alarm fatigue among nursing staff.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Empirical Case Study: Facial Analysis Systems & Healthcare Slicing",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the critical industrial lesson from this case study?"
+              "text": "Let us now transition to our third core visualization engine: Group-Specific Receiver Operating Characteristic curves. For each protected cohort a in zero and one, sweeping decision threshold tau sub a from zero to one traces a two-dimensional curve pairing False Positive Rate against True Positive Rate.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
+              "text": "When historical bias shifts or compresses score distributions for one demographic slice, enforcing a naive uniform threshold such as tau zero equals tau one equals 0.50 places each group at an entirely different coordinate in ROC space. We quantify this separation cleanly through Average Absolute Odds Disparity, Delta AOD, defined as half the sum of the absolute False Positive Rate gap and absolute True Positive Rate gap. Achieving Equalized Odds requires finding group-specific operating thresholds tau zero star and tau one star where both group curves intersect seamlessly.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Gender Shades Intersectional Benchmark</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">((Buolamwini &amp; Gebru, 2018)): Auditing commercial computer vision systems (IBM, Microsoft, Face++) using overall aggregate error rates ($8\\%-12\\%$) concealed severe intersectional failure. Visualizing error rates across an intersectional $2 \\times 2$ grid (Skin Type $\\times$ Gender) revealed that lighter males achieved near-perfect accuracy ($99.2\\%$), while darker females suffered catastrophic error rates up to $34.7\\%$. The visual clarity of the disparity charts forced tech companies to overhaul facial recognition architectures within 7 months (Buolamwini, 2018).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Clinical Sepsis Triage Tooling Disparities</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">A multi-hospital healthcare network implemented a sepsis early-warning dashboard. Aggregate ROC-AUC was $0.86$. Slicing by age and race using Fairlearn exposed that for elderly psychiatric patients, the false alarm rate was $64\\%$ versus $18\\%$ for general medical patients, causing severe alarm fatigue among nursing staff.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wider\">ROC Geometry • Threshold Divergence</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Equalized Odds</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7] mb-3 text-center\">\n    <div class=\"font-mono text-xs font-bold text-[#0369a1] mb-1\">Group ROC Trajectory &amp; Average Absolute Odds Disparity ($\\Delta_{\\text{AOD}}$)</div>\n    <div class=\"text-sm sm:text-base font-mono font-black text-[#0c4a6e]\">\n      $$\\text{ROC}_a(\\tau_a) = \\big(\\text{FPR}_a(\\tau_a), \\; \\text{TPR}_a(\\tau_a)\\big)$$\n    </div>\n    <div class=\"text-sm sm:text-base font-mono font-black text-[#0e7490] mt-2 pt-2 border-t border-[#0284c7]/30\">\n      $$\\Delta_{\\text{AOD}}(\\tau_0, \\tau_1) = \\frac{1}{2}\\Big( |\\text{FPR}_0(\\tau_0) - \\text{FPR}_1(\\tau_1)| + |\\text{TPR}_0(\\tau_0) - \\text{TPR}_1(\\tau_1)| \\Big)$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#fff5f5] border border-[#dc2626]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Uniform Threshold Failure ($\\tau_0 = \\tau_1 = 0.50$)</strong>\n      <span class=\"text-[11px] text-[#7f1d1d]\">Divergent score distributions force $\\text{FPR}_0(0.50) \\neq \\text{FPR}_1(0.50)$ and unequal True Positive Rates, magnifying $\\Delta_{\\text{AOD}}$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ecfdf5] border border-[#059669]\">\n      <strong class=\"text-[#047857] block mb-1\">Dual-Threshold Equality Targets</strong>\n      <span class=\"text-[11px] text-[#065f46]\">Locate $(\\tau_0^*, \\tau_1^*)$ satisfying $\\text{FPR}_0(\\tau_0^*) = \\text{FPR}_1(\\tau_1^*)$ and $\\text{TPR}_0(\\tau_0^*) = \\text{TPR}_1(\\tau_1^*)$ ($\\Delta_{\\text{AOD}} \\le \\epsilon$).</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Parameterized Operating Points Across Cohorts",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait a second, Dr. Nova! When people deploy a binary classifier, they almost always leave the cutoff hardcoded at 0.50 across every demographic group.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yes, and on differing score distributions that guarantees unequal error rates! If Group zero scores slightly lower on average due to upstream measurement noise, a single threshold at 0.50 sits much higher on Group zero's CDF than Group one's, slashing Group zero's True Positive Rate while altering False Positive burdens. Average Absolute Odds Disparity Delta AOD puts a concrete geometric distance on how far apart those two ROC operating dots stand!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wider\">ROC Geometry • Threshold Divergence</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Equalized Odds</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7] mb-3 text-center\">\n    <div class=\"font-mono text-xs font-bold text-[#0369a1] mb-1\">Group ROC Trajectory &amp; Average Absolute Odds Disparity ($\\Delta_{\\text{AOD}}$)</div>\n    <div class=\"text-sm sm:text-base font-mono font-black text-[#0c4a6e]\">\n      $$\\text{ROC}_a(\\tau_a) = \\big(\\text{FPR}_a(\\tau_a), \\; \\text{TPR}_a(\\tau_a)\\big)$$\n    </div>\n    <div class=\"text-sm sm:text-base font-mono font-black text-[#0e7490] mt-2 pt-2 border-t border-[#0284c7]/30\">\n      $$\\Delta_{\\text{AOD}}(\\tau_0, \\tau_1) = \\frac{1}{2}\\Big( |\\text{FPR}_0(\\tau_0) - \\text{FPR}_1(\\tau_1)| + |\\text{TPR}_0(\\tau_0) - \\text{TPR}_1(\\tau_1)| \\Big)$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#fff5f5] border border-[#dc2626]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Uniform Threshold Failure ($\\tau_0 = \\tau_1 = 0.50$)</strong>\n      <span class=\"text-[11px] text-[#7f1d1d]\">Divergent score distributions force $\\text{FPR}_0(0.50) \\neq \\text{FPR}_1(0.50)$ and unequal True Positive Rates, magnifying $\\Delta_{\\text{AOD}}$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ecfdf5] border border-[#059669]\">\n      <strong class=\"text-[#047857] block mb-1\">Dual-Threshold Equality Targets</strong>\n      <span class=\"text-[11px] text-[#065f46]\">Locate $(\\tau_0^*, \\tau_1^*)$ satisfying $\\text{FPR}_0(\\tau_0^*) = \\text{FPR}_1(\\tau_1^*)$ and $\\text{TPR}_0(\\tau_0^*) = \\text{TPR}_1(\\tau_1^*)$ ($\\Delta_{\\text{AOD}} \\le \\epsilon$).</span>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s9",
-        "title": "Interactive Lab: Explore Fairness Visualization Studio",
-        "type": "tool",
+        "title": "Hardt-Price-Srebro Theorem & ROC Convex Hulls",
+        "type": "equation",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Explore Fairness Visualization Studio",
+          "speaker": "Dr. Nova",
+          "title": "Feasible Equalized Odds via Convex Hull Intersection",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Explore Fairness Visualization Studio. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Fairness Visualization Studio</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Plot subgroup calibration curves, interactively tune dual group decision thresholds, and inspect ROC Pareto frontiers.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Representation Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Explore Fairness Visualization Studio",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the explore fairness visualization studio located below this player?"
+              "text": "How do auditors locate optimal operating thresholds tau zero star and tau one star without retraining massive upstream models from scratch? The mathematical solution arrives via the landmark 2016 Hardt-Price-Srebro Theorem.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Any classifier can randomize between two deterministic threshold points A and B using coin-flip probability alpha between zero and one. By linearity of expectation, that randomized predictor achieves the weighted linear segment connecting A and B in ROC space. Taking the upper convex hull of each demographic group's ROC trajectory fills in all non-concave gaps. Any coordinate sitting inside the intersection of Group zero and Group one ROC convex hulls is guaranteed to satisfy exact Equalized Odds post-processing!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Fairness Visualization Studio</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Plot subgroup calibration curves, interactively tune dual group decision thresholds, and inspect ROC Pareto frontiers.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Representation Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#b45309] uppercase tracking-wider\">Post-Processing Geometry • Hardt, Price &amp; Srebro (2016)</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#fff0b9] text-[#b45309] border border-[#151b20]\">Convex Hull Theorem</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#d97706] mb-3 text-center\">\n    <div class=\"font-mono text-xs font-bold text-[#92400e] mb-1\">Achievable Randomized Operating Space (Convex Combination $\\alpha \\in [0, 1]$)</div>\n    <div class=\"text-sm sm:text-base font-mono font-black text-[#78350f]\">\n      $$\\big(\\text{FPR}_\\alpha, \\, \\text{TPR}_\\alpha\\big) = \\alpha \\big(\\text{FPR}_A, \\, \\text{TPR}_A\\big) + (1-\\alpha)\\big(\\text{FPR}_B, \\, \\text{TPR}_B\\big)$$\n    </div>\n    <div class=\"text-xs font-mono text-[#92400e] mt-1.5\">\n      Feasible Equalized Odds points lie inside the intersection: $\\mathcal{H}(\\text{ROC}_0) \\cap \\mathcal{H}(\\text{ROC}_1)$.\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#ffffff] border-2 border-[#151b20]\">\n      <strong class=\"text-[#0284c7] block mb-1\">Why Convex Hulls Over Raw Steps?</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        Finite validation sets yield jagged empirical step curves with non-concave dips. Convex hull interpolation spans continuous randomized regions where exact group curves cross!\n      </p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffffff] border-2 border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Zero Model Retraining Needed</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        Auditors apply lightweight linear programming over risk score probabilities $S$ post-hoc, certifying exact $(\\text{FPR}, \\text{TPR})$ parity downstream.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Feasible Equalized Odds via Convex Hull Intersection",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Hold on—wait a minute, Dr. Nova! What if Group zero's empirical ROC curve stays strictly beneath Group one's higher curve across most thresholds? How do they still intersect?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Brilliant question! Both ROC curves always share the trivial endpoints zero-zero and one-one, plus any lower diagonal frontier! So taking the convex hull turns each curve into a filled feasible polygon beneath the upper hull. Every point inside the shaded overlap of Group zero's convex hull and Group one's convex hull is achievable by deliberately dialing down accuracy via threshold randomization on the higher-performing group until both hit identical TPR and FPR coordinates!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#b45309] uppercase tracking-wider\">Post-Processing Geometry • Hardt, Price &amp; Srebro (2016)</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#fff0b9] text-[#b45309] border border-[#151b20]\">Convex Hull Theorem</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#d97706] mb-3 text-center\">\n    <div class=\"font-mono text-xs font-bold text-[#92400e] mb-1\">Achievable Randomized Operating Space (Convex Combination $\\alpha \\in [0, 1]$)</div>\n    <div class=\"text-sm sm:text-base font-mono font-black text-[#78350f]\">\n      $$\\big(\\text{FPR}_\\alpha, \\, \\text{TPR}_\\alpha\\big) = \\alpha \\big(\\text{FPR}_A, \\, \\text{TPR}_A\\big) + (1-\\alpha)\\big(\\text{FPR}_B, \\, \\text{TPR}_B\\big)$$\n    </div>\n    <div class=\"text-xs font-mono text-[#92400e] mt-1.5\">\n      Feasible Equalized Odds points lie inside the intersection: $\\mathcal{H}(\\text{ROC}_0) \\cap \\mathcal{H}(\\text{ROC}_1)$.\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#ffffff] border-2 border-[#151b20]\">\n      <strong class=\"text-[#0284c7] block mb-1\">Why Convex Hulls Over Raw Steps?</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        Finite validation sets yield jagged empirical step curves with non-concave dips. Convex hull interpolation spans continuous randomized regions where exact group curves cross!\n      </p>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffffff] border-2 border-[#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Zero Model Retraining Needed</strong>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        Auditors apply lightweight linear programming over risk score probabilities $S$ post-hoc, certifying exact $(\\text{FPR}, \\text{TPR})$ parity downstream.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s10",
+        "title": "Constrained Pareto Optimization & Fundamental Conflicts",
+        "type": "equation",
+        "solo": {
+          "speaker": "Dr. Nova",
+          "title": "Maximizing Utility Under Equalized Odds Constraints",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Given the convex hull geometry, fairness engineers solve a constrained multi-objective Pareto optimization problem: maximize population-weighted accuracy across groups by selecting optimal thresholds tau zero star and tau one star, subject to keeping Average Absolute Odds Disparity Delta AOD at or below legal tolerance epsilon.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Crucially, however, visual dashboards must never promise mathematical impossibility. As proven independently by Kleinberg and Chouldechova, within-group calibration and Equalized Odds are mutually incompatible whenever demographic base rates differ—unless the classifier achieves zero error everywhere. Pareto visualization plots this fundamental utility-versus-fairness boundary transparently for policymakers.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0284c7] uppercase tracking-wider\">Pareto Engineering • Utility vs. Fairness Tradeoff</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Impossibility Guardrail</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7] mb-3 text-center\">\n    <div class=\"font-mono text-xs font-bold text-[#0369a1] mb-1\">Constrained Multi-Objective Threshold Optimization</div>\n    <div class=\"text-sm sm:text-base font-mono font-black text-[#0c4a6e]\">\n      $$\\max_{\\tau_0, \\tau_1} \\sum_{a \\in \\{0, 1\\}} p_a \\, \\text{Acc}_a(\\tau_a) \\quad \\text{subject to} \\quad \\Delta_{\\text{AOD}}(\\tau_0, \\tau_1) \\le \\epsilon$$\n    </div>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#fff5f5] border-2 border-[#dc2626] text-xs font-mono\">\n    <strong class=\"text-[#b91c1c] block mb-1\">⚖️ Group Calibration vs. Equalized Odds Conflict (Kleinberg / Chouldechova)</strong>\n    <span class=\"text-[11px] text-[#7f1d1d] leading-relaxed block\">\n      Whenever underlying group base rates differ ($\\Pr(Y=1 \\mid A=0) \\neq \\Pr(Y=1 \\mid A=1)$) and the predictor makes imperfect predictions ($\\text{Err} &gt; 0$), enforcing dual thresholds $(\\tau_0^*, \\tau_1^*)$ breaks nominal calibration—and preserving calibration forces unequal FPR/TPR! Pareto plots expose this impossibility explicitly.\n    </span>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Maximizing Utility Under Equalized Odds Constraints",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Let's connect Slide 4 calibration directly to Slide 10 Pareto threshold optimization, Dr. Nova! When we change tau zero and tau one separately so both groups land on Equalized Odds, do the underlying probability scores stay calibrated?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "No, Kaito! Unless both groups share identical positive base rates—or your classifier predicts with 100 percent zero-error accuracy—Kleinberg and Chouldechova proved calibration and Equalized Odds cannot coexist simultaneously! Our job with Pareto curves is showing leadership the exact accuracy-versus-fairness frontier rather than disguising conflicting definitions.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0284c7] uppercase tracking-wider\">Pareto Engineering • Utility vs. Fairness Tradeoff</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">Impossibility Guardrail</span>\n  </div>\n\n  <div class=\"p-4 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7] mb-3 text-center\">\n    <div class=\"font-mono text-xs font-bold text-[#0369a1] mb-1\">Constrained Multi-Objective Threshold Optimization</div>\n    <div class=\"text-sm sm:text-base font-mono font-black text-[#0c4a6e]\">\n      $$\\max_{\\tau_0, \\tau_1} \\sum_{a \\in \\{0, 1\\}} p_a \\, \\text{Acc}_a(\\tau_a) \\quad \\text{subject to} \\quad \\Delta_{\\text{AOD}}(\\tau_0, \\tau_1) \\le \\epsilon$$\n    </div>\n  </div>\n\n  <div class=\"p-3.5 rounded-xl bg-[#fff5f5] border-2 border-[#dc2626] text-xs font-mono\">\n    <strong class=\"text-[#b91c1c] block mb-1\">⚖️ Group Calibration vs. Equalized Odds Conflict (Kleinberg / Chouldechova)</strong>\n    <span class=\"text-[11px] text-[#7f1d1d] leading-relaxed block\">\n      Whenever underlying group base rates differ ($\\Pr(Y=1 \\mid A=0) \\neq \\Pr(Y=1 \\mid A=1)$) and the predictor makes imperfect predictions ($\\text{Err} &gt; 0$), enforcing dual thresholds $(\\tau_0^*, \\tau_1^*)$ breaks nominal calibration—and preserving calibration forces unequal FPR/TPR! Pareto plots expose this impossibility explicitly.\n    </span>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s11",
+        "title": "Open-Source Fairness Toolkit Ecosystem",
+        "type": "concept",
+        "solo": {
+          "speaker": "Dr. Nova",
+          "title": "Fairlearn, AIF360, Google What-If Tool, and Aequitas",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Enterprise fairness engineering relies on four battle-tested open-source toolkits, each engineered for distinct visualization and algorithmic workflows.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Microsoft's Fairlearn excels inside scikit-learn pipelines, delivering MetricFrame dashboards and exponentiated-gradient Pareto frontier visualizations. IBM Research's AIF360 provides over 70 fairness metrics alongside a comprehensive catalog of pre-processing, in-processing, and post-processing bias mitigators rendered in an interactive Web Audit Console. Google PAIR's What-If Tool embeds into TensorBoard for rich multi-dimensional scatterplots and hypothetical counterfactual toggles, while the University of Chicago's Aequitas specializes in public-policy criminal justice auditing with disparity treemaps and demographic parity matrices.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#15803d] uppercase tracking-wider\">Industry Ecosystem • Comparative Visual Engines</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#e7f4c8] text-[#15803d] border border-[#151b20]\">4 Production Toolkits</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0369a1] block mb-1 font-black\">1. Fairlearn (Microsoft / NumFOCUS)</strong>\n      <span class=\"text-[11px] text-[#0c4a6e] block\">• Native `scikit-learn` API &amp; reductions</span>\n      <span class=\"text-[11px] text-[#0c4a6e] block\">• Visual: <strong>`MetricFrame`</strong> dashboards &amp; Accuracy-vs-Fairness Pareto frontiers (Weerts 2023)</span>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#d97706] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. AIF360 (IBM Research)</strong>\n      <span class=\"text-[11px] text-[#78350f] block\">• 70+ fairness metrics &amp; full mitigation catalog</span>\n      <span class=\"text-[11px] text-[#78350f] block\">• Visual: Web Audit Console, disparity heatmaps &amp; SHAP plugins (Bellamy 2019)</span>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#ecfdf5] border-2 border-[#059669] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#047857] block mb-1 font-black\">3. What-If Tool / WIT (Google PAIR)</strong>\n      <span class=\"text-[11px] text-[#065f46] block\">• Zero-code TensorBoard counterfactual slicing</span>\n      <span class=\"text-[11px] text-[#065f46] block\">• Visual: Interactive multi-dimensional scatterplots &amp; individual counterfactual toggles</span>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fff5f5] border-2 border-[#dc2626] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">4. Aequitas (Univ. of Chicago)</strong>\n      <span class=\"text-[11px] text-[#7f1d1d] block\">• Public policy &amp; pretrial risk equity audits</span>\n      <span class=\"text-[11px] text-[#7f1d1d] block\">• Visual: Disparity treemaps &amp; demographic parity classification charts (Barocas 2016)</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Fairlearn, AIF360, Google What-If Tool, and Aequitas",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "When choosing an open-source toolkit for our stack, Dr. Nova, how should an engineering team decide between Fairlearn, AIF360, Google's What-If Tool, and Aequitas?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Match the library to your workflow stage! If you run automated scikit-learn CI/CD checks, Fairlearn's MetricFrame and threshold reductions are lightweight and native. If your compliance team needs 70-plus regulatory metrics plus explainability in one console, reach for IBM AIF360. For exploratory counterfactual debugging inside notebooks or TensorBoard, Google's What-If Tool shines; and for civic public-policy equity audits, University of Chicago's Aequitas offers purpose-built disparity treemaps.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#15803d] uppercase tracking-wider\">Industry Ecosystem • Comparative Visual Engines</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#e7f4c8] text-[#15803d] border border-[#151b20]\">4 Production Toolkits</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0369a1] block mb-1 font-black\">1. Fairlearn (Microsoft / NumFOCUS)</strong>\n      <span class=\"text-[11px] text-[#0c4a6e] block\">• Native `scikit-learn` API &amp; reductions</span>\n      <span class=\"text-[11px] text-[#0c4a6e] block\">• Visual: <strong>`MetricFrame`</strong> dashboards &amp; Accuracy-vs-Fairness Pareto frontiers (Weerts 2023)</span>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#d97706] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. AIF360 (IBM Research)</strong>\n      <span class=\"text-[11px] text-[#78350f] block\">• 70+ fairness metrics &amp; full mitigation catalog</span>\n      <span class=\"text-[11px] text-[#78350f] block\">• Visual: Web Audit Console, disparity heatmaps &amp; SHAP plugins (Bellamy 2019)</span>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#ecfdf5] border-2 border-[#059669] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#047857] block mb-1 font-black\">3. What-If Tool / WIT (Google PAIR)</strong>\n      <span class=\"text-[11px] text-[#065f46] block\">• Zero-code TensorBoard counterfactual slicing</span>\n      <span class=\"text-[11px] text-[#065f46] block\">• Visual: Interactive multi-dimensional scatterplots &amp; individual counterfactual toggles</span>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fff5f5] border-2 border-[#dc2626] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">4. Aequitas (Univ. of Chicago)</strong>\n      <span class=\"text-[11px] text-[#7f1d1d] block\">• Public policy &amp; pretrial risk equity audits</span>\n      <span class=\"text-[11px] text-[#7f1d1d] block\">• Visual: Disparity treemaps &amp; demographic parity classification charts (Barocas 2016)</span>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Interactive Lab: Dual ROC Convex Hull Optimizer",
+        "type": "interactive_lab",
+        "solo": {
+          "speaker": "Dr. Nova",
+          "title": "Simulator 7.4 Tab B: Dual ROC Pareto Optimizer",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Interactive Lab 2: Dual ROC Convex Hull Equalized Odds Optimizer. Inside the live simulator canvas below, Group zero traces an amber ROC trajectory with discriminability d equal 1.2, while Group one traces a blue ROC trajectory with d equal 1.8.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "At the default uniform cutoff tau zero equals tau one equals 0.50, notice the wide dashed red segment connecting Group zero's operating dot to Group one's dot—causing a severe Average Absolute Odds Disparity Delta AOD of 0.284 and violating regulatory parity. Drag thresholds independently or click Solve Equalized Odds Frontier to discover the Pareto-optimal thresholds tau zero star and tau one star that shrink Delta AOD near zero!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#15803d] uppercase tracking-wide\">\n      <span>🔬</span> Interactive Lab 2: Dual ROC Convex Hull &amp; Equalized Odds Optimizer\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#e7f4c8] text-[#15803d] border-2 border-[#151b20]\">\n      Simulator 7.4 Tab B\n    </span>\n  </div>\n\n  <p class=\"text-xs text-[#151b20]/80 font-sans mb-3\">\n    Manipulate decision thresholds $\\tau_0$ and $\\tau_1$ independently across subgroup ROC curves. Minimize $\\Delta_{\\text{AOD}}$ along the Hardt-Price-Srebro Equalized Odds frontier without retraining.\n  </p>\n\n  <div class=\"p-3 rounded-lg bg-[#f0fdf4] border border-[#15803d] text-xs font-mono text-[#166534] mb-2\">\n    <strong>Lab Objectives:</strong>\n    <ol class=\"list-decimal pl-5 space-y-1 mt-1\">\n      <li>Observe uniform cutoff ($\\tau_0 = 0.50, \\tau_1 = 0.50$): $\\Delta_{\\text{AOD}} \\approx 0.284$ (<code>SIGNIFICANT ODDS DISPARITY</code>).</li>\n      <li>Click <strong>Solve Equalized Odds Frontier</strong> to compute Pareto thresholds $(\\tau_0^*, \\tau_1^*)$ driving $\\Delta_{\\text{AOD}} &lt; 0.05$.</li>\n      <li>Verify how both operating coordinates converge tightly onto the feasible equalized odds intersection.</li>\n    </ol>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Simulator 7.4 Tab B: Dual ROC Pareto Optimizer",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Let's test Hardt-Price-Srebro Equalized Odds post-processing interactively! At uniform tau zero equal 0.50 and tau one equal 0.50, look how far apart those two colored dots sit along their ROC curves!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Right—and click Solve Equalized Odds Frontier to watch our optimizer search over dual thresholds tau zero and tau one simultaneously until Delta AOD plunges under 0.05 and both operating points align inside their overlapping convex hull space!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2 font-mono font-black text-xs md:text-sm text-[#15803d] uppercase tracking-wide\">\n      <span>🔬</span> Interactive Lab 2: Dual ROC Convex Hull &amp; Equalized Odds Optimizer\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#e7f4c8] text-[#15803d] border-2 border-[#151b20]\">\n      Simulator 7.4 Tab B\n    </span>\n  </div>\n\n  <p class=\"text-xs text-[#151b20]/80 font-sans mb-3\">\n    Manipulate decision thresholds $\\tau_0$ and $\\tau_1$ independently across subgroup ROC curves. Minimize $\\Delta_{\\text{AOD}}$ along the Hardt-Price-Srebro Equalized Odds frontier without retraining.\n  </p>\n\n  <div class=\"p-3 rounded-lg bg-[#f0fdf4] border border-[#15803d] text-xs font-mono text-[#166534] mb-2\">\n    <strong>Lab Objectives:</strong>\n    <ol class=\"list-decimal pl-5 space-y-1 mt-1\">\n      <li>Observe uniform cutoff ($\\tau_0 = 0.50, \\tau_1 = 0.50$): $\\Delta_{\\text{AOD}} \\approx 0.284$ (<code>SIGNIFICANT ODDS DISPARITY</code>).</li>\n      <li>Click <strong>Solve Equalized Odds Frontier</strong> to compute Pareto thresholds $(\\tau_0^*, \\tau_1^*)$ driving $\\Delta_{\\text{AOD}} &lt; 0.05$.</li>\n      <li>Verify how both operating coordinates converge tightly onto the feasible equalized odds intersection.</li>\n    </ol>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: ROC Convex Hull Geometry",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova",
+          "title": "Active Checkpoint 2: Equalized Odds Convexity",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us test your geometric intuition in Active Checkpoint 2. Under the Hardt-Price-Srebro Equalized Odds post-processing framework, why do auditors intersect the convex hulls of group ROC curves rather than restricting search strictly to raw deterministic step coordinates?",
+              "dock": "quiz"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wider\">Active Checkpoint 7.4.2 • ROC Convex Hull Geometry</span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#0e7490] border-2 border-[#151b20]\">Self-Assessment</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans mb-1\">\n    Verify why convex hulls expand the Equalized Odds feasible space without retraining in the interactive checkpoint dock below:\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Active Checkpoint 2: ROC Convex Hull Geometry",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Checkpoint 2 time! Remember what happens when empirical validation data leaves jagged steps or dips in a group's ROC trajectory.",
+              "dock": "quiz"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Apply linearity of expectation under threshold randomization to pick the exact geometric explanation in the dock below.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-2 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wider\">Active Checkpoint 7.4.2 • ROC Convex Hull Geometry</span>\n    <span class=\"px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black bg-[#c9f3f4] text-[#0e7490] border-2 border-[#151b20]\">Self-Assessment</span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans mb-1\">\n    Verify why convex hulls expand the Equalized Odds feasible space without retraining in the interactive checkpoint dock below:\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "End-to-End Visual Fairness Pipeline & CI/CD Gates",
+        "type": "concept",
+        "solo": {
+          "speaker": "Dr. Nova",
+          "title": "Operationalizing Visual Audits in Production Pipelines",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Putting all three visual engines together yields a disciplined five-step production diagnostic workflow. Step 1 slices model probabilities S across intersectional cohorts. Step 2 constructs the Rank-2 Multi-Metric Disparity Heatmap M sub g k.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Step 3 inspects disaggregated subgroup calibration curves; if calibration disparities appear, engineers apply group-specific Isotonic Regression before adjusting cutoffs. Step 4 intersects ROC convex hulls to solve Equalized Odds thresholds tau zero star and tau one star. Finally, Step 5 evaluates automated Fairlearn MetricFrame CI/CD release gates: approve production deployment only if Disparate Impact Ratio is at least 0.80 and Average Odds Disparity stays within tolerance epsilon; otherwise reject the build and trigger adversarial or reductions retraining.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wider\">Diagnostic Pipeline • Automated CI/CD Release Gate</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">5-Stage Workflow</span>\n  </div>\n\n  <div class=\"space-y-2 text-xs font-mono\">\n    <div class=\"p-2.5 rounded-xl bg-[#f0f9ff] border border-[#0284c7] flex items-center justify-between\">\n      <span><strong>1. Slice Intersectional Data:</strong> Partition $S = f(\\mathbf{X})$ across intersecting protected attributes</span>\n      <span class=\"text-[#0369a1] font-black\">Stage 1</span>\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#fffaf0] border border-[#d97706] flex items-center justify-between\">\n      <span><strong>2. Disparity Tensor Heatmap:</strong> Populate $\\mathbf{M}_{g,k}$ &amp; inspect `MetricFrame` spreads</span>\n      <span class=\"text-[#b45309] font-black\">Stage 2</span>\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#fff0b9] border border-[#d97706] flex items-center justify-between\">\n      <span><strong>3. Calibration Check &amp; Repair:</strong> Plot per-slice reliability ➔ Isotonic Regression if $\\Delta\\text{ECE}$ high</span>\n      <span class=\"text-[#92400e] font-black\">Stage 3</span>\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#ecfdf5] border border-[#059669] flex items-center justify-between\">\n      <span><strong>4. ROC Convex Hull Post-Processing:</strong> Intersect $\\mathcal{H}(\\text{ROC}_a)$ to calibrate $(\\tau_0^*, \\tau_1^*)$</span>\n      <span class=\"text-[#047857] font-black\">Stage 4</span>\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#151b20] text-[#fffdf7] border border-[#151b20] flex items-center justify-between\">\n      <span><strong>5. CI/CD Deployment Gate:</strong> Pass iff $\\text{DIR} \\ge 0.80$ &amp; $\\Delta_{\\text{AOD}} \\le 0.05$; else retrain via reductions</span>\n      <span class=\"text-[#ffc83e] font-black\">Release Gate</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Operationalizing Visual Audits in Production Pipelines",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "I love how Stage 3 fixes calibration BEFORE Stage 4 runs threshold optimization! Why does order matter so much here, Dr. Nova?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "If Group zero probabilities are miscalibrated and noisy, tuning thresholds downstream sits on shifting sand! You calibrate scores first via Isotonic Regression, then intersect ROC hulls for Equalized Odds, and finally gate merges automatically via Fairlearn MetricFrame inside CI/CD so zero regressive models reach production.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wider\">Diagnostic Pipeline • Automated CI/CD Release Gate</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">5-Stage Workflow</span>\n  </div>\n\n  <div class=\"space-y-2 text-xs font-mono\">\n    <div class=\"p-2.5 rounded-xl bg-[#f0f9ff] border border-[#0284c7] flex items-center justify-between\">\n      <span><strong>1. Slice Intersectional Data:</strong> Partition $S = f(\\mathbf{X})$ across intersecting protected attributes</span>\n      <span class=\"text-[#0369a1] font-black\">Stage 1</span>\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#fffaf0] border border-[#d97706] flex items-center justify-between\">\n      <span><strong>2. Disparity Tensor Heatmap:</strong> Populate $\\mathbf{M}_{g,k}$ &amp; inspect `MetricFrame` spreads</span>\n      <span class=\"text-[#b45309] font-black\">Stage 2</span>\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#fff0b9] border border-[#d97706] flex items-center justify-between\">\n      <span><strong>3. Calibration Check &amp; Repair:</strong> Plot per-slice reliability ➔ Isotonic Regression if $\\Delta\\text{ECE}$ high</span>\n      <span class=\"text-[#92400e] font-black\">Stage 3</span>\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#ecfdf5] border border-[#059669] flex items-center justify-between\">\n      <span><strong>4. ROC Convex Hull Post-Processing:</strong> Intersect $\\mathcal{H}(\\text{ROC}_a)$ to calibrate $(\\tau_0^*, \\tau_1^*)$</span>\n      <span class=\"text-[#047857] font-black\">Stage 4</span>\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#151b20] text-[#fffdf7] border border-[#151b20] flex items-center justify-between\">\n      <span><strong>5. CI/CD Deployment Gate:</strong> Pass iff $\\text{DIR} \\ge 0.80$ &amp; $\\Delta_{\\text{AOD}} \\le 0.05$; else retrain via reductions</span>\n      <span class=\"text-[#ffc83e] font-black\">Release Gate</span>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Case Studies: Gender Shades & Clinical Alarm Fatigue",
+        "type": "case_study",
+        "solo": {
+          "speaker": "Dr. Nova",
+          "title": "High-Stakes Visual Auditing in Vision & Critical Care",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us inspect two landmark empirical case studies where visual subgroup slicing exposed harms invisible to aggregate metrics.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "First, in the landmark 2018 Gender Shades study, Joy Buolamwini and Timnit Gebru visualized commercial facial analysis error rates across an intersectional two-by-two grid of Gender times Fitzpatrick Skin Type. While aggregate error sat at an impressive 12 percent, the visual matrix exposed an astonishing 43-fold chasm: lighter males averaged 0.8 percent error, whereas darker females suffered 34.7 percent error! Second, in ICU Sepsis Triage alerts, Fairlearn MetricFrame slicing across age cohort and psychiatric history revealed a massive 64 percent false positive rate for elderly psychiatric patients versus just 18 percent in general medical cohorts, driving severe clinical alarm fatigue.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#b91c1c] uppercase tracking-wider\">Empirical Evidence • Intersectional Failure Exposure</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#fee2e2] text-[#b91c1c] border border-[#151b20]\">Real-World Audits</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#d97706] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block text-sm mb-2\">1. Commercial Facial Analysis (Gender Shades, 2018)</strong>\n      <div class=\"p-2.5 rounded-lg bg-[#ffffff] border border-[#d97706]/50 space-y-1 text-[11px] text-[#334155]\">\n        <div>• <strong>Overall Tabular Error:</strong> $12.0\\%$ (hid severity)</div>\n        <div>• <strong>Lighter Males:</strong> <span class=\"text-[#15803d] font-black\">$0.8\\%$ error</span></div>\n        <div>• <strong>Darker Females:</strong> <span class=\"text-[#dc2626] font-black\">$34.7\\%$ error</span> ($43\\times$ disparity!)</div>\n      </div>\n      <p class=\"text-[11px] text-[#78350f] mt-2 leading-relaxed\">\n        Buolamwini &amp; Gebru's $2 \\times 2$ intersectional grid transformed commercial computer vision regulation overnight.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0369a1] block text-sm mb-2\">2. Clinical Alarm Fatigue &amp; Sepsis Triage</strong>\n      <div class=\"p-2.5 rounded-lg bg-[#ffffff] border border-[#0284c7]/50 space-y-1 text-[11px] text-[#334155]\">\n        <div>• <strong>General Medical ICU Cohort:</strong> <span class=\"text-[#15803d] font-black\">$18\\%$ FPR</span></div>\n        <div>• <strong>Elderly Psychiatric Cohort:</strong> <span class=\"text-[#dc2626] font-black\">$64\\%$ FPR</span></div>\n        <div>• <strong>Clinical Risk:</strong> Severe alarm fatigue &amp; physician dismissal</div>\n      </div>\n      <p class=\"text-[11px] text-[#0c4a6e] mt-2 leading-relaxed\">\n        Visualizing `MetricFrame` across age $\\times$ psychiatric history identified localized false-positive burden missed globally.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "High-Stakes Visual Auditing in Vision & Critical Care",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "The Gender Shades numbers are staggering, Dr. Nova! Twelve percent overall error sounds reasonably solid in an executive slide deck—until you plot Gender by Skin Type and see 34.7 percent failure on darker females against 0.8 percent on lighter males!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And similarly in ICU sepsis prediction: doctors started ignoring alerts altogether because a 64 percent false positive rate in elderly psychiatric wards drowned out real emergencies! Visual subgroup matrices turn abstract ethical concerns into undeniable empirical proof that teams can act upon immediately.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#b91c1c] uppercase tracking-wider\">Empirical Evidence • Intersectional Failure Exposure</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#fee2e2] text-[#b91c1c] border border-[#151b20]\">Real-World Audits</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono\">\n    <div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#d97706] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block text-sm mb-2\">1. Commercial Facial Analysis (Gender Shades, 2018)</strong>\n      <div class=\"p-2.5 rounded-lg bg-[#ffffff] border border-[#d97706]/50 space-y-1 text-[11px] text-[#334155]\">\n        <div>• <strong>Overall Tabular Error:</strong> $12.0\\%$ (hid severity)</div>\n        <div>• <strong>Lighter Males:</strong> <span class=\"text-[#15803d] font-black\">$0.8\\%$ error</span></div>\n        <div>• <strong>Darker Females:</strong> <span class=\"text-[#dc2626] font-black\">$34.7\\%$ error</span> ($43\\times$ disparity!)</div>\n      </div>\n      <p class=\"text-[11px] text-[#78350f] mt-2 leading-relaxed\">\n        Buolamwini &amp; Gebru's $2 \\times 2$ intersectional grid transformed commercial computer vision regulation overnight.\n      </p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0369a1] block text-sm mb-2\">2. Clinical Alarm Fatigue &amp; Sepsis Triage</strong>\n      <div class=\"p-2.5 rounded-lg bg-[#ffffff] border border-[#0284c7]/50 space-y-1 text-[11px] text-[#334155]\">\n        <div>• <strong>General Medical ICU Cohort:</strong> <span class=\"text-[#15803d] font-black\">$18\\%$ FPR</span></div>\n        <div>• <strong>Elderly Psychiatric Cohort:</strong> <span class=\"text-[#dc2626] font-black\">$64\\%$ FPR</span></div>\n        <div>• <strong>Clinical Risk:</strong> Severe alarm fatigue &amp; physician dismissal</div>\n      </div>\n      <p class=\"text-[11px] text-[#0c4a6e] mt-2 leading-relaxed\">\n        Visualizing `MetricFrame` across age $\\times$ psychiatric history identified localized false-positive burden missed globally.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Production Implementation: Pydantic V2 & 4 Cardinal Rules",
+        "type": "capstone",
+        "solo": {
+          "speaker": "Dr. Nova",
+          "title": "Production Verification Contracts & Key Takeaways",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To deploy visual fairness diagnostics reliably in production, teams codify all checks into strictly typed Pydantic V2 verification contracts inside automated CI/CD gates—validating Calibration ECE audits, Equalized Odds convex hull optimizations, and multi-metric disparity frames.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Carry forward our Four Cardinal Rules of Bias Visualization and Auditing Tools: First, slice intersectional subgroups into Rank-2 disparity tensors before ever reporting pooled averages. Second, disaggregate subgroup reliability curves and ECE to defeat the Subgroup Calibration Paradox. Third, intersect ROC convex hulls using Hardt-Price-Srebro dual thresholding to calibrate Equalized Odds. And fourth, wire Fairlearn MetricFrame and Pydantic V2 assertions directly into automated deployment pipelines. Thank you for completing Lesson 7.4!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#151b20] uppercase tracking-wider\">Production Capstone • Pydantic V2 Verification &amp; 4 Cardinal Rules</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#ffc83e] text-[#151b20] border border-[#151b20]\">Lesson 7.4 Complete</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mb-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7]\">\n      <strong class=\"text-[#0369a1] block mb-1\">1. Tensor Slicing First</strong>\n      <span class=\"text-[11px] text-[#0c4a6e]\">Construct Rank-2 `MetricFrame` tensors $\\mathbf{M} \\in \\mathbb{R}^{G \\times K}$ across intersectional slices before computing averages.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#d97706]\">\n      <strong class=\"text-[#b45309] block mb-1\">2. Disaggregated Calibration</strong>\n      <span class=\"text-[11px] text-[#78350f]\">Inspect per-group reliability plots &amp; $\\text{ECE}_a$; repair localized bias via group Isotonic Regression.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ecfdf5] border-2 border-[#059669]\">\n      <strong class=\"text-[#047857] block mb-1\">3. Convex Hull Intersections</strong>\n      <span class=\"text-[11px] text-[#065f46]\">Optimize $(\\tau_0^*, \\tau_1^*)$ in $\\mathcal{H}(\\text{ROC}_0) \\cap \\mathcal{H}(\\text{ROC}_1)$ while disclosing utility-calibration tradeoffs.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff5f5] border-2 border-[#dc2626]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">4. Automated Pydantic CI/CD Gates</strong>\n      <span class=\"text-[11px] text-[#7f1d1d]\">Enforce typed contracts gating $\\Delta\\text{ECE}$, minimized $\\Delta_{\\text{AOD}}$, and $\\text{DIR} \\ge 0.80$ before merge!</span>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-lg bg-[#151b20] text-[#fffdf7] font-mono text-[11px] leading-relaxed\">\n    <span class=\"text-[#ffc83e] font-bold\"># Production Visual Fairness Assertion (test_ch7_p4_pydantic.py)</span><br>\n    assert ece_audit.subgroup_miscalibration_detected or ece_audit.disparity_delta_ece &lt; 0.03<br>\n    assert opt_audit.disparity_mitigated and mf_audit.disparate_impact_ratio &gt;= 0.80\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Production Verification Contracts & Key Takeaways",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "What a transformative toolkit, Dr. Nova! From Rank-2 disparity tensors and binned reliability ECE diagrams to intersecting ROC convex hulls and catching real-world failures in Gender Shades and ICU triage!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And by encapsulating CalibrationECEAudit, EqualizedOddsOptimizationAudit, and FairnessMetricFrameAudit inside strict Pydantic V2 contracts, every pull request must visually and mathematically earn its release clearance.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Coming up next in Lesson 7.5, we examine the systemic Human, Financial, and Regulatory Impacts of Dataset Bias! Thank you for joining Lesson 7.4!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between pb-2 mb-3 border-b-2 border-[#151b20]/15\">\n    <span class=\"font-mono text-xs font-black text-[#151b20] uppercase tracking-wider\">Production Capstone • Pydantic V2 Verification &amp; 4 Cardinal Rules</span>\n    <span class=\"px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#ffc83e] text-[#151b20] border border-[#151b20]\">Lesson 7.4 Complete</span>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 mb-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#f0f9ff] border-2 border-[#0284c7]\">\n      <strong class=\"text-[#0369a1] block mb-1\">1. Tensor Slicing First</strong>\n      <span class=\"text-[11px] text-[#0c4a6e]\">Construct Rank-2 `MetricFrame` tensors $\\mathbf{M} \\in \\mathbb{R}^{G \\times K}$ across intersectional slices before computing averages.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#d97706]\">\n      <strong class=\"text-[#b45309] block mb-1\">2. Disaggregated Calibration</strong>\n      <span class=\"text-[11px] text-[#78350f]\">Inspect per-group reliability plots &amp; $\\text{ECE}_a$; repair localized bias via group Isotonic Regression.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ecfdf5] border-2 border-[#059669]\">\n      <strong class=\"text-[#047857] block mb-1\">3. Convex Hull Intersections</strong>\n      <span class=\"text-[11px] text-[#065f46]\">Optimize $(\\tau_0^*, \\tau_1^*)$ in $\\mathcal{H}(\\text{ROC}_0) \\cap \\mathcal{H}(\\text{ROC}_1)$ while disclosing utility-calibration tradeoffs.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff5f5] border-2 border-[#dc2626]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">4. Automated Pydantic CI/CD Gates</strong>\n      <span class=\"text-[11px] text-[#7f1d1d]\">Enforce typed contracts gating $\\Delta\\text{ECE}$, minimized $\\Delta_{\\text{AOD}}$, and $\\text{DIR} \\ge 0.80$ before merge!</span>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-lg bg-[#151b20] text-[#fffdf7] font-mono text-[11px] leading-relaxed\">\n    <span class=\"text-[#ffc83e] font-bold\"># Production Visual Fairness Assertion (test_ch7_p4_pydantic.py)</span><br>\n    assert ece_audit.subgroup_miscalibration_detected or ece_audit.disparity_delta_ece &lt; 0.03<br>\n    assert opt_audit.disparity_mitigated and mf_audit.disparate_impact_ratio &gt;= 0.80\n  </div>\n</div>\n"
         }
       }
     ]

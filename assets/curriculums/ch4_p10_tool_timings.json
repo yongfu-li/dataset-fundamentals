@@ -1,0 +1,134 @@
+{
+  "ch4_p10_judge_sim_solo.mp3": {
+    "duration": 26.904,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Welcome to the LLM-as-a-Judge and Position Bias Compensator Studio. In this workbench, we simulate an automated evaluator comparing a concise, mathematically precise response A against a verbose response B. Drag the Position Bias slider up to plus 0.30: notice how Candidate 1 wins both trials due to primacy bias, and observe how our symmetric debiasing formula calculates the true 53 percent preference rate.",
+        "start": 0.0,
+        "end": 26.904
+      }
+    ]
+  },
+  "ch4_p10_judge_sim_duo.mp3": {
+    "duration": 16.416,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Look at that position flip, Dr. Nova! When I push the Position Bias slider up, whoever sits in Slot 1 wins every single time! But our bidirectional permutation audit averages both orders and reveals that Response A actually won with 53 percent!",
+        "start": 0.0,
+        "end": 16.416
+      }
+    ]
+  },
+  "ch4_p10_chk1_solo.mp3": {
+    "duration": 22.536,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Active Checkpoint 1: In an automated evaluation run, a concise response A in Slot 1 beats response B with 68 percent preference. When the slot order is reversed so B is in Slot 1, response B beats response A with 62 percent preference. What is the true debiased preference for response A, and how does the data team remediate this bias?",
+        "start": 0.0,
+        "end": 22.536
+      }
+    ]
+  },
+  "ch4_p10_chk1_duo.mp3": {
+    "duration": 17.232,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Active Checkpoint 1! Response A won with 68% in Slot 1, but Response B won with 62% in Slot 1! How do we compute the true debiased winner without falling into the position bias trap? Pick Option A, B, or C!",
+        "start": 0.0,
+        "end": 17.232
+      }
+    ]
+  },
+  "ch4_p10_chk1_feedback_correct.mp3": {
+    "duration": 24.0,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Spot on, Alignment Architect! The debiased average is 0.68 plus 1 minus 0.62, all divided by 2, which equals 53.0 percent! Response A narrowly wins by 3 percent, while raw position bias manufactured an artificial 24 percent swing. Permutation audits are mandatory for valid preference curation!",
+        "start": 0.0,
+        "end": 24.0
+      }
+    ]
+  },
+  "ch4_p10_chk1_feedback_incorrect.mp3": {
+    "duration": 21.816,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Not quite. Remember our debiasing theorem: average the forward win rate with 1 minus the reverse win rate. Adding 0.68 to 1 minus 0.62 gives 1.06, divided by 2 yields exactly 53.0 percent! Single-order evaluations are heavily distorted by position bias.",
+        "start": 0.0,
+        "end": 21.816
+      }
+    ]
+  },
+  "ch4_p10_dpo_sim_solo.mp3": {
+    "duration": 22.176,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Welcome to the DPO Loss, Implicit Reward, and Policy Gradient Studio. Adjust the KL penalty beta and the policy likelihood ratios on the winning and losing completions. Watch the live readouts compute the implicit reward gap and Bradley-Terry probability, and observe how DPO optimizes the policy directly with supervised learning stability.",
+        "start": 0.0,
+        "end": 22.176
+      }
+    ]
+  },
+  "ch4_p10_dpo_sim_duo.mp3": {
+    "duration": 16.392,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Check out those live policy dynamics, Dr. Nova! When the policy favors the winner with ratio 3.0 and suppresses the loser to 0.4, the implicit reward difference becomes positive and the DPO loss drops straight down—all without running a separate reward model!",
+        "start": 0.0,
+        "end": 16.392
+      }
+    ]
+  },
+  "ch4_p10_chk2_solo.mp3": {
+    "duration": 21.216,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Active Checkpoint 2: An AI engineering team aligns an 8-billion parameter model from pairwise preference triplets without training an external reinforcement learning reward model. What exact mathematical property of the optimal policy under the KL-regularized objective enables DPO, and what architectural constraint prevents catastrophic Model Collapse?",
+        "start": 0.0,
+        "end": 21.216
+      }
+    ]
+  },
+  "ch4_p10_chk2_duo.mp3": {
+    "duration": 14.688,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Active Checkpoint 2! How does DPO cancel the intractable partition function Z of x, and what is the minimum fraction of gold human data needed to stop recursive model collapse? Select Option A, B, or C!",
+        "start": 0.0,
+        "end": 14.688
+      }
+    ]
+  },
+  "ch4_p10_chk2_feedback_correct.mp3": {
+    "duration": 21.816,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Precisely right! Substituting the closed-form reward into the Bradley-Terry likelihood completely cancels the intractable partition function beta ln Z of x, allowing exact policy optimization via cross-entropy loss. Furthermore, retaining a permanent 15 percent gold human ground truth anchor prevents recursive variance collapse!",
+        "start": 0.0,
+        "end": 21.816
+      }
+    ]
+  },
+  "ch4_p10_chk2_feedback_incorrect.mp3": {
+    "duration": 21.792,
+    "sentences": [
+      {
+        "speaker": "Kaito",
+        "text": "Careful! DPO does not approximate the partition function via Monte Carlo sampling; the partition function cancels out algebraically in the difference r of y-w minus r of y-l. And 100 percent synthetic data guarantees rapid variance vanishing; models require at least 15 percent gold human anchors to prevent collapse.",
+        "start": 0.0,
+        "end": 21.792
+      }
+    ]
+  }
+}

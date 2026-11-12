@@ -1,0 +1,533 @@
+{
+  "duration": 839.256,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, we have already handled missing values with MICE and merged duplicates using Fellegi-Sunter. Once a dataset has zero nulls and zero duplicates, aren't we ready to train XGBoost or a neural network?",
+          "dock": "main",
+          "start": 0.0,
+          "end": 13.032
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Not even close, Kaito! Imagine a fraud dataset with zero missing values and zero duplicates, where 99% of transactions are legitimate and only 1% are fraudulent, surrounded by 50 useless telemetry columns and a few corrupted million-dollar invoice glitches.",
+          "dock": "main",
+          "start": 13.032,
+          "end": 30.936
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Wait\u2014if a model simply guesses 'Legitimate' for every single transaction, it gets 99% accuracy while missing 100% of all fraud! And those million-dollar spikes would skew linear weights or variance scalers!",
+          "dock": "main",
+          "start": 30.936,
+          "end": 44.568
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Today we build formal statistical armor against three invisible killers: outliers, noise dimensions, and severe class imbalance.",
+          "dock": "main",
+          "start": 44.568,
+          "end": 55.128
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at that fork after Outlier Detection: Error versus Rare Event. Why wouldn't we just filter out every record above 3 standard deviations automatically?",
+          "dock": "main",
+          "start": 55.128,
+          "end": 66.144
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because in anomaly detection, cybersecurity intrusion, and high-value fraud, the extreme outlier IS the very signal we are trying to predict! If a corporate fraudster drains 500,000 dollars while normal buyers spend 45 dollars, blindly dropping top outliers throws away every fraud example in your training split!",
+          "dock": "main",
+          "start": 66.144,
+          "end": 86.64
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Whoa\u2014we would literally clean away our target label! So if it's a physically impossible sensor glitch like minus 999 Kelvin, we clip or impute it; but if it's genuine, we keep it and flag is_outlier!",
+          "dock": "main",
+          "start": 86.64,
+          "end": 100.128
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely right. Domain semantics always dictate whether an outlier is garbage to scrub or gold to model.",
+          "dock": "main",
+          "start": 100.128,
+          "end": 107.832
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Hold on, Dr. Nova! Does that equation mean that if 15% of our IoT sensors break and report plus one million degrees, a classic 3-sigma Z-score filter catches ZERO of them?!",
+          "dock": "main",
+          "start": 107.832,
+          "end": 119.736
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Plug p equals 0.15 into the Masking Limit Theorem, Kaito! One minus 0.15 is 0.85, divided by 0.15 gives 5.67, and its square root is strictly 2.38!",
+          "dock": "main",
+          "start": 119.736,
+          "end": 136.032
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Whoa! Wait\u20142.38 is independent of delta! Whether the broken sensors emit 500 degrees or 1 billion degrees, they warp sigma proportionally so their Z-score hits a hard ceiling of 2.38, which is strictly below 3.0!",
+          "dock": "main",
+          "start": 136.032,
+          "end": 152.352
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exact algebraic cancellation! Those 15% anomalies literally mask themselves from the very detector built to find them. That is why classical Z-score filters must never guard dirty ETL pipelines.",
+          "dock": "main",
+          "start": 152.352,
+          "end": 166.752
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I see how MAD uses the median twice\u2014once for the center, and once for the absolute deviations! Why is the magic constant 0.6745 needed?",
+          "dock": "main",
+          "start": 166.752,
+          "end": 177.792
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Great question, Kaito! Under a standard bell curve, half of all probability mass lies between minus 0.6745 sigma and plus 0.6745 sigma. By multiplying deviations by 0.6745, the Modified Z-score aligns cleanly with classical Z-score units when data really IS Gaussian!",
+          "dock": "main",
+          "start": 177.792,
+          "end": 201.0
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And because both medians ignore the top 49% most extreme values completely, an entire botnet or broken sensor rack can output plus ten million, and the MAD barely flinches!",
+          "dock": "main",
+          "start": 201.0,
+          "end": 211.944
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Wait until we go multi-dimensional, though\u2014even a 50%-robust 1D MAD filter has a glaring blind spot when features are correlated!",
+          "dock": "main",
+          "start": 211.944,
+          "end": 220.968
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at that telemetry case: RPM is high at plus 2.2 sigma and Fuel Flow is idle at minus 2.2 sigma. Neither number is extreme on its own! Why did Mahalanobis distance jump to 245.5?!",
+          "dock": "main",
+          "start": 220.968,
+          "end": 236.544
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because high RPM and low fuel flow cannot happen together physically in a running engine! Mathematically, inverting a 2-by-2 correlation matrix with r equals 0.96 divides off-diagonal discrepancies by 1 minus r squared, which is only 0.0784\u2014multiplying squared deviations perpendicular to the correlation cigar by nearly 13x!",
+          "dock": "main",
+          "start": 236.544,
+          "end": 260.688
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Aha! That rotates our acceptance box into a tilted ellipsoid! Any impossible anti-correlated pair bursts straight out the thin waist of the ellipse!",
+          "dock": "main",
+          "start": 260.688,
+          "end": 271.512
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And using MCD ensures even a swarm of off-axis anomalies cannot tilt that green ellipse away from the genuine correlation core!",
+          "dock": "main",
+          "start": 271.512,
+          "end": 279.432
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I switched to Masking Cluster mode! When contamination p is 6%, the classical Z-score still catches the outlier swarm because square root of 0.94 over 0.06 is nearly 4.0!",
+          "dock": "main",
+          "start": 279.432,
+          "end": 293.736
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now slide p past 10% up to 15%, Kaito! Watch that red dashed rectangle stretch horizontally and vertically until it swallows the entire outlier cluster!",
+          "dock": "main",
+          "start": 293.736,
+          "end": 305.544
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Unbelievable! Classical Z-score catch rate just snapped straight to 0 out of 15 caught, while the green MAD and MCD boundary stayed frozen right around the blue nominal cloud and caught 100%!",
+          "dock": "main",
+          "start": 305.544,
+          "end": 317.568
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That step-function transition at p equals 10% is why every industrial anomaly detector must replace parametric variance with MAD and MCD.",
+          "dock": "main",
+          "start": 317.568,
+          "end": 327.192
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, 15 broken readings out of 100 equals p equals 15%! Wait\u2014the Masking Limit for Z greater than 3 is 1 divided by 1 plus 9, which is 10%!",
+          "dock": "main",
+          "start": 327.192,
+          "end": 339.288
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on! Compute the contaminated empirical mean and standard deviation across those 100 readings.",
+          "dock": "main",
+          "start": 339.288,
+          "end": 346.992
+        },
+        {
+          "speaker": "Kaito",
+          "text": "With 15 spikes at 500, the mean jumps to 93.7 and standard deviation explodes to 170.8! So Z at 500 is only 500 minus 93.7 divided by 170.8, which equals 2.38\u2014strictly less than 3.0! Meanwhile Modified MAD keeps the median at 22.0 and flags M over 450!",
+          "dock": "main",
+          "start": 346.992,
+          "end": 370.704
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Flawless derivation, Kaito! Confirm your selection inside Active Checkpoint 1 below.",
+          "dock": "main",
+          "start": 370.704,
+          "end": 377.64
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, Isolation Forests feel counterintuitive at first! Decision trees usually try to minimize impurity, yet Isolation Forest picks features and thresholds purely at random!",
+          "dock": "main",
+          "start": 377.64,
+          "end": 389.472
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Think geometrically, Kaito! Suppose 999 commuters cluster tightly near downtown, while one lone outlier stands miles out in an empty desert. If I throw random north-south or east-west fences across the map, how many cuts will isolate the lone desert outlier versus separating two commuters standing shoulder-to-shoulder?",
+          "dock": "main",
+          "start": 389.472,
+          "end": 410.304
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Oh! Almost any fence placed between downtown and the desert immediately isolates the lone outlier on split number one! While separating overlapping downtown commuters takes dozens of surgical slices!",
+          "dock": "main",
+          "start": 410.304,
+          "end": 423.456
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on! Few cuts equals small path length h, so 2 to the minus h over c rushes straight toward 1.0\u2014flagging the anomaly in linear time without covariance inversion!",
+          "dock": "main",
+          "start": 423.456,
+          "end": 435.936
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I always assumed giving a machine learning model MORE features couldn't hurt\u2014wouldn't it just learn zero weights on the irrelevant noise columns?",
+          "dock": "main",
+          "start": 435.936,
+          "end": 444.336
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In finite samples, noise is lethal, Kaito! Suppose you use k-nearest neighbors to classify medical scans using 5 genuine clinical metrics alongside 200 pure random ID or metadata noise columns.",
+          "dock": "main",
+          "start": 444.336,
+          "end": 458.376
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Each of those 200 random numbers contributes random distance offsets, drowning out the 5 genuine metrics! So two completely dissimilar patients end up just as far apart as identical twins!",
+          "dock": "main",
+          "start": 458.376,
+          "end": 470.688
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly\u2014that is Beyer's Distance Concentration! Pruning zero-variance and zero-Mutual-Information columns inside training folds rescues signal-to-noise ratio before modeling.",
+          "dock": "main",
+          "start": 470.688,
+          "end": 482.28
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I knew accuracy fails on 99-to-1 datasets, so I switched to ROC-AUC! Why can even ROC-AUC be misleading when class skew is extreme?",
+          "dock": "main",
+          "start": 482.28,
+          "end": 492.912
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look closely at the False Positive Rate denominator, Kaito. Suppose you have 100 real cancer cases and 100,000 healthy scans. If your detector raises 1,000 false alarms just to catch 90 cancers, your False Positive Rate is 1,000 divided by 100,000, which equals only 1%!",
+          "dock": "main",
+          "start": 492.912,
+          "end": 513.72
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Wait\u2014a 90% True Positive Rate paired with a 1% False Positive Rate gives a gorgeous ROC-AUC above 0.95! Yet doctors still have to audit 1,000 false alarms for just 90 positive hits\u2014precision is under 9%!",
+          "dock": "main",
+          "start": 513.72,
+          "end": 528.504
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely why PR-AUC replaces False Positive Rate with Precision! PR-AUC strips out the massive True Negative pool and stares straight at real clinical signal-to-noise.",
+          "dock": "main",
+          "start": 528.504,
+          "end": 539.76
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why does naive random oversampling cause overfitting in Random Forests or gradient-boosted trees? Aren't duplicate rows basically the same thing as multiplying class weights?",
+          "dock": "main",
+          "start": 539.76,
+          "end": 551.472
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Wait\u2014for linear logistic regression they produce similar average gradients, EXCEPT in nearest-neighbor and decision tree learners, duplicating exact points freezes splits right around identical coordinates! SMOTE draws bridges between distinct minority examples so a tree can generalize across the gap between them.",
+          "dock": "main",
+          "start": 551.472,
+          "end": 570.48
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And why does Cost-Sensitive Loss still beat SMOTE in runtime?",
+          "dock": "main",
+          "start": 570.48,
+          "end": 574.632
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Imagine a 28-to-1 fraud table with 590,000 rows! Oversampling the minority class up to match the majority balloons your table to over 1.1 million rows and slows training by 3x! Inverse-frequency class weighting preserves exact runtime speed while keeping calibration crisp!",
+          "dock": "main",
+          "start": 574.632,
+          "end": 594.12
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, switching from Baseline to Random Oversampling shows exactly what you warned about! Those little dashed orange rings only hug the exact 8 dots without covering the empty space between them!",
+          "dock": "main",
+          "start": 594.12,
+          "end": 606.264
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now select SMOTE Convex Interpolation, Kaito! Look at those golden interpolation lines bridging nearest-neighbor orange points\u2014immediately forming a smooth continuous minority region!",
+          "dock": "main",
+          "start": 606.264,
+          "end": 618.384
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Recall leaps straight from 37.5% to 87.5%, and Borderline-SMOTE pushes the frontier fence out to 100%! Wait\u2014when should we apply SMOTE inside a cross-validation pipeline?",
+          "dock": "main",
+          "start": 618.384,
+          "end": 631.752
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Hold that thought\u2014that is the exact security bug waiting in Active Checkpoint 2 right after this lab!",
+          "dock": "main",
+          "start": 631.752,
+          "end": 638.232
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! Look at what SMOTE does: every synthetic yellow dot x new sits directly on the straight line connecting parent anchor x sub i and neighbor x sub zi!",
+          "dock": "main",
+          "start": 638.232,
+          "end": 648.912
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! Now imagine splitting those 18,000 records randomly into 5 folds after SMOTE already ran.",
+          "dock": "main",
+          "start": 648.912,
+          "end": 657.336
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Oh no! The synthetic child point x new can land in Validation Fold 5 while its two real parents x sub i and x sub zi sit inside Training Folds 1 through 4! The model gets tested on near-identical convex duplicates of its own training neighbors!",
+          "dock": "main",
+          "start": 657.336,
+          "end": 673.128
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Bingo! Validation recall inflates artificially to 98%+, while unseen test deployment crashes! Wrap SMOTE strictly inside each training fold via imbalanced-learn Pipeline. Choose Option A below to pass!",
+          "dock": "main",
+          "start": 673.128,
+          "end": 689.52
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at the benchmark table: dropping Z over 3 literally chopped PR-AUC nearly in half\u2014from 0.612 down to 0.389! And Robust MAD plus Cost-Sensitive Weights beat SMOTE at 0.835 PR-AUC in one-third the time!",
+          "dock": "main",
+          "start": 689.52,
+          "end": 705.624
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is real-world data geometry at scale, Kaito. Financial transactions follow heavy-tailed power laws\u201410,000-dollar corporate wires look like statistical Z-score anomalies, while rapid 50-cent card-testing bots look numerically mild on amount alone until MCD combines amount with velocity!",
+          "dock": "main",
+          "start": 705.624,
+          "end": 724.632
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And instead of doubling table size to 1.1 million rows with synthetic points in 54 seconds, weighting cross-entropy keeps exact distribution support and hits higher precision in 17 seconds!",
+          "dock": "main",
+          "start": 724.632,
+          "end": 736.008
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now let us translate all of these statistical invariants into our production-grade Pydantic V2 verification codebase.",
+          "dock": "main",
+          "start": 736.008,
+          "end": 743.472
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at RobustOutlierFilter inheriting sklearn's BaseEstimator and TransformerMixin! Why is putting fit and transform inside a Scikit-Learn transformer class so vital here?",
+          "dock": "main",
+          "start": 743.472,
+          "end": 755.232
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because plugging RobustOutlierFilter directly into a Pipeline guarantees that sample medians, MAD boundaries, and MinCovDet precision matrices are estimated strictly inside each training fold! Even a robust statistic leaks information if fitted before train-test splitting.",
+          "dock": "main",
+          "start": 755.232,
+          "end": 772.752
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And look at the guard rail in the fit method\u2014setting any zero MAD equal to 1e-6 stops division-by-zero crashes when over half a column equals zero! And OutlierVerificationReport automates CI unit checks!",
+          "dock": "main",
+          "start": 772.752,
+          "end": 787.08
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Mathematical theory enforced directly by CI runtime assertions\u2014zero blind spots allowed in production.",
+          "dock": "main",
+          "start": 787.08,
+          "end": 794.328
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, everything clicked today! Seeing how a 15% sensor glitch makes Z-scores mathematically invisible, while off-axis RPM spikes sneak past 1D bounds yet trigger MCD distances of 245, completely reshaped how I inspect data!",
+          "dock": "main",
+          "start": 794.328,
+          "end": 810.528
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And remember the dual lesson from IEEE-CIS fraud detection, Kaito: combine mathematical rigor with domain awareness so you never clean away your rare positive signals!",
+          "dock": "main",
+          "start": 810.528,
+          "end": 821.04
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Always keep SMOTE strictly inside training folds, trust PR-AUC over accuracy on skewed labels, and check Cost-Sensitive weights! Ready for Lesson 5.5: Practical Data Cleaning Techniques!",
+          "dock": "main",
+          "start": 821.04,
+          "end": 833.376
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Fantastic synthesis, Kaito. Onward to Lesson 5.5!",
+          "dock": "main",
+          "start": 833.376,
+          "end": 839.256
+        }
+      ]
+    }
+  ]
+}

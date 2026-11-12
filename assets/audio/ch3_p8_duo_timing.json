@@ -1,0 +1,481 @@
+{
+  "duration": 749.64,
+  "sentences": [
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome back Kaito! Today we are dissecting the darkest reality of data engineering: catastrophic data breaches.",
+      "start": 0.0,
+      "end": 7.92,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Whenever I hear data breach, I picture a shadowy hacker cracking AES-256 in a terminal window. But you always say breaches are actually architectural failures, right Dr. Nova?",
+      "start": 7.92,
+      "end": 19.392,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Attackers almost never break modern cryptography. They walk through unpatched Apache Struts parsers, steal metadata tokens via SSRF on cloud instances, or pivot laterally through third-party HVAC vendor portals. Once inside, they dwell undetected for an average of over two hundred days.",
+      "start": 19.392,
+      "end": 39.912,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Over two hundred days silent inside the network? That gives an adversary endless time to map out every database replica and stage multi-gigabyte exfiltrations!",
+      "start": 39.912,
+      "end": 50.16,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Precisely. And as we will formalize today using the Romanosky cost model, every single day of dwell time exponentially magnifies corporate financial and legal liabilities.",
+      "start": 50.16,
+      "end": 61.656,
+      "slideIndex": 0
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Looking at Table 3.8, I'm struck by how common these vectors are. A single misconfigured S3 bucket with public read permissions exposes an entire analytics lake!",
+      "start": 61.656,
+      "end": 72.456,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. And consider the SSRF vector. If a developer leaves AWS IMDSv1 active on an EC2 instance, an attacker who finds a simple URL proxying bug can query the magic link-local IP 169.254.169.254 to download live AWS Security Token Service credentials.",
+      "start": 72.456,
+      "end": 95.592,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Kaito",
+      "text": "And from there, if the instance's IAM role has broad s3:GetObject permissions, they can download the entire dataset without ever touching the company's internal firewall!",
+      "start": 95.592,
+      "end": 105.12,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Precisely. Which is why enforcing IMDSv2 with a strict IP hop limit of 1 is a non-negotiable architectural invariant.",
+      "start": 105.12,
+      "end": 114.24,
+      "slideIndex": 1
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Notice the mathematical distinction here Kaito: dwell time measures detection latency, while containment time measures remediation velocity.",
+      "start": 114.24,
+      "end": 122.808,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Kaito",
+      "text": "So even if your incident response team isolates compromised servers in twenty-four hours, if the attacker was inside for two hundred days beforehand, the containment speed doesn't save you!",
+      "start": 122.808,
+      "end": 133.032,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly! By the time detection happens at day two hundred, the attacker has already dumped table schemas, copied database snapshots, and established secondary backdoors. Dwell time is the decisive driver of catastrophic loss.",
+      "start": 133.032,
+      "end": 148.464,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Kaito",
+      "text": "That explains why shortening MTTI—Mean Time to Identify—is the number one priority for security operations!",
+      "start": 148.464,
+      "end": 155.352,
+      "slideIndex": 2
+    },
+    {
+      "speaker": "Kaito",
+      "text": "A twenty-eight percent jump in cost just for crossing that two-hundred-day mark! What causes that sudden spike?",
+      "start": 155.352,
+      "end": 162.576,
+      "slideIndex": 3
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "When an adversary is inside for over six months, they don't just steal one database table; they compromise Active Directory, download source code repositories, and access long-term backup archives. In litigation, regulators and class-action lawyers view six months of undetected dwell as gross corporate negligence, triggering maximum statutory fines.",
+      "start": 162.576,
+      "end": 184.872,
+      "slideIndex": 3
+    },
+    {
+      "speaker": "Kaito",
+      "text": "So prolonged dwell time doesn't just expand technical damage—it obliterates your legal standing under GDPR and CCPA as well!",
+      "start": 184.872,
+      "end": 192.816,
+      "slideIndex": 3
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly right. That exponential legal and financial penalty is formalized in the Romanosky cost model.",
+      "start": 192.816,
+      "end": 200.664,
+      "slideIndex": 3
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Wait, so if a breach doubles in size from five hundred thousand to one million records, the cost doesn't double?",
+      "start": 200.664,
+      "end": 207.24,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Correct! Because beta is zero point seven two, doubling the stolen records only increases the variable cost by two to the zero point seven two, which is about one point six five times. There are massive fixed retainers and volume discounts.",
+      "start": 207.24,
+      "end": 223.416,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Aha! But if the attacker dwells inside your systems for a full year instead of two weeks, that exponential factor kicks in across the entire equation!",
+      "start": 223.416,
+      "end": 232.896,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Spot on, Kaito! Dwell time compounds exponentially while data volume scales sublinearly. That is why detection speed beats data pruning every single time.",
+      "start": 232.896,
+      "end": 244.272,
+      "slideIndex": 4
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Kaito, let's test our defenses in Interactive Lab 1. Try selecting the Equifax Struts preset.",
+      "start": 244.272,
+      "end": 251.688,
+      "slideIndex": 5
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Okay, preset 1 loaded! With seventy-six days of dwell time and one million records, the projected Romanosky cost is four point seven two million dollars, and the dwell penalty is three point eight percent!",
+      "start": 251.688,
+      "end": 264.264,
+      "slideIndex": 5
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Now toggle the Envelope Encryption checkbox. What happens to the blast radius?",
+      "start": 264.264,
+      "end": 270.336,
+      "slideIndex": 5
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Whoa! The records exfiltrated drop to zero effective records, the containment badge turns green, and the projected cost drops from nearly five million dollars down to three hundred and fifty thousand for basic forensic containment! The exfiltrated data is just useless ciphertext!",
+      "start": 270.336,
+      "end": 287.376,
+      "slideIndex": 5
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Envelope encryption neutralizes exfiltration even when the perimeter completely collapses.",
+      "start": 287.376,
+      "end": 294.816,
+      "slideIndex": 5
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Checkpoint 1 time, Kaito! Here is a famous real-world puzzle from the Equifax congressional hearings.",
+      "start": 294.816,
+      "end": 302.184,
+      "slideIndex": 6
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Let me read: Equifax had intrusion detection sensors running, but the attackers queried databases for seventy-six days straight without triggering a single alert! How did they hide?",
+      "start": 302.184,
+      "end": 313.2,
+      "slideIndex": 6
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Look closely at how enterprise deep-packet inspection handles TLS-encrypted traffic. What happens if the internal cryptographic certificate on the inspection appliance expires?",
+      "start": 313.2,
+      "end": 324.336,
+      "slideIndex": 6
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Wait! If the inspection certificate expires, the sensor can't decrypt and inspect the internal TLS packets! They just pass through blindly!",
+      "start": 324.336,
+      "end": 334.752,
+      "slideIndex": 6
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Spot on. Select the correct option and let's examine the full technical post-mortem on the next slide.",
+      "start": 334.752,
+      "end": 342.0,
+      "slideIndex": 6
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Ten months! An expired certificate went unnoticed for almost a year, completely blinding their security monitoring?",
+      "start": 342.0,
+      "end": 349.992,
+      "slideIndex": 7
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Yes. When the certificate was finally updated on July 29, the security team immediately detected the suspicious traffic and shut down the portal within hours. But the attackers had already finished exfiltrating the data over their seventy-six days of uninterrupted dwell time.",
+      "start": 349.992,
+      "end": 367.536,
+      "slideIndex": 7
+    },
+    {
+      "speaker": "Kaito",
+      "text": "That proves that a security sensor is only as good as its operational lifecycle management. If your certificates lapse, your intrusion detection is completely non-existent!",
+      "start": 367.536,
+      "end": 378.408,
+      "slideIndex": 7
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Next, let us examine Target and the dangers of lateral movement across unsegmented third-party networks.",
+      "start": 378.408,
+      "end": 386.784,
+      "slideIndex": 7
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Wait, an HVAC vendor who fixes air conditioners had access to the network holding cash registers?",
+      "start": 386.784,
+      "end": 393.096,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Yes! The vendor used an electronic billing portal, but Target failed to isolate that portal with VLAN microsegmentation. It sat on the exact same routing domain as their credit card processing environment.",
+      "start": 393.096,
+      "end": 407.304,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Kaito",
+      "text": "That is unbelievable. If they had followed NIST SP 800-207 Zero Trust, the HVAC portal would have been trapped in an isolated DMZ with zero routable IP paths to payment databases!",
+      "start": 407.304,
+      "end": 419.904,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Precisely. Never trust an internal network simply because a user possesses valid credentials. Every sensitive data tier must be isolated behind an identity-aware gateway.",
+      "start": 419.904,
+      "end": 431.76,
+      "slideIndex": 8
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Why in the world would a Web Application Firewall have permission to read 700 production storage buckets?",
+      "start": 431.76,
+      "end": 438.12,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "It should never have had that permission. That is the definition of violating the Principle of Least Privilege. The WAF only needed to inspect HTTP traffic and log telemetry, yet its IAM role was granted broad S3 read access across analytics lakes.",
+      "start": 438.12,
+      "end": 455.04,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Kaito",
+      "text": "And because IMDSv1 didn't require any authentication headers or session tokens, the attacker just tricked the WAF into fetching its own keys!",
+      "start": 455.04,
+      "end": 463.944,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. AWS subsequently released IMDSv2, which mandates a PUT request with custom headers to establish a session token and enforces an IP hop limit of 1, effectively shutting down this entire attack vector.",
+      "start": 463.944,
+      "end": 479.088,
+      "slideIndex": 9
+    },
+    {
+      "speaker": "Kaito",
+      "text": "This is brilliant! Even if an attacker uses Capital One's SSRF exploit and downloads every single file from the S3 bucket, they still can't read a single record without KMS!",
+      "start": 479.088,
+      "end": 490.44,
+      "slideIndex": 10
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. And because calling KMS generates immutable AWS CloudTrail audit logs, you can detect the breach attempt in real time and revoke the KMS decryption permissions before they decrypt even one record.",
+      "start": 490.44,
+      "end": 504.336,
+      "slideIndex": 10
+    },
+    {
+      "speaker": "Kaito",
+      "text": "And under HIPAA and GDPR, if encrypted data is stolen without the keys, it's not even legally considered a reportable breach!",
+      "start": 504.336,
+      "end": 512.184,
+      "slideIndex": 10
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Precisely. GDPR Article 34 explicitly waives data subject notification if the data was encrypted with state-of-the-art cryptography. Now let's explore cloud storage misconfigurations and egress entropy in Lab 2.",
+      "start": 512.184,
+      "end": 527.424,
+      "slideIndex": 10
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Kaito, try dragging the storage bucket slider to five hundred buckets in Lab 2.",
+      "start": 527.424,
+      "end": 532.848,
+      "slideIndex": 11
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Look at that! With five hundred buckets and just a zero point three percent error rate per bucket, the probability of at least one public breach is seventy-seven point eight percent!",
+      "start": 532.848,
+      "end": 543.336,
+      "slideIndex": 11
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "And at one thousand buckets, it hits ninety-five percent! That is why relying on manual human audits in cloud consoles is statistically guaranteed to fail. You need automated Infrastructure-as-Code linting with Checkov or tfsec.",
+      "start": 543.336,
+      "end": 557.904,
+      "slideIndex": 11
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Now look at the right panel! When I switch the traffic profile to Bulk Database Dump, the entropy gauge plunges from 4.65 bits down to 1.12 bits, and the red alert fires: Circuit Breaker Tripped! The firewall cuts the connection before they can exfiltrate the full dataset!",
+      "start": 557.904,
+      "end": 575.184,
+      "slideIndex": 11
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Outstanding observation. Entropy monitoring turns mathematical information theory into a real-time defense mechanism.",
+      "start": 575.184,
+      "end": 583.296,
+      "slideIndex": 11
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Checkpoint 2 combines cloud architecture with cyber economics, Kaito.",
+      "start": 583.296,
+      "end": 588.36,
+      "slideIndex": 12
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Let's see: the question asks why IMDSv2 eliminates the SSRF vector that hit Capital One, and why multiplying records by 100 only increases Romanosky costs by about 27.6 times.",
+      "start": 588.36,
+      "end": 600.672,
+      "slideIndex": 12
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Recall what happens to an IP packet's TTL when an SSRF proxy tries to forward an HTTP request across a network hop under IMDSv2.",
+      "start": 600.672,
+      "end": 610.512,
+      "slideIndex": 12
+    },
+    {
+      "speaker": "Kaito",
+      "text": "With an IP hop limit of 1, the packet's TTL drops to 0 the moment the proxy forwards it, so the kernel drops the packet before it ever reaches the metadata service! And economically, beta is 0.72, so 100 to the power of 0.72 is approximately 27.5!",
+      "start": 610.512,
+      "end": 628.56,
+      "slideIndex": 12
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Flawless deduction! Confirm your choice on screen.",
+      "start": 628.56,
+      "end": 633.096,
+      "slideIndex": 12
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Seeing the curl commands for IMDSv2 makes it so clear. An attacker exploiting an SSRF flaw can't make the web proxy issue a custom PUT request and extract the response headers to get that session token!",
+      "start": 633.096,
+      "end": 645.744,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Most simple SSRF flaws only permit GET or POST requests without custom headers. IMDSv2 turns an open door into a brick wall.",
+      "start": 645.744,
+      "end": 657.072,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Kaito",
+      "text": "And the hop limit equals 1 means even if the proxy could issue the PUT, the packet expires before reaching the metadata endpoint!",
+      "start": 657.072,
+      "end": 664.416,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Precisely. It is an elegant application of network protocol physics to enforce cybersecurity.",
+      "start": 664.416,
+      "end": 671.424,
+      "slideIndex": 13
+    },
+    {
+      "speaker": "Kaito",
+      "text": "I love seeing this implemented in clean Python! Having Pydantic validate incident parameters means security teams can programmatically simulate risk during infrastructure planning.",
+      "start": 671.424,
+      "end": 682.488,
+      "slideIndex": 14
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. You can integrate this into your Terraform or Pulumi deployment pipelines. If an infrastructure change increases potential dwell time or exposes S3 buckets, the CI/CD pipeline calculates the financial exposure and blocks the pull request!",
+      "start": 682.488,
+      "end": 699.792,
+      "slideIndex": 14
+    },
+    {
+      "speaker": "Kaito",
+      "text": "That turns security from a checklist into an automated architectural gate. Brilliant!",
+      "start": 699.792,
+      "end": 706.176,
+      "slideIndex": 14
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "What a masterclass, Kaito! We've unpacked the mathematical reality of cyber forensics from attacker ingress to exfiltration economics.",
+      "start": 706.176,
+      "end": 715.608,
+      "slideIndex": 15
+    },
+    {
+      "speaker": "Kaito",
+      "text": "I will never look at an S3 bucket or an internal network the same way again, Dr. Nova! Perimeter defense is a myth—you have to assume attackers are already inside and design for zero trust and envelope encryption!",
+      "start": 715.608,
+      "end": 728.184,
+      "slideIndex": 15
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "That is the mark of a true senior data engineer. In Lesson 3.9, we will see what happens when the alarm finally rings: regulatory reporting within 72 hours, supervisory fines, and incident response orchestration.",
+      "start": 728.184,
+      "end": 743.088,
+      "slideIndex": 15
+    },
+    {
+      "speaker": "Kaito",
+      "text": "I'm ready for Lesson 3.9! Let's master the full incident response lifecycle!",
+      "start": 743.088,
+      "end": 749.64,
+      "slideIndex": 15
+    }
+  ]
+}

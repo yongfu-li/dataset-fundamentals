@@ -6801,225 +6801,717 @@
     "chapter": 4,
     "part": 10,
     "key": "ch4_p10",
-    "badge": "◆ TRACK 4 • LESSON 4.10: EMERGING PARADIGMS: LLM-AS-AN-ANNOTATOR, SELF-CONSISTENCY & RLHF PREFERENCE MODELING",
     "index": "Lesson 10 of 10",
     "lessonTitle": "Emerging Paradigms: LLM-as-an-Annotator, Self-Consistency & RLHF Preference Modeling",
+    "title": "Emerging Paradigms: LLM-as-an-Annotator, Self-Consistency & RLHF Preference Modeling",
+    "badge": "◆ TRACK 4 • LESSON 4.10: EMERGING PARADIGMS, LLM JUDGES & RLHF PREFERENCE MODELING",
+    "description": "Frontier generative annotation engineering: Bradley-Terry preference modeling, Direct Preference Optimization (DPO) closed-form policy alignment, Self-Consistency Chain-of-Thought marginalization, LLM-as-a-Judge debiasing and position permutation audits, Constitutional AI / RLAIF critique-revision loops, and recursive Model Collapse variance decay defense.",
+    "audioPath": "./audio/ch4_p10_solo.mp3",
     "slides": [
       {
         "id": "s1",
         "title": "Emerging Paradigms: LLM-as-an-Annotator, Self-Consistency & RLHF Preference Modeling",
-        "type": "title",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Emerging Paradigms: LLM-as-an-Annotator, Self-Consistency & RLHF Preference Modeling",
+          "title": "The Frontier of Generative Data Curation & Preference Modeling",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 4.10. Today we examine emerging paradigms: llm-as-an-annotator, self-consistency & rlhf preference modeling, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 4: Foundations</span>\n    <span>•</span>\n    <span>Lesson 4.10</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Emerging Paradigms: LLM-as-an-Annotator, Self-Consistency &amp; RLHF Preference Modeling\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into emerging paradigms: llm-as-an-annotator, self-consistency &amp; rlhf preference modeling with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Emerging Paradigms: LLM-as-an-Annotator, Self-Consistency & RLHF Preference Modeling",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 4.10?"
+              "text": "Welcome to Lesson 4.10, the grand finale of Track 4: Emerging Paradigms in Data Annotation, LLM-as-an-Annotator, Self-Consistency, and RLHF Preference Modeling. The frontier of data engineering is undergoing a tectonic shift: foundation models are no longer merely downstream targets; they are synthetic annotators, evaluators, and pairwise preference judges.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 4.10. Today we examine emerging paradigms: llm-as-an-annotator, self-consistency & rlhf preference modeling, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "Rather than eliminating human oversight, generative workflows transform human annotators from low-level perceptual labelers into high-judgment preference curators. Today, we formalize the Bradley-Terry preference model, the closed-form elegance of Direct Preference Optimization, self-consistency CoT marginalization, judge debiasing, and the recursive variance decay law of model collapse.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 4: Foundations</span>\n    <span>•</span>\n    <span>Lesson 4.10</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Emerging Paradigms: LLM-as-an-Annotator, Self-Consistency &amp; RLHF Preference Modeling\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into emerging paradigms: llm-as-an-annotator, self-consistency &amp; rlhf preference modeling with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between flex-wrap gap-2 mb-3\">\n    <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider\">\n      <span>Track 4 • Data Annotation &amp; Ground Truth • Lesson 4.10 (Track Finale)</span>\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full bg-[#f3e8ff] border border-[#151b20] text-[#7e22ce] font-mono text-[10px] font-black\">FRONTIER GENERATIVE CURATION</span>\n  </div>\n  <h1 class=\"text-xl sm:text-2xl font-black text-[#151b20] tracking-tight mb-2\">\n    Frontier Generative Annotation: LLM Judges, DPO Alignment &amp; Model Collapse Dynamics\n  </h1>\n  <p class=\"text-xs sm:text-sm text-[#475569] font-medium max-w-3xl leading-relaxed mb-4\">\n    Transitioning from scalar human crowds to <strong>preference pair curation</strong>, automated constitutional rubrics, and closed-form policy optimization [Zheng2023, Rafailov2023, Shumailov2024, Bai2022].\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Preference Learning</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Bradley-Terry probabilities &amp; closed-form DPO loss replacing PPO reward loops.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Self-Consistency</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Marginalizing $M \\ge 5$ CoT reasoning paths at $T=0.7$ to filter hallucinations.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#f3e8ff] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#7e22ce] block mb-1 font-black\">3. Judge Debiasing</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Bidirectional permutation audits canceling $>60\\%$ raw position and primacy bias.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fee2e2] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#991b1b] block mb-1 font-black\">4. Collapse Defense</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Variance decay bounds ($\\lim \\mathbb{E}[\\sigma_n^2] = 0$) &amp; mandatory gold human anchors.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Dialogue: The Myth of 100% Autonomous Synthetic Labeling",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, with state-of-the-art LLMs generating annotations, evaluating outputs, and scoring preferences, does this mean enterprise data teams can finally shut down human annotation workforces completely?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Quite the opposite, Kaito! Unchecked synthetic labeling is a mathematical death spiral. Without verified human ground truth anchors, models trained recursively on their own outputs suffer catastrophic Model Collapse, vanishing variance, and mode extinction within five generations.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So foundation models don't replace humans—they shift human annotators from labeling individual words or bounding boxes to evaluating nuanced pairwise preferences and constitutional safety trade-offs?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly right! The primary currency of modern AI is no longer a scalar label $(x, y)$, but an ordinal preference comparison $(x, y_w, y_l)$. Let us inspect the full generative annotation architecture.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 4 • Socratic Duo • Lesson 4.10</span>\n  </div>\n  <h1 class=\"text-xl sm:text-2xl font-black text-[#151b20] tracking-tight mb-2\">\n    Socratic Exploration: Autonomous Synthetic Labeling vs. The Model Collapse Boundary\n  </h1>\n  <p class=\"text-xs sm:text-sm text-[#475569] font-medium max-w-2xl leading-relaxed mb-4\">\n    Why foundation models amplify the demand for elite human judgment: shifting from scalar microtask labeling to <strong>curating preference triplets</strong> and safeguarding against recursive variance decay.\n  </p>\n  <div class=\"p-4 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono text-xs\">\n    <div class=\"font-black text-[#151b20] mb-2 uppercase tracking-wide\">Key Architectural Axioms</div>\n    <ul class=\"space-y-1.5 text-[#334155]\">\n      <li>• <strong>Shift in Currency:</strong> Static labels $(x, y)$ yield to ordinal preference triplets $(x, y_{\\text{win}}, y_{\\text{lose}})$.</li>\n      <li>• <strong>Direct Policy Gradients:</strong> DPO derives exact closed-form rewards, eliminating complex RL reward networks.</li>\n      <li>• <strong>Position Symmetry:</strong> Models exhibit $>60\\%$ slot primacy bias requiring bidirectional permutation audits.</li>\n      <li>• <strong>Human Anchor Invariant:</strong> At least $15\\%\\text{–}20\\%$ gold human data is mathematically required to avoid collapse.</li>\n    </ul>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s2",
-        "title": "The Generative Annotation Spectrum",
-        "type": "figure",
+        "title": "The Generative Annotation Spectrum: Rubrics, Self-Consistency & DPO",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "The Generative Annotation Spectrum",
+          "title": "Architectural Topology of Modern Generative Annotation Pipelines",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "The Generative Annotation Spectrum. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Prompt[\"1. Task Specification & Few-Shot Rubric\"] --> GenEngine[\"2. LLM-as-an-Annotator Engine\"]\n    \n    GenEngine --> M1[\"Self-Consistency Sampling<br/>Sample N=10 Chain-of-Thought Reasoning Paths\"]\n    M1 --> M2[\"Majority Vote Marginalization over Final Answers\"]\n    \n    M2 --> Pairwise[\"3. Pairwise Model Responses (y_win vs y_lose)\"]\n    Pairwise --> DPO_Opt[\"4. Direct Preference Optimization (DPO) Loss\"]\n    \n    DPO_Opt --> AlignedModel[(\"Aligned Foundation Model Policy\")]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Prompt,GenEngine blue;\n    class M1,M2,Pairwise amber;\n    class DPO_Opt,AlignedModel green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">When scaling human preference labeling for large language models, combine human evaluations with RLAIF (Constitutional AI): deploy an advanced teacher LLM evaluating candidate responses against a formal constitution of safety and quality principles. </span>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: The Generative Annotation Spectrum",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for the generative annotation spectrum, how does the architectural flow enforce system stability?"
+              "text": "Look at the generative annotation pipeline on Slide 2. Data engineering teams begin with task specifications and constitutional rubrics. Teacher models generate candidate reasoning traces, which are then passed through two parallel branches: self-consistency reasoning marginalization and LLM-as-a-judge preference pools.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Notice the critical audit gates: slot order must be swapped to cancel position bias, and DPO updates the policy directly. Finally, observe the red feedback arrow: training purely on unanchored synthetic outputs triggers recursive model collapse, making gold human curation an absolute mathematical safeguard.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n    Prompt[\"1. Task Specification & Few-Shot Rubric\"] --> GenEngine[\"2. LLM-as-an-Annotator Engine\"]\n    \n    GenEngine --> M1[\"Self-Consistency Sampling<br/>Sample N=10 Chain-of-Thought Reasoning Paths\"]\n    M1 --> M2[\"Majority Vote Marginalization over Final Answers\"]\n    \n    M2 --> Pairwise[\"3. Pairwise Model Responses (y_win vs y_lose)\"]\n    Pairwise --> DPO_Opt[\"4. Direct Preference Optimization (DPO) Loss\"]\n    \n    DPO_Opt --> AlignedModel[(\"Aligned Foundation Model Policy\")]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Prompt,GenEngine blue;\n    class M1,M2,Pairwise amber;\n    class DPO_Opt,AlignedModel green;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">💡 Industrial Best Practice</strong>\n  <span class=\"font-medium\">When scaling human preference labeling for large language models, combine human evaluations with RLAIF (Constitutional AI): deploy an advanced teacher LLM evaluating candidate responses against a formal constitution of safety and quality principles. </span>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fff0b9] border-2 border-[#151b20] text-[#b45309] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Architectural Topology</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-3\">\n    The Closed-Loop Generative Annotation &amp; Preference Alignment Spectrum\n  </h2>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] overflow-x-auto mb-3\">\n    <div class=\"mermaid text-center\">\nflowchart TD\n    Prompt[\"1. Task Specification & Constitutional Rubric\\n(Safety constraints, stylistic guidelines, few-shot examples)\"] --> TeacherLLM[\"2. LLM-as-an-Annotator Engine\\n(e.g., Claude 3.5 Sonnet / GPT-4o)\"]\n    TeacherLLM --> SC[\"Self-Consistency Reasoning Pipeline\\nSample M=10 CoT chains at T=0.7\"]\n    SC --> ModeConsensus[\"Marginalize Reasoning Chains\\nExtract majority consensus answer y*\"]\n    TeacherLLM --> JudgePool[\"3. LLM-as-a-Judge Evaluation Pool\\nPairwise comparison: Response y_w vs. y_l\"]\n    JudgePool --> SwapOrder[\"Bidirectional Permutation Audit\\nEvaluate (A, B) and (B, A) to cancel Position Bias\"]\n    SwapOrder --> DPO[\"4. Direct Preference Optimization (DPO)\\nOptimize policy directly without explicit reward model\"]\n    ModeConsensus & DPO --> Policy[\"Aligned Foundation Model Policy\\nReinforced on verified synthetic & human preferences\"]\n    Policy -.->|Pure Self-Training without Human Anchors| Collapse[\"WARNING: Recursive Model Collapse\\n(Variance vanishing, output homogenization)\"]\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef red fill:#fee2e2,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class Prompt,TeacherLLM blue;\n    class SC,ModeConsensus,JudgePool,SwapOrder amber;\n    class DPO,Policy green;\n    class Collapse red;\n    </div>\n  </div>\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2 font-mono text-[11px]\">\n    <div class=\"p-2 rounded-lg bg-[#c9f3f4] border border-[#151b20]\">\n      <strong>Synthetic Pre-Annotation:</strong> Zero-shot drafts turn humans into high-speed verification auditors.\n    </div>\n    <div class=\"p-2 rounded-lg bg-[#fff0b9] border border-[#151b20]\">\n      <strong>Constitutional RLAIF:</strong> Automated critique against safety rubrics eliminates annotator trauma.\n    </div>\n    <div class=\"p-2 rounded-lg bg-[#ffd8ce] border border-[#151b20]\">\n      <strong>Human Anchor Gating:</strong> Preserving 15% gold human data halts asymptotic variance vanishing.\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Breakdown: Dissecting the Generative Pipeline",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at that flowchart: Self-Consistency is sampling 10 reasoning paths at temperature 0.7, while the Judge pool evaluates pairs in both forward and reverse order. Why do we need so much computational redundancy?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because foundation models have distinct failure modes! At temperature zero, Chain-of-Thought models suffer from deterministic hallucination. And when comparing two responses, models pick Candidate A up to 70% of the time simply because it was presented first.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So without the Bidirectional Permutation Audit, our preference dataset would just train the model to output whatever response sat in Slot 1?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! The math of preference modeling is only as valid as the symmetry of the evaluation mechanism. Let us derive the Bradley-Terry preference foundation next.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fff0b9] border-2 border-[#151b20] text-[#b45309] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Pipeline Architecture</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-3\">\n    Dissecting Failure Modes: Hallucination, Primacy Bias &amp; Collapse\n  </h2>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] overflow-x-auto mb-3\">\n    <div class=\"mermaid text-center\">\nflowchart LR\n    subgraph Gen[\"1. Generation\"]\n      A[\"Prompt x\"] --> B[\"Teacher LLM\"]\n    end\n    subgraph Audit[\"2. Verification Audit\"]\n      B --> C[\"CoT Sampling (M=10)\"]\n      B --> D[\"Swap-Order Judge\"]\n    end\n    subgraph Opt[\"3. Policy Update\"]\n      C --> E[\"Consensus Label\"]\n      D --> F[\"DPO Loss\"]\n      F --> G[\"Aligned Policy\"]\n    end\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n    class A,B,C,D blue;\n    class E,F,G green;\n    </div>\n  </div>\n  <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] font-mono text-xs space-y-1 text-[#334155]\">\n    <div>• <strong>Redundancy Sizing:</strong> $M=10$ chains exponential-decay hallucination odds.</div>\n    <div>• <strong>Debiased Mean:</strong> $\\bar{P} = \\frac{1}{2}[P(A \\succ B \\mid A_1, B_2) + (1 - P(B \\succ A \\mid B_1, A_2))]$.</div>\n    <div>• <strong>Direct Objective:</strong> Eliminates separate PPO Actor-Critic-Reward triad.</div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s3",
-        "title": "Self-Consistency Reasoning Marginalization",
-        "type": "equation",
+        "title": "Latent Reward Formalization: The Bradley-Terry Preference Model",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Self-Consistency Reasoning Marginalization",
+          "title": "The Statistical Mechanics of Pairwise Human Preferences",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Self-Consistency Reasoning Marginalization. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\hat{y}_{\\text{SC}} = \\arg\\max_{y \\in \\mathcal{Y}} \\sum_{m=1}^M \\mathbb{I}\\left( \\text{ExtractAnswer}(z_m) = y \\right)$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Self-Consistency Reasoning Marginalization",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does self-consistency reasoning marginalization protect our system against silent distribution shift in production?"
+              "text": "On Slide 3, we examine the bedrock equation of Reinforcement Learning from Human Feedback: the Bradley-Terry preference model. Formulated in 1952, it posits that when an evaluator compares two candidate answers y-w and y-l for prompt x, their preference probability is governed by a latent scalar reward function r.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Notice the sigmoid parameterization: P of y-w preferred over y-l equals sigma of the reward difference r of y-w minus r of y-l. In classical RLHF, teams trained a separate neural network reward model r-psi by minimizing negative log-likelihood. But training this reward model alongside an actor policy and reference model created immense PPO instability.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\hat{y}_{\\text{SC}} = \\arg\\max_{y \\in \\mathcal{Y}} \\sum_{m=1}^M \\mathbb{I}\\left( \\text{ExtractAnswer}(z_m) = y \\right)$$\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Preference Foundations</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    The Bradley-Terry Model &amp; Classical RLHF Reward Optimization\n  </h2>\n  <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] mb-3\">\n    <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Mathematical Formulation</div>\n    <div class=\"text-sm font-serif\">\n      $$P(y_w \\succ y_l \\mid x) = \\frac{\\exp\\left(r(x, y_w)\\right)}{\\exp\\left(r(x, y_w)\\right) + \\exp\\left(r(x, y_l)\\right)} = \\sigma\\left( r(x, y_w) - r(x, y_l) \\right)$$\n    </div>\n    <p class=\"text-xs text-[#334155] font-sans mt-2\">\n      Where $\\sigma(z) = \\frac{1}{1 + e^{-z}}$ is the logistic sigmoid. In classical RLHF, a parameterized reward network $r_\\psi(x, y)$ is trained over human preference dataset $\\mathcal{D}$:\n    </p>\n    <div class=\"text-sm font-serif mt-1\">\n      $$\\mathcal{L}_R(\\psi) = -\\mathbb{E}_{(x, y_w, y_l) \\sim \\mathcal{D}} \\left[ \\ln \\sigma\\left( r_\\psi(x, y_w) - r_\\psi(x, y_l) \\right) \\right]$$\n    </div>\n  </div>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#dc2626] block mb-1\">Classical PPO Complexity:</strong>\n      <span class=\"text-[11px] text-[#475569]\">Requires 3 active networks in VRAM: Actor policy $\\pi_\\theta$, Reference policy $\\pi_{\\text{ref}}$, and Reward model $r_\\psi$. High hyperparameter sensitivity.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#166534] block mb-1\">The DPO Breakthrough:</strong>\n      <span class=\"text-[11px] text-[#475569]\">Rafailov et al. (2023) proved that the optimal policy implicitly parameterizes the reward, canceling the reward model entirely!</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Dialogue: Why Is PPO So Painful for Data Teams?",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, in the Bradley-Terry equation, the reward model $r_\\psi$ is just assigning a score to each answer. Why was training models with PPO using this reward so notoriously difficult?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Think about the moving parts, Kaito! The reward model itself has blind spots. During PPO reinforcement learning, the policy discovers reward-hacking exploits—generating verbose, repetitive garbage that tricks the reward network into giving high scores while humans find it unusable.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And on top of that, you have to keep three huge neural networks loaded in GPU memory simultaneously: the policy being trained, the frozen reference model to prevent drift, and the reward model itself!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! That massive memory footprint and reward hacking is what motivated Direct Preference Optimization. Look at the closed-form cancellation derivation on the next slide.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Foundations</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    The Fragility of PPO Reward Optimization\n  </h2>\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2.5 font-mono text-xs mb-3\">\n    <div class=\"p-3 rounded-xl bg-[#fee2e2] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#dc2626] block mb-1\">1. Reward Hacking</strong>\n      <span class=\"text-[11px] text-[#475569]\">Policies exploit reward model blind spots, generating ungrammatical filler that scores high.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">2. Hardware Footprint</strong>\n      <span class=\"text-[11px] text-[#475569]\">Synchronizing Actor, Critic, Reference, and Reward models exhausts cluster VRAM.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#166534] block mb-1\">3. Direct Alignment</strong>\n      <span class=\"text-[11px] text-[#475569]\">DPO re-parameterizes the reward directly into supervised cross-entropy policy loss.</span>\n    </div>\n  </div>\n  <p class=\"text-xs text-[#334155] font-sans\">\n    By mathematically eliminating the reward network, data teams train directly on pairwise preference annotations $(x, y_w, y_l)$ with standard supervised learning stability.\n  </p>\n</div>\n"
         }
       },
       {
         "id": "s4",
-        "title": "LLM-as-a-Judge Position Bias & Bradley-Terry Rating Updates",
-        "type": "equation",
+        "title": "Direct Preference Optimization: Closed-Form Reward Partition Cancellation",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "LLM-as-a-Judge Position Bias & Bradley-Terry Rating Updates",
+          "title": "The Mathematical Derivation of the Direct Preference Optimization Objective",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "LLM-as-a-Judge Position Bias & Bradley-Terry Rating Updates. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$P_{\\text{unbiased}}(y_A \\succ y_B \\mid x) = \\frac{1}{2} \\left( P_{\\text{judge}}(A \\succ B \\mid \\text{Order } (A, B)) + P_{\\text{judge}}(A \\succ B \\mid \\text{Order } (B, A)) \\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">When using</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">an LLM to evaluate pairs of candidate answers, models exhibit significant Position Bias (preferring Candidate 1 regardless of quality).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Unbiased preference datasets</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">require bidirectional evaluation:</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: LLM-as-a-Judge Position Bias & Bradley-Terry Rating Updates",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does llm-as-a-judge position bias & bradley-terry rating updates protect our system against silent distribution shift in production?"
+              "text": "Slide 4 reveals one of the most elegant mathematical derivations in modern machine learning: Direct Preference Optimization by Rafailov and colleagues. Under the standard KL-regularized RL objective, the optimal policy pi-star can be solved in closed form as pi-ref times exp of reward over beta, divided by partition function Z.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "When we take the logarithm and rearrange for the reward r, the intractable partition function beta ln Z of x appears. But look at what happens when we substitute r into the Bradley-Terry preference difference: beta ln Z of x is identical for both completions, so it cancels out completely! This yields the exact DPO loss, optimized using standard cross-entropy gradients.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$P_{\\text{unbiased}}(y_A \\succ y_B \\mid x) = \\frac{1}{2} \\left( P_{\\text{judge}}(A \\succ B \\mid \\text{Order } (A, B)) + P_{\\text{judge}}(A \\succ B \\mid \\text{Order } (B, A)) \\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">When using</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">an LLM to evaluate pairs of candidate answers, models exhibit significant Position Bias (preferring Candidate 1 regardless of quality).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Unbiased preference datasets</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">require bidirectional evaluation:</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border-2 border-[#151b20] text-[#166534] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Mathematical Proof</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    The DPO Derivation: Partition Function Cancellation\n  </h2>\n  <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono text-xs mb-3\">\n    <div class=\"font-bold text-[#166534] uppercase mb-1\">Step-by-Step Derivation</div>\n    <div class=\"space-y-2 text-[#151b20]\">\n      <div>\n        <strong>1. Closed-Form Optimal Policy:</strong> Under $\\max_{\\pi_\\theta} \\mathbb{E}[r(x, y)] - \\beta \\mathbb{D}_{\\text{KL}}(\\pi_\\theta \\,\\|\\, \\pi_{\\text{ref}})$:\n        <div class=\"text-sm font-serif text-center my-1\">\n          $$\\pi^*(y \\mid x) = \\frac{1}{Z(x)} \\pi_{\\text{ref}}(y \\mid x) \\exp\\left( \\frac{1}{\\beta} r(x, y) \\right)$$\n        </div>\n      </div>\n      <div>\n        <strong>2. Inverting for Ground-Truth Reward $r(x, y)$:</strong>\n        <div class=\"text-sm font-serif text-center my-1\">\n          $$r(x, y) = \\beta \\ln \\frac{\\pi^*(y \\mid x)}{\\pi_{\\text{ref}}(y \\mid x)} + \\beta \\ln Z(x)$$\n        </div>\n      </div>\n      <div>\n        <strong>3. Exact Partition Cancellation in Bradley-Terry Difference:</strong>\n        <div class=\"text-sm font-serif text-center my-1\">\n          $$r(x, y_w) - r(x, y_l) = \\beta \\ln \\frac{\\pi_\\theta(y_w \\mid x)}{\\pi_{\\text{ref}}(y_w \\mid x)} - \\beta \\ln \\frac{\\pi_\\theta(y_l \\mid x)}{\\pi_{\\text{ref}}(y_l \\mid x)}$$\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <div class=\"text-[10px] font-black font-mono text-[#0e7490] uppercase\">The Final DPO Loss Function</div>\n    <div class=\"text-sm font-serif text-center my-1\">\n      $$\\mathcal{L}_{\\text{DPO}}(\\theta; \\pi_{\\text{ref}}) = -\\mathbb{E}_{(x, y_w, y_l) \\sim \\mathcal{D}} \\left[ \\ln \\sigma\\left( \\beta \\ln \\frac{\\pi_\\theta(y_w \\mid x)}{\\pi_{\\text{ref}}(y_w \\mid x)} - \\beta \\ln \\frac{\\pi_\\theta(y_l \\mid x)}{\\pi_{\\text{ref}}(y_l \\mid x)} \\right) \\right]$$\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Dialogue: Why Is Partition Cancellation Such a Miracle?",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait, Dr. Nova! In statistical physics and energy-based models, computing the partition function $Z(x)$ over all possible sequences $y$ is notoriously intractable because the vocabulary combinatorial space is infinite!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "You nailed it, Kaito! That is the pure genius of DPO. Because the partition function $Z(x)$ depends only on the prompt $x$ and not on the completion $y$, subtracting $r(x, y_w) - r(x, y_l)$ wipes out $\\beta \\ln Z(x)$ completely!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So we don't need to approximate $Z(x)$, we don't need to train a reward model, and we don't need PPO. We just compute the model's own log-probabilities on the winner and loser!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! Your language model is secretly its own reward model. Now let us examine how we generate reliable candidate answers using Self-Consistency reasoning.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border-2 border-[#151b20] text-[#166534] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Intuition</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    The Algebraic Miracle of DPO: Bypassing Intractable Sequences\n  </h2>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n    <div class=\"p-3 rounded-xl bg-[#fee2e2] border-2 border-[#151b20]\">\n      <strong class=\"text-[#dc2626] block mb-1\">Traditional Energy Models:</strong>\n      <span class=\"text-[11px] text-[#475569]\">$Z(x) = \\sum_{y} \\pi_{\\text{ref}}(y \\mid x) \\exp(\\frac{1}{\\beta} r(x, y))$ requires summing across all $V^L$ possible completions. Impossible to evaluate directly.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#dcfce7] border-2 border-[#151b20]\">\n      <strong class=\"text-[#166534] block mb-1\">DPO Likelihood Subtraction:</strong>\n      <span class=\"text-[11px] text-[#475569]\">$\\beta \\ln Z(x) - \\beta \\ln Z(x) \\equiv 0$. The intractable denominator vanishes identically, yielding an exact closed-form cross-entropy loss.</span>\n    </div>\n  </div>\n  <p class=\"text-xs text-[#334155] font-sans\">\n    This algebraic cancellation allows data engineering teams to align 70B parameter models using $3\\times$ less compute and zero reinforcement learning divergence.\n  </p>\n</div>\n"
         }
       },
       {
         "id": "s5",
-        "title": "Python Verification: DPO Loss, Bradley-Terry Probabilities & Self-Consistency",
-        "type": "code",
+        "title": "Self-Consistency Reasoning: Marginalizing Combinatorial CoT Hallucination",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Python Verification: DPO Loss, Bradley-Terry Probabilities & Self-Consistency",
+          "title": "Filtering Stochastic Reasoning Errors via Consensus Marginalization",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Python Verification: DPO Loss, Bradley-Terry Probabilities & Self-Consistency. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># generative_annotation_dpo.py\n# Computes Bradley-Terry probabilities, DPO policy loss, and self-consistency voting\n\nfrom typing import List, Dict, Any, Tuple\nimport numpy as np\n\ndef bradley_terry_preference_prob(reward_w: float, reward_l: float) -&gt; float:\n    # Computes Bradley-Terry probability P(y_w &gt; y_l) = sigmoid(r_w - r_l)\n    diff = reward_w - reward_l\n    return float(1.0 / (1.0 + np.exp(-diff)))\n\ndef compute_dpo_loss(\n    pi_theta_w: float, \n    pi_ref_w: float,\n    pi_theta_l: float, \n    pi_ref_l: float,\n    beta: float = 0.1\n) -&gt; float:\n    # Computes DPO loss for a single preference pair (x, y_w, y_l)\n    log_ratio_w = np.log(pi_theta_w / pi_ref_w)\n    log_ratio_l = np.log(pi_theta_l / pi_ref_l)\n    \n    implicit_reward_diff = beta * (log_ratio_w - log_ratio_l)\n    loss = -np.log(1.0 / (1.0 + np.exp(-implicit_reward_diff)))\n</code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Python Verification: DPO Loss, Bradley-Terry Probabilities & Self-Consistency",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Before we evaluate preference pairs, we must ensure synthetic candidate annotations are factually accurate. On Slide 5, we formalize Self-Consistency, pioneered by Wang and colleagues at Google Research. When an LLM generates a single Chain-of-Thought at temperature zero, a single reasoning slip poisons the final label.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Self-consistency samples M independent reasoning paths z-1 through z-M at non-zero temperature, typically T equals 0.7. We then marginalize out the diverse reasoning paths by taking the majority consensus answer. Under independent reasoning errors, the probability of an incorrect consensus decays exponentially, boosting zero-shot annotation accuracy by 15 to 25 percent.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># generative_annotation_dpo.py\n# Computes Bradley-Terry probabilities, DPO policy loss, and self-consistency voting\n\nfrom typing import List, Dict, Any, Tuple\nimport numpy as np\n\ndef bradley_terry_preference_prob(reward_w: float, reward_l: float) -&gt; float:\n    # Computes Bradley-Terry probability P(y_w &gt; y_l) = sigmoid(r_w - r_l)\n    diff = reward_w - reward_l\n    return float(1.0 / (1.0 + np.exp(-diff)))\n\ndef compute_dpo_loss(\n    pi_theta_w: float, \n    pi_ref_w: float,\n    pi_theta_l: float, \n    pi_ref_l: float,\n    beta: float = 0.1\n) -&gt; float:\n    # Computes DPO loss for a single preference pair (x, y_w, y_l)\n    log_ratio_w = np.log(pi_theta_w / pi_ref_w)\n    log_ratio_l = np.log(pi_theta_l / pi_ref_l)\n    \n    implicit_reward_diff = beta * (log_ratio_w - log_ratio_l)\n    loss = -np.log(1.0 / (1.0 + np.exp(-implicit_reward_diff)))\n</code></pre>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fff0b9] border-2 border-[#151b20] text-[#b45309] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Reasoning Rigor</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Self-Consistency: Marginalizing Chain-of-Thought Reasoning Graphs\n  </h2>\n  <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] mb-3\">\n    <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Mathematical Formulation</div>\n    <div class=\"text-sm font-serif\">\n      $$\\hat{y}_{\\text{SC}} = \\arg\\max_{y \\in \\mathcal{Y}} \\sum_{m=1}^M \\mathbb{I}\\left( \\operatorname{ExtractAnswer}(z_m) = y \\right), \\quad z_m \\sim P_{\\text{LLM}}(\\cdot \\mid x, T=0.7)$$\n    </div>\n    <p class=\"text-xs text-[#334155] font-sans mt-2\">\n      Complex reasoning problems admit multiple distinct valid logical trajectories converging onto the identical ground-truth solution. Marginalizing over reasoning paths $z_m$ filters out idiosyncratic chain hallucinations.\n    </p>\n  </div>\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2.5 font-mono text-xs\">\n    <div class=\"p-2.5 rounded-lg bg-white border border-[#151b20]\">\n      <strong class=\"text-[#dc2626] block\">Greedy Trap ($T=0.0$):</strong>\n      <span class=\"text-[10px] text-[#475569]\">Deterministic decoding produces $M$ identical duplicated paths; provides zero error reduction.</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-white border border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block\">Optimal Sizing ($M \\ge 5$):</strong>\n      <span class=\"text-[10px] text-[#475569]\">$M=10$ chains capture $>90\\%$ of asymptotic accuracy gain with bounded inference cost.</span>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-white border border-[#151b20]\">\n      <strong class=\"text-[#166534] block\">Empirical Lift:</strong>\n      <span class=\"text-[10px] text-[#475569]\">+15% to +25% absolute accuracy lift on mathematical, biomedical, and structured taxonomy tasks.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Dialogue: Temperature Sizing & Voting Dynamics",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, if we need factual consistency, wouldn't setting temperature to zero be the safest choice? Why does Wang et al. recommend setting temperature to 0.7 for Self-Consistency?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because at temperature zero, the model has zero voting variance, Kaito! If the model's greedy path makes an arithmetic error at step two, sampling it ten times simply repeats the identical arithmetic error ten times.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Ah! So temperature 0.7 introduces enough entropy for the model to explore alternate paths through the reasoning graph, and while bad paths diverge into different random mistakes, valid paths all converge on the same correct answer!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! Multiple wrong paths disagree randomly, but correct logic reinforces consensus. Now let us step into our first interactive lab to inspect how models judge candidate answers.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fff0b9] border-2 border-[#151b20] text-[#b45309] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Reasoning</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Why Greedy Decoding Defeats Self-Consistency\n  </h2>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs mb-3\">\n    <div class=\"text-[#dc2626] font-bold mb-1\">Deterministic Failure Mode:</div>\n    <div class=\"text-[11px] text-[#475569]\">\n      At $T=0.0$, $\\forall m \\in [1, M], z_m \\equiv z_1$. If $z_1$ contains a hallucinated step, the consensus vote is $100\\%$ corrupt with zero self-correction.\n    </div>\n  </div>\n  <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs\">\n    <div class=\"text-[#166534] font-bold mb-1\">Stochastic Consensus Dynamics ($T=0.7$):</div>\n    <div class=\"text-[11px] text-[#475569]\">\n      Diverse reasoning trajectories explore alternate associative chains. Random errors disperse across unique invalid answers, while sound reasoning paths converge constructively on ground truth $\\hat{y}^*$.\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s6",
-        "title": "Interactive Lab: Explore Text Annotation Workbench",
-        "type": "tool",
+        "title": "Interactive Lab 1: LLM-as-a-Judge & Position Bias Compensator Studio",
+        "type": "presentation",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Explore Text Annotation Workbench",
+          "title": "Simulating Position Bias & Bidirectional Permutation Debiasing",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Explore Text Annotation Workbench. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Text Annotation Workbench</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate LLM-as-a-Judge preference ranking, test Constitutional AI rubrics, and inspect model alignment metrics.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Text Annotation Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Explore Text Annotation Workbench",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the explore text annotation workbench located below this player?"
+              "text": "Welcome to Interactive Lab 1: the LLM-as-a-Judge and Position Bias Compensator Studio! In this workbench, we simulate an evaluation model comparing a concise, mathematically accurate response A against a verbose response B. Notice how adjusting the position bias slider up to plus 0.35 completely flips Trial 1 and Trial 2.",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "In Trial 1, candidate A in Slot 1 wins. But in Trial 2, candidate B in Slot 1 wins! Observe how our debiased symmetric consensus formula averages both permutations to isolate true intrinsic quality, and try clicking the presets above to see severe primacy traps in action.",
+              "dock": "sim"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore Text Annotation Workbench</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Simulate LLM-as-a-Judge preference ranking, test Constitutional AI rubrics, and inspect model alignment metrics.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Text Annotation Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Interactive Studio 1</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Interactive Lab 1: LLM-as-a-Judge &amp; Position Bias Compensator Studio\n  </h2>\n  <p class=\"text-xs text-[#475569] font-medium leading-relaxed mb-3\">\n    Experiment with intrinsic quality gaps, primacy position bias, and judge temperature. Observe how bidirectional permutation audits cancel position artifacts to uncover true human consensus:\n  </p>\n  <div id=\"toolContainer\"></div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Exploration: Primacy Bias in Autonomous Evaluation",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look at the simulator below us, Dr. Nova! When I push Position Bias to plus 0.30, whoever sits in Slot 1 wins both trials! Response A wins Trial 1 with 68%, and Response B wins Trial 2 with 62%! That's completely contradictory!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the classic Position Flip exploit that plagued early Chatbot Arena benchmarks, Kaito! But look at the Debiased Symmetric Consensus box: by taking the average of the forward and reverse trials, Response A's true 53% win rate emerges cleanly!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Studio 1</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Interactive Lab 1: LLM-as-a-Judge &amp; Position Bias Compensator Studio\n  </h2>\n  <p class=\"text-xs text-[#475569] font-medium leading-relaxed mb-3\">\n    Explore how primacy artifacts distort automated LLM evaluations and watch the bidirectional debiasing equation neutralize artificial slot favoritism:\n  </p>\n  <div id=\"toolContainer\"></div>\n</div>\n"
         }
       },
       {
         "id": "s7",
-        "title": "Key Engineering Takeaways",
-        "type": "bullets",
+        "title": "Active Checkpoint 1: Bidirectional Permutation & Position Bias Arithmetic",
+        "type": "checkpoint",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Key Engineering Takeaways",
+          "title": "Formative Challenge: Evaluating Debiased Win Rates Under Position Bias",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Key Engineering Takeaways. Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
+              "text": "Active Checkpoint 1: Test your architectural judgment. In an automated evaluation run, a concise response A in Slot 1 wins Trial 1 with 68 percent preference against response B. When the slot order is reversed so B is in Slot 1, response B wins Trial 2 with 62 percent preference. What is the true debiased preference for response A, and how does the data team remediate this bias?",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">DPO Eliminates PPO</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Direct Preference Optimization achieves RLHF alignment directly from pairwise preference datasets without training an explicit reinforcement learning reward model.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Self-Consistency Mitigates Hallucination</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Sampling multiple reasoning paths and taking the mode over final answers improves zero-shot annotation accuracy by $15\\% \\text{ to } 25\\%$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Position Bias Correction</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">LLM judges systematically favor the first response presented; always evaluate pairs in both forward and reverse orders.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Human Role Evolution</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Human annotators transition from manual transcription to evaluating subtle nuance, safety boundaries, and edge-case preference ordering.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border-2 border-[#151b20] text-[#166534] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Active Checkpoint 1</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Formative Challenge: Bidirectional Permutation &amp; Position Bias Arithmetic\n  </h2>\n  <p class=\"text-xs text-[#475569] font-medium leading-relaxed mb-3\">\n    Calculate the symmetric debiased preference rate and diagnose the underlying evaluation artifact:\n  </p>\n  <div id=\"checkpointContainer\"></div>\n</div>\n"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Key Engineering Takeaways",
+          "title": "Socratic Checkpoint: Can We Trust Single-Order LLM Judges?",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, what is the single most vital principle for data engineers to remember from this lesson?"
+              "text": "Active Checkpoint 1! Response A won with 68% in Slot 1, but Response B won with 62% in Slot 1! How do we compute the true winner without falling into the position bias trap? Let's check our options!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border-2 border-[#151b20] text-[#166534] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Checkpoint 1</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Formative Challenge: Bidirectional Permutation &amp; Position Bias Arithmetic\n  </h2>\n  <p class=\"text-xs text-[#475569] font-medium leading-relaxed mb-3\">\n    Apply the symmetric debiasing formula to isolate true quality from primacy bias:\n  </p>\n  <div id=\"checkpointContainer\"></div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s8",
+        "title": "Judge Failure Taxonomy: Position, Verbosity, Self-Enhancement & Egocentric Drifts",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Systematic Bias Taxonomy in Automated Foundation Model Evaluation",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Slide 8 details the four major systematic failure modes of foundation model judges documented in Zheng et al. and LMSYS research: position bias, verbosity bias, self-enhancement bias, and formatting anchoring.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Data-Centric AI requires treating dataset curation with the exact same rigor, versioning, and defensive auditing as neural model code. Fixing defects at the boundary guarantees downstream reliability."
+              "text": "Verbosity bias is particularly dangerous: LLM judges award up to 30% higher win rates to verbose, jargon-filled responses even when they are factually vacuous. Production data pipelines must enforce length-matched pair curation within plus or minus 10% token count, reference-guided scoring rubrics, and constitutional critique.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">DPO Eliminates PPO</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Direct Preference Optimization achieves RLHF alignment directly from pairwise preference datasets without training an explicit reinforcement learning reward model.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Self-Consistency Mitigates Hallucination</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Sampling multiple reasoning paths and taking the mode over final answers improves zero-shot annotation accuracy by $15\\% \\text{ to } 25\\%$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Position Bias Correction</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">LLM judges systematically favor the first response presented; always evaluate pairs in both forward and reverse orders.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Human Role Evolution</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Human annotators transition from manual transcription to evaluating subtle nuance, safety boundaries, and edge-case preference ordering.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffd8ce] border-2 border-[#151b20] text-[#991b1b] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Bias Taxonomy</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Four Systematic Failure Modes of LLM-as-a-Judge Pipelines\n  </h2>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#2563eb] block mb-1\">1. Position / Primacy Bias</strong>\n      <span class=\"text-[11px] text-[#475569]\">Models favor Candidate 1 up to $70\\%$ due to causal attention masks. Neutralized via bidirectional permutation swaps.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#d97706] block mb-1\">2. Verbosity / Length Bias</strong>\n      <span class=\"text-[11px] text-[#475569]\">Longer, repetitive answers gain $+25\\%\\text{–}30\\%$ win rates. Mitigated via length-matched pair curation ($\\pm 10\\%$ tokens).</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#7e22ce] block mb-1\">3. Self-Enhancement Bias</strong>\n      <span class=\"text-[11px] text-[#475569]\">Judges favor responses generated by their own model family or tokenizer style. Mitigated via multi-model jury pools.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#166534] block mb-1\">4. Format &amp; Style Anchoring</strong>\n      <span class=\"text-[11px] text-[#475569]\">Overweighting bullet lists and bold markdown over correctness. Enforced via reference-guided ground-truth rubrics.</span>\n    </div>\n  </div>\n  <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border border-[#151b20] text-[11px] font-mono text-[#334155]\">\n    <strong>Production Standard:</strong> Never release a preference dataset evaluated on single-pass unswapped judge outputs!\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Dialogue: The Verbosity Trap in Preference Datasets",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, I've noticed this in my own testing: when I ask an LLM judge to evaluate two answers, it almost always picks the longer, more academic-sounding response, even when the concise one answered the prompt much better!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the infamous Verbosity Trap, Kaito. During pre-training and early RLHF, models learned that thorough answers are typically longer. So the model uses length as a crude heuristic for quality.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And if our preference dataset rewards verbosity, the resulting DPO policy will just output endless walls of filler text!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! That is why production data teams enforce length-matched pair curation and explicitly instruct the judge in the constitutional rubric to penalize redundant verbosity.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ffd8ce] border-2 border-[#151b20] text-[#991b1b] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Bias Analysis</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Escaping the Verbosity Trap: Rubric Engineering\n  </h2>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] font-mono text-xs space-y-2 text-[#334155] mb-3\">\n    <div>• <strong>The Pathology:</strong> Models mistake token count for semantic rigor, inflating hallucination opportunities.</div>\n    <div>• <strong>Length-Matched Bracket Curation:</strong> Pair completions strictly within $\\Delta \\text{tokens} \\le 10\\%$.</div>\n    <div>• <strong>Constitutional Negative Weighting:</strong> Add explicit rubric rule: <em>\"Penalize uninformative filler; reward precision.\"</em></div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s9",
+        "title": "Constitutional AI & RLAIF: Automating Alignment via Structured Principles",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Reinforcement Learning from AI Feedback (RLAIF) and Constitutional Governance",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Slide 9 introduces Constitutional AI and Reinforcement Learning from AI Feedback, developed by Bai and colleagues at Anthropic. In classical data curation, human crowd workers had to manually read and tag thousands of toxic, traumatic hate speech and self-harm prompts.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Constitutional AI replaces human exposure with a two-phase architecture: Phase 1 uses Critique-and-Revision prompting against a written constitution of principles to generate safe supervised training data. Phase 2 uses an automated judge model evaluating candidate pairs against these principles to train an RLAIF preference model, matching human quality while eliminating worker trauma.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Constitutional Curation</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Constitutional AI: Two-Phase Supervised &amp; Preference Alignment\n  </h2>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs mb-3\">\n    <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#2563eb] block mb-1\">Phase 1: Supervised Critique-Revision</strong>\n      <ol class=\"list-decimal list-inside space-y-1 text-[#334155] text-[11px]\">\n        <li>Prompt model with adversarial red-team prompt.</li>\n        <li>Model generates raw (potentially harmful) response.</li>\n        <li>Critique prompt against written Constitution.</li>\n        <li>Revise response to remove harm while staying helpful.</li>\n        <li>Supervised fine-tuning (SFT) on revised pairs.</li>\n      </ol>\n    </div>\n    <div class=\"p-3.5 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#166534] block mb-1\">Phase 2: RLAIF Preference Modeling</strong>\n      <ol class=\"list-decimal list-inside space-y-1 text-[#334155] text-[11px]\">\n        <li>Generate two responses $(y_1, y_2)$ from Phase 1 policy.</li>\n        <li>AI Judge evaluates pair against constitutional rubric.</li>\n        <li>Judge generates ordinal preference triplet $(x, y_w, y_l)$.</li>\n        <li>Train preference model or DPO directly on AI feedback.</li>\n        <li>Achieves Pareto-superior safety without crowd trauma.</li>\n      </ol>\n    </div>\n  </div>\n  <div class=\"p-2.5 rounded-lg bg-white border border-[#151b20] text-[11px] font-mono text-[#475569]\">\n    <strong>Empirical Benchmark:</strong> Bai et al. (2022) demonstrated RLAIF matches human RLHF on helpfulness while significantly outperforming human annotators on harmlessness and transparency.\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Dialogue: Ethical & Reproducible Data Curation",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, this is a massive ethical breakthrough for the data annotation industry. Crowd workers in developing countries were previously forced to read horrific violent content for pennies per task, causing severe PTSD.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Absolutely, Kaito. Beyond the vital humanitarian benefit, Constitutional AI is also vastly more reproducible. Human crowd workers disagree on political, cultural, and ethical boundaries. A written constitution creates an auditable, version-controlled contract.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And when corporate policies or regulatory statutes change, instead of re-training ten thousand annotators, we simply update the constitutional rubric in Git!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! Protocol governance in Git, just like our living codebooks from Lesson 4.9. But now let us examine what happens when synthetic generation goes wrong: Model Collapse.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Ethics &amp; Governance</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    The Dual Advantage: Worker Welfare &amp; Auditable Governance\n  </h2>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs mb-2\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Humanitarian Welfare:</strong>\n      <span class=\"text-[11px] text-[#475569]\">Eliminates psychological trauma by replacing human microtask workers with automated critique-and-revision engines.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20]\">\n      <strong class=\"text-[#166534] block mb-1\">Git Version Control:</strong>\n      <span class=\"text-[11px] text-[#475569]\">Constitutional principles are versioned in Markdown/Git, enabling instantaneous legal and regulatory compliance updates.</span>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s10",
+        "title": "The Model Collapse Theorem: Asymptotic Variance Vanishing in Synthetic Loops",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "The Mathematical Mechanics of Recursive Model Collapse",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Slide 10 presents the fundamental limit of synthetic dataset generation: the Recursive Model Collapse Theorem, published by Shumailov and colleagues in Nature in 2024. Suppose an initial dataset D-zero has variance sigma-squared-zero. If generation n plus 1 is trained recursively on samples generated by generation n, what happens?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Look at the variance recurrence relation: expected variance at generation n plus 1 equals N minus 1 over N times expected variance at generation n. As generations proceed to infinity, the variance collapses asymptotically to zero! In early collapse, the distribution tails vanish, losing rare vocabulary and diverse syntax. In late collapse, the model homogenizes into repetitive gibberish.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fee2e2] border-2 border-[#151b20] text-[#991b1b] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Fundamental Limit</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    The Recursive Variance Decay Theorem (Shumailov et al., Nature 2024)\n  </h2>\n  <div class=\"p-3.5 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono text-xs mb-3\">\n    <div class=\"font-bold text-[#991b1b] uppercase mb-1\">Mathematical Formulation</div>\n    <p class=\"text-xs text-[#334155] font-sans\">\n      Consider a normal data-generating distribution $\\mathcal{D}_0 \\sim \\mathcal{N}(\\mu_0, \\sigma_0^2)$. Fitting generation $n+1$ recursively on $N$ finite samples from generation $n$ yields:\n    </p>\n    <div class=\"text-sm font-serif text-center my-1.5\">\n      $$\\mathbb{E}\\left[ \\hat{\\sigma}_{n+1}^2 \\right] = \\frac{N - 1}{N} \\mathbb{E}\\left[ \\hat{\\sigma}_n^2 \\right] \\implies \\lim_{n \\to \\infty} \\mathbb{E}\\left[ \\hat{\\sigma}_n^2 \\right] = 0$$\n    </div>\n    <p class=\"text-xs text-[#334155] font-sans mt-1\">\n      Because $\\frac{N-1}{N} < 1$, finite sample variance shrinks monotonically across every recursive generation loop.\n    </p>\n  </div>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">Phase 1: Early Collapse</strong>\n      <span class=\"text-[11px] text-[#475569]\">Distribution tails vanish. Low-probability events (rare medical cases, niche vocabulary, dialectal syntax) are extinguished within 3–5 cycles.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fee2e2] border-2 border-[#151b20]\">\n      <strong class=\"text-[#dc2626] block mb-1\">Phase 2: Late Collapse</strong>\n      <span class=\"text-[11px] text-[#475569]\">Mode collapse. Probability density concentrates on a degenerate scalar point. The model produces repetitive, ungrammatical word salad.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Dialogue: Why Pure Synthetic Training Is a House of Cards",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, this variance vanishing equation is terrifying! If every recursive generation multiplies variance by N minus 1 over N, then after enough cycles, the variance mathematically drops to zero!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the cold reality of mathematical statistics, Kaito. When an AI model samples from its own distribution, rare edge cases have low probability, so they get omitted from finite samples. Generation two never sees them, generation three loses the next layer of nuance, and by generation five, output diversity drops by 74 percent.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And the only mathematical cure is injecting real ground-truth human data back into the loop to anchor the variance!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely! Every production synthetic data pipeline must maintain at least 15 to 20 percent verified human ground truth anchors in every fine-tuning batch. Now let us examine pairwise preference dataset curation.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fee2e2] border-2 border-[#151b20] text-[#991b1b] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Reality Check</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    The Inevitability of Tail Extinction in Recursive Loops\n  </h2>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] font-mono text-xs space-y-2 text-[#334155] mb-2\">\n    <div>• <strong>Tail Extinction:</strong> Rare medical anomalies, uncommon code syntax, and minority dialectal phrases are lost first.</div>\n    <div>• <strong>Mode Shrinkage:</strong> Models converge to generic, bland, repetitive prose.</div>\n    <div>• <strong>The Golden Human Anchor Invariant:</strong> Maintain permanent $\\ge 15\\%$ gold human-curated records in all batches.</div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s11",
+        "title": "Preference Curation Engineering: UltraFeedback, LMSYS Arena & Multi-Turn Trees",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Industrial Standards for Curating High-Fidelity Pairwise Preference Triplets",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "On Slide 11, we examine how industrial teams curate enterprise-grade preference datasets like UltraFeedback and LMSYS Arena. A preference pair consists of prompt x, winning completion y-w, losing completion y-l, and fine-grained critique metadata.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Crucially, not all preference pairs are suitable for training. If the quality gap between y-w and y-l is negligible, the pair injects label noise. If the length discrepancy is massive, the model learns verbosity. Data engineers enforce margin filtering, length matching, and multi-turn tree branching to construct bulletproof alignment sets.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f3e8ff] border-2 border-[#151b20] text-[#7e22ce] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Data Engineering</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Anatomy &amp; Filtering Heuristics of Enterprise Preference Triplets\n  </h2>\n  <div class=\"grid grid-cols-1 sm:grid-cols-3 gap-2.5 font-mono text-xs mb-3\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#2563eb] block mb-1\">1. Margin Thresholding</strong>\n      <span class=\"text-[11px] text-[#475569]\">Drop pairs where $|\\Delta \\text{score}| &lt; \\epsilon$. Trivial ties inject random gradient noise into DPO optimization.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#d97706] block mb-1\">2. Length Discrepancy Gate</strong>\n      <span class=\"text-[11px] text-[#475569]\">Discard comparisons where $|L(y_w) - L(y_l)| / \\max(L) &gt; 0.40$ to prevent training verbosity-biased policies.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#166534] block mb-1\">3. Multi-Turn Tree Branching</strong>\n      <span class=\"text-[11px] text-[#475569]\">Branch candidate responses across multi-turn dialogues to ensure context continuity and conversational coherence.</span>\n    </div>\n  </div>\n  <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border border-[#151b20] font-mono text-[11px] text-[#334155]\">\n    <strong>Case Study Benchmark:</strong> UltraFeedback (Cui et al., 2023) scored 64,000 prompts across Instruction Following, Truthfulness, Honesty, and Helpfulness, powering Zephyr-7B to defeat 70B PPO models.\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Dialogue: Curating High-Information Preference Pairs",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, in UltraFeedback, they had models generate 4 completions for each prompt, evaluated them across 4 rubric dimensions, and only took the highest and lowest scoring answers to form preference pairs!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the hallmark of quality data engineering, Kaito. Sifting through multiple completions and selecting wide, unambiguous score margins maximizes the gradient signal $\\sigma(-\\Delta \\hat{r})$ during DPO training.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And by filtering out pairs with huge length differences, they prevented the model from learning to babble endlessly just to score points!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! Now let us enter Interactive Lab 2 to experiment with DPO loss dynamics and implicit rewards firsthand.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f3e8ff] border-2 border-[#151b20] text-[#7e22ce] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Curation</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Signal-to-Noise Maximization in Preference Engineering\n  </h2>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] font-mono text-xs space-y-1.5 text-[#334155]\">\n    <div>• <strong>Wide Margins:</strong> Maximizes gradient magnitude $\\sigma(-\\Delta \\hat{r})$.</div>\n    <div>• <strong>Length Normalization:</strong> Prevents policy collapse into verbose, repetitive formatting.</div>\n    <div>• <strong>Fine-Grained Aspects:</strong> Deconstructs quality into Helpfulness, Truthfulness, and Harmlessness.</div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Interactive Lab 2: DPO Loss, Implicit Reward & Policy Gradient Studio",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Hands-On Exploration: DPO Loss Dynamics, Implicit Rewards & KL Penalties",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Interactive Lab 2: the DPO Loss, Implicit Reward, and Policy Gradient Studio! In this workbench, we simulate how Direct Preference Optimization updates language model policies. Use the sliders on the left to adjust the KL penalty beta, the policy ratio on the winning response, and the policy ratio on the losing response.",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice how the implicit reward difference delta-r is calculated directly as beta times log ratio winner minus log ratio loser. When the policy prefers the winner, delta-r is positive, driving the Bradley-Terry probability above 50 percent and shrinking the DPO loss. Observe how beta controls regularization against policy drift.",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border-2 border-[#151b20] text-[#166534] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Interactive Studio 2</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Interactive Lab 2: DPO Loss, Implicit Reward &amp; Policy Gradient Studio\n  </h2>\n  <p class=\"text-xs text-[#475569] font-medium leading-relaxed mb-3\">\n    Tweak KL penalty $\\beta$ and policy likelihood ratios on winner and loser completions. Observe live implicit reward calculations, Bradley-Terry probabilities, and exact DPO loss:\n  </p>\n  <div id=\"toolContainer\"></div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Exploration: Visualizing Policy Gradient Dynamics",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at the simulator below us! When I increase the Policy Ratio on the Winner to 3.0 and drop the Loser to 0.4 with beta 0.10, the implicit reward difference jumps to plus 0.2015, and the DPO loss drops down to 0.5982!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Look at the gradient dynamics text beside it, Kaito! The gradient pushes up on the log-probability of the winning response and pulls down on the losing response. And notice that the update magnitude is weighted by sigma of negative delta-r—so once the model strongly prefers the winner, the gradient naturally vanishes to prevent over-fitting!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f4c8] border-2 border-[#151b20] text-[#166534] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Studio 2</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Interactive Lab 2: DPO Loss, Implicit Reward &amp; Policy Gradient Studio\n  </h2>\n  <p class=\"text-xs text-[#475569] font-medium leading-relaxed mb-3\">\n    Experiment with DPO policy likelihood ratios to observe how the implicit reward gap modulates gradient magnitude and prevents policy drift:\n  </p>\n  <div id=\"toolContainer\"></div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: DPO Derivation Cancellation & Synthetic Data Gating",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Formative Challenge: DPO Closed-Form Cancellation & Collapse Prevention",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Active Checkpoint 2: Test your command of modern preference alignment. A generative AI engineering team seeks to align an 8-billion parameter instruction model from pairwise preference triplets without training or hosting an external reinforcement learning reward model. What exact mathematical property of the optimal policy under the KL-regularized objective enables DPO, and what architectural safeguard prevents catastrophic Model Collapse?",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f3e8ff] border-2 border-[#151b20] text-[#7e22ce] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Active Checkpoint 2</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Formative Challenge: DPO Derivation Cancellation &amp; Synthetic Data Gating\n  </h2>\n  <p class=\"text-xs text-[#475569] font-medium leading-relaxed mb-3\">\n    Identify the mathematical mechanism enabling Direct Preference Optimization and the variance anchoring constraint:\n  </p>\n  <div id=\"checkpointContainer\"></div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Checkpoint: Mastering the Closed-Form Alignment Paradigm",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Active Checkpoint 2! How does DPO cancel the intractable partition function $Z(x)$, and what is the minimum fraction of gold human data needed to stop recursive model collapse? Pick Option A, B, or C!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f3e8ff] border-2 border-[#151b20] text-[#7e22ce] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Checkpoint 2</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Formative Challenge: DPO Derivation Cancellation &amp; Synthetic Data Gating\n  </h2>\n  <p class=\"text-xs text-[#475569] font-medium leading-relaxed mb-3\">\n    Verify the algebraic foundation of DPO and the mathematical threshold for human anchor pools:\n  </p>\n  <div id=\"checkpointContainer\"></div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Frontier Alignment Matrix: PPO vs. DPO vs. RLAIF vs. Self-Consistency vs. Human Curation",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Multi-Paradigm Comparative Trade-Off Matrix for Enterprise Data Architects",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Slide 14 presents our comprehensive architectural trade-off matrix. When designing alignment pipelines, enterprise data architects must evaluate training stability, hardware footprint, reward-hacking risk, and cost across all five paradigms.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice that DPO delivers the lowest compute footprint and highest training stability by eliminating the PPO reward network. Self-consistency filters reasoning hallucinations for factual synthesis, while Constitutional RLAIF scales ethical alignment without human annotator trauma. In modern production, the most resilient architectures combine all four anchored by gold human verification.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fff0b9] border-2 border-[#151b20] text-[#b45309] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Architectural Synthesis</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-3\">\n    Comparative Trade-Off Matrix: Alignment &amp; Annotation Paradigms\n  </h2>\n  <div class=\"overflow-x-auto rounded-xl border-2 border-[#151b20] bg-white shadow-[3px_3px_0px_#151b20] mb-3\">\n    <table class=\"w-full text-left font-mono text-[11px] border-collapse\">\n      <thead>\n        <tr class=\"bg-[#fff0b9] border-b-2 border-[#151b20] text-[#151b20]\">\n          <th class=\"p-2 border-r border-[#151b20]\">Paradigm</th>\n          <th class=\"p-2 border-r border-[#151b20]\">Optimization Mechanism</th>\n          <th class=\"p-2 border-r border-[#151b20]\">GPU Footprint</th>\n          <th class=\"p-2 border-r border-[#151b20]\">Training Stability</th>\n          <th class=\"p-2 border-r border-[#151b20]\">Primary Failure Mode</th>\n          <th class=\"p-2\">Recommended Domain</th>\n        </tr>\n      </thead>\n      <tbody class=\"divide-y divide-[#cbd5e1]\">\n        <tr>\n          <td class=\"p-2 border-r border-[#151b20] font-black text-[#2563eb]\">PPO (Classical RLHF)</td>\n          <td class=\"p-2 border-r border-[#151b20]\">Actor-Critic + Learned Reward</td>\n          <td class=\"p-2 border-r border-[#151b20] text-[#dc2626] font-bold\">Very High (3+ Models)</td>\n          <td class=\"p-2 border-r border-[#151b20] text-[#dc2626]\">Low (High Drift)</td>\n          <td class=\"p-2 border-r border-[#151b20]\">Reward Hacking / Verbosity</td>\n          <td class=\"p-2\">Complex Multi-Step Tool Agents</td>\n        </tr>\n        <tr class=\"bg-[#f0fdf4]\">\n          <td class=\"p-2 border-r border-[#151b20] font-black text-[#166534]\">DPO (Direct Preference)</td>\n          <td class=\"p-2 border-r border-[#151b20]\">Cross-Entropy on Likelihood Ratios</td>\n          <td class=\"p-2 border-r border-[#151b20] text-[#166534] font-bold\">Low (1–2 Models)</td>\n          <td class=\"p-2 border-r border-[#151b20] text-[#166534]\">Very High (Standard CE)</td>\n          <td class=\"p-2 border-r border-[#151b20]\">Out-of-Distribution Drift</td>\n          <td class=\"p-2 font-bold text-[#166534]\">Enterprise Chat &amp; Code Models</td>\n        </tr>\n        <tr>\n          <td class=\"p-2 border-r border-[#151b20] font-black text-[#7e22ce]\">Constitutional AI (RLAIF)</td>\n          <td class=\"p-2 border-r border-[#151b20]\">Critique-Revision + AI Preference</td>\n          <td class=\"p-2 border-r border-[#151b20]\">Moderate (Inference APIs)</td>\n          <td class=\"p-2 border-r border-[#151b20] text-[#166534]\">High (Supervised / DPO)</td>\n          <td class=\"p-2 border-r border-[#151b20]\">Judge Primacy &amp; Self-Bias</td>\n          <td class=\"p-2\">Safety, Privacy &amp; Policy Alignment</td>\n        </tr>\n        <tr class=\"bg-[#fffdf7]\">\n          <td class=\"p-2 border-r border-[#151b20] font-black text-[#b45309]\">Self-Consistency CoT</td>\n          <td class=\"p-2 border-r border-[#151b20]\">Reasoning Marginalization (T=0.7)</td>\n          <td class=\"p-2 border-r border-[#151b20]\">Inference Multiplier ($M \\ge 5$)</td>\n          <td class=\"p-2 border-r border-[#151b20] text-[#166534]\">Invariant (Inference Only)</td>\n          <td class=\"p-2 border-r border-[#151b20]\">Systematic Bias Correlation</td>\n          <td class=\"p-2\">Math, Logic, Clinical &amp; NER Ground Truth</td>\n        </tr>\n        <tr>\n          <td class=\"p-2 border-r border-[#151b20] font-black text-[#0e7490]\">Gold Human Curation</td>\n          <td class=\"p-2 border-r border-[#151b20]\">Domain Specialist Adjudication</td>\n          <td class=\"p-2 border-r border-[#151b20]\">Zero GPU (Labor Cost)</td>\n          <td class=\"p-2 border-r border-[#151b20] text-[#166534]\">Ground Truth Anchor</td>\n          <td class=\"p-2 border-r border-[#151b20]\">Fatigue &amp; Cognitive Drift</td>\n          <td class=\"p-2 font-bold text-[#0e7490]\">Mandatory 15% Variance Anchor</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Dialogue: Designing the Hybrid Production Stack",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at how these paradigms complement each other in this matrix! We can use Self-Consistency to generate high-accuracy synthetic candidate traces, Constitutional AI to audit safety, DPO to train the model directly, and a 15% Gold Human anchor pool to stop Model Collapse!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is the state-of-the-art hybrid data engine, Kaito! You eliminate the brutal GPU memory overhead of PPO, shield human workers from trauma, and guarantee mathematical variance stability. Let us examine the production Python code architecture on Slide 15.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fff0b9] border-2 border-[#151b20] text-[#b45309] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Synthesis</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    The Modern Hybrid Generative Data Pipeline\n  </h2>\n  <div class=\"p-3.5 rounded-xl bg-white border-2 border-[#151b20] font-mono text-xs space-y-2 text-[#334155]\">\n    <div>1. <strong>Synthetic Generation:</strong> Self-Consistency ($M=10$) produces hallucination-resistant candidate completions.</div>\n    <div>2. <strong>Bidirectional Audit:</strong> Swap permutations cancel position bias to compute true win rates.</div>\n    <div>3. <strong>Closed-Form Alignment:</strong> DPO trains policy directly with supervised learning stability.</div>\n    <div>4. <strong>Variance Anchor:</strong> Inject 15% gold human data to prevent recursive model collapse.</div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Architecture: Pydantic V2 DPO Engine & Automated Judge Auditor",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Type-Safe Python Implementation of DPO, Judge Debiasing & Self-Consistency",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Slide 15 provides the production Python architecture for generative data curation. Built on Pydantic V2, it implements PreferencePairSample with strict negative log-probability validation, DPOAlignmentEngine with numerically stable log-1-p loss evaluation, JudgeDebiasingEngine for bidirectional permutation audits, and SelfConsistencyAggregator.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice how DPOAlignmentEngine computes the implicit reward difference as beta times policy log-ratio minus reference log-ratio, while JudgeDebiasingEngine detects position flips whenever candidate 1 wins both trials. This code runs in production CI pipelines to validate preference datasets before fine-tuning.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Production Architecture</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Pydantic V2 Type-Safe DPO Engine &amp; Automated Judge Auditor\n  </h2>\n  <div class=\"rounded-xl border-2 border-[#151b20] bg-[#151b20] text-[#f8fafc] p-3.5 font-mono text-[11px] overflow-x-auto shadow-[3px_3px_0px_#151b20] max-h-[380px]\">\n    <pre class=\"m-0\"><code>from typing import List, Dict, Tuple\nimport math\nfrom pydantic import BaseModel, field_validator\n\nclass PreferencePairSample(BaseModel):\n    \"\"\"Pydantic V2 schema for pairwise preference prompt-completion pairs.\"\"\"\n    prompt_id: str\n    prompt_text: str\n    winner_text: str\n    loser_text: str\n    policy_logprob_winner: float\n    ref_logprob_winner: float\n    policy_logprob_loser: float\n    ref_logprob_loser: float\n\n    @field_validator(\"policy_logprob_winner\", \"ref_logprob_winner\", \"policy_logprob_loser\", \"ref_logprob_loser\")\n    @classmethod\n    def validate_negative_logprob(cls, val: float) -> float:\n        if val > 0.0:\n            raise ValueError(f\"Log-probability must be <= 0.0; got {val}\")\n        return val\n\nclass DPOAlignmentEngine:\n    \"\"\"Calculates DPO loss, implicit rewards, and policy gradient coefficients.\"\"\"\n    @staticmethod\n    def calculate_implicit_reward(policy_logprob: float, ref_logprob: float, beta: float = 0.1) -> float:\n        return beta * (policy_logprob - ref_logprob)\n\n    @classmethod\n    def compute_dpo_loss(cls, sample: PreferencePairSample, beta: float = 0.1) -> Tuple[float, float, float]:\n        r_w = cls.calculate_implicit_reward(sample.policy_logprob_winner, sample.ref_logprob_winner, beta=beta)\n        r_l = cls.calculate_implicit_reward(sample.policy_logprob_loser, sample.ref_logprob_loser, beta=beta)\n        reward_diff = r_w - r_l\n        if reward_diff >= 0:\n            exp_neg = math.exp(-reward_diff)\n            bt_prob = 1.0 / (1.0 + exp_neg)\n            loss = math.log1p(exp_neg)\n        else:\n            exp_pos = math.exp(reward_diff)\n            bt_prob = exp_pos / (1.0 + exp_pos)\n            loss = -reward_diff + math.log1p(exp_pos)\n        return loss, reward_diff, bt_prob\n\nclass JudgeDebiasingEngine:\n    \"\"\"Computes debiased consensus over bidirectional permutation comparisons.\"\"\"\n    @staticmethod\n    def compute_symmetric_consensus(p_forward_a: float, p_reverse_b: float) -> Tuple[float, bool]:\n        p_reverse_a = 1.0 - p_reverse_b\n        debiased_p_a = (p_forward_a + p_reverse_a) / 2.0\n        bias_detected = (p_forward_a > 0.5) and (p_reverse_b > 0.5)\n        return debiased_p_a, bias_detected\n\nclass SelfConsistencyAggregator:\n    \"\"\"Marginalizes multiple Chain-of-Thought reasoning paths over final answers.\"\"\"\n    @staticmethod\n    def aggregate_majority_vote(extracted_answers: List[str]) -> Tuple[str, float]:\n        counts = {}\n        for ans in extracted_answers:\n            counts[ans] = counts.get(ans, 0) + 1\n        top_ans, top_count = max(counts.items(), key=lambda item: item[1])\n        return top_ans, top_count / len(extracted_answers)</code></pre>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Dialogue: Code Architecture & Production Guardrails",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, look at how clean DPOAlignmentEngine is! Instead of spinning up PPO distributed worker nodes, compute-dpo-loss simply evaluates the log-probability differences on the sample, computes the reward gap, and returns the numerically stable loss in less than twenty lines of code!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And notice the validator in PreferencePairSample: it guarantees that raw policy logits are normalized probabilities before DPO training begins. Enforcing these constraints in CI prevents silent model divergence.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And JudgeDebiasingEngine automatically sets bias-detected to true if the Slot 1 candidate wins both trials, flagging compromised evaluations for human review!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! That is production-grade data engineering. Now let us synthesize our complete Track 4 journey on our final slide.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Code Walkthrough</span>\n  </div>\n  <h2 class=\"text-lg sm:text-xl font-black text-[#151b20] mb-2\">\n    Production Guardrails: Validation, Numerical Stability &amp; CI Gating\n  </h2>\n  <div class=\"p-3.5 rounded-xl bg-white border-2 border-[#151b20] font-mono text-xs space-y-2 text-[#334155] mb-2\">\n    <div>• <code>PreferencePairSample</code>: Rejects invalid unnormalized logits ($>0.0$).</div>\n    <div>• <code>DPOAlignmentEngine</code>: Uses <code>math.log1p</code> to eliminate floating-point underflow.</div>\n    <div>• <code>JudgeDebiasingEngine</code>: Automatically flags position flips for human arbitration.</div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Track 4 Grand Capstone Synthesis & Transition to Track 5: Data Cleaning",
+        "type": "presentation",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Track 4 Synthesis: The Complete Annotation & Ground Truth Lifecycle",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Congratulations on completing Track 4: Data Annotation and Ground Truth Generation! Across ten comprehensive masterclass lessons, we have journeyed from foundational label noise transition matrices and bounding geometries to queue theory, inter-annotator consensus, ergonomic telemetry, enterprise governance, and frontier generative preference modeling.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "You now possess the mathematical rigor, protocol discipline, and operational architecture required to engineer high-fidelity ground truth for production AI systems. Next, in Track 5, we confront the raw realities of dirty real-world datasets: imputation, anomaly detection, deduplication, and automated data cleaning pipelines. Click the button below to transition to Track 5!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between flex-wrap gap-2 mb-3\">\n    <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#dcfce7] border-2 border-[#151b20] text-[#166534] font-mono text-xs font-bold uppercase tracking-wider\">\n      <span>🎓 Track 4 Complete • 10 Masterclass Lessons Mastered</span>\n    </div>\n    <span class=\"px-2.5 py-0.5 rounded-full bg-[#c9f3f4] border border-[#151b20] text-[#0e7490] font-mono text-[10px] font-black\">NEXT: TRACK 5</span>\n  </div>\n  <h1 class=\"text-xl sm:text-2xl font-black text-[#151b20] tracking-tight mb-2\">\n    Track 4 Grand Capstone: The Complete Ground Truth Lifecycle\n  </h1>\n  <p class=\"text-xs sm:text-sm text-[#475569] font-medium max-w-3xl leading-relaxed mb-4\">\n    You have mastered the entire spectrum of modern data annotation: from statistical noise modeling to closed-form Direct Preference Optimization (DPO).\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs mb-4\">\n    <div class=\"p-3.5 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#2563eb] block mb-1\">Part 1: Operational Foundations (4.1–4.5)</strong>\n      <span class=\"text-[11px] text-[#475569]\">Noise transition unbiasing, spatial geometries, audio-visual tracking, active learning, and Erlang-C task queuing economics.</span>\n    </div>\n    <div class=\"p-3.5 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#166534] block mb-1\">Part 2: Quality &amp; Alignment (4.6–4.10)</strong>\n      <span class=\"text-[11px] text-[#475569]\">Dawid-Skene consensus, dwell-time telemetry, domain-specific standards, living codebook governance, and generative DPO modeling.</span>\n    </div>\n  </div>\n  <div class=\"p-4 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-3\">\n    <div>\n      <div class=\"font-mono text-xs font-black text-[#151b20] uppercase\">Ready for Track 5?</div>\n      <div class=\"text-xs text-[#475569]\">Track 5: Data Cleaning &amp; Preprocessing (§5.1 Introduction to Data Cleaning)</div>\n    </div>\n    <a href=\"../../track5-data-cleaning/01-introduction-to-data-cleaning/\" class=\"inline-flex items-center gap-2 px-4 py-2 bg-[#2563eb] text-white font-mono font-black text-xs rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] hover:bg-[#1d4ed8] transition cursor-pointer\">\n      <span>Advance to Track 5 →</span>\n    </a>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "title": "Socratic Capstone: Celebrating Track 4 Completion!",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova! We just finished all ten lessons in Track 4! Looking back at everything we covered—from Natarajan loss unbiasing in 4.1 to Direct Preference Optimization and Model Collapse in 4.10—it feels incredible to see the entire lifecycle connect together!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "You should be exceptionally proud, Kaito! High-performing machine learning begins and ends with dataset hygiene. By mastering protocol design, quality metrics, and alignment algorithms, you are prepared to build enterprise-scale AI that operates reliably in the physical world.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And now we get to tackle the messiest, most chaotic part of real-world pipelines: Track 5, Data Cleaning, Missing Data Imputation, and Outlier Remediation!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Indeed! Prepare your pipelines, Kaito. Let us advance to Track 5 together!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#dcfce7] border-2 border-[#151b20] text-[#166534] font-mono text-xs font-bold uppercase tracking-wider mb-2\">\n    <span>Socratic Capstone Celebration</span>\n  </div>\n  <h1 class=\"text-xl sm:text-2xl font-black text-[#151b20] tracking-tight mb-2\">\n    Track 4 Complete: From Label Noise to Direct Preference Optimization!\n  </h1>\n  <p class=\"text-xs sm:text-sm text-[#475569] font-medium max-w-2xl leading-relaxed mb-4\">\n    Kaito and Dr. Nova celebrate mastering all 10 lessons of Track 4: Data Annotation and Ground Truth Generation.\n  </p>\n  <div class=\"p-4 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-center justify-between flex-wrap gap-3\">\n    <div>\n      <div class=\"font-mono text-xs font-black text-[#151b20] uppercase\">Track 4 Finale Complete</div>\n      <div class=\"text-xs text-[#475569]\">Advance to Track 5: Data Cleaning &amp; Preprocessing</div>\n    </div>\n    <a href=\"../../track5-data-cleaning/01-introduction-to-data-cleaning/\" class=\"inline-flex items-center gap-2 px-4 py-2 bg-[#2563eb] text-white font-mono font-black text-xs rounded-lg border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] hover:bg-[#1d4ed8] transition cursor-pointer\">\n      <span>Advance to Track 5 →</span>\n    </a>\n  </div>\n</div>\n"
         }
       }
     ]

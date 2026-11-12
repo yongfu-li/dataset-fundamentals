@@ -3010,9 +3010,11 @@ window.CURRICULUM_CH6 = window.curriculum_chapter6 = {
     "chapter": 6,
     "part": 5,
     "key": "ch6_p5",
-    "badge": "\u25c6 TRACK 6 \u2022 LESSON 6.5: MULTIVARIATE VISUALIZATION",
     "index": "Lesson 5 of 12",
     "lessonTitle": "Multivariate Visualization",
+    "title": "Multivariate Visualization",
+    "badge": "16 Masterclass Slides \u2022 Socratic Dialogue \u2022 Interactive Sandbox",
+    "description": "Mastering Parallel Coordinates with Inselberg point-line projective duality, Andrews Fourier curves proving Parseval's L2 isometry, PCA covariance eigendecomposition and Scree spectra, Mahalanobis chi-square ellipsoidal anomaly detection, hierarchically clustered heatmaps via Ward's minimum-variance linkage, and t-SNE perplexity pitfalls vs. UMAP and Silhouettes.",
     "slides": [
       {
         "id": "s1",
@@ -3024,242 +3026,673 @@ window.CURRICULUM_CH6 = window.curriculum_chapter6 = {
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 6.5. Today we examine multivariate visualization, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>\u25c6 Track 6: Foundations</span>\n    <span>\u2022</span>\n    <span>Lesson 6.5</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Multivariate Visualization\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into multivariate visualization with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udcd0 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">\u26a0\ufe0f Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udee1\ufe0f Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Multivariate Visualization",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 6.5?"
+              "text": "Welcome to Lesson 6.5 of Dataset Fundamentals: Multivariate Visualization. Human perception evolved inside three spatial dimensions, yet production dataset matrices routinely reside in dozens or thousands of dimensions in R to the d.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 6.5. Today we examine multivariate visualization, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "Today we formalize exact mathematical projections that collapse high-dimensional geometry onto planar screens without erasing critical structure. We will derive Inselberg point-line projective duality in parallel coordinates, prove Parseval L2 isometric preservation in Andrews Fourier curves, perform covariance eigendecomposition for Principal Component Analysis, screen joint outliers via Mahalanobis chi-square ellipsoids, reorder correlation heatmaps via Ward minimum-variance linkage, and critique t-SNE density illusions against UMAP and silhouette coherence.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>\u25c6 Track 6: Foundations</span>\n    <span>\u2022</span>\n    <span>Lesson 6.5</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Multivariate Visualization\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into multivariate visualization with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udcd0 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">\u26a0\ufe0f Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">\ud83d\udee1\ufe0f Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Track 6 \u2022 Exploratory Data Analysis \u2022 Lesson 6.5</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Multivariate Visualization\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Projecting $\\mathbb{R}^d$ Data Manifolds onto Planar Geometry via Point-Line Duality, Parseval Fourier Curves, PCA Subspaces, and Mahalanobis Ellipsoids.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Parallel Coordinates</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Inselberg point-line duality $v = mu + b$ and unique focal point $F = (\\frac{\\delta}{1-m}, \\frac{b}{1-m})$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Andrews Curves</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Parseval's $L_2$ isometry $\\int_{-\\pi}^{\\pi}(f_{\\mathbf{x}}-f_{\\mathbf{y}})^2 dt = \\pi\\|\\mathbf{x}-\\mathbf{y}\\|_2^2$ and spectral ordering.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. PCA &amp; Mahalanobis</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Covariance eigenspace $\\mathbf{\\Sigma}\\mathbf{v}_i = \\lambda_i\\mathbf{v}_i$ and ellipsoidal gate $D_M^2(\\mathbf{x}) \\sim \\chi^2(d)$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Ward &amp; Manifolds</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Ward clustermaps ($D = 1-|r_{jk}|$), t-SNE density pitfalls, UMAP, and Silhouettes $s(i)$.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Roadmap: Multivariate Visualization",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Dr. Nova, in Lesson 6.4 we handled 1D density curves and 2D hexbin plots. Now our telemetry and genomics tables have fifty to twenty thousand columns! Can't I just generate a giant seaborn pairplot grid and eyeball all pairwise scatterplots?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let's check the combinatorics, Kaito! Even for just twelve features, a scatterplot matrix forces sixty-six panels; for fifty features, that explodes to one thousand two hundred twenty-five non-contiguous subplots\u2014and still misses three-way and four-way interactions completely!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Oof, twelve hundred tiny scatterplots would blind anyone, and a joint correlation reversal across three variables wouldn't even show up clearly in marginal plots.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! Instead of brute-forcing pairwise tiles, today we use mathematically invariant projections: Parallel Coordinates, Andrews Fourier waves, PCA Scree and Mahalanobis ellipsoids, Ward clustermaps, and topology-aware manifolds.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-6 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] text-center my-3\">\n  <div class=\"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9f3f4] border-2 border-[#151b20] text-[#0e7490] font-mono text-xs font-bold uppercase tracking-wider mb-3\">\n    <span>Socratic Dialogue \u2022 Track 6 \u2022 Lesson 6.5</span>\n  </div>\n  <h1 class=\"text-2xl sm:text-3xl font-black text-[#151b20] tracking-tight mb-2\">\n    Multivariate Visualization\n  </h1>\n  <p class=\"text-sm sm:text-base text-[#475569] font-medium max-w-2xl mx-auto leading-relaxed\">\n    Projecting $\\mathbb{R}^d$ Data Manifolds onto Planar Geometry via Point-Line Duality, Parseval Fourier Curves, PCA Subspaces, and Mahalanobis Ellipsoids.\n  </p>\n  <div class=\"grid grid-cols-1 sm:grid-cols-4 gap-3 mt-5 max-w-4xl mx-auto text-left font-mono text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-black\">1. Parallel Coordinates</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Inselberg point-line duality $v = mu + b$ and unique focal point $F = (\\frac{\\delta}{1-m}, \\frac{b}{1-m})$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-black\">2. Andrews Curves</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Parseval's $L_2$ isometry $\\int_{-\\pi}^{\\pi}(f_{\\mathbf{x}}-f_{\\mathbf{y}})^2 dt = \\pi\\|\\mathbf{x}-\\mathbf{y}\\|_2^2$ and spectral ordering.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 font-black\">3. PCA &amp; Mahalanobis</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Covariance eigenspace $\\mathbf{\\Sigma}\\mathbf{v}_i = \\lambda_i\\mathbf{v}_i$ and ellipsoidal gate $D_M^2(\\mathbf{x}) \\sim \\chi^2(d)$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1 font-black\">4. Ward &amp; Manifolds</strong>\n      <span class=\"text-[11px] text-[#151b20] leading-snug\">Ward clustermaps ($D = 1-|r_{jk}|$), t-SNE density pitfalls, UMAP, and Silhouettes $s(i)$.</span>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s2",
-        "title": "Conceptual Overview & High-Dimensional Geometries: Parallel Coordinates & Point-Line Duality",
-        "type": "figure",
+        "title": "Planar Perception Bottleneck & Multivariate Routing Taxonomy",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & High-Dimensional Geometries: Parallel Coordinates & Point-Line Duality",
+          "title": "High-Dimensional Projection Taxonomy",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & High-Dimensional Geometries: Parallel Coordinates & Point-Line Duality. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>\ud83d\udcca Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">\u2022</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    subgraph Planar [\"Planar Coordinate Transformations\"]\n    direction TB\n        P1[\"Parallel Coordinates (Inselberg Point-Line Duality)\"]\n        P2[\"RadViz Spring Equilibrium (Circular Anchor Projections)\"]\n        P1 --> P2\n    end\n\n    subgraph Functional [\"Functional Curve & Subspace Expansions\"]\n    direction TB\n        F1[\"Andrews Fourier Curves (Parseval L2 Isometric Preservation)\"]\n        F2[\"Principal Component Analysis (Covariance Eigendecomposition)\"]\n        F3[\"Hierarchical Clustered Heatmaps (Ward's Minimum Variance)\"]\n        F1 --> F2 --> F3\n    end\n\n  %% Top-alignment constraint across stages\n  P1 ~~~ F1\n\n    Planar <-->|Complementary Perspectives| Functional\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class P1,P2 blue;\n    class F1,F2,F3 amber;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Positive Correlation</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Lines connecting adjacent axes $\\bar{X}_1$ and $\\bar{X}_2$ run approximately parallel without intersection.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Negative Correlation</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Lines cross between the axes, converging toward a single dual focal intersection point $\\left(\\frac{d}{1 - m}, \\frac{b}{1 - m}\\right)$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Multimodal Clusters</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Distinct sub-populations appear as separate, non-overlapping bundles of trajectories.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & High-Dimensional Geometries: Parallel Coordinates & Point-Line Duality",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for conceptual overview & high-dimensional geometries: parallel coordinates & point-line duality, how does the architectural flow enforce system stability?"
+              "text": "When analyzing a data matrix X in R to the n by d, naive pairplots scale quadratically as d choose 2. Even 12 features spawn 66 plots, and 50 features force 1,225 cells while completely hiding multi-way joint anomalies.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Instead, we route each multivariate objective to its dedicated mathematical transform: Ward clustered heatmaps for collinear block structures, PCA scree plots for global linear subspaces, UMAP for non-linear topology, and Parallel Coordinates, RadViz spring equilibrium, and Andrews curves for continuous trajectory and functional inspection.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>\ud83d\udcca Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">\u2022</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart LR\n    subgraph Planar [\"Planar Coordinate Transformations\"]\n    direction TB\n        P1[\"Parallel Coordinates (Inselberg Point-Line Duality)\"]\n        P2[\"RadViz Spring Equilibrium (Circular Anchor Projections)\"]\n        P1 --> P2\n    end\n\n    subgraph Functional [\"Functional Curve & Subspace Expansions\"]\n    direction TB\n        F1[\"Andrews Fourier Curves (Parseval L2 Isometric Preservation)\"]\n        F2[\"Principal Component Analysis (Covariance Eigendecomposition)\"]\n        F3[\"Hierarchical Clustered Heatmaps (Ward's Minimum Variance)\"]\n        F1 --> F2 --> F3\n    end\n\n  %% Top-alignment constraint across stages\n  P1 ~~~ F1\n\n    Planar <-->|Complementary Perspectives| Functional\n\n    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n    class P1,P2 blue;\n    class F1,F2,F3 amber;</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Positive Correlation</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Lines connecting adjacent axes $\\bar{X}_1$ and $\\bar{X}_2$ run approximately parallel without intersection.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Negative Correlation</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Lines cross between the axes, converging toward a single dual focal intersection point $\\left(\\frac{d}{1 - m}, \\frac{b}{1 - m}\\right)$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Multimodal Clusters</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Distinct sub-populations appear as separate, non-overlapping bundles of trajectories.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a71 High-Dimensional Geometries \u2022 Decision Router</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Perception Taxonomy</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Escaping Quadratic Pairplots $\\binom{d}{2}$ in $\\mathbb{R}^d$ ($d \\gg 3$)</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">Planar Coordinate Transformations:</strong>\n      <ul class=\"list-disc pl-4 space-y-1.5 text-[11px] text-[#475569]\">\n        <li><strong class=\"text-[#151b20]\">Parallel Coordinates (Inselberg):</strong> Maps orthogonal axes onto $d$ parallel verticals, turning multi-feature trajectories into piecewise ribbons.</li>\n        <li><strong class=\"text-[#151b20]\">RadViz Spring Equilibrium:</strong> Anchors $d$ dimensions around the unit circle; normalized feature values pull each observation node toward dominant anchors via Hooke's law balance.</li>\n      </ul>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-bold\">Functional &amp; Subspace Expansions:</strong>\n      <ul class=\"list-disc pl-4 space-y-1.5 text-[11px] text-[#151b20]\">\n        <li><strong>Andrews Curves:</strong> Functional Fourier map guaranteeing exact Parseval $L_2$ distance conservation.</li>\n        <li><strong>PCA Scree + Biplot:</strong> Orthogonal linear covariance projection retaining maximum global variance.</li>\n        <li><strong>Ward Clustermaps &amp; UMAP/t-SNE:</strong> Dendrogram factor blocking &amp; non-linear local topology validated with Silhouettes $s(i)$.</li>\n      </ul>\n    </div>\n  </div>\n  <div class=\"mt-3 p-2.5 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] font-mono text-[11px] flex flex-wrap justify-between gap-2\">\n    <span><strong class=\"text-[#15803d]\">Pairplot Scaling Failure:</strong> $d = 12 \\implies 66$ plots</span>\n    <span>$d = 50 \\implies 1{,}225$ off-diagonal cells</span>\n    <span><strong class=\"text-[#b91c1c]\">Joint Anomalies:</strong> Invisible in 2D marginals!</span>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why Orthogonal Coordinates Fail at High Dimension",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "I love how clean that routing taxonomy is! So if I want to find collinear sensor blocks I pick a clustered heatmap, if I want global linear compression I pick PCA, and if I want exact continuous distance preservation across clusters I pick Andrews or Parallel Coordinates.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yes, and remember RadViz too! RadViz arranges normalized features like springs pulling along a circular perimeter\u2014if an observation is dominated by Feature 3 and Feature 4, it migrates right between anchors 3 and 4.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Because orthogonal 90-degree axes run out after three dimensions, Parallel Coordinates gives up perpendicularity to gain unlimited horizontal axis slots, while Andrews curves trade spatial coordinates for orthogonal frequency harmonics!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a71 High-Dimensional Geometries \u2022 Decision Router</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Perception Taxonomy</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Escaping Quadratic Pairplots $\\binom{d}{2}$ in $\\mathbb{R}^d$ ($d \\gg 3$)</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 font-bold\">Planar Coordinate Transformations:</strong>\n      <ul class=\"list-disc pl-4 space-y-1.5 text-[11px] text-[#475569]\">\n        <li><strong class=\"text-[#151b20]\">Parallel Coordinates (Inselberg):</strong> Maps orthogonal axes onto $d$ parallel verticals, turning multi-feature trajectories into piecewise ribbons.</li>\n        <li><strong class=\"text-[#151b20]\">RadViz Spring Equilibrium:</strong> Anchors $d$ dimensions around the unit circle; normalized feature values pull each observation node toward dominant anchors via Hooke's law balance.</li>\n      </ul>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1 font-bold\">Functional &amp; Subspace Expansions:</strong>\n      <ul class=\"list-disc pl-4 space-y-1.5 text-[11px] text-[#151b20]\">\n        <li><strong>Andrews Curves:</strong> Functional Fourier map guaranteeing exact Parseval $L_2$ distance conservation.</li>\n        <li><strong>PCA Scree + Biplot:</strong> Orthogonal linear covariance projection retaining maximum global variance.</li>\n        <li><strong>Ward Clustermaps &amp; UMAP/t-SNE:</strong> Dendrogram factor blocking &amp; non-linear local topology validated with Silhouettes $s(i)$.</li>\n      </ul>\n    </div>\n  </div>\n  <div class=\"mt-3 p-2.5 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] font-mono text-[11px] flex flex-wrap justify-between gap-2\">\n    <span><strong class=\"text-[#15803d]\">Pairplot Scaling Failure:</strong> $d = 12 \\implies 66$ plots</span>\n    <span>$d = 50 \\implies 1{,}225$ off-diagonal cells</span>\n    <span><strong class=\"text-[#b91c1c]\">Joint Anomalies:</strong> Invisible in 2D marginals!</span>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s3",
-        "title": "Andrews Curves: Isometric Fourier Projections",
-        "type": "equation",
+        "title": "Parallel Coordinates & Inselberg's Point-Line Projective Duality",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Andrews Curves: Isometric Fourier Projections",
+          "title": "Point-Line Projective Duality Proof",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Andrews Curves: Isometric Fourier Projections. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$f_{\\mathbf{x}}(t) = \\frac{x_1}{\\sqrt{2}} + x_2 \\sin(t) + x_3 \\cos(t) + x_4 \\sin(2t) + x_5 \\cos(2t) + \\dots$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\int_{-\\pi}^\\pi \\left( f_{\\mathbf{x}}(t) - f_{\\mathbf{y}}(t) \\right)^2 dt = \\pi \\sum_{j=1}^d (x_j - y_j)^2 = \\pi \\|\\mathbf{x} - \\mathbf{y}\\|_2^2$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Observations belonging to the same cluster yield tightly bundled, coherent waveforms.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Outliers deviate dramatically across the entire period $t \\in [-\\pi, \\pi]$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">The most statistically significant features must be ordered first ($x_1, x_2$), as low-frequency sine/cosine components dominate curve topology.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Andrews Curves: Isometric Fourier Projections",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does andrews curves: isometric fourier projections protect our system against silent distribution shift in production?"
+              "text": "Introduced by Alfred Inselberg in 1985, Parallel Coordinates lays out d vertical axes spaced equally by distance delta along the horizontal coordinate u equals zero, delta, two delta, up to d minus 1 delta.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
+              "text": "Here is the stunning projective duality theorem: any family of collinear Cartesian points lying on the line y equals m x plus b maps to straight connecting segments in parallel space that all intersect at a single unique dual focal point F, located at horizontal coordinate u sub F equals delta over 1 minus m, and vertical height v sub F equals b over 1 minus m. Whenever two adjacent features correlate negatively with m less than 0, 1 minus m exceeds 1, forcing u sub F strictly between zero and delta as an hourglass crossed pencil!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$f_{\\mathbf{x}}(t) = \\frac{x_1}{\\sqrt{2}} + x_2 \\sin(t) + x_3 \\cos(t) + x_4 \\sin(2t) + x_5 \\cos(2t) + \\dots$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\int_{-\\pi}^\\pi \\left( f_{\\mathbf{x}}(t) - f_{\\mathbf{y}}(t) \\right)^2 dt = \\pi \\sum_{j=1}^d (x_j - y_j)^2 = \\pi \\|\\mathbf{x} - \\mathbf{y}\\|_2^2$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Observations belonging to the same cluster yield tightly bundled, coherent waveforms.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Outliers deviate dramatically across the entire period $t \\in [-\\pi, \\pi]$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">The most statistically significant features must be ordered first ($x_1, x_2$), as low-frequency sine/cosine components dominate curve topology.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a71 Projective Geometry \u2022 Inselberg Duality Theorem</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#fff0b9] text-[#b45309] font-mono text-[11px] font-bold border border-[#151b20]\">Point $\\leftrightarrow$ Line</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Mathematical Point-Line Duality &amp; Focal Intersections</h3>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] mb-3 font-mono text-xs\">\n    <div>Cartesian line $\\ell: y = mx + b$ intercepts axis $\\bar{X}_1$ at $(0, b)$ and axis $\\bar{X}_2$ at $(\\delta, m\\delta + b)$.</div>\n    <div class=\"my-1\">$$\\frac{v - b}{u - 0} = \\frac{(m\\delta + b) - b}{\\delta - 0} \\implies v = mu + b \\quad\\Longrightarrow\\quad F = \\left(\\frac{\\delta}{1 - m}, \\; \\frac{b}{1 - m}\\right)$$</div>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Negative Correlation ($m &lt; 0$)</strong>\n      <div class=\"text-[11px] text-[#151b20]\">Since $1 - m &gt; 1$, we get $0 &lt; \\frac{\\delta}{1-m} &lt; \\delta$. Segments cross cleanly at focal point $F$ strictly between axes (hourglass pencil).</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Positive Correlation ($m &gt; 0$)</strong>\n      <div class=\"text-[11px] text-[#151b20]\">Focal coordinate $u_F$ falls outside $[0, \\delta]$ (and escapes to $\\infty$ at $m=1$). Segments traverse between axes nearly parallel without crossing.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Cluster Ribbons &amp; Rogues</strong>\n      <div class=\"text-[11px] text-[#151b20]\">Sub-populations form coherent, braided ribbons, while correlation-reversing anomalies slice diagonally across the prevailing slope!</div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why Negatively Correlated Points Form an Hourglass",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Hold on\u2014that dual focal formula F equals delta over 1 minus m, b over 1 minus m is magic! Let's sanity check it with numbers: if X2 equals 100 minus X1, so m equals negative 1 and b equals 100, what happens?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Plug m equals negative 1 into u sub F equals delta over 1 minus negative 1: you get delta over 2, the exact horizontal midpoint between axis X1 and X2! And v sub F equals 100 over 2, height 50!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Every single point following X1 plus X2 equals 100 connects symmetrically through height 50 halfway across the strip, forming an hourglass! Meanwhile if a single rogue sensor jumps to 85 comma 85, it slices horizontally across the top like an alarm wire!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And conversely, if m approaches positive 1, 1 minus m goes to zero, sending the intersection point to infinity\u2014meaning positively correlated points run completely parallel!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a71 Projective Geometry \u2022 Inselberg Duality Theorem</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#fff0b9] text-[#b45309] font-mono text-[11px] font-bold border border-[#151b20]\">Point $\\leftrightarrow$ Line</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Mathematical Point-Line Duality &amp; Focal Intersections</h3>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] mb-3 font-mono text-xs\">\n    <div>Cartesian line $\\ell: y = mx + b$ intercepts axis $\\bar{X}_1$ at $(0, b)$ and axis $\\bar{X}_2$ at $(\\delta, m\\delta + b)$.</div>\n    <div class=\"my-1\">$$\\frac{v - b}{u - 0} = \\frac{(m\\delta + b) - b}{\\delta - 0} \\implies v = mu + b \\quad\\Longrightarrow\\quad F = \\left(\\frac{\\delta}{1 - m}, \\; \\frac{b}{1 - m}\\right)$$</div>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Negative Correlation ($m &lt; 0$)</strong>\n      <div class=\"text-[11px] text-[#151b20]\">Since $1 - m &gt; 1$, we get $0 &lt; \\frac{\\delta}{1-m} &lt; \\delta$. Segments cross cleanly at focal point $F$ strictly between axes (hourglass pencil).</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Positive Correlation ($m &gt; 0$)</strong>\n      <div class=\"text-[11px] text-[#151b20]\">Focal coordinate $u_F$ falls outside $[0, \\delta]$ (and escapes to $\\infty$ at $m=1$). Segments traverse between axes nearly parallel without crossing.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Cluster Ribbons &amp; Rogues</strong>\n      <div class=\"text-[11px] text-[#151b20]\">Sub-populations form coherent, braided ribbons, while correlation-reversing anomalies slice diagonally across the prevailing slope!</div>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s4",
-        "title": "Principal Component Analysis (PCA) & Mahalanobis Geometry",
-        "type": "equation",
+        "title": "Andrews Curves: Continuous Isometric Fourier Projections",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Principal Component Analysis (PCA) & Mahalanobis Geometry",
+          "title": "Andrews Fourier Functional Mapping",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Principal Component Analysis (PCA) & Mahalanobis Geometry. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbf{\\Sigma} = \\frac{1}{n - 1} \\mathbf{X}_c^\\top \\mathbf{X}_c, \\quad \\mathbf{\\Sigma} \\mathbf{v}_i = \\lambda_i \\mathbf{v}_i, \\quad \\lambda_1 \\ge \\lambda_2 \\ge \\dots \\ge \\lambda_d \\ge 0$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{EVR}_k = \\frac{\\sum_{i=1}^k \\lambda_i}{\\sum_{j=1}^d \\lambda_j}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$D_M(\\mathbf{x}) = \\sqrt{(\\mathbf{x} - \\boldsymbol{\\mu})^\\top \\mathbf{\\Sigma}^{-1} (\\mathbf{x} - \\boldsymbol{\\mu})}$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Principal Component Analysis (PCA) & Mahalanobis Geometry",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does principal component analysis (pca) & mahalanobis geometry protect our system against silent distribution shift in production?"
+              "text": "Whereas Parallel Coordinates relies on axis permutation along discrete verticals, David Andrews proposed in 1972 projecting each d-dimensional observation vector x directly into a continuous periodic Fourier waveform f sub x of t over minus pi to plus pi.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
+              "text": "Coordinate x1 multiplies the constant DC term 1 over square root of 2; x2 multiplies sin t, x3 multiplies cos t, x4 multiplies sin 2t, and so on. Because low-frequency sinusoids govern global wave amplitude and smoothness, feature ordering is architecturally critical: place your highest-variance features or top principal components in x1, x2, and x3, relegating minor residual coordinates to high-frequency ripples.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbf{\\Sigma} = \\frac{1}{n - 1} \\mathbf{X}_c^\\top \\mathbf{X}_c, \\quad \\mathbf{\\Sigma} \\mathbf{v}_i = \\lambda_i \\mathbf{v}_i, \\quad \\lambda_1 \\ge \\lambda_2 \\ge \\dots \\ge \\lambda_d \\ge 0$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{EVR}_k = \\frac{\\sum_{i=1}^k \\lambda_i}{\\sum_{j=1}^d \\lambda_j}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$D_M(\\mathbf{x}) = \\sqrt{(\\mathbf{x} - \\boldsymbol{\\mu})^\\top \\mathbf{\\Sigma}^{-1} (\\mathbf{x} - \\boldsymbol{\\mu})}$$\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#b45309] tracking-wider\">\u00a72 Functional Projection \u2022 Andrews (1972) Series</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#fff0b9] text-[#b45309] font-mono text-[11px] font-bold border border-[#151b20]\">$t \\in [-\\pi, \\pi]$</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Continuous Trigonometric Superposition &amp; Feature Ordering</h3>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] mb-3 font-mono text-xs\">\n    $$f_{\\mathbf{x}}(t) = \\frac{x_1}{\\sqrt{2}} + x_2\\sin(t) + x_3\\cos(t) + x_4\\sin(2t) + x_5\\cos(2t) + \\dots$$\n    <div class=\"text-[11px] text-[#475569] mt-1 text-center\">Orthonormal-scaled Fourier Basis: $\\phi_1(t) = \\frac{1}{\\sqrt{2}},\\; \\phi_{2k}(t) = \\sin(kt),\\; \\phi_{2k+1}(t) = \\cos(kt)$</div>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Rule: Assign High-EVR Features First</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Low frequencies ($\\frac{1}{\\sqrt{2}}, \\sin t, \\cos t$) shape broad envelope elevation and macro cluster separation. Assign $PC_1, PC_2, PC_3$ to $x_1, x_2, x_3$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Warning: Noise-First Tangles</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Putting noisy columns first hides cluster differences inside rapid high-frequency oscillations ($k \\gg 1$), reducing visual discriminability.</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why Feature Ordering Controls Visual Legibility",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "So Andrews turns a whole twelve-column row of numbers into one smooth squiggly soundwave on minus pi to pi! Wait: why does ordering x1, x2, x3 matter if it plots every feature anyway?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Great question! Our visual cortex detects broad vertical offsets and single-period arches instantly\u2014that comes from x1 over root 2, x2 sin t, and x3 cos t. If your true signal sits in feature ten multiplying sin five t, it gets lost as tiny rapid jitter!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Aha! Ordering features by descending variance or PCA order\u2014putting PC1, PC2, PC3 up front\u2014forces clusters into clean, coherent colored ribbons while noise barely ripples!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#b45309] tracking-wider\">\u00a72 Functional Projection \u2022 Andrews (1972) Series</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#fff0b9] text-[#b45309] font-mono text-[11px] font-bold border border-[#151b20]\">$t \\in [-\\pi, \\pi]$</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Continuous Trigonometric Superposition &amp; Feature Ordering</h3>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] mb-3 font-mono text-xs\">\n    $$f_{\\mathbf{x}}(t) = \\frac{x_1}{\\sqrt{2}} + x_2\\sin(t) + x_3\\cos(t) + x_4\\sin(2t) + x_5\\cos(2t) + \\dots$$\n    <div class=\"text-[11px] text-[#475569] mt-1 text-center\">Orthonormal-scaled Fourier Basis: $\\phi_1(t) = \\frac{1}{\\sqrt{2}},\\; \\phi_{2k}(t) = \\sin(kt),\\; \\phi_{2k+1}(t) = \\cos(kt)$</div>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">Rule: Assign High-EVR Features First</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Low frequencies ($\\frac{1}{\\sqrt{2}}, \\sin t, \\cos t$) shape broad envelope elevation and macro cluster separation. Assign $PC_1, PC_2, PC_3$ to $x_1, x_2, x_3$.</span>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Warning: Noise-First Tangles</strong>\n      <span class=\"text-[11px] text-[#151b20]\">Putting noisy columns first hides cluster differences inside rapid high-frequency oscillations ($k \\gg 1$), reducing visual discriminability.</span>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s5",
-        "title": "Clustered Correlation Heatmaps (Dendrogram Permutation)",
-        "type": "equation",
+        "title": "Proof of Parseval's L2 Isometry Invariant in Andrews Space",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Clustered Correlation Heatmaps (Dendrogram Permutation)",
+          "title": "Parseval's Isometric Conservation Law",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Clustered Correlation Heatmaps (Dendrogram Permutation). Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$D(j, k) = 1 - |r_{jk}|$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Delta \\text{ESS}_{AB} = \\frac{n_A n_B}{n_A + n_B} \\|\\boldsymbol{\\mu}_A - \\boldsymbol{\\mu}_B\\|_2^2$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">\ud83d\udca1 Industrial Best Practice</strong>\n  <span class=\"font-medium\">When inspecting large correlation matrices ($D > 30$), never plot features in arbitrary alphabetical order. Apply Hierarchical Clustered Heatmaps (Clustermap) using Ward&#x27;s minimum variance criterion: this groups collinear and correlated features into</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Linkage criterion</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Ward&#x27;s minimum variance method minimizes total within-cluster sum of squares:</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Distance metric between</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">variables $j$ and $k$: 2.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Linkage criterion</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Ward&#x27;s minimum variance method minimizes total within-cluster sum of squares: Variables belonging to the same functional modules or causal sub-systems cluster into clean block-diagonal visual squares.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Clustered Correlation Heatmaps (Dendrogram Permutation)",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does clustered correlation heatmaps (dendrogram permutation) protect our system against silent distribution shift in production?"
+              "text": "Why aren't Andrews curves just an arbitrary visual trick? Because of Parseval's Identity from Fourier analysis. Every distinct pair of basis waves phi j and phi k is strictly orthogonal on minus pi to pi, integrating to pi times the Kronecker delta.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk\u2014no model tuning can fix that."
+              "text": "When we integrate the squared curve gap between f sub x and f sub y over minus pi to pi, all off-diagonal cross terms vanish identically. What remains is exact proportionality: the functional L2 distance squared equals exactly pi times the original d-dimensional Euclidean squared distance between vectors x and y! Even though feature order changes perceptual aesthetics, integrated L2 distance is mathematically invariant across all feature permutations!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$D(j, k) = 1 - |r_{jk}|$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>\ud83d\udcd0 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Delta \\text{ESS}_{AB} = \\frac{n_A n_B}{n_A + n_B} \\|\\boldsymbol{\\mu}_A - \\boldsymbol{\\mu}_B\\|_2^2$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#f6fcf4] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d] text-xs my-2 leading-relaxed font-sans text-[#151b20]\">\n  <strong class=\"block mb-0.5 font-black uppercase tracking-wider font-mono text-[10px] text-[#15803d]\">\ud83d\udca1 Industrial Best Practice</strong>\n  <span class=\"font-medium\">When inspecting large correlation matrices ($D > 30$), never plot features in arbitrary alphabetical order. Apply Hierarchical Clustered Heatmaps (Clustermap) using Ward&#x27;s minimum variance criterion: this groups collinear and correlated features into</span>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Linkage criterion</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Ward&#x27;s minimum variance method minimizes total within-cluster sum of squares:</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Distance metric between</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">variables $j$ and $k$: 2.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u26a1</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Linkage criterion</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Ward&#x27;s minimum variance method minimizes total within-cluster sum of squares: Variables belonging to the same functional modules or causal sub-systems cluster into clean block-diagonal visual squares.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#15803d] tracking-wider\">\u00a72 Exact Conservation \u2022 Parseval's Theorem Proof</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border border-[#151b20]\">$\\pi \\|\\mathbf{x} - \\mathbf{y}\\|_2^2$</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Step-by-Step Orthogonality Proof of Functional $L_2$ Preservation</h3>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] mb-3 font-mono text-xs space-y-2\">\n    <div><strong>1. Mutual Orthogonality:</strong> Over $t \\in [-\\pi, \\pi]$, cross terms vanish via Kronecker delta $\\delta_{jk}$:</div>\n    <div>$$\\int_{-\\pi}^{\\pi} \\phi_j(t)\\phi_k(t)\\,dt = \\pi\\delta_{jk} = \\begin{cases} \\pi & \\text{if } j = k \\\\ 0 & \\text{if } j \\neq k \\end{cases}$$</div>\n    <div><strong>2. Parseval Expansion:</strong> Swapping integral and summation eliminates all $j \\neq k$ cross terms:</div>\n    <div class=\"bg-[#c9f3f4]/40 p-2 rounded border border-[#151b20]\">$$\\int_{-\\pi}^{\\pi} \\big(f_{\\mathbf{x}}(t) - f_{\\mathbf{y}}(t)\\big)^2 dt = \\sum_{j=1}^d \\sum_{k=1}^d (x_j-y_j)(x_k-y_k)\\int_{-\\pi}^{\\pi}\\phi_j(t)\\phi_k(t)dt = \\pi\\|\\mathbf{x}-\\mathbf{y}\\|_2^2$$</div>\n  </div>\n  <div class=\"p-2.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] font-mono text-[11px]\">\n    <strong class=\"text-[#b45309]\">Isometry Guarantee:</strong> Tightly bundled phase-aligned waves strictly prove small Euclidean cluster diameter in $\\mathbb{R}^d$, while wild global curve divergence guarantees a genuine high-dimensional outlier!\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Proof That Functional Distance Equals Euclidean Distance",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Let's check that factor of pi! Notice the first basis function is 1 over root 2: squaring it gives 1 half, and integrating over a width of 2 pi equals exactly pi\u2014matching sin squared kt and cos squared kt!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Spot on, Kaito! That 1 over root 2 normalization wasn't accidental\u2014it makes every single coordinate's basis energy identical at pi. When you square the difference between two curves and integrate, orthogonal inner products kill all cross-terms!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait\u2014does that mean if I reverse the column order, the integral ratio is STILL 1.000000 times pi times Euclidean squared distance, even if the plot looks messy to human eyes?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! Mathematical Parseval isometry holds identically for every coordinate permutation; smart PCA ordering simply optimizes human perceptual contrast in low frequencies!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#15803d] tracking-wider\">\u00a72 Exact Conservation \u2022 Parseval's Theorem Proof</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border border-[#151b20]\">$\\pi \\|\\mathbf{x} - \\mathbf{y}\\|_2^2$</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Step-by-Step Orthogonality Proof of Functional $L_2$ Preservation</h3>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] mb-3 font-mono text-xs space-y-2\">\n    <div><strong>1. Mutual Orthogonality:</strong> Over $t \\in [-\\pi, \\pi]$, cross terms vanish via Kronecker delta $\\delta_{jk}$:</div>\n    <div>$$\\int_{-\\pi}^{\\pi} \\phi_j(t)\\phi_k(t)\\,dt = \\pi\\delta_{jk} = \\begin{cases} \\pi & \\text{if } j = k \\\\ 0 & \\text{if } j \\neq k \\end{cases}$$</div>\n    <div><strong>2. Parseval Expansion:</strong> Swapping integral and summation eliminates all $j \\neq k$ cross terms:</div>\n    <div class=\"bg-[#c9f3f4]/40 p-2 rounded border border-[#151b20]\">$$\\int_{-\\pi}^{\\pi} \\big(f_{\\mathbf{x}}(t) - f_{\\mathbf{y}}(t)\\big)^2 dt = \\sum_{j=1}^d \\sum_{k=1}^d (x_j-y_j)(x_k-y_k)\\int_{-\\pi}^{\\pi}\\phi_j(t)\\phi_k(t)dt = \\pi\\|\\mathbf{x}-\\mathbf{y}\\|_2^2$$</div>\n  </div>\n  <div class=\"p-2.5 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] font-mono text-[11px]\">\n    <strong class=\"text-[#b45309]\">Isometry Guarantee:</strong> Tightly bundled phase-aligned waves strictly prove small Euclidean cluster diameter in $\\mathbb{R}^d$, while wild global curve divergence guarantees a genuine high-dimensional outlier!\n  </div>\n</div>\n"
         }
       },
       {
         "id": "s6",
-        "title": "Production Implementation: Andrews Fourier Engine & Parallel Coordinates",
-        "type": "code",
+        "title": "Interactive Lab 1: Parallel Coordinates & Inselberg Duality Studio",
+        "type": "lab",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Production Implementation: Andrews Fourier Engine & Parallel Coordinates",
+          "title": "Interactive Lab 1: Parallel Coordinates Studio",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Production Implementation: Andrews Fourier Engine & Parallel Coordinates. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># multivariate_visualizer.py\n# Andrews Fourier Curves Projection, Parseval Verification, and PCA Eigendecomposition\n\nfrom typing import List, Tuple, Dict, Any\nimport numpy as np\nfrom scipy import integrate\n\nclass AndrewsProjectionEngine:\n    # Transforms high-dimensional vectors in R^d into continuous Fourier series\n    # over interval [-pi, pi], validating Parseval&#x27;s L2 isometric theorem.\n    def __init__(self, data: np.ndarray):\n        self.X = np.asarray(data, dtype=float)\n        self.n, self.d = self.X.shape\n\n    def evaluate_curve(self, vector: np.ndarray, t: np.ndarray) -&gt; np.ndarray:\n        # Evaluates Andrews Fourier series at points t for single d-dimensional vector\n        val = vector[0] / np.sqrt(2.0)\n        for i in range(1, len(vector)):\n            freq = (i + 1) // 2\n            if i % 2 == 1:\n                val += ve</code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Production Implementation: Andrews Fourier Engine & Parallel Coordinates",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Welcome to the Parallel Coordinates and Inselberg Duality Studio. Above and below us you can explore a five-dimensional trajectory manifold spanning axes X1 through X5.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Switch the X1-X2 Correlation Regime between Negative Hourglass, Positive Parallel, and Orthogonal Lattice, scale trajectory count N, and toggle the rogue correlation-reversal anomaly to see how dual focal convergence F catches multivariate violations!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># multivariate_visualizer.py\n# Andrews Fourier Curves Projection, Parseval Verification, and PCA Eigendecomposition\n\nfrom typing import List, Tuple, Dict, Any\nimport numpy as np\nfrom scipy import integrate\n\nclass AndrewsProjectionEngine:\n    # Transforms high-dimensional vectors in R^d into continuous Fourier series\n    # over interval [-pi, pi], validating Parseval&#x27;s L2 isometric theorem.\n    def __init__(self, data: np.ndarray):\n        self.X = np.asarray(data, dtype=float)\n        self.n, self.d = self.X.shape\n\n    def evaluate_curve(self, vector: np.ndarray, t: np.ndarray) -&gt; np.ndarray:\n        # Evaluates Andrews Fourier series at points t for single d-dimensional vector\n        val = vector[0] / np.sqrt(2.0)\n        for i in range(1, len(vector)):\n            freq = (i + 1) // 2\n            if i % 2 == 1:\n                val += ve</code></pre>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\ud83d\udd2c Interactive Laboratory 1 \u2022 Projective Duality</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Interactive Studio</span>\n  </div>\n  <p class=\"text-xs font-mono text-[#475569] leading-relaxed\">\n    Explore 5D trajectories across axes $\\bar{X}_1 \\dots \\bar{X}_5$ below. Switch $X_1$-$X_2$ correlation regimes ($m &lt; 0$, $m &gt; 0$, $m \\approx 0$) and track the exact Inselberg Dual Focal Point $F = (\\frac{\\delta}{1-m}, \\frac{b}{1-m})$ plus rogue correlation-reversal trajectories!\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Lab 1: Parallel Coordinates & Dual Focal Exploration",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Let's test Inselberg's theorem live in Studio 1! Notice how under Negative Correlation, both gold Cluster Beta and cyan Cluster Alpha lines cross sharply right through the red Dual Focal Point F halfway between X1 and X2!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And look at that bright red rogue anomaly line sliced horizontally across the upper strip! Try toggling the correlation dropdown to Positive Parallel trajectories and watch the hourglass untwist immediately!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\ud83d\udd2c Interactive Laboratory 1 \u2022 Projective Duality</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Interactive Studio</span>\n  </div>\n  <p class=\"text-xs font-mono text-[#475569] leading-relaxed\">\n    Explore 5D trajectories across axes $\\bar{X}_1 \\dots \\bar{X}_5$ below. Switch $X_1$-$X_2$ correlation regimes ($m &lt; 0$, $m &gt; 0$, $m \\approx 0$) and track the exact Inselberg Dual Focal Point $F = (\\frac{\\delta}{1-m}, \\frac{b}{1-m})$ plus rogue correlation-reversal trajectories!\n  </p>\n</div>\n"
         }
       },
       {
         "id": "s7",
-        "title": "Empirical Case Study: IoT Industrial Turbines & t-SNE Fallacies",
-        "type": "bullets",
+        "title": "Active Checkpoint 1: Inselberg Projective Duality",
+        "type": "checkpoint",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Empirical Case Study: IoT Industrial Turbines & t-SNE Fallacies",
+          "title": "Checkpoint 1: Point-Line Duality",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Empirical Case Study: IoT Industrial Turbines & t-SNE Fallacies. Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
+              "text": "Active Checkpoint 1. In a parallel coordinates plot with axis spacing delta, two features obey the negative linear relationship y equals minus 1.5 x plus 100. Where does the Inselberg dual focal point F converge, and what visual structure emerges? Select the correct option below.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Turbine Vibration Anomaly (Andrews Curve Isolation)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">An offshore wind farm logged 12 vibration telemetry channels per turbine. Standard 2D scatterplot matrices were unreadable ($66$ subplots). By projecting multi-channel telemetry into Andrews Fourier curves, 95 turbines generated smooth, overlapping sinusoidal waves. Turbine #14 produced a jagged, violently fluctuating high-frequency harmonic. Maintenance inspected Turbine #14 and identified a micro-fracture in the main planetary gearbox bearing 48 hours before catastrophic failure.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Genomic Cluster Deception via t-SNE</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">A bioinformatics team clustered 5,000 single-cell gene expression vectors ($d=20,000$) using t-SNE. The 2D plot displayed three isolated clusters of identical visual diameter and equal mutual spacing. When researchers attempted targeted drug synthesis assuming equal biological diversity, experiments failed. Switching to PCA scree plots and UMAP revealed that Cluster A contained $92\\%$ of all genetic variance, while Clusters B and C were tiny, near-identical technical duplicates produced by batch reagent degradation.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#b45309] tracking-wider\">\u26a1 Active Checkpoint 1 \u2022 Knowledge Verification</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] text-[#151b20] font-mono text-[11px] font-bold border border-[#151b20]\">Projective Geometry</span>\n  </div>\n  <p class=\"text-xs font-mono text-[#475569]\">\n    Evaluate the projective dual focal formula $F = \\big(\\frac{\\delta}{1-m}, \\frac{b}{1-m}\\big)$ below to verify your understanding of parallel coordinate correlation signatures.\n  </p>\n</div>\n"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Empirical Case Study: IoT Industrial Turbines & t-SNE Fallacies",
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Checkpoint 1: Inselberg Duality Challenge",
           "turns": [
             {
               "speaker": "Kaito",
-              "text": "Dr. Nova, what is the critical industrial lesson from this case study?"
+              "text": "Checkpoint time! Suppose two telemetry metrics follow y equals minus 1.5 x plus 100 across axes spaced by delta.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Systems collapse when models mistake collection artifacts for real-world signals. In ICU sepsis models, observation frequency became a confounder; in autonomous robotics, a 50-millisecond timestamp jitter causes a 1.4-meter bounding box dislocation at highway speeds."
+              "text": "Plug m equals negative 1.5 and b equals 100 into the Inselberg focal coordinates on the quiz card below and select the exact location and visual signature!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25c6</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Turbine Vibration Anomaly (Andrews Curve Isolation)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">An offshore wind farm logged 12 vibration telemetry channels per turbine. Standard 2D scatterplot matrices were unreadable ($66$ subplots). By projecting multi-channel telemetry into Andrews Fourier curves, 95 turbines generated smooth, overlapping sinusoidal waves. Turbine #14 produced a jagged, violently fluctuating high-frequency harmonic. Maintenance inspected Turbine #14 and identified a micro-fracture in the main planetary gearbox bearing 48 hours before catastrophic failure.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">\u25b8</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Genomic Cluster Deception via t-SNE</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">A bioinformatics team clustered 5,000 single-cell gene expression vectors ($d=20,000$) using t-SNE. The 2D plot displayed three isolated clusters of identical visual diameter and equal mutual spacing. When researchers attempted targeted drug synthesis assuming equal biological diversity, experiments failed. Switching to PCA scree plots and UMAP revealed that Cluster A contained $92\\%$ of all genetic variance, while Clusters B and C were tiny, near-identical technical duplicates produced by batch reagent degradation.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#b45309] tracking-wider\">\u26a1 Active Checkpoint 1 \u2022 Knowledge Verification</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#fffdf7] text-[#151b20] font-mono text-[11px] font-bold border border-[#151b20]\">Projective Geometry</span>\n  </div>\n  <p class=\"text-xs font-mono text-[#475569]\">\n    Evaluate the projective dual focal formula $F = \\big(\\frac{\\delta}{1-m}, \\frac{b}{1-m}\\big)$ below to verify your understanding of parallel coordinate correlation signatures.\n  </p>\n</div>\n"
         }
       },
       {
         "id": "s8",
-        "title": "Interactive Lab: Explore High-Dimensional Projector",
-        "type": "tool",
+        "title": "Principal Component Analysis (PCA): Eigendecomposition & Scree Spectra",
+        "type": "content",
         "solo": {
           "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Explore High-Dimensional Projector",
+          "title": "PCA Spectral Decomposition & Biplots",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Explore High-Dimensional Projector. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">\ud83d\udd2c Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore High-Dimensional Projector</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page \u2193</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Toggle between Parallel Coordinates, Andrews Curves, and PCA Scree Plots. Dynamically cluster variables via Ward&#x27;s hierarchical linkage.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">\u26a1 Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch EDA Dashboard \u2192&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Explore High-Dimensional Projector",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the explore high-dimensional projector located below this player?"
+              "text": "When feature dimensionality reaches hundreds or thousands, even parallel coordinates saturate visually. Principal Component Analysis projects centered matrix X sub c orthogonally onto the eigenvectors v sub i of the sample covariance matrix Sigma.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "The ordered eigenvalues lambda 1 greater than or equal to lambda 2 measure exact projected variance along each principal axis. Summing the top k eigenvalues over total trace variance defines the Cumulative Explained Variance Ratio EVR sub k. Plotting the Scree spectrum exposes intrinsic low-rank structure, while a 2D Biplot overlays scaled loading arrows to reveal which raw sensors drive each principal axis\u2014always remember to z-standardize features beforehand when physical measurement scales differ!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">\ud83d\udd2c Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Explore High-Dimensional Projector</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page \u2193</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Toggle between Parallel Coordinates, Andrews Curves, and PCA Scree Plots. Dynamically cluster variables via Ward&#x27;s hierarchical linkage.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">\u26a1 Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch EDA Dashboard \u2192&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a73 Subspace Projection \u2022 Spectral Factorization</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Jolliffe &amp; Cadima (2016)</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Covariance Eigendecomposition &amp; Cumulative Variance</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono mb-3\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Covariance Eigenproblem:</strong>\n      $$\\mathbf{\\Sigma} = \\frac{1}{n - 1}\\mathbf{X}_c^\\top \\mathbf{X}_c, \\quad \\mathbf{\\Sigma}\\mathbf{v}_i = \\lambda_i\\mathbf{v}_i$$\n      <div class=\"text-[11px] text-[#475569] mt-1\">$\\lambda_1 \\ge \\lambda_2 \\ge \\dots \\ge \\lambda_d \\ge 0$ with orthogonal loadings $\\mathbf{v}_i^\\top \\mathbf{v}_j = \\delta_{ij}$.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">Explained Variance Ratio ($\\text{EVR}_k$):</strong>\n      $$\\text{EVR}_k = \\frac{\\sum_{i=1}^k \\lambda_i}{\\sum_{j=1}^d \\lambda_j} = \\frac{\\sum_{i=1}^k \\lambda_i}{\\text{Tr}(\\mathbf{\\Sigma})}$$\n      <div class=\"text-[11px] text-[#151b20] mt-1\">Must equal $1.0$ when $k = d$. Enforced at runtime by Pydantic contract!</div>\n    </div>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-2.5 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20]\">\n      <strong class=\"text-[#15803d]\">Biplot Loadings ($\\sqrt{\\lambda_i}\\mathbf{v}_i$):</strong> Arrows overlay variable contributions atop PC1-PC2 sample scores.\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20]\">\n      <strong class=\"text-[#b91c1c]\">Scale Invariance Warning:</strong> Unscaled features in meters vs. millimeters hijack $PC_1$; always standardize ($z$-score) first!\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why You Must Standardize Before Computing PCA",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Let me make sure I don't step on a classic trap with PCA: suppose one sensor reports motor voltage in millivolts around 5,000 and another reports vibration displacement in millimeters around 0.2. What happens without standardization?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Variance scales quadratically! So millivolts squared yields variance twenty-five million times larger than millimeters squared. Principal Component 1 just becomes a mirror of unit choice rather than latent structure!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Right\u2014eigendecomposition on correlation instead of unscaled covariance equalizes every unit onto unit variance before rotating toward true shared factors and plotting the Scree elbow!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a73 Subspace Projection \u2022 Spectral Factorization</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Jolliffe &amp; Cadima (2016)</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Covariance Eigendecomposition &amp; Cumulative Variance</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono mb-3\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Covariance Eigenproblem:</strong>\n      $$\\mathbf{\\Sigma} = \\frac{1}{n - 1}\\mathbf{X}_c^\\top \\mathbf{X}_c, \\quad \\mathbf{\\Sigma}\\mathbf{v}_i = \\lambda_i\\mathbf{v}_i$$\n      <div class=\"text-[11px] text-[#475569] mt-1\">$\\lambda_1 \\ge \\lambda_2 \\ge \\dots \\ge \\lambda_d \\ge 0$ with orthogonal loadings $\\mathbf{v}_i^\\top \\mathbf{v}_j = \\delta_{ij}$.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">Explained Variance Ratio ($\\text{EVR}_k$):</strong>\n      $$\\text{EVR}_k = \\frac{\\sum_{i=1}^k \\lambda_i}{\\sum_{j=1}^d \\lambda_j} = \\frac{\\sum_{i=1}^k \\lambda_i}{\\text{Tr}(\\mathbf{\\Sigma})}$$\n      <div class=\"text-[11px] text-[#151b20] mt-1\">Must equal $1.0$ when $k = d$. Enforced at runtime by Pydantic contract!</div>\n    </div>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-2.5 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20]\">\n      <strong class=\"text-[#15803d]\">Biplot Loadings ($\\sqrt{\\lambda_i}\\mathbf{v}_i$):</strong> Arrows overlay variable contributions atop PC1-PC2 sample scores.\n    </div>\n    <div class=\"p-2.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20]\">\n      <strong class=\"text-[#b91c1c]\">Scale Invariance Warning:</strong> Unscaled features in meters vs. millimeters hijack $PC_1$; always standardize ($z$-score) first!\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s9",
+        "title": "Mahalanobis Ellipsoidal Geometry vs. Euclidean Blindness",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Mahalanobis Distance & Joint Anomaly Detection",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Euclidean distance draws blind isotropic spheres around the dataset centroid, assuming every dimension is independent. Yet in production correlated matrices, a sample can sit comfortably inside marginal 3-sigma intervals on every individual column while violently contradicting the joint covariance structure.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "The Mahalanobis distance solves this geometrically by multiplying deviations through the inverse covariance matrix Sigma inverse: D sub M squared follows a chi-square distribution with d degrees of freedom! Consider a bivariate normal with correlation r equals 0.95: both coherent point A at 2 comma 2 and correlation-reversal point B at 2 comma negative 2 share identical Euclidean distance 2.828. Yet inverse covariance weighting produces Mahalanobis distance 2.02 for A versus 12.65 for B\u2014corresponding to chi-square 160 and p approximately 10 to the minus 35!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#b91c1c] tracking-wider\">\u00a73 Anomaly Geometry \u2022 Inverse Covariance Ellipsoids</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#ffd8ce] text-[#b91c1c] font-mono text-[11px] font-bold border border-[#151b20]\">$D_M^2(\\mathbf{x}) \\sim \\chi^2(d)$</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Why Euclidean Spheres Miss Correlation-Reversal Anomalies</h3>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] mb-3 font-mono text-xs\">\n    $$D_M(\\mathbf{x}) = \\sqrt{(\\mathbf{x} - \\boldsymbol{\\mu})^\\top \\mathbf{\\Sigma}^{-1} (\\mathbf{x} - \\boldsymbol{\\mu})}, \\qquad \\text{Reject as anomaly iff } D_M^2(\\mathbf{x}) &gt; \\chi^2_{1-\\alpha, d}$$\n  </div>\n  <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs space-y-1.5\">\n    <strong class=\"text-[#b45309] block\">Worked Proof ($r = 0.95,\\; \\sigma_1 = \\sigma_2 = 1.0 \\implies \\det(\\mathbf{\\Sigma}) = 0.0975$):</strong>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2.5 text-[11px]\">\n      <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n        <strong class=\"text-[#15803d]\">Point $A = (+2.0, +2.0)$ (Coherent):</strong><br/>\n        \u2022 Euclidean: $D_E(A) = \\sqrt{8} \\approx 2.828$<br/>\n        \u2022 Mahalanobis: $D_M^2(A) \\approx 4.10 \\implies D_M(A) \\approx 2.02$ (Inlier)\n      </div>\n      <div class=\"p-2 rounded bg-[#ffd8ce] border border-[#151b20]\">\n        <strong class=\"text-[#b91c1c]\">Point $B = (+2.0, -2.0)$ (Reversal):</strong><br/>\n        \u2022 Euclidean: $D_E(B) = \\sqrt{8} \\approx 2.828$ (Identical!)<br/>\n        \u2022 Mahalanobis: $D_M^2(B) = 160.0 \\implies D_M(B) \\approx 12.65$ ($p \\approx 10^{-35}$!)\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why 2.828 Euclidean Turns Into 12.65 Mahalanobis",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look at Point A at 2 comma 2 and Point B at 2 comma negative 2 when correlation r equals 0.95! Any 1D marginal range check passes both because plus or minus 2 is normal, AND Euclidean distance treats them symmetrically as 2.828!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Yes\u2014because Euclidean checks circles, not tilted covariance cigar ellipsoids! Dividing by determinant 0.0975 in Sigma inverse amplifies the orthogonal direction along the minor axis by more than tenfold!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So coherent Point A drops down to Mahalanobis 2.02 inside the cigar, while correlation-reversing Point B explodes to chi-square 160\u2014nearly a forty-fold variance ratio caught automatically!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#b91c1c] tracking-wider\">\u00a73 Anomaly Geometry \u2022 Inverse Covariance Ellipsoids</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#ffd8ce] text-[#b91c1c] font-mono text-[11px] font-bold border border-[#151b20]\">$D_M^2(\\mathbf{x}) \\sim \\chi^2(d)$</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Why Euclidean Spheres Miss Correlation-Reversal Anomalies</h3>\n  <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] mb-3 font-mono text-xs\">\n    $$D_M(\\mathbf{x}) = \\sqrt{(\\mathbf{x} - \\boldsymbol{\\mu})^\\top \\mathbf{\\Sigma}^{-1} (\\mathbf{x} - \\boldsymbol{\\mu})}, \\qquad \\text{Reject as anomaly iff } D_M^2(\\mathbf{x}) &gt; \\chi^2_{1-\\alpha, d}$$\n  </div>\n  <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] font-mono text-xs space-y-1.5\">\n    <strong class=\"text-[#b45309] block\">Worked Proof ($r = 0.95,\\; \\sigma_1 = \\sigma_2 = 1.0 \\implies \\det(\\mathbf{\\Sigma}) = 0.0975$):</strong>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2.5 text-[11px]\">\n      <div class=\"p-2 rounded bg-white border border-[#151b20]\">\n        <strong class=\"text-[#15803d]\">Point $A = (+2.0, +2.0)$ (Coherent):</strong><br/>\n        \u2022 Euclidean: $D_E(A) = \\sqrt{8} \\approx 2.828$<br/>\n        \u2022 Mahalanobis: $D_M^2(A) \\approx 4.10 \\implies D_M(A) \\approx 2.02$ (Inlier)\n      </div>\n      <div class=\"p-2 rounded bg-[#ffd8ce] border border-[#151b20]\">\n        <strong class=\"text-[#b91c1c]\">Point $B = (+2.0, -2.0)$ (Reversal):</strong><br/>\n        \u2022 Euclidean: $D_E(B) = \\sqrt{8} \\approx 2.828$ (Identical!)<br/>\n        \u2022 Mahalanobis: $D_M^2(B) = 160.0 \\implies D_M(B) \\approx 12.65$ ($p \\approx 10^{-35}$!)\n      </div>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s10",
+        "title": "Clustered Correlation Heatmaps: Ward's Linkage & Block Diagonalization",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Clustered Heatmaps via Ward's Linkage",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Plotting a fifty-by-fifty correlation matrix in alphabetical feature order produces visual noise across 1,225 off-diagonal cells, burying collinear sensor clusters.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "A Hierarchically Clustered Heatmap, or clustermap, transforms pairwise correlations into metric dissimilarity D of j comma k equals 1 minus absolute r sub jk, then groups features agglomeratively via Ward's minimum-variance linkage\u2014merging clusters A and B to minimize total within-cluster error sum of squares delta ESS. Reordering both axes according to the resulting dendrogram leaves crystallizes scattered pairs into crisp block-diagonal latent modules!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a74 Dendrogram Permutation \u2022 Factor Discovery</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Clustermap Engine</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Resolving Collinearity Blindness via Ward's Linkage</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono mb-3\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">1. Correlation Dissimilarity Metric:</strong>\n      $$D(j, k) = 1 - |r_{jk}| \\in [0, 1]$$\n      <div class=\"text-[11px] text-[#475569] mt-1\">Treats both strong positive ($+0.95$) and strong negative ($-0.95$) dependencies as near-zero dissimilarity ($D = 0.05$).</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">2. Ward's Minimum Variance Criterion:</strong>\n      $$\\Delta\\text{ESS}_{AB} = \\frac{n_A n_B}{n_A + n_B}\\|\\boldsymbol{\\mu}_A - \\boldsymbol{\\mu}_B\\|_2^2$$\n      <div class=\"text-[11px] text-[#151b20] mt-1\">Agglomeratively merges pairs yielding minimal within-cluster variance inflation.</div>\n    </div>\n  </div>\n  <div class=\"p-2.5 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] font-mono text-[11px]\">\n    <strong class=\"text-[#15803d]\">Perceptual Payoff:</strong> Permuting rows and columns by dendrogram leaf order pulls scattered co-linearities adjacent to one another, revealing crisp block-diagonal latent factor squares along the diagonal!\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Turning Matrix Chaos Into Block-Diagonal Modules",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look at that dissimilarity metric: D equals 1 minus absolute value of r! Why absolute value instead of just 1 minus r?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because in multicollinearity and factor analysis, an inverted variable with correlation minus 0.95 carries identically redundant linear information as plus 0.95! Placing them adjacent lets regression engineers see both redundant blocks immediately!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And Ward's minimum-variance criterion forces compact hierarchical clustering\u2014eliminating the cognitive overload of scanning twelve hundred disconnected alphabetical cells!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a74 Dendrogram Permutation \u2022 Factor Discovery</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">Clustermap Engine</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Resolving Collinearity Blindness via Ward's Linkage</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono mb-3\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">1. Correlation Dissimilarity Metric:</strong>\n      $$D(j, k) = 1 - |r_{jk}| \\in [0, 1]$$\n      <div class=\"text-[11px] text-[#475569] mt-1\">Treats both strong positive ($+0.95$) and strong negative ($-0.95$) dependencies as near-zero dissimilarity ($D = 0.05$).</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">2. Ward's Minimum Variance Criterion:</strong>\n      $$\\Delta\\text{ESS}_{AB} = \\frac{n_A n_B}{n_A + n_B}\\|\\boldsymbol{\\mu}_A - \\boldsymbol{\\mu}_B\\|_2^2$$\n      <div class=\"text-[11px] text-[#151b20] mt-1\">Agglomeratively merges pairs yielding minimal within-cluster variance inflation.</div>\n    </div>\n  </div>\n  <div class=\"p-2.5 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] font-mono text-[11px]\">\n    <strong class=\"text-[#15803d]\">Perceptual Payoff:</strong> Permuting rows and columns by dendrogram leaf order pulls scattered co-linearities adjacent to one another, revealing crisp block-diagonal latent factor squares along the diagonal!\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s11",
+        "title": "Non-Linear Manifolds: t-SNE Perplexity Illusions vs. UMAP & Silhouettes",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Non-Linear Manifold Embeddings & Pitfalls",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "When data sits on curved non-linear manifolds, teams often reach for t-SNE or UMAP. Yet t-SNE harbors dangerous visual illusions: because its Gaussian kernel bandwidth adapts locally to fix constant perplexity entropy across every neighborhood, t-SNE artificially expands sparse tiny clusters and compresses dense giant clusters into seemingly equal-sized circular islands.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Furthermore, inter-cluster distances on a t-SNE plot carry no reliable metric meaning. Always triangulate non-linear projections with UMAP fuzzy topological embeddings, verify global variance hierarchy via PCA Scree plots, and measure objective cluster cohesion and separation using Rousseeuw's Silhouette Coefficient s of i.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#b91c1c] tracking-wider\">\u00a75 Manifold Learning \u2022 t-SNE Caveats &amp; Silhouettes</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#ffd8ce] text-[#b91c1c] font-mono text-[11px] font-bold border border-[#151b20]\">t-SNE vs. UMAP</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Avoiding Perplexity Artifacts &amp; Measuring True Cluster Quality</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono mb-3\">\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">t-SNE Cognitive Fallacies (Van der Maaten 2008):</strong>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#151b20]\">\n        <li>Adaptive perplexity equalizes local neighborhood densities\u2014inflating tiny 50-point artifacts into massive circles.</li>\n        <li>Cluster diameters and gaps between clusters in 2D KL-minimization are <strong>non-metric</strong> artifacts.</li>\n      </ul>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">UMAP + Silhouette Verification (McInnes 2018):</strong>\n      <div class=\"text-[11px] text-[#151b20] mb-1\">UMAP preserves global Riemannian simplicial structure alongside PCA $\\text{EVR}_k$, verified via Rousseeuw (1987) Silhouette:</div>\n      $$s(i) = \\frac{b(i) - a(i)}{\\max\\{a(i),\\, b(i)\\}} \\in [-1, +1]$$\n    </div>\n  </div>\n  <div class=\"p-2.5 rounded-xl bg-white border-2 border-[#151b20] font-mono text-[11px]\">\n    <strong>Diagnostic Audit Rule:</strong> Never infer global cluster density, population cardinality, or inter-group distance from t-SNE alone\u2014always cross-check $s(i)$ and PCA variance ratios!\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Why Three Identical t-SNE Circles Might Be Fake",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Wait\u2014everyone puts pretty t-SNE scatterplots in papers claiming three distinct biological subtypes because they see three equal-sized islands! Why is that risky?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because t-SNE calibrates a different Gaussian variance sigma sub i around every single point to hit target perplexity! Sparse technical glitches get huge radii while dense natural populations get compressed until all three clouds look artificially co-equal!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So if you didn't check PCA scree eigenvalues or Rousseeuw's Silhouette score in raw space, you'd publish a lab temperature artifact as a major biological discovery!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#b91c1c] tracking-wider\">\u00a75 Manifold Learning \u2022 t-SNE Caveats &amp; Silhouettes</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#ffd8ce] text-[#b91c1c] font-mono text-[11px] font-bold border border-[#151b20]\">t-SNE vs. UMAP</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-2\">Avoiding Perplexity Artifacts &amp; Measuring True Cluster Quality</h3>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono mb-3\">\n    <div class=\"p-3 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">t-SNE Cognitive Fallacies (Van der Maaten 2008):</strong>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#151b20]\">\n        <li>Adaptive perplexity equalizes local neighborhood densities\u2014inflating tiny 50-point artifacts into massive circles.</li>\n        <li>Cluster diameters and gaps between clusters in 2D KL-minimization are <strong>non-metric</strong> artifacts.</li>\n      </ul>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#15803d] block mb-1\">UMAP + Silhouette Verification (McInnes 2018):</strong>\n      <div class=\"text-[11px] text-[#151b20] mb-1\">UMAP preserves global Riemannian simplicial structure alongside PCA $\\text{EVR}_k$, verified via Rousseeuw (1987) Silhouette:</div>\n      $$s(i) = \\frac{b(i) - a(i)}{\\max\\{a(i),\\, b(i)\\}} \\in [-1, +1]$$\n    </div>\n  </div>\n  <div class=\"p-2.5 rounded-xl bg-white border-2 border-[#151b20] font-mono text-[11px]\">\n    <strong>Diagnostic Audit Rule:</strong> Never infer global cluster density, population cardinality, or inter-group distance from t-SNE alone\u2014always cross-check $s(i)$ and PCA variance ratios!\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s12",
+        "title": "Interactive Lab 2: Andrews Fourier Curves, Parseval & PCA Scree Workbench",
+        "type": "lab",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Interactive Lab 2: Andrews & PCA Workbench",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to our second interactive laboratory: the Andrews Fourier Curves, Parseval Isometry, and PCA Scree Workbench. Observe how clean phase-aligned cyan and gold cluster ribbons emerge when features are ordered by principal variance.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Switch Fourier Feature Ordering from PCA Optimal to Inverted Noise-First, watch the ribbons tangle visually while Parseval Ratio stays locked at 1.000000, and toggle Display Mode between Andrews Curves, PCA Scree Spectrum, and Mahalanobis Ellipsoidal Anomaly Screening!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#b45309] tracking-wider\">\ud83d\udd2c Interactive Laboratory 2 \u2022 Parseval, PCA &amp; Mahalanobis</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#ffc83e] text-[#151b20] font-mono text-[11px] font-bold border border-[#151b20]\">Multi-View Workbench</span>\n  </div>\n  <p class=\"text-xs font-mono text-[#475569] leading-relaxed\">\n    Compare <strong>PCA Optimal Ordering</strong> vs. <strong>Inverted Noise Ordering</strong>, verify Parseval's exact ratio $\\frac{\\int \\Delta^2}{\\pi\\|\\Delta\\|_2^2} = 1.000000$, inspect the <strong>PCA Scree EVR Spectrum</strong>, and visualize the <strong>Mahalanobis $\\chi^2$ Ellipse</strong> isolating a correlation-reversal rogue anomaly below!\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Lab 2: Testing Parseval Ordering & Mahalanobis Screening",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Time to prove Parseval and PCA ordering side by side! Watch what happens when I invert the feature ordering in Lab 2 below: the clean cyan and gold ribbons shred into high-frequency fuzz, yet look at the telemetry box\u2014Parseval Ratio remains exactly 1.000000!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And switch Display Mode to Mahalanobis Ellipsoidal Slice! Even though the red correlation-reversal outlier sits at the same Euclidean circle radius as healthy samples, the tilted Mahalanobis ellipse flags it with Mahalanobis distance above 8 and p less than 0.001!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#b45309] tracking-wider\">\ud83d\udd2c Interactive Laboratory 2 \u2022 Parseval, PCA &amp; Mahalanobis</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#ffc83e] text-[#151b20] font-mono text-[11px] font-bold border border-[#151b20]\">Multi-View Workbench</span>\n  </div>\n  <p class=\"text-xs font-mono text-[#475569] leading-relaxed\">\n    Compare <strong>PCA Optimal Ordering</strong> vs. <strong>Inverted Noise Ordering</strong>, verify Parseval's exact ratio $\\frac{\\int \\Delta^2}{\\pi\\|\\Delta\\|_2^2} = 1.000000$, inspect the <strong>PCA Scree EVR Spectrum</strong>, and visualize the <strong>Mahalanobis $\\chi^2$ Ellipse</strong> isolating a correlation-reversal rogue anomaly below!\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s13",
+        "title": "Active Checkpoint 2: Mahalanobis Ellipsoids & Parseval Isometry",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Checkpoint 2: Mahalanobis & Parseval",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Active Checkpoint 2. Under bivariate normal correlation r equals 0.95 with unit variances, coherent sample A sits at plus 2 comma plus 2 while anomalous sample B sits at plus 2 comma minus 2. Meanwhile, a downstream Andrews plot reverses coordinate feature order. Evaluate both distance metrics and Parseval invariance on the card below.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#15803d] tracking-wider\">\u26a1 Active Checkpoint 2 \u2022 Knowledge Verification</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border border-[#151b20]\">Covariance &amp; Fourier Invariants</span>\n  </div>\n  <p class=\"text-xs font-mono text-[#475569]\">\n    Synthesize Mahalanobis inverse-covariance scaling with Andrews Parseval permutation invariance to answer the quantitative scenario below.\n  </p>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Checkpoint 2: Joint Anomaly & Isometry Synthesis",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Final checkpoint! Notice Point A at plus 2 comma plus 2 and Point B at plus 2 comma minus 2 both have Euclidean distance square root of 8 when r equals 0.95.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Evaluate what Mahalanobis Sigma inverse reveals about B versus A, AND whether reversing feature order breaks Parseval's exact L2 integral! Lock in your answer below.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#15803d] tracking-wider\">\u26a1 Active Checkpoint 2 \u2022 Knowledge Verification</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border border-[#151b20]\">Covariance &amp; Fourier Invariants</span>\n  </div>\n  <p class=\"text-xs font-mono text-[#475569]\">\n    Synthesize Mahalanobis inverse-covariance scaling with Andrews Parseval permutation invariance to answer the quantitative scenario below.\n  </p>\n</div>\n"
+        }
+      },
+      {
+        "id": "s14",
+        "title": "Empirical Case Studies: Offshore Wind Turbines & Genomic t-SNE Fallacy",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Industrial IoT & Genomic Case Studies",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let's inspect two landmark industrial and biomedical applications from the monograph. First, an offshore wind consortium monitored 12 vibration accelerometers across 90 turbines. Generating pairplots required 66 subplots per turbine\u20145,940 panels total! By projecting normalized 12-channel telemetry onto Andrews curves, 89 healthy turbines nested cleanly inside a cyan harmonic ribbon bounded between minus 4 and plus 4, while Turbine 14 shot out of phase to plus 14.2 at 1.2 radians, catching an incipient planetary gearbox fracture early.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Second, a biotech team plotted 5,000 single-cell RNA profiles across 20,000 genes using t-SNE and saw three co-equal circular clusters\u2014hypothesizing three biological subtypes. Checking a PCA Scree plot and Ward clustermap exposed the illusion: Principal Component 1 explained 84.2 percent of global variance, while Clusters 2 and 3 were tiny sub-50-cell reagent temperature-drift artifacts inflated visually by t-SNE density equalization!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a76 Empirical Case Studies \u2022 Real-World Triage</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">IoT &amp; Bioinformatics</span>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3.5 rounded-xl bg-white border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 text-sm\">1. Offshore Wind Telemetry (12D \u00d7 90 Turbines)</strong>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#475569]\">\n        <li>Pairplot explosion: $\\binom{12}{2} = 66$ subplots $\\times 90 = 5{,}940$ panels.</li>\n        <li><strong>Andrews Waveform Fix:</strong> 89 healthy turbines align tightly inside $[-4, +4]$.</li>\n        <li><strong class=\"text-[#b91c1c]\">Turbine #14 Alert:</strong> Jagged $+14.2$ excursion at $t \\approx 1.2\\text{ rad}$ isolated a planetary gearbox bearing micro-fracture pre-failure!</li>\n      </ul>\n    </div>\n    <div class=\"p-3.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 text-sm\">2. Genomic t-SNE Deception (5k Cells \u00d7 20k Genes)</strong>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#151b20]\">\n        <li>t-SNE drew 3 equally sized circular clusters, falsely implying 3 equal subtypes.</li>\n        <li><strong>PCA + Ward Clustermap Audit:</strong> $\\text{EVR}_{PC1} = 84.2\\%$ vs. $PC_2 = 1.8\\%, PC_3 = 0.9\\%$.</li>\n        <li><strong class=\"text-[#b91c1c]\">Verdict:</strong> Clusters 2 &amp; 3 were tiny $&lt; 50$-cell reagent temperature-drift artifacts inflated by t-SNE perplexity! Replaced with UMAP + PCA.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Saving Millions Offshore & Preventing Fake Genomic Clusters",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Turning nearly six thousand offshore wind telemetry scatterplots into a single superposed Andrews chart\u2014and spotting Turbine 14 spiking to plus 14.2 at 1.2 radians\u2014is pure engineering gold!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice why Turbine 14 jumped out instantaneously: because Parseval guarantees 12D Euclidean bearing shift transforms linearly into integrated wave excursion across the ribbon!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And in the scRNA-seq study, checking a simple PCA Scree plot prevented a lab from mistaking two fifty-cell temperature glitches for brand-new cell subtypes! Never trust t-SNE island sizes without Scree EVR!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a76 Empirical Case Studies \u2022 Real-World Triage</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#c9f3f4] text-[#0e7490] font-mono text-[11px] font-bold border border-[#151b20]\">IoT &amp; Bioinformatics</span>\n  </div>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono\">\n    <div class=\"p-3.5 rounded-xl bg-white border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1 text-sm\">1. Offshore Wind Telemetry (12D \u00d7 90 Turbines)</strong>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#475569]\">\n        <li>Pairplot explosion: $\\binom{12}{2} = 66$ subplots $\\times 90 = 5{,}940$ panels.</li>\n        <li><strong>Andrews Waveform Fix:</strong> 89 healthy turbines align tightly inside $[-4, +4]$.</li>\n        <li><strong class=\"text-[#b91c1c]\">Turbine #14 Alert:</strong> Jagged $+14.2$ excursion at $t \\approx 1.2\\text{ rad}$ isolated a planetary gearbox bearing micro-fracture pre-failure!</li>\n      </ul>\n    </div>\n    <div class=\"p-3.5 rounded-xl bg-[#ffd8ce] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1 text-sm\">2. Genomic t-SNE Deception (5k Cells \u00d7 20k Genes)</strong>\n      <ul class=\"list-disc pl-4 space-y-1 text-[11px] text-[#151b20]\">\n        <li>t-SNE drew 3 equally sized circular clusters, falsely implying 3 equal subtypes.</li>\n        <li><strong>PCA + Ward Clustermap Audit:</strong> $\\text{EVR}_{PC1} = 84.2\\%$ vs. $PC_2 = 1.8\\%, PC_3 = 0.9\\%$.</li>\n        <li><strong class=\"text-[#b91c1c]\">Verdict:</strong> Clusters 2 &amp; 3 were tiny $&lt; 50$-cell reagent temperature-drift artifacts inflated by t-SNE perplexity! Replaced with UMAP + PCA.</li>\n      </ul>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "s15",
+        "title": "Production Implementation: Pydantic V2 MultivariateEngineSuite",
+        "type": "code",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Pydantic V2 Multivariate Verification Pipeline",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let's formalize these mathematical invariants inside an enterprise Python pipeline using SciPy, NumPy, and Pydantic V2 runtime contracts, mirroring MultivariateEngineSuite from Section 5 of the monograph.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "AndrewsProjectionResult integrates the Fourier squared difference via scipy.integrate.quad and asserts relative Parseval error strictly below 1 percent; PCADecompositionResult enforces total cumulative EVR equal to 1.0 within 10 to the minus 4 via model_validator; and screen_mahalanobis_outliers uses the Moore-Penrose pseudoinverse pinv against critical chi-square alpha 0.001, catching a 2.5 sigma reversal anomaly at Mahalanobis distance above 7.0!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#15803d] tracking-wider\">\ud83d\udcbb Production Suite \u2022 Pydantic V2 Contracts</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border border-[#151b20]\">multivariate_visualizer.py</span>\n  </div>\n  <pre class=\"bg-[#151b20] text-[#f8fafc] p-3 rounded-xl font-mono text-[11px] leading-snug overflow-x-auto border-2 border-[#151b20] shadow-inner\"><code>class AndrewsProjectionResult(BaseModel):\n    euclidean_dist_sq: float; numerical_fourier_integral: float\n    relative_parseval_error: float = Field(ge=0.0, le=0.01)\n    is_parseval_verified: bool\n\nclass PCADecompositionResult(BaseModel):\n    cumulative_evr: List[float]; top_2_components_evr: float\n    @model_validator(mode=\"after\")\n    def verify_evr_sum(self):\n        if abs(self.cumulative_evr[-1] - 1.0) &gt; 1e-4: raise ValueError(\"EVR sum != 1.0\")\n        return self\n\nclass MultivariateEngineSuite:\n    @staticmethod\n    def screen_mahalanobis_outliers(X: np.ndarray, alpha: float = 0.001):\n        cov_inv = np.linalg.pinv(np.cov(X, rowvar=False))\n        crit_chi2 = stats.chi2.ppf(1.0 - alpha, df=X.shape[1])\n        # Flags (+2.5s, -2.5s) contradiction when r=0.9 even if |z| &lt; 3!\n        m_sq = float(diff @ cov_inv @ diff)\n        return MahalanobisAnomalyReport(mahalanobis_distance=np.sqrt(m_sq), is_anomaly=(m_sq &gt; crit_chi2))</code></pre>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Runtime Verification with Pydantic V2 Contracts",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Look at how clean MultivariateEngineSuite is! Using np.linalg.pinv prevents singular matrix crashes when features are nearly collinear, and the Pydantic model validator blocks any buggy PCA implementation whose eigenvalues don't sum to 100 percent of variance!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Plus injecting a subtle +2.5 sigma comma -2.5 sigma contradiction into an r=0.9 Gaussian passes standard marginal z-score alarms cleanly, yet triggers Mahalanobis distance above 7.0 against chi-square alpha 0.001 automatically!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-4 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-2\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#15803d] tracking-wider\">\ud83d\udcbb Production Suite \u2022 Pydantic V2 Contracts</div>\n    <span class=\"px-2 py-0.5 rounded bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border border-[#151b20]\">multivariate_visualizer.py</span>\n  </div>\n  <pre class=\"bg-[#151b20] text-[#f8fafc] p-3 rounded-xl font-mono text-[11px] leading-snug overflow-x-auto border-2 border-[#151b20] shadow-inner\"><code>class AndrewsProjectionResult(BaseModel):\n    euclidean_dist_sq: float; numerical_fourier_integral: float\n    relative_parseval_error: float = Field(ge=0.0, le=0.01)\n    is_parseval_verified: bool\n\nclass PCADecompositionResult(BaseModel):\n    cumulative_evr: List[float]; top_2_components_evr: float\n    @model_validator(mode=\"after\")\n    def verify_evr_sum(self):\n        if abs(self.cumulative_evr[-1] - 1.0) &gt; 1e-4: raise ValueError(\"EVR sum != 1.0\")\n        return self\n\nclass MultivariateEngineSuite:\n    @staticmethod\n    def screen_mahalanobis_outliers(X: np.ndarray, alpha: float = 0.001):\n        cov_inv = np.linalg.pinv(np.cov(X, rowvar=False))\n        crit_chi2 = stats.chi2.ppf(1.0 - alpha, df=X.shape[1])\n        # Flags (+2.5s, -2.5s) contradiction when r=0.9 even if |z| &lt; 3!\n        m_sq = float(diff @ cov_inv @ diff)\n        return MahalanobisAnomalyReport(mahalanobis_distance=np.sqrt(m_sq), is_anomaly=(m_sq &gt; crit_chi2))</code></pre>\n</div>\n"
+        }
+      },
+      {
+        "id": "s16",
+        "title": "Capstone Synthesis: Multivariate Geometry & 4 Cardinal Production Rules",
+        "type": "summary",
+        "solo": {
+          "speaker": "Dr. Nova (Senior Architect)",
+          "title": "Capstone Synthesis & 4 Cardinal Rules",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "We conclude Lesson 6.5 with four cardinal rules governing high-dimensional visual and statistical exploration in production systems.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Rule 1: Always order Andrews features by descending principal variance so dominant macro waves separate clusters visually while preserving Parseval L2 isometry. Rule 2: Screen multivariate outliers using Mahalanobis chi-square ellipsoids rather than Euclidean spheres so correlation reversals never sneak through. Rule 3: Permute high-dimensional correlation heatmaps via Ward minimum-variance linkage to expose latent collinearity blocks. Rule 4: Cross-examine every t-SNE diagram using PCA Scree ratios, UMAP topology, and Rousseeuw Silhouette scores. In Lesson 6.6, we turn toward detecting dataset paradoxes, invariants, and anomalies!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a76.5 Masterclass Capstone \u2022 Production Rules</div>\n    <span class=\"px-2.5 py-0.5 rounded-full bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border-2 border-[#151b20]\">Production Certified</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-3\">4 Cardinal Production Rules for Multivariate Visualization</h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs mb-4\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Rule 1: Order Andrews by Principal Variance</strong>\n      Parseval's $L_2$ integral invariant holds across permutations, yet low-frequency visual legibility demands placing top eigenvectors ($PC_1, PC_2, PC_3$) first in $f_{\\mathbf{x}}(t)$.\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">Rule 2: Screen via Mahalanobis Ellipsoids</strong>\n      Euclidean norms cannot catch correlation reversals. Always scale deviations via $\\mathbf{\\Sigma}^{-1}$ and gate against $D_M^2(\\mathbf{x}) &gt; \\chi^2_{1-\\alpha, d}$.\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Rule 3: Permute Heatmaps via Ward's Linkage</strong>\n      Alphabetical ordering hides multi-way collinearity. Cluster with $D(j, k) = 1 - |r_{jk}|$ to assemble block-diagonal factor modules.\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Rule 4: Audit t-SNE Against PCA &amp; UMAP</strong>\n      Adaptive perplexity inflates small noise islands into apparent clusters. Always validate cluster counts using $\\text{EVR}_k$, UMAP, and Silhouette $s(i)$.\n    </div>\n  </div>\n  <div class=\"text-center pt-1\">\n    <a href=\"../06-detecting-data-issues/\" class=\"inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#2563eb] text-white border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono font-bold text-xs hover:translate-y-[-1px] transition\">\n      <span>Proceed to Lesson 6.6: Detecting Data Issues \u2192</span>\n    </a>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Synthesis: 4 Cardinal Rules for Multivariate EDA",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "What a toolkit! Four rules I'm pinning straight into every EDA pipeline: standardize and order Andrews curves by principal components, audit joint outliers with Mahalanobis instead of Euclidean circles, cluster heatmaps via Ward linkage, and never trust t-SNE islands without checking PCA Scree variance and Silhouette scores!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "And you now possess both the geometric intuition and the formal proofs behind every single tool. Next up in Lesson 6.6: Detecting Data Issues, Paradoxes, and Invariants!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-5 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[6px_6px_0px_#151b20] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20] pb-2 mb-3\">\n    <div class=\"font-mono text-xs font-bold uppercase text-[#0e7490] tracking-wider\">\u00a76.5 Masterclass Capstone \u2022 Production Rules</div>\n    <span class=\"px-2.5 py-0.5 rounded-full bg-[#e7f4c8] text-[#15803d] font-mono text-[11px] font-bold border-2 border-[#151b20]\">Production Certified</span>\n  </div>\n  <h3 class=\"text-lg font-black text-[#151b20] mb-3\">4 Cardinal Production Rules for Multivariate Visualization</h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs mb-4\">\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Rule 1: Order Andrews by Principal Variance</strong>\n      Parseval's $L_2$ integral invariant holds across permutations, yet low-frequency visual legibility demands placing top eigenvectors ($PC_1, PC_2, PC_3$) first in $f_{\\mathbf{x}}(t)$.\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fff0b9] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b45309] block mb-1\">Rule 2: Screen via Mahalanobis Ellipsoids</strong>\n      Euclidean norms cannot catch correlation reversals. Always scale deviations via $\\mathbf{\\Sigma}^{-1}$ and gate against $D_M^2(\\mathbf{x}) &gt; \\chi^2_{1-\\alpha, d}$.\n    </div>\n    <div class=\"p-3 rounded-xl bg-white border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#b91c1c] block mb-1\">Rule 3: Permute Heatmaps via Ward's Linkage</strong>\n      Alphabetical ordering hides multi-way collinearity. Cluster with $D(j, k) = 1 - |r_{jk}|$ to assemble block-diagonal factor modules.\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#c9f3f4] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <strong class=\"text-[#0e7490] block mb-1\">Rule 4: Audit t-SNE Against PCA &amp; UMAP</strong>\n      Adaptive perplexity inflates small noise islands into apparent clusters. Always validate cluster counts using $\\text{EVR}_k$, UMAP, and Silhouette $s(i)$.\n    </div>\n  </div>\n  <div class=\"text-center pt-1\">\n    <a href=\"../06-detecting-data-issues/\" class=\"inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#2563eb] text-white border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] font-mono font-bold text-xs hover:translate-y-[-1px] transition\">\n      <span>Proceed to Lesson 6.6: Detecting Data Issues \u2192</span>\n    </a>\n  </div>\n</div>\n"
         }
       }
     ]
