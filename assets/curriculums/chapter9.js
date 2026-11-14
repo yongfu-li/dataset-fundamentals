@@ -1,4 +1,4 @@
-window.curriculum = Object.assign(window.curriculum || {}, {
+window.CURRICULUM_CH9 = window.curriculum = Object.assign(window.curriculum || {}, {
   "ch9_p1": {
     "chapter": 9,
     "part": 1,

@@ -1,4 +1,4 @@
-window.CHAPTER_10 = {
+window.CURRICULUM_CH10 = window.CHAPTER_10 = {
   "ch10_p1": {
     "chapter": 10,
     "part": 1,
