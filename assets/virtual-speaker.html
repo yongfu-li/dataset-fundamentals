@@ -2981,8 +2981,9 @@
       if (!topicData || !topicData.slides || topicData.slides.length === 0) return;
 
       const headerTrack = document.getElementById('studioHeaderTrack');
+      const lessonTitleText = topicData.lessonTitle || topicData.title || (manifestItem && manifestItem.title) || '';
       if (headerTrack && topicData.chapter) {
-        headerTrack.innerText = `Track ${topicData.chapter}: ${topicData.lessonTitle}`;
+        headerTrack.innerText = `Track ${topicData.chapter}: ${lessonTitleText}`;
       }
 
       if (currentSlideIndex < 0) currentSlideIndex = 0;

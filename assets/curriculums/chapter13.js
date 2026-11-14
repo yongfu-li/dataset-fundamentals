@@ -1956,7 +1956,8 @@ window.CURRICULUM_CH13 = {
           ]
         }
       }
-    ]
+    ],
+    "lessonTitle": "Documentation and Metadata Standards"
   },
   "ch13_p4": {
     "chapter": 13,
@@ -2621,7 +2622,8 @@ window.CURRICULUM_CH13 = {
           ]
         }
       }
-    ]
+    ],
+    "lessonTitle": "FAIR Data Principles in Practice"
   },
   "ch13_p5": {
     "chapter": 13,
@@ -3286,7 +3288,8 @@ window.CURRICULUM_CH13 = {
           ]
         }
       }
-    ]
+    ],
+    "lessonTitle": "Quality and Provenance in Open Datasets"
   },
   "ch13_p6": {
     "chapter": 13,
@@ -3966,7 +3969,8 @@ window.CURRICULUM_CH13 = {
           ]
         }
       }
-    ]
+    ],
+    "lessonTitle": "Licensing, Governance, and Ethics in Open Science"
   },
   "ch13_p7": {
     "chapter": 13,
@@ -4646,7 +4650,8 @@ window.CURRICULUM_CH13 = {
           ]
         }
       }
-    ]
+    ],
+    "lessonTitle": "Reproducible Computational Workflows and Containers"
   },
   "ch13_p8": {
     "chapter": 13,
@@ -5251,7 +5256,8 @@ window.CURRICULUM_CH13 = {
           ]
         }
       }
-    ]
+    ],
+    "lessonTitle": "Automated Data Validation, Continuous Integration, and CML"
   },
   "ch13_p9": {
     "chapter": 13,
