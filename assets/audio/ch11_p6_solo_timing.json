@@ -1,0 +1,4921 @@
+{
+  "duration": 527.77,
+  "sentences": [
+    {
+      "slide": 1,
+      "slideId": "s1",
+      "slideIndex": 0,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 11.6: Generative Label Modeling and Matrix Completion. Having formulated programmatic Labeling Functions in Lesson 11.5, we now dissect the mathematical engine that recovers latent rule accuracies purely from unlabeled votes.",
+      "start": 0.0,
+      "end": 16.968,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 0.0
+        },
+        {
+          "w": "to",
+          "t": 0.514
+        },
+        {
+          "w": "Lesson",
+          "t": 1.028
+        },
+        {
+          "w": "11.6:",
+          "t": 1.543
+        },
+        {
+          "w": "Generative",
+          "t": 2.057
+        },
+        {
+          "w": "Label",
+          "t": 2.571
+        },
+        {
+          "w": "Modeling",
+          "t": 3.085
+        },
+        {
+          "w": "and",
+          "t": 3.599
+        },
+        {
+          "w": "Matrix",
+          "t": 4.113
+        },
+        {
+          "w": "Completion.",
+          "t": 4.628
+        },
+        {
+          "w": "Having",
+          "t": 5.142
+        },
+        {
+          "w": "formulated",
+          "t": 5.656
+        },
+        {
+          "w": "programmatic",
+          "t": 6.17
+        },
+        {
+          "w": "Labeling",
+          "t": 6.684
+        },
+        {
+          "w": "Functions",
+          "t": 7.199
+        },
+        {
+          "w": "in",
+          "t": 7.713
+        },
+        {
+          "w": "Lesson",
+          "t": 8.227
+        },
+        {
+          "w": "11.5,",
+          "t": 8.741
+        },
+        {
+          "w": "we",
+          "t": 9.255
+        },
+        {
+          "w": "now",
+          "t": 9.769
+        },
+        {
+          "w": "dissect",
+          "t": 10.284
+        },
+        {
+          "w": "the",
+          "t": 10.798
+        },
+        {
+          "w": "mathematical",
+          "t": 11.312
+        },
+        {
+          "w": "engine",
+          "t": 11.826
+        },
+        {
+          "w": "that",
+          "t": 12.34
+        },
+        {
+          "w": "recovers",
+          "t": 12.855
+        },
+        {
+          "w": "latent",
+          "t": 13.369
+        },
+        {
+          "w": "rule",
+          "t": 13.883
+        },
+        {
+          "w": "accuracies",
+          "t": 14.397
+        },
+        {
+          "w": "purely",
+          "t": 14.911
+        },
+        {
+          "w": "from",
+          "t": 15.425
+        },
+        {
+          "w": "unlabeled",
+          "t": 15.94
+        },
+        {
+          "w": "votes.",
+          "t": 16.454
+        }
+      ]
+    },
+    {
+      "slide": 1,
+      "slideId": "s1",
+      "slideIndex": 0,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Today, we derive log-linear Ising factor graphs, prove how conditional independence yields a Rank-1 plus diagonal covariance decomposition, construct the closed-form FlyingSquid Triplet Estimator, and prove how deep end-model distillation surpasses heuristic ceilings.",
+      "start": 17.268,
+      "end": 33.708,
+      "words": [
+        {
+          "w": "Today,",
+          "t": 17.268
+        },
+        {
+          "w": "we",
+          "t": 17.766
+        },
+        {
+          "w": "derive",
+          "t": 18.264
+        },
+        {
+          "w": "log-linear",
+          "t": 18.763
+        },
+        {
+          "w": "Ising",
+          "t": 19.261
+        },
+        {
+          "w": "factor",
+          "t": 19.759
+        },
+        {
+          "w": "graphs,",
+          "t": 20.257
+        },
+        {
+          "w": "prove",
+          "t": 20.755
+        },
+        {
+          "w": "how",
+          "t": 21.253
+        },
+        {
+          "w": "conditional",
+          "t": 21.752
+        },
+        {
+          "w": "independence",
+          "t": 22.25
+        },
+        {
+          "w": "yields",
+          "t": 22.748
+        },
+        {
+          "w": "a",
+          "t": 23.246
+        },
+        {
+          "w": "Rank-1",
+          "t": 23.744
+        },
+        {
+          "w": "plus",
+          "t": 24.243
+        },
+        {
+          "w": "diagonal",
+          "t": 24.741
+        },
+        {
+          "w": "covariance",
+          "t": 25.239
+        },
+        {
+          "w": "decomposition,",
+          "t": 25.737
+        },
+        {
+          "w": "construct",
+          "t": 26.235
+        },
+        {
+          "w": "the",
+          "t": 26.733
+        },
+        {
+          "w": "closed-form",
+          "t": 27.232
+        },
+        {
+          "w": "FlyingSquid",
+          "t": 27.73
+        },
+        {
+          "w": "Triplet",
+          "t": 28.228
+        },
+        {
+          "w": "Estimator,",
+          "t": 28.726
+        },
+        {
+          "w": "and",
+          "t": 29.224
+        },
+        {
+          "w": "prove",
+          "t": 29.723
+        },
+        {
+          "w": "how",
+          "t": 30.221
+        },
+        {
+          "w": "deep",
+          "t": 30.719
+        },
+        {
+          "w": "end-model",
+          "t": 31.217
+        },
+        {
+          "w": "distillation",
+          "t": 31.715
+        },
+        {
+          "w": "surpasses",
+          "t": 32.213
+        },
+        {
+          "w": "heuristic",
+          "t": 32.712
+        },
+        {
+          "w": "ceilings.",
+          "t": 33.21
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "slideId": "s2",
+      "slideIndex": 1,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us trace the four mathematical stages of generative label modeling. Stage 1 computes the empirical covariance matrix Sigma of the sparse votes Lambda. Stage 2 treats off-diagonal entries as a Rank-1 matrix completion problem.",
+      "start": 34.208,
+      "end": 49.688,
+      "words": [
+        {
+          "w": "Let",
+          "t": 34.208
+        },
+        {
+          "w": "us",
+          "t": 34.65
+        },
+        {
+          "w": "trace",
+          "t": 35.093
+        },
+        {
+          "w": "the",
+          "t": 35.535
+        },
+        {
+          "w": "four",
+          "t": 35.977
+        },
+        {
+          "w": "mathematical",
+          "t": 36.419
+        },
+        {
+          "w": "stages",
+          "t": 36.862
+        },
+        {
+          "w": "of",
+          "t": 37.304
+        },
+        {
+          "w": "generative",
+          "t": 37.746
+        },
+        {
+          "w": "label",
+          "t": 38.189
+        },
+        {
+          "w": "modeling.",
+          "t": 38.631
+        },
+        {
+          "w": "Stage",
+          "t": 39.073
+        },
+        {
+          "w": "1",
+          "t": 39.515
+        },
+        {
+          "w": "computes",
+          "t": 39.958
+        },
+        {
+          "w": "the",
+          "t": 40.4
+        },
+        {
+          "w": "empirical",
+          "t": 40.842
+        },
+        {
+          "w": "covariance",
+          "t": 41.285
+        },
+        {
+          "w": "matrix",
+          "t": 41.727
+        },
+        {
+          "w": "Sigma",
+          "t": 42.169
+        },
+        {
+          "w": "of",
+          "t": 42.611
+        },
+        {
+          "w": "the",
+          "t": 43.054
+        },
+        {
+          "w": "sparse",
+          "t": 43.496
+        },
+        {
+          "w": "votes",
+          "t": 43.938
+        },
+        {
+          "w": "Lambda.",
+          "t": 44.381
+        },
+        {
+          "w": "Stage",
+          "t": 44.823
+        },
+        {
+          "w": "2",
+          "t": 45.265
+        },
+        {
+          "w": "treats",
+          "t": 45.707
+        },
+        {
+          "w": "off-diagonal",
+          "t": 46.15
+        },
+        {
+          "w": "entries",
+          "t": 46.592
+        },
+        {
+          "w": "as",
+          "t": 47.034
+        },
+        {
+          "w": "a",
+          "t": 47.477
+        },
+        {
+          "w": "Rank-1",
+          "t": 47.919
+        },
+        {
+          "w": "matrix",
+          "t": 48.361
+        },
+        {
+          "w": "completion",
+          "t": 48.803
+        },
+        {
+          "w": "problem.",
+          "t": 49.246
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "slideId": "s2",
+      "slideIndex": 1,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Stage 3 applies the algebraic Triplet Estimator to extract each rule's latent accuracy without gold supervision. Finally, Stage 4 multiplies log-odds weights to generate calibrated soft targets y tilde in zero to one, distilling them into deep neural classifiers that expand coverage to one hundred percent.",
+      "start": 49.988,
+      "end": 69.524,
+      "words": [
+        {
+          "w": "Stage",
+          "t": 49.988
+        },
+        {
+          "w": "3",
+          "t": 50.413
+        },
+        {
+          "w": "applies",
+          "t": 50.837
+        },
+        {
+          "w": "the",
+          "t": 51.262
+        },
+        {
+          "w": "algebraic",
+          "t": 51.687
+        },
+        {
+          "w": "Triplet",
+          "t": 52.111
+        },
+        {
+          "w": "Estimator",
+          "t": 52.536
+        },
+        {
+          "w": "to",
+          "t": 52.961
+        },
+        {
+          "w": "extract",
+          "t": 53.386
+        },
+        {
+          "w": "each",
+          "t": 53.81
+        },
+        {
+          "w": "rule's",
+          "t": 54.235
+        },
+        {
+          "w": "latent",
+          "t": 54.66
+        },
+        {
+          "w": "accuracy",
+          "t": 55.084
+        },
+        {
+          "w": "without",
+          "t": 55.509
+        },
+        {
+          "w": "gold",
+          "t": 55.934
+        },
+        {
+          "w": "supervision.",
+          "t": 56.358
+        },
+        {
+          "w": "Finally,",
+          "t": 56.783
+        },
+        {
+          "w": "Stage",
+          "t": 57.208
+        },
+        {
+          "w": "4",
+          "t": 57.633
+        },
+        {
+          "w": "multiplies",
+          "t": 58.057
+        },
+        {
+          "w": "log-odds",
+          "t": 58.482
+        },
+        {
+          "w": "weights",
+          "t": 58.907
+        },
+        {
+          "w": "to",
+          "t": 59.331
+        },
+        {
+          "w": "generate",
+          "t": 59.756
+        },
+        {
+          "w": "calibrated",
+          "t": 60.181
+        },
+        {
+          "w": "soft",
+          "t": 60.605
+        },
+        {
+          "w": "targets",
+          "t": 61.03
+        },
+        {
+          "w": "y",
+          "t": 61.455
+        },
+        {
+          "w": "tilde",
+          "t": 61.879
+        },
+        {
+          "w": "in",
+          "t": 62.304
+        },
+        {
+          "w": "zero",
+          "t": 62.729
+        },
+        {
+          "w": "to",
+          "t": 63.154
+        },
+        {
+          "w": "one,",
+          "t": 63.578
+        },
+        {
+          "w": "distilling",
+          "t": 64.003
+        },
+        {
+          "w": "them",
+          "t": 64.428
+        },
+        {
+          "w": "into",
+          "t": 64.852
+        },
+        {
+          "w": "deep",
+          "t": 65.277
+        },
+        {
+          "w": "neural",
+          "t": 65.702
+        },
+        {
+          "w": "classifiers",
+          "t": 66.126
+        },
+        {
+          "w": "that",
+          "t": 66.551
+        },
+        {
+          "w": "expand",
+          "t": 66.976
+        },
+        {
+          "w": "coverage",
+          "t": 67.401
+        },
+        {
+          "w": "to",
+          "t": 67.825
+        },
+        {
+          "w": "one",
+          "t": 68.25
+        },
+        {
+          "w": "hundred",
+          "t": 68.675
+        },
+        {
+          "w": "percent.",
+          "t": 69.099
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "slideId": "s3",
+      "slideIndex": 2,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Definition 11.6.1 formalizes the joint probability of observed votes Lambda and latent class Y as a log-linear Markov Random Field, or Ising energy model. Three potentials parameterize accuracy theta acc, propensity theta prop, and edge correlation theta corr.",
+      "start": 70.024,
+      "end": 89.344,
+      "words": [
+        {
+          "w": "Definition",
+          "t": 70.024
+        },
+        {
+          "w": "11.6.1",
+          "t": 70.532
+        },
+        {
+          "w": "formalizes",
+          "t": 71.041
+        },
+        {
+          "w": "the",
+          "t": 71.549
+        },
+        {
+          "w": "joint",
+          "t": 72.058
+        },
+        {
+          "w": "probability",
+          "t": 72.566
+        },
+        {
+          "w": "of",
+          "t": 73.075
+        },
+        {
+          "w": "observed",
+          "t": 73.583
+        },
+        {
+          "w": "votes",
+          "t": 74.091
+        },
+        {
+          "w": "Lambda",
+          "t": 74.6
+        },
+        {
+          "w": "and",
+          "t": 75.108
+        },
+        {
+          "w": "latent",
+          "t": 75.617
+        },
+        {
+          "w": "class",
+          "t": 76.125
+        },
+        {
+          "w": "Y",
+          "t": 76.633
+        },
+        {
+          "w": "as",
+          "t": 77.142
+        },
+        {
+          "w": "a",
+          "t": 77.65
+        },
+        {
+          "w": "log-linear",
+          "t": 78.159
+        },
+        {
+          "w": "Markov",
+          "t": 78.667
+        },
+        {
+          "w": "Random",
+          "t": 79.176
+        },
+        {
+          "w": "Field,",
+          "t": 79.684
+        },
+        {
+          "w": "or",
+          "t": 80.192
+        },
+        {
+          "w": "Ising",
+          "t": 80.701
+        },
+        {
+          "w": "energy",
+          "t": 81.209
+        },
+        {
+          "w": "model.",
+          "t": 81.718
+        },
+        {
+          "w": "Three",
+          "t": 82.226
+        },
+        {
+          "w": "potentials",
+          "t": 82.735
+        },
+        {
+          "w": "parameterize",
+          "t": 83.243
+        },
+        {
+          "w": "accuracy",
+          "t": 83.751
+        },
+        {
+          "w": "theta",
+          "t": 84.26
+        },
+        {
+          "w": "acc,",
+          "t": 84.768
+        },
+        {
+          "w": "propensity",
+          "t": 85.277
+        },
+        {
+          "w": "theta",
+          "t": 85.785
+        },
+        {
+          "w": "prop,",
+          "t": 86.293
+        },
+        {
+          "w": "and",
+          "t": 86.802
+        },
+        {
+          "w": "edge",
+          "t": 87.31
+        },
+        {
+          "w": "correlation",
+          "t": 87.819
+        },
+        {
+          "w": "theta",
+          "t": 88.327
+        },
+        {
+          "w": "corr.",
+          "t": 88.836
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "slideId": "s3",
+      "slideIndex": 2,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Normalized by partition function Z of theta across all two times three to the m states, Maximum Marginal Likelihood Estimation maximizes the log sum over latent Y in plus or minus one purely from unlabeled observed matrices.",
+      "start": 89.644,
+      "end": 103.684,
+      "words": [
+        {
+          "w": "Normalized",
+          "t": 89.644
+        },
+        {
+          "w": "by",
+          "t": 90.023
+        },
+        {
+          "w": "partition",
+          "t": 90.403
+        },
+        {
+          "w": "function",
+          "t": 90.782
+        },
+        {
+          "w": "Z",
+          "t": 91.162
+        },
+        {
+          "w": "of",
+          "t": 91.541
+        },
+        {
+          "w": "theta",
+          "t": 91.921
+        },
+        {
+          "w": "across",
+          "t": 92.3
+        },
+        {
+          "w": "all",
+          "t": 92.68
+        },
+        {
+          "w": "two",
+          "t": 93.059
+        },
+        {
+          "w": "times",
+          "t": 93.439
+        },
+        {
+          "w": "three",
+          "t": 93.818
+        },
+        {
+          "w": "to",
+          "t": 94.198
+        },
+        {
+          "w": "the",
+          "t": 94.577
+        },
+        {
+          "w": "m",
+          "t": 94.956
+        },
+        {
+          "w": "states,",
+          "t": 95.336
+        },
+        {
+          "w": "Maximum",
+          "t": 95.715
+        },
+        {
+          "w": "Marginal",
+          "t": 96.095
+        },
+        {
+          "w": "Likelihood",
+          "t": 96.474
+        },
+        {
+          "w": "Estimation",
+          "t": 96.854
+        },
+        {
+          "w": "maximizes",
+          "t": 97.233
+        },
+        {
+          "w": "the",
+          "t": 97.613
+        },
+        {
+          "w": "log",
+          "t": 97.992
+        },
+        {
+          "w": "sum",
+          "t": 98.372
+        },
+        {
+          "w": "over",
+          "t": 98.751
+        },
+        {
+          "w": "latent",
+          "t": 99.13
+        },
+        {
+          "w": "Y",
+          "t": 99.51
+        },
+        {
+          "w": "in",
+          "t": 99.889
+        },
+        {
+          "w": "plus",
+          "t": 100.269
+        },
+        {
+          "w": "or",
+          "t": 100.648
+        },
+        {
+          "w": "minus",
+          "t": 101.028
+        },
+        {
+          "w": "one",
+          "t": 101.407
+        },
+        {
+          "w": "purely",
+          "t": 101.787
+        },
+        {
+          "w": "from",
+          "t": 102.166
+        },
+        {
+          "w": "unlabeled",
+          "t": 102.546
+        },
+        {
+          "w": "observed",
+          "t": 102.925
+        },
+        {
+          "w": "matrices.",
+          "t": 103.305
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "slideId": "s4",
+      "slideIndex": 3,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Definition 11.6.2 reveals the central linear algebraic breakthrough of Snorkel and FlyingSquid. When labeling functions are conditionally independent given latent Y, cross-moments factorize into conditional expectations.",
+      "start": 104.184,
+      "end": 119.496,
+      "words": [
+        {
+          "w": "Definition",
+          "t": 104.184
+        },
+        {
+          "w": "11.6.2",
+          "t": 104.773
+        },
+        {
+          "w": "reveals",
+          "t": 105.362
+        },
+        {
+          "w": "the",
+          "t": 105.951
+        },
+        {
+          "w": "central",
+          "t": 106.54
+        },
+        {
+          "w": "linear",
+          "t": 107.129
+        },
+        {
+          "w": "algebraic",
+          "t": 107.718
+        },
+        {
+          "w": "breakthrough",
+          "t": 108.306
+        },
+        {
+          "w": "of",
+          "t": 108.895
+        },
+        {
+          "w": "Snorkel",
+          "t": 109.484
+        },
+        {
+          "w": "and",
+          "t": 110.073
+        },
+        {
+          "w": "FlyingSquid.",
+          "t": 110.662
+        },
+        {
+          "w": "When",
+          "t": 111.251
+        },
+        {
+          "w": "labeling",
+          "t": 111.84
+        },
+        {
+          "w": "functions",
+          "t": 112.429
+        },
+        {
+          "w": "are",
+          "t": 113.018
+        },
+        {
+          "w": "conditionally",
+          "t": 113.607
+        },
+        {
+          "w": "independent",
+          "t": 114.196
+        },
+        {
+          "w": "given",
+          "t": 114.785
+        },
+        {
+          "w": "latent",
+          "t": 115.374
+        },
+        {
+          "w": "Y,",
+          "t": 115.962
+        },
+        {
+          "w": "cross-moments",
+          "t": 116.551
+        },
+        {
+          "w": "factorize",
+          "t": 117.14
+        },
+        {
+          "w": "into",
+          "t": 117.729
+        },
+        {
+          "w": "conditional",
+          "t": 118.318
+        },
+        {
+          "w": "expectations.",
+          "t": 118.907
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "slideId": "s4",
+      "slideIndex": 3,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "For distinct rules j and k under balanced priors, pairwise covariance equals z j times z k, where z j is the latent covariance between rule j and truth Y. Thus the empirical covariance matrix Sigma decomposes exactly into a rank-1 outer product z z transpose plus a diagonal residual Omega!",
+      "start": 119.796,
+      "end": 139.836,
+      "words": [
+        {
+          "w": "For",
+          "t": 119.796
+        },
+        {
+          "w": "distinct",
+          "t": 120.189
+        },
+        {
+          "w": "rules",
+          "t": 120.582
+        },
+        {
+          "w": "j",
+          "t": 120.975
+        },
+        {
+          "w": "and",
+          "t": 121.368
+        },
+        {
+          "w": "k",
+          "t": 121.761
+        },
+        {
+          "w": "under",
+          "t": 122.154
+        },
+        {
+          "w": "balanced",
+          "t": 122.547
+        },
+        {
+          "w": "priors,",
+          "t": 122.94
+        },
+        {
+          "w": "pairwise",
+          "t": 123.332
+        },
+        {
+          "w": "covariance",
+          "t": 123.725
+        },
+        {
+          "w": "equals",
+          "t": 124.118
+        },
+        {
+          "w": "z",
+          "t": 124.511
+        },
+        {
+          "w": "j",
+          "t": 124.904
+        },
+        {
+          "w": "times",
+          "t": 125.297
+        },
+        {
+          "w": "z",
+          "t": 125.69
+        },
+        {
+          "w": "k,",
+          "t": 126.083
+        },
+        {
+          "w": "where",
+          "t": 126.476
+        },
+        {
+          "w": "z",
+          "t": 126.869
+        },
+        {
+          "w": "j",
+          "t": 127.262
+        },
+        {
+          "w": "is",
+          "t": 127.655
+        },
+        {
+          "w": "the",
+          "t": 128.048
+        },
+        {
+          "w": "latent",
+          "t": 128.441
+        },
+        {
+          "w": "covariance",
+          "t": 128.834
+        },
+        {
+          "w": "between",
+          "t": 129.227
+        },
+        {
+          "w": "rule",
+          "t": 129.62
+        },
+        {
+          "w": "j",
+          "t": 130.012
+        },
+        {
+          "w": "and",
+          "t": 130.405
+        },
+        {
+          "w": "truth",
+          "t": 130.798
+        },
+        {
+          "w": "Y.",
+          "t": 131.191
+        },
+        {
+          "w": "Thus",
+          "t": 131.584
+        },
+        {
+          "w": "the",
+          "t": 131.977
+        },
+        {
+          "w": "empirical",
+          "t": 132.37
+        },
+        {
+          "w": "covariance",
+          "t": 132.763
+        },
+        {
+          "w": "matrix",
+          "t": 133.156
+        },
+        {
+          "w": "Sigma",
+          "t": 133.549
+        },
+        {
+          "w": "decomposes",
+          "t": 133.942
+        },
+        {
+          "w": "exactly",
+          "t": 134.335
+        },
+        {
+          "w": "into",
+          "t": 134.728
+        },
+        {
+          "w": "a",
+          "t": 135.121
+        },
+        {
+          "w": "rank-1",
+          "t": 135.514
+        },
+        {
+          "w": "outer",
+          "t": 135.907
+        },
+        {
+          "w": "product",
+          "t": 136.3
+        },
+        {
+          "w": "z",
+          "t": 136.692
+        },
+        {
+          "w": "z",
+          "t": 137.085
+        },
+        {
+          "w": "transpose",
+          "t": 137.478
+        },
+        {
+          "w": "plus",
+          "t": 137.871
+        },
+        {
+          "w": "a",
+          "t": 138.264
+        },
+        {
+          "w": "diagonal",
+          "t": 138.657
+        },
+        {
+          "w": "residual",
+          "t": 139.05
+        },
+        {
+          "w": "Omega!",
+          "t": 139.443
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "slideId": "s5",
+      "slideIndex": 4,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Definition 11.6.3 derives the closed-form Triplet Estimator. For any triad of rules j, k, and l, multiplying Sigma j k by Sigma j l and dividing by Sigma k l isolates z j squared cleanly.",
+      "start": 140.336,
+      "end": 156.464,
+      "words": [
+        {
+          "w": "Definition",
+          "t": 140.336
+        },
+        {
+          "w": "11.6.3",
+          "t": 140.797
+        },
+        {
+          "w": "derives",
+          "t": 141.258
+        },
+        {
+          "w": "the",
+          "t": 141.718
+        },
+        {
+          "w": "closed-form",
+          "t": 142.179
+        },
+        {
+          "w": "Triplet",
+          "t": 142.64
+        },
+        {
+          "w": "Estimator.",
+          "t": 143.101
+        },
+        {
+          "w": "For",
+          "t": 143.562
+        },
+        {
+          "w": "any",
+          "t": 144.022
+        },
+        {
+          "w": "triad",
+          "t": 144.483
+        },
+        {
+          "w": "of",
+          "t": 144.944
+        },
+        {
+          "w": "rules",
+          "t": 145.405
+        },
+        {
+          "w": "j,",
+          "t": 145.866
+        },
+        {
+          "w": "k,",
+          "t": 146.326
+        },
+        {
+          "w": "and",
+          "t": 146.787
+        },
+        {
+          "w": "l,",
+          "t": 147.248
+        },
+        {
+          "w": "multiplying",
+          "t": 147.709
+        },
+        {
+          "w": "Sigma",
+          "t": 148.17
+        },
+        {
+          "w": "j",
+          "t": 148.63
+        },
+        {
+          "w": "k",
+          "t": 149.091
+        },
+        {
+          "w": "by",
+          "t": 149.552
+        },
+        {
+          "w": "Sigma",
+          "t": 150.013
+        },
+        {
+          "w": "j",
+          "t": 150.474
+        },
+        {
+          "w": "l",
+          "t": 150.934
+        },
+        {
+          "w": "and",
+          "t": 151.395
+        },
+        {
+          "w": "dividing",
+          "t": 151.856
+        },
+        {
+          "w": "by",
+          "t": 152.317
+        },
+        {
+          "w": "Sigma",
+          "t": 152.778
+        },
+        {
+          "w": "k",
+          "t": 153.238
+        },
+        {
+          "w": "l",
+          "t": 153.699
+        },
+        {
+          "w": "isolates",
+          "t": 154.16
+        },
+        {
+          "w": "z",
+          "t": 154.621
+        },
+        {
+          "w": "j",
+          "t": 155.082
+        },
+        {
+          "w": "squared",
+          "t": 155.542
+        },
+        {
+          "w": "cleanly.",
+          "t": 156.003
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "slideId": "s5",
+      "slideIndex": 4,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Sign symmetry between plus z and minus z is resolved assuming average domain heuristics align positively with truth. Taking the robust median across all auxiliary pairs yields z j star, which converts directly to conditional rule precision a j via rule coverage.",
+      "start": 156.764,
+      "end": 173.732,
+      "words": [
+        {
+          "w": "Sign",
+          "t": 156.764
+        },
+        {
+          "w": "symmetry",
+          "t": 157.168
+        },
+        {
+          "w": "between",
+          "t": 157.572
+        },
+        {
+          "w": "plus",
+          "t": 157.976
+        },
+        {
+          "w": "z",
+          "t": 158.38
+        },
+        {
+          "w": "and",
+          "t": 158.784
+        },
+        {
+          "w": "minus",
+          "t": 159.188
+        },
+        {
+          "w": "z",
+          "t": 159.592
+        },
+        {
+          "w": "is",
+          "t": 159.996
+        },
+        {
+          "w": "resolved",
+          "t": 160.4
+        },
+        {
+          "w": "assuming",
+          "t": 160.804
+        },
+        {
+          "w": "average",
+          "t": 161.208
+        },
+        {
+          "w": "domain",
+          "t": 161.612
+        },
+        {
+          "w": "heuristics",
+          "t": 162.016
+        },
+        {
+          "w": "align",
+          "t": 162.42
+        },
+        {
+          "w": "positively",
+          "t": 162.824
+        },
+        {
+          "w": "with",
+          "t": 163.228
+        },
+        {
+          "w": "truth.",
+          "t": 163.632
+        },
+        {
+          "w": "Taking",
+          "t": 164.036
+        },
+        {
+          "w": "the",
+          "t": 164.44
+        },
+        {
+          "w": "robust",
+          "t": 164.844
+        },
+        {
+          "w": "median",
+          "t": 165.248
+        },
+        {
+          "w": "across",
+          "t": 165.652
+        },
+        {
+          "w": "all",
+          "t": 166.056
+        },
+        {
+          "w": "auxiliary",
+          "t": 166.46
+        },
+        {
+          "w": "pairs",
+          "t": 166.864
+        },
+        {
+          "w": "yields",
+          "t": 167.268
+        },
+        {
+          "w": "z",
+          "t": 167.672
+        },
+        {
+          "w": "j",
+          "t": 168.076
+        },
+        {
+          "w": "star,",
+          "t": 168.48
+        },
+        {
+          "w": "which",
+          "t": 168.884
+        },
+        {
+          "w": "converts",
+          "t": 169.288
+        },
+        {
+          "w": "directly",
+          "t": 169.692
+        },
+        {
+          "w": "to",
+          "t": 170.096
+        },
+        {
+          "w": "conditional",
+          "t": 170.5
+        },
+        {
+          "w": "rule",
+          "t": 170.904
+        },
+        {
+          "w": "precision",
+          "t": 171.308
+        },
+        {
+          "w": "a",
+          "t": 171.712
+        },
+        {
+          "w": "j",
+          "t": 172.116
+        },
+        {
+          "w": "via",
+          "t": 172.52
+        },
+        {
+          "w": "rule",
+          "t": 172.924
+        },
+        {
+          "w": "coverage.",
+          "t": 173.328
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "slideId": "s6",
+      "slideIndex": 5,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 1 below: the Empirical Covariance Matrix and Triplet Inversion Studio! On Canvas 1, inspect the 5-by-5 empirical covariance matrix Sigma across five labeling functions from RegexOracle to DistantKB.",
+      "start": 174.232,
+      "end": 190.096,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 174.232
+        },
+        {
+          "w": "to",
+          "t": 174.728
+        },
+        {
+          "w": "Interactive",
+          "t": 175.224
+        },
+        {
+          "w": "Lab",
+          "t": 175.719
+        },
+        {
+          "w": "1",
+          "t": 176.215
+        },
+        {
+          "w": "below:",
+          "t": 176.711
+        },
+        {
+          "w": "the",
+          "t": 177.207
+        },
+        {
+          "w": "Empirical",
+          "t": 177.702
+        },
+        {
+          "w": "Covariance",
+          "t": 178.198
+        },
+        {
+          "w": "Matrix",
+          "t": 178.694
+        },
+        {
+          "w": "and",
+          "t": 179.19
+        },
+        {
+          "w": "Triplet",
+          "t": 179.685
+        },
+        {
+          "w": "Inversion",
+          "t": 180.181
+        },
+        {
+          "w": "Studio!",
+          "t": 180.677
+        },
+        {
+          "w": "On",
+          "t": 181.173
+        },
+        {
+          "w": "Canvas",
+          "t": 181.668
+        },
+        {
+          "w": "1,",
+          "t": 182.164
+        },
+        {
+          "w": "inspect",
+          "t": 182.66
+        },
+        {
+          "w": "the",
+          "t": 183.155
+        },
+        {
+          "w": "5-by-5",
+          "t": 183.651
+        },
+        {
+          "w": "empirical",
+          "t": 184.147
+        },
+        {
+          "w": "covariance",
+          "t": 184.643
+        },
+        {
+          "w": "matrix",
+          "t": 185.138
+        },
+        {
+          "w": "Sigma",
+          "t": 185.634
+        },
+        {
+          "w": "across",
+          "t": 186.13
+        },
+        {
+          "w": "five",
+          "t": 186.626
+        },
+        {
+          "w": "labeling",
+          "t": 187.121
+        },
+        {
+          "w": "functions",
+          "t": 187.617
+        },
+        {
+          "w": "from",
+          "t": 188.113
+        },
+        {
+          "w": "RegexOracle",
+          "t": 188.609
+        },
+        {
+          "w": "to",
+          "t": 189.105
+        },
+        {
+          "w": "DistantKB.",
+          "t": 189.6
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "slideId": "s6",
+      "slideIndex": 5,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "On Canvas 2, compare closed-form FlyingSquid Triplet Inversion accuracies in green against true oracle precision in amber. Vary sample size N and noise eta to see mean absolute accuracy error shrink toward zero!",
+      "start": 190.396,
+      "end": 204.7,
+      "words": [
+        {
+          "w": "On",
+          "t": 190.396
+        },
+        {
+          "w": "Canvas",
+          "t": 190.829
+        },
+        {
+          "w": "2,",
+          "t": 191.263
+        },
+        {
+          "w": "compare",
+          "t": 191.696
+        },
+        {
+          "w": "closed-form",
+          "t": 192.13
+        },
+        {
+          "w": "FlyingSquid",
+          "t": 192.563
+        },
+        {
+          "w": "Triplet",
+          "t": 192.997
+        },
+        {
+          "w": "Inversion",
+          "t": 193.43
+        },
+        {
+          "w": "accuracies",
+          "t": 193.864
+        },
+        {
+          "w": "in",
+          "t": 194.297
+        },
+        {
+          "w": "green",
+          "t": 194.731
+        },
+        {
+          "w": "against",
+          "t": 195.164
+        },
+        {
+          "w": "true",
+          "t": 195.597
+        },
+        {
+          "w": "oracle",
+          "t": 196.031
+        },
+        {
+          "w": "precision",
+          "t": 196.464
+        },
+        {
+          "w": "in",
+          "t": 196.898
+        },
+        {
+          "w": "amber.",
+          "t": 197.331
+        },
+        {
+          "w": "Vary",
+          "t": 197.765
+        },
+        {
+          "w": "sample",
+          "t": 198.198
+        },
+        {
+          "w": "size",
+          "t": 198.632
+        },
+        {
+          "w": "N",
+          "t": 199.065
+        },
+        {
+          "w": "and",
+          "t": 199.499
+        },
+        {
+          "w": "noise",
+          "t": 199.932
+        },
+        {
+          "w": "eta",
+          "t": 200.365
+        },
+        {
+          "w": "to",
+          "t": 200.799
+        },
+        {
+          "w": "see",
+          "t": 201.232
+        },
+        {
+          "w": "mean",
+          "t": 201.666
+        },
+        {
+          "w": "absolute",
+          "t": 202.099
+        },
+        {
+          "w": "accuracy",
+          "t": 202.533
+        },
+        {
+          "w": "error",
+          "t": 202.966
+        },
+        {
+          "w": "shrink",
+          "t": 203.4
+        },
+        {
+          "w": "toward",
+          "t": 203.833
+        },
+        {
+          "w": "zero!",
+          "t": 204.267
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "slideId": "s7",
+      "slideIndex": 6,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 1 from Self-Assessment 1! Given three conditionally independent LFs with off-diagonal covariances Sigma 12 equals zero point two four, Sigma 13 equals zero point one eight, and Sigma 23 equals zero point one two, plus empirical coverage zero point seven five for LF 1.",
+      "start": 205.2,
+      "end": 225.984,
+      "words": [
+        {
+          "w": "Time",
+          "t": 205.2
+        },
+        {
+          "w": "for",
+          "t": 205.633
+        },
+        {
+          "w": "Active",
+          "t": 206.066
+        },
+        {
+          "w": "Checkpoint",
+          "t": 206.499
+        },
+        {
+          "w": "1",
+          "t": 206.932
+        },
+        {
+          "w": "from",
+          "t": 207.365
+        },
+        {
+          "w": "Self-Assessment",
+          "t": 207.798
+        },
+        {
+          "w": "1!",
+          "t": 208.231
+        },
+        {
+          "w": "Given",
+          "t": 208.664
+        },
+        {
+          "w": "three",
+          "t": 209.097
+        },
+        {
+          "w": "conditionally",
+          "t": 209.53
+        },
+        {
+          "w": "independent",
+          "t": 209.963
+        },
+        {
+          "w": "LFs",
+          "t": 210.396
+        },
+        {
+          "w": "with",
+          "t": 210.829
+        },
+        {
+          "w": "off-diagonal",
+          "t": 211.262
+        },
+        {
+          "w": "covariances",
+          "t": 211.695
+        },
+        {
+          "w": "Sigma",
+          "t": 212.128
+        },
+        {
+          "w": "12",
+          "t": 212.561
+        },
+        {
+          "w": "equals",
+          "t": 212.994
+        },
+        {
+          "w": "zero",
+          "t": 213.427
+        },
+        {
+          "w": "point",
+          "t": 213.86
+        },
+        {
+          "w": "two",
+          "t": 214.293
+        },
+        {
+          "w": "four,",
+          "t": 214.726
+        },
+        {
+          "w": "Sigma",
+          "t": 215.159
+        },
+        {
+          "w": "13",
+          "t": 215.592
+        },
+        {
+          "w": "equals",
+          "t": 216.025
+        },
+        {
+          "w": "zero",
+          "t": 216.458
+        },
+        {
+          "w": "point",
+          "t": 216.891
+        },
+        {
+          "w": "one",
+          "t": 217.324
+        },
+        {
+          "w": "eight,",
+          "t": 217.757
+        },
+        {
+          "w": "and",
+          "t": 218.19
+        },
+        {
+          "w": "Sigma",
+          "t": 218.623
+        },
+        {
+          "w": "23",
+          "t": 219.056
+        },
+        {
+          "w": "equals",
+          "t": 219.489
+        },
+        {
+          "w": "zero",
+          "t": 219.922
+        },
+        {
+          "w": "point",
+          "t": 220.355
+        },
+        {
+          "w": "one",
+          "t": 220.788
+        },
+        {
+          "w": "two,",
+          "t": 221.221
+        },
+        {
+          "w": "plus",
+          "t": 221.654
+        },
+        {
+          "w": "empirical",
+          "t": 222.087
+        },
+        {
+          "w": "coverage",
+          "t": 222.52
+        },
+        {
+          "w": "zero",
+          "t": 222.953
+        },
+        {
+          "w": "point",
+          "t": 223.386
+        },
+        {
+          "w": "seven",
+          "t": 223.819
+        },
+        {
+          "w": "five",
+          "t": 224.252
+        },
+        {
+          "w": "for",
+          "t": 224.685
+        },
+        {
+          "w": "LF",
+          "t": 225.118
+        },
+        {
+          "w": "1.",
+          "t": 225.551
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "slideId": "s7",
+      "slideIndex": 6,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Solve for latent covariance z1 and convert it into the exact conditional accuracy a1 without using any gold labels.",
+      "start": 226.284,
+      "end": 234.036,
+      "words": [
+        {
+          "w": "Solve",
+          "t": 226.284
+        },
+        {
+          "w": "for",
+          "t": 226.692
+        },
+        {
+          "w": "latent",
+          "t": 227.1
+        },
+        {
+          "w": "covariance",
+          "t": 227.508
+        },
+        {
+          "w": "z1",
+          "t": 227.916
+        },
+        {
+          "w": "and",
+          "t": 228.324
+        },
+        {
+          "w": "convert",
+          "t": 228.732
+        },
+        {
+          "w": "it",
+          "t": 229.14
+        },
+        {
+          "w": "into",
+          "t": 229.548
+        },
+        {
+          "w": "the",
+          "t": 229.956
+        },
+        {
+          "w": "exact",
+          "t": 230.364
+        },
+        {
+          "w": "conditional",
+          "t": 230.772
+        },
+        {
+          "w": "accuracy",
+          "t": 231.18
+        },
+        {
+          "w": "a1",
+          "t": 231.588
+        },
+        {
+          "w": "without",
+          "t": 231.996
+        },
+        {
+          "w": "using",
+          "t": 232.404
+        },
+        {
+          "w": "any",
+          "t": 232.812
+        },
+        {
+          "w": "gold",
+          "t": 233.22
+        },
+        {
+          "w": "labels.",
+          "t": 233.628
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "slideId": "s8",
+      "slideIndex": 7,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Definition 11.6.4 completes the mathematical bridge from inferred accuracies to deep neural networks. Each LF receives log-odds weight w j equals natural log of a j over 1 minus a j, emitting calibrated sigmoid targets y tilde i.",
+      "start": 234.536,
+      "end": 252.08,
+      "words": [
+        {
+          "w": "Definition",
+          "t": 234.536
+        },
+        {
+          "w": "11.6.4",
+          "t": 234.998
+        },
+        {
+          "w": "completes",
+          "t": 235.459
+        },
+        {
+          "w": "the",
+          "t": 235.921
+        },
+        {
+          "w": "mathematical",
+          "t": 236.383
+        },
+        {
+          "w": "bridge",
+          "t": 236.844
+        },
+        {
+          "w": "from",
+          "t": 237.306
+        },
+        {
+          "w": "inferred",
+          "t": 237.768
+        },
+        {
+          "w": "accuracies",
+          "t": 238.229
+        },
+        {
+          "w": "to",
+          "t": 238.691
+        },
+        {
+          "w": "deep",
+          "t": 239.153
+        },
+        {
+          "w": "neural",
+          "t": 239.615
+        },
+        {
+          "w": "networks.",
+          "t": 240.076
+        },
+        {
+          "w": "Each",
+          "t": 240.538
+        },
+        {
+          "w": "LF",
+          "t": 241.0
+        },
+        {
+          "w": "receives",
+          "t": 241.461
+        },
+        {
+          "w": "log-odds",
+          "t": 241.923
+        },
+        {
+          "w": "weight",
+          "t": 242.385
+        },
+        {
+          "w": "w",
+          "t": 242.846
+        },
+        {
+          "w": "j",
+          "t": 243.308
+        },
+        {
+          "w": "equals",
+          "t": 243.77
+        },
+        {
+          "w": "natural",
+          "t": 244.231
+        },
+        {
+          "w": "log",
+          "t": 244.693
+        },
+        {
+          "w": "of",
+          "t": 245.155
+        },
+        {
+          "w": "a",
+          "t": 245.616
+        },
+        {
+          "w": "j",
+          "t": 246.078
+        },
+        {
+          "w": "over",
+          "t": 246.54
+        },
+        {
+          "w": "1",
+          "t": 247.001
+        },
+        {
+          "w": "minus",
+          "t": 247.463
+        },
+        {
+          "w": "a",
+          "t": 247.925
+        },
+        {
+          "w": "j,",
+          "t": 248.387
+        },
+        {
+          "w": "emitting",
+          "t": 248.848
+        },
+        {
+          "w": "calibrated",
+          "t": 249.31
+        },
+        {
+          "w": "sigmoid",
+          "t": 249.772
+        },
+        {
+          "w": "targets",
+          "t": 250.233
+        },
+        {
+          "w": "y",
+          "t": 250.695
+        },
+        {
+          "w": "tilde",
+          "t": 251.157
+        },
+        {
+          "w": "i.",
+          "t": 251.618
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "slideId": "s8",
+      "slideIndex": 7,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Training a continuous deep model f w via noise-aware soft cross-entropy risk produces the Coverage Expansion Theorem: excess risk on previously abstained instances shrinks as square root of d log n over n, allowing transformers to interpolate seamlessly across uncovered regions.",
+      "start": 252.38,
+      "end": 269.348,
+      "words": [
+        {
+          "w": "Training",
+          "t": 252.38
+        },
+        {
+          "w": "a",
+          "t": 252.794
+        },
+        {
+          "w": "continuous",
+          "t": 253.208
+        },
+        {
+          "w": "deep",
+          "t": 253.622
+        },
+        {
+          "w": "model",
+          "t": 254.035
+        },
+        {
+          "w": "f",
+          "t": 254.449
+        },
+        {
+          "w": "w",
+          "t": 254.863
+        },
+        {
+          "w": "via",
+          "t": 255.277
+        },
+        {
+          "w": "noise-aware",
+          "t": 255.691
+        },
+        {
+          "w": "soft",
+          "t": 256.105
+        },
+        {
+          "w": "cross-entropy",
+          "t": 256.519
+        },
+        {
+          "w": "risk",
+          "t": 256.932
+        },
+        {
+          "w": "produces",
+          "t": 257.346
+        },
+        {
+          "w": "the",
+          "t": 257.76
+        },
+        {
+          "w": "Coverage",
+          "t": 258.174
+        },
+        {
+          "w": "Expansion",
+          "t": 258.588
+        },
+        {
+          "w": "Theorem:",
+          "t": 259.002
+        },
+        {
+          "w": "excess",
+          "t": 259.416
+        },
+        {
+          "w": "risk",
+          "t": 259.829
+        },
+        {
+          "w": "on",
+          "t": 260.243
+        },
+        {
+          "w": "previously",
+          "t": 260.657
+        },
+        {
+          "w": "abstained",
+          "t": 261.071
+        },
+        {
+          "w": "instances",
+          "t": 261.485
+        },
+        {
+          "w": "shrinks",
+          "t": 261.899
+        },
+        {
+          "w": "as",
+          "t": 262.312
+        },
+        {
+          "w": "square",
+          "t": 262.726
+        },
+        {
+          "w": "root",
+          "t": 263.14
+        },
+        {
+          "w": "of",
+          "t": 263.554
+        },
+        {
+          "w": "d",
+          "t": 263.968
+        },
+        {
+          "w": "log",
+          "t": 264.382
+        },
+        {
+          "w": "n",
+          "t": 264.796
+        },
+        {
+          "w": "over",
+          "t": 265.209
+        },
+        {
+          "w": "n,",
+          "t": 265.623
+        },
+        {
+          "w": "allowing",
+          "t": 266.037
+        },
+        {
+          "w": "transformers",
+          "t": 266.451
+        },
+        {
+          "w": "to",
+          "t": 266.865
+        },
+        {
+          "w": "interpolate",
+          "t": 267.279
+        },
+        {
+          "w": "seamlessly",
+          "t": 267.693
+        },
+        {
+          "w": "across",
+          "t": 268.106
+        },
+        {
+          "w": "uncovered",
+          "t": 268.52
+        },
+        {
+          "w": "regions.",
+          "t": 268.934
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "slideId": "s9",
+      "slideIndex": 8,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "One of the costliest anti-patterns in weak supervision pipelines is rounding probabilistic soft targets y tilde greater or equal to zero point five into binary zeros and ones before training the neural classifier.",
+      "start": 269.848,
+      "end": 282.76,
+      "words": [
+        {
+          "w": "One",
+          "t": 269.848
+        },
+        {
+          "w": "of",
+          "t": 270.239
+        },
+        {
+          "w": "the",
+          "t": 270.631
+        },
+        {
+          "w": "costliest",
+          "t": 271.022
+        },
+        {
+          "w": "anti-patterns",
+          "t": 271.413
+        },
+        {
+          "w": "in",
+          "t": 271.804
+        },
+        {
+          "w": "weak",
+          "t": 272.196
+        },
+        {
+          "w": "supervision",
+          "t": 272.587
+        },
+        {
+          "w": "pipelines",
+          "t": 272.978
+        },
+        {
+          "w": "is",
+          "t": 273.369
+        },
+        {
+          "w": "rounding",
+          "t": 273.761
+        },
+        {
+          "w": "probabilistic",
+          "t": 274.152
+        },
+        {
+          "w": "soft",
+          "t": 274.543
+        },
+        {
+          "w": "targets",
+          "t": 274.935
+        },
+        {
+          "w": "y",
+          "t": 275.326
+        },
+        {
+          "w": "tilde",
+          "t": 275.717
+        },
+        {
+          "w": "greater",
+          "t": 276.108
+        },
+        {
+          "w": "or",
+          "t": 276.5
+        },
+        {
+          "w": "equal",
+          "t": 276.891
+        },
+        {
+          "w": "to",
+          "t": 277.282
+        },
+        {
+          "w": "zero",
+          "t": 277.673
+        },
+        {
+          "w": "point",
+          "t": 278.065
+        },
+        {
+          "w": "five",
+          "t": 278.456
+        },
+        {
+          "w": "into",
+          "t": 278.847
+        },
+        {
+          "w": "binary",
+          "t": 279.239
+        },
+        {
+          "w": "zeros",
+          "t": 279.63
+        },
+        {
+          "w": "and",
+          "t": 280.021
+        },
+        {
+          "w": "ones",
+          "t": 280.412
+        },
+        {
+          "w": "before",
+          "t": 280.804
+        },
+        {
+          "w": "training",
+          "t": 281.195
+        },
+        {
+          "w": "the",
+          "t": 281.586
+        },
+        {
+          "w": "neural",
+          "t": 281.977
+        },
+        {
+          "w": "classifier.",
+          "t": 282.369
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "slideId": "s9",
+      "slideIndex": 8,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Hard thresholding treats an ambiguous instance at y tilde zero point five one identically to a unanimous rule consensus at zero point nine nine, destroying epistemic confidence calibration and biasing network weights toward noisy conflict samples.",
+      "start": 283.06,
+      "end": 298.18,
+      "words": [
+        {
+          "w": "Hard",
+          "t": 283.06
+        },
+        {
+          "w": "thresholding",
+          "t": 283.48
+        },
+        {
+          "w": "treats",
+          "t": 283.9
+        },
+        {
+          "w": "an",
+          "t": 284.32
+        },
+        {
+          "w": "ambiguous",
+          "t": 284.74
+        },
+        {
+          "w": "instance",
+          "t": 285.16
+        },
+        {
+          "w": "at",
+          "t": 285.58
+        },
+        {
+          "w": "y",
+          "t": 286.0
+        },
+        {
+          "w": "tilde",
+          "t": 286.42
+        },
+        {
+          "w": "zero",
+          "t": 286.84
+        },
+        {
+          "w": "point",
+          "t": 287.26
+        },
+        {
+          "w": "five",
+          "t": 287.68
+        },
+        {
+          "w": "one",
+          "t": 288.1
+        },
+        {
+          "w": "identically",
+          "t": 288.52
+        },
+        {
+          "w": "to",
+          "t": 288.94
+        },
+        {
+          "w": "a",
+          "t": 289.36
+        },
+        {
+          "w": "unanimous",
+          "t": 289.78
+        },
+        {
+          "w": "rule",
+          "t": 290.2
+        },
+        {
+          "w": "consensus",
+          "t": 290.62
+        },
+        {
+          "w": "at",
+          "t": 291.04
+        },
+        {
+          "w": "zero",
+          "t": 291.46
+        },
+        {
+          "w": "point",
+          "t": 291.88
+        },
+        {
+          "w": "nine",
+          "t": 292.3
+        },
+        {
+          "w": "nine,",
+          "t": 292.72
+        },
+        {
+          "w": "destroying",
+          "t": 293.14
+        },
+        {
+          "w": "epistemic",
+          "t": 293.56
+        },
+        {
+          "w": "confidence",
+          "t": 293.98
+        },
+        {
+          "w": "calibration",
+          "t": 294.4
+        },
+        {
+          "w": "and",
+          "t": 294.82
+        },
+        {
+          "w": "biasing",
+          "t": 295.24
+        },
+        {
+          "w": "network",
+          "t": 295.66
+        },
+        {
+          "w": "weights",
+          "t": 296.08
+        },
+        {
+          "w": "toward",
+          "t": 296.5
+        },
+        {
+          "w": "noisy",
+          "t": 296.92
+        },
+        {
+          "w": "conflict",
+          "t": 297.34
+        },
+        {
+          "w": "samples.",
+          "t": 297.76
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "slideId": "s10",
+      "slideIndex": 9,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Now inspect Interactive Lab 2 below: Calibrated Soft Posteriors versus End-Model Distillation Gain! On Canvas 3, contrast FlyingSquid's smooth continuous sigmoid against Majority Vote's jagged staircase artifacts.",
+      "start": 298.68,
+      "end": 313.368,
+      "words": [
+        {
+          "w": "Now",
+          "t": 298.68
+        },
+        {
+          "w": "inspect",
+          "t": 299.224
+        },
+        {
+          "w": "Interactive",
+          "t": 299.768
+        },
+        {
+          "w": "Lab",
+          "t": 300.312
+        },
+        {
+          "w": "2",
+          "t": 300.856
+        },
+        {
+          "w": "below:",
+          "t": 301.4
+        },
+        {
+          "w": "Calibrated",
+          "t": 301.944
+        },
+        {
+          "w": "Soft",
+          "t": 302.488
+        },
+        {
+          "w": "Posteriors",
+          "t": 303.032
+        },
+        {
+          "w": "versus",
+          "t": 303.576
+        },
+        {
+          "w": "End-Model",
+          "t": 304.12
+        },
+        {
+          "w": "Distillation",
+          "t": 304.664
+        },
+        {
+          "w": "Gain!",
+          "t": 305.208
+        },
+        {
+          "w": "On",
+          "t": 305.752
+        },
+        {
+          "w": "Canvas",
+          "t": 306.296
+        },
+        {
+          "w": "3,",
+          "t": 306.84
+        },
+        {
+          "w": "contrast",
+          "t": 307.384
+        },
+        {
+          "w": "FlyingSquid's",
+          "t": 307.928
+        },
+        {
+          "w": "smooth",
+          "t": 308.472
+        },
+        {
+          "w": "continuous",
+          "t": 309.016
+        },
+        {
+          "w": "sigmoid",
+          "t": 309.56
+        },
+        {
+          "w": "against",
+          "t": 310.104
+        },
+        {
+          "w": "Majority",
+          "t": 310.648
+        },
+        {
+          "w": "Vote's",
+          "t": 311.192
+        },
+        {
+          "w": "jagged",
+          "t": 311.736
+        },
+        {
+          "w": "staircase",
+          "t": 312.28
+        },
+        {
+          "w": "artifacts.",
+          "t": 312.824
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "slideId": "s10",
+      "slideIndex": 9,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Switch between FlyingSquid Rank-1 and Uniform Majority Vote, adjust noise and correlation stress sliders, and watch the green distilled deep model curve on Canvas 4 soar above the dashed cyan rule ceiling toward ninety-five percent Gold Bayes parity.",
+      "start": 313.668,
+      "end": 328.716,
+      "words": [
+        {
+          "w": "Switch",
+          "t": 313.668
+        },
+        {
+          "w": "between",
+          "t": 314.064
+        },
+        {
+          "w": "FlyingSquid",
+          "t": 314.46
+        },
+        {
+          "w": "Rank-1",
+          "t": 314.856
+        },
+        {
+          "w": "and",
+          "t": 315.252
+        },
+        {
+          "w": "Uniform",
+          "t": 315.648
+        },
+        {
+          "w": "Majority",
+          "t": 316.044
+        },
+        {
+          "w": "Vote,",
+          "t": 316.44
+        },
+        {
+          "w": "adjust",
+          "t": 316.836
+        },
+        {
+          "w": "noise",
+          "t": 317.232
+        },
+        {
+          "w": "and",
+          "t": 317.628
+        },
+        {
+          "w": "correlation",
+          "t": 318.024
+        },
+        {
+          "w": "stress",
+          "t": 318.42
+        },
+        {
+          "w": "sliders,",
+          "t": 318.816
+        },
+        {
+          "w": "and",
+          "t": 319.212
+        },
+        {
+          "w": "watch",
+          "t": 319.608
+        },
+        {
+          "w": "the",
+          "t": 320.004
+        },
+        {
+          "w": "green",
+          "t": 320.4
+        },
+        {
+          "w": "distilled",
+          "t": 320.796
+        },
+        {
+          "w": "deep",
+          "t": 321.192
+        },
+        {
+          "w": "model",
+          "t": 321.588
+        },
+        {
+          "w": "curve",
+          "t": 321.984
+        },
+        {
+          "w": "on",
+          "t": 322.38
+        },
+        {
+          "w": "Canvas",
+          "t": 322.776
+        },
+        {
+          "w": "4",
+          "t": 323.172
+        },
+        {
+          "w": "soar",
+          "t": 323.568
+        },
+        {
+          "w": "above",
+          "t": 323.964
+        },
+        {
+          "w": "the",
+          "t": 324.36
+        },
+        {
+          "w": "dashed",
+          "t": 324.756
+        },
+        {
+          "w": "cyan",
+          "t": 325.152
+        },
+        {
+          "w": "rule",
+          "t": 325.548
+        },
+        {
+          "w": "ceiling",
+          "t": 325.944
+        },
+        {
+          "w": "toward",
+          "t": 326.34
+        },
+        {
+          "w": "ninety-five",
+          "t": 326.736
+        },
+        {
+          "w": "percent",
+          "t": 327.132
+        },
+        {
+          "w": "Gold",
+          "t": 327.528
+        },
+        {
+          "w": "Bayes",
+          "t": 327.924
+        },
+        {
+          "w": "parity.",
+          "t": 328.32
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "slideId": "s11",
+      "slideIndex": 10,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 2 from Self-Assessment 2! In a legal contract review pipeline, regex labeling functions cover sixty-two percent of clauses at F1 zero point eight one, yet a distilled RoBERTa classifier rises to zero point eight eight across one hundred percent of clauses.",
+      "start": 329.216,
+      "end": 346.904,
+      "words": [
+        {
+          "w": "Time",
+          "t": 329.216
+        },
+        {
+          "w": "for",
+          "t": 329.609
+        },
+        {
+          "w": "Active",
+          "t": 330.002
+        },
+        {
+          "w": "Checkpoint",
+          "t": 330.395
+        },
+        {
+          "w": "2",
+          "t": 330.788
+        },
+        {
+          "w": "from",
+          "t": 331.181
+        },
+        {
+          "w": "Self-Assessment",
+          "t": 331.574
+        },
+        {
+          "w": "2!",
+          "t": 331.967
+        },
+        {
+          "w": "In",
+          "t": 332.361
+        },
+        {
+          "w": "a",
+          "t": 332.754
+        },
+        {
+          "w": "legal",
+          "t": 333.147
+        },
+        {
+          "w": "contract",
+          "t": 333.54
+        },
+        {
+          "w": "review",
+          "t": 333.933
+        },
+        {
+          "w": "pipeline,",
+          "t": 334.326
+        },
+        {
+          "w": "regex",
+          "t": 334.719
+        },
+        {
+          "w": "labeling",
+          "t": 335.112
+        },
+        {
+          "w": "functions",
+          "t": 335.505
+        },
+        {
+          "w": "cover",
+          "t": 335.898
+        },
+        {
+          "w": "sixty-two",
+          "t": 336.291
+        },
+        {
+          "w": "percent",
+          "t": 336.684
+        },
+        {
+          "w": "of",
+          "t": 337.077
+        },
+        {
+          "w": "clauses",
+          "t": 337.47
+        },
+        {
+          "w": "at",
+          "t": 337.863
+        },
+        {
+          "w": "F1",
+          "t": 338.257
+        },
+        {
+          "w": "zero",
+          "t": 338.65
+        },
+        {
+          "w": "point",
+          "t": 339.043
+        },
+        {
+          "w": "eight",
+          "t": 339.436
+        },
+        {
+          "w": "one,",
+          "t": 339.829
+        },
+        {
+          "w": "yet",
+          "t": 340.222
+        },
+        {
+          "w": "a",
+          "t": 340.615
+        },
+        {
+          "w": "distilled",
+          "t": 341.008
+        },
+        {
+          "w": "RoBERTa",
+          "t": 341.401
+        },
+        {
+          "w": "classifier",
+          "t": 341.794
+        },
+        {
+          "w": "rises",
+          "t": 342.187
+        },
+        {
+          "w": "to",
+          "t": 342.58
+        },
+        {
+          "w": "zero",
+          "t": 342.973
+        },
+        {
+          "w": "point",
+          "t": 343.366
+        },
+        {
+          "w": "eight",
+          "t": 343.759
+        },
+        {
+          "w": "eight",
+          "t": 344.153
+        },
+        {
+          "w": "across",
+          "t": 344.546
+        },
+        {
+          "w": "one",
+          "t": 344.939
+        },
+        {
+          "w": "hundred",
+          "t": 345.332
+        },
+        {
+          "w": "percent",
+          "t": 345.725
+        },
+        {
+          "w": "of",
+          "t": 346.118
+        },
+        {
+          "w": "clauses.",
+          "t": 346.511
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "slideId": "s11",
+      "slideIndex": 10,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Identify the mathematical and geometric reasons why continuous neural distillation out-generalizes the very heuristic rules that generated its targets.",
+      "start": 347.204,
+      "end": 356.684,
+      "words": [
+        {
+          "w": "Identify",
+          "t": 347.204
+        },
+        {
+          "w": "the",
+          "t": 347.703
+        },
+        {
+          "w": "mathematical",
+          "t": 348.202
+        },
+        {
+          "w": "and",
+          "t": 348.701
+        },
+        {
+          "w": "geometric",
+          "t": 349.2
+        },
+        {
+          "w": "reasons",
+          "t": 349.699
+        },
+        {
+          "w": "why",
+          "t": 350.198
+        },
+        {
+          "w": "continuous",
+          "t": 350.697
+        },
+        {
+          "w": "neural",
+          "t": 351.196
+        },
+        {
+          "w": "distillation",
+          "t": 351.695
+        },
+        {
+          "w": "out-generalizes",
+          "t": 352.193
+        },
+        {
+          "w": "the",
+          "t": 352.692
+        },
+        {
+          "w": "very",
+          "t": 353.191
+        },
+        {
+          "w": "heuristic",
+          "t": 353.69
+        },
+        {
+          "w": "rules",
+          "t": 354.189
+        },
+        {
+          "w": "that",
+          "t": 354.688
+        },
+        {
+          "w": "generated",
+          "t": 355.187
+        },
+        {
+          "w": "its",
+          "t": 355.686
+        },
+        {
+          "w": "targets.",
+          "t": 356.185
+        }
+      ]
+    },
+    {
+      "slide": 12,
+      "slideId": "s12",
+      "slideIndex": 11,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us examine two extraordinary matrix completion deployments. At Stanford Medicine, SwellShark combined forty-five clinical rules across UMLS ontologies and ICD-10 codes to label two hundred thousand discharge summaries in under twenty-four hours—training a BioBERT extractor that matched twelve months of manual physician effort at F1 zero point eight seven two.",
+      "start": 357.184,
+      "end": 380.344,
+      "words": [
+        {
+          "w": "Let",
+          "t": 357.184
+        },
+        {
+          "w": "us",
+          "t": 357.638
+        },
+        {
+          "w": "examine",
+          "t": 358.092
+        },
+        {
+          "w": "two",
+          "t": 358.546
+        },
+        {
+          "w": "extraordinary",
+          "t": 359.0
+        },
+        {
+          "w": "matrix",
+          "t": 359.455
+        },
+        {
+          "w": "completion",
+          "t": 359.909
+        },
+        {
+          "w": "deployments.",
+          "t": 360.363
+        },
+        {
+          "w": "At",
+          "t": 360.817
+        },
+        {
+          "w": "Stanford",
+          "t": 361.271
+        },
+        {
+          "w": "Medicine,",
+          "t": 361.725
+        },
+        {
+          "w": "SwellShark",
+          "t": 362.179
+        },
+        {
+          "w": "combined",
+          "t": 362.633
+        },
+        {
+          "w": "forty-five",
+          "t": 363.088
+        },
+        {
+          "w": "clinical",
+          "t": 363.542
+        },
+        {
+          "w": "rules",
+          "t": 363.996
+        },
+        {
+          "w": "across",
+          "t": 364.45
+        },
+        {
+          "w": "UMLS",
+          "t": 364.904
+        },
+        {
+          "w": "ontologies",
+          "t": 365.358
+        },
+        {
+          "w": "and",
+          "t": 365.812
+        },
+        {
+          "w": "ICD-10",
+          "t": 366.266
+        },
+        {
+          "w": "codes",
+          "t": 366.72
+        },
+        {
+          "w": "to",
+          "t": 367.175
+        },
+        {
+          "w": "label",
+          "t": 367.629
+        },
+        {
+          "w": "two",
+          "t": 368.083
+        },
+        {
+          "w": "hundred",
+          "t": 368.537
+        },
+        {
+          "w": "thousand",
+          "t": 368.991
+        },
+        {
+          "w": "discharge",
+          "t": 369.445
+        },
+        {
+          "w": "summaries",
+          "t": 369.899
+        },
+        {
+          "w": "in",
+          "t": 370.353
+        },
+        {
+          "w": "under",
+          "t": 370.808
+        },
+        {
+          "w": "twenty-four",
+          "t": 371.262
+        },
+        {
+          "w": "hours—training",
+          "t": 371.716
+        },
+        {
+          "w": "a",
+          "t": 372.17
+        },
+        {
+          "w": "BioBERT",
+          "t": 372.624
+        },
+        {
+          "w": "extractor",
+          "t": 373.078
+        },
+        {
+          "w": "that",
+          "t": 373.532
+        },
+        {
+          "w": "matched",
+          "t": 373.986
+        },
+        {
+          "w": "twelve",
+          "t": 374.44
+        },
+        {
+          "w": "months",
+          "t": 374.895
+        },
+        {
+          "w": "of",
+          "t": 375.349
+        },
+        {
+          "w": "manual",
+          "t": 375.803
+        },
+        {
+          "w": "physician",
+          "t": 376.257
+        },
+        {
+          "w": "effort",
+          "t": 376.711
+        },
+        {
+          "w": "at",
+          "t": 377.165
+        },
+        {
+          "w": "F1",
+          "t": 377.619
+        },
+        {
+          "w": "zero",
+          "t": 378.073
+        },
+        {
+          "w": "point",
+          "t": 378.528
+        },
+        {
+          "w": "eight",
+          "t": 378.982
+        },
+        {
+          "w": "seven",
+          "t": 379.436
+        },
+        {
+          "w": "two.",
+          "t": 379.89
+        }
+      ]
+    },
+    {
+      "slide": 12,
+      "slideId": "s12",
+      "slideIndex": 11,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "At Intel Semiconductor Labs, engineers applied thirty-two optical and geometric inspection LFs across two million scanning electron micrographs. FlyingSquid solved rank-1 covariance completion in three point eight seconds on CPU, distilling a ResNet-50 defect classifier achieving ninety-six point four percent precision!",
+      "start": 380.644,
+      "end": 401.764,
+      "words": [
+        {
+          "w": "At",
+          "t": 380.644
+        },
+        {
+          "w": "Intel",
+          "t": 381.159
+        },
+        {
+          "w": "Semiconductor",
+          "t": 381.674
+        },
+        {
+          "w": "Labs,",
+          "t": 382.189
+        },
+        {
+          "w": "engineers",
+          "t": 382.704
+        },
+        {
+          "w": "applied",
+          "t": 383.22
+        },
+        {
+          "w": "thirty-two",
+          "t": 383.735
+        },
+        {
+          "w": "optical",
+          "t": 384.25
+        },
+        {
+          "w": "and",
+          "t": 384.765
+        },
+        {
+          "w": "geometric",
+          "t": 385.28
+        },
+        {
+          "w": "inspection",
+          "t": 385.795
+        },
+        {
+          "w": "LFs",
+          "t": 386.31
+        },
+        {
+          "w": "across",
+          "t": 386.825
+        },
+        {
+          "w": "two",
+          "t": 387.341
+        },
+        {
+          "w": "million",
+          "t": 387.856
+        },
+        {
+          "w": "scanning",
+          "t": 388.371
+        },
+        {
+          "w": "electron",
+          "t": 388.886
+        },
+        {
+          "w": "micrographs.",
+          "t": 389.401
+        },
+        {
+          "w": "FlyingSquid",
+          "t": 389.916
+        },
+        {
+          "w": "solved",
+          "t": 390.431
+        },
+        {
+          "w": "rank-1",
+          "t": 390.946
+        },
+        {
+          "w": "covariance",
+          "t": 391.462
+        },
+        {
+          "w": "completion",
+          "t": 391.977
+        },
+        {
+          "w": "in",
+          "t": 392.492
+        },
+        {
+          "w": "three",
+          "t": 393.007
+        },
+        {
+          "w": "point",
+          "t": 393.522
+        },
+        {
+          "w": "eight",
+          "t": 394.037
+        },
+        {
+          "w": "seconds",
+          "t": 394.552
+        },
+        {
+          "w": "on",
+          "t": 395.067
+        },
+        {
+          "w": "CPU,",
+          "t": 395.583
+        },
+        {
+          "w": "distilling",
+          "t": 396.098
+        },
+        {
+          "w": "a",
+          "t": 396.613
+        },
+        {
+          "w": "ResNet-50",
+          "t": 397.128
+        },
+        {
+          "w": "defect",
+          "t": 397.643
+        },
+        {
+          "w": "classifier",
+          "t": 398.158
+        },
+        {
+          "w": "achieving",
+          "t": 398.673
+        },
+        {
+          "w": "ninety-six",
+          "t": 399.188
+        },
+        {
+          "w": "point",
+          "t": 399.704
+        },
+        {
+          "w": "four",
+          "t": 400.219
+        },
+        {
+          "w": "percent",
+          "t": 400.734
+        },
+        {
+          "w": "precision!",
+          "t": 401.249
+        }
+      ]
+    },
+    {
+      "slide": 13,
+      "slideId": "s13",
+      "slideIndex": 12,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 3! When deploying closed-form triplet estimators in production, two numerical edge cases arise: near-zero overlap pairs causing Sigma k l near zero, and the global sign ambiguity between plus z and minus z.",
+      "start": 402.264,
+      "end": 418.392,
+      "words": [
+        {
+          "w": "Time",
+          "t": 402.264
+        },
+        {
+          "w": "for",
+          "t": 402.7
+        },
+        {
+          "w": "Active",
+          "t": 403.136
+        },
+        {
+          "w": "Checkpoint",
+          "t": 403.572
+        },
+        {
+          "w": "3!",
+          "t": 404.008
+        },
+        {
+          "w": "When",
+          "t": 404.443
+        },
+        {
+          "w": "deploying",
+          "t": 404.879
+        },
+        {
+          "w": "closed-form",
+          "t": 405.315
+        },
+        {
+          "w": "triplet",
+          "t": 405.751
+        },
+        {
+          "w": "estimators",
+          "t": 406.187
+        },
+        {
+          "w": "in",
+          "t": 406.623
+        },
+        {
+          "w": "production,",
+          "t": 407.059
+        },
+        {
+          "w": "two",
+          "t": 407.495
+        },
+        {
+          "w": "numerical",
+          "t": 407.931
+        },
+        {
+          "w": "edge",
+          "t": 408.366
+        },
+        {
+          "w": "cases",
+          "t": 408.802
+        },
+        {
+          "w": "arise:",
+          "t": 409.238
+        },
+        {
+          "w": "near-zero",
+          "t": 409.674
+        },
+        {
+          "w": "overlap",
+          "t": 410.11
+        },
+        {
+          "w": "pairs",
+          "t": 410.546
+        },
+        {
+          "w": "causing",
+          "t": 410.982
+        },
+        {
+          "w": "Sigma",
+          "t": 411.418
+        },
+        {
+          "w": "k",
+          "t": 411.854
+        },
+        {
+          "w": "l",
+          "t": 412.29
+        },
+        {
+          "w": "near",
+          "t": 412.725
+        },
+        {
+          "w": "zero,",
+          "t": 413.161
+        },
+        {
+          "w": "and",
+          "t": 413.597
+        },
+        {
+          "w": "the",
+          "t": 414.033
+        },
+        {
+          "w": "global",
+          "t": 414.469
+        },
+        {
+          "w": "sign",
+          "t": 414.905
+        },
+        {
+          "w": "ambiguity",
+          "t": 415.341
+        },
+        {
+          "w": "between",
+          "t": 415.777
+        },
+        {
+          "w": "plus",
+          "t": 416.213
+        },
+        {
+          "w": "z",
+          "t": 416.648
+        },
+        {
+          "w": "and",
+          "t": 417.084
+        },
+        {
+          "w": "minus",
+          "t": 417.52
+        },
+        {
+          "w": "z.",
+          "t": 417.956
+        }
+      ]
+    },
+    {
+      "slide": 13,
+      "slideId": "s13",
+      "slideIndex": 12,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Identify the numerical safeguards that prevent triplet division blowups and ensure estimated accuracies point in the true class orientation.",
+      "start": 418.692,
+      "end": 427.236,
+      "words": [
+        {
+          "w": "Identify",
+          "t": 418.692
+        },
+        {
+          "w": "the",
+          "t": 419.142
+        },
+        {
+          "w": "numerical",
+          "t": 419.591
+        },
+        {
+          "w": "safeguards",
+          "t": 420.041
+        },
+        {
+          "w": "that",
+          "t": 420.491
+        },
+        {
+          "w": "prevent",
+          "t": 420.94
+        },
+        {
+          "w": "triplet",
+          "t": 421.39
+        },
+        {
+          "w": "division",
+          "t": 421.84
+        },
+        {
+          "w": "blowups",
+          "t": 422.289
+        },
+        {
+          "w": "and",
+          "t": 422.739
+        },
+        {
+          "w": "ensure",
+          "t": 423.189
+        },
+        {
+          "w": "estimated",
+          "t": 423.639
+        },
+        {
+          "w": "accuracies",
+          "t": 424.088
+        },
+        {
+          "w": "point",
+          "t": 424.538
+        },
+        {
+          "w": "in",
+          "t": 424.988
+        },
+        {
+          "w": "the",
+          "t": 425.437
+        },
+        {
+          "w": "true",
+          "t": 425.887
+        },
+        {
+          "w": "class",
+          "t": 426.337
+        },
+        {
+          "w": "orientation.",
+          "t": 426.786
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "slideId": "s14",
+      "slideIndex": 13,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us review production engineering discipline for matrix completion label models. Always distill continuous soft targets into deep classifiers rather than deploying rule aggregators directly, aggregate triplets with robust medians, and gate small off-diagonal covariances.",
+      "start": 427.736,
+      "end": 445.208,
+      "words": [
+        {
+          "w": "Let",
+          "t": 427.736
+        },
+        {
+          "w": "us",
+          "t": 428.235
+        },
+        {
+          "w": "review",
+          "t": 428.734
+        },
+        {
+          "w": "production",
+          "t": 429.234
+        },
+        {
+          "w": "engineering",
+          "t": 429.733
+        },
+        {
+          "w": "discipline",
+          "t": 430.232
+        },
+        {
+          "w": "for",
+          "t": 430.731
+        },
+        {
+          "w": "matrix",
+          "t": 431.23
+        },
+        {
+          "w": "completion",
+          "t": 431.73
+        },
+        {
+          "w": "label",
+          "t": 432.229
+        },
+        {
+          "w": "models.",
+          "t": 432.728
+        },
+        {
+          "w": "Always",
+          "t": 433.227
+        },
+        {
+          "w": "distill",
+          "t": 433.726
+        },
+        {
+          "w": "continuous",
+          "t": 434.226
+        },
+        {
+          "w": "soft",
+          "t": 434.725
+        },
+        {
+          "w": "targets",
+          "t": 435.224
+        },
+        {
+          "w": "into",
+          "t": 435.723
+        },
+        {
+          "w": "deep",
+          "t": 436.222
+        },
+        {
+          "w": "classifiers",
+          "t": 436.722
+        },
+        {
+          "w": "rather",
+          "t": 437.221
+        },
+        {
+          "w": "than",
+          "t": 437.72
+        },
+        {
+          "w": "deploying",
+          "t": 438.219
+        },
+        {
+          "w": "rule",
+          "t": 438.718
+        },
+        {
+          "w": "aggregators",
+          "t": 439.218
+        },
+        {
+          "w": "directly,",
+          "t": 439.717
+        },
+        {
+          "w": "aggregate",
+          "t": 440.216
+        },
+        {
+          "w": "triplets",
+          "t": 440.715
+        },
+        {
+          "w": "with",
+          "t": 441.214
+        },
+        {
+          "w": "robust",
+          "t": 441.714
+        },
+        {
+          "w": "medians,",
+          "t": 442.213
+        },
+        {
+          "w": "and",
+          "t": 442.712
+        },
+        {
+          "w": "gate",
+          "t": 443.211
+        },
+        {
+          "w": "small",
+          "t": 443.71
+        },
+        {
+          "w": "off-diagonal",
+          "t": 444.21
+        },
+        {
+          "w": "covariances.",
+          "t": 444.709
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "slideId": "s14",
+      "slideIndex": 13,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Avoid hard-rounding soft posteriors, avoid fitting triplet estimators on fewer than three overlapping LFs, and never confuse raw covariance z j with unscaled conditional precision a j.",
+      "start": 445.508,
+      "end": 457.652,
+      "words": [
+        {
+          "w": "Avoid",
+          "t": 445.508
+        },
+        {
+          "w": "hard-rounding",
+          "t": 445.958
+        },
+        {
+          "w": "soft",
+          "t": 446.408
+        },
+        {
+          "w": "posteriors,",
+          "t": 446.857
+        },
+        {
+          "w": "avoid",
+          "t": 447.307
+        },
+        {
+          "w": "fitting",
+          "t": 447.757
+        },
+        {
+          "w": "triplet",
+          "t": 448.207
+        },
+        {
+          "w": "estimators",
+          "t": 448.656
+        },
+        {
+          "w": "on",
+          "t": 449.106
+        },
+        {
+          "w": "fewer",
+          "t": 449.556
+        },
+        {
+          "w": "than",
+          "t": 450.006
+        },
+        {
+          "w": "three",
+          "t": 450.456
+        },
+        {
+          "w": "overlapping",
+          "t": 450.905
+        },
+        {
+          "w": "LFs,",
+          "t": 451.355
+        },
+        {
+          "w": "and",
+          "t": 451.805
+        },
+        {
+          "w": "never",
+          "t": 452.255
+        },
+        {
+          "w": "confuse",
+          "t": 452.704
+        },
+        {
+          "w": "raw",
+          "t": 453.154
+        },
+        {
+          "w": "covariance",
+          "t": 453.604
+        },
+        {
+          "w": "z",
+          "t": 454.054
+        },
+        {
+          "w": "j",
+          "t": 454.504
+        },
+        {
+          "w": "with",
+          "t": 454.953
+        },
+        {
+          "w": "unscaled",
+          "t": 455.403
+        },
+        {
+          "w": "conditional",
+          "t": 455.853
+        },
+        {
+          "w": "precision",
+          "t": 456.303
+        },
+        {
+          "w": "a",
+          "t": 456.752
+        },
+        {
+          "w": "j.",
+          "t": 457.202
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "slideId": "s15",
+      "slideIndex": 14,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Slide 15 displays the complete Pydantic V2 CovarianceLabelModel from your chapter. Notice how fit computes the empirical covariance matrix in one vectorized pass, sweeps valid auxiliary pairs k l gated by min triplet cov, and aggregates with np median.",
+      "start": 458.152,
+      "end": 475.912,
+      "words": [
+        {
+          "w": "Slide",
+          "t": 458.152
+        },
+        {
+          "w": "15",
+          "t": 458.607
+        },
+        {
+          "w": "displays",
+          "t": 459.063
+        },
+        {
+          "w": "the",
+          "t": 459.518
+        },
+        {
+          "w": "complete",
+          "t": 459.974
+        },
+        {
+          "w": "Pydantic",
+          "t": 460.429
+        },
+        {
+          "w": "V2",
+          "t": 460.884
+        },
+        {
+          "w": "CovarianceLabelModel",
+          "t": 461.34
+        },
+        {
+          "w": "from",
+          "t": 461.795
+        },
+        {
+          "w": "your",
+          "t": 462.25
+        },
+        {
+          "w": "chapter.",
+          "t": 462.706
+        },
+        {
+          "w": "Notice",
+          "t": 463.161
+        },
+        {
+          "w": "how",
+          "t": 463.617
+        },
+        {
+          "w": "fit",
+          "t": 464.072
+        },
+        {
+          "w": "computes",
+          "t": 464.527
+        },
+        {
+          "w": "the",
+          "t": 464.983
+        },
+        {
+          "w": "empirical",
+          "t": 465.438
+        },
+        {
+          "w": "covariance",
+          "t": 465.894
+        },
+        {
+          "w": "matrix",
+          "t": 466.349
+        },
+        {
+          "w": "in",
+          "t": 466.804
+        },
+        {
+          "w": "one",
+          "t": 467.26
+        },
+        {
+          "w": "vectorized",
+          "t": 467.715
+        },
+        {
+          "w": "pass,",
+          "t": 468.17
+        },
+        {
+          "w": "sweeps",
+          "t": 468.626
+        },
+        {
+          "w": "valid",
+          "t": 469.081
+        },
+        {
+          "w": "auxiliary",
+          "t": 469.537
+        },
+        {
+          "w": "pairs",
+          "t": 469.992
+        },
+        {
+          "w": "k",
+          "t": 470.447
+        },
+        {
+          "w": "l",
+          "t": 470.903
+        },
+        {
+          "w": "gated",
+          "t": 471.358
+        },
+        {
+          "w": "by",
+          "t": 471.814
+        },
+        {
+          "w": "min",
+          "t": 472.269
+        },
+        {
+          "w": "triplet",
+          "t": 472.724
+        },
+        {
+          "w": "cov,",
+          "t": 473.18
+        },
+        {
+          "w": "and",
+          "t": 473.635
+        },
+        {
+          "w": "aggregates",
+          "t": 474.09
+        },
+        {
+          "w": "with",
+          "t": 474.546
+        },
+        {
+          "w": "np",
+          "t": 475.001
+        },
+        {
+          "w": "median.",
+          "t": 475.457
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "slideId": "s15",
+      "slideIndex": 14,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "It then unscales z vector by per-LF coverage to recover true conditional accuracies, converts them into log-odds weights, and evaluates calibrated soft posteriors via predict proba.",
+      "start": 476.212,
+      "end": 487.924,
+      "words": [
+        {
+          "w": "It",
+          "t": 476.212
+        },
+        {
+          "w": "then",
+          "t": 476.662
+        },
+        {
+          "w": "unscales",
+          "t": 477.113
+        },
+        {
+          "w": "z",
+          "t": 477.563
+        },
+        {
+          "w": "vector",
+          "t": 478.014
+        },
+        {
+          "w": "by",
+          "t": 478.464
+        },
+        {
+          "w": "per-LF",
+          "t": 478.915
+        },
+        {
+          "w": "coverage",
+          "t": 479.365
+        },
+        {
+          "w": "to",
+          "t": 479.816
+        },
+        {
+          "w": "recover",
+          "t": 480.266
+        },
+        {
+          "w": "true",
+          "t": 480.717
+        },
+        {
+          "w": "conditional",
+          "t": 481.167
+        },
+        {
+          "w": "accuracies,",
+          "t": 481.618
+        },
+        {
+          "w": "converts",
+          "t": 482.068
+        },
+        {
+          "w": "them",
+          "t": 482.518
+        },
+        {
+          "w": "into",
+          "t": 482.969
+        },
+        {
+          "w": "log-odds",
+          "t": 483.419
+        },
+        {
+          "w": "weights,",
+          "t": 483.87
+        },
+        {
+          "w": "and",
+          "t": 484.32
+        },
+        {
+          "w": "evaluates",
+          "t": 484.771
+        },
+        {
+          "w": "calibrated",
+          "t": 485.221
+        },
+        {
+          "w": "soft",
+          "t": 485.672
+        },
+        {
+          "w": "posteriors",
+          "t": 486.122
+        },
+        {
+          "w": "via",
+          "t": 486.573
+        },
+        {
+          "w": "predict",
+          "t": 487.023
+        },
+        {
+          "w": "proba.",
+          "t": 487.474
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "slideId": "s16",
+      "slideIndex": 15,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "To conclude Lesson 11.6, master these four mathematical takeaways: conditional independence reduces generative factor graphs to Rank-1 matrix completion; off-diagonal triplet inversion recovers latent accuracies without gold labels; median aggregation prevents denominator blowups; and distilling continuous soft targets into deep backbones expands coverage to one hundred percent.",
+      "start": 488.424,
+      "end": 512.136,
+      "words": [
+        {
+          "w": "To",
+          "t": 488.424
+        },
+        {
+          "w": "conclude",
+          "t": 488.929
+        },
+        {
+          "w": "Lesson",
+          "t": 489.433
+        },
+        {
+          "w": "11.6,",
+          "t": 489.938
+        },
+        {
+          "w": "master",
+          "t": 490.442
+        },
+        {
+          "w": "these",
+          "t": 490.947
+        },
+        {
+          "w": "four",
+          "t": 491.451
+        },
+        {
+          "w": "mathematical",
+          "t": 491.956
+        },
+        {
+          "w": "takeaways:",
+          "t": 492.46
+        },
+        {
+          "w": "conditional",
+          "t": 492.965
+        },
+        {
+          "w": "independence",
+          "t": 493.469
+        },
+        {
+          "w": "reduces",
+          "t": 493.974
+        },
+        {
+          "w": "generative",
+          "t": 494.478
+        },
+        {
+          "w": "factor",
+          "t": 494.983
+        },
+        {
+          "w": "graphs",
+          "t": 495.487
+        },
+        {
+          "w": "to",
+          "t": 495.992
+        },
+        {
+          "w": "Rank-1",
+          "t": 496.496
+        },
+        {
+          "w": "matrix",
+          "t": 497.001
+        },
+        {
+          "w": "completion;",
+          "t": 497.505
+        },
+        {
+          "w": "off-diagonal",
+          "t": 498.01
+        },
+        {
+          "w": "triplet",
+          "t": 498.514
+        },
+        {
+          "w": "inversion",
+          "t": 499.019
+        },
+        {
+          "w": "recovers",
+          "t": 499.523
+        },
+        {
+          "w": "latent",
+          "t": 500.028
+        },
+        {
+          "w": "accuracies",
+          "t": 500.532
+        },
+        {
+          "w": "without",
+          "t": 501.037
+        },
+        {
+          "w": "gold",
+          "t": 501.541
+        },
+        {
+          "w": "labels;",
+          "t": 502.046
+        },
+        {
+          "w": "median",
+          "t": 502.55
+        },
+        {
+          "w": "aggregation",
+          "t": 503.055
+        },
+        {
+          "w": "prevents",
+          "t": 503.559
+        },
+        {
+          "w": "denominator",
+          "t": 504.064
+        },
+        {
+          "w": "blowups;",
+          "t": 504.568
+        },
+        {
+          "w": "and",
+          "t": 505.073
+        },
+        {
+          "w": "distilling",
+          "t": 505.577
+        },
+        {
+          "w": "continuous",
+          "t": 506.082
+        },
+        {
+          "w": "soft",
+          "t": 506.586
+        },
+        {
+          "w": "targets",
+          "t": 507.091
+        },
+        {
+          "w": "into",
+          "t": 507.595
+        },
+        {
+          "w": "deep",
+          "t": 508.1
+        },
+        {
+          "w": "backbones",
+          "t": 508.604
+        },
+        {
+          "w": "expands",
+          "t": 509.109
+        },
+        {
+          "w": "coverage",
+          "t": 509.613
+        },
+        {
+          "w": "to",
+          "t": 510.118
+        },
+        {
+          "w": "one",
+          "t": 510.622
+        },
+        {
+          "w": "hundred",
+          "t": 511.127
+        },
+        {
+          "w": "percent.",
+          "t": 511.631
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "slideId": "s16",
+      "slideIndex": 15,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Explore the papers from Ratner, Bach, Fu, Chen, Varma, Fries, and Zhang. In Lesson 11.7, we explore Self-Supervised Representation Pretraining—learning powerful feature manifolds from zero labels!",
+      "start": 512.436,
+      "end": 527.772,
+      "words": [
+        {
+          "w": "Explore",
+          "t": 512.436
+        },
+        {
+          "w": "the",
+          "t": 513.026
+        },
+        {
+          "w": "papers",
+          "t": 513.616
+        },
+        {
+          "w": "from",
+          "t": 514.206
+        },
+        {
+          "w": "Ratner,",
+          "t": 514.795
+        },
+        {
+          "w": "Bach,",
+          "t": 515.385
+        },
+        {
+          "w": "Fu,",
+          "t": 515.975
+        },
+        {
+          "w": "Chen,",
+          "t": 516.565
+        },
+        {
+          "w": "Varma,",
+          "t": 517.155
+        },
+        {
+          "w": "Fries,",
+          "t": 517.745
+        },
+        {
+          "w": "and",
+          "t": 518.334
+        },
+        {
+          "w": "Zhang.",
+          "t": 518.924
+        },
+        {
+          "w": "In",
+          "t": 519.514
+        },
+        {
+          "w": "Lesson",
+          "t": 520.104
+        },
+        {
+          "w": "11.7,",
+          "t": 520.694
+        },
+        {
+          "w": "we",
+          "t": 521.284
+        },
+        {
+          "w": "explore",
+          "t": 521.874
+        },
+        {
+          "w": "Self-Supervised",
+          "t": 522.463
+        },
+        {
+          "w": "Representation",
+          "t": 523.053
+        },
+        {
+          "w": "Pretraining—learning",
+          "t": 523.643
+        },
+        {
+          "w": "powerful",
+          "t": 524.233
+        },
+        {
+          "w": "feature",
+          "t": 524.823
+        },
+        {
+          "w": "manifolds",
+          "t": 525.413
+        },
+        {
+          "w": "from",
+          "t": 526.002
+        },
+        {
+          "w": "zero",
+          "t": 526.592
+        },
+        {
+          "w": "labels!",
+          "t": 527.182
+        }
+      ]
+    }
+  ]
+}

@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,8 +123,10 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 4px !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
           width: 100% !important;
@@ -313,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -339,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7760,7 +7816,7 @@
     <div style="display: flex; align-items: center; gap: 10px;">
       <span style="font-size: 1.25rem;">🎙️</span>
       <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">10 Slides</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
       <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
@@ -7780,50 +7836,49 @@
 <p>The synthesis capstone of dataset engineering is the <strong>End-to-End Hybrid Annotation Cascade</strong>: an autonomous multi-tier pipeline that dynamically routes instances based on model uncertainty and heuristic agreement, optimizing the global <strong>Pareto frontier between financial cost, throughput latency, and ground-truth accuracy</strong> (<a href="#ref-settles2012">Settles, 2012</a>; <a href="#ref-sheng2008">Sheng et al., 2008</a>; <a href="#ref-kumar2020">Kumar et al., 2020</a>).</p>
 <pre class="mermaid"><code>flowchart TD
   subgraph IngestionStream ["1. Continuous Streaming Ingestion"]
-    RawCorpus["Raw Unlabeled Telemetry / Documents U&lt;br/&gt;100,000s of Incoming Daily Instances"]
+    RawCorpus["&lt;b&gt;Raw Ingestion Stream&lt;/b&gt;&lt;br/&gt;&lt;span&gt;100k+ Daily Telemetry Items&lt;/span&gt;"]
   end
 
-  subgraph Tier1Programmatic ["2. Tier 1: Programmatic &amp; Foundation Models"]
-    WeakSupervision["Weak Supervision (Snorkel LFs) &amp;&lt;br/&gt;Small Zero-Shot Model Probe"]
-    ConfidenceCheck1{"Tier 1 Confidence Gate&lt;br/&gt;P_LF(Y) &gt;= tau_prog (e.g. 0.90)"}
-    AutoCertified["Tier 1 Auto-Certified Gold&lt;br/&gt;Unit Cost: USD 0.001"]
+  subgraph Tier1Programmatic ["2. Tier 1: Programmatic &amp;amp; SLM Probes"]
+    WeakSupervision["&lt;b&gt;Weak Supervision&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Snorkel LFs &amp;amp; Zero-Shot SLM&lt;/span&gt;"]
+    ConfidenceCheck1{"&lt;b&gt;Tier 1 Gate&lt;/b&gt;&lt;br/&gt;&lt;span&gt;P&lt;sub&gt;LF&lt;/sub&gt; ≥ τ&lt;sub&gt;prog&lt;/sub&gt;&lt;/span&gt;"}
+    AutoCertified["&lt;b&gt;Tier 1 Certified Gold&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Unit Cost: $0.001&lt;/span&gt;"]
   end
 
   subgraph Tier2Crowd ["3. Tier 2: Crowdsourced Consensus"]
-    CrowdPool["Crowd Verification Pool&lt;br/&gt;Dawid-Skene Majority Voting (k=3)"]
-    ConfidenceCheck2{"Tier 2 Consensus Gate&lt;br/&gt;P_DS(Y) &gt;= tau_crowd (e.g. 0.75)"}
-    CrowdCertified["Tier 2 Crowd-Certified Gold&lt;br/&gt;Unit Cost: USD 0.10"]
+    CrowdPool["&lt;b&gt;Crowd Consensus Pool&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Dawid-Skene Majority (k=3)&lt;/span&gt;"]
+    ConfidenceCheck2{"&lt;b&gt;Tier 2 Gate&lt;/b&gt;&lt;br/&gt;&lt;span&gt;P&lt;sub&gt;DS&lt;/sub&gt; ≥ τ&lt;sub&gt;crowd&lt;/sub&gt;&lt;/span&gt;"}
+    CrowdCertified["&lt;b&gt;Tier 2 Certified Gold&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Unit Cost: $0.10&lt;/span&gt;"]
   end
 
-  subgraph Tier3Expert ["4. Tier 3: Certified Specialist Oracle"]
-    ExpertReview["Certified Domain Expert Review&lt;br/&gt;Oncologists, Patent Attorneys, Engineers"]
-    ExpertCertified["Tier 3 Expert-Certified Gold&lt;br/&gt;Unit Cost: USD 25.00"]
+  subgraph Tier3Expert ["4. Tier 3: Certified Specialist Cleanroom"]
+    ExpertReview["&lt;b&gt;Specialist Cleanroom&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Certified Domain Experts&lt;/span&gt;"]
+    ExpertCertified["&lt;b&gt;Tier 3 Certified Gold&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Unit Cost: $25.00&lt;/span&gt;"]
   end
 
-  subgraph ContinualRetraining ["5. Continual Model Retraining Loop"]
-    MasterDataset["Master Training Corpus D_prod&lt;br/&gt;Optimized Cost-Quality Trade-off"]
-    ProductionModel["Retrain Production Discriminative Model&lt;br/&gt;Updated Weights Deploy to Edge"]
+  subgraph ContinualRetraining ["5. Continual Retraining Flywheel"]
+    MasterDataset["&lt;b&gt;Master Dataset D_prod&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Cost-Quality Optimal Corpus&lt;/span&gt;"]
+    ProductionModel["&lt;b&gt;Retrained Production Model&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Deploy Updated Weights to Edge&lt;/span&gt;"]
   end
 
   RawCorpus --&gt; WeakSupervision
   WeakSupervision --&gt; ConfidenceCheck1
-  ConfidenceCheck1 -- High Agreement --&gt; AutoCertified
-  ConfidenceCheck1 -- Ambiguous / Conflicted --&gt; CrowdPool
+  ConfidenceCheck1 --&gt;|High Conf 75%| AutoCertified
+  ConfidenceCheck1 --&gt;|Escalate 25%| CrowdPool
   CrowdPool --&gt; ConfidenceCheck2
-  ConfidenceCheck2 -- Strong Consensus --&gt; CrowdCertified
-  ConfidenceCheck2 -- Disagreement / Edge Case --&gt; ExpertReview
+  ConfidenceCheck2 --&gt;|Consensus 15%| CrowdCertified
+  ConfidenceCheck2 --&gt;|Ambiguous 10%| ExpertReview
   ExpertReview --&gt; ExpertCertified
   AutoCertified --&gt; MasterDataset
   CrowdCertified --&gt; MasterDataset
   ExpertCertified --&gt; MasterDataset
   MasterDataset --&gt; ProductionModel
-  ProductionModel -. Active Feedback .-&gt; WeakSupervision
+  ProductionModel -.-&gt;|Active Feedback| WeakSupervision
 
   classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
   classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
   classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
   classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
-  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
 
   class RawCorpus blue;
   class WeakSupervision,ConfidenceCheck1 purple;
@@ -8867,29 +8922,30 @@ T_{\text{cycle}} = t_{\text{inference}}(\mathcal{U}) + \max_{i \in \mathcal{B}_{
 </tr>
 </tbody>
 </table>
-<pre class="mermaid"><code>flowchart LR
-  subgraph FleetEdge ["1. Customer Fleet Edge (4M Vehicles)"]
-    FleetVehicles["Customer Vehicle Fleet&lt;br/&gt;Millions of Daily Road Miles"]
-    ShadowMode["In-Cabin Shadow Mode&lt;br/&gt;Active vs Shadow Model Divergence"]
+<pre class="mermaid"><code>flowchart TD
+  subgraph FleetEdge ["1. Customer Fleet Edge (4M+ Vehicles)"]
+    FleetVehicles["&lt;b&gt;Customer Fleet&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Millions of Daily Road Miles&lt;/span&gt;"]
+    ShadowMode["&lt;b&gt;In-Cabin Shadow Mode&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Active vs. Shadow Discrepancy&lt;/span&gt;"]
     FleetVehicles --&gt; ShadowMode
   end
 
-  subgraph CloudTriage ["2. Cloud Auto-Labeling &amp; Arbitration"]
-    ClipTrigger["Edge Trigger Fires&lt;br/&gt;Disengagement or High Entropy"]
-    NeRFRecon["3D NeRF Reconstruction&lt;br/&gt;Auto-Labels 98% of Scene Voxels"]
-    HumanCleanroom["In-House Human Cleanroom&lt;br/&gt;Adjudicates 2% Complex Occlusions"]
+  subgraph CloudTriage ["2. Cloud Auto-Labeling &amp;amp; Arbitration"]
+    ClipTrigger["&lt;b&gt;Edge Trigger Fires&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Disengagement / High Uncertainty&lt;/span&gt;"]
+    NeRFRecon["&lt;b&gt;3D Auto-Reconstruction&lt;/b&gt;&lt;br/&gt;&lt;span&gt;NeRF Auto-Labels 98% Voxels&lt;/span&gt;"]
+    HumanCleanroom["&lt;b&gt;Specialist Cleanroom&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Adjudicates 2% Complex Occlusions&lt;/span&gt;"]
     ShadowMode --&gt; ClipTrigger
     ClipTrigger --&gt; NeRFRecon
     NeRFRecon --&gt; HumanCleanroom
   end
 
-  subgraph ModelRetraining ["3. Neural Compilation &amp; Over-the-Air Update"]
-    GoldenSuite["Golden Regression Safety Suite&lt;br/&gt;Verified Zero Regressions"]
-    OTA["Over-The-Air (OTA) Firmware Deployment&lt;br/&gt;Continuous Self-Improving Autopilot"]
+  subgraph ModelRetraining ["3. Neural Compilation &amp;amp; Deployment"]
+    GoldenSuite["&lt;b&gt;Golden Regression Gate&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Zero Regressions Verified&lt;/span&gt;"]
+    OTA["&lt;b&gt;OTA Firmware Rollout&lt;/b&gt;&lt;br/&gt;&lt;span&gt;Continuous Autopilot Upgrade&lt;/span&gt;"]
     HumanCleanroom --&gt; GoldenSuite
     GoldenSuite --&gt; OTA
-    OTA -. Closed Active Loop .-&gt; FleetVehicles
   end
+
+  OTA -.-&gt;|Feedback Loop| FleetVehicles
 
   classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
   classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
@@ -9075,6 +9131,10 @@ Tier 3 receives <span class="arithmatex">\(10\%\)</span> of the incoming volume:
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

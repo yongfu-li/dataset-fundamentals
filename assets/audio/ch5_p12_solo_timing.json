@@ -1,0 +1,407 @@
+{
+  "duration": 842.808,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Chapter 5, Lesson 12: Advanced Topics in Data Preprocessing! Throughout this track, we have studied classical batch transformations: imputation, scaling, outlier mitigation, and categorical encoding. But modern mission-critical pipelines break through every assumption of classical batch workflows.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 20.832
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "When data flows as an infinite high-frequency telemetry stream, you cannot fit historical arrays into memory, and standard variance formulas produce catastrophic IEEE-754 floating point cancellation. When missing data exhibits non-linear topological manifolds, simple linear chained equations fail, demanding Generative Adversarial Imputation Networks.",
+          "dock": "main",
+          "start": 20.832,
+          "end": 43.896
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Furthermore, real training corpora routinely contain fifteen to thirty percent corrupted annotations from crowd workers, requiring Confident Learning joint probability auditing, while strict annotation budgets necessitate ActiveClean unbiased importance sampling. Let us dive into the frontier architectures of production machine learning.",
+          "dock": "main",
+          "start": 43.896,
+          "end": 64.104
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us formalize the failure modes of classical batch cleaning. First, static memory scaling. A batch standard scaler requires holding the entire dataset in memory to compute the global mean and variance, or running a two-pass map-reduce job. On continuous high-frequency streams of twenty-five million ticks, materializing historical buffers consumes gigabytes of heap and triggers severe garbage collection pauses.",
+          "dock": "main",
+          "start": 64.104,
+          "end": 90.648
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Second, label perfection. In real enterprise datasets, human labelers disagree frequently. Traditional ML pipelines fit loss functions directly against observed labels y-tilde, treating mislabeled examples as ground truth. This forces models to warp their decision boundaries to memorize crowd noise.",
+          "dock": "main",
+          "start": 90.648,
+          "end": 111.576
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Third, parametric missingness. Standard chained equation methods assume each missing attribute can be modeled as a generalized linear model of other columns. On complex multimodal or non-linear sensor topologies, this smooths away genuine high-frequency multimodality. The solution is generative adversarial imputation.",
+          "dock": "main",
+          "start": 111.576,
+          "end": 133.2
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us explore Generative Adversarial Imputation Networks, introduced by Jinsung Yoon and colleagues at ICML 2018. Traditional GANs generate an entire synthetic sample from pure noise. But missing data imputation is fundamentally different: you already have partially observed coordinates that must remain strictly unaltered.",
+          "dock": "main",
+          "start": 133.2,
+          "end": 155.184
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In GAIN, we represent the data as a vector X-tilde paired with a binary mask M, where M-j equals one if coordinate j is observed and zero if missing. We feed X-tilde, the mask M, and independent Gaussian noise Z masked to only missing positions into a Generator G. The generator synthesizes a candidate vector X-bar, and we deterministically graft observed values back into place to form X-hat.",
+          "dock": "main",
+          "start": 155.184,
+          "end": 181.368
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The Discriminator D does not output a single real-or-fake scalar! Instead, D outputs a d-dimensional vector of probabilities, attempting to predict which coordinates were genuinely observed versus generator-imputed. This turns missing-data completion into a coordinate-wise minimax game.",
+          "dock": "main",
+          "start": 181.368,
+          "end": 199.32
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Why does GAIN require a Hint Matrix H? In Theorem 1 of Yoon et al., the authors prove a critical vulnerability: if the discriminator receives no hint and observes only the completed vector X-hat, the adversarial game has infinitely many spurious Nash equilibria that fool D without recovering the true conditional density P(X given M).",
+          "dock": "main",
+          "start": 199.32,
+          "end": 220.104
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Without hints, multiple distinct joint distributions can project onto identical unconditional marginal densities. The discriminator cannot determine whether a coordinate is real or imputed because it has no reference frame for the surrounding mask topology.",
+          "dock": "main",
+          "start": 220.104,
+          "end": 235.224
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The Hint Matrix H solves this by partially revealing mask bits. We draw a Bernoulli random vector B with probability p-hint. When B-j is one, H-j reveals the true mask bit M-j. When B-j is zero, H-j equals zero point five, hiding the bit. Revealing all coordinates except one forces D to evaluate that exact coordinate conditioned on the true environment, proving unique identifiability.",
+          "dock": "main",
+          "start": 235.224,
+          "end": 262.944
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now let us turn to online streaming preprocessing. Imagine an IoT gateway or financial exchange generating thousands of records per second. The textbook formula for sample variance is s squared equals one over n minus one times the sum of x squared minus one over n times the square of sum of x.",
+          "dock": "main",
+          "start": 262.944,
+          "end": 282.696
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In exact mathematics, this formula is identical to the centered definition. But on computer hardware adhering to IEEE-754 floating point arithmetic, it is a catastrophic disaster! Consider Unix timestamps around one point seven three billion. Summing x squared yields numbers on the order of ten to the nineteenth.",
+          "dock": "main",
+          "start": 282.696,
+          "end": 304.176
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Subtracting two massive, near-identical numbers wipes out all significant mantissa bits. In production, this textbook formula frequently outputs negative variances! That crashes subsequent square-root operations with unhandled NaN exceptions.",
+          "dock": "main",
+          "start": 304.176,
+          "end": 320.592
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Interactive Studio 1: The Welford Streaming Scaler versus EWMA Concept Drift Workbench! In this simulation, we feed a continuous live sensor telemetry stream of two hundred points.",
+          "dock": "sim",
+          "start": 320.592,
+          "end": 333.888
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice what happens at time tick ninety. The physical transducer experiences an abrupt calibration shift, jumping by forty units! Observe how the blue cumulative Welford line lags far behind, weighed down by all ninety historical points.",
+          "dock": "sim",
+          "start": 333.888,
+          "end": 350.112
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now look at the orange EWMA curve. By tuning the forgetting factor alpha between zero point zero two and zero point three zero, EWMA exponentially decays past history, rapidly locking onto the new sensor regime. Use the controls to test different drift shocks!",
+          "dock": "sim",
+          "start": 350.112,
+          "end": 368.496
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "It is time for Active Checkpoint 1: Streaming Numerical Stability and Drift Diagnosis! Consider this real-world production incident. A telemetry engineer switches from textbook single-pass variance to Welford's recurrence to eliminate negative variance NaN crashes on Unix timestamps.",
+          "dock": "quiz",
+          "start": 368.496,
+          "end": 386.952
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Everything runs cleanly for three months. Then, an equipment recalibration shifts the true physical mean by forty units. For the next three days, the downstream anomaly detection model generates false alarm storms. What is the mathematical root cause?",
+          "dock": "quiz",
+          "start": 386.952,
+          "end": 404.4
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us formalize the mathematics of concept drift adaptation. In stationary environments, Welford's algorithm is optimal because the Law of Large Numbers converges at a rate of one over the square root of n. Every observation carries equal weight.",
+          "dock": "main",
+          "start": 404.4,
+          "end": 420.384
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "However, real telemetry undergoes non-stationary regime shifts. In Exponentially Weighted Moving Averages, the weight assigned to an observation t steps in the past decays exponentially as one minus alpha to the power of t. This defines an effective memory window N-effective equal to two over alpha minus one.",
+          "dock": "main",
+          "start": 420.384,
+          "end": 440.76
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "To compute running variance under EWMA without storing the window, we use the West recurrence relation. This yields an exact recursive update for both running mean and running variance in O(1) time and O(d) space, with half-life equal to natural log of two divided by alpha.",
+          "dock": "main",
+          "start": 440.76,
+          "end": 459.168
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now let us confront one of the most pervasive dirty data realities: annotation errors in supervised datasets. In seminal work published at NeurIPS 2021 by Curtis Northcutt and colleagues, pervasive label errors were discovered across standard benchmarks like ImageNet, MNIST, and QuickDraw.",
+          "dock": "main",
+          "start": 459.168,
+          "end": 478.056
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "How do engineers typically handle this? A naive engineer filters out examples where the model has low predicted confidence. But that is a catastrophic blunder! Low confidence occurs on ambiguous boundary examples due to genuine aleatoric uncertainty. Discarding them strips the model of the hardest, most informative training samples.",
+          "dock": "main",
+          "start": 478.056,
+          "end": 500.208
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Confident Learning solves this by estimating the joint probability distribution between the observed noisy label y-tilde and the latent uncorrupted label y-star. We establish a per-class self-confidence threshold t-j by computing the average out-of-fold predicted probability for examples bearing observed label j.",
+          "dock": "main",
+          "start": 500.208,
+          "end": 518.784
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Once we compute class thresholds t-j, we construct the unnormalized Confident Joint Matrix C of y-tilde and y-star. We assign an observation x with observed label i to cell i, j if its out-of-fold predicted probability for class j exceeds threshold t-j.",
+          "dock": "main",
+          "start": 518.784,
+          "end": 535.8
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The diagonal cells of C represent correctly labeled instances where the model's confidence matches the observed label. The off-diagonal cells represent systematic label noise: instances given label i by annotators that actually belong to latent class j.",
+          "dock": "main",
+          "start": 535.8,
+          "end": 551.496
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Under Prune-By-Noise-Rate, or PBNR, we compute the expected number of errors in each off-diagonal cell. Then, for observed class i, we rank candidate examples in ascending order of confidence margin: probability of class i minus probability of class j. We prune exactly the top N worst-margin violations.",
+          "dock": "main",
+          "start": 551.496,
+          "end": 572.304
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "What happens when you have millions of dirty records and an annotation budget to clean only a tiny fraction? This is the domain of ActiveClean, introduced by Sanjay Krishnan and colleagues at SIGMOD 2016.",
+          "dock": "main",
+          "start": 572.304,
+          "end": 585.888
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "ActiveClean prioritizes dirty records that exert the greatest gradient sensitivity on model loss, where gradient norm is largest. But if you clean only high-gradient outliers and train your model on them, you introduce extreme selection bias!",
+          "dock": "main",
+          "start": 585.888,
+          "end": 601.008
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "To eliminate selection bias, ActiveClean invokes the Horvitz-Thompson inverse-probability weighting theorem. By reweighting each cleaned sample gradient by the inverse of its selection probability q-i, the expected batch gradient equals the true clean gradient over the entire dataset with zero mathematical bias.",
+          "dock": "main",
+          "start": 601.008,
+          "end": 620.136
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Interactive Studio 2: The Confident Learning Pruner and ActiveClean Studio! On this interactive 2D canvas, we simulate a binary classification problem contaminated by asymmetric label noise.",
+          "dock": "sim",
+          "start": 620.136,
+          "end": 633.888
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Adjust the Label Noise Flip Rate slider between zero and thirty-five percent. Notice how the dashed red boundary twists and warps toward the wrong quadrant to accommodate the corrupted labels!",
+          "dock": "sim",
+          "start": 633.888,
+          "end": 645.768
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now observe the solid green boundary restored by Confident Learning PBNR pruning. Notice the red circles highlighting points identified as corrupted annotations. Check the live Confident Joint Matrix and precision-recall stats on the right!",
+          "dock": "sim",
+          "start": 645.768,
+          "end": 661.104
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "It is time for Active Checkpoint 2: GAIN Identifiability and Off-Diagonal Label Error Pruning! Review this foundational question carefully.",
+          "dock": "quiz",
+          "start": 661.104,
+          "end": 670.824
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "A machine learning engineer implements GAIN for medical records imputation, but decides to remove the Hint Matrix H, feeding only completed data X-hat into the discriminator. Why does training fail to converge to the true missing-data distribution?",
+          "dock": "quiz",
+          "start": 670.824,
+          "end": 685.776
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "What about relational enterprise databases where data quality errors involve functional dependencies, such as ZIP code dictating city and state? In VLDB 2017, Theodoros Rekatsinas and colleagues introduced HoloClean.",
+          "dock": "main",
+          "start": 685.776,
+          "end": 700.752
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "HoloClean abandons heuristic rule-based scripting and formulates data repair as Maximum A Posteriori, or MAP inference over a probabilistic factor graph. Each dirty cell is treated as a random variable taking candidate repair values from an active domain.",
+          "dock": "main",
+          "start": 700.752,
+          "end": 717.144
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Integrity constraints, such as denial constraints and external reference tables, are encoded as potential functions phi with learned weights w. HoloClean uses Gibbs sampling to infer the globally optimal, joint repair that satisfies the relational constraints with maximal posterior likelihood.",
+          "dock": "main",
+          "start": 717.144,
+          "end": 734.64
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "On Slide 15, we provide the complete production Python engine, validated under Pydantic V2. This module implements the WelfordEWMAStream class, combining exact cumulative Welford moments with adaptive EWMA forgetting factors.",
+          "dock": "main",
+          "start": 734.64,
+          "end": 751.152
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "It also defines the ConfidentJointPruner, which computes out-of-fold cross-validated probabilities, calculates per-class self-confidence thresholds t-j, constructs the unnormalized noise matrix C, and prunes off-diagonal margin violators.",
+          "dock": "main",
+          "start": 751.152,
+          "end": 766.056
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Finally, the ActiveCleanHTEstimator guarantees unbiased stochastic gradient descent via Horvitz-Thompson weighting. Review the code structure and type contracts for deployment.",
+          "dock": "main",
+          "start": 766.056,
+          "end": 777.744
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Congratulations on completing Chapter 5: Data Cleaning and Preprocessing! Across twelve comprehensive lessons, we have traversed from basic missingness taxonomy to the cutting edge of streaming moments, generative imputation, and programmatic label error auditing.",
+          "dock": "main",
+          "start": 777.744,
+          "end": 794.4
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us summarize the Four Golden Axioms of Frontier Preprocessing. Axiom 1: In streaming telemetry, compute centered deviations via Welford to avoid IEEE-754 mantissa cancellation, and pair with EWMA forgetting factors to absorb concept drift.",
+          "dock": "main",
+          "start": 794.4,
+          "end": 812.424
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Axiom 2: In generative imputation, condition discriminators on partial hint matrices H to guarantee unique density recovery. Axiom 3: In noisy annotations, estimate the joint noise distribution C to prune true flips without discarding valuable boundary samples. Axiom 4: In active cleaning, use Horvitz-Thompson inverse weighting to guarantee unbiased model gradients. You are now fully equipped to build robust, production-grade data pipelines!",
+          "dock": "main",
+          "start": 812.424,
+          "end": 842.808
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,554 @@
+{
+  "duration": 850.32,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Chapter 5, Lesson 10, Kaito! Today we explore data cleaning's central paradox: transformations intended to clean raw datasets often introduce devastating statistical leakage.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 13.56
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! We just spent nine lessons mastering outlier removal, robust scaling, target encoding, and pipeline DAGs! How could cleaning our data cause a model to fail in production?",
+          "dock": "main",
+          "start": 13.56,
+          "end": 27.12
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because when cleaning operations ignore causal event ordering, future information bleeds backward into training features! A model might score 0.998 on cross-validation offline, only to collapse to complete chance in live deployment.",
+          "dock": "main",
+          "start": 27.12,
+          "end": 43.272
+        },
+        {
+          "speaker": "Kaito",
+          "text": "A 0.998 ROC-AUC collapsing to coin-flip chance?! That sounds like a catastrophic disaster! How do we prevent and detect that before shipping?",
+          "dock": "main",
+          "start": 43.272,
+          "end": 54.552
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "By mastering the three vectors of leakage, Provenance Semirings for lineage audits, and automated Population Stability Index circuit breakers. Let's inspect the theoretical architecture!",
+          "dock": "main",
+          "start": 54.552,
+          "end": 67.104
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Examine this leakage typology flowchart, Kaito. Every data leakage failure in industrial machine learning maps into one of these three structural vectors.",
+          "dock": "main",
+          "start": 67.104,
+          "end": 77.544
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Let me trace this: Type I is Causal Reversal, where feature X actually happened AFTER target Y! Like using an autopsy billing code to predict if an ICU patient will survive!",
+          "dock": "main",
+          "start": 77.544,
+          "end": 88.92
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. And Type II is Distributional Bleed, where preprocessing estimators compute statistics over the merged train and test sets, or where cross-split duplicate rows exist.",
+          "dock": "main",
+          "start": 88.92,
+          "end": 101.232
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And Type III is Temporal Inversion! When we randomly shuffle a time-series dataset, we allow the model to peek into the future and condition earlier trades or claims on later events!",
+          "dock": "main",
+          "start": 101.232,
+          "end": 112.44
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on, Kaito. Notice how each vector requires a completely separate architectural defense. Let us drill into Type I causal reversal.",
+          "dock": "main",
+          "start": 112.44,
+          "end": 123.264
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look closely at this causal inversion diagram, Kaito. In valid predictive modeling, borrower attributes X precede default outcome Y. But in target leakage, Y happens first, and creates X_leak!",
+          "dock": "main",
+          "start": 123.264,
+          "end": 138.504
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Like when a bank borrower defaults, and two weeks later the accounting system records a 500-dollar collection agency fee! If we feed that fee into our training data, the model just learns: 'If collection fee > 0, predict default!'",
+          "dock": "main",
+          "start": 138.504,
+          "end": 152.4
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly, Kaito! And when you deploy that model to evaluate new loan applicants on day zero, the collection fee is obviously zero for everyone! The model completely breaks because it never learned real credit risk.",
+          "dock": "main",
+          "start": 152.4,
+          "end": 167.4
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And the scary thing is that offline, cross-validation reported a 0.99 AUC! How does our sentinel automatically catch these sneaky administrative columns?",
+          "dock": "main",
+          "start": 167.4,
+          "end": 178.152
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "By executing automated Mutual Information sweeps! Any feature with Mutual Information above 0.45 gets flagged and isolated until proven causal.",
+          "dock": "main",
+          "start": 178.152,
+          "end": 189.528
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now observe Type II leakage, Kaito. Distributional Bleed happens when preprocessing estimators or raw data rows bridge the boundary between train and test sets.",
+          "dock": "main",
+          "start": 189.528,
+          "end": 200.856
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Like fitting RobustScaler over all rows before calling train_test_split! The training fold now contains statistical hints about the median and IQR of the test fold!",
+          "dock": "main",
+          "start": 200.856,
+          "end": 212.28
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. But an even sneakier hazard is duplicate rows! If an e-commerce database logs repeated retry clicks, and one identical row is assigned to training while the other goes to testing, what happens?",
+          "dock": "main",
+          "start": 212.28,
+          "end": 226.848
+        },
+        {
+          "speaker": "Kaito",
+          "text": "The model doesn't have to generalize at all! It just memorizes the training row's exact features and regurgitates the correct label on the test fold like an open-book exam!",
+          "dock": "main",
+          "start": 226.848,
+          "end": 237.408
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on. That is why our sentinel computes full-row cryptographic hashes and asserts that the intersection of training and test hashes is strictly empty.",
+          "dock": "main",
+          "start": 237.408,
+          "end": 247.704
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Here is the third vector of leakage, Kaito: Temporal Filtration Inversion. What happens if you take two years of customer purchases and run standard random 5-fold cross-validation?",
+          "dock": "main",
+          "start": 247.704,
+          "end": 259.728
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Every single fold will get a random scatter of dates! A model trying to predict whether a customer will churn in March 2023 might have already seen that same customer's purchase records from November 2023!",
+          "dock": "main",
+          "start": 259.728,
+          "end": 272.808
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely! Future macroeconomic shocks, holiday promotions, and subsequent customer choices leak directly into the training gradients. The model conditions on information that didn't exist in March!",
+          "dock": "main",
+          "start": 272.808,
+          "end": 287.208
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So if max(train_time) is greater than or equal to min(test_time), our pipeline has committed temporal look-ahead contamination! How do we enforce filtration purity?",
+          "dock": "main",
+          "start": 287.208,
+          "end": 299.136
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "By enforcing strict Out-of-Time cutoff boundaries: train on the past, test on the future. Now, let's explore continuous drift monitoring in Lab 1!",
+          "dock": "main",
+          "start": 299.136,
+          "end": 309.912
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our first interactive laboratory: the Population Stability Index Drift Sentinel Studio! Kaito, let's explore how live production data drifts away from training baselines.",
+          "dock": "main",
+          "start": 309.912,
+          "end": 322.344
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at the canvas! When Mean Drift is 0.0 and Variance is 1.0, the blue baseline deciles and orange production deciles match perfectly, and PSI is zero! But as I push Mean Drift up to 0.8, PSI climbs past 0.25 and triggers a red Circuit Breaker alert!",
+          "dock": "sim",
+          "start": 322.344,
+          "end": 341.808
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, in our loan pipeline, the DebtToIncomeRatio feature just hit a PSI of 0.34! Should we immediately trigger automated model retraining on last month's data?",
+          "dock": "main",
+          "start": 341.808,
+          "end": 353.472
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Never retrain automatically on an uninspected PSI spike, Kaito! First examine whether upstream data pipelines corrupted the units, or if a genuine economic shock occurred. Select the correct protocol below!",
+          "dock": "quiz",
+          "start": 353.472,
+          "end": 369.0
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Examine this lineage algebra, Kaito. Under GDPR Article 17, when a customer requests data deletion, an enterprise cannot simply delete the user table row\u2014they must purge every downstream feature calculated from that user.",
+          "dock": "main",
+          "start": 369.0,
+          "end": 385.08
+        },
+        {
+          "speaker": "Kaito",
+          "text": "In a company with hundreds of feature tables and aggregated joins, finding every downstream table manually would be an impossible nightmare!",
+          "dock": "main",
+          "start": 385.08,
+          "end": 393.072
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Which is why Green et al. formulated Provenance Semirings! We represent each derived tuple as a symbolic polynomial. If a feature joined the user's data with account data, its lineage is x_user otimes x_account.",
+          "dock": "main",
+          "start": 393.072,
+          "end": 409.248
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And when the user is deleted, we just set x_user to zero! Zero times anything is zero, so the joined feature automatically gets purged! But if it was an alternative union derivation, zero plus x_alt preserves the other source!",
+          "dock": "main",
+          "start": 409.248,
+          "end": 425.4
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Brilliant deduction, Kaito. That turns regulatory compliance from an error-prone guessing game into exact semiring polynomial evaluation!",
+          "dock": "main",
+          "start": 425.4,
+          "end": 435.528
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Examine this lineage chaining equation, Kaito. How can an auditor verify that a credit risk model trained six months ago wasn't poisoned by modified cleaning logic?",
+          "dock": "main",
+          "start": 435.528,
+          "end": 446.88
+        },
+        {
+          "speaker": "Kaito",
+          "text": "By calculating the SHA-256 Merkle execution digest! We take the previous dataset hash, concatenate the Git commit SHA of the cleaning script, the JSON config parameters, and the random seed!",
+          "dock": "main",
+          "start": 446.88,
+          "end": 460.32
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Because SHA-256 has the avalanche effect, if an engineer silently modifies even one character in an imputation function or shifts the random seed from 42 to 43, what happens?",
+          "dock": "main",
+          "start": 460.32,
+          "end": 475.44
+        },
+        {
+          "speaker": "Kaito",
+          "text": "The entire 64-character hash changes completely! The pipeline signature fails CI verification immediately! That prevents stealthy configuration drift from ever reaching production.",
+          "dock": "main",
+          "start": 475.44,
+          "end": 488.16
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on. Now let's examine a famous real-world disaster where missing governance cost millions.",
+          "dock": "main",
+          "start": 488.16,
+          "end": 495.6
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at this table, Kaito. In a real-world healthcare competition, top leaderboard teams achieved a 0.998 ROC-AUC predicting ICU patient mortality. Everyone thought they had built a medical miracle.",
+          "dock": "main",
+          "start": 495.6,
+          "end": 511.344
+        },
+        {
+          "speaker": "Kaito",
+          "text": "0.998?! That is basically 100 percent perfect prediction! What was the catch, Dr. Nova?",
+          "dock": "main",
+          "start": 511.344,
+          "end": 520.536
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The catch was a feature called encounter_sequence_id. Hospital billing staff closed deceased patient accounts and transferred them to the morgue in specific numerical ID batches. The model wasn't diagnosing patient vitals\u2014it was reading the billing clerk's filing stamp!",
+          "dock": "main",
+          "start": 520.536,
+          "end": 538.896
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And when tested at another hospital, it plummeted to 0.502\u2014total coin-flip chance! If doctors had deployed that model, lives would have been lost!",
+          "dock": "main",
+          "start": 538.896,
+          "end": 549.336
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. When auditors stripped out the billing ID, the true clinical AUC was 0.814, which matched external hospital validation of 0.811. Extraordinary claims require extraordinary causal scrutiny.",
+          "dock": "main",
+          "start": 549.336,
+          "end": 566.04
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, distinguish carefully between Covariate Shift and Concept Drift. Misdiagnosing them is one of the most common causes of wasted engineering cycles.",
+          "dock": "main",
+          "start": 566.04,
+          "end": 576.888
+        },
+        {
+          "speaker": "Kaito",
+          "text": "In Covariate Shift, the inputs X change, but the conditional probability P(Y given X) stays the same! Like when an app expands to a new country with older users, but an 800 credit score still means low default risk!",
+          "dock": "main",
+          "start": 576.888,
+          "end": 591.168
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Correct. We can fix covariate shift using density ratio sample weights without throwing away our model. But what happens in Concept Drift?",
+          "dock": "main",
+          "start": 591.168,
+          "end": 601.8
+        },
+        {
+          "speaker": "Kaito",
+          "text": "In Concept Drift, the world itself changes! A sudden inflation surge means that an 800 credit score borrower might now default at twice the historical rate! P(Y given X) has shifted!",
+          "dock": "main",
+          "start": 601.8,
+          "end": 615.0
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. No mathematical reweighting can fix concept drift\u2014you must acquire new labels and retrain the model. Now let's explore cryptographic lineage in Lab 2!",
+          "dock": "main",
+          "start": 615.0,
+          "end": 627.768
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our second interactive workbench: the Cryptographic Provenance and Lineage Chaining Studio! Kaito, let's test how pipeline hashes change with code mutations.",
+          "dock": "main",
+          "start": 627.768,
+          "end": 639.288
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at the Merkle Digest! Just changing the random seed from 42 to 43 flips the entire 64-character SHA-256 digest! And when I trigger the GDPR Erasure button for User 8841, the joined account feature evaluates to zero while the alternative dedupe record survives!",
+          "dock": "sim",
+          "start": 639.288,
+          "end": 659.376
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at our production telemetry! Applicant credit scores and income deciles have zero drift (PSI under 0.05), but actual loan defaults doubled across every single credit tier!",
+          "dock": "main",
+          "start": 659.376,
+          "end": 672.744
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Think carefully, Kaito: did the input population shift, or did the underlying economic relationship change? Pick the correct diagnosis and action below!",
+          "dock": "quiz",
+          "start": 672.744,
+          "end": 683.664
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Here is a silent killer of production models, Kaito: Silent Upstream Schema Mutations. Backend teams frequently change database representations without notifying ML engineers.",
+          "dock": "main",
+          "start": 683.664,
+          "end": 696.504
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Like when the mobile app team changes the platform string from lowercase 'mobile_ios' to capitalized 'iOS'? What does our OneHotEncoder do?",
+          "dock": "main",
+          "start": 696.504,
+          "end": 706.248
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because 'iOS' was never in the training vocabulary, the encoder sets every one-hot column to 0! No exception is thrown, no error log is generated\u2014the model simply loses all platform signal and starts making degraded predictions.",
+          "dock": "main",
+          "start": 706.248,
+          "end": 722.424
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Or when someone changes debt ratio from a decimal 0.35 to a percentage 35.0! The model thinks the customer's debt is 100 times higher than it actually is!",
+          "dock": "main",
+          "start": 722.424,
+          "end": 734.136
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. That is why production pipelines deploy strict Pydantic V2 schemas at the ingestion gate. Let's inspect our production Python implementation!",
+          "dock": "main",
+          "start": 734.136,
+          "end": 745.944
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at our production Python verification engine, Kaito. We codify governance directly into LeakageSentinelReport using Pydantic V2 Field assertions.",
+          "dock": "main",
+          "start": 745.944,
+          "end": 756.936
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Look at those assertions: psi_stable_score requires strictly less than 0.10, while psi_drifted_score must be greater than 0.25 to trigger our automated circuit breaker!",
+          "dock": "main",
+          "start": 756.936,
+          "end": 769.824
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And look at how audit_split_contamination uses pandas hash_pandas_object to detect cross-partition duplicates in O(N) time without expensive nested record comparisons.",
+          "dock": "main",
+          "start": 769.824,
+          "end": 783.192
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Integrating this sentinel into CI/CD ensures that no data pipeline ever gets deployed with causal leaks, split contamination, or unmonitored distributional drift!",
+          "dock": "main",
+          "start": 783.192,
+          "end": 793.368
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Congratulations on completing Lesson 5.10, Kaito! We have established the theoretical foundations of causal leakage prevention, Provenance Semirings, and Population Stability Index circuit breakers.",
+          "dock": "main",
+          "start": 793.368,
+          "end": 807.984
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I will never trust a 0.998 ROC-AUC again without checking for post-outcome administrative features! And I'll always check upstream pipeline units before jumping to retrain on a PSI alert!",
+          "dock": "main",
+          "start": 807.984,
+          "end": 820.488
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spoken like a true senior machine learning engineer, Kaito! Always remember: eliminate causal reversal, preserve temporal filtrations, monitor PSI continuously, and seal pipeline hashes cryptographically.",
+          "dock": "main",
+          "start": 820.488,
+          "end": 835.008
+        },
+        {
+          "speaker": "Kaito",
+          "text": "What's next on our agenda, Dr. Nova?",
+          "dock": "main",
+          "start": 835.008,
+          "end": 838.344
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Next, in Lesson 5.11, we synthesize all of Chapter 5 across large-scale enterprise case studies and practical cleaning workbenches. Let's keep building!",
+          "dock": "main",
+          "start": 838.344,
+          "end": 850.32
+        }
+      ]
+    }
+  ]
+}

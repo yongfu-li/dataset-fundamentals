@@ -7654,7 +7654,7 @@
       <span>📖 Companion Monograph Section Available</span>
     </div>
     <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
-      Read <strong>Chapter 9: Advanced Data Collection Techniques (§9.10: End-to-End Streaming Pipelines &amp; Future Outlook)</strong> in the official Springer Nature monograph, synthesizing distributed commit logs, micro-batch latency decomposition, bottleneck-bounded throughput stability, replication quorum intersection, HDFS NameNode heap limits, and real-time Out-of-Vocabulary (OOV) drift monitoring.
+      Read <strong>Chapter 9: Advanced Data Collection Techniques (§9.10: End-to-End Streaming Pipelines &amp; Future Outlook)</strong>, synthesizing distributed commit logs, micro-batch latency decomposition, bottleneck-bounded throughput stability, replication quorum intersection, HDFS NameNode heap limits, and real-time Out-of-Vocabulary (OOV) drift monitoring.
     </div>
   </div>
   <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
@@ -7670,7 +7670,7 @@
     <div style="display: flex; align-items: center; gap: 10px;">
       <span style="font-size: 1.25rem;">🎙️</span>
       <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">6 Slides</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
       <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
@@ -7688,23 +7688,20 @@
 <h2 id="conceptual-overview-end-to-end-streaming-topology">🎯 Conceptual Overview &amp; End-to-End Streaming Topology</h2>
 <p>Building and operating an industrial-grade data collection system requires uniting distributed messaging logs (<a href="#ref-wang2015">Wang et al., 2015</a>), fault-tolerant stream computation (<a href="#ref-carbone2017">Carbone et al., 2017</a>; <a href="#ref-zaharia2016">Zaharia et al., 2016</a>), low-latency GPU inference batching (<a href="#ref-crankshaw2017">Crankshaw et al., 2017</a>), distributed storage filesystems (<a href="#ref-shvachko2010">Shvachko et al., 2010</a>), and ACID Lakehouse persistence (<a href="#ref-armbrust2020">Armbrust et al., 2020</a>) inside one tightly coupled feedback loop.</p>
 <p>As Google and Meta have documented in warehouse-scale computing systems (<a href="#ref-barroso2013">Barroso et al., 2013</a>) and ML infrastructure postmortems (<a href="#ref-sculley2015">Sculley et al., 2015</a>), end-to-end collection pipelines rarely fail from single-component algorithmic bugs—they fail at <strong>stage boundaries</strong>, where mismatched throughput ceilings create unbounded backpressure, uncompacted small files exhaust metadata RAM, weak quorums corrupt replicas, or unmonitored linguistic vocabulary shifts quietly degrade deployed models.</p>
-<pre class="mermaid"><code>flowchart LR
-  subgraph Ingestion ["1. Real-Time Telemetry Firehose"]
-    direction TB
-    Feed["Social &amp;amp; Multimodal Firehose&lt;br/&gt;Peak: 50,000+ events/sec"]
-    KafkaCluster[("Apache Kafka Cluster&lt;br/&gt;N=3 Replicas, R+W &amp;gt; N Quorum")]
+<pre class="mermaid"><code>flowchart TD
+  subgraph Ingestion ["1. Real-Time Telemetry Firehose Ingestion"]
+    Feed["Social &amp; Multimodal Event Firehose&lt;br/&gt;(Peak: 50,000+ events/sec)"]
+    KafkaCluster["Distributed Kafka Commit Log&lt;br/&gt;(N=3 Replicas, R + W &gt; N Quorum)"]
   end
 
-  subgraph StreamCompute ["2. Micro-Batch &amp;amp; GPU Inference"]
-    direction TB
-    SparkStream["Spark / Flink Stream Engine&lt;br/&gt;Optimal Batch Window Delta*(t)"]
-    GPUServe["GPU Tensor Inference Pool&lt;br/&gt;Dynamic Batching + OOV Monitor"]
+  subgraph StreamCompute ["2. Micro-Batch &amp; GPU Stream Inference"]
+    SparkStream["Spark / Flink Stream Engine&lt;br/&gt;(Optimal Micro-Batch Window Δt*)"]
+    GPUServe["GPU Tensor Inference Engine&lt;br/&gt;(Dynamic Batching B=64 + OOV Gate)"]
   end
 
-  subgraph StorageServe ["3. Lakehouse &amp;amp; Serving Layer"]
-    direction TB
-    DeltaTable[("ACID Lakehouse / HDFS Blocks&lt;br/&gt;512 MB Compacted Segments")]
-    LiveDash["Alerting &amp;amp; Drift Dashboard&lt;br/&gt;Sub-200ms P99 + Retrain Trigger"]
+  subgraph StorageServe ["3. ACID Lakehouse Storage &amp; Serving Layer"]
+    DeltaTable["ACID Lakehouse / HDFS Storage&lt;br/&gt;(512 MB Compacted Columnar Parquet)"]
+    LiveDash["Real-Time Monitoring Dashboard&lt;br/&gt;(Sub-200ms P99 + 3σ SPC Drift Alert)"]
   end
 
   Feed --&gt; KafkaCluster
@@ -7729,30 +7726,56 @@
 <div class="arithmatex">\[
 T_{\text{e2e}} = t_{\text{ingest}} + t_{\text{buffer}} + t_{\text{inference}} + t_{\text{commit}}
 \]</div>
-<p>Here <span class="arithmatex">\(t_{\text{ingest}}\)</span> covers producer network transit to the broker quorum, <span class="arithmatex">\(t_{\text{buffer}} = \Delta t_{\text{batch}}\)</span> denotes the micro-batch accumulation interval, <span class="arithmatex">\(t_{\text{inference}}\)</span> captures GPU forward-pass execution, and <span class="arithmatex">\(t_{\text{commit}}\)</span> represents Lakehouse atomic snapshot durability. In micro-batch engines such as Apache Spark Structured Streaming (<a href="#ref-zaharia2016">Zaharia et al., 2016</a>), minimizing total amortized scheduling overhead (<span class="arithmatex">\(t_{\text{overhead}} / \Delta t\)</span>) plus queueing staleness penalty (<span class="arithmatex">\(\frac{1}{2}\lambda c_{\text{delay}} \Delta t\)</span>) yields the closed-form optimal micro-batch interval <span class="arithmatex">\(\Delta t^*\)</span>:</p>
+<p>Here <span class="arithmatex">\(t_{\text{ingest}}\)</span> covers producer network transit to the broker quorum, <span class="arithmatex">\(t_{\text{buffer}} = \Delta t_{\text{batch}}\)</span> denotes the micro-batch accumulation interval, <span class="arithmatex">\(t_{\text{inference}}\)</span> captures GPU forward-pass execution, and <span class="arithmatex">\(t_{\text{commit}}\)</span> represents Lakehouse atomic snapshot durability.</p>
+<p>In micro-batch engines such as Apache Spark Structured Streaming (<a href="#ref-zaharia2016">Zaharia et al., 2016</a>), tuning <span class="arithmatex">\(\Delta t\)</span> requires balancing amortized scheduling overhead against queueing staleness. With per-batch task scheduling dispatch overhead <span class="arithmatex">\(t_{\text{overhead}}\)</span>, event arrival rate <span class="arithmatex">\(\lambda\)</span>, and unit queueing delay cost <span class="arithmatex">\(c_{\text{delay}}\)</span>, the total amortized cost objective function is:</p>
 <div class="arithmatex">\[
-\Delta t^* = \sqrt{\frac{2 \cdot t_{\text{overhead}}}{\lambda \cdot c_{\text{delay}}}}
+\mathcal{C}(\Delta t) = \frac{t_{\text{overhead}}}{\Delta t} + \frac{1}{2}\lambda c_{\text{delay}} \Delta t
+\]</div>
+<p>Minimizing <span class="arithmatex">\(\mathcal{C}(\Delta t)\)</span> with respect to <span class="arithmatex">\(\Delta t\)</span> by setting <span class="arithmatex">\(\frac{d\mathcal{C}}{d\Delta t} = 0\)</span>:</p>
+<div class="arithmatex">\[
+\frac{d\mathcal{C}}{d\Delta t} = -\frac{t_{\text{overhead}}}{\Delta t^2} + \frac{1}{2}\lambda c_{\text{delay}} = 0 \implies \Delta t^* = \sqrt{\frac{2 \cdot t_{\text{overhead}}}{\lambda \cdot c_{\text{delay}}}}
 \]</div>
 <p><strong>Worked Numerical Example:</strong>
 Suppose an end-to-end streaming sentiment pipeline records <span class="arithmatex">\(t_{\text{ingest}} = 15.0\text{ ms}\)</span>, accumulation buffer <span class="arithmatex">\(t_{\text{buffer}} = 100.0\text{ ms}\)</span>, GPU forward pass <span class="arithmatex">\(t_{\text{inference}} = 25.0\text{ ms}\)</span>, and Lakehouse snapshot commit <span class="arithmatex">\(t_{\text{commit}} = 30.0\text{ ms}\)</span>:
-- Total end-to-end latency: <span class="arithmatex">\(T_{\text{e2e}} = 15.0 + 100.0 + 25.0 + 30.0 = \mathbf{170.0\text{ ms}}\)</span> (safely inside a <span class="arithmatex">\(200.0\text{ ms}\)</span> alerting SLA).
-- With fixed Spark task dispatch overhead <span class="arithmatex">\(t_{\text{overhead}} = 0.050\text{ s}\)</span> (<span class="arithmatex">\(50\text{ ms}\)</span>), arrival rate <span class="arithmatex">\(\lambda = 5{,}000\text{ events/s}\)</span>, and queueing penalty <span class="arithmatex">\(c_{\text{delay}} = 0.002\text{ batch-units/s}\)</span>: <span class="arithmatex">\(\Delta t^* = \sqrt{\frac{2 \times 0.050}{5{,}000 \times 0.002}} = \sqrt{\frac{0.10}{10.0}} = \mathbf{0.100\text{ s}}\)</span> (<span class="arithmatex">\(\mathbf{100.0\text{ ms}}\)</span> exact optimum).</p>
+- Total end-to-end latency:
+  $$
+  T_{\text{e2e}} = 15.0 + 100.0 + 25.0 + 30.0 = \mathbf{170.0\text{ ms}} \le 200.0\text{ ms SLA} \quad (\text{Compliant})
+  $$
+- With fixed Spark task dispatch overhead <span class="arithmatex">\(t_{\text{overhead}} = 0.050\text{ s}\)</span> (<span class="arithmatex">\(50\text{ ms}\)</span>), arrival rate <span class="arithmatex">\(\lambda = 5{,}000\text{ events/s}\)</span>, and queueing penalty <span class="arithmatex">\(c_{\text{delay}} = 0.002\text{ batch-units/s}\)</span>:
+  $$
+  \Delta t^* = \sqrt{\frac{2 \times 0.050}{5{,}000 \times 0.002}} = \sqrt{\frac{0.10}{10.0}} = \mathbf{0.100\text{ s}} = \mathbf{100.0\text{ ms}}
+  $$</p>
 <hr />
 <h3 id="definition-9102-bottleneck-bounded-maximum-sustainable-throughput">Definition 9.10.2 (Bottleneck-Bounded Maximum Sustainable Throughput)</h3>
-<p>Consider a multi-stage ingestion topology comprising <span class="arithmatex">\(P\)</span> Kafka partitions with per-partition broker service latency <span class="arithmatex">\(t_{\text{broker}}\)</span>, <span class="arithmatex">\(W\)</span> GPU worker nodes processing dynamic tensor batches of size <span class="arithmatex">\(B_{\text{gpu}} \ge 1\)</span> in batch pass duration <span class="arithmatex">\(\bar{t}_{\text{inference}}\)</span>, and persistent disk storage bandwidth <span class="arithmatex">\(B_{\text{disk}}\)</span> receiving serialized records of size <span class="arithmatex">\(S_{\text{record}}\)</span> (<a href="#ref-barroso2013">Barroso et al., 2013</a>; <a href="#ref-crankshaw2017">Crankshaw et al., 2017</a>). The <strong>Maximum Sustainable Pipeline Throughput</strong> <span class="arithmatex">\(\lambda^*\)</span> is strictly capped by the slowest bottleneck stage:</p>
+<p>Consider a multi-stage ingestion topology comprising <span class="arithmatex">\(P\)</span> Kafka partitions with per-partition broker service latency <span class="arithmatex">\(t_{\text{broker}}\)</span>, <span class="arithmatex">\(W\)</span> GPU worker nodes processing dynamic tensor batches of size <span class="arithmatex">\(B_{\text{gpu}} \ge 1\)</span> in batch pass duration <span class="arithmatex">\(\bar{t}_{\text{inference}}\)</span>, and persistent disk storage bandwidth <span class="arithmatex">\(B_{\text{disk}}\)</span> receiving serialized records of size <span class="arithmatex">\(S_{\text{record}}\)</span> (<a href="#ref-barroso2013">Barroso et al., 2013</a>; <a href="#ref-crankshaw2017">Crankshaw et al., 2017</a>).</p>
+<p>The maximum throughput capacities of the individual stages are:</p>
 <div class="arithmatex">\[
-\lambda^* = \min\left( \frac{P}{t_{\text{broker}}}, \; \frac{W \cdot B_{\text{gpu}}}{\bar{t}_{\text{inference}}}, \; \frac{B_{\text{disk}}}{S_{\text{record}}} \right)
+\lambda_{\text{broker}} = \frac{P}{t_{\text{broker}}}, \qquad \lambda_{\text{gpu}} = \frac{W \cdot B_{\text{gpu}}}{\bar{t}_{\text{inference}}}, \qquad \lambda_{\text{disk}} = \frac{B_{\text{disk}}}{S_{\text{record}}}
+\]</div>
+<p>The <strong>Maximum Sustainable Pipeline Throughput</strong> <span class="arithmatex">\(\lambda^*\)</span> is strictly capped by the slowest bottleneck stage:</p>
+<div class="arithmatex">\[
+\lambda^* = \min\left( \lambda_{\text{broker}}, \; \lambda_{\text{gpu}}, \; \lambda_{\text{disk}} \right) = \min\left( \frac{P}{t_{\text{broker}}}, \; \frac{W \cdot B_{\text{gpu}}}{\bar{t}_{\text{inference}}}, \; \frac{B_{\text{disk}}}{S_{\text{record}}} \right)
 \]</div>
 <p>Whenever traffic arrives at <span class="arithmatex">\(\lambda &gt; \lambda^*\)</span>, upstream queues accumulate unboundedly according to Little's Law until broker retention or consumer memory exhausts.</p>
 <p><strong>Worked Numerical Example:</strong>
 Evaluate a sentiment pipeline with <span class="arithmatex">\(P = 16\)</span> partitions (<span class="arithmatex">\(t_{\text{broker}} = 0.001\text{ s} \implies 16{,}000\text{ events/s}\)</span>), <span class="arithmatex">\(W = 8\)</span> GPUs running unbatched per-event inference (<span class="arithmatex">\(B_{\text{gpu}} = 1\)</span>, <span class="arithmatex">\(\bar{t}_{\text{inference}} = 0.020\text{ s} \implies 8 / 0.020 = 400\text{ events/s}\)</span>), and disk bandwidth <span class="arithmatex">\(B_{\text{disk}} = 200\text{ MB/s}\)</span> for <span class="arithmatex">\(S_{\text{record}} = 2\text{ KB}\)</span> payloads (<span class="arithmatex">\(200\text{ MB/s} / (2 / 1024\text{ MB}) = 102{,}400\text{ events/s}\)</span>):
-- Unbatched throughput ceiling: <span class="arithmatex">\(\lambda^* = \min(16{,}000, \; \mathbf{400}, \; 102{,}400) = \mathbf{400\text{ events/s}}\)</span> (<strong>GPU bottleneck</strong>).
-- Enabling dynamic GPU tensor batching (<span class="arithmatex">\(B_{\text{gpu}} = 64\)</span> records per forward pass at <span class="arithmatex">\(\bar{t}_{\text{inference}} = 0.032\text{ s}\)</span>) lifts GPU stage capacity to <span class="arithmatex">\(\frac{8 \times 64}{0.032} = \mathbf{16{,}000\text{ events/s}}\)</span>—a <strong><span class="arithmatex">\(40.0\times\)</span> stage throughput gain</strong> perfectly matching the 16-partition Kafka broker ingestion ceiling!</p>
+- Unbatched throughput ceiling:
+  $$
+  \lambda^<em> = \min(16{,}000, \; \mathbf{400}, \; 102{,}400) = \mathbf{400\text{ events/s}} \quad (\text{GPU Bottleneck})
+  $$
+- Enabling dynamic GPU tensor batching (<span class="arithmatex">\(B_{\text{gpu}} = 64\)</span> records per forward pass at <span class="arithmatex">\(\bar{t}_{\text{inference}} = 0.032\text{ s}\)</span>) lifts GPU stage capacity to:
+  $$
+  \lambda_{\text{gpu}} = \frac{8 \times 64}{0.032} = \mathbf{16{,}000\text{ events/s}}
+  $$
+  yielding a </em><em><span class="arithmatex">\(40.0\times\)</span> stage throughput gain</em><em> that perfectly matches the 16-partition Kafka broker ingestion ceiling:
+  $$
+  \lambda^</em> = \min(16{,}000, \; \mathbf{16{,}000}, \; 102{,}400) = \mathbf{16{,}000\text{ events/s}}
+  $$</p>
 <hr />
 <h3 id="definition-9103-replication-quorum-safety-hdfs-namenode-metadata-heap-bound">Definition 9.10.3 (Replication Quorum Safety &amp; HDFS NameNode Metadata Heap Bound)</h3>
 <p>To prevent silent data loss or split-brain stale reads across <span class="arithmatex">\(N\)</span> distributed storage replicas holding write quorum <span class="arithmatex">\(W\)</span> and read quorum <span class="arithmatex">\(R\)</span>, strict serializability requires the <strong>Pigeonhole Quorum Intersection Condition</strong> (<a href="#ref-wang2015">Wang et al., 2015</a>):</p>
 <div class="arithmatex">\[
-R + W &gt; N \implies \left| \mathcal{Q}_R \cap \mathcal{Q}_W \right| \ge 1
+R + W &gt; N \implies \left| \mathcal{Q}_R \cap \mathcal{Q}_W \right| \ge (R + W) - N \ge 1
 \]</div>
 <p>Meanwhile, in distributed master-metadata filesystems such as Apache HDFS (<a href="#ref-shvachko2010">Shvachko et al., 2010</a>), the active NameNode keeps all file inode and block mapping objects resident in JVM heap RAM. With each metadata object (file inode or block pointer) consuming <span class="arithmatex">\(m_{\text{obj}} \approx 150\text{ bytes}\)</span>, storing <span class="arithmatex">\(N_{\text{files}}\)</span> files each averaging <span class="arithmatex">\(k_{\text{blocks}}\)</span> physical HDFS blocks incurs total NameNode heap footprint:</p>
 <div class="arithmatex">\[
@@ -7760,20 +7783,37 @@ M_{\text{NN}} = N_{\text{files}} \cdot (1 + k_{\text{blocks}}) \cdot m_{\text{ob
 \]</div>
 <p><strong>Worked Numerical Example:</strong>
 Compare two storage layouts holding the exact same <span class="arithmatex">\(1\text{ TB}\)</span> corpus under <span class="arithmatex">\(N=3, R=2, W=2\)</span> (<span class="arithmatex">\(R+W = 4 &gt; 3 \implies\)</span> zero split-brain reads):
-- <strong>Small-File Anti-Pattern:</strong> <span class="arithmatex">\(N_{\text{files}} = 100{,}000{,}000\)</span> tiny <span class="arithmatex">\(10\text{ KB}\)</span> files (<span class="arithmatex">\(k_{\text{blocks}} = 1\)</span> block each) consume <span class="arithmatex">\(100{,}000{,}000 \times (1 + 1) \times 150\text{ B} = \mathbf{30.00\text{ GB}}\)</span> of NameNode heap RAM, crashing master nodes and triggering GC pauses.
-- <strong>Compacted Segment Layout:</strong> Merging into <span class="arithmatex">\(N_{\text{files}} = 2{,}000\)</span> large <span class="arithmatex">\(512\text{ MB}\)</span> files (<span class="arithmatex">\(k_{\text{blocks}} = 4 \times 128\text{ MB}\)</span> blocks each) consumes <span class="arithmatex">\(2{,}000 \times (1 + 4) \times 150\text{ B} = \mathbf{1.50\text{ MB}}\)</span> of NameNode RAM—a <strong><span class="arithmatex">\(20{,}000\times\)</span> metadata memory reduction</strong>!</p>
+- <strong>Small-File Anti-Pattern:</strong> <span class="arithmatex">\(N_{\text{files}} = 100{,}000{,}000\)</span> tiny <span class="arithmatex">\(10\text{ KB}\)</span> files (<span class="arithmatex">\(k_{\text{blocks}} = 1\)</span> block each) consume:
+  $$
+  M_{\text{NN}} = 100{,}000{,}000 \times (1 + 1) \times 150\text{ B} = 30{,}000{,}000{,}000\text{ B} = \mathbf{30.00\text{ GB}}
+  $$
+  of NameNode heap RAM, crashing master nodes and triggering GC pauses.
+- <strong>Compacted Segment Layout:</strong> Merging into <span class="arithmatex">\(N_{\text{files}} = 2{,}000\)</span> large <span class="arithmatex">\(512\text{ MB}\)</span> files (<span class="arithmatex">\(k_{\text{blocks}} = 4 \times 128\text{ MB}\)</span> blocks each) consumes:
+  $$
+  M_{\text{NN}} = 2{,}000 \times (1 + 4) \times 150\text{ B} = 1{,}500{,}000\text{ B} = \mathbf{1.50\text{ MB}}
+  $$
+  of NameNode RAM—a <strong><span class="arithmatex">\(20{,}000\times\)</span> metadata memory reduction</strong>!</p>
 <hr />
 <h3 id="definition-9104-statistical-process-control-for-out-of-vocabulary-drift">Definition 9.10.4 (Statistical Process Control for Out-of-Vocabulary Drift)</h3>
-<p>When deployed text models consume continuous social telemetry streams, slang evolution, emojis, and breaking named entities push input tokens outside the frozen tokenizer dictionary <span class="arithmatex">\(\mathcal{V}\)</span>, elevating silent technical debt (<a href="#ref-sculley2015">Sculley et al., 2015</a>). Over a rolling window of <span class="arithmatex">\(K\)</span> tokens, the empirical <strong>Out-of-Vocabulary (OOV) Drift Rate</strong> is:</p>
+<p>When deployed text models consume continuous social telemetry streams, slang evolution, emojis, and breaking named entities push input tokens outside the frozen tokenizer dictionary <span class="arithmatex">\(\mathcal{V}\)</span>, elevating silent technical debt (<a href="#ref-sculley2015">Sculley et al., 2015</a>). Over a rolling window of <span class="arithmatex">\(K\)</span> tokens, the empirical <strong>Out-of-Vocabulary (OOV) Drift Rate</strong> and its binomial standard error are:</p>
 <div class="arithmatex">\[
 \text{OOV}(t) = \frac{1}{K} \sum_{k=1}^{K} \mathbb{I}(x_k \notin \mathcal{V}), \qquad \sigma_0 = \sqrt{\frac{\mu_0 (1 - \mu_0)}{K}}
 \]</div>
-<p>Given a historical baseline OOV rate <span class="arithmatex">\(\mu_0\)</span>, an automated tokenizer retraining alarm fires whenever observed drift crosses the statistical <span class="arithmatex">\(3\sigma\)</span> Upper Control Limit <span class="arithmatex">\(\text{UCL} = \mu_0 + 3 \sigma_0\)</span> (quantified by <span class="arithmatex">\(z\)</span>-score <span class="arithmatex">\(z = (\text{OOV}(t) - \mu_0) / \sigma_0\)</span>).</p>
+<p>Given a historical baseline OOV rate <span class="arithmatex">\(\mu_0\)</span>, an automated tokenizer retraining alarm fires whenever observed drift crosses the statistical <span class="arithmatex">\(3\sigma\)</span> Upper Control Limit <span class="arithmatex">\(\text{UCL}\)</span>, quantified by the Shewhart <span class="arithmatex">\(z\)</span>-score:</p>
+<div class="arithmatex">\[
+\text{UCL} = \mu_0 + 3 \sigma_0, \qquad z = \frac{\text{OOV}(t) - \mu_0}{\sigma_0}
+\]</div>
 <p><strong>Worked Numerical Example:</strong>
 A production transformer tokenizer operates at calibration baseline <span class="arithmatex">\(\mu_0 = 0.010\)</span> (<span class="arithmatex">\(1.0\%\)</span>) measured across <span class="arithmatex">\(K = 10{,}000\)</span>-token sliding windows:
-- Binomial standard error: <span class="arithmatex">\(\sigma_0 = \sqrt{\frac{0.010 \times 0.990}{10{,}000}} = \mathbf{0.000995}\)</span>.
-- <span class="arithmatex">\(3\sigma\)</span> Upper Control Limit: <span class="arithmatex">\(\text{UCL} = 0.010 + 3(0.000995) = \mathbf{1.30\%}\)</span>.
-- During a viral cultural event, observed unknown tokens jump to <span class="arithmatex">\(620 / 10{,}000 = \mathbf{6.20\%}\)</span>, registering a <strong><span class="arithmatex">\(z = +52.26\sigma\)</span> anomaly</strong> that triggers automated BPE vocabulary expansion!</p>
+- Binomial standard error and Upper Control Limit:
+  $$
+  \sigma_0 = \sqrt{\frac{0.010 \times 0.990}{10{,}000}} = \mathbf{0.000995}, \qquad \text{UCL} = 0.010 + 3(0.000995) = \mathbf{0.012985} \approx \mathbf{1.30\%}
+  $$
+- During a viral cultural event, observed unknown tokens jump to <span class="arithmatex">\(620 / 10{,}000 = \mathbf{6.20\%}\)</span>, registering Shewhart <span class="arithmatex">\(z\)</span>-score:
+  $$
+  z = \frac{0.0620 - 0.0100}{0.000995} = \mathbf{+52.26\sigma} \gg 3.0\sigma
+  $$
+  triggering automated BPE vocabulary expansion and Lakehouse re-tokenization!</p>
 <hr />
 <div class="admonition tip">
 <p class="admonition-title">Industrial Best Practice: Dynamic GPU Tensor Batching vs. Single-Item RPCs</p>

@@ -1,0 +1,491 @@
+{
+  "duration": 711.888,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome back, Kaito! Today we step beyond textbook algorithms and confront raw production reality. In Lesson 11, we explore end-to-end domain cleaning case studies from Global E-Commerce and Intensive Care Sepsis triage.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 16.008
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I've been looking forward to this, Dr. Nova! In production, people often complain that textbook standard scalers and mean imputers completely destroyed their clustering or broke alarm models in hospital wards.",
+          "dock": "main",
+          "start": 16.008,
+          "end": 28.512
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. If an e-commerce platform clusters customers across US Dollars and unharmonized Japanese Yen, a hundred-dollar purchase in Tokyo registers as fifteen thousand Yen. The squared distance explodes by over two hundred million, forcing K-Means to cluster on currency nationality instead of spending frequency!",
+          "dock": "main",
+          "start": 28.512,
+          "end": 50.472
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And in ICU medicine, an unrecorded lab test isn't missing at random\u2014a doctor only orders a lactate test when they suspect septic shock! Imputing the median hides that clinical suspicion entirely!",
+          "dock": "main",
+          "start": 50.472,
+          "end": 63.192
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at these two domain topologies, Kaito. They look completely different because the physics governing each data generation process is entirely distinct.",
+          "dock": "main",
+          "start": 63.192,
+          "end": 73.488
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I see that! In the retail pipeline, everything hinges on fixing currency exchange and heavy-tailed monetary values so K-Means doesn't explode. But in the ICU pipeline, the biggest risks are sensor disconnects and throwing away doctor ordering patterns!",
+          "dock": "main",
+          "start": 73.488,
+          "end": 89.688
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. If an engineer treated medical telemetry like e-commerce spending, they would blindly scale missing lactate values and completely miss the septic shock signal!",
+          "dock": "main",
+          "start": 89.688,
+          "end": 101.304
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Let's dive into Case A first and see how raw Yen wrecks customer segmentation!",
+          "dock": "main",
+          "start": 101.304,
+          "end": 106.344
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, what happens when an unsupervised clustering algorithm encounters unharmonized currencies in its feature matrix?",
+          "dock": "main",
+          "start": 106.344,
+          "end": 114.552
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Well, K-Means calculates squared Euclidean distance across all features. Since Yen amounts are in the tens of thousands while US Dollars are in the tens or hundreds, the Monetary difference completely swamps Recency and Frequency!",
+          "dock": "main",
+          "start": 114.552,
+          "end": 128.352
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! If you run K-Means on unscaled raw amounts, one cluster will contain one hundred percent Japanese Yen customers, and another will contain US Dollar customers. The algorithm thinks it discovered two distinct behavioral species, when it really just discovered exchange rates!",
+          "dock": "main",
+          "start": 128.352,
+          "end": 147.648
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And the remedy is spot foreign-exchange tensor conversion: converting every transaction to a base currency like US Dollars using the spot rate at the exact millisecond of purchase!",
+          "dock": "main",
+          "start": 147.648,
+          "end": 157.824
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Even after you convert all currencies to US Dollars, Kaito, our job is not done. What happens to K-Means when monetary spend has extreme outliers?",
+          "dock": "main",
+          "start": 157.824,
+          "end": 168.648
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Spend follows a Pareto power law! Most users spend thirty dollars, but corporate buyers spend fifty thousand. That single whale spender pulls the cluster centroid thousands of dollars away from everyone else!",
+          "dock": "main",
+          "start": 168.648,
+          "end": 182.232
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. In linear space, the silhouette score is only 0.384 because regular customers get compressed into an undifferentiated mass. But taking natural log of M plus one contracts the right tail, restoring spherical symmetry!",
+          "dock": "main",
+          "start": 182.232,
+          "end": 199.68
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And the silhouette score jumps to 0.542! Now the clusters cleanly separate true behavioral VIPs, steady buyers, and dormant churn-risk accounts across all countries!",
+          "dock": "main",
+          "start": 199.68,
+          "end": 210.936
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now, Kaito, consider what happens when a patient in the intensive care unit rolls over and unplugs their electrocardiogram monitor lead.",
+          "dock": "main",
+          "start": 210.936,
+          "end": 220.08
+        },
+        {
+          "speaker": "Kaito",
+          "text": "The machine registers an open-circuit voltage spike! It reports a heart rate of 999 beats per minute, or negative blood pressure!",
+          "dock": "main",
+          "start": 220.08,
+          "end": 229.512
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And if an automated data cleaning script uses a standard three-sigma Winsorization clip, what does it do?",
+          "dock": "main",
+          "start": 229.512,
+          "end": 236.232
+        },
+        {
+          "speaker": "Kaito",
+          "text": "It clips 999 down to maybe 190 beats per minute! Then the alarm system starts screaming that the patient is in severe tachycardia, triggering nurse panic when the sensor was just sitting on the mattress!",
+          "dock": "main",
+          "start": 236.232,
+          "end": 249.624
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on. Domain bounds like 20 to 280 beats per minute must quarantine out-of-range spikes directly into explicit NaNs, preserving physiological truth.",
+          "dock": "main",
+          "start": 249.624,
+          "end": 261.504
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our first interactive laboratory, Kaito! Here you can experiment directly with the multi-currency RFM clustering canvas.",
+          "dock": "main",
+          "start": 261.504,
+          "end": 271.128
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Look at Stage 1! The orange dots are Japanese Yen transactions, and they are floating miles above the blue US transactions because 15,000 Yen completely dominates the Y-axis! The silhouette score is a miserable 0.218!",
+          "dock": "sim",
+          "start": 271.128,
+          "end": 286.704
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now switch to Stage 3, Kaito. See how the spot FX conversion and log-Pareto stabilization fold the extreme tail inward. K-Means now clusters buyers based on true behavioral purchase frequency and recency!",
+          "dock": "sim",
+          "start": 286.704,
+          "end": 302.064
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Checkpoint time, Kaito! Let's test whether our learners grasp the mathematical mechanics of Euclidean scale collapse in multi-currency clustering.",
+          "dock": "main",
+          "start": 302.064,
+          "end": 312.192
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Pay close attention to how K-Means calculates distance between vectors! Think about what squaring 15,000 Yen does compared to squaring 100 Dollars!",
+          "dock": "quiz",
+          "start": 312.192,
+          "end": 322.344
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, this is one of my favorite real-world machine learning lessons: why the absence of a measurement is itself a clinical measurement!",
+          "dock": "main",
+          "start": 322.344,
+          "end": 330.696
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Because doctors don't order painful arterial blood draws just for fun! If a doctor orders a blood lactate test, they already suspect the patient might be entering septic shock!",
+          "dock": "main",
+          "start": 330.696,
+          "end": 341.76
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. Eighty-five percent of septic patients get lactate tests, while only fifteen percent of non-septic patients do. The ordering action itself carries massive prognostic mutual information!",
+          "dock": "main",
+          "start": 341.76,
+          "end": 356.4
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So if you just fill missing lactate with the median and throw away the missingness record, you throw away decades of medical training that guided the doctor's decision to order the test!",
+          "dock": "main",
+          "start": 356.4,
+          "end": 366.12
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, why is reporting a ninety percent ROC-AUC completely irresponsible for a clinical sepsis monitoring system?",
+          "dock": "main",
+          "start": 366.12,
+          "end": 374.448
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Because only six percent of hospital patients develop sepsis! With ninety-four percent true negatives, the false positive rate looks tiny on an ROC curve even if the alarm goes off on hundreds of healthy patients!",
+          "dock": "main",
+          "start": 374.448,
+          "end": 387.0
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. The nurses will literally turn off the alarm sound because of alert fatigue! Precision-Recall AUC exposes the true positive predictive value directly.",
+          "dock": "main",
+          "start": 387.0,
+          "end": 399.312
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And setting F-beta to 2.0 penalizes false negatives four times as much as false positives, lowering our alert threshold so we never miss a dying patient!",
+          "dock": "main",
+          "start": 399.312,
+          "end": 408.456
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, explain the difference between event time and knowledge time in relational database joins.",
+          "dock": "main",
+          "start": 408.456,
+          "end": 414.936
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Event time is when something physically happened in the real world\u2014like drawing blood from a patient at two o'clock. But knowledge time is when the lab machine finished analyzing the blood and wrote the result into the database at three-fifteen!",
+          "dock": "main",
+          "start": 414.936,
+          "end": 427.92
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. And what happens if a data engineer joins the table using event time to predict sepsis at two-thirty?",
+          "dock": "main",
+          "start": 427.92,
+          "end": 436.272
+        },
+        {
+          "speaker": "Kaito",
+          "text": "The model cheats! It gets to see lab values that won't be published for another forty-five minutes! In offline backtesting, the accuracy looks amazing, but when deployed at the bedside, the doctor is staring at an empty lab screen!",
+          "dock": "main",
+          "start": 436.272,
+          "end": 450.912
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at this churn classifier report, Kaito: an offline AUC of 0.998! Is this a triumph of deep learning, or a disaster waiting to happen?",
+          "dock": "main",
+          "start": 450.912,
+          "end": 462.24
+        },
+        {
+          "speaker": "Kaito",
+          "text": "In human psychology and customer churn, nobody achieves a 0.998 AUC honestly! That is a mathematical distress flare! There has to be a post-outcome leak in the feature matrix.",
+          "dock": "main",
+          "start": 462.24,
+          "end": 475.488
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Right you are! The engineer included days_since_account_cancellation. When an account is active, that value is NULL. When they cancel, the database writes a timestamp.",
+          "dock": "main",
+          "start": 475.488,
+          "end": 490.08
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So the model just checks: did the customer cancel? If yes, predict churn! But when we ask the model to predict which active customer will churn next month, every single one has a NULL timestamp, and the model is completely blind!",
+          "dock": "main",
+          "start": 490.08,
+          "end": 504.984
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Here is our second interactive workbench, Kaito: the Clinical ICU Sepsis Triage and Alarm Studio!",
+          "dock": "main",
+          "start": 504.984,
+          "end": 512.184
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Let me click the toggle button for lactate_missing_flag. Whoa! When I disable the flag, the PR-AUC plunges from 0.713 to 0.628! That proves that knowing the doctor ordered the test provides 8.5 points of pure predictive power!",
+          "dock": "sim",
+          "start": 512.184,
+          "end": 530.904
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now sweep the beta slider up to 2.5 or 3.0, Kaito. See how the optimal alarm threshold drops to 0.25, ensuring that bedside nurses catch over 92% of early sepsis episodes before septic shock takes hold.",
+          "dock": "sim",
+          "start": 530.904,
+          "end": 547.68
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for our second knowledge verification, Kaito! This is a core concept that every healthcare and machine learning engineer must master.",
+          "dock": "main",
+          "start": 547.68,
+          "end": 557.112
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Think about why a doctor orders an arterial test in the first place! The test isn't missing because the computer broke down\u2014it's missing because the patient looked completely fine to human clinical eyes!",
+          "dock": "quiz",
+          "start": 557.112,
+          "end": 568.824
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, look at how cleanly our domain cleaning steps organize into a five-layer enterprise blueprint.",
+          "dock": "main",
+          "start": 568.824,
+          "end": 575.664
+        },
+        {
+          "speaker": "Kaito",
+          "text": "It's so clear! Layer 1 guarantees temporal safety with as-of joins. Layer 2 filters impossible sensor readings into NaNs. Layer 3 preserves missingness flags before imputation. Layer 4 handles FX conversion and Pareto tail logging. And Layer 5 tunes the F-beta decision threshold!",
+          "dock": "main",
+          "start": 575.664,
+          "end": 597.648
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Every layer has a mathematical purpose. When an engineering team follows this blueprint, their models neither hallucinate from currency distortions nor crash from lookahead leakage.",
+          "dock": "main",
+          "start": 597.648,
+          "end": 609.456
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Let's inspect our production Python verification engine and verify both pipelines end-to-end!",
+          "dock": "main",
+          "start": 609.456,
+          "end": 615.288
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at our production Python verification engine, Kaito. We codify both domain audits into a Pydantic V2 schema.",
+          "dock": "main",
+          "start": 615.288,
+          "end": 624.432
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Look at those assertions! In run_ecommerce_rfm_audit, we verify that raw Yen purchases create an over 90% currency bias cluster, and that spot FX plus log-Pareto scaling recovers a healthy silhouette score above 0.35!",
+          "dock": "main",
+          "start": 624.432,
+          "end": 640.992
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And in run_clinical_sepsis_audit, we verify that our biological plausibility bounds quarantine disconnected telemetry spikes, and that lactate_missing_flag provides an over five-point boost in clinical PR-AUC.",
+          "dock": "main",
+          "start": 640.992,
+          "end": 657.312
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Running these automated audits in CI/CD ensures that no pipeline is ever deployed with currency distortions or stripped clinical suspicion!",
+          "dock": "main",
+          "start": 657.312,
+          "end": 665.832
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "What an incredible journey through Lesson 5.11, Kaito! Remember the Four Golden Axioms: harmonize economic units before clustering, quarantine impossible sensor spikes with domain plausibility bounds, augment feature vectors with informative missingness masks, and enforce bi-temporal point-in-time as-of joins.",
+          "dock": "main",
+          "start": 665.832,
+          "end": 686.976
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I'll never look at a data pipeline the same way again! When a data scientist respects domain physics and causal time, their models stay robust, truthful, and life-saving in production.",
+          "dock": "main",
+          "start": 686.976,
+          "end": 698.16
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Masterfully summarized, Kaito. Join us in Lesson 5.12 for Advanced Topics and Frontier Methods, where we explore automated semantic data repair and foundation model data cleaning agents!",
+          "dock": "main",
+          "start": 698.16,
+          "end": 711.888
+        }
+      ]
+    }
+  ]
+}

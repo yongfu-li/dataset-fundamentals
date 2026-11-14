@@ -7670,24 +7670,20 @@
 
 
 <h1 id="85-version-control-fundamentals-for-data">8.5 Version Control Fundamentals for Data</h1>
-<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 4px 4px 0px #151b20;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 800; color: #151b20; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-      <span style="background: #ffc83e; border: 1.5px solid #151b20; padding: 2px 8px; border-radius: 6px;">§8.5</span>
-      <span>Companion Monograph: Chapter 8 (Dataset Documentation &amp; Version Control)</span>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #475569; margin-top: 6px; font-weight: 500;">
-      Read <strong>Chapter 8: Dataset Documentation and Version Control</strong> in the companion Springer Nature monograph for Merkle DAG theory, Git-LFS, and Content-Addressable Storage.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 8: Dataset Documentation and Version Control (§8.5: Merkle DAGs &amp; Version Control Fundamentals)</strong>, covering Merkle DAG theory, Git-LFS, and Content-Addressable Storage.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #c9f3f4; color: #0e7490; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.84rem; text-decoration: none; box-shadow: 2px 2px 0px #151b20;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+    <span>Explore Chapter 8 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Duration:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter08/chapter08.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter08/chapter08.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-85">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 8.5</h3>
 <p>Experience Chapter 8 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
@@ -7714,11 +7710,11 @@
 <h2 id="pedagogical-rationale-conceptual-overview">🎯 Pedagogical Rationale &amp; Conceptual Overview</h2>
 <p>Traditional software version control systems (such as standard Git) were architected exclusively for text-based source code where files are measured in kilobytes and changes are tracked via line-by-line diffs (<code>diff -u</code>). When applied naively to machine learning datasets consisting of gigabyte-scale parquet files, tensor checkpoints, or multi-terabyte imagery directories, standard VCS breaks down catastrophically:</p>
 <ol>
-<li><strong>Repository Bloat &amp; Clone Failure:</strong> Standard Git stores a full compressed copy of every modified binary file in the <code>.git/objects</code> packfile, rapidly expanding repository clones to hundreds of gigabytes and exhausting local memory.</li>
+<li><strong>Repository Bloat &amp; Clone Failure:</strong> Standard Git stores a full compressed copy of every modified binary file in the <code>.git/objects</code> packfile, rapidly expanding repository clones to hundreds of gigabytes; systems such as Git LFS resolve this by replacing large payloads with cryptographic pointer text (<a href="#ref-vanderwilt2021">Van der Wilt, 2021</a>).</li>
 <li><strong>Inability to Diff Binary Payloads:</strong> Line-based diff algorithms fail on dense arrays, floating-point tensors, and compressed binary formats.</li>
 <li><strong>The Reproducibility Paradox:</strong> Failing to version data leads to computational irreproducibility (<a href="#ref-peng2011">Peng, 2011</a>), where models trained on "the same dataset" diverge wildly because silent in-place database updates or unlabeled feature transformations occurred between training runs.</li>
 </ol>
-<p>To solve this dilemma, modern data engineering decouples the <strong>Control Plane</strong> (lightweight cryptographic metadata versioned in Git) from the <strong>Data Plane</strong> (massive immutable binary blobs stored in Content-Addressable Object Storage) (<a href="#ref-huang2017">Huang et al., 2017</a>; <a href="#ref-pacheco2024">Pacheco et al., 2024</a>).</p>
+<p>To solve this dilemma, modern data engineering decouples the <strong>Control Plane</strong> (lightweight cryptographic metadata versioned in Git or ACID lakehouse transaction logs) from the <strong>Data Plane</strong> (massive immutable binary blobs stored in Content-Addressable Object Storage) (<a href="#ref-armbrust2020">Armbrust et al., 2020</a>; <a href="#ref-huang2017">Huang et al., 2017</a>; <a href="#ref-pacheco2024">Pacheco et al., 2024</a>).</p>
 <pre class="mermaid"><code>flowchart TD
   subgraph UserSpace ["1. Data Science Workspace"]
     Code["train_model.py (Code)"]
@@ -7818,7 +7814,7 @@ T_{\text{verify}} = \mathcal{O}(d) = \mathcal{O}(\log_2 N)
 \]</div>
 <hr />
 <h3 id="definition-855-semantic-versioning-state-transitions-for-datasets">Definition 8.5.5 (Semantic Versioning State Transitions for Datasets)</h3>
-<p>Semantic Versioning for datasets maps dataset mutations into a triple <span class="arithmatex">\(\mathbf{V} = (M, m, p) \in \mathbb{N}^3\)</span> according to schema compatibility and data distribution stability:</p>
+<p>Semantic Versioning for datasets maps dataset mutations into a triple <span class="arithmatex">\(\mathbf{V} = (M, m, p) \in \mathbb{N}^3\)</span> according to schema compatibility and data distribution stability (<a href="#ref-prestonwerner2013">Preston-Werner, 2013</a>):</p>
 <div class="arithmatex">\[
 (M', m', p') = 
 \begin{cases}

@@ -1,4 +1,4 @@
-window.CURRICULUM_CH7 = window.curriculum_chapter7 = {
+window.CURRICULUM_CH7 = {
   "ch7_p1": {
     "chapter": 7,
     "part": 1,
@@ -5486,225 +5486,886 @@ window.CURRICULUM_CH7 = window.curriculum_chapter7 = {
     "chapter": 7,
     "part": 9,
     "key": "ch7_p9",
-    "badge": "◆ TRACK 7 • LESSON 7.9: COMPREHENSIVE FAIRNESS AUDITING AND MITIGATION CASE STUDY",
     "index": "Lesson 9 of 10",
-    "lessonTitle": "Comprehensive Fairness Auditing and Mitigation Case Study",
+    "lessonTitle": "Fairness Toolkits and Case Study: Fairlearn, AIF360, and Real-World Audits",
+    "title": "Fairness Toolkits and Case Study: Fairlearn, AIF360, and Real-World Audits",
+    "badge": "16 Masterclass Slides • Socratic Dialogue • Interactive Sandbox",
+    "description": "Reductions Approach to Fair Classification, Two-Player Zero-Sum Game, Exponentiated Gradient Dual Dynamics, Cost-Sensitive Oracle Translation, MetricFrame Tensor Algebra, Theil Index of Inequality & Additive Decomposition, UCI Adult Census Case Study, and Cross-Toolkit Production Auditing.",
     "slides": [
       {
-        "id": "s1",
-        "title": "Comprehensive Fairness Auditing and Mitigation Case Study",
+        "id": "ch7_p9_s1",
+        "title": "Fairness Toolkits & Comprehensive Case Study",
         "type": "title",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Comprehensive Fairness Auditing and Mitigation Case Study",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Fairness Toolkits & Comprehensive Case Study",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 7.9. Today we examine comprehensive fairness auditing and mitigation case study, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 7: Foundations</span>\n    <span>•</span>\n    <span>Lesson 7.9</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Comprehensive Fairness Auditing and Mitigation Case Study\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into comprehensive fairness auditing and mitigation case study with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Comprehensive Fairness Auditing and Mitigation Case Study",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 7.9?"
+              "text": "Welcome to Lesson 7.9 of Dataset Fundamentals: Comprehensive Fairness Auditing and Mitigation Case Study. Across previous lessons, we analyzed mathematical impossibility theorems, statistical metrics, and mitigation algorithms. Today, we operationalize these principles through industry-standard open-source ecosystems, chief among them Microsoft Fairlearn and IBM AI Fairness 360.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 7.9. Today we examine comprehensive fairness auditing and mitigation case study, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "Rather than relying on ad-hoc heuristics, modern production MLOps leverages Agarwal et al.'s Reductions Framework—transforming constrained fairness optimization into an elegant two-player zero-sum game solved via exponentiated gradient descent. Together with Fairlearn's multi-dimensional MetricFrame and econometric Theil index decompositions, we possess a complete mathematical and engineering toolkit for production auditing.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 7: Foundations</span>\n    <span>•</span>\n    <span>Lesson 7.9</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Comprehensive Fairness Auditing and Mitigation Case Study\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into comprehensive fairness auditing and mitigation case study with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7]\">\n    <div class=\"text-xs font-mono font-bold text-[#0e7490] uppercase tracking-wider mb-1\">\n      TRACK 7 • DATASET BIAS & FAIRNESS • LESSON 7.9\n    </div>\n    <h1 class=\"text-xl md:text-2xl font-black text-[#151b20] tracking-tight\">\n      Comprehensive Fairness Auditing & Mitigation Case Study\n    </h1>\n    <p class=\"text-xs md:text-sm text-[#151b20]/80 mt-1\">\n      The Reductions Framework, Two-Player Exponentiated Gradient Saddle-Point Games, Fairlearn MetricFrame Tensor Algebra, and Additive Theil Index Inequality Decompositions.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-4 gap-3\">\n    <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase\">1. Reductions Game</div>\n      <div class=\"text-[11px] text-[#151b20]/80 mt-1\">\n        Two-player zero-sum game between primal learner $h_t$ and dual exponentiated gradient auditor $\\vec{\\lambda}_t$.\n      </div>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-black text-[#b45309] uppercase\">2. MetricFrame Tensors</div>\n      <div class=\"text-[11px] text-[#151b20]/80 mt-1\">\n        Multi-dimensional disaggregated tensor algebra $\\mathbf{M} \\in \\mathbb{R}^{G \\times M}$ for automated cross-cohort auditing.\n      </div>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-black text-[#7c3aed] uppercase\">3. Theil Inequality</div>\n      <div class=\"text-[11px] text-[#151b20]/80 mt-1\">\n        Econometric welfare decomposition $T = T_{\\text{within}} + T_{\\text{between}}$ bridging macro parity and individual equity.\n      </div>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-black text-[#15803d] uppercase\">4. Census Benchmark</div>\n      <div class=\"text-[11px] text-[#151b20]/80 mt-1\">\n        UCI Adult Income ($N = 48,842$) audit: Disparate Impact Ratio elevated from $0.28$ to $0.91$ under LightGBM.\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Fairness Toolkits & Comprehensive Case Study",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Lesson 7.9! Today Kaito and I bring together the entire fairness curriculum into production-grade engineering workflows using modern open-source toolkits.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "In production, nobody writes raw optimization solvers from scratch. We rely on battle-tested libraries like Microsoft Fairlearn and IBM AI Fairness 360. But to use them properly, you have to understand the math under the hood—especially the Reductions Framework!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. The Reductions Framework re-casts fair learning as a game between a learner minimizing cost-weighted loss and an auditor raising multiplier prices. Let's trace how this game converges to an optimal Pareto boundary.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-4\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7]\">\n    <div class=\"text-xs font-mono font-bold text-[#0e7490] uppercase tracking-wider mb-1\">\n      TRACK 7 • DATASET BIAS & FAIRNESS • LESSON 7.9\n    </div>\n    <h1 class=\"text-xl md:text-2xl font-black text-[#151b20] tracking-tight\">\n      Comprehensive Fairness Auditing & Mitigation Case Study\n    </h1>\n    <p class=\"text-xs md:text-sm text-[#151b20]/80 mt-1\">\n      The Reductions Framework, Two-Player Exponentiated Gradient Saddle-Point Games, Fairlearn MetricFrame Tensor Algebra, and Additive Theil Index Inequality Decompositions.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-4 gap-3\">\n    <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase\">1. Reductions Game</div>\n      <div class=\"text-[11px] text-[#151b20]/80 mt-1\">\n        Two-player zero-sum game between primal learner $h_t$ and dual exponentiated gradient auditor $\\vec{\\lambda}_t$.\n      </div>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-black text-[#b45309] uppercase\">2. MetricFrame Tensors</div>\n      <div class=\"text-[11px] text-[#151b20]/80 mt-1\">\n        Multi-dimensional disaggregated tensor algebra $\\mathbf{M} \\in \\mathbb{R}^{G \\times M}$ for automated cross-cohort auditing.\n      </div>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-black text-[#7c3aed] uppercase\">3. Theil Inequality</div>\n      <div class=\"text-[11px] text-[#151b20]/80 mt-1\">\n        Econometric welfare decomposition $T = T_{\\text{within}} + T_{\\text{between}}$ bridging macro parity and individual equity.\n      </div>\n    </div>\n    <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-black text-[#15803d] uppercase\">4. Census Benchmark</div>\n      <div class=\"text-[11px] text-[#151b20]/80 mt-1\">\n        UCI Adult Income ($N = 48,842$) audit: Disparate Impact Ratio elevated from $0.28$ to $0.91$ under LightGBM.\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "Welcome to Lesson 7.9 of Dataset Fundamentals: Comprehensive Fairness Auditing and Mitigation Case Study. Across previous lessons, we analyzed mathematical impossibility theorems, statistical metrics, and mitigation algorithms. Today, we operationalize these principles through industry-standard open-source ecosystems, chief among them Microsoft Fairlearn and IBM AI Fairness 360.\n\nRather than relying on ad-hoc heuristics, modern production MLOps leverages Agarwal et al.'s Reductions Framework—transforming constrained fairness optimization into an elegant two-player zero-sum game solved via exponentiated gradient descent. Together with Fairlearn's multi-dimensional MetricFrame and econometric Theil index decompositions, we possess a complete mathematical and engineering toolkit for production auditing."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Welcome to Lesson 7.9! Today Kaito and I bring together the entire fairness curriculum into production-grade engineering workflows using modern open-source toolkits.\n\nKaito: In production, nobody writes raw optimization solvers from scratch. We rely on battle-tested libraries like Microsoft Fairlearn and IBM AI Fairness 360. But to use them properly, you have to understand the math under the hood—especially the Reductions Framework!\n\nDr. Nova: Exactly. The Reductions Framework re-casts fair learning as a game between a learner minimizing cost-weighted loss and an auditor raising multiplier prices. Let's trace how this game converges to an optimal Pareto boundary."
         }
       },
       {
-        "id": "s2",
-        "title": "Conceptual Overview & The Reductions Framework: Mathematical Formulation of the Reductions Approach",
-        "type": "equation",
+        "id": "ch7_p9_s2",
+        "title": "Industrial Fairness Toolkits: Architecture & Capabilities",
+        "type": "content",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & The Reductions Framework: Mathematical Formulation of the Reductions Approach",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Industrial Fairness Toolkits: Architecture & Capabilities",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & The Reductions Framework: Mathematical Formulation of the Reductions Approach. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\min_{Q \\in \\Delta(\\mathcal{H})} \\mathcal{E}(Q) \\quad \\text{s.t.} \\quad \\mathbf{M} Q \\le \\vec{c}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$L(Q, \\vec{\\lambda}) = \\mathcal{E}(Q) + \\vec{\\lambda}^T (\\mathbf{M} Q - \\vec{c}) = \\sum_{h \\in \\mathcal{H}} Q(h) \\left[ \\mathcal{E}(h) + \\vec{\\lambda}^T \\mathbf{M}_{\\cdot, h} \\right] - \\vec{\\lambda}^T \\vec{c}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\lambda_k^{(t+1)} = \\lambda_k^{(t)} \\exp\\left( \\eta \\left( [\\mathbf{M} h^{(t)}]_k - c_k \\right) \\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">A Primal Player (The Learner)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Finds an unconstrained cost-sensitive hypothesis $h \\in \\mathcal{H}$ minimizing weighted empirical risk.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">A Dual Player (The Auditor)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Adjusts Lagrange multipliers $\\vec{\\lambda} \\in \\mathbb{R}_+^K$ via exponentiated gradient updates to penalize demographic group violations.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & The Reductions Framework: Mathematical Formulation of the Reductions Approach",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does conceptual overview & the reductions framework: mathematical formulation of the reductions approach protect our system against silent distribution shift in production?"
+              "text": "The industrial machine learning landscape has converged around two flagship open-source fairness toolkits: Microsoft Fairlearn and IBM AI Fairness 360. While both offer comprehensive auditing metrics and mitigation algorithms, their architectural philosophies differ significantly.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Fairlearn adopts a scikit-learn compatible design centered on the Reductions approach and multi-dimensional MetricFrame tensors. AIF360 provides an extensive library of over 70 fairness metrics and interventions across pre-, in-, and post-processing stages. Choosing the right toolkit depends on your pipeline constraints and governance requirements.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\min_{Q \\in \\Delta(\\mathcal{H})} \\mathcal{E}(Q) \\quad \\text{s.t.} \\quad \\mathbf{M} Q \\le \\vec{c}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$L(Q, \\vec{\\lambda}) = \\mathcal{E}(Q) + \\vec{\\lambda}^T (\\mathbf{M} Q - \\vec{c}) = \\sum_{h \\in \\mathcal{H}} Q(h) \\left[ \\mathcal{E}(h) + \\vec{\\lambda}^T \\mathbf{M}_{\\cdot, h} \\right] - \\vec{\\lambda}^T \\vec{c}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\lambda_k^{(t+1)} = \\lambda_k^{(t)} \\exp\\left( \\eta \\left( [\\mathbf{M} h^{(t)}]_k - c_k \\right) \\right)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">A Primal Player (The Learner)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Finds an unconstrained cost-sensitive hypothesis $h \\in \\mathcal{H}$ minimizing weighted empirical risk.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">A Dual Player (The Auditor)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Adjusts Lagrange multipliers $\\vec{\\lambda} \\in \\mathbb{R}_+^K$ via exponentiated gradient updates to penalize demographic group violations.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n      <div class=\"flex items-center gap-2 mb-1.5\">\n        <span class=\"px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">TOOLKIT 1</span>\n        <h3 class=\"font-black text-xs md:text-sm text-[#151b20]\">Microsoft Fairlearn (Weerts et al., 2023)</h3>\n      </div>\n      <ul class=\"text-[11px] text-[#151b20]/80 space-y-1 font-sans\">\n        <li>• <strong>Core Paradigm:</strong> Scikit-learn native estimator wrappers (`fit`, `predict`).</li>\n        <li>• <strong>Key Algorithms:</strong> Exponentiated Gradient, Grid Search reductions, ThresholdOptimizer.</li>\n        <li>• <strong>Auditing Primitive:</strong> `MetricFrame` evaluating arbitrary metric dictionaries across slices.</li>\n        <li>• <strong>Industry Sweet Spot:</strong> Production MLOps CI/CD pipelines requiring black-box base learners.</li>\n      </ul>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#7c3aed]\">\n      <div class=\"flex items-center gap-2 mb-1.5\">\n        <span class=\"px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#ede9fe] text-[#7c3aed] border border-[#151b20]\">TOOLKIT 2</span>\n        <h3 class=\"font-black text-xs md:text-sm text-[#151b20]\">IBM AI Fairness 360 (Bellamy et al., 2019)</h3>\n      </div>\n      <ul class=\"text-[11px] text-[#151b20]/80 space-y-1 font-sans\">\n        <li>• <strong>Core Paradigm:</strong> Specialized `BinaryLabelDataset` representations and custom pipeline wrappers.</li>\n        <li>• <strong>Key Algorithms:</strong> Disparate Impact Remover, Optimized Preprocessing, Adversarial Debiasing.</li>\n        <li>• <strong>Auditing Primitive:</strong> Over 70 industrial fairness metrics (Statistical Parity, Theil, EOD).</li>\n        <li>• <strong>Industry Sweet Spot:</strong> End-to-end enterprise audits requiring pre-processing and in-processing algorithms.</li>\n      </ul>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Architectural Comparison Matrix</div>\n    <div class=\"grid grid-cols-3 gap-2 text-[10px] font-mono text-center\">\n      <div class=\"p-1.5 bg-white border border-[#151b20] rounded\">\n        <div class=\"font-bold text-[#64748b]\">Feature</div>\n        <div class=\"mt-1 font-bold\">Model Compatibility</div>\n        <div class=\"mt-1 font-bold\">Constraint Flexibility</div>\n      </div>\n      <div class=\"p-1.5 bg-[#c9f3f4]/30 border border-[#151b20] rounded\">\n        <div class=\"font-bold text-[#0e7490]\">Fairlearn</div>\n        <div class=\"mt-1\">Any scikit-learn estimator</div>\n        <div class=\"mt-1\">Arbitrary linear constraints</div>\n      </div>\n      <div class=\"p-1.5 bg-[#ede9fe]/30 border border-[#151b20] rounded\">\n        <div class=\"font-bold text-[#7c3aed]\">IBM AIF360</div>\n        <div class=\"mt-1\">Dedicated dataset classes</div>\n        <div class=\"mt-1\">70+ built-in criteria</div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Industrial Fairness Toolkits: Architecture & Capabilities",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "When building fairness pipelines, teams frequently debate between Fairlearn and AIF360. What makes Fairlearn especially popular among MLOps practitioners?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "It's Fairlearn's API design! It wraps directly around any standard estimator—LightGBM, XGBoost, or PyTorch classifiers—without requiring you to convert data into proprietary dataset wrappers. You pass your estimator and your fairness constraint directly into ExponentiatedGradient!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. And AIF360 excels when you need specialized pre-processing algorithms like Disparate Impact Remover or deep metric collections like the Theil Index. Both ecosystems share the common goal of operationalizing fairness guarantees.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n      <div class=\"flex items-center gap-2 mb-1.5\">\n        <span class=\"px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">TOOLKIT 1</span>\n        <h3 class=\"font-black text-xs md:text-sm text-[#151b20]\">Microsoft Fairlearn (Weerts et al., 2023)</h3>\n      </div>\n      <ul class=\"text-[11px] text-[#151b20]/80 space-y-1 font-sans\">\n        <li>• <strong>Core Paradigm:</strong> Scikit-learn native estimator wrappers (`fit`, `predict`).</li>\n        <li>• <strong>Key Algorithms:</strong> Exponentiated Gradient, Grid Search reductions, ThresholdOptimizer.</li>\n        <li>• <strong>Auditing Primitive:</strong> `MetricFrame` evaluating arbitrary metric dictionaries across slices.</li>\n        <li>• <strong>Industry Sweet Spot:</strong> Production MLOps CI/CD pipelines requiring black-box base learners.</li>\n      </ul>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#7c3aed]\">\n      <div class=\"flex items-center gap-2 mb-1.5\">\n        <span class=\"px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#ede9fe] text-[#7c3aed] border border-[#151b20]\">TOOLKIT 2</span>\n        <h3 class=\"font-black text-xs md:text-sm text-[#151b20]\">IBM AI Fairness 360 (Bellamy et al., 2019)</h3>\n      </div>\n      <ul class=\"text-[11px] text-[#151b20]/80 space-y-1 font-sans\">\n        <li>• <strong>Core Paradigm:</strong> Specialized `BinaryLabelDataset` representations and custom pipeline wrappers.</li>\n        <li>• <strong>Key Algorithms:</strong> Disparate Impact Remover, Optimized Preprocessing, Adversarial Debiasing.</li>\n        <li>• <strong>Auditing Primitive:</strong> Over 70 industrial fairness metrics (Statistical Parity, Theil, EOD).</li>\n        <li>• <strong>Industry Sweet Spot:</strong> End-to-end enterprise audits requiring pre-processing and in-processing algorithms.</li>\n      </ul>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Architectural Comparison Matrix</div>\n    <div class=\"grid grid-cols-3 gap-2 text-[10px] font-mono text-center\">\n      <div class=\"p-1.5 bg-white border border-[#151b20] rounded\">\n        <div class=\"font-bold text-[#64748b]\">Feature</div>\n        <div class=\"mt-1 font-bold\">Model Compatibility</div>\n        <div class=\"mt-1 font-bold\">Constraint Flexibility</div>\n      </div>\n      <div class=\"p-1.5 bg-[#c9f3f4]/30 border border-[#151b20] rounded\">\n        <div class=\"font-bold text-[#0e7490]\">Fairlearn</div>\n        <div class=\"mt-1\">Any scikit-learn estimator</div>\n        <div class=\"mt-1\">Arbitrary linear constraints</div>\n      </div>\n      <div class=\"p-1.5 bg-[#ede9fe]/30 border border-[#151b20] rounded\">\n        <div class=\"font-bold text-[#7c3aed]\">IBM AIF360</div>\n        <div class=\"mt-1\">Dedicated dataset classes</div>\n        <div class=\"mt-1\">70+ built-in criteria</div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "The industrial machine learning landscape has converged around two flagship open-source fairness toolkits: Microsoft Fairlearn and IBM AI Fairness 360. While both offer comprehensive auditing metrics and mitigation algorithms, their architectural philosophies differ significantly.\n\nFairlearn adopts a scikit-learn compatible design centered on the Reductions approach and multi-dimensional MetricFrame tensors. AIF360 provides an extensive library of over 70 fairness metrics and interventions across pre-, in-, and post-processing stages. Choosing the right toolkit depends on your pipeline constraints and governance requirements."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: When building fairness pipelines, teams frequently debate between Fairlearn and AIF360. What makes Fairlearn especially popular among MLOps practitioners?\n\nKaito: It's Fairlearn's API design! It wraps directly around any standard estimator—LightGBM, XGBoost, or PyTorch classifiers—without requiring you to convert data into proprietary dataset wrappers. You pass your estimator and your fairness constraint directly into ExponentiatedGradient!\n\nDr. Nova: Exactly. And AIF360 excels when you need specialized pre-processing algorithms like Disparate Impact Remover or deep metric collections like the Theil Index. Both ecosystems share the common goal of operationalizing fairness guarantees."
         }
       },
       {
-        "id": "s3",
-        "title": "Conceptual Overview & The Reductions Framework: Architecture Flowchart",
-        "type": "figure",
+        "id": "ch7_p9_s3",
+        "title": "The Reductions Framework: Constrained Optimization as a Two-Player Game",
+        "type": "content",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & The Reductions Framework: Architecture Flowchart",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "The Reductions Framework: Constrained Optimization as a Two-Player Game",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & The Reductions Framework: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  %% Standard 5-Color Semantic Palette\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  Dataset[\"Raw Tabular Dataset<br/>(Adult Income / COMPAS)\"]:::blue\n\n  MetricAudit[\"Stage 1: MetricFrame Audit<br/>Evaluate Group Selection Rates & FPR<br/>Compute Δ_DP and Δ_EO\"]:::red\n\n  ReductionsGame[\"Stage 2: Two-Player Reductions Game<br/>Primal: min Cost-Sensitive Loss<br/>Dual: Max Multipliers λ<br/>Exponentiated Gradient\"]:::amber\n\n  OptHypothesis[\"Stage 3: Randomized Hypothesis Q<br/>Weighted Mixture of Base Classifiers<br/>Q = Σ α_t h_t\"]:::green\n\n  FinalAudit[\"Stage 4: Post-Mitigation Audit<br/>Verified: Δ_DP ≤ ε, Δ_EO ≤ ε<br/>Preserved: 98%+ Original Accuracy\"]:::purple\n\n  Dataset --> MetricAudit\n  MetricAudit --> ReductionsGame\n  ReductionsGame --> OptHypothesis\n  OptHypothesis --> FinalAudit</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">A Primal Player (The Learner)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Finds an unconstrained cost-sensitive hypothesis $h \\in \\mathcal{H}$ minimizing weighted empirical risk.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">A Dual Player (The Auditor)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Adjusts Lagrange multipliers $\\vec{\\lambda} \\in \\mathbb{R}_+^K$ via exponentiated gradient updates to penalize demographic group violations.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & The Reductions Framework: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for conceptual overview & the reductions framework: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "The fundamental mathematical breakthrough enabling Fairlearn is the Reductions Framework established by Agarwal, Beygelzimer, Dudík, Langford, and Wallach in 2018. Rather than modifying the internal loss function of each machine learning model, they formulated fair classification as an unconstrained two-player zero-sum game.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "The primal player, or Learner, selects a classifier from hypothesis class H minimizing classification error. The dual player, or Auditor, maintains a vector of Lagrange multipliers lambda penalizing demographic disparity violations. By playing this game iteratively, the ensemble converges to an exact saddle point.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  %% Standard 5-Color Semantic Palette\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  Dataset[\"Raw Tabular Dataset<br/>(Adult Income / COMPAS)\"]:::blue\n\n  MetricAudit[\"Stage 1: MetricFrame Audit<br/>Evaluate Group Selection Rates & FPR<br/>Compute Δ_DP and Δ_EO\"]:::red\n\n  ReductionsGame[\"Stage 2: Two-Player Reductions Game<br/>Primal: min Cost-Sensitive Loss<br/>Dual: Max Multipliers λ<br/>Exponentiated Gradient\"]:::amber\n\n  OptHypothesis[\"Stage 3: Randomized Hypothesis Q<br/>Weighted Mixture of Base Classifiers<br/>Q = Σ α_t h_t\"]:::green\n\n  FinalAudit[\"Stage 4: Post-Mitigation Audit<br/>Verified: Δ_DP ≤ ε, Δ_EO ≤ ε<br/>Preserved: 98%+ Original Accuracy\"]:::purple\n\n  Dataset --> MetricAudit\n  MetricAudit --> ReductionsGame\n  ReductionsGame --> OptHypothesis\n  OptHypothesis --> FinalAudit</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">A Primal Player (The Learner)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Finds an unconstrained cost-sensitive hypothesis $h \\in \\mathcal{H}$ minimizing weighted empirical risk.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">A Dual Player (The Auditor)</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Adjusts Lagrange multipliers $\\vec{\\lambda} \\in \\mathbb{R}_+^K$ via exponentiated gradient updates to penalize demographic group violations.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      Primal Constrained Optimization Problem (Agarwal et al., 2018)\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\min_{Q \\in \\Delta(\\mathcal{H})} \\mathcal{E}(Q) \\quad \\text{subject to} \\quad \\mathbf{M} Q \\le \\vec{c}$$\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 mt-2 font-sans\">\n      Where $Q \\in \\Delta(\\mathcal{H})$ is a distribution over base hypotheses, $\\mathcal{E}(Q) = \\mathbb{E}_{h \\sim Q}[\\mathcal{E}(h)]$ is expected error, and $\\mathbf{M} \\in \\mathbb{R}^{K \\times |\\mathcal{H}|}$ is the fairness constraint matrix bounding disparity tolerances $\\vec{c} = [\\epsilon, \\epsilon, \\dots, \\epsilon]^T$.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase mb-1\">1. The Primal Player (Learner)</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        Finds base hypothesis $h_t \\in \\mathcal{H}$ minimizing weighted empirical risk:\n        $$h_t = \\arg\\min_{h \\in \\mathcal{H}} \\sum_{i=1}^N w_i^{(t)} \\mathbb{I}(h(x_i) \\ne y_i)$$\n        The learner requires only an unconstrained <strong>cost-sensitive classification oracle</strong>.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#7c3aed] uppercase mb-1\">2. The Dual Player (Auditor)</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        Adjusts Lagrange multipliers $\\vec{\\lambda}_t \\in \\mathbb{R}_+^K$ using online exponentiated gradient updates:\n        $$\\lambda_{k, t+1} \\propto \\lambda_{k, t} \\cdot \\exp\\left( \\eta \\left( [\\mathbf{M} h_t]_k - c_k \\right) \\right)$$\n        Increases penalties on constraints violated by $h_t$.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "The Reductions Framework: Constrained Optimization as a Two-Player Game",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice the beauty of the Reductions approach: it doesn't require modifying gradient backpropagation or writing specialized loss functions. Why is this so powerful in practice, Kaito?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Because it reduces a hard constrained optimization problem to standard cost-sensitive classification! You can plug in any off-the-shelf learner—decision trees, gradient boosting, or neural nets—as long as it accepts sample weights w_i!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely. The learner focuses purely on predictive accuracy under weighted samples, while the auditor dynamically tunes the weights to enforce fairness constraints.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      Primal Constrained Optimization Problem (Agarwal et al., 2018)\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\min_{Q \\in \\Delta(\\mathcal{H})} \\mathcal{E}(Q) \\quad \\text{subject to} \\quad \\mathbf{M} Q \\le \\vec{c}$$\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 mt-2 font-sans\">\n      Where $Q \\in \\Delta(\\mathcal{H})$ is a distribution over base hypotheses, $\\mathcal{E}(Q) = \\mathbb{E}_{h \\sim Q}[\\mathcal{E}(h)]$ is expected error, and $\\mathbf{M} \\in \\mathbb{R}^{K \\times |\\mathcal{H}|}$ is the fairness constraint matrix bounding disparity tolerances $\\vec{c} = [\\epsilon, \\epsilon, \\dots, \\epsilon]^T$.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase mb-1\">1. The Primal Player (Learner)</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        Finds base hypothesis $h_t \\in \\mathcal{H}$ minimizing weighted empirical risk:\n        $$h_t = \\arg\\min_{h \\in \\mathcal{H}} \\sum_{i=1}^N w_i^{(t)} \\mathbb{I}(h(x_i) \\ne y_i)$$\n        The learner requires only an unconstrained <strong>cost-sensitive classification oracle</strong>.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#7c3aed] uppercase mb-1\">2. The Dual Player (Auditor)</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        Adjusts Lagrange multipliers $\\vec{\\lambda}_t \\in \\mathbb{R}_+^K$ using online exponentiated gradient updates:\n        $$\\lambda_{k, t+1} \\propto \\lambda_{k, t} \\cdot \\exp\\left( \\eta \\left( [\\mathbf{M} h_t]_k - c_k \\right) \\right)$$\n        Increases penalties on constraints violated by $h_t$.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "The fundamental mathematical breakthrough enabling Fairlearn is the Reductions Framework established by Agarwal, Beygelzimer, Dudík, Langford, and Wallach in 2018. Rather than modifying the internal loss function of each machine learning model, they formulated fair classification as an unconstrained two-player zero-sum game.\n\nThe primal player, or Learner, selects a classifier from hypothesis class H minimizing classification error. The dual player, or Auditor, maintains a vector of Lagrange multipliers lambda penalizing demographic disparity violations. By playing this game iteratively, the ensemble converges to an exact saddle point."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Notice the beauty of the Reductions approach: it doesn't require modifying gradient backpropagation or writing specialized loss functions. Why is this so powerful in practice, Kaito?\n\nKaito: Because it reduces a hard constrained optimization problem to standard cost-sensitive classification! You can plug in any off-the-shelf learner—decision trees, gradient boosting, or neural nets—as long as it accepts sample weights w_i!\n\nDr. Nova: Precisely. The learner focuses purely on predictive accuracy under weighted samples, while the auditor dynamically tunes the weights to enforce fairness constraints."
         }
       },
       {
-        "id": "s4",
-        "title": "MetricFrame Tensor and Theil Index Formulations",
-        "type": "equation",
+        "id": "ch7_p9_s4",
+        "title": "Lagrangian Duality & Minimax Saddle Point Convergence",
+        "type": "content",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "MetricFrame Tensor and Theil Index Formulations",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Lagrangian Duality & Minimax Saddle Point Convergence",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "MetricFrame Tensor and Theil Index Formulations. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\vec{M} = \\left[ M(\\mathcal{D}_1), M(\\mathcal{D}_2), \\dots, M(\\mathcal{D}_G) \\right]^T$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Delta = \\max_{g \\in \\mathcal{G}} M(\\mathcal{D}_g) - \\min_{g' \\in \\mathcal{G}} M(\\mathcal{D}_{g'}), \\qquad \\rho = \\frac{\\min_{g' \\in \\mathcal{G}} M(\\mathcal{D}_{g'})}{\\max_{g \\in \\mathcal{G}} M(\\mathcal{D}_g)}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$T = \\frac{1}{N} \\sum_{i=1}^N \\frac{b_i}{\\bar{b}} \\ln\\left( \\frac{b_i}{\\bar{b}} \\right)$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: MetricFrame Tensor and Theil Index Formulations",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does metricframe tensor and theil index formulations protect our system against silent distribution shift in production?"
+              "text": "To establish rigorous convergence guarantees, we form the Lagrangian function of the constrained problem. By Von Neumann's Minimax Theorem, because the objective is linear in the randomized probability distribution Q and concave in multipliers lambda, strong duality holds.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "The minimax saddle point defines an equilibrium where no player can unilaterally improve their payoff. The resulting solution is not a single deterministic classifier, but an optimal randomized ensemble Q* combining a small number of base classifiers with specific selection probabilities.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\vec{M} = \\left[ M(\\mathcal{D}_1), M(\\mathcal{D}_2), \\dots, M(\\mathcal{D}_G) \\right]^T$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\Delta = \\max_{g \\in \\mathcal{G}} M(\\mathcal{D}_g) - \\min_{g' \\in \\mathcal{G}} M(\\mathcal{D}_{g'}), \\qquad \\rho = \\frac{\\min_{g' \\in \\mathcal{G}} M(\\mathcal{D}_{g'})}{\\max_{g \\in \\mathcal{G}} M(\\mathcal{D}_g)}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$T = \\frac{1}{N} \\sum_{i=1}^N \\frac{b_i}{\\bar{b}} \\ln\\left( \\frac{b_i}{\\bar{b}} \\right)$$\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      The Minimax Saddle-Point Lagrangian (Agarwal et al., 2018)\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\min_{Q \\in \\Delta(\\mathcal{H})} \\max_{\\vec{\\lambda} \\ge 0, \\|\\vec{\\lambda}\\|_1 \\le B} L(Q, \\vec{\\lambda}) = \\mathcal{E}(Q) + \\vec{\\lambda}^T (\\mathbf{M} Q - \\vec{c})$$\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 mt-2 font-sans\">\n      Where $B > 0$ bounds the dual $L_1$-norm. Under strong duality, swapping $\\min$ and $\\max$ yields an equivalent dual game:\n      $$\\max_{\\vec{\\lambda} \\ge 0} \\min_{Q} L(Q, \\vec{\\lambda}) = \\min_{Q} \\max_{\\vec{\\lambda} \\ge 0} L(Q, \\vec{\\lambda})$$\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Randomized Ensemble Solution</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        The game output is a randomized mixture hypothesis:\n        $$Q^* = \\sum_{t=1}^T \\alpha_t h_t, \\quad \\sum_{t=1}^T \\alpha_t = 1, \\quad \\alpha_t \\ge 0$$\n        At inference, the model samples $h_t \\sim Q^*$ with probability $\\alpha_t$, perfectly interpolating between conflicting group operating points.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase mb-1\">Saddle Point Optimality</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        At saddle point $(Q^*, \\vec{\\lambda}^*)$:\n        $$L(Q^*, \\vec{\\lambda}) \\le L(Q^*, \\vec{\\lambda}^*) \\le L(Q, \\vec{\\lambda}^*)$$\n        Complementary slackness guarantees that $\\lambda_k^* > 0$ only for strictly binding fairness constraints ($[\\mathbf{M} Q^*]_k = c_k$).\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Lagrangian Duality & Minimax Saddle Point Convergence",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice that the optimal solution Q* is a distribution over classifiers rather than a single deterministic model. Why is randomization necessary here, Kaito?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Because the space of deterministic hypotheses isn't convex! A single decision tree might produce 75% accuracy with 10% disparity, and another 80% accuracy with 15% disparity. By forming a convex mixture Q*, we can achieve any intermediate operating point on the Pareto frontier!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Spot on. Randomization convexifies the hypothesis space, guaranteeing the existence of an exact saddle point equilibrium under Von Neumann's Minimax Theorem.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      The Minimax Saddle-Point Lagrangian (Agarwal et al., 2018)\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\min_{Q \\in \\Delta(\\mathcal{H})} \\max_{\\vec{\\lambda} \\ge 0, \\|\\vec{\\lambda}\\|_1 \\le B} L(Q, \\vec{\\lambda}) = \\mathcal{E}(Q) + \\vec{\\lambda}^T (\\mathbf{M} Q - \\vec{c})$$\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 mt-2 font-sans\">\n      Where $B > 0$ bounds the dual $L_1$-norm. Under strong duality, swapping $\\min$ and $\\max$ yields an equivalent dual game:\n      $$\\max_{\\vec{\\lambda} \\ge 0} \\min_{Q} L(Q, \\vec{\\lambda}) = \\min_{Q} \\max_{\\vec{\\lambda} \\ge 0} L(Q, \\vec{\\lambda})$$\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Randomized Ensemble Solution</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        The game output is a randomized mixture hypothesis:\n        $$Q^* = \\sum_{t=1}^T \\alpha_t h_t, \\quad \\sum_{t=1}^T \\alpha_t = 1, \\quad \\alpha_t \\ge 0$$\n        At inference, the model samples $h_t \\sim Q^*$ with probability $\\alpha_t$, perfectly interpolating between conflicting group operating points.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase mb-1\">Saddle Point Optimality</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        At saddle point $(Q^*, \\vec{\\lambda}^*)$:\n        $$L(Q^*, \\vec{\\lambda}) \\le L(Q^*, \\vec{\\lambda}^*) \\le L(Q, \\vec{\\lambda}^*)$$\n        Complementary slackness guarantees that $\\lambda_k^* > 0$ only for strictly binding fairness constraints ($[\\mathbf{M} Q^*]_k = c_k$).\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "To establish rigorous convergence guarantees, we form the Lagrangian function of the constrained problem. By Von Neumann's Minimax Theorem, because the objective is linear in the randomized probability distribution Q and concave in multipliers lambda, strong duality holds.\n\nThe minimax saddle point defines an equilibrium where no player can unilaterally improve their payoff. The resulting solution is not a single deterministic classifier, but an optimal randomized ensemble Q* combining a small number of base classifiers with specific selection probabilities."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Notice that the optimal solution Q* is a distribution over classifiers rather than a single deterministic model. Why is randomization necessary here, Kaito?\n\nKaito: Because the space of deterministic hypotheses isn't convex! A single decision tree might produce 75% accuracy with 10% disparity, and another 80% accuracy with 15% disparity. By forming a convex mixture Q*, we can achieve any intermediate operating point on the Pareto frontier!\n\nDr. Nova: Spot on. Randomization convexifies the hypothesis space, guaranteeing the existence of an exact saddle point equilibrium under Von Neumann's Minimax Theorem."
         }
       },
       {
-        "id": "s5",
-        "title": "Production Implementation: Fairlearn In-Processing Reductions Engine",
-        "type": "code",
+        "id": "ch7_p9_s5",
+        "title": "Exponentiated Gradient Dynamics & Theoretical Convergence",
+        "type": "content",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Production Implementation: Fairlearn In-Processing Reductions Engine",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Exponentiated Gradient Dynamics & Theoretical Convergence",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Production Implementation: Fairlearn In-Processing Reductions Engine. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># Production Fair Reductions Exponentiated Gradient Engine\nfrom typing import Dict, Any, Tuple\nimport numpy as np\nimport pandas as pd\nfrom sklearn.linear_model import LogisticRegression\n\ndef compute_group_selection_rates(y_pred: np.ndarray, A: np.ndarray) -&gt; Tuple[float, float, float]:\n    rate_0 = float(np.mean(y_pred[A == 0]))\n    rate_1 = float(np.mean(y_pred[A == 1]))\n    diff = abs(rate_0 - rate_1)\n    return rate_0, rate_1, diff\n\ndef train_fair_reductions_simulation(\n    X: np.ndarray, y: np.ndarray, A: np.ndarray, max_iter: int = 15, eta: float = 1.5, target_diff: float = 0.05\n) -&gt; Dict[str, Any]:\n    N = len(y)\n    # Dual multiplier for demographic parity constraint: E[Y_hat|A=0] - E[Y_hat|A=1] &lt;= eps\n    lambda_param = 0.5\n    models = []\n    weights_history = []\n\n    # Unconstrained baseline\n    base_clf = LogisticRegression(sol</code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Production Implementation: Fairlearn In-Processing Reductions Engine",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "How does the dual player update its multiplier vector lambda at each game iteration? Rather than standard additive gradient ascent, which can yield negative multipliers and oscillate, Agarwal et al. employ the multiplicative Exponentiated Gradient algorithm, also known as Hedge.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "By multiplying by e to the power of the constraint violation, multipliers for violated constraints surge exponentially, while satisfied constraints decay rapidly. By setting the theoretical step size eta to the square root of 8 ln K over T, the algorithm achieves an epsilon-approximate saddle point in O(ln K / epsilon squared) rounds.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># Production Fair Reductions Exponentiated Gradient Engine\nfrom typing import Dict, Any, Tuple\nimport numpy as np\nimport pandas as pd\nfrom sklearn.linear_model import LogisticRegression\n\ndef compute_group_selection_rates(y_pred: np.ndarray, A: np.ndarray) -&gt; Tuple[float, float, float]:\n    rate_0 = float(np.mean(y_pred[A == 0]))\n    rate_1 = float(np.mean(y_pred[A == 1]))\n    diff = abs(rate_0 - rate_1)\n    return rate_0, rate_1, diff\n\ndef train_fair_reductions_simulation(\n    X: np.ndarray, y: np.ndarray, A: np.ndarray, max_iter: int = 15, eta: float = 1.5, target_diff: float = 0.05\n) -&gt; Dict[str, Any]:\n    N = len(y)\n    # Dual multiplier for demographic parity constraint: E[Y_hat|A=0] - E[Y_hat|A=1] &lt;= eps\n    lambda_param = 0.5\n    models = []\n    weights_history = []\n\n    # Unconstrained baseline\n    base_clf = LogisticRegression(sol</code></pre>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      Multiplicative Exponentiated Gradient Update Rule\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\lambda_k^{(t+1)} = \\frac{\\lambda_k^{(t)} \\exp\\left( \\eta \\cdot \\left( [\\mathbf{M} h^{(t)}]_k - c_k \\right) \\right)}{\\sum_{j=1}^K \\lambda_j^{(t)} \\exp\\left( \\eta \\cdot \\left( [\\mathbf{M} h^{(t)}]_j - c_j \\right) \\right)} \\cdot B$$\n    </div>\n    <div class=\"grid grid-cols-2 gap-2 mt-2 text-[11px] font-mono\">\n      <div class=\"p-2 bg-[#fee2e2] border border-[#151b20] rounded text-[#991b1b]\">\n        <strong>Violation ($[\\mathbf{M} h_t]_k > c_k$):</strong> $\\exp(\\eta \\Delta) > 1.0 \\implies \\lambda_k \\uparrow$ Surges penalty\n      </div>\n      <div class=\"p-2 bg-[#dcfce7] border border-[#151b20] rounded text-[#15803d]\">\n        <strong>Satisfaction ($[\\mathbf{M} h_t]_k < c_k$):</strong> $\\exp(-\\eta \\delta) < 1.0 \\implies \\lambda_k \\downarrow$ Relaxes penalty\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">\n      Convergence Rate Theorem (Agarwal et al., 2018)\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n      Setting total game rounds $T$ and optimal dual learning rate $\\eta^* = \\sqrt{\\frac{8 \\ln K}{T}}$, the empirical mixture $\\bar{Q} = \\frac{1}{T} \\sum_{t=1}^T h^{(t)}$ satisfies:\n      $$\\max_{k \\in \\{1, \\dots, K\\}} \\left( [\\mathbf{M} \\bar{Q}]_k - c_k \\right) \\le \\epsilon + \\mathcal{O}\\left( B \\sqrt{\\frac{\\ln K}{T}} \\right)$$\n      To guarantee constraint violation $\\le \\epsilon$, the algorithm requires at most $T = \\mathcal{O}\\left( \\frac{B^2 \\ln K}{\\epsilon^2} \\right)$ oracle calls.\n    </p>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Exponentiated Gradient Dynamics & Theoretical Convergence",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice how the multiplicative update operates. When a fairness constraint is satisfied, the exponent is negative, causing lambda to decay exponentially.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "That's critical! If lambda didn't decay when a constraint was satisfied, the learner would keep over-penalizing that group, causing unnecessary loss in predictive accuracy. The exponential decay maintains the leanest penalty needed to satisfy epsilon!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. And the theoretical step size eta = sqrt(8 ln K / T) guarantees fast, sub-linear O(1 / sqrt(T)) regret convergence.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      Multiplicative Exponentiated Gradient Update Rule\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\lambda_k^{(t+1)} = \\frac{\\lambda_k^{(t)} \\exp\\left( \\eta \\cdot \\left( [\\mathbf{M} h^{(t)}]_k - c_k \\right) \\right)}{\\sum_{j=1}^K \\lambda_j^{(t)} \\exp\\left( \\eta \\cdot \\left( [\\mathbf{M} h^{(t)}]_j - c_j \\right) \\right)} \\cdot B$$\n    </div>\n    <div class=\"grid grid-cols-2 gap-2 mt-2 text-[11px] font-mono\">\n      <div class=\"p-2 bg-[#fee2e2] border border-[#151b20] rounded text-[#991b1b]\">\n        <strong>Violation ($[\\mathbf{M} h_t]_k > c_k$):</strong> $\\exp(\\eta \\Delta) > 1.0 \\implies \\lambda_k \\uparrow$ Surges penalty\n      </div>\n      <div class=\"p-2 bg-[#dcfce7] border border-[#151b20] rounded text-[#15803d]\">\n        <strong>Satisfaction ($[\\mathbf{M} h_t]_k < c_k$):</strong> $\\exp(-\\eta \\delta) < 1.0 \\implies \\lambda_k \\downarrow$ Relaxes penalty\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">\n      Convergence Rate Theorem (Agarwal et al., 2018)\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n      Setting total game rounds $T$ and optimal dual learning rate $\\eta^* = \\sqrt{\\frac{8 \\ln K}{T}}$, the empirical mixture $\\bar{Q} = \\frac{1}{T} \\sum_{t=1}^T h^{(t)}$ satisfies:\n      $$\\max_{k \\in \\{1, \\dots, K\\}} \\left( [\\mathbf{M} \\bar{Q}]_k - c_k \\right) \\le \\epsilon + \\mathcal{O}\\left( B \\sqrt{\\frac{\\ln K}{T}} \\right)$$\n      To guarantee constraint violation $\\le \\epsilon$, the algorithm requires at most $T = \\mathcal{O}\\left( \\frac{B^2 \\ln K}{\\epsilon^2} \\right)$ oracle calls.\n    </p>\n  </div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "How does the dual player update its multiplier vector lambda at each game iteration? Rather than standard additive gradient ascent, which can yield negative multipliers and oscillate, Agarwal et al. employ the multiplicative Exponentiated Gradient algorithm, also known as Hedge.\n\nBy multiplying by e to the power of the constraint violation, multipliers for violated constraints surge exponentially, while satisfied constraints decay rapidly. By setting the theoretical step size eta to the square root of 8 ln K over T, the algorithm achieves an epsilon-approximate saddle point in O(ln K / epsilon squared) rounds."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Notice how the multiplicative update operates. When a fairness constraint is satisfied, the exponent is negative, causing lambda to decay exponentially.\n\nKaito: That's critical! If lambda didn't decay when a constraint was satisfied, the learner would keep over-penalizing that group, causing unnecessary loss in predictive accuracy. The exponential decay maintains the leanest penalty needed to satisfy epsilon!\n\nDr. Nova: Exactly. And the theoretical step size eta = sqrt(8 ln K / T) guarantees fast, sub-linear O(1 / sqrt(T)) regret convergence."
         }
       },
       {
-        "id": "s6",
-        "title": "Empirical Quantitative Breakdown: Adult Census Benchmark",
-        "type": "bullets",
+        "id": "ch7_p9_s6",
+        "title": "Interactive Lab: Fair Reductions Exponentiated Gradient Game Studio",
+        "type": "interactive",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Empirical Quantitative Breakdown: Adult Census Benchmark",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Interactive Lab: Fair Reductions Exponentiated Gradient Game Studio",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Empirical Quantitative Breakdown: Adult Census Benchmark. In production engineering, this principle establishes reliability and reproducibility. $\\Delta_{\\text{DP}} = 19.6\\%$, Disparate Impact ratio: $\\rho = 0.28$ (severe legal violation)."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Demographic Parity Difference</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\Delta_{\\text{DP}} = 19.6\\%$, Disparate Impact ratio: $\\rho = 0.28$ (severe legal violation).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Demographic Parity Difference</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\Delta_{\\text{DP}} = 1.8\\%$, Disparate Impact ratio: $\\rho = 0.91$ (fully compliant with four-fifths rule).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Overall Accuracy</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$84.9\\%$ (only $2.2\\%$ accuracy surrendered to eliminate $17.8\\%$ demographic disparity) (; ).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Empirical Quantitative Breakdown: Adult Census Benchmark",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what makes empirical quantitative breakdown: adult census benchmark essential for robust machine learning?"
+              "text": "Welcome to Simulator 7.9 Tab A: the Fair Reductions Exponentiated Gradient Game Studio. Here, we track the live trajectory of the two-player game across rounds t = 1 to T.",
+              "dock": "sim"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "In production engineering, this principle establishes reliability and reproducibility. $\\Delta_{\\text{DP}} = 19.6\\%$, Disparate Impact ratio: $\\rho = 0.28$ (severe legal violation)."
+              "text": "Adjust the target disparity tolerance epsilon, dual learning rate eta, and total game rounds. Watch how multiplier lambda surges whenever the empirical disparity exceeds epsilon, forcing the primal learner to reweight samples until the system converges to a saddle point equilibrium.",
+              "dock": "sim"
             }
           ],
-          "contentHtml": "<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Demographic Parity Difference</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\Delta_{\\text{DP}} = 19.6\\%$, Disparate Impact ratio: $\\rho = 0.28$ (severe legal violation).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Demographic Parity Difference</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$\\Delta_{\\text{DP}} = 1.8\\%$, Disparate Impact ratio: $\\rho = 0.91$ (fully compliant with four-fifths rule).</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Overall Accuracy</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">$84.9\\%$ (only $2.2\\%$ accuracy surrendered to eliminate $17.8\\%$ demographic disparity) (; ).</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n  <div class=\"flex items-center justify-between mb-2\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wide\">\n      🔬 SIMULATOR 7.9 TAB A: PRIMAL-DUAL EXPONENTIATED GRADIENT TRAJECTORY\n    </div>\n    <span class=\"text-[10px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded border border-[#151b20]\">\n      $\\lambda_{t+1} \\propto \\lambda_t \\exp(\\eta(\\Delta_t - \\epsilon))$\n    </span>\n  </div>\n  <p class=\"text-xs text-[#151b20]/80 mb-2 font-sans\">\n    Track the convergence of the two-player zero-sum reductions game. The blue curve charts demographic disparity gap collapsing toward target tolerance $\\epsilon$, while the purple dashed curve traces dual multiplier $\\lambda$.\n  </p>\n  <div id=\"sim79AStudioWidgetMount\"></div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Interactive Lab: Fair Reductions Exponentiated Gradient Game Studio",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let's explore the dynamics of the reductions game live. Kaito, try setting a strict tolerance epsilon of 0.010 with a higher learning rate.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Look at the purple multiplier curve spike! As soon as the disparity breaches epsilon, lambda leaps to penalize the learner, driving the blue disparity curve down below 1% within 16 rounds!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n  <div class=\"flex items-center justify-between mb-2\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wide\">\n      🔬 SIMULATOR 7.9 TAB A: PRIMAL-DUAL EXPONENTIATED GRADIENT TRAJECTORY\n    </div>\n    <span class=\"text-[10px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded border border-[#151b20]\">\n      $\\lambda_{t+1} \\propto \\lambda_t \\exp(\\eta(\\Delta_t - \\epsilon))$\n    </span>\n  </div>\n  <p class=\"text-xs text-[#151b20]/80 mb-2 font-sans\">\n    Track the convergence of the two-player zero-sum reductions game. The blue curve charts demographic disparity gap collapsing toward target tolerance $\\epsilon$, while the purple dashed curve traces dual multiplier $\\lambda$.\n  </p>\n  <div id=\"sim79AStudioWidgetMount\"></div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "Welcome to Simulator 7.9 Tab A: the Fair Reductions Exponentiated Gradient Game Studio. Here, we track the live trajectory of the two-player game across rounds t = 1 to T.\n\nAdjust the target disparity tolerance epsilon, dual learning rate eta, and total game rounds. Watch how multiplier lambda surges whenever the empirical disparity exceeds epsilon, forcing the primal learner to reweight samples until the system converges to a saddle point equilibrium."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Let's explore the dynamics of the reductions game live. Kaito, try setting a strict tolerance epsilon of 0.010 with a higher learning rate.\n\nKaito: Look at the purple multiplier curve spike! As soon as the disparity breaches epsilon, lambda leaps to penalize the learner, driving the blue disparity curve down below 1% within 16 rounds!"
         }
       },
       {
-        "id": "s7",
-        "title": "Interactive Lab: Fairlearn Audit & Reductions Workbench",
-        "type": "tool",
+        "id": "ch7_p9_s7",
+        "title": "Active Checkpoint 1: Exponentiated Gradient Multiplier Dynamics",
+        "type": "checkpoint",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Fairlearn Audit & Reductions Workbench",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Active Checkpoint 1: Exponentiated Gradient Multiplier Dynamics",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Fairlearn Audit & Reductions Workbench. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Fairlearn Audit &amp; Reductions Workbench</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Inspect MetricFrame disparity tensors and test exponentiated gradient reductions live.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Reductions Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Fairlearn Audit & Reductions Workbench",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the fairlearn audit & reductions workbench located below this player?"
+              "text": "Let us verify your mathematical intuition in Active Checkpoint 1. In the Reductions two-player game, consider what happens to the Lagrange multiplier lambda at iteration t plus 1 when the primal classifier h satisfies fairness constraint k with a margin strictly larger than requested.",
+              "dock": "checkpoint"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "text": "Analyze the multiplicative update equation carefully. How does a negative constraint margin affect the exponent, and what is the resulting engineering consequence?",
+              "dock": "checkpoint"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Fairlearn Audit &amp; Reductions Workbench</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Inspect MetricFrame disparity tensors and test exponentiated gradient reductions live.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Reductions Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n  <div class=\"flex items-center justify-between mb-2\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wide\">\n      💡 ACTIVE RECALL CHECKPOINT 7.9.1: MULTIPLIER DYNAMICS\n    </div>\n    <span class=\"text-[10px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded border border-[#151b20]\">\n      Mathematical Dynamics\n    </span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans font-medium mb-3\">\n    Under the multiplicative Exponentiated Gradient update: $\\lambda_k^{(t+1)} \\propto \\lambda_k^{(t)} \\exp\\left( \\eta \\cdot \\left( [\\mathbf{M} h^{(t)}]_k - c_k \\right) \\right)$.<br>\n    What occurs when $[\\mathbf{M} h^{(t)}]_k - c_k < 0$ (the constraint is satisfied with slack)?\n  </p>\n  <div id=\"slideQuizCheckpointMount\"></div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Active Checkpoint 1: Exponentiated Gradient Multiplier Dynamics",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Checkpoint 1 tests your grasp of the dual auditor's update equation. What happens to lambda when a constraint is safely satisfied?",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Think about the sign inside the exponent! If the violation is negative, does the multiplier explode, stay constant, or decay exponentially?",
+              "dock": "checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n  <div class=\"flex items-center justify-between mb-2\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase tracking-wide\">\n      💡 ACTIVE RECALL CHECKPOINT 7.9.1: MULTIPLIER DYNAMICS\n    </div>\n    <span class=\"text-[10px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] px-2 py-0.5 rounded border border-[#151b20]\">\n      Mathematical Dynamics\n    </span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans font-medium mb-3\">\n    Under the multiplicative Exponentiated Gradient update: $\\lambda_k^{(t+1)} \\propto \\lambda_k^{(t)} \\exp\\left( \\eta \\cdot \\left( [\\mathbf{M} h^{(t)}]_k - c_k \\right) \\right)$.<br>\n    What occurs when $[\\mathbf{M} h^{(t)}]_k - c_k < 0$ (the constraint is satisfied with slack)?\n  </p>\n  <div id=\"slideQuizCheckpointMount\"></div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "Let us verify your mathematical intuition in Active Checkpoint 1. In the Reductions two-player game, consider what happens to the Lagrange multiplier lambda at iteration t plus 1 when the primal classifier h satisfies fairness constraint k with a margin strictly larger than requested.\n\nAnalyze the multiplicative update equation carefully. How does a negative constraint margin affect the exponent, and what is the resulting engineering consequence?"
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Checkpoint 1 tests your grasp of the dual auditor's update equation. What happens to lambda when a constraint is safely satisfied?\n\nKaito: Think about the sign inside the exponent! If the violation is negative, does the multiplier explode, stay constant, or decay exponentially?"
+        }
+      },
+      {
+        "id": "ch7_p9_s8",
+        "title": "Cost-Sensitive Oracle Translation & Sample Weight Construction",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Cost-Sensitive Oracle Translation & Sample Weight Construction",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "We now examine the bridge between the dual player's abstract Lagrange multipliers and the primal learner's concrete loss function: cost-sensitive instance weight construction.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "At each round t, the vector lambda is translated into non-negative training weights w_i for each individual sample. When demographic group A = 0 experiences severe under-selection, the multiplier corresponding to that group increases, directly boosting the importance weight of false negatives from group 0.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      Analytical Instance Weight Construction Formula\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\boxed{w_i^{(t)} = 1 + \\sum_{k=1}^K \\lambda_k^{(t)} \\cdot \\mathbf{C}_k(a_i, y_i)}$$\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 mt-2 font-sans\">\n      Where $\\mathbf{C}_k(a_i, y_i)$ is the signed constraint coefficient matrix mapping group identity $a_i$ and ground-truth label $y_i$ to fairness penalty costs.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Demographic Parity Weighting</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        For Demographic Parity ($\\{h(X) \\mid A=0\\} \\approx \\{h(X) \\mid A=1\\}$):\n        $$\\mathbf{C}_1(a, y) = \\frac{\\mathbb{I}(a = 0)}{\\mathbb{P}(A = 0)} - \\frac{\\mathbb{I}(a = 1)}{\\mathbb{P}(A = 1)}$$\n        If unprivileged group selection is too low, positive predictions on group 0 are rewarded while negative predictions are penalized.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase mb-1\">Equalized Odds Weighting</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        For Equalized Odds (matching FPR and TPR across groups):\n        $$\\mathbf{C}_{k}(a, y) = \\frac{\\mathbb{I}(a = g, y = y^*)}{\\mathbb{P}(A = g, Y = y^*)}$$\n        Weights explicitly differentiate between false positives on $Y=0$ and false negatives on $Y=1$.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Cost-Sensitive Oracle Translation & Sample Weight Construction",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice how the weights directly control the cost-sensitive base learner. If group 0 candidates are being denied loans at discriminatory rates, how does the formula respond, Kaito?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "The dual multiplier for group 0 jumps, which inflates the sample weights for group 0 applicants! In the next round, if the classifier rejects a creditworthy group 0 applicant, the training loss penalty is massively amplified!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. The base learner is forced to adjust its decision boundary to approve qualified group 0 candidates to minimize total weighted training loss.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      Analytical Instance Weight Construction Formula\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\boxed{w_i^{(t)} = 1 + \\sum_{k=1}^K \\lambda_k^{(t)} \\cdot \\mathbf{C}_k(a_i, y_i)}$$\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 mt-2 font-sans\">\n      Where $\\mathbf{C}_k(a_i, y_i)$ is the signed constraint coefficient matrix mapping group identity $a_i$ and ground-truth label $y_i$ to fairness penalty costs.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Demographic Parity Weighting</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        For Demographic Parity ($\\{h(X) \\mid A=0\\} \\approx \\{h(X) \\mid A=1\\}$):\n        $$\\mathbf{C}_1(a, y) = \\frac{\\mathbb{I}(a = 0)}{\\mathbb{P}(A = 0)} - \\frac{\\mathbb{I}(a = 1)}{\\mathbb{P}(A = 1)}$$\n        If unprivileged group selection is too low, positive predictions on group 0 are rewarded while negative predictions are penalized.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase mb-1\">Equalized Odds Weighting</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        For Equalized Odds (matching FPR and TPR across groups):\n        $$\\mathbf{C}_{k}(a, y) = \\frac{\\mathbb{I}(a = g, y = y^*)}{\\mathbb{P}(A = g, Y = y^*)}$$\n        Weights explicitly differentiate between false positives on $Y=0$ and false negatives on $Y=1$.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "We now examine the bridge between the dual player's abstract Lagrange multipliers and the primal learner's concrete loss function: cost-sensitive instance weight construction.\n\nAt each round t, the vector lambda is translated into non-negative training weights w_i for each individual sample. When demographic group A = 0 experiences severe under-selection, the multiplier corresponding to that group increases, directly boosting the importance weight of false negatives from group 0."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Notice how the weights directly control the cost-sensitive base learner. If group 0 candidates are being denied loans at discriminatory rates, how does the formula respond, Kaito?\n\nKaito: The dual multiplier for group 0 jumps, which inflates the sample weights for group 0 applicants! In the next round, if the classifier rejects a creditworthy group 0 applicant, the training loss penalty is massively amplified!\n\nDr. Nova: Exactly. The base learner is forced to adjust its decision boundary to approve qualified group 0 candidates to minimize total weighted training loss."
+        }
+      },
+      {
+        "id": "ch7_p9_s9",
+        "title": "Fairlearn MetricFrame: Multi-Dimensional Tensor Algebra",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Fairlearn MetricFrame: Multi-Dimensional Tensor Algebra",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "In production auditing, custom nested loops for calculating demographic slices are notoriously error-prone, fragile, and vulnerable to zero-division or silent masking bugs. Microsoft Fairlearn addresses this through the MetricFrame tensor data structure.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "A MetricFrame evaluates an arbitrary dictionary of evaluation metrics across multidimensional Cartesian cross-products of sensitive features in a single vectorized pass. It provides rigorous reduction operators like difference, ratio, and group_min, enabling seamless extraction of disparate impact ratios and worst-case subgroup risks.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      MetricFrame Multi-Metric Disaggregation Tensor\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\mathbf{M} = \\begin{bmatrix} M_1(\\mathcal{D}_1) & M_2(\\mathcal{D}_1) & \\dots & M_m(\\mathcal{D}_1) \\\\ M_1(\\mathcal{D}_2) & M_2(\\mathcal{D}_2) & \\dots & M_m(\\mathcal{D}_2) \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ M_1(\\mathcal{D}_G) & M_2(\\mathcal{D}_G) & \\dots & M_m(\\mathcal{D}_G) \\end{bmatrix} \\in \\mathbb{R}^{G \\times m}$$\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 mt-2 font-sans\">\n      Where $G$ represents the Cartesian intersectional slices ($A_1 \\times A_2 \\times \\dots \\times A_k$) and $m$ represents simultaneous evaluation metrics (Accuracy, Selection Rate, FPR, FNR, Calibration Error).\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2\">\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#0e7490] uppercase\">1. Difference Reduction</div>\n      <div class=\"font-mono text-[10px] mt-1 text-[#151b20]\">\n        $$\\Delta_M = \\max_{g} M_g - \\min_{g'} M_{g'}$$\n      </div>\n      <p class=\"text-[10px] text-[#151b20]/75 mt-1 font-sans\">\n        Computes maximum demographic gap across all cohorts.\n      </p>\n    </div>\n\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase\">2. Ratio Reduction</div>\n      <div class=\"font-mono text-[10px] mt-1 text-[#151b20]\">\n        $$\\rho_M = \\frac{\\min_{g} M_g}{\\max_{g'} M_{g'}}$$\n      </div>\n      <p class=\"text-[10px] text-[#151b20]/75 mt-1 font-sans\">\n        Evaluates Disparate Impact Ratio against the four-fifths 80% rule.\n      </p>\n    </div>\n\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase\">3. Minimax Subgroup</div>\n      <div class=\"font-mono text-[10px] mt-1 text-[#151b20]\">\n        $$\\mathcal{R}_{\\text{worst}} = \\max_{g} \\mathcal{E}_g$$\n      </div>\n      <p class=\"text-[10px] text-[#151b20]/75 mt-1 font-sans\">\n        Directly extracts worst-case subgroup risk for CI/CD gates.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Fairlearn MetricFrame: Multi-Dimensional Tensor Algebra",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Why do we emphasize Fairlearn's MetricFrame over writing custom evaluation loops, Kaito?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Because custom pandas loops easily fail when intersectional cohorts are sparse! A single empty slice causes NaN crashes or silent dropouts. MetricFrame handles missing values, propagates sample weights, and gives you one-line methods like .difference() and .ratio() out of the box!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Vectorized tensor disaggregation eliminates silent auditing errors and guarantees that all metrics are computed over consistent sample partitions.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      MetricFrame Multi-Metric Disaggregation Tensor\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\mathbf{M} = \\begin{bmatrix} M_1(\\mathcal{D}_1) & M_2(\\mathcal{D}_1) & \\dots & M_m(\\mathcal{D}_1) \\\\ M_1(\\mathcal{D}_2) & M_2(\\mathcal{D}_2) & \\dots & M_m(\\mathcal{D}_2) \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ M_1(\\mathcal{D}_G) & M_2(\\mathcal{D}_G) & \\dots & M_m(\\mathcal{D}_G) \\end{bmatrix} \\in \\mathbb{R}^{G \\times m}$$\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 mt-2 font-sans\">\n      Where $G$ represents the Cartesian intersectional slices ($A_1 \\times A_2 \\times \\dots \\times A_k$) and $m$ represents simultaneous evaluation metrics (Accuracy, Selection Rate, FPR, FNR, Calibration Error).\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2\">\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#0e7490] uppercase\">1. Difference Reduction</div>\n      <div class=\"font-mono text-[10px] mt-1 text-[#151b20]\">\n        $$\\Delta_M = \\max_{g} M_g - \\min_{g'} M_{g'}$$\n      </div>\n      <p class=\"text-[10px] text-[#151b20]/75 mt-1 font-sans\">\n        Computes maximum demographic gap across all cohorts.\n      </p>\n    </div>\n\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase\">2. Ratio Reduction</div>\n      <div class=\"font-mono text-[10px] mt-1 text-[#151b20]\">\n        $$\\rho_M = \\frac{\\min_{g} M_g}{\\max_{g'} M_{g'}}$$\n      </div>\n      <p class=\"text-[10px] text-[#151b20]/75 mt-1 font-sans\">\n        Evaluates Disparate Impact Ratio against the four-fifths 80% rule.\n      </p>\n    </div>\n\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase\">3. Minimax Subgroup</div>\n      <div class=\"font-mono text-[10px] mt-1 text-[#151b20]\">\n        $$\\mathcal{R}_{\\text{worst}} = \\max_{g} \\mathcal{E}_g$$\n      </div>\n      <p class=\"text-[10px] text-[#151b20]/75 mt-1 font-sans\">\n        Directly extracts worst-case subgroup risk for CI/CD gates.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "In production auditing, custom nested loops for calculating demographic slices are notoriously error-prone, fragile, and vulnerable to zero-division or silent masking bugs. Microsoft Fairlearn addresses this through the MetricFrame tensor data structure.\n\nA MetricFrame evaluates an arbitrary dictionary of evaluation metrics across multidimensional Cartesian cross-products of sensitive features in a single vectorized pass. It provides rigorous reduction operators like difference, ratio, and group_min, enabling seamless extraction of disparate impact ratios and worst-case subgroup risks."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Why do we emphasize Fairlearn's MetricFrame over writing custom evaluation loops, Kaito?\n\nKaito: Because custom pandas loops easily fail when intersectional cohorts are sparse! A single empty slice causes NaN crashes or silent dropouts. MetricFrame handles missing values, propagates sample weights, and gives you one-line methods like .difference() and .ratio() out of the box!\n\nDr. Nova: Exactly. Vectorized tensor disaggregation eliminates silent auditing errors and guarantees that all metrics are computed over consistent sample partitions."
+        }
+      },
+      {
+        "id": "ch7_p9_s10",
+        "title": "Econometric Welfare Theory: The Theil Index of Inequality",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Econometric Welfare Theory: The Theil Index of Inequality",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "While demographic parity measures average differences between demographic groups, it is blind to inequality within those groups. To bridge individual fairness and group parity, Speicher et al. adapted the Theil Index from econometric welfare economics into algorithmic auditing.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Defining individual benefit b_i as the model's favorable treatment relative to truth, the Theil index measures the entropy of benefit distribution. A Theil index of zero represents perfect egalitarian treatment, where every individual receives identical benefit relative to merit.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      Theil Index of Inequality Formulation (Speicher et al., 2018)\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\boxed{T = \\frac{1}{N} \\sum_{i=1}^N \\frac{b_i}{\\bar{b}} \\ln\\left( \\frac{b_i}{\\bar{b}} \\right)}$$\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 mt-2 font-sans\">\n      Where $b_i = \\hat{y}_i - y_i + 1 > 0$ denotes the individual benefit ratio, and $\\bar{b} = \\frac{1}{N} \\sum_{i=1}^N b_i$ is the population mean benefit.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase mb-1\">Entropy Interpretation</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        The Theil index represents the generalized Kullback-Leibler divergence between the empirical benefit distribution and a completely uniform distribution. When $b_i = \\bar{b}$ for all $i$, $T = 0$ (perfect individual equality).\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Scale Invariance & Pigou-Dalton</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        The Theil index satisfies the <strong>Pigou-Dalton Transfer Principle</strong>: transferring benefit from a more favored applicant to a less favored applicant strictly decreases overall inequality, making it sensitive to both rank and magnitude.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Econometric Welfare Theory: The Theil Index of Inequality",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Why is the Theil Index so revered in economic fairness literature compared to standard standard deviation or Gini coefficients?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "It's because of the Additive Decomposition Theorem! Unlike the Gini coefficient, which has overlapping cross-terms, the Theil index splits cleanly into between-group disparity and within-group individual inequality without any residual!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Let's analyze this exact decomposition and uncover why demographic parity can sometimes mask severe within-group unfairness.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      Theil Index of Inequality Formulation (Speicher et al., 2018)\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\boxed{T = \\frac{1}{N} \\sum_{i=1}^N \\frac{b_i}{\\bar{b}} \\ln\\left( \\frac{b_i}{\\bar{b}} \\right)}$$\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 mt-2 font-sans\">\n      Where $b_i = \\hat{y}_i - y_i + 1 > 0$ denotes the individual benefit ratio, and $\\bar{b} = \\frac{1}{N} \\sum_{i=1}^N b_i$ is the population mean benefit.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase mb-1\">Entropy Interpretation</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        The Theil index represents the generalized Kullback-Leibler divergence between the empirical benefit distribution and a completely uniform distribution. When $b_i = \\bar{b}$ for all $i$, $T = 0$ (perfect individual equality).\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Scale Invariance & Pigou-Dalton</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        The Theil index satisfies the <strong>Pigou-Dalton Transfer Principle</strong>: transferring benefit from a more favored applicant to a less favored applicant strictly decreases overall inequality, making it sensitive to both rank and magnitude.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "While demographic parity measures average differences between demographic groups, it is blind to inequality within those groups. To bridge individual fairness and group parity, Speicher et al. adapted the Theil Index from econometric welfare economics into algorithmic auditing.\n\nDefining individual benefit b_i as the model's favorable treatment relative to truth, the Theil index measures the entropy of benefit distribution. A Theil index of zero represents perfect egalitarian treatment, where every individual receives identical benefit relative to merit."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Why is the Theil Index so revered in economic fairness literature compared to standard standard deviation or Gini coefficients?\n\nKaito: It's because of the Additive Decomposition Theorem! Unlike the Gini coefficient, which has overlapping cross-terms, the Theil index splits cleanly into between-group disparity and within-group individual inequality without any residual!\n\nDr. Nova: Exactly. Let's analyze this exact decomposition and uncover why demographic parity can sometimes mask severe within-group unfairness."
+        }
+      },
+      {
+        "id": "ch7_p9_s11",
+        "title": "Exact Additive Theil Decomposition: Within-Group vs Between-Group",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Exact Additive Theil Decomposition: Within-Group vs Between-Group",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "The crown jewel of econometric inequality auditing is the Additive Decomposition Theorem. Total inequality T decomposes exactly into two orthogonal terms: between-group inequality T_between and within-group inequality T_within.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "T_between captures macro demographic disparities across group averages. T_within captures how unequally benefits are distributed among individuals inside each subgroup. Crucially, a model can drive T_between to zero to achieve Demographic Parity while leaving T_within dangerously high.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      Exact Additive Theil Decomposition Theorem\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\boxed{T = T_{\\text{within}} + T_{\\text{between}}}$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Between-Group Disparity ($T_{\\text{between}}$)</div>\n      <div class=\"font-mono text-[10px] text-center my-1\">\n        $$T_{\\text{between}} = \\sum_{g=1}^G \\left( \\frac{N_g}{N} \\frac{\\bar{b}_g}{\\bar{b}} \\right) \\ln\\left( \\frac{\\bar{b}_g}{\\bar{b}} \\right)$$\n      </div>\n      <p class=\"text-[10px] text-[#151b20]/80 font-sans\">\n        Measures inequality across demographic cohort means. $T_{\\text{between}} = 0 \\iff \\bar{b}_g = \\bar{b}$ for all groups (Statistical Demographic Parity).\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#7c3aed] uppercase mb-1\">Within-Group Inequality ($T_{\\text{within}}$)</div>\n      <div class=\"font-mono text-[10px] text-center my-1\">\n        $$T_{\\text{within}} = \\sum_{g=1}^G \\left( \\frac{N_g}{N} \\frac{\\bar{b}_g}{\\bar{b}} \\right) T_g, \\quad T_g = \\frac{1}{N_g} \\sum_{i \\in \\mathcal{D}_g} \\frac{b_i}{\\bar{b}_g} \\ln\\left( \\frac{b_i}{\\bar{b}_g} \\right)$$\n      </div>\n      <p class=\"text-[10px] text-[#151b20]/80 font-sans\">\n        Weighted average of internal inequality $T_g$. Measures how unfairly the model treats peers within the same demographic group.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Exact Additive Theil Decomposition: Within-Group vs Between-Group",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice the trap this theorem exposes. If an engineering team only monitors demographic parity, they could celebrate achieving T_between = 0 while ignoring massive individual inequality.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Right! Imagine a lending model that approves 20% of men and 20% of women. That has perfect demographic parity (T_between = 0). But within each group, it might only approve wealthy people with spotless records while denying hardworking middle-income applicants! That shows up as a massive T_within!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. Auditing both T_between and T_within guarantees that achieving group parity doesn't come at the cost of catastrophic intra-group unfairness.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      Exact Additive Theil Decomposition Theorem\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#ffffff] border-2 border-[#151b20] font-mono text-xs text-center shadow-[1px_1px_0px_#151b20]\">\n      $$\\boxed{T = T_{\\text{within}} + T_{\\text{between}}}$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Between-Group Disparity ($T_{\\text{between}}$)</div>\n      <div class=\"font-mono text-[10px] text-center my-1\">\n        $$T_{\\text{between}} = \\sum_{g=1}^G \\left( \\frac{N_g}{N} \\frac{\\bar{b}_g}{\\bar{b}} \\right) \\ln\\left( \\frac{\\bar{b}_g}{\\bar{b}} \\right)$$\n      </div>\n      <p class=\"text-[10px] text-[#151b20]/80 font-sans\">\n        Measures inequality across demographic cohort means. $T_{\\text{between}} = 0 \\iff \\bar{b}_g = \\bar{b}$ for all groups (Statistical Demographic Parity).\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#7c3aed] uppercase mb-1\">Within-Group Inequality ($T_{\\text{within}}$)</div>\n      <div class=\"font-mono text-[10px] text-center my-1\">\n        $$T_{\\text{within}} = \\sum_{g=1}^G \\left( \\frac{N_g}{N} \\frac{\\bar{b}_g}{\\bar{b}} \\right) T_g, \\quad T_g = \\frac{1}{N_g} \\sum_{i \\in \\mathcal{D}_g} \\frac{b_i}{\\bar{b}_g} \\ln\\left( \\frac{b_i}{\\bar{b}_g} \\right)$$\n      </div>\n      <p class=\"text-[10px] text-[#151b20]/80 font-sans\">\n        Weighted average of internal inequality $T_g$. Measures how unfairly the model treats peers within the same demographic group.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "The crown jewel of econometric inequality auditing is the Additive Decomposition Theorem. Total inequality T decomposes exactly into two orthogonal terms: between-group inequality T_between and within-group inequality T_within.\n\nT_between captures macro demographic disparities across group averages. T_within captures how unequally benefits are distributed among individuals inside each subgroup. Crucially, a model can drive T_between to zero to achieve Demographic Parity while leaving T_within dangerously high."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Notice the trap this theorem exposes. If an engineering team only monitors demographic parity, they could celebrate achieving T_between = 0 while ignoring massive individual inequality.\n\nKaito: Right! Imagine a lending model that approves 20% of men and 20% of women. That has perfect demographic parity (T_between = 0). But within each group, it might only approve wealthy people with spotless records while denying hardworking middle-income applicants! That shows up as a massive T_within!\n\nDr. Nova: Exactly. Auditing both T_between and T_within guarantees that achieving group parity doesn't come at the cost of catastrophic intra-group unfairness."
+        }
+      },
+      {
+        "id": "ch7_p9_s12",
+        "title": "Interactive Lab: Adult Income Benchmark Explorer",
+        "type": "interactive",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Interactive Lab: Adult Income Benchmark Explorer",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Simulator 7.9 Tab B: the Adult Income Benchmark Explorer. Here, we inspect live telemetry from the canonical UCI Adult Census dataset of 48,842 individuals.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Toggle between Demographic Parity, Equalized Odds, and Equal Opportunity constraints. Adjust the ensemble mixture size to watch the selection rates converge, disparate impact ratio rise past 0.80, and Theil inequality drop by over 60% with only a 2% cost in predictive accuracy.",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d]\">\n  <div class=\"flex items-center justify-between mb-2\">\n    <div class=\"font-mono text-xs font-black text-[#15803d] uppercase tracking-wide\">\n      🔬 SIMULATOR 7.9 TAB B: ADULT INCOME BENCHMARK EXPLORER\n    </div>\n    <span class=\"text-[10px] font-mono font-bold bg-[#dcfce7] text-[#15803d] px-2 py-0.5 rounded border border-[#151b20]\">\n      UCI Adult Census ($N = 48,842$)\n    </span>\n  </div>\n  <p class=\"text-xs text-[#151b20]/80 mb-2 font-sans\">\n    Evaluate LightGBM vs Fairlearn Exponentiated Gradient mitigation. Watch female selection rate jump from $7.8\\%$ to $18.4\\%$, lifting Disparate Impact Ratio to $0.91$ while retaining $84.9\\%$ accuracy!\n  </p>\n  <div id=\"sim79BStudioWidgetMount\"></div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Interactive Lab: Adult Income Benchmark Explorer",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let's inspect the real-world Census benchmark telemetry. In raw data, women face a 7.8% selection rate compared to 27.4% for men.",
+              "dock": "sim"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "That's a Disparate Impact Ratio of only 0.28—a massive Title VII violation! But when we run the Fairlearn reductions ensemble, the female selection rate more than doubles to 18.4%, pushing the ratio to 0.91 and satisfying the 80% rule!",
+              "dock": "sim"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d]\">\n  <div class=\"flex items-center justify-between mb-2\">\n    <div class=\"font-mono text-xs font-black text-[#15803d] uppercase tracking-wide\">\n      🔬 SIMULATOR 7.9 TAB B: ADULT INCOME BENCHMARK EXPLORER\n    </div>\n    <span class=\"text-[10px] font-mono font-bold bg-[#dcfce7] text-[#15803d] px-2 py-0.5 rounded border border-[#151b20]\">\n      UCI Adult Census ($N = 48,842$)\n    </span>\n  </div>\n  <p class=\"text-xs text-[#151b20]/80 mb-2 font-sans\">\n    Evaluate LightGBM vs Fairlearn Exponentiated Gradient mitigation. Watch female selection rate jump from $7.8\\%$ to $18.4\\%$, lifting Disparate Impact Ratio to $0.91$ while retaining $84.9\\%$ accuracy!\n  </p>\n  <div id=\"sim79BStudioWidgetMount\"></div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "Welcome to Simulator 7.9 Tab B: the Adult Income Benchmark Explorer. Here, we inspect live telemetry from the canonical UCI Adult Census dataset of 48,842 individuals.\n\nToggle between Demographic Parity, Equalized Odds, and Equal Opportunity constraints. Adjust the ensemble mixture size to watch the selection rates converge, disparate impact ratio rise past 0.80, and Theil inequality drop by over 60% with only a 2% cost in predictive accuracy."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Let's inspect the real-world Census benchmark telemetry. In raw data, women face a 7.8% selection rate compared to 27.4% for men.\n\nKaito: That's a Disparate Impact Ratio of only 0.28—a massive Title VII violation! But when we run the Fairlearn reductions ensemble, the female selection rate more than doubles to 18.4%, pushing the ratio to 0.91 and satisfying the 80% rule!"
+        }
+      },
+      {
+        "id": "ch7_p9_s13",
+        "title": "Active Checkpoint 2: Theil Index Additive Invariant",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Active Checkpoint 2: Theil Index Additive Invariant",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us test your mastery of econometric fairness in Active Checkpoint 2. Suppose a production credit scoring model achieves perfect Demographic Parity between demographic groups, such that T_between equals zero.",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Does this mathematical condition guarantee that the model is fair to individual loan applicants? Evaluate the exact Theil additive decomposition theorem.",
+              "dock": "checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d]\">\n  <div class=\"flex items-center justify-between mb-2\">\n    <div class=\"font-mono text-xs font-black text-[#15803d] uppercase tracking-wide\">\n      💡 ACTIVE RECALL CHECKPOINT 7.9.2: THEIL DECOMPOSITION\n    </div>\n    <span class=\"text-[10px] font-mono font-bold bg-[#dcfce7] text-[#15803d] px-2 py-0.5 rounded border border-[#151b20]\">\n      Welfare Economics\n    </span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans font-medium mb-3\">\n    An algorithmic credit model achieves perfect Demographic Parity between two ethnic groups ($T_{\\text{between}} = 0$).<br>\n    Does this guarantee that the model is fair to individual applicants? Explain using $T = T_{\\text{within}} + T_{\\text{between}}$.\n  </p>\n  <div id=\"slideQuizCheckpointMount\"></div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Active Checkpoint 2: Theil Index Additive Invariant",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Checkpoint 2 tackles the difference between macro demographic parity and individual fairness. Kaito, if T_between is zero, can the model still treat individual peers unfairly?",
+              "dock": "checkpoint"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Absolutely! If T_between is zero, group averages match, but T_within can still be huge if benefits are concentrated among a few elites inside each group! Macro equality doesn't guarantee micro fairness!",
+              "dock": "checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d]\">\n  <div class=\"flex items-center justify-between mb-2\">\n    <div class=\"font-mono text-xs font-black text-[#15803d] uppercase tracking-wide\">\n      💡 ACTIVE RECALL CHECKPOINT 7.9.2: THEIL DECOMPOSITION\n    </div>\n    <span class=\"text-[10px] font-mono font-bold bg-[#dcfce7] text-[#15803d] px-2 py-0.5 rounded border border-[#151b20]\">\n      Welfare Economics\n    </span>\n  </div>\n  <p class=\"text-xs text-[#151b20] font-sans font-medium mb-3\">\n    An algorithmic credit model achieves perfect Demographic Parity between two ethnic groups ($T_{\\text{between}} = 0$).<br>\n    Does this guarantee that the model is fair to individual applicants? Explain using $T = T_{\\text{within}} + T_{\\text{between}}$.\n  </p>\n  <div id=\"slideQuizCheckpointMount\"></div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "Let us test your mastery of econometric fairness in Active Checkpoint 2. Suppose a production credit scoring model achieves perfect Demographic Parity between demographic groups, such that T_between equals zero.\n\nDoes this mathematical condition guarantee that the model is fair to individual loan applicants? Evaluate the exact Theil additive decomposition theorem."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Checkpoint 2 tackles the difference between macro demographic parity and individual fairness. Kaito, if T_between is zero, can the model still treat individual peers unfairly?\n\nKaito: Absolutely! If T_between is zero, group averages match, but T_within can still be huge if benefits are concentrated among a few elites inside each group! Macro equality doesn't guarantee micro fairness!"
+        }
+      },
+      {
+        "id": "ch7_p9_s14",
+        "title": "Empirical Case Study: UCI Adult Income Benchmark",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Empirical Case Study: UCI Adult Income Benchmark",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To ground the reductions theory in production reality, we examine the canonical UCI Adult Census Income benchmark. Containing 48,842 records predicting annual income exceeding $50,000, unconstrained LightGBM models reflect historic societal gender disparities.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "The raw model achieves 87.1% accuracy but selects women at only 7.8% compared to 27.4% for men, producing an illegal Disparate Impact Ratio of 0.28. Applying Fairlearn's ExponentiatedGradient with DemographicParity lifts female selection to 18.4%, elevating DIR to 0.91 while preserving 84.9% predictive accuracy.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      UCI Adult Census Income Benchmark Telemetry ($N = 48,842$)\n    </div>\n    <div class=\"grid grid-cols-2 md:grid-cols-4 gap-2 mt-2 text-center font-mono\">\n      <div class=\"p-2 bg-[#f8fafc] border border-[#151b20] rounded\">\n        <div class=\"text-[9px] text-[#64748b]\">Unconstrained DIR</div>\n        <div class=\"font-black text-sm text-[#dc2626]\">0.28</div>\n        <div class=\"text-[8px] text-[#dc2626]\">Illegal (&lt; 0.80)</div>\n      </div>\n      <div class=\"p-2 bg-[#f8fafc] border border-[#151b20] rounded\">\n        <div class=\"text-[9px] text-[#64748b]\">Mitigated DIR</div>\n        <div class=\"font-black text-sm text-[#15803d]\">0.91</div>\n        <div class=\"text-[8px] text-[#15803d]\">EEOC Compliant</div>\n      </div>\n      <div class=\"p-2 bg-[#f8fafc] border border-[#151b20] rounded\">\n        <div class=\"text-[9px] text-[#64748b]\">Parity Gap ($\\Delta_{\\text{DP}}$)</div>\n        <div class=\"font-black text-sm text-[#0e7490]\">19.6% → 1.8%</div>\n        <div class=\"text-[8px] text-[#0e7490]\">-90.8% Reduction</div>\n      </div>\n      <div class=\"p-2 bg-[#f8fafc] border border-[#151b20] rounded\">\n        <div class=\"text-[9px] text-[#64748b]\">Accuracy Tradeoff</div>\n        <div class=\"font-black text-sm text-[#b45309]\">87.1% → 84.9%</div>\n        <div class=\"text-[8px] text-[#b45309]\">-2.2% Cost</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Baseline Root Cause Analysis</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        Features like `hours-per-week` and `occupation-exec-managerial` strongly proxy gender. Without explicit constraints, gradient boosted trees maximize mutual information with historical salary labels, heavily discounting female candidates.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase mb-1\">Reductions Mechanism in Action</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        Over 16 game rounds, the exponentiated gradient auditor steadily increases cost-sensitive weights on false rejections of qualified women. The resulting 10-model ensemble achieves compliant parity without retraining the underlying feature extractor.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Empirical Case Study: UCI Adult Income Benchmark",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "The Adult Census case study is the quintessential proof that fairness mitigation does not require catastrophic sacrifices in accuracy.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Look at the numbers: we eliminated over 90% of the demographic parity gap—dropping it from 19.6% down to 1.8%—while giving up only 2.2% in accuracy! That's a phenomenal Pareto trade-off!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly. A Disparate Impact Ratio of 0.91 firmly satisfies EEOC Four-Fifths compliance, transforming an unusable model into a deployable, legally defensible product.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      UCI Adult Census Income Benchmark Telemetry ($N = 48,842$)\n    </div>\n    <div class=\"grid grid-cols-2 md:grid-cols-4 gap-2 mt-2 text-center font-mono\">\n      <div class=\"p-2 bg-[#f8fafc] border border-[#151b20] rounded\">\n        <div class=\"text-[9px] text-[#64748b]\">Unconstrained DIR</div>\n        <div class=\"font-black text-sm text-[#dc2626]\">0.28</div>\n        <div class=\"text-[8px] text-[#dc2626]\">Illegal (&lt; 0.80)</div>\n      </div>\n      <div class=\"p-2 bg-[#f8fafc] border border-[#151b20] rounded\">\n        <div class=\"text-[9px] text-[#64748b]\">Mitigated DIR</div>\n        <div class=\"font-black text-sm text-[#15803d]\">0.91</div>\n        <div class=\"text-[8px] text-[#15803d]\">EEOC Compliant</div>\n      </div>\n      <div class=\"p-2 bg-[#f8fafc] border border-[#151b20] rounded\">\n        <div class=\"text-[9px] text-[#64748b]\">Parity Gap ($\\Delta_{\\text{DP}}$)</div>\n        <div class=\"font-black text-sm text-[#0e7490]\">19.6% → 1.8%</div>\n        <div class=\"text-[8px] text-[#0e7490]\">-90.8% Reduction</div>\n      </div>\n      <div class=\"p-2 bg-[#f8fafc] border border-[#151b20] rounded\">\n        <div class=\"text-[9px] text-[#64748b]\">Accuracy Tradeoff</div>\n        <div class=\"font-black text-sm text-[#b45309]\">87.1% → 84.9%</div>\n        <div class=\"text-[8px] text-[#b45309]\">-2.2% Cost</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-3\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#b45309] uppercase mb-1\">Baseline Root Cause Analysis</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        Features like `hours-per-week` and `occupation-exec-managerial` strongly proxy gender. Without explicit constraints, gradient boosted trees maximize mutual information with historical salary labels, heavily discounting female candidates.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase mb-1\">Reductions Mechanism in Action</div>\n      <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n        Over 16 game rounds, the exponentiated gradient auditor steadily increases cost-sensitive weights on false rejections of qualified women. The resulting 10-model ensemble achieves compliant parity without retraining the underlying feature extractor.\n      </p>\n    </div>\n  </div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "To ground the reductions theory in production reality, we examine the canonical UCI Adult Census Income benchmark. Containing 48,842 records predicting annual income exceeding $50,000, unconstrained LightGBM models reflect historic societal gender disparities.\n\nThe raw model achieves 87.1% accuracy but selects women at only 7.8% compared to 27.4% for men, producing an illegal Disparate Impact Ratio of 0.28. Applying Fairlearn's ExponentiatedGradient with DemographicParity lifts female selection to 18.4%, elevating DIR to 0.91 while preserving 84.9% predictive accuracy."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: The Adult Census case study is the quintessential proof that fairness mitigation does not require catastrophic sacrifices in accuracy.\n\nKaito: Look at the numbers: we eliminated over 90% of the demographic parity gap—dropping it from 19.6% down to 1.8%—while giving up only 2.2% in accuracy! That's a phenomenal Pareto trade-off!\n\nDr. Nova: Exactly. A Disparate Impact Ratio of 0.91 firmly satisfies EEOC Four-Fifths compliance, transforming an unusable model into a deployable, legally defensible product."
+        }
+      },
+      {
+        "id": "ch7_p9_s15",
+        "title": "Cross-Toolkit Production MLOps Workflow: Audit to Mitigation",
+        "type": "content",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Cross-Toolkit Production MLOps Workflow: Audit to Mitigation",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "How do enterprise machine learning engineering teams structure their end-to-end fairness workflows across open-source toolkits? The industry standard architecture operates in four sequential phases.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Phase 1 performs a MetricFrame disaggregated audit across protected intersections. Phase 2 formulates the constrained optimization problem via the Reductions framework. Phase 3 verifies the Theil inequality decomposition to prevent intra-group harms. Finally, Phase 4 outputs cryptographic Model Cards and Datasheets for automated release gating.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-2\">\n      The 4-Stage Enterprise Fairness MLOps Pipeline\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-4 gap-2 text-[10px] font-sans\">\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#0e7490]\">Stage 1: Audit</div>\n        <div class=\"font-black text-xs text-[#151b20] mt-0.5\">MetricFrame Audit</div>\n        <div class=\"text-[#64748b] mt-1\">Compute disaggregated rates, DIR, and group minimax risks across $A_1 \\times A_2$.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#b45309]\">Stage 2: Mitigate</div>\n        <div class=\"font-black text-xs text-[#151b20] mt-0.5\">Reductions Game</div>\n        <div class=\"text-[#64748b] mt-1\">Run Exponentiated Gradient with LightGBM base oracle to satisfy $\\epsilon$-tolerance.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#7c3aed]\">Stage 3: Validate</div>\n        <div class=\"font-black text-xs text-[#151b20] mt-0.5\">Theil Invariant Check</div>\n        <div class=\"text-[#64748b] mt-1\">Verify $T = T_{\\text{within}} + T_{\\text{between}}$ to confirm micro-fairness wasn't compromised.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#15803d]\">Stage 4: Gate</div>\n        <div class=\"font-black text-xs text-[#151b20] mt-0.5\">CI/CD Gating & Cards</div>\n        <div class=\"text-[#64748b] mt-1\">Publish machine-readable Model Cards and enforce automated pull-request release gates.</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase mb-1\">Code Snippet: Fairlearn Reductions Pipeline</div>\n    <pre class=\"bg-[#151b20] text-[#c9f3f4] p-2.5 rounded font-mono text-[10px] overflow-x-auto leading-relaxed\">\nfrom fairlearn.reductions import ExponentiatedGradient, DemographicParity\nfrom lightgbm import LGBMClassifier\n\n# 1. Instantiate base cost-sensitive estimator\nbase_estimator = LGBMClassifier(n_estimators=100, random_state=42)\n\n# 2. Wrap in ExponentiatedGradient reductions engine\nmitigator = ExponentiatedGradient(\n    estimator=base_estimator,\n    constraints=DemographicParity(difference_bound=0.02),\n    eps=0.01,\n    max_iter=20\n)\n\n# 3. Fit fair randomized ensemble\nmitigator.fit(X_train, y_train, sensitive_features=A_train)\ny_pred = mitigator.predict(X_test)</pre>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Cross-Toolkit Production MLOps Workflow: Audit to Mitigation",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Notice how cleanly Fairlearn integrates into standard Python ML pipelines. In just four lines of code, you wrap an unconstrained LightGBM classifier with an Exponentiated Gradient reductions solver.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And the output is a standard estimator object! You can call .predict() or .predict_proba() just like any other scikit-learn model, making it completely drop-in ready for deployment pipelines!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Indeed. This seamless interoperability is what allows organizations to scale fairness enforcement across hundreds of production models without rewriting underlying architectures.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-2\">\n      The 4-Stage Enterprise Fairness MLOps Pipeline\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-4 gap-2 text-[10px] font-sans\">\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#0e7490]\">Stage 1: Audit</div>\n        <div class=\"font-black text-xs text-[#151b20] mt-0.5\">MetricFrame Audit</div>\n        <div class=\"text-[#64748b] mt-1\">Compute disaggregated rates, DIR, and group minimax risks across $A_1 \\times A_2$.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#b45309]\">Stage 2: Mitigate</div>\n        <div class=\"font-black text-xs text-[#151b20] mt-0.5\">Reductions Game</div>\n        <div class=\"text-[#64748b] mt-1\">Run Exponentiated Gradient with LightGBM base oracle to satisfy $\\epsilon$-tolerance.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#7c3aed]\">Stage 3: Validate</div>\n        <div class=\"font-black text-xs text-[#151b20] mt-0.5\">Theil Invariant Check</div>\n        <div class=\"text-[#64748b] mt-1\">Verify $T = T_{\\text{within}} + T_{\\text{between}}$ to confirm micro-fairness wasn't compromised.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#15803d]\">Stage 4: Gate</div>\n        <div class=\"font-black text-xs text-[#151b20] mt-0.5\">CI/CD Gating & Cards</div>\n        <div class=\"text-[#64748b] mt-1\">Publish machine-readable Model Cards and enforce automated pull-request release gates.</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <div class=\"font-mono text-xs font-bold text-[#15803d] uppercase mb-1\">Code Snippet: Fairlearn Reductions Pipeline</div>\n    <pre class=\"bg-[#151b20] text-[#c9f3f4] p-2.5 rounded font-mono text-[10px] overflow-x-auto leading-relaxed\">\nfrom fairlearn.reductions import ExponentiatedGradient, DemographicParity\nfrom lightgbm import LGBMClassifier\n\n# 1. Instantiate base cost-sensitive estimator\nbase_estimator = LGBMClassifier(n_estimators=100, random_state=42)\n\n# 2. Wrap in ExponentiatedGradient reductions engine\nmitigator = ExponentiatedGradient(\n    estimator=base_estimator,\n    constraints=DemographicParity(difference_bound=0.02),\n    eps=0.01,\n    max_iter=20\n)\n\n# 3. Fit fair randomized ensemble\nmitigator.fit(X_train, y_train, sensitive_features=A_train)\ny_pred = mitigator.predict(X_test)</pre>\n  </div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "How do enterprise machine learning engineering teams structure their end-to-end fairness workflows across open-source toolkits? The industry standard architecture operates in four sequential phases.\n\nPhase 1 performs a MetricFrame disaggregated audit across protected intersections. Phase 2 formulates the constrained optimization problem via the Reductions framework. Phase 3 verifies the Theil inequality decomposition to prevent intra-group harms. Finally, Phase 4 outputs cryptographic Model Cards and Datasheets for automated release gating."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Notice how cleanly Fairlearn integrates into standard Python ML pipelines. In just four lines of code, you wrap an unconstrained LightGBM classifier with an Exponentiated Gradient reductions solver.\n\nKaito: And the output is a standard estimator object! You can call .predict() or .predict_proba() just like any other scikit-learn model, making it completely drop-in ready for deployment pipelines!\n\nDr. Nova: Indeed. This seamless interoperability is what allows organizations to scale fairness enforcement across hundreds of production models without rewriting underlying architectures."
+        }
+      },
+      {
+        "id": "ch7_p9_s16",
+        "title": "Production Implementation: Pydantic V2 & 4 Cardinal Rules",
+        "type": "capstone",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Production Implementation: Pydantic V2 & 4 Cardinal Rules",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "We conclude Lesson 7.9 with production-grade contract enforcement. Using Pydantic V2, we formalize the ReductionsGameContract and TheilDecompositionContract, guaranteeing exact convergence and additive decomposition before model artifacts are promoted to registry.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Remember the 4 Cardinal Rules of Production Fairness Auditing: Disaggregate intersectionally via MetricFrame tensors, reduce constrained optimization to cost-sensitive games, decompose econometric inequality via the Theil invariant, and enforce hard automated CI/CD gating under strict logical conjunction.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d]\">\n    <div class=\"flex items-center justify-between mb-1\">\n      <span class=\"font-mono font-black text-xs text-[#15803d] uppercase tracking-wider\">\n        🏛️ PRODUCTION CAPSTONE: AUDITED PYDANTIC V2 SUITE & 4 CARDINAL RULES\n      </span>\n      <span class=\"px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#dcfce7] text-[#15803d] border border-[#151b20]\">\n        Production Gate\n      </span>\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n      Enforce algorithmic fairness contracts at build time using runtime Pydantic validation and our 4 Cardinal Production Auditing Rules.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2 text-[11px]\">\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#0e7490]\">1. Disaggregate via MetricFrame</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Never audit aggregate accuracy alone. Always evaluate multi-metric disaggregation tensors across Cartesian intersections $A_1 \\times A_2$.</div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#b45309]\">2. Solve via Reductions Games</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Avoid ad-hoc loss penalization. Solve two-player zero-sum exponentiated gradient games to guarantee $\\epsilon$-approximate saddle point Pareto efficiency.</div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#7c3aed]\">3. Decompose Econometric Theil</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Never settle for macro demographic parity alone ($T_{\\text{between}} = 0$). Always audit internal subgroup inequality $T_{\\text{within}}$ to protect individual applicants.</div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#15803d]\">4. Enforce Conjunction Gates</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Enforce automated CI/CD gating: $\\text{DEPLOY} \\iff \\text{DIR} \\ge 0.80 \\land \\Delta_{\\text{EO}} \\le \\tau \\land R_{\\text{worst}} \\le R_{\\text{ceil}} \\land \\text{Datasheet}$.</div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#151b20] text-[#c9f3f4] font-mono text-[10px] shadow-[2px_2px_0px_#151b20] overflow-x-auto\">\n    <div class=\"text-[#94a3b8] mb-1\"># PRODUCTION PYDANTIC V2 THEIL DECOMPOSITION & REDUCTIONS CONTRACT</div>\n    <div>assert game_contract.disparity_reduced is True, \"Reductions game failed to reduce disparity\"</div>\n    <div>assert game_contract.saddle_point_reached is True, \"Saddle point tolerance exceeded\"</div>\n    <div>assert theil_contract.decomposition_exact is True, \"Theil additive invariant T = Tw + Tb violated\"</div>\n    <div>assert audit_report.evaluate_release_conjunction() is True, \"Automated CI/CD Gating Failed\"</div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Production Implementation: Pydantic V2 & 4 Cardinal Rules",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Congratulations on completing Lesson 7.9! We have connected the mathematical rigor of the Reductions framework and Theil inequality decompositions directly to enterprise MLOps pipelines.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "With Fairlearn MetricFrames, Exponentiated Gradient solvers, and Pydantic validation contracts, we now possess the full engineering stack to detect, measure, and eliminate bias in production systems!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Indeed. In our final capstone lesson, Lesson 7.10, we will explore emerging frontiers: large language model alignment, algorithmic recourse, and causal counterfactual auditing.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d]\">\n    <div class=\"flex items-center justify-between mb-1\">\n      <span class=\"font-mono font-black text-xs text-[#15803d] uppercase tracking-wider\">\n        🏛️ PRODUCTION CAPSTONE: AUDITED PYDANTIC V2 SUITE & 4 CARDINAL RULES\n      </span>\n      <span class=\"px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#dcfce7] text-[#15803d] border border-[#151b20]\">\n        Production Gate\n      </span>\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n      Enforce algorithmic fairness contracts at build time using runtime Pydantic validation and our 4 Cardinal Production Auditing Rules.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2 text-[11px]\">\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#0e7490]\">1. Disaggregate via MetricFrame</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Never audit aggregate accuracy alone. Always evaluate multi-metric disaggregation tensors across Cartesian intersections $A_1 \\times A_2$.</div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#b45309]\">2. Solve via Reductions Games</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Avoid ad-hoc loss penalization. Solve two-player zero-sum exponentiated gradient games to guarantee $\\epsilon$-approximate saddle point Pareto efficiency.</div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#7c3aed]\">3. Decompose Econometric Theil</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Never settle for macro demographic parity alone ($T_{\\text{between}} = 0$). Always audit internal subgroup inequality $T_{\\text{within}}$ to protect individual applicants.</div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#15803d]\">4. Enforce Conjunction Gates</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Enforce automated CI/CD gating: $\\text{DEPLOY} \\iff \\text{DIR} \\ge 0.80 \\land \\Delta_{\\text{EO}} \\le \\tau \\land R_{\\text{worst}} \\le R_{\\text{ceil}} \\land \\text{Datasheet}$.</div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#151b20] text-[#c9f3f4] font-mono text-[10px] shadow-[2px_2px_0px_#151b20] overflow-x-auto\">\n    <div class=\"text-[#94a3b8] mb-1\"># PRODUCTION PYDANTIC V2 THEIL DECOMPOSITION & REDUCTIONS CONTRACT</div>\n    <div>assert game_contract.disparity_reduced is True, \"Reductions game failed to reduce disparity\"</div>\n    <div>assert game_contract.saddle_point_reached is True, \"Saddle point tolerance exceeded\"</div>\n    <div>assert theil_contract.decomposition_exact is True, \"Theil additive invariant T = Tw + Tb violated\"</div>\n    <div>assert audit_report.evaluate_release_conjunction() is True, \"Automated CI/CD Gating Failed\"</div>\n  </div>\n</div>\n"
+        },
+        "speaker": {
+          "name": "Dr. Nova",
+          "role": "Senior AI Architect",
+          "avatar": "nova",
+          "speech": "We conclude Lesson 7.9 with production-grade contract enforcement. Using Pydantic V2, we formalize the ReductionsGameContract and TheilDecompositionContract, guaranteeing exact convergence and additive decomposition before model artifacts are promoted to registry.\n\nRemember the 4 Cardinal Rules of Production Fairness Auditing: Disaggregate intersectionally via MetricFrame tensors, reduce constrained optimization to cost-sensitive games, decompose econometric inequality via the Theil invariant, and enforce hard automated CI/CD gating under strict logical conjunction."
+        },
+        "duo_speaker": {
+          "name": "Dr. Nova & Kaito",
+          "role": "Lead Architect & Senior ML Engineer",
+          "avatar": "duo",
+          "speech": "Dr. Nova: Congratulations on completing Lesson 7.9! We have connected the mathematical rigor of the Reductions framework and Theil inequality decompositions directly to enterprise MLOps pipelines.\n\nKaito: With Fairlearn MetricFrames, Exponentiated Gradient solvers, and Pydantic validation contracts, we now possess the full engineering stack to detect, measure, and eliminate bias in production systems!\n\nDr. Nova: Indeed. In our final capstone lesson, Lesson 7.10, we will explore emerging frontiers: large language model alignment, algorithmic recourse, and causal counterfactual auditing."
         }
       }
     ]
@@ -5713,287 +6374,662 @@ window.CURRICULUM_CH7 = window.curriculum_chapter7 = {
     "chapter": 7,
     "part": 10,
     "key": "ch7_p10",
-    "badge": "◆ TRACK 7 • LESSON 7.10: EMERGING FAIRNESS TOPICS: CAUSALITY, MINIMAX, AND GENERATIVE AI",
     "index": "Lesson 10 of 10",
     "lessonTitle": "Emerging Fairness Topics: Causality, Minimax, and Generative AI",
+    "title": "Emerging Fairness Topics: Causality, Minimax, and Generative AI",
+    "badge": "16 Masterclass Slides • Socratic Dialogue • Interactive Sandbox",
+    "description": "Pearl's Causal Hierarchy, Structural Causal Models (SCMs), Kusner Counterfactual Fairness, Linear Gaussian Abduction, Kearns Multi-Group Minimax Gerrymandering, Cummings DP-SGD Minority Variance Asymmetry, Foundation Model Orthogonal Projection & WEAT, and LSAC Law School Benchmark.",
     "slides": [
       {
-        "id": "s1",
-        "title": "Emerging Fairness Topics: Causality, Minimax, and Generative AI",
+        "id": "ch7_p10_s1",
+        "title": "Emerging Fairness Topics: Causality, Minimax & GenAI",
         "type": "title",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Emerging Fairness Topics: Causality, Minimax, and Generative AI",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Emerging Fairness Topics: Causality, Minimax & GenAI",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 7.10. Today we examine emerging fairness topics: causality, minimax, and generative ai, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
-            }
-          ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 7: Foundations</span>\n    <span>•</span>\n    <span>Lesson 7.10</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Emerging Fairness Topics: Causality, Minimax, and Generative AI\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into emerging fairness topics: causality, minimax, and generative ai with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Emerging Fairness Topics: Causality, Minimax, and Generative AI",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what is the core architectural challenge we are solving in Lesson 7.10?"
+              "text": "Welcome to Lesson 7.10, our culminating capstone on Emerging Fairness Topics in Dataset Fundamentals: Causality, Minimax Optimization, Differential Privacy Conflicts, and Generative AI Debiasing. Observational fairness metrics operate strictly at Layer 1 of Judea Pearl's causal hierarchy, leaving systems vulnerable to proxy leakage and feedback loops.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Welcome to Lesson 7.10. Today we examine emerging fairness topics: causality, minimax, and generative ai, establishing the mathematical foundations and production discipline required to guarantee dataset reliability."
+              "text": "In this masterclass, we elevate our mathematical architecture to Layer 3 Counterfactual Invariance via Structural Causal Models, defeat fairness gerrymandering across exponential subgroups with Minimax theory, quantify the quadratic minority variance penalty in Differentially Private SGD, and eliminate latent gender bias in foundation model embeddings through orthogonal projection.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-6 md:p-8 rounded-2xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[5px_5px_0px_#22bfd7] text-center space-y-4\">\n  <div class=\"inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c9f3f4] text-[#0e7490] font-mono text-xs border-2 border-[#151b20] font-black uppercase tracking-wider shadow-[2px_2px_0px_#151b20]\">\n    <span>◆ Track 7: Foundations</span>\n    <span>•</span>\n    <span>Lesson 7.10</span>\n  </div>\n  <h2 class=\"text-2xl md:text-3xl font-black text-[#151b20] tracking-tight\">\n    Emerging Fairness Topics: Causality, Minimax, and Generative AI\n  </h2>\n  <p class=\"text-sm md:text-base text-[#334155] max-w-2xl mx-auto leading-relaxed font-medium\">\n    Deep dive into emerging fairness topics: causality, minimax, and generative ai with formal mathematical formulations, production engineering, and failure-mode analysis.\n  </p>\n  <div class=\"pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#fff0b9] border border-[#151b20] font-bold text-[#151b20]\">📐 Formal Foundations</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#ffd8ce] border border-[#151b20] font-bold text-[#151b20]\">⚠️ Failure Modes</span>\n    <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] border border-[#151b20] font-bold text-[#151b20]\">🛡️ Production Contracts</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#0e7490]\">\n    <div class=\"text-xs font-mono font-black text-[#0e7490] uppercase tracking-wider mb-1\">\n      TRACK 7 • DATASET BIAS &amp; FAIRNESS • LESSON 7.10\n    </div>\n    <h1 class=\"text-xl md:text-2xl font-black text-[#151b20] mb-2\">\n      Emerging Fairness Topics: Causality, Minimax &amp; Generative AI\n    </h1>\n    <p class=\"text-xs md:text-sm text-[#334155] font-sans leading-relaxed\">\n      Pearlian Structural Causal Models (SCMs), Counterfactual Abduction, Kearns Minimax Subgroup Fairness, Cummings DP-Fairness Variance Asymmetry, and Latent Embedding Orthogonal Projection.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-4 gap-2 text-[11px]\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-black text-[#0e7490] mb-1\">1. CAUSAL SCMS</div>\n      <div class=\"text-[#151b20]/80\">Abduction-Action-Prediction engine achieving exact counterfactual invariance ($\\Delta_{\\text{CF}} = 0$).</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-black text-[#b45309] mb-1\">2. MINIMAX SUBGROUPS</div>\n      <div class=\"text-[#151b20]/80\">Protecting $2^K$ combinatorial slices against intersectional gerrymandering.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-black text-[#7c3aed] mb-1\">3. DP-FAIRNESS CLASH</div>\n      <div class=\"text-[#151b20]/80\">Quadratic $\\mathcal{O}(n_g^{-2})$ minority noise variance penalty in DP-SGD training.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-black text-[#15803d] mb-1\">4. GENAI PROJECTION</div>\n      <div class=\"text-[#151b20]/80\">Orthogonal complement projection $\\mathbf{P}_\\perp$ driving WEAT effect size $d \\to 0.00$.</div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Emerging Fairness Topics: Causality, Minimax & GenAI",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Lesson 7.10, our final frontier in algorithmic fairness! Today we tackle four domains where classical observational fairness fails completely: Causal Counterfactuals, Minimax Gerrymandering, Differential Privacy Conflicts, and Generative AI Latent Debiasing.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait—even if we balance Demographic Parity and Equalized Odds across individual protected groups, why do models still fail in practice? Can privacy noise or high-dimensional word embeddings silently reintroduce systemic harm?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Precisely, Kaito! Dropping race doesn't stop GPA and LSAT from acting as causal proxies. Tight differential privacy noise obliterates minority gradients quadratically. Let's analyze all four mathematical frontiers systematically.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#0e7490]\">\n    <div class=\"text-xs font-mono font-black text-[#0e7490] uppercase tracking-wider mb-1\">\n      TRACK 7 • DATASET BIAS &amp; FAIRNESS • LESSON 7.10\n    </div>\n    <h1 class=\"text-xl md:text-2xl font-black text-[#151b20] mb-2\">\n      Emerging Fairness Topics: Causality, Minimax &amp; Generative AI\n    </h1>\n    <p class=\"text-xs md:text-sm text-[#334155] font-sans leading-relaxed\">\n      Pearlian Structural Causal Models (SCMs), Counterfactual Abduction, Kearns Minimax Subgroup Fairness, Cummings DP-Fairness Variance Asymmetry, and Latent Embedding Orthogonal Projection.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-4 gap-2 text-[11px]\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-black text-[#0e7490] mb-1\">1. CAUSAL SCMS</div>\n      <div class=\"text-[#151b20]/80\">Abduction-Action-Prediction engine achieving exact counterfactual invariance ($\\Delta_{\\text{CF}} = 0$).</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-black text-[#b45309] mb-1\">2. MINIMAX SUBGROUPS</div>\n      <div class=\"text-[#151b20]/80\">Protecting $2^K$ combinatorial slices against intersectional gerrymandering.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-black text-[#7c3aed] mb-1\">3. DP-FAIRNESS CLASH</div>\n      <div class=\"text-[#151b20]/80\">Quadratic $\\mathcal{O}(n_g^{-2})$ minority noise variance penalty in DP-SGD training.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-black text-[#15803d] mb-1\">4. GENAI PROJECTION</div>\n      <div class=\"text-[#151b20]/80\">Orthogonal complement projection $\\mathbf{P}_\\perp$ driving WEAT effect size $d \\to 0.00$.</div>\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
-        "id": "s2",
-        "title": "Conceptual Overview & Causal Frontiers",
-        "type": "equation",
+        "id": "ch7_p10_s2",
+        "title": "Pearl's Causal Hierarchy: Seeing, Doing, and Imagining",
+        "type": "concept",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & Causal Frontiers",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Pearl's Causal Hierarchy: Seeing, Doing, and Imagining",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & Causal Frontiers. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{P}(\\hat{Y} = 1 \\mid A = a) = \\mathbb{P}(\\hat{Y} = 1 \\mid A = a')$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Counterfactual Fairness</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Grounding algorithmic decisions in Structural Causal Models (SCMs) that simulate counterfactual interventions.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Multi-Group Minimax Fairness</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Preventing fairness gerrymandering across exponential combinatorial intersections.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Differential Privacy vs. Fairness Conflict</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Resolving disproportionate accuracy degradation in minority cohorts under uniform differential privacy noise injection.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Generative AI Representation Bias</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Geometric debiasing of foundation model embedding subspaces.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & Causal Frontiers",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does conceptual overview & causal frontiers protect our system against silent distribution shift in production?"
+              "text": "Standard observational metrics—such as Demographic Parity and Equalized Odds—are strictly confined to Layer 1 of Judea Pearl's Causal Hierarchy: Associational Seeing, conditioned on passive statistical correlations P(Y given X, A). Associational estimators cannot distinguish innate applicant merit from upstream systemic bias contamination.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Layer 2 introduces Interventional Doing, denoted P(Y given do(A = a)), which models population-level consequences of randomized interventions by severing incoming arrows into A. Layer 3 reaches the pinnacle: Counterfactual Imagining, asking what decision a specific individual would receive had their sensitive attribute been a-prime, holding all latent exogenous factors U invariant.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{P}(\\hat{Y} = 1 \\mid A = a) = \\mathbb{P}(\\hat{Y} = 1 \\mid A = a')$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Counterfactual Fairness</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Grounding algorithmic decisions in Structural Causal Models (SCMs) that simulate counterfactual interventions.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Multi-Group Minimax Fairness</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Preventing fairness gerrymandering across exponential combinatorial intersections.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">The Differential Privacy vs. Fairness Conflict</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Resolving disproportionate accuracy degradation in minority cohorts under uniform differential privacy noise injection.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Generative AI Representation Bias</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Geometric debiasing of foundation model embedding subspaces.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#7c3aed]\">\n      <div class=\"inline-block px-2 py-0.5 rounded bg-[#e2dfff] border border-[#151b20] font-mono font-black text-[10px] text-[#4338ca] mb-1.5\">\n        LAYER 1: ASSOCIATIONAL\n      </div>\n      <div class=\"font-mono font-black text-sm text-[#151b20] mb-1\">Seeing: $\\mathbb{P}(Y \\mid X, A)$</div>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        Passive statistical correlations (Demographic Parity, Equalized Odds). Incapable of separating innate merit from proxy contamination or historical bias paths.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#b45309]\">\n      <div class=\"inline-block px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-mono font-black text-[10px] text-[#b45309] mb-1.5\">\n        LAYER 2: INTERVENTIONAL\n      </div>\n      <div class=\"font-mono font-black text-sm text-[#151b20] mb-1\">Doing: $\\mathbb{P}(Y \\mid \\text{do}(A = a))$</div>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        Measures population-level causal effects of randomized interventions. Deletes structural equations pointing into $A$, modeling graph surgery across cohorts.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n      <div class=\"inline-block px-2 py-0.5 rounded bg-[#c9f3f4] border border-[#151b20] font-mono font-black text-[10px] text-[#0e7490] mb-1.5\">\n        LAYER 3: COUNTERFACTUAL\n      </div>\n      <div class=\"font-mono font-black text-sm text-[#151b20] mb-1\">Imagining: $\\mathbb{P}(Y_{A \\leftarrow a'} \\mid X, A)$</div>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        Retrospective individual query: what outcome would <em>this exact person</em> receive had their protected attribute been $a'$, keeping innate latent factors $\\mathcal{U}$ constant?\n      </p>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-xs font-sans\">\n    <span class=\"font-mono font-black text-[#dc2626] uppercase mr-1\">Warning:</span>\n    Enforcing Layer 1 parity without a causal model can accept unqualified individuals while penalizing the highest-talent minority candidates through downstream mediation paths.\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Pearl's Causal Hierarchy: Seeing, Doing, and Imagining",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "To understand why standard fairness constraints break down, look at Judea Pearl's 3-layer Causal Hierarchy. Layer 1 is pure association: seeing correlations in observational data.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And Layer 2 is do-calculus—actively intervening on the system to test population outcomes. What makes Layer 3 Counterfactuals fundamentally stronger than Layer 2?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Layer 2 asks about average population effects under do(A = a). Layer 3 conditions on an actual person's factual evidence (X = x, A = a), abducts their hidden personal traits U, and then evaluates what would happen to that exact individual under an alternate demographic assignment a-prime!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#7c3aed]\">\n      <div class=\"inline-block px-2 py-0.5 rounded bg-[#e2dfff] border border-[#151b20] font-mono font-black text-[10px] text-[#4338ca] mb-1.5\">\n        LAYER 1: ASSOCIATIONAL\n      </div>\n      <div class=\"font-mono font-black text-sm text-[#151b20] mb-1\">Seeing: $\\mathbb{P}(Y \\mid X, A)$</div>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        Passive statistical correlations (Demographic Parity, Equalized Odds). Incapable of separating innate merit from proxy contamination or historical bias paths.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#b45309]\">\n      <div class=\"inline-block px-2 py-0.5 rounded bg-[#fff0b9] border border-[#151b20] font-mono font-black text-[10px] text-[#b45309] mb-1.5\">\n        LAYER 2: INTERVENTIONAL\n      </div>\n      <div class=\"font-mono font-black text-sm text-[#151b20] mb-1\">Doing: $\\mathbb{P}(Y \\mid \\text{do}(A = a))$</div>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        Measures population-level causal effects of randomized interventions. Deletes structural equations pointing into $A$, modeling graph surgery across cohorts.\n      </p>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n      <div class=\"inline-block px-2 py-0.5 rounded bg-[#c9f3f4] border border-[#151b20] font-mono font-black text-[10px] text-[#0e7490] mb-1.5\">\n        LAYER 3: COUNTERFACTUAL\n      </div>\n      <div class=\"font-mono font-black text-sm text-[#151b20] mb-1\">Imagining: $\\mathbb{P}(Y_{A \\leftarrow a'} \\mid X, A)$</div>\n      <p class=\"text-[11px] text-[#475569] leading-relaxed\">\n        Retrospective individual query: what outcome would <em>this exact person</em> receive had their protected attribute been $a'$, keeping innate latent factors $\\mathcal{U}$ constant?\n      </p>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20] text-xs font-sans\">\n    <span class=\"font-mono font-black text-[#dc2626] uppercase mr-1\">Warning:</span>\n    Enforcing Layer 1 parity without a causal model can accept unqualified individuals while penalizing the highest-talent minority candidates through downstream mediation paths.\n  </div>\n</div>\n"
         }
       },
       {
-        "id": "s3",
-        "title": "Conceptual Overview & Causal Frontiers: Architecture Flowchart",
-        "type": "figure",
+        "id": "ch7_p10_s3",
+        "title": "Structural Causal Models & Kusner Counterfactual Fairness",
+        "type": "theorem",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Conceptual Overview & Causal Frontiers: Architecture Flowchart",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Structural Causal Models & Kusner Counterfactual Fairness",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Conceptual Overview & Causal Frontiers: Architecture Flowchart. This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  %% Standard 5-Color Semantic Palette\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  U[\"Latent Background Confounders U<br/>(Inherent Talent, Work Ethic)\"]:::purple\n  A[\"Protected Attribute A<br/>(Race, Gender, Age)\"]:::red\n  X[\"Observed Mediators X<br/>(GPA, Credit History, Prior Arrests)\"]:::amber\n  Y_hat[\"Algorithmic Decision Y_hat<br/>(College Admission, Loan Approval)\"]:::blue\n\n  U --> A\n  U --> X\n  A --> X\n  X --> Y_hat\n  U --> Y_hat\n\n  Intervention[\"Counterfactual Intervention do(A := a')<br/>Sever path A -> X<br/>Check: P(Y_hat_a | U) = P(Y_hat_a' | U)\"]:::green\n  A -. Counterfactual Check .-> Intervention\n  Intervention -. Must Not Influence .-> Y_hat</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Counterfactual Fairness</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Grounding algorithmic decisions in Structural Causal Models (SCMs) that simulate counterfactual interventions.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Multi-Group Minimax Fairness</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Preventing fairness gerrymandering across exponential combinatorial intersections.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Conceptual Overview & Causal Frontiers: Architecture Flowchart",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, looking at this workflow diagram for conceptual overview & causal frontiers: architecture flowchart, how does the architectural flow enforce system stability?"
+              "text": "Formally, a Structural Causal Model M is a 3-tuple of exogenous background variables U, observable endogenous variables V, and deterministic structural functions F paired with prior distribution P(U). Every endogenous node V_i is generated recursively as f_i(PA_i, U_i) across a Directed Acyclic Graph.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "This architecture diagram visualizes how physical observations transition across sampling boundaries into discrete tensor representations. Tracking each transition stage prevents undocumented transformations from corrupting the empirical distribution."
+              "text": "Under Kusner et al. 2017, predictor Y-hat is counterfactually fair if for every context (x, a) and every alternative group assignment a-prime, the prediction probability P(Y-hat_A<-a(U) = y given X=x, A=a) equals P(Y-hat_A<-a'(U) = y given X=x, A=a). A predictor conditioned exclusively on non-descendants of A—such as abducted U—guarantees zero counterfactual disparity.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#151b20] my-2 overflow-x-auto text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-2 text-left flex items-center justify-between border-b-2 border-[#151b20]/15 pb-1\">\n    <span class=\"flex items-center gap-1.5\">\n      <span>📊 Architecture &amp; Workflow Diagram</span>\n      <span class=\"text-[#151b20]/40\">•</span>\n      <span class=\"text-[#334155]\">System Flowchart</span>\n    </span>\n    <span class=\"text-[#0e7490] text-[9px] font-mono bg-[#c9f3f4] px-1.5 py-0.5 rounded border border-[#151b20]\">Mermaid SVG</span>\n  </div>\n  <pre class=\"mermaid py-1 flex justify-center text-xs overflow-x-auto leading-normal\">flowchart TD\n  %% Standard 5-Color Semantic Palette\n  classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;\n  classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;\n\n  U[\"Latent Background Confounders U<br/>(Inherent Talent, Work Ethic)\"]:::purple\n  A[\"Protected Attribute A<br/>(Race, Gender, Age)\"]:::red\n  X[\"Observed Mediators X<br/>(GPA, Credit History, Prior Arrests)\"]:::amber\n  Y_hat[\"Algorithmic Decision Y_hat<br/>(College Admission, Loan Approval)\"]:::blue\n\n  U --> A\n  U --> X\n  A --> X\n  X --> Y_hat\n  U --> Y_hat\n\n  Intervention[\"Counterfactual Intervention do(A := a')<br/>Sever path A -> X<br/>Check: P(Y_hat_a | U) = P(Y_hat_a' | U)\"]:::green\n  A -. Counterfactual Check .-> Intervention\n  Intervention -. Must Not Influence .-> Y_hat</pre>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Counterfactual Fairness</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Grounding algorithmic decisions in Structural Causal Models (SCMs) that simulate counterfactual interventions.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Multi-Group Minimax Fairness</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Preventing fairness gerrymandering across exponential combinatorial intersections.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1.5\">\n      Structural Causal Model (SCM): $\\mathcal{M} = \\langle \\mathcal{U}, \\mathcal{V}, \\mathcal{F} \\rangle$\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px] font-sans\">\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#7c3aed]\">Exogenous ($\\mathcal{U}$)</div>\n        <div class=\"text-[#475569] mt-0.5\">Latent background factors outside the model; mutually independent: $\\mathcal{P}(\\mathcal{U}) = \\prod_i \\mathcal{P}(U_i)$.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#0e7490]\">Endogenous ($\\mathcal{V}$)</div>\n        <div class=\"text-[#475569] mt-0.5\">Observable features partitioned into sensitive $\\mathcal{A}$, mediators $\\mathcal{X}$, and outcome $Y$.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#15803d]\">Mechanisms ($\\mathcal{F}$)</div>\n        <div class=\"text-[#475569] mt-0.5\">Structural assignments along a causal DAG: $V_i := f_i(\\text{PA}_i, U_i)$.</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#e2dfff]/40 border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n    <div class=\"font-mono text-xs font-black text-[#4338ca] uppercase mb-1\">\n      Theorem: Kusner's Counterfactual Fairness (2017)\n    </div>\n    <p class=\"text-[11px] text-[#151b20] mb-2\">\n      A predictor $\\hat{Y}$ is <strong>counterfactually fair</strong> iff for all observed contexts $(x, a)$ and all interventions $a' \\in \\text{dom}(\\mathcal{A})$:\n    </p>\n    <div class=\"bg-white p-2.5 rounded-lg border border-[#151b20] text-center text-xs overflow-x-auto\">\n      $$\\begin{aligned}\\mathbb{P}\\big(\\hat{Y}_{\\mathcal{A} \\leftarrow a}(\\mathcal{U}) = y \\mid x, a\\big) &= \\mathbb{P}\\big(\\hat{Y}_{\\mathcal{A} \\leftarrow a'}(\\mathcal{U}) = y \\mid x, a\\big), \\\\ &\\quad \\forall y \\in \\mathcal{Y}, \\; \\forall a' \\in \\text{dom}(\\mathcal{A})\\end{aligned}$$\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Structural Causal Models & Kusner Counterfactual Fairness",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let's formalize Counterfactual Fairness using a Structural Causal Model M = (U, V, F). Exogenous noise variables U encode an individual's unique latent traits, while structural equations F map parents plus noise into observable features V.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "So in a causal admissions DAG, sensitive attribute A has directed arrows into mediating variables like GPA and LSAT! If our classifier just looks at GPA directly, changing A flips the prediction!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Right! Kusner's criterion requires that flipping A to a-prime inside the counterfactual sub-model leaves the predicted distribution identically unchanged, conditioned on the individual's abducted latent U.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1.5\">\n      Structural Causal Model (SCM): $\\mathcal{M} = \\langle \\mathcal{U}, \\mathcal{V}, \\mathcal{F} \\rangle$\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px] font-sans\">\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#7c3aed]\">Exogenous ($\\mathcal{U}$)</div>\n        <div class=\"text-[#475569] mt-0.5\">Latent background factors outside the model; mutually independent: $\\mathcal{P}(\\mathcal{U}) = \\prod_i \\mathcal{P}(U_i)$.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#0e7490]\">Endogenous ($\\mathcal{V}$)</div>\n        <div class=\"text-[#475569] mt-0.5\">Observable features partitioned into sensitive $\\mathcal{A}$, mediators $\\mathcal{X}$, and outcome $Y$.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#15803d]\">Mechanisms ($\\mathcal{F}$)</div>\n        <div class=\"text-[#475569] mt-0.5\">Structural assignments along a causal DAG: $V_i := f_i(\\text{PA}_i, U_i)$.</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#e2dfff]/40 border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20]\">\n    <div class=\"font-mono text-xs font-black text-[#4338ca] uppercase mb-1\">\n      Theorem: Kusner's Counterfactual Fairness (2017)\n    </div>\n    <p class=\"text-[11px] text-[#151b20] mb-2\">\n      A predictor $\\hat{Y}$ is <strong>counterfactually fair</strong> iff for all observed contexts $(x, a)$ and all interventions $a' \\in \\text{dom}(\\mathcal{A})$:\n    </p>\n    <div class=\"bg-white p-2.5 rounded-lg border border-[#151b20] text-center text-xs overflow-x-auto\">\n      $$\\begin{aligned}\\mathbb{P}\\big(\\hat{Y}_{\\mathcal{A} \\leftarrow a}(\\mathcal{U}) = y \\mid x, a\\big) &= \\mathbb{P}\\big(\\hat{Y}_{\\mathcal{A} \\leftarrow a'}(\\mathcal{U}) = y \\mid x, a\\big), \\\\ &\\quad \\forall y \\in \\mathcal{Y}, \\; \\forall a' \\in \\text{dom}(\\mathcal{A})\\end{aligned}$$\n    </div>\n  </div>\n</div>\n"
         }
       },
       {
-        "id": "s4",
-        "title": "Structural Causal Models & Counterfactual Fairness ([Kusner et al., 2017](#ref-kusner2017))",
-        "type": "equation",
+        "id": "ch7_p10_s4",
+        "title": "The 3-Step Counterfactual Engine: Abduction, Action, Prediction",
+        "type": "architecture",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Structural Causal Models & Counterfactual Fairness ([Kusner et al., 2017](#ref-kusner2017))",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "The 3-Step Counterfactual Engine: Abduction, Action, Prediction",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Structural Causal Models & Counterfactual Fairness ([Kusner et al., 2017](#ref-kusner2017)). Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$V_i := f_i(\\text{PA}_i, U_i), \\quad V_i \\in \\mathcal{V}, \\quad U_i \\in \\mathcal{U}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{P}\\left(\\hat{Y}_{A \\leftarrow a}(\\mathcal{U}) = 1 \\;\\middle|\\; X = x, A = a\\right) = \\mathbb{P}\\left(\\hat{Y}_{A \\leftarrow a'}(\\mathcal{U}) = 1 \\;\\middle|\\; X = x, A = a\\right), \\quad \\forall a, a' \\in \\mathcal{A}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{P}(\\mathcal{U} \\mid X = x, A = a)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Abduction</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Compute the posterior distribution over latent background factors given evidence:</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Action</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Perform Pearl&#x27;s intervention $\\text{do}(A := a')$ by substituting the structural equation for $A$, forming the interventional sub-model $\\mathcal{M}_{a'}$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Prediction</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Compute the expected prediction $\\hat{Y}$ on modified model $\\mathcal{M}_{a'}$ using the posterior distribution of $\\mathcal{U}$.</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Structural Causal Models & Counterfactual Fairness ([Kusner et al., 2017](#ref-kusner2017))",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does structural causal models & counterfactual fairness ([kusner et al., 2017](#ref-kusner2017)) protect our system against silent distribution shift in production?"
+              "text": "Evaluating counterfactual queries for a specific applicant requires strictly executing Pearl's three sequential steps in exact order. First, Abduction: apply Bayes' rule to compute the posterior distribution P(U given X=x, A=a) over the individual's latent exogenous traits, conditioned on their factual history.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Second, Action: perform graph surgery do(A <- a-prime), deleting structural equations entering A and replacing A with constant a-prime to induce mutilated model M_{a'}. Third, Prediction: propagate the abducted posterior P(U given x, a) forward through M_{a'} to obtain expected outcome E[Y-hat_{A <- a'}]. Reversing steps 1 and 2 destroys individual identity!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$V_i := f_i(\\text{PA}_i, U_i), \\quad V_i \\in \\mathcal{V}, \\quad U_i \\in \\mathcal{U}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{P}\\left(\\hat{Y}_{A \\leftarrow a}(\\mathcal{U}) = 1 \\;\\middle|\\; X = x, A = a\\right) = \\mathbb{P}\\left(\\hat{Y}_{A \\leftarrow a'}(\\mathcal{U}) = 1 \\;\\middle|\\; X = x, A = a\\right), \\quad \\forall a, a' \\in \\mathcal{A}$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Risk Proxy</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathcal{P}(\\mathcal{U} \\mid X = x, A = a)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Abduction</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Compute the posterior distribution over latent background factors given evidence:</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Action</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Perform Pearl&#x27;s intervention $\\text{do}(A := a')$ by substituting the structural equation for $A$, forming the interventional sub-model $\\mathcal{M}_{a'}$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    <strong class=\"text-[#0e7490] text-xs md:text-sm font-black block\">Prediction</strong>\n    <span class=\"text-[#334155] text-xs block mt-0.5 leading-relaxed font-medium\">Compute the expected prediction $\\hat{Y}$ on modified model $\\mathcal{M}_{a'}$ using the posterior distribution of $\\mathcal{U}$.</span>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#7c3aed]\">\n      <div class=\"font-mono font-black text-xs text-[#7c3aed] uppercase mb-1\">Step 1: Abduction</div>\n      <div class=\"text-[11px] text-[#334155] mb-2\">Update latent exogenous prior $\\mathcal{P}(\\mathcal{U})$ given observed factual context $(x, a)$:</div>\n      <div class=\"bg-[#fffaf0] p-2 rounded border border-[#151b20] text-[10px] overflow-x-auto text-center\">\n        $$\\mathcal{P}(\\mathcal{U} \\mid x, a) = \\frac{\\mathcal{P}(x, a \\mid \\mathcal{U})\\,\\mathcal{P}(\\mathcal{U})}{\\int \\mathcal{P}(x, a \\mid u)\\,\\mathcal{P}(u)\\,du}$$\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#dc2626]\">\n      <div class=\"font-mono font-black text-xs text-[#dc2626] uppercase mb-1\">Step 2: Action</div>\n      <div class=\"text-[11px] text-[#334155] mb-2\">Execute Pearlian graph surgery $\\text{do}(\\mathcal{A} \\leftarrow a')$ on causal model $\\mathcal{M}$:</div>\n      <div class=\"bg-[#ffd8ce]/40 p-2 rounded border border-[#151b20] text-[10px] text-center font-mono font-bold text-[#991b1b]\">\n        Delete $A := f_A(\\text{PA}_A, U_A)$<br/>Replace with $A := a' \\implies \\mathcal{M}_{a'}$\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n      <div class=\"font-mono font-black text-xs text-[#0e7490] uppercase mb-1\">Step 3: Prediction</div>\n      <div class=\"text-[11px] text-[#334155] mb-2\">Forward-propagate abducted $\\mathcal{U}$ through mutilated equations $\\mathcal{F}_{a'}$:</div>\n      <div class=\"bg-[#fffaf0] p-2 rounded border border-[#151b20] text-[10px] overflow-x-auto text-center\">\n        $$\\mathbb{E}[\\hat{Y}_{\\mathcal{A} \\leftarrow a'}] = \\int \\hat{Y}_{\\mathcal{M}_{a'}}(u)\\,d\\mathcal{P}(u \\mid x, a)$$\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#fff0b9]/60 border-2 border-[#151b20] text-xs font-sans\">\n    <strong class=\"font-mono text-[#b45309]\">STRICT CAUSAL PRECEDENCE:</strong> Abduction MUST precede Action! Executing $\\text{do}(A := a')$ first severs incoming causal arrows and erases $(x, a)$, destroying the individual's latent identity $\\mathcal{U}$.\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "The 3-Step Counterfactual Engine: Abduction, Action, Prediction",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Counterfactual reasoning executes a strict 3-step mathematical pipeline: Abduction, Action, and Prediction.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Could we optimize the pipeline by doing the Action step—graph surgery do(A := a-prime)—before Abduction?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Never! If you intervene before abducting U, you sever the structural equations that link the applicant's factual evidence (GPA, LSAT, A) back to their latent talent U! Abduction anchors the specific person in our world before Action steps into the counterfactual world.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#7c3aed]\">\n      <div class=\"font-mono font-black text-xs text-[#7c3aed] uppercase mb-1\">Step 1: Abduction</div>\n      <div class=\"text-[11px] text-[#334155] mb-2\">Update latent exogenous prior $\\mathcal{P}(\\mathcal{U})$ given observed factual context $(x, a)$:</div>\n      <div class=\"bg-[#fffaf0] p-2 rounded border border-[#151b20] text-[10px] overflow-x-auto text-center\">\n        $$\\mathcal{P}(\\mathcal{U} \\mid x, a) = \\frac{\\mathcal{P}(x, a \\mid \\mathcal{U})\\,\\mathcal{P}(\\mathcal{U})}{\\int \\mathcal{P}(x, a \\mid u)\\,\\mathcal{P}(u)\\,du}$$\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#dc2626]\">\n      <div class=\"font-mono font-black text-xs text-[#dc2626] uppercase mb-1\">Step 2: Action</div>\n      <div class=\"text-[11px] text-[#334155] mb-2\">Execute Pearlian graph surgery $\\text{do}(\\mathcal{A} \\leftarrow a')$ on causal model $\\mathcal{M}$:</div>\n      <div class=\"bg-[#ffd8ce]/40 p-2 rounded border border-[#151b20] text-[10px] text-center font-mono font-bold text-[#991b1b]\">\n        Delete $A := f_A(\\text{PA}_A, U_A)$<br/>Replace with $A := a' \\implies \\mathcal{M}_{a'}$\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n      <div class=\"font-mono font-black text-xs text-[#0e7490] uppercase mb-1\">Step 3: Prediction</div>\n      <div class=\"text-[11px] text-[#334155] mb-2\">Forward-propagate abducted $\\mathcal{U}$ through mutilated equations $\\mathcal{F}_{a'}$:</div>\n      <div class=\"bg-[#fffaf0] p-2 rounded border border-[#151b20] text-[10px] overflow-x-auto text-center\">\n        $$\\mathbb{E}[\\hat{Y}_{\\mathcal{A} \\leftarrow a'}] = \\int \\hat{Y}_{\\mathcal{M}_{a'}}(u)\\,d\\mathcal{P}(u \\mid x, a)$$\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#fff0b9]/60 border-2 border-[#151b20] text-xs font-sans\">\n    <strong class=\"font-mono text-[#b45309]\">STRICT CAUSAL PRECEDENCE:</strong> Abduction MUST precede Action! Executing $\\text{do}(A := a')$ first severs incoming causal arrows and erases $(x, a)$, destroying the individual's latent identity $\\mathcal{U}$.\n  </div>\n</div>\n"
         }
       },
       {
-        "id": "s5",
-        "title": "Differential Privacy vs. Fairness Conflict ([Cummings et al., 2019](#ref-cummings2019))",
-        "type": "equation",
+        "id": "ch7_p10_s5",
+        "title": "Linear Gaussian SCM Closed-Form Inversion & Invariance",
+        "type": "math",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Differential Privacy vs. Fairness Conflict ([Cummings et al., 2019](#ref-cummings2019))",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Linear Gaussian SCM Closed-Form Inversion & Invariance",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Differential Privacy vs. Fairness Conflict ([Cummings et al., 2019](#ref-cummings2019)). Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{P}(\\mathcal{M}(D) \\in \\mathcal{S}) \\le e^\\epsilon \\cdot \\mathbb{P}(\\mathcal{M}(D') \\in \\mathcal{S}) + \\delta$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Var}(\\hat{\\theta}_{\\text{minority}}) \\propto \\frac{\\sigma_{\\text{noise}}^2}{n_{\\text{minority}}^2} \\gg \\frac{\\sigma_{\\text{noise}}^2}{n_{\\text{majority}}^2} \\propto \\text{Var}(\\hat{\\theta}_{\\text{majority}})$$\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Differential Privacy vs. Fairness Conflict ([Cummings et al., 2019](#ref-cummings2019))",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does differential privacy vs. fairness conflict ([cummings et al., 2019](#ref-cummings2019)) protect our system against silent distribution shift in production?"
+              "text": "Let us derive the exact closed-form Bayesian inversion for the canonical law admissions Linear Gaussian SCM. Latent qualification U follows standard normal N(0, 1), while observed undergraduate GPA and LSAT scores combine talent sensitivity alpha with direct demographic bias terms beta_g A and beta_l A plus independent noise.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "By Gaussian conjugate updating, the abducted posterior P(U given G, L, A) is analytically Gaussian N(mu_u, sigma_u squared), subtracting the systemic bias offset beta_g a and beta_l a weighted by precision. By the Fundamental Invariance Theorem, conditioning our predictor h(mu_u) solely on abducted latent talent yields exact counterfactual fairness: Delta_CF equals 0.000!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\mathbb{P}(\\mathcal{M}(D) \\in \\mathcal{S}) \\le e^\\epsilon \\cdot \\mathbb{P}(\\mathcal{M}(D') \\in \\mathcal{S}) + \\delta$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{Var}(\\hat{\\theta}_{\\text{minority}}) \\propto \\frac{\\sigma_{\\text{noise}}^2}{n_{\\text{minority}}^2} \\gg \\frac{\\sigma_{\\text{noise}}^2}{n_{\\text{majority}}^2} \\propto \\text{Var}(\\hat{\\theta}_{\\text{majority}})$$\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      Canonical Admissions SCM ($U \\sim \\mathcal{N}(0, 1)$, $A \\in \\{0, 1\\}$)\n    </div>\n    <div class=\"space-y-2 text-xs\">\n      <div class=\"bg-[#fffaf0] p-2 rounded border border-[#151b20] text-center overflow-x-auto\">\n        $$\\begin{aligned}\n        G &:= \\alpha_g U + \\beta_g A + \\epsilon_g, \\quad \\epsilon_g \\sim \\mathcal{N}(0, \\sigma_g^2) \\\\\n        L &:= \\alpha_l U + \\beta_l A + \\epsilon_l, \\quad \\epsilon_l \\sim \\mathcal{N}(0, \\sigma_l^2)\n        \\end{aligned}$$\n      </div>\n      <div class=\"bg-[#fffaf0] p-2 rounded border border-[#151b20] text-center overflow-x-auto\">\n        $$\\begin{aligned}\n        \\sigma_u^2 &= \\left(1 + \\frac{\\alpha_g^2}{\\sigma_g^2} + \\frac{\\alpha_l^2}{\\sigma_l^2}\\right)^{-1} \\\\\n        \\mu_u &= \\sigma_u^2\\left(\\frac{\\alpha_g(g - \\beta_g a)}{\\sigma_g^2} + \\frac{\\alpha_l(l - \\beta_l a)}{\\sigma_l^2}\\right)\n        \\end{aligned}$$\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#dcfce7]/50 border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d]\">\n    <div class=\"font-mono text-xs font-black text-[#15803d] uppercase mb-1\">\n      Fundamental Invariance Theorem\n    </div>\n    <p class=\"text-[11px] text-[#151b20]\">\n      Any classifier $\\hat{Y} = h(\\mu_u)$ conditioned strictly on abducted latent talent $\\mu_u$ is <strong>exact</strong>: $\\hat{Y}_{\\mathcal{A}\\leftarrow a'} = h(\\mu_u) = \\hat{Y}_{\\mathcal{A}\\leftarrow a} \\implies \\Delta_{\\text{CF}} = 0.000$. Conversely, any observational predictor $f(G, L)$ inherits systemic proxy bias $\\beta_g, \\beta_l$.\n    </p>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Linear Gaussian SCM Closed-Form Inversion & Invariance",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Look at how cleanly the Linear Gaussian SCM inverts observed metrics. GPA equals alpha_g U plus beta_g A, and LSAT equals alpha_l U plus beta_l A.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait—so during Abduction, subtracting beta_g a from GPA and beta_l a from LSAT mathematically strips out the demographic disadvantage before estimating mu_u!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! And because U is exogenous with zero incoming arrows from A, when we run do(A := a-prime), mu_u never changes! Therefore Delta_CF is identically zero!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1\">\n      Canonical Admissions SCM ($U \\sim \\mathcal{N}(0, 1)$, $A \\in \\{0, 1\\}$)\n    </div>\n    <div class=\"space-y-2 text-xs\">\n      <div class=\"bg-[#fffaf0] p-2 rounded border border-[#151b20] text-center overflow-x-auto\">\n        $$\\begin{aligned}\n        G &:= \\alpha_g U + \\beta_g A + \\epsilon_g, \\quad \\epsilon_g \\sim \\mathcal{N}(0, \\sigma_g^2) \\\\\n        L &:= \\alpha_l U + \\beta_l A + \\epsilon_l, \\quad \\epsilon_l \\sim \\mathcal{N}(0, \\sigma_l^2)\n        \\end{aligned}$$\n      </div>\n      <div class=\"bg-[#fffaf0] p-2 rounded border border-[#151b20] text-center overflow-x-auto\">\n        $$\\begin{aligned}\n        \\sigma_u^2 &= \\left(1 + \\frac{\\alpha_g^2}{\\sigma_g^2} + \\frac{\\alpha_l^2}{\\sigma_l^2}\\right)^{-1} \\\\\n        \\mu_u &= \\sigma_u^2\\left(\\frac{\\alpha_g(g - \\beta_g a)}{\\sigma_g^2} + \\frac{\\alpha_l(l - \\beta_l a)}{\\sigma_l^2}\\right)\n        \\end{aligned}$$\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#dcfce7]/50 border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d]\">\n    <div class=\"font-mono text-xs font-black text-[#15803d] uppercase mb-1\">\n      Fundamental Invariance Theorem\n    </div>\n    <p class=\"text-[11px] text-[#151b20]\">\n      Any classifier $\\hat{Y} = h(\\mu_u)$ conditioned strictly on abducted latent talent $\\mu_u$ is <strong>exact</strong>: $\\hat{Y}_{\\mathcal{A}\\leftarrow a'} = h(\\mu_u) = \\hat{Y}_{\\mathcal{A}\\leftarrow a} \\implies \\Delta_{\\text{CF}} = 0.000$. Conversely, any observational predictor $f(G, L)$ inherits systemic proxy bias $\\beta_g, \\beta_l$.\n    </p>\n  </div>\n</div>\n"
         }
       },
       {
-        "id": "s6",
-        "title": "Generative AI Stereotype Vector Projection in Latent Space",
-        "type": "equation",
+        "id": "ch7_p10_s6",
+        "title": "Interactive Lab: Pearlian SCM & Counterfactual Admissions Studio",
+        "type": "lab",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Generative AI Stereotype Vector Projection in Latent Space",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Interactive Lab: Pearlian SCM & Counterfactual Admissions Studio",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Generative AI Stereotype Vector Projection in Latent Space. Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Let us explore the Pearlian Structural Causal Model in Interactive Lab 1. Adjust direct GPA bias beta_g, LSAT bias beta_l, and applicant scores. Click Execute Counterfactual Action do(A := 1 - A) to observe the naive observational boundary shift while abducted latent talent U remains invariant.",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\vec{v}_{\\text{bias}} = \\frac{1}{|\\mathcal{P}|} \\sum_{(w_1, w_2) \\in \\mathcal{P}} \\left( \\vec{e}(w_1) - \\vec{e}(w_2) \\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\vec{e}_{\\text{fair}}(w) = \\vec{e}(w) - \\frac{\\vec{e}(w)^T \\vec{v}_{\\text{bias}}}{\\|\\vec{v}_{\\text{bias}}\\|_2^2} \\vec{v}_{\\text{bias}}$$\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-2\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"flex items-center justify-between flex-wrap gap-2\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase\">\n        🔬 SIMULATOR 7.10 TAB A: PEARLIAN SCM &amp; COUNTERFACTUAL ACTION ENGINE\n      </span>\n      <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">\n        $\\Delta_{\\text{CF}}^{\\text{SCM}} = 0.000$\n      </span>\n    </div>\n    <p class=\"text-[11px] text-[#334155] mt-1\">\n      Compare the naive observational admissions probability against the counterfactually fair SCM predictor under Pearl's three-step inference loop and live $\\text{do}(A := 1 - A)$ surgery.\n    </p>\n  </div>\n</div>\n"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Generative AI Stereotype Vector Projection in Latent Space",
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Interactive Lab: Pearlian SCM & Counterfactual Admissions Studio",
           "turns": [
             {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does generative ai stereotype vector projection in latent space protect our system against silent distribution shift in production?"
+              "speaker": "Dr. Nova",
+              "text": "Now let's test Kusner's counterfactual invariance theorem live! Notice how we model both the factual world and the counterfactual DAG side-by-side.",
+              "dock": "main"
             },
             {
-              "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "speaker": "Kaito",
+              "text": "Trigger the counterfactual action do(A := 1 - A) in the studio! Watch the naive observational point jump across the admissions boundary even though the applicant's true latent talent U stayed fixed—whereas the Fair SCM gap stays locked at 0.000!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\vec{v}_{\\text{bias}} = \\frac{1}{|\\mathcal{P}|} \\sum_{(w_1, w_2) \\in \\mathcal{P}} \\left( \\vec{e}(w_1) - \\vec{e}(w_2) \\right)$$\n  </div>\n</div><div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Distribution Measure</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\vec{e}_{\\text{fair}}(w) = \\vec{e}(w) - \\frac{\\vec{e}(w)^T \\vec{v}_{\\text{bias}}}{\\|\\vec{v}_{\\text{bias}}\\|_2^2} \\vec{v}_{\\text{bias}}$$\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-2\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"flex items-center justify-between flex-wrap gap-2\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase\">\n        🔬 SIMULATOR 7.10 TAB A: PEARLIAN SCM &amp; COUNTERFACTUAL ACTION ENGINE\n      </span>\n      <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#c9f3f4] text-[#0e7490] border border-[#151b20]\">\n        $\\Delta_{\\text{CF}}^{\\text{SCM}} = 0.000$\n      </span>\n    </div>\n    <p class=\"text-[11px] text-[#334155] mt-1\">\n      Compare the naive observational admissions probability against the counterfactually fair SCM predictor under Pearl's three-step inference loop and live $\\text{do}(A := 1 - A)$ surgery.\n    </p>\n  </div>\n</div>\n"
         }
       },
       {
-        "id": "s7",
-        "title": "Production Implementation: Counterfactual Causal SCM Evaluator",
+        "id": "ch7_p10_s7",
+        "title": "Active Checkpoint 1: Causal Precedence in Counterfactuals",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Active Checkpoint 1: Causal Precedence in Counterfactuals",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us verify your command of Pearlian counterfactual mechanics in Active Checkpoint 1. Why is it mathematically invalid to execute the Action step do(A := a-prime) prior to the Abduction step when computing counterfactual fairness?",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-2\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"flex items-center justify-between mb-1\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase\">\n        💡 ACTIVE RECALL CHECKPOINT 7.10.1: COUNTERFACTUAL PRECEDENCE\n      </span>\n      <span class=\"px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#c9f3f4] border border-[#151b20]\">\n        Pearl (2009)\n      </span>\n    </div>\n    <p class=\"text-xs text-[#151b20]\">\n      Consider the 3-step loop: <strong>Abduction</strong> $\\to$ <strong>Action</strong> $\\to$ <strong>Prediction</strong>. What fails mathematically if $\\text{do}(\\mathcal{A} \\leftarrow a')$ is executed before Abduction?\n    </p>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Active Checkpoint 1: Causal Precedence in Counterfactuals",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Checkpoint 1 challenges your intuition about Pearl's three-step loop! Why can't we apply graph surgery do(A := a-prime) first and infer latent U afterward? Select your answer below!",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-2\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"flex items-center justify-between mb-1\">\n      <span class=\"font-mono font-black text-xs text-[#0e7490] uppercase\">\n        💡 ACTIVE RECALL CHECKPOINT 7.10.1: COUNTERFACTUAL PRECEDENCE\n      </span>\n      <span class=\"px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#c9f3f4] border border-[#151b20]\">\n        Pearl (2009)\n      </span>\n    </div>\n    <p class=\"text-xs text-[#151b20]\">\n      Consider the 3-step loop: <strong>Abduction</strong> $\\to$ <strong>Action</strong> $\\to$ <strong>Prediction</strong>. What fails mathematically if $\\text{do}(\\mathcal{A} \\leftarrow a')$ is executed before Abduction?\n    </p>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "ch7_p10_s8",
+        "title": "Multi-Group Minimax Fairness & Fairness Gerrymandering",
+        "type": "concept",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Multi-Group Minimax Fairness & Fairness Gerrymandering",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "We now turn to our second emerging frontier: Multi-Group Minimax Fairness and Gerrymandering, established by Kearns, Neel, Roth, and Wu in 2018. Auditing isolated marginal groups—such as race alone and gender alone—allows classifiers to satisfy demographic parity on every individual margin while discriminating severely against intersectional combinations like Black women.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Across K binary protected attributes, there exist 2 to the K exponential intersectional subgroups. Kearns et al. formulate Minimax Subgroup Fairness as minimizing maximum subgroup error over rich group collection G, cast as a zero-sum game between a Primal Learner and a Dual Auditor.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#b45309]\">\n    <div class=\"font-mono text-xs font-black text-[#b45309] uppercase mb-1.5\">\n      Fairness Gerrymandering Counterexample ($N = 400$ Applicants)\n    </div>\n    <p class=\"text-[11px] text-[#334155] mb-2\">\n      Suppose an algorithm approves 100% of White Women (100/100) and Black Men (100/100), while rejecting 100% of Black Women (0/100) and White Men (0/100):\n    </p>\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px] font-mono text-center\">\n      <div class=\"p-2 rounded bg-[#dcfce7] border border-[#151b20]\">\n        <div class=\"font-bold text-[#15803d]\">Marginal Race Parity</div>\n        <div class=\"font-black text-[#151b20]\">Black = 50% | White = 50%</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#dcfce7] border border-[#151b20]\">\n        <div class=\"font-bold text-[#15803d]\">Marginal Gender Parity</div>\n        <div class=\"font-black text-[#151b20]\">Female = 50% | Male = 50%</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#ffd8ce] border border-[#151b20]\">\n        <div class=\"font-bold text-[#dc2626]\">Intersectional Collapse</div>\n        <div class=\"font-black text-[#991b1b]\">Black Women = 0.0%!</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <div class=\"font-mono text-xs font-black text-[#151b20] uppercase mb-1\">\n      Kearns et al. (2018) Minimax Subgroup Formulation ($|\\mathcal{G}| = 2^K$)\n    </div>\n    <div class=\"bg-white p-2 rounded border border-[#151b20] text-center text-xs overflow-x-auto\">\n      $$\\min_{h \\in \\mathcal{H}} \\max_{g \\in \\mathcal{G}} \\left| \\mathbb{E}_{(X,A,Y)\\sim\\mathcal{D}}\\left[(\\hat{Y} - Y)\\cdot \\mathbf{1}_{(X,A)\\in g}\\right] \\right|$$\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Multi-Group Minimax Fairness & Fairness Gerrymandering",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Look at this classic 400-applicant counterexample from Kearns et al. Marginal race parity sits cleanly at 50% versus 50%, and marginal gender parity is also 50% versus 50%!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait—if both margins are 50%, doesn't that guarantee fairness? Oh! Looking at the diagonals, approving White Women and Black Men completely excludes Black Women at 0%!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "That is fairness gerrymandering! Solving the minimax objective over all 2 to the K combinatorial subgroups via a Primal-Dual auditing game prevents any intersectional subgroup from slipping through marginal loopholes.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#b45309]\">\n    <div class=\"font-mono text-xs font-black text-[#b45309] uppercase mb-1.5\">\n      Fairness Gerrymandering Counterexample ($N = 400$ Applicants)\n    </div>\n    <p class=\"text-[11px] text-[#334155] mb-2\">\n      Suppose an algorithm approves 100% of White Women (100/100) and Black Men (100/100), while rejecting 100% of Black Women (0/100) and White Men (0/100):\n    </p>\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2 text-[11px] font-mono text-center\">\n      <div class=\"p-2 rounded bg-[#dcfce7] border border-[#151b20]\">\n        <div class=\"font-bold text-[#15803d]\">Marginal Race Parity</div>\n        <div class=\"font-black text-[#151b20]\">Black = 50% | White = 50%</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#dcfce7] border border-[#151b20]\">\n        <div class=\"font-bold text-[#15803d]\">Marginal Gender Parity</div>\n        <div class=\"font-black text-[#151b20]\">Female = 50% | Male = 50%</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#ffd8ce] border border-[#151b20]\">\n        <div class=\"font-bold text-[#dc2626]\">Intersectional Collapse</div>\n        <div class=\"font-black text-[#991b1b]\">Black Women = 0.0%!</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n    <div class=\"font-mono text-xs font-black text-[#151b20] uppercase mb-1\">\n      Kearns et al. (2018) Minimax Subgroup Formulation ($|\\mathcal{G}| = 2^K$)\n    </div>\n    <div class=\"bg-white p-2 rounded border border-[#151b20] text-center text-xs overflow-x-auto\">\n      $$\\min_{h \\in \\mathcal{H}} \\max_{g \\in \\mathcal{G}} \\left| \\mathbb{E}_{(X,A,Y)\\sim\\mathcal{D}}\\left[(\\hat{Y} - Y)\\cdot \\mathbf{1}_{(X,A)\\in g}\\right] \\right|$$\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "ch7_p10_s9",
+        "title": "DP-SGD vs. Fairness: Quadratic Minority Variance Penalty",
+        "type": "math",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "DP-SGD vs. Fairness: Quadratic Minority Variance Penalty",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Our third frontier uncovers a profound clash between privacy engineering and algorithmic equity. In Differentially Private SGD, individual gradients are clipped to L2 norm bound C, summed across batch B, and perturbed with calibrated Gaussian noise sigma equal to root 2 log(1.25 over delta) divided by epsilon.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "When we compute the average gradient for subgroup g of sample size n_g, natural sampling variance diminishes as 1 over n_g, whereas the global privacy noise term scales inversely with n_g squared! Consequently, if a majority cohort has 5,000 samples and a minority cohort has 200 samples, the minority suffers a 25-squared equals 625.0-fold amplification in gradient noise variance!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#7c3aed]\">\n    <div class=\"font-mono text-xs font-black text-[#7c3aed] uppercase mb-1.5\">\n      Differentially Private SGD (DP-SGD) &amp; Noise Calibration\n    </div>\n    <div class=\"bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-center text-xs overflow-x-auto\">\n      $$\\begin{aligned}\\tilde{g}_t &= \\frac{1}{|B|} \\left( \\sum_{i \\in B} \\text{clip}\\big(\\nabla_\\theta \\ell(x_i, y_i), C\\big) + \\mathcal{N}\\big(0, \\sigma^2 C^2 \\mathbf{I}\\big) \\right) \\\\ \\sigma &= \\frac{\\sqrt{2 \\ln(1.25 / \\delta)}}{\\epsilon}\\end{aligned}$$\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#ffd8ce]/45 border-2 border-[#151b20] shadow-[3px_3px_0px_#dc2626]\">\n    <div class=\"font-mono text-xs font-black text-[#991b1b] uppercase mb-1\">\n      Quadratic Subgroup Gradient Variance Asymmetry\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2 text-xs\">\n      <div class=\"bg-white p-2 rounded border border-[#151b20] text-center\">\n        $$\\text{Cov}(\\bar{g}_g) = \\frac{\\mathbf{\\Sigma}_{\\text{data}, g}}{n_g} + \\frac{\\sigma^2 C^2}{n_g^2} \\mathbf{I}$$\n        $$\\frac{\\text{Var}_{\\text{noise}}(\\bar{g}_{\\text{min}})}{\\text{Var}_{\\text{noise}}(\\bar{g}_{\\text{maj}})} = \\left(\\frac{n_{\\text{maj}}}{n_{\\text{min}}}\\right)^2$$\n      </div>\n      <div class=\"bg-white p-2 rounded border border-[#151b20] flex flex-col justify-center text-center\">\n        <div class=\"text-[10px] font-mono font-bold text-[#64748b] uppercase\">Benchmark Example ($5000$ vs $200$)</div>\n        <div class=\"text-lg font-black text-[#dc2626] font-mono\">$(5000 / 200)^2 = 625.0\\times$</div>\n        <div class=\"text-[10px] text-[#334155]\">Under tight budgets ($\\epsilon &lt; 0.5$), noise obliterates minority signal!</div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "DP-SGD vs. Fairness: Quadratic Minority Variance Penalty",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Engineers often assume adding Differential Privacy protects everyone equally. Let's look at the variance formula for a subgroup's average gradient in DP-SGD.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Hold on! Why does the privacy noise variance divide by n_g squared instead of n_g? Usually statistical variance drops linearly with sample size!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Because DP-SGD adds a fixed Gaussian vector xi to the unnormalized SUM of gradients! Dividing the sum by n_g squares the scaling factor inside the variance operator! That turns a 25-to-1 sample imbalance into a catastrophic 625-to-1 noise variance penalty!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#7c3aed]\">\n    <div class=\"font-mono text-xs font-black text-[#7c3aed] uppercase mb-1.5\">\n      Differentially Private SGD (DP-SGD) &amp; Noise Calibration\n    </div>\n    <div class=\"bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-center text-xs overflow-x-auto\">\n      $$\\begin{aligned}\\tilde{g}_t &= \\frac{1}{|B|} \\left( \\sum_{i \\in B} \\text{clip}\\big(\\nabla_\\theta \\ell(x_i, y_i), C\\big) + \\mathcal{N}\\big(0, \\sigma^2 C^2 \\mathbf{I}\\big) \\right) \\\\ \\sigma &= \\frac{\\sqrt{2 \\ln(1.25 / \\delta)}}{\\epsilon}\\end{aligned}$$\n    </div>\n  </div>\n\n  <div class=\"p-3 rounded-xl bg-[#ffd8ce]/45 border-2 border-[#151b20] shadow-[3px_3px_0px_#dc2626]\">\n    <div class=\"font-mono text-xs font-black text-[#991b1b] uppercase mb-1\">\n      Quadratic Subgroup Gradient Variance Asymmetry\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2 text-xs\">\n      <div class=\"bg-white p-2 rounded border border-[#151b20] text-center\">\n        $$\\text{Cov}(\\bar{g}_g) = \\frac{\\mathbf{\\Sigma}_{\\text{data}, g}}{n_g} + \\frac{\\sigma^2 C^2}{n_g^2} \\mathbf{I}$$\n        $$\\frac{\\text{Var}_{\\text{noise}}(\\bar{g}_{\\text{min}})}{\\text{Var}_{\\text{noise}}(\\bar{g}_{\\text{maj}})} = \\left(\\frac{n_{\\text{maj}}}{n_{\\text{min}}}\\right)^2$$\n      </div>\n      <div class=\"bg-white p-2 rounded border border-[#151b20] flex flex-col justify-center text-center\">\n        <div class=\"text-[10px] font-mono font-bold text-[#64748b] uppercase\">Benchmark Example ($5000$ vs $200$)</div>\n        <div class=\"text-lg font-black text-[#dc2626] font-mono\">$(5000 / 200)^2 = 625.0\\times$</div>\n        <div class=\"text-[10px] text-[#334155]\">Under tight budgets ($\\epsilon &lt; 0.5$), noise obliterates minority signal!</div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "ch7_p10_s10",
+        "title": "Cummings Impossibility Theorem: Privacy vs. Exact Fairness",
+        "type": "theorem",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Cummings Impossibility Theorem: Privacy vs. Exact Fairness",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "In 2019, Cummings, Gupta, Liang, and Wortman Vaughan proved a fundamental impossibility theorem governing Differential Privacy and fairness. Any learning algorithm that simultaneously guarantees pure epsilon-zero Differential Privacy and exact Equalized Odds on finite datasets must collapse to a trivial constant predictor that completely ignores all input features X.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Why does this occur? Pure differential privacy forces neighboring datasets differing by one rare minority sample to produce statistically indistinguishable hypothesis distributions, making it impossible to calibrate exact subgroup true-positive and false-positive rates simultaneously. Production architectures must therefore relax exact fairness to approximate tolerance bounds alongside relaxed delta > 0 privacy.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#dc2626]\">\n    <div class=\"font-mono text-xs font-black text-[#dc2626] uppercase mb-1.5\">\n      Impossibility Theorem (Cummings et al., 2019)\n    </div>\n    <p class=\"text-xs text-[#151b20] leading-relaxed mb-2\">\n      Any learner $\\mathcal{A}$ achieving both <strong>pure $(\\epsilon, 0)$-Differential Privacy</strong> and <strong>exact Equalized Odds</strong> ($\\hat{Y} \\perp A \\mid Y$) across finite datasets $\\mathcal{D}$ cannot outperform a trivial constant classifier that ignores all features $X$:\n    </p>\n    <div class=\"bg-[#ffd8ce]/40 p-2.5 rounded-lg border border-[#151b20] text-center text-xs overflow-x-auto font-mono\">\n      $$(\\epsilon, 0)\\text{-DP} \\;\\land\\; (\\Delta_{\\text{EO}} = 0) \\implies \\mathcal{A}(\\mathcal{D}) \\equiv \\text{const}$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2.5 text-[11px]\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-[#b45309] mb-1\">Theoretical Mechanism</div>\n      <div class=\"text-[#475569]\">Exact parity requires crisp threshold boundaries tied to rare minority statistics, violating $(\\epsilon, 0)$ indistinguishability on neighboring sets $|D \\Delta D'| = 1$.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8]/60 border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-[#15803d] mb-1\">Engineering Resolution</div>\n      <div class=\"text-[#151b20]\">Adopt <strong>approximate $(\\epsilon, \\delta)$-DP</strong> ($\\delta \\ll 1/N$) coupled with <strong>$\\alpha$-approximate Equalized Odds</strong> ($\\Delta_{\\text{EO}} \\le \\alpha$) and per-group adaptive clipping.</div>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Cummings Impossibility Theorem: Privacy vs. Exact Fairness",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "The variance asymmetry isn't merely an empirical quirk—Cummings et al. proved an exact mathematical impossibility theorem!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait—you mean we literally CANNOT enforce pure (epsilon, 0)-Differential Privacy and exact Equalized Odds in the same non-trivial model?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Correct! Any classifier satisfying both simultaneously must ignore all input features and output a constant prediction! That's why modern MLOps adopts relaxed delta > 0 privacy alongside approximate alpha-fairness bounds.",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#dc2626]\">\n    <div class=\"font-mono text-xs font-black text-[#dc2626] uppercase mb-1.5\">\n      Impossibility Theorem (Cummings et al., 2019)\n    </div>\n    <p class=\"text-xs text-[#151b20] leading-relaxed mb-2\">\n      Any learner $\\mathcal{A}$ achieving both <strong>pure $(\\epsilon, 0)$-Differential Privacy</strong> and <strong>exact Equalized Odds</strong> ($\\hat{Y} \\perp A \\mid Y$) across finite datasets $\\mathcal{D}$ cannot outperform a trivial constant classifier that ignores all features $X$:\n    </p>\n    <div class=\"bg-[#ffd8ce]/40 p-2.5 rounded-lg border border-[#151b20] text-center text-xs overflow-x-auto font-mono\">\n      $$(\\epsilon, 0)\\text{-DP} \\;\\land\\; (\\Delta_{\\text{EO}} = 0) \\implies \\mathcal{A}(\\mathcal{D}) \\equiv \\text{const}$$\n    </div>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2.5 text-[11px]\">\n    <div class=\"p-3 rounded-xl bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-[#b45309] mb-1\">Theoretical Mechanism</div>\n      <div class=\"text-[#475569]\">Exact parity requires crisp threshold boundaries tied to rare minority statistics, violating $(\\epsilon, 0)$ indistinguishability on neighboring sets $|D \\Delta D'| = 1$.</div>\n    </div>\n    <div class=\"p-3 rounded-xl bg-[#e7f4c8]/60 border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-[#15803d] mb-1\">Engineering Resolution</div>\n      <div class=\"text-[#151b20]\">Adopt <strong>approximate $(\\epsilon, \\delta)$-DP</strong> ($\\delta \\ll 1/N$) coupled with <strong>$\\alpha$-approximate Equalized Odds</strong> ($\\Delta_{\\text{EO}} \\le \\alpha$) and per-group adaptive clipping.</div>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "ch7_p10_s11",
+        "title": "Foundation Model Latent Debiasing & WEAT Nullification",
+        "type": "math",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Foundation Model Latent Debiasing & WEAT Nullification",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Our fourth frontier addresses semantic stereotypes encoded inside dense foundation model representations. Following Bolukbasi et al. 2016, we construct K paired demographic tokens—such as he versus she and king versus queen—and extract the 1D bias subspace v_bias as the top principal component of normalized difference vectors.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Applying Hard Orthogonal Projection subtracts the component along v_bias from every neutral token w—such as doctor or nurse—forcing the inner product <e_fair(w), v_bias> identically to zero! This drives Caliskan's Word Embedding Association Test effect size d to 0.00 while preserving professional semantic relationships in the orthogonal complement subspace V_fair!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n      <div class=\"font-mono font-black text-xs text-[#0e7490] uppercase mb-1\">\n        1. PCA Bias Subspace &amp; Projection\n      </div>\n      <div class=\"bg-[#fffaf0] p-2 rounded border border-[#151b20] text-[10px] overflow-x-auto text-center\">\n        $$\\vec{v}_{\\text{bias}} = \\arg\\max_{\\|\\vec{v}\\|_2=1} \\sum_{k=1}^K \\left(\\vec{d}_k^T \\vec{v}\\right)^2$$\n        $$\\begin{aligned}\\vec{e}_{\\text{fair}}(w) &= \\vec{e}(w) - \\frac{\\vec{e}(w)^T \\vec{v}_{\\text{bias}}}{\\|\\vec{v}_{\\text{bias}}\\|_2^2}\\vec{v}_{\\text{bias}} \\\\ &\\implies \\langle \\vec{e}_{\\text{fair}}(w), \\vec{v}_{\\text{bias}} \\rangle \\equiv 0\\end{aligned}$$\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d]\">\n      <div class=\"font-mono font-black text-xs text-[#15803d] uppercase mb-1\">\n        2. Word Embedding Association Test (WEAT)\n      </div>\n      <div class=\"bg-[#fffaf0] p-2 rounded border border-[#151b20] text-[10px] overflow-x-auto text-center\">\n        $$s(w, A, B) = \\text{mean}_{a \\in A}\\cos(\\vec{e}(w), \\vec{e}(a)) - \\text{mean}_{b \\in B}\\cos(\\vec{e}(w), \\vec{e}(b))$$\n        $$d = \\frac{\\text{mean}_{x \\in X} s(x, A, B) - \\text{mean}_{y \\in Y} s(y, A, B)}{\\text{std}_{w \\in X \\cup Y} s(w, A, B)} \\longrightarrow 0.00$$\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#c9f3f4]/40 border-2 border-[#151b20] text-xs font-sans\">\n    <strong class=\"font-mono text-[#0e7490]\">ORTHOGONAL UTILITY PRESERVATION:</strong> Since $\\mathbb{R}^d = \\mathcal{V}_{\\text{bias}} \\oplus \\mathcal{V}_{\\text{fair}}$, projecting out the 1D bias axis retains the $(d-1)$-dimensional semantic complement (preserving domain similarities like <em>\"surgeon\"</em> $\\leftrightarrow$ <em>\"scalpel\"</em>).\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Foundation Model Latent Debiasing & WEAT Nullification",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "In generative AI and LLM embeddings, gender bias lives along a low-rank geometric direction v_bias extracted via PCA on paired terms like he/she and man/woman.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Wait—if we remove v_bias from neutral words like 'doctor' and 'nurse' using Hard Orthogonal Projection, doesn't that break domain meaning, like how close 'surgeon' is to 'scalpel'?",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Not at all! Orthogonal projection splits R^d into V_bias plus V_fair! Removing a single 1D gender direction leaves all d minus 1 semantic dimensions intact, preserving medical terminology while forcing WEAT effect size d identically to zero!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs\">\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n      <div class=\"font-mono font-black text-xs text-[#0e7490] uppercase mb-1\">\n        1. PCA Bias Subspace &amp; Projection\n      </div>\n      <div class=\"bg-[#fffaf0] p-2 rounded border border-[#151b20] text-[10px] overflow-x-auto text-center\">\n        $$\\vec{v}_{\\text{bias}} = \\arg\\max_{\\|\\vec{v}\\|_2=1} \\sum_{k=1}^K \\left(\\vec{d}_k^T \\vec{v}\\right)^2$$\n        $$\\begin{aligned}\\vec{e}_{\\text{fair}}(w) &= \\vec{e}(w) - \\frac{\\vec{e}(w)^T \\vec{v}_{\\text{bias}}}{\\|\\vec{v}_{\\text{bias}}\\|_2^2}\\vec{v}_{\\text{bias}} \\\\ &\\implies \\langle \\vec{e}_{\\text{fair}}(w), \\vec{v}_{\\text{bias}} \\rangle \\equiv 0\\end{aligned}$$\n      </div>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d]\">\n      <div class=\"font-mono font-black text-xs text-[#15803d] uppercase mb-1\">\n        2. Word Embedding Association Test (WEAT)\n      </div>\n      <div class=\"bg-[#fffaf0] p-2 rounded border border-[#151b20] text-[10px] overflow-x-auto text-center\">\n        $$s(w, A, B) = \\text{mean}_{a \\in A}\\cos(\\vec{e}(w), \\vec{e}(a)) - \\text{mean}_{b \\in B}\\cos(\\vec{e}(w), \\vec{e}(b))$$\n        $$d = \\frac{\\text{mean}_{x \\in X} s(x, A, B) - \\text{mean}_{y \\in Y} s(y, A, B)}{\\text{std}_{w \\in X \\cup Y} s(w, A, B)} \\longrightarrow 0.00$$\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#c9f3f4]/40 border-2 border-[#151b20] text-xs font-sans\">\n    <strong class=\"font-mono text-[#0e7490]\">ORTHOGONAL UTILITY PRESERVATION:</strong> Since $\\mathbb{R}^d = \\mathcal{V}_{\\text{bias}} \\oplus \\mathcal{V}_{\\text{fair}}$, projecting out the 1D bias axis retains the $(d-1)$-dimensional semantic complement (preserving domain similarities like <em>\"surgeon\"</em> $\\leftrightarrow$ <em>\"scalpel\"</em>).\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "ch7_p10_s12",
+        "title": "Interactive Lab: DP Collapse & Latent Vector Debiasing Studio",
+        "type": "lab",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Interactive Lab: DP Collapse & Latent Vector Debiasing Studio",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Welcome to Interactive Lab 2, unifying Differential Privacy variance stress-testing and Latent Embedding orthogonal projection. In DP Collapse mode, slide epsilon down toward 0.50 and reduce minority sample size N_min to watch the quadratic variance penalty ratio explode to 625-fold and collapse minority accuracy!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-2\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#7c3aed]\">\n    <div class=\"flex items-center justify-between flex-wrap gap-2\">\n      <span class=\"font-mono font-black text-xs text-[#7c3aed] uppercase\">\n        🔬 SIMULATOR 7.10 TABS B &amp; C: DP MINORITY COLLAPSE &amp; LATENT DEBIASING\n      </span>\n      <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#e2dfff] text-[#4338ca] border border-[#151b20]\">\n        $\\mathcal{O}(n_g^{-2})$ &amp; WEAT $d \\to 0$\n      </span>\n    </div>\n    <p class=\"text-[11px] text-[#334155] mt-1\">\n      Switch between <strong>Tab B (DP Minority Accuracy Collapse)</strong> and <strong>Tab C (Latent Vector Orthogonal Projection)</strong> inside the interactive studio below.\n    </p>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Interactive Lab: DP Collapse & Latent Vector Debiasing Studio",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let's test both our Differential Privacy and Generative AI frontiers interactively in Lab 2!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Drag the privacy budget epsilon down in Tab B to see the 625x minority variance spike, then switch to Tab C and slide orthogonal projection lambda to 1.00—watching 'doctor', 'nurse', and 'engineer' snap cleanly to zero gender bias and collapsing WEAT d to 0.000!",
+              "dock": "sim",
+              "pauseForInteraction": "explore_tool"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-2\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#7c3aed]\">\n    <div class=\"flex items-center justify-between flex-wrap gap-2\">\n      <span class=\"font-mono font-black text-xs text-[#7c3aed] uppercase\">\n        🔬 SIMULATOR 7.10 TABS B &amp; C: DP MINORITY COLLAPSE &amp; LATENT DEBIASING\n      </span>\n      <span class=\"px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#e2dfff] text-[#4338ca] border border-[#151b20]\">\n        $\\mathcal{O}(n_g^{-2})$ &amp; WEAT $d \\to 0$\n      </span>\n    </div>\n    <p class=\"text-[11px] text-[#334155] mt-1\">\n      Switch between <strong>Tab B (DP Minority Accuracy Collapse)</strong> and <strong>Tab C (Latent Vector Orthogonal Projection)</strong> inside the interactive studio below.\n    </p>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "ch7_p10_s13",
+        "title": "Active Checkpoint 2: DP Minority Gradient Variance Ratio",
+        "type": "checkpoint",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Active Checkpoint 2: DP Minority Gradient Variance Ratio",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us test your privacy-fairness mathematics in Active Checkpoint 2. Under DP-SGD with majority sample size N_maj equals 5,000 and minority sample size N_min equals 200, why does the privacy noise variance penalty scale quadratically as (5000 / 200) squared equals 625.0x rather than linearly as 25x?",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-2\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#7c3aed]\">\n    <div class=\"flex items-center justify-between mb-1\">\n      <span class=\"font-mono font-black text-xs text-[#7c3aed] uppercase\">\n        💡 ACTIVE RECALL CHECKPOINT 7.10.2: QUADRATIC DP VARIANCE PENALTY\n      </span>\n      <span class=\"px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#e2dfff] border border-[#151b20]\">\n        Cummings et al. (2019)\n      </span>\n    </div>\n    <p class=\"text-xs text-[#151b20]\">\n      When training with DP-SGD ($N_{\\text{maj}} = 5,000$, $N_{\\text{min}} = 200$), calculate the minority gradient noise variance ratio and explain why it scales as $\\mathcal{O}(n_g^{-2})$.\n    </p>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Active Checkpoint 2: DP Minority Gradient Variance Ratio",
+          "turns": [
+            {
+              "speaker": "Kaito",
+              "text": "Checkpoint 2 challenges your DP-SGD intuition! With 5,000 majority samples versus 200 minority samples, what is the exact gradient noise variance penalty ratio suffered by the minority group, and why is it quadratic?",
+              "dock": "quiz",
+              "pauseForInteraction": "answer_checkpoint"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-2\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#7c3aed]\">\n    <div class=\"flex items-center justify-between mb-1\">\n      <span class=\"font-mono font-black text-xs text-[#7c3aed] uppercase\">\n        💡 ACTIVE RECALL CHECKPOINT 7.10.2: QUADRATIC DP VARIANCE PENALTY\n      </span>\n      <span class=\"px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#e2dfff] border border-[#151b20]\">\n        Cummings et al. (2019)\n      </span>\n    </div>\n    <p class=\"text-xs text-[#151b20]\">\n      When training with DP-SGD ($N_{\\text{maj}} = 5,000$, $N_{\\text{min}} = 200$), calculate the minority gradient noise variance ratio and explain why it scales as $\\mathcal{O}(n_g^{-2})$.\n    </p>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "ch7_p10_s14",
+        "title": "Case Study: Law School Admissions Benchmark (N=21,790)",
+        "type": "case_study",
+        "solo": {
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Case Study: Law School Admissions Benchmark (N=21,790)",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Let us inspect empirical performance across the Law School Admission Council longitudinal study covering 21,790 students across 163 U.S. law schools. Notice that Fairness Through Unawareness—merely dropping race A from the input vector—fails catastrophically because GPA and LSAT correlate with race at R-squared equals 0.32, yielding counterfactual disparity 0.1610.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Meanwhile, Demographic Parity and Equalized Odds post-processing suppress observational gaps while degrading correlation with true first-year law grades to 0.352 and still leaving substantial counterfactual unfairness of 0.1245 and 0.0980. Only Kusner's Causal SCM conditioned on abducted latent U achieves Delta_CF equals 0.0000 while retaining high predictive correlation r equals 0.412!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1.5\">\n      LSAC Law School Admissions Benchmark ($N = 21,790$, 163 Schools)\n    </div>\n    <div class=\"overflow-x-auto\">\n      <table class=\"w-full text-[10px] font-mono border-collapse\">\n        <thead>\n          <tr class=\"bg-[#151b20] text-white text-left\">\n            <th class=\"p-1.5\">Model Architecture</th>\n            <th class=\"p-1.5\">Inputs</th>\n            <th class=\"p-1.5\">DP Gap</th>\n            <th class=\"p-1.5\">EO Gap</th>\n            <th class=\"p-1.5\">CF Disparity $\\Delta_{\\text{CF}}$</th>\n            <th class=\"p-1.5\">FYGPA Corr ($r$)</th>\n          </tr>\n        </thead>\n        <tbody class=\"divide-y divide-[#151b20]/20 bg-white\">\n          <tr>\n            <td class=\"p-1.5 font-bold\">Full Observational (Biased)</td>\n            <td class=\"p-1.5\">GPA, LSAT, $A$</td>\n            <td class=\"p-1.5 text-[#dc2626]\">0.384</td>\n            <td class=\"p-1.5 text-[#dc2626]\">0.292</td>\n            <td class=\"p-1.5 text-[#dc2626]\">0.1836</td>\n            <td class=\"p-1.5\">0.435</td>\n          </tr>\n          <tr>\n            <td class=\"p-1.5 font-bold\">Fairness Through Unawareness</td>\n            <td class=\"p-1.5\">GPA, LSAT ($R^2=0.32$)</td>\n            <td class=\"p-1.5 text-[#b45309]\">0.342</td>\n            <td class=\"p-1.5 text-[#b45309]\">0.258</td>\n            <td class=\"p-1.5 text-[#dc2626]\">0.1610</td>\n            <td class=\"p-1.5\">0.428</td>\n          </tr>\n          <tr>\n            <td class=\"p-1.5 font-bold\">Demographic Parity Post-Proc</td>\n            <td class=\"p-1.5\">GPA, LSAT, $A$</td>\n            <td class=\"p-1.5 text-[#15803d]\">&le;0.020</td>\n            <td class=\"p-1.5\">0.184</td>\n            <td class=\"p-1.5 text-[#b45309]\">0.1245</td>\n            <td class=\"p-1.5\">0.352</td>\n          </tr>\n          <tr>\n            <td class=\"p-1.5 font-bold\">Equalized Odds Post-Proc</td>\n            <td class=\"p-1.5\">GPA, LSAT, $A$</td>\n            <td class=\"p-1.5\">0.145</td>\n            <td class=\"p-1.5 text-[#15803d]\">&le;0.020</td>\n            <td class=\"p-1.5 text-[#b45309]\">0.0980</td>\n            <td class=\"p-1.5\">0.378</td>\n          </tr>\n          <tr class=\"bg-[#dcfce7]\">\n            <td class=\"p-1.5 font-black text-[#15803d]\">Causal SCM Model (Kusner)</td>\n            <td class=\"p-1.5 font-bold\">Abducted Latent $U$</td>\n            <td class=\"p-1.5 font-bold\">0.038</td>\n            <td class=\"p-1.5 font-bold\">0.028</td>\n            <td class=\"p-1.5 font-black text-[#15803d]\">0.0000</td>\n            <td class=\"p-1.5 font-black text-[#0e7490]\">0.412</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Case Study: Law School Admissions Benchmark (N=21,790)",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Here is the LSAC Law School benchmark over 21,790 students! Look closely at the Fairness Through Unawareness row.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "Dropping race only lowered counterfactual disparity from 0.1836 to 0.1610! And even Equalized Odds post-processing left Delta_CF at 0.0980!",
+              "dock": "main"
+            },
+            {
+              "speaker": "Dr. Nova",
+              "text": "Exactly! Meanwhile, the Causal SCM conditioned strictly on abducted latent talent U drops Delta_CF completely to 0.0000 while keeping first-year grade correlation at 0.412!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1.5\">\n      LSAC Law School Admissions Benchmark ($N = 21,790$, 163 Schools)\n    </div>\n    <div class=\"overflow-x-auto\">\n      <table class=\"w-full text-[10px] font-mono border-collapse\">\n        <thead>\n          <tr class=\"bg-[#151b20] text-white text-left\">\n            <th class=\"p-1.5\">Model Architecture</th>\n            <th class=\"p-1.5\">Inputs</th>\n            <th class=\"p-1.5\">DP Gap</th>\n            <th class=\"p-1.5\">EO Gap</th>\n            <th class=\"p-1.5\">CF Disparity $\\Delta_{\\text{CF}}$</th>\n            <th class=\"p-1.5\">FYGPA Corr ($r$)</th>\n          </tr>\n        </thead>\n        <tbody class=\"divide-y divide-[#151b20]/20 bg-white\">\n          <tr>\n            <td class=\"p-1.5 font-bold\">Full Observational (Biased)</td>\n            <td class=\"p-1.5\">GPA, LSAT, $A$</td>\n            <td class=\"p-1.5 text-[#dc2626]\">0.384</td>\n            <td class=\"p-1.5 text-[#dc2626]\">0.292</td>\n            <td class=\"p-1.5 text-[#dc2626]\">0.1836</td>\n            <td class=\"p-1.5\">0.435</td>\n          </tr>\n          <tr>\n            <td class=\"p-1.5 font-bold\">Fairness Through Unawareness</td>\n            <td class=\"p-1.5\">GPA, LSAT ($R^2=0.32$)</td>\n            <td class=\"p-1.5 text-[#b45309]\">0.342</td>\n            <td class=\"p-1.5 text-[#b45309]\">0.258</td>\n            <td class=\"p-1.5 text-[#dc2626]\">0.1610</td>\n            <td class=\"p-1.5\">0.428</td>\n          </tr>\n          <tr>\n            <td class=\"p-1.5 font-bold\">Demographic Parity Post-Proc</td>\n            <td class=\"p-1.5\">GPA, LSAT, $A$</td>\n            <td class=\"p-1.5 text-[#15803d]\">&le;0.020</td>\n            <td class=\"p-1.5\">0.184</td>\n            <td class=\"p-1.5 text-[#b45309]\">0.1245</td>\n            <td class=\"p-1.5\">0.352</td>\n          </tr>\n          <tr>\n            <td class=\"p-1.5 font-bold\">Equalized Odds Post-Proc</td>\n            <td class=\"p-1.5\">GPA, LSAT, $A$</td>\n            <td class=\"p-1.5\">0.145</td>\n            <td class=\"p-1.5 text-[#15803d]\">&le;0.020</td>\n            <td class=\"p-1.5 text-[#b45309]\">0.0980</td>\n            <td class=\"p-1.5\">0.378</td>\n          </tr>\n          <tr class=\"bg-[#dcfce7]\">\n            <td class=\"p-1.5 font-black text-[#15803d]\">Causal SCM Model (Kusner)</td>\n            <td class=\"p-1.5 font-bold\">Abducted Latent $U$</td>\n            <td class=\"p-1.5 font-bold\">0.038</td>\n            <td class=\"p-1.5 font-bold\">0.028</td>\n            <td class=\"p-1.5 font-black text-[#15803d]\">0.0000</td>\n            <td class=\"p-1.5 font-black text-[#0e7490]\">0.412</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n</div>\n"
+        }
+      },
+      {
+        "id": "ch7_p10_s15",
+        "title": "Unified Production Audit Engine: SCM, DP & Latent WEAT",
         "type": "code",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Production Implementation: Counterfactual Causal SCM Evaluator",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Unified Production Audit Engine: SCM, DP & Latent WEAT",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Production Implementation: Counterfactual Causal SCM Evaluator. Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># Counterfactual Fairness SCM Evaluator\nfrom typing import Tuple, Dict\nimport numpy as np\nimport pandas as pd\nfrom sklearn.linear_model import LinearRegression\n\nclass StructuralCausalModel:\n    def __init__(self):\n        # Mediators: GPA (G) and LSAT (L) depend on latent talent U and sensitive attribute A (Race/Gender)\n        # Structural equations:\n        #   G = alpha_g * U + beta_g * A + eps_g\n        #   L = alpha_l * U + beta_l * A + eps_l\n        self.alpha_g, self.beta_g = 1.0, 0.4\n        self.alpha_l, self.beta_l = 1.2, 0.8\n\n    def generate_data(self, N: int = 2000) -&gt; pd.DataFrame:\n        U = np.random.normal(0, 1, size=N)  # Unobserved latent ability\n        A = np.random.choice([0, 1], size=N, p=[0.35, 0.65])  # Protected attribute\n\n        eps_g = np.random.normal(0, 0.2, size=N)\n        eps_l = np.random.normal(0, 0.2, </code></pre>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Production Implementation: Counterfactual Causal SCM Evaluator",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, where should this defensive type-safe schema validation execute?"
+              "text": "Let us assemble these emerging safeguards into a unified Python production auditing engine. First, our StructuralCausalModel class performs closed-form latent abduction across GPA and LSAT equations, verifying Delta_CF equals zero against naive counterfactual gaps.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Always enforce schema contracts at the ingestion boundary before raw records enter memory. Using Pydantic or zero-copy Arrow prevents unvalidated floats and untyped strings from silently polluting downstream tensors."
+              "text": "Second, evaluate_dp_fairness_disparity audits the exact variance ratio between majority and minority cohorts prior to private training. Third, evaluate_embedding_debiasing applies hard orthogonal projection onto the gender bias subspace complement, asserting that debiased WEAT effect size d collapses strictly to 0.00.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] font-mono text-xs overflow-x-auto shadow-[4px_4px_0px_#151b20] my-2\">\n  <div class=\"text-[10px] text-[#0e7490] font-black mb-1.5 uppercase tracking-wider pb-1 border-b-2 border-[#151b20]/15 flex items-center justify-between\">\n    <span>Production Implementation / Type-Safe Listing:</span>\n    <span class=\"text-[#151b20] text-[9px] bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Python 3.10+</span>\n  </div>\n  <pre class=\"leading-relaxed bg-[#fffaf0] p-2.5 rounded-lg border border-[#151b20] text-[#151b20] overflow-x-auto\"><code># Counterfactual Fairness SCM Evaluator\nfrom typing import Tuple, Dict\nimport numpy as np\nimport pandas as pd\nfrom sklearn.linear_model import LinearRegression\n\nclass StructuralCausalModel:\n    def __init__(self):\n        # Mediators: GPA (G) and LSAT (L) depend on latent talent U and sensitive attribute A (Race/Gender)\n        # Structural equations:\n        #   G = alpha_g * U + beta_g * A + eps_g\n        #   L = alpha_l * U + beta_l * A + eps_l\n        self.alpha_g, self.beta_g = 1.0, 0.4\n        self.alpha_l, self.beta_l = 1.2, 0.8\n\n    def generate_data(self, N: int = 2000) -&gt; pd.DataFrame:\n        U = np.random.normal(0, 1, size=N)  # Unobserved latent ability\n        A = np.random.choice([0, 1], size=N, p=[0.35, 0.65])  # Protected attribute\n\n        eps_g = np.random.normal(0, 0.2, size=N)\n        eps_l = np.random.normal(0, 0.2, </code></pre>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-2.5\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1.5\">\n      3-Stage Frontier Verification Pipeline\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2 text-[10px]\">\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#0e7490]\">Stage 1: Causal Abduction</div>\n        <div class=\"text-[#334155] mt-0.5\"><code>abduct_latent_talent(df)</code> strips systemic $\\beta_g, \\beta_l$ shifts before scoring.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#7c3aed]\">Stage 2: DP Variance Audit</div>\n        <div class=\"text-[#334155] mt-0.5\">Flags quadratic $(n_{\\text{maj}} / n_{\\text{min}})^2$ noise ratios before DP-SGD training.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#15803d]\">Stage 3: WEAT Projection</div>\n        <div class=\"text-[#334155] mt-0.5\"><code>project_orthogonal(e, v_bias)</code> ensures $\\langle e_{\\text{fair}}, v_{\\text{bias}} \\rangle \\equiv 0$.</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#151b20] text-[#c9f3f4] font-mono text-[10px] shadow-[2px_2px_0px_#151b20] overflow-x-auto leading-relaxed\">\n<pre>def abduct_latent_talent(self, df: pd.DataFrame) -> np.ndarray:\n    u_g = (df[\"GPA\"] - self.beta_g * df[\"A\"]) / self.alpha_g\n    u_l = (df[\"LSAT\"] - self.beta_l * df[\"A\"]) / self.alpha_l\n    return 0.5 * (u_g + u_l)  # Strictly invariant under do(A := 1 - A)\n\ndef project_orthogonal(vec: np.ndarray, v_bias: np.ndarray) -> np.ndarray:\n    proj = (np.dot(vec, v_bias) / np.dot(v_bias, v_bias)) * v_bias\n    deb = vec - proj\n    return deb / np.linalg.norm(deb)  # Drives WEAT d -> 0.00</pre>\n  </div>\n</div>\n"
+        },
+        "duo": {
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Unified Production Audit Engine: SCM, DP & Latent WEAT",
+          "turns": [
+            {
+              "speaker": "Dr. Nova",
+              "text": "Look how concise the actual mathematics becomes in Python! Abduction takes two lines of vectorized NumPy subtraction, and orthogonal projection takes just three lines of vector algebra.",
+              "dock": "main"
+            },
+            {
+              "speaker": "Kaito",
+              "text": "And wrapping all three checks—SCM invariance, DP noise ratio, and WEAT orthogonal purity—into continuous integration means models can never ship with silent causal proxies or latent bias!",
+              "dock": "main"
+            }
+          ],
+          "contentHtml": "\n<div class=\"space-y-2.5\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#0e7490]\">\n    <div class=\"font-mono text-xs font-black text-[#0e7490] uppercase mb-1.5\">\n      3-Stage Frontier Verification Pipeline\n    </div>\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-2 text-[10px]\">\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#0e7490]\">Stage 1: Causal Abduction</div>\n        <div class=\"text-[#334155] mt-0.5\"><code>abduct_latent_talent(df)</code> strips systemic $\\beta_g, \\beta_l$ shifts before scoring.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#7c3aed]\">Stage 2: DP Variance Audit</div>\n        <div class=\"text-[#334155] mt-0.5\">Flags quadratic $(n_{\\text{maj}} / n_{\\text{min}})^2$ noise ratios before DP-SGD training.</div>\n      </div>\n      <div class=\"p-2 rounded bg-[#fffaf0] border border-[#151b20]\">\n        <div class=\"font-mono font-bold text-[#15803d]\">Stage 3: WEAT Projection</div>\n        <div class=\"text-[#334155] mt-0.5\"><code>project_orthogonal(e, v_bias)</code> ensures $\\langle e_{\\text{fair}}, v_{\\text{bias}} \\rangle \\equiv 0$.</div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#151b20] text-[#c9f3f4] font-mono text-[10px] shadow-[2px_2px_0px_#151b20] overflow-x-auto leading-relaxed\">\n<pre>def abduct_latent_talent(self, df: pd.DataFrame) -> np.ndarray:\n    u_g = (df[\"GPA\"] - self.beta_g * df[\"A\"]) / self.alpha_g\n    u_l = (df[\"LSAT\"] - self.beta_l * df[\"A\"]) / self.alpha_l\n    return 0.5 * (u_g + u_l)  # Strictly invariant under do(A := 1 - A)\n\ndef project_orthogonal(vec: np.ndarray, v_bias: np.ndarray) -> np.ndarray:\n    proj = (np.dot(vec, v_bias) / np.dot(v_bias, v_bias)) * v_bias\n    deb = vec - proj\n    return deb / np.linalg.norm(deb)  # Drives WEAT d -> 0.00</pre>\n  </div>\n</div>\n"
         }
       },
       {
-        "id": "s8",
-        "title": "Empirical Case Study: Law School Admissions Benchmark ([Kusner et al., 2017](#ref-kusner2017))",
-        "type": "equation",
+        "id": "ch7_p10_s16",
+        "title": "Production Implementation: Pydantic V2 & 4 Cardinal Rules",
+        "type": "capstone",
         "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Empirical Case Study: Law School Admissions Benchmark ([Kusner et al., 2017](#ref-kusner2017))",
+          "speaker": "Dr. Nova (Senior AI Architect)",
+          "title": "Production Implementation: Pydantic V2 & 4 Cardinal Rules",
           "turns": [
             {
               "speaker": "Dr. Nova",
-              "text": "Empirical Case Study: Law School Admissions Benchmark ([Kusner et al., 2017](#ref-kusner2017)). Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
-            }
-          ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{GPA} = f_g(U, A, \\epsilon_g), \\qquad \\text{LSAT} = f_l(U, A, \\epsilon_l)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Both Grade Point Average (GPA) and Law School Admission Test (LSAT) scores exhibited direct statistical dependency on race ($A$) due to historical socioeconomic disparities.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Simply removing $A$ from model inputs (Fairness Through Unawareness) was useless because GPA and LSAT served as strong proxy encoders for $A$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Kusner et al. constructed an SCM with latent student qualification factor $U$:</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">By conditioning admissions predictions strictly on the abducted latent talent factor $U$ rather than observed test scores directly, the model eliminated race-mediated disparity while achieving higher first-year law school grade correlation ($r = 0.41$) than naive observational classifiers (; ).</span>\n  </div>\n</div>"
-        },
-        "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Empirical Case Study: Law School Admissions Benchmark ([Kusner et al., 2017](#ref-kusner2017))",
-          "turns": [
-            {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, how does empirical case study: law school admissions benchmark ([kusner et al., 2017](#ref-kusner2017)) protect our system against silent distribution shift in production?"
+              "text": "We conclude Chapter 7 with production-grade Pydantic V2 verification schemas: SCMAuditResult, DPAuditResult, and DebiasingResult, enforced by automated regression assertions.",
+              "dock": "main"
             },
             {
               "speaker": "Dr. Nova",
-              "text": "Formalizing the empirical sample mathematically reveals that empirical risk only approximates true generalization risk when the i.i.d. assumption holds. When upstream sampling is biased, the empirical risk diverges asymptotically from true risk—no model tuning can fix that."
+              "text": "Always uphold the 4 Cardinal Rules of Emerging Fairness Engineering: Condition decisions on abducted causal latents rather than proxy observables; audit minimax risk across exponential intersectional slices; compensate for quadratic DP-SGD minority noise penalties; and orthogonally project latent foundation embeddings to nullify WEAT stereotype bias.",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-3.5 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] my-2 text-center\">\n  <div class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider mb-1 text-left flex items-center justify-between\">\n    <span>📐 Mathematical Formulation</span>\n    <span class=\"text-[#151b20] text-[9px] font-mono bg-[#eee4c8] px-2 py-0.5 rounded border border-[#151b20]\">Empirical Sample Formulation</span>\n  </div>\n  <div class=\"text-base md:text-lg font-serif text-[#151b20] py-1 overflow-x-auto bg-[#f0fbfd] border border-[#0e7490] rounded-lg my-1\">\n    $$\\text{GPA} = f_g(U, A, \\epsilon_g), \\qquad \\text{LSAT} = f_l(U, A, \\epsilon_l)$$\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">◆</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Both Grade Point Average (GPA) and Law School Admission Test (LSAT) scores exhibited direct statistical dependency on race ($A$) due to historical socioeconomic disparities.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">▸</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Simply removing $A$ from model inputs (Fairness Through Unawareness) was useless because GPA and LSAT served as strong proxy encoders for $A$.</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">⚡</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">Kusner et al. constructed an SCM with latent student qualification factor $U$:</span>\n  </div>\n</div><div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#151b20] flex items-start gap-2.5 my-2\">\n  <span class=\"text-[#0e7490] font-black text-sm mt-0.5\">💡</span>\n  <div>\n    \n    <span class=\"text-[#334155] text-xs block leading-relaxed font-medium\">By conditioning admissions predictions strictly on the abducted latent talent factor $U$ rather than observed test scores directly, the model eliminated race-mediated disparity while achieving higher first-year law school grade correlation ($r = 0.41$) than naive observational classifiers (; ).</span>\n  </div>\n</div>"
-        }
-      },
-      {
-        "id": "s9",
-        "title": "Interactive Lab: Causal Counterfactual Fairness Simulator",
-        "type": "tool",
-        "solo": {
-          "speaker": "Dr. Nova (Senior Architect)",
-          "title": "Interactive Lab: Causal Counterfactual Fairness Simulator",
-          "turns": [
-            {
-              "speaker": "Dr. Nova",
-              "text": "Interactive Lab: Causal Counterfactual Fairness Simulator. Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
-            }
-          ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Causal Counterfactual Fairness Simulator</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Test Pearlian counterfactual interventions do(A := a&#x27;) and observe causal DAG mediation live.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Causal Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d]\">\n    <div class=\"flex items-center justify-between mb-1\">\n      <span class=\"font-mono font-black text-xs text-[#15803d] uppercase tracking-wider\">\n        🏛️ PRODUCTION CAPSTONE: PYDANTIC V2 SCHEMAS &amp; 4 CARDINAL RULES\n      </span>\n      <span class=\"px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#dcfce7] text-[#15803d] border border-[#151b20]\">\n        Track 7 Finale\n      </span>\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n      Certify every next-generation model with strongly typed Pydantic V2 contracts enforcing all 4 emerging fairness invariants.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2 text-[11px]\">\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#0e7490]\">1. Abduct Causal Latents</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Execute Abduction before Action; condition decisions strictly on latent $U$ to guarantee $\\Delta_{\\text{CF}} = 0.000$.</div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#b45309]\">2. Defeat Gerrymandering</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Never rely on isolated marginals; solve Minimax Subgroup games across $2^K$ intersections.</div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#7c3aed]\">3. Audit DP Variance</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Monitor $(N_{\\text{maj}}/N_{\\text{min}})^2$ noise ratios under DP-SGD and relax $(\\epsilon,\\delta)$ tradeoffs responsibly.</div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#15803d]\">4. Project Latent Spaces</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Apply orthogonal projection $\\mathbf{P}_\\perp$ onto neutral tokens to drive $\\text{WEAT } d \\to 0.00$ without utility loss.</div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#151b20] text-[#c9f3f4] font-mono text-[10px] shadow-[2px_2px_0px_#151b20] overflow-x-auto\">\n    <div class=\"text-[#94a3b8] mb-1\"># PRODUCTION PYDANTIC V2 ASSERTION GATE (TRACK 7 CERTIFICATION)</div>\n    <div>assert scm_res.fair_cf_disparity &lt; 1e-5, \"Causal SCM must be counterfactually invariant\"</div>\n    <div>assert dp_res.variance_ratio == (n_maj / n_min) ** 2, \"DP variance scaling contract violated\"</div>\n    <div>assert abs(deb_res.debiased_cosine_doctor) &lt; 1e-5 and deb_res.debiased_weat_d == 0.0</div>\n  </div>\n</div>\n"
         },
         "duo": {
-          "speaker": "Socratic Debate (Dr. Nova & Kaito)",
-          "title": "Socratic Debate: Interactive Lab: Causal Counterfactual Fairness Simulator",
+          "speaker": "Dr. Nova & Kaito",
+          "title": "Production Implementation: Pydantic V2 & 4 Cardinal Rules",
           "turns": [
             {
-              "speaker": "Kaito",
-              "text": "Dr. Nova, what specific failure mode should I look for when I use the causal counterfactual fairness simulator located below this player?"
+              "speaker": "Dr. Nova",
+              "text": "Congratulations on completing Track 7: Dataset Bias and Fairness! From Simpson's Paradox and impossibility theorems to Pearlian counterfactuals and foundation model projections, we have mastered the full spectrum of algorithmic equity.",
+              "dock": "main"
             },
             {
-              "speaker": "Dr. Nova",
-              "text": "Scroll directly beneath this presentation player to the live laboratory. Run the failure injection to observe how unvalidated anomalies trigger compounding cascades across downstream tensors. Hands-on testing proves why boundary schema contracts are mandatory."
+              "speaker": "Kaito",
+              "text": "And with our Pydantic V2 assertions locking in counterfactual invariance, DP variance checks, and WEAT zeroing, we can enforce fairness scientifically across every production deployment!",
+              "dock": "main"
             }
           ],
-          "contentHtml": "<div class=\"p-4 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[4px_4px_0px_#22bfd7] my-2\">\n  <div class=\"flex items-center justify-between border-b-2 border-[#151b20]/15 pb-2 mb-2.5 flex-wrap gap-2\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-[#c9f3f4] text-[#0e7490] font-mono font-black text-xs border border-[#151b20] shadow-[1px_1px_0px_#151b20] uppercase tracking-wider\">🔬 Interactive Lab</span>\n      <span class=\"text-xs font-mono font-black text-[#151b20]\">Causal Counterfactual Fairness Simulator</span>\n    </div>\n    <span class=\"text-[10px] font-mono text-[#0e7490] bg-[#fffaf0] px-2 py-0.5 rounded border border-[#151b20]\">Located Below on Page ↓</span>\n  </div>\n  <p class=\"text-xs text-[#334155] mb-3 leading-relaxed font-medium\">Test Pearlian counterfactual interventions do(A := a&#x27;) and observe causal DAG mediation live.</p>\n  <div class=\"bg-[#f6f0dc] p-3 rounded-xl border-2 border-[#151b20] space-y-2 text-xs\">\n    <span class=\"text-[10px] font-mono text-[#0e7490] font-black uppercase tracking-wider block border-b border-[#151b20]/20 pb-1\">⚡ Recommended Hands-On Experiment:</span>\n    <div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">1.</span>\n  <span class=\"text-xs leading-relaxed\">Scroll down to the interactive workbench section below the slide player to access the live laboratory.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">2.</span>\n  <span class=\"text-xs leading-relaxed\">Click &#x27;Launch Causal Workbench →&#x27; to examine baseline state, then trigger &#x27;Inject anomaly / Run test&#x27; to simulate failure modes.</span>\n</div><div class=\"flex items-start gap-2 text-[#334155]\">\n  <span class=\"text-[#0e7490] font-bold font-mono text-xs\">3.</span>\n  <span class=\"text-xs leading-relaxed\">Audit telemetry metrics and observe how defensive schema contracts guard downstream models.</span>\n</div>\n  </div>\n</div>"
+          "contentHtml": "\n<div class=\"space-y-3\">\n  <div class=\"p-3 rounded-xl bg-[#fffdf7] border-2 border-[#151b20] shadow-[3px_3px_0px_#15803d]\">\n    <div class=\"flex items-center justify-between mb-1\">\n      <span class=\"font-mono font-black text-xs text-[#15803d] uppercase tracking-wider\">\n        🏛️ PRODUCTION CAPSTONE: PYDANTIC V2 SCHEMAS &amp; 4 CARDINAL RULES\n      </span>\n      <span class=\"px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#dcfce7] text-[#15803d] border border-[#151b20]\">\n        Track 7 Finale\n      </span>\n    </div>\n    <p class=\"text-[11px] text-[#151b20]/80 font-sans\">\n      Certify every next-generation model with strongly typed Pydantic V2 contracts enforcing all 4 emerging fairness invariants.\n    </p>\n  </div>\n\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-2 text-[11px]\">\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#0e7490]\">1. Abduct Causal Latents</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Execute Abduction before Action; condition decisions strictly on latent $U$ to guarantee $\\Delta_{\\text{CF}} = 0.000$.</div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#b45309]\">2. Defeat Gerrymandering</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Never rely on isolated marginals; solve Minimax Subgroup games across $2^K$ intersections.</div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#7c3aed]\">3. Audit DP Variance</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Monitor $(N_{\\text{maj}}/N_{\\text{min}})^2$ noise ratios under DP-SGD and relax $(\\epsilon,\\delta)$ tradeoffs responsibly.</div>\n    </div>\n    <div class=\"p-2.5 rounded-lg bg-[#fffaf0] border-2 border-[#151b20] shadow-[2px_2px_0px_#151b20]\">\n      <div class=\"font-mono font-bold text-xs text-[#15803d]\">4. Project Latent Spaces</div>\n      <div class=\"text-[#151b20]/80 mt-1\">Apply orthogonal projection $\\mathbf{P}_\\perp$ onto neutral tokens to drive $\\text{WEAT } d \\to 0.00$ without utility loss.</div>\n    </div>\n  </div>\n\n  <div class=\"p-2.5 rounded-lg bg-[#151b20] text-[#c9f3f4] font-mono text-[10px] shadow-[2px_2px_0px_#151b20] overflow-x-auto\">\n    <div class=\"text-[#94a3b8] mb-1\"># PRODUCTION PYDANTIC V2 ASSERTION GATE (TRACK 7 CERTIFICATION)</div>\n    <div>assert scm_res.fair_cf_disparity &lt; 1e-5, \"Causal SCM must be counterfactually invariant\"</div>\n    <div>assert dp_res.variance_ratio == (n_maj / n_min) ** 2, \"DP variance scaling contract violated\"</div>\n    <div>assert abs(deb_res.debiased_cosine_doctor) &lt; 1e-5 and deb_res.debiased_weat_d == 0.0</div>\n  </div>\n</div>\n"
         }
       }
     ]

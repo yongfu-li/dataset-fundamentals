@@ -1,0 +1,505 @@
+{
+  "duration": 685.32,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome back, Kaito! Today we reach Lesson 12, the grand capstone of Chapter 5: Advanced Topics in Data Preprocessing. We are stepping beyond standard pandas and scikit-learn batch scripts.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 14.04
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I'm ready, Dr. Nova! In production systems, nobody has the luxury of recomputing batch statistics over a hundred gigabytes of data every minute, and labels from annotators are rarely perfect.",
+          "dock": "main",
+          "start": 14.04,
+          "end": 26.832
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Classical preprocessing relies on three broken assumptions: that all records fit in memory, that labels reflect ground truth, and that missing values can be filled by simple linear regressions.",
+          "dock": "main",
+          "start": 26.832,
+          "end": 40.464
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And when those assumptions crumble, we encounter GAIN for deep generative imputation, Welford and EWMA for infinite streaming telemetry, and Confident Learning to systematically purge corrupted annotations!",
+          "dock": "main",
+          "start": 40.464,
+          "end": 52.56
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why can't we just run scikit-learn's standard scaler and simple imputer on a micro-batch every few seconds in a streaming system?",
+          "dock": "main",
+          "start": 52.56,
+          "end": 60.552
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Great question, Kaito! Micro-batching creates two major vulnerabilities: boundary discontinuities and memory bloat. If your window size is ten thousand points, you're constantly recalculating sums of squares, which introduces floating point errors and latency spikes.",
+          "dock": "main",
+          "start": 60.552,
+          "end": 78.6
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And if an equipment calibration shifts the sensor mean at tick one hundred, a sliding window either lags behind or violently overreacts depending on the window width!",
+          "dock": "main",
+          "start": 78.6,
+          "end": 87.768
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. That is why online algorithms like Welford's recurrence and Exponentially Weighted Moving Averages track exact moments with zero buffering and instantaneous drift adaptation.",
+          "dock": "main",
+          "start": 87.768,
+          "end": 99.936
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why can't we just use a standard GAN to generate completely new synthetic samples, and then find the nearest neighbor to fill our missing columns?",
+          "dock": "main",
+          "start": 99.936,
+          "end": 108.648
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because nearest-neighbor searching in high-dimensional space suffers from the curse of dimensionality, Kaito! In fifty dimensions, every point is equidistant, and you lose the precise conditional distribution P(X missing given X observed).",
+          "dock": "main",
+          "start": 108.648,
+          "end": 123.456
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Ah! GAIN conditions the generator directly on the observed coordinates X-tilde and mask M, so it learns the true non-linear conditional manifold directly!",
+          "dock": "main",
+          "start": 123.456,
+          "end": 133.752
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. But there is a profound mathematical trap here. If the discriminator simply evaluates X-hat, the minimax game fails to converge to the true distribution. To fix it, we must introduce the Hint Matrix.",
+          "dock": "main",
+          "start": 133.752,
+          "end": 149.28
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! If we give the discriminator hints about the mask M, aren't we helping the discriminator cheat?",
+          "dock": "main",
+          "start": 149.28,
+          "end": 157.488
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "It feels like cheating at first glance, Kaito! But think about what happens if we reveal nothing. The discriminator sees completed vectors and tries to guess which coordinates are fake without knowing which ones were originally missing.",
+          "dock": "main",
+          "start": 157.488,
+          "end": 172.008
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Right! If it doesn't know what was observed, the generator could just memorize a single plausible mode, and the discriminator wouldn't know if that coordinate was originally there or invented!",
+          "dock": "main",
+          "start": 172.008,
+          "end": 183.288
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! By revealing most of the mask and hiding only one or two coordinates, we force the discriminator to check: 'Given that all these other symptoms are real, is this specific blood pressure reading statistically consistent?' That guarantees true conditional density alignment.",
+          "dock": "main",
+          "start": 183.288,
+          "end": 200.88
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! Negative variance? How can the sum of squared deviations from the mean ever be negative?",
+          "dock": "main",
+          "start": 200.88,
+          "end": 209.808
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Mathematically it can't, Kaito! But on silicon, sixty-four-bit floats only have fifty-three bits of mantissa precision. That gives you roughly sixteen decimal digits.",
+          "dock": "main",
+          "start": 209.808,
+          "end": 221.76
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And when you square a timestamp like one point seven billion, that requires eighteen digits just for the integer part! The tiny variance variations in the lower digits get completely truncated!",
+          "dock": "main",
+          "start": 221.76,
+          "end": 233.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. You subtract two numbers that agree on the first fifteen digits, and what remains is pure floating point rounding garbage. Welford's algorithm fixes this permanently by maintaining running centered deviations.",
+          "dock": "main",
+          "start": 233.328,
+          "end": 248.112
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at the simulator canvas, Kaito! At tick ninety, the transducer jumps forty units. Watch the blue Welford line versus the orange EWMA curve.",
+          "dock": "sim",
+          "start": 248.112,
+          "end": 259.56
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Wow! Welford's running mean is dragging its feet! Even at tick one hundred and eighty, it's still twenty units below the true sensor state!",
+          "dock": "sim",
+          "start": 259.56,
+          "end": 269.544
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Because Welford weights every sample as one over n. When n is one hundred and eighty, each new sample only has a zero point five percent vote!",
+          "dock": "sim",
+          "start": 269.544,
+          "end": 280.776
+        },
+        {
+          "speaker": "Kaito",
+          "text": "While EWMA with alpha zero point zero eight gives the latest sample an eight percent vote, cleanly snapping onto the new mean within twenty-four ticks!",
+          "dock": "sim",
+          "start": 280.776,
+          "end": 289.296
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Checkpoint time, Kaito! Let's test whether our learners grasp the trade-off between numerical stability and historical inertia in streaming estimators.",
+          "dock": "quiz",
+          "start": 289.296,
+          "end": 299.304
+        },
+        {
+          "speaker": "Kaito",
+          "text": "This is a subtle one! Welford's algorithm completely cured the catastrophic cancellation bug, but then the sensor recalibrated and the model stayed broken for days. Let's see who can diagnose the root cause!",
+          "dock": "quiz",
+          "start": 299.304,
+          "end": 312.888
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "So Dr. Nova, how do engineers choose the exact value for alpha in production? If alpha is too large, our variance bounces around with every noisy sensor spike!",
+          "dock": "main",
+          "start": 312.888,
+          "end": 323.568
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly, Kaito. It is a fundamental trade-off between variance reduction and tracking delay. If you set alpha to zero point five, your effective window is only three ticks, and high-frequency noise pollutes your normalization.",
+          "dock": "main",
+          "start": 323.568,
+          "end": 338.832
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Whereas setting alpha to zero point zero five gives an effective window of thirty-nine ticks and a half-life of fourteen samples, filtering out Gaussian jitter while still adapting to real shifts within minutes.",
+          "dock": "main",
+          "start": 338.832,
+          "end": 349.656
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Brilliant calculation, Kaito! That formula, N-effective equals two over alpha minus one, is the golden rule of production streaming standardization.",
+          "dock": "main",
+          "start": 349.656,
+          "end": 360.336
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, I used to just drop any sample where my neural network output less than eighty percent confidence. Why is that bad?",
+          "dock": "main",
+          "start": 360.336,
+          "end": 368.784
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Think about support vector machines, Kaito! What defines the optimal separating hyperplane? The points right along the boundary margin, where predicted probability is close to fifty-fifty!",
+          "dock": "main",
+          "start": 368.784,
+          "end": 381.672
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Whoa! If I drop everything under eighty percent, I'm literally throwing away all my support vectors!",
+          "dock": "main",
+          "start": 381.672,
+          "end": 388.752
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! You discard your most informative training points. Confident Learning only flags an example if its confidence for a DIFFERENT class exceeds that class's expected threshold, proving it was systematically mislabeled.",
+          "dock": "main",
+          "start": 388.752,
+          "end": 403.56
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, how does Confident Learning know how many samples to prune? What if it prunes half our dataset?",
+          "dock": "main",
+          "start": 403.56,
+          "end": 411.24
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is the mathematical elegance of PBNR, Kaito! The number of samples pruned is strictly bounded by the off-diagonal counts in the Confident Joint matrix.",
+          "dock": "main",
+          "start": 411.24,
+          "end": 421.704
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So if the joint matrix says there are forty-two cat photos mislabeled as dogs, it will prune exactly the forty-two dog-labeled photos with the worst margin against cat!",
+          "dock": "main",
+          "start": 421.704,
+          "end": 431.112
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely! It doesn't use an arbitrary threshold like zero point seven; it uses the mathematically calibrated noise rate of the dataset itself.",
+          "dock": "main",
+          "start": 431.112,
+          "end": 441.0
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, if you only clean the records where the gradient is huge, aren't you over-fitting to the outliers?",
+          "dock": "main",
+          "start": 441.0,
+          "end": 447.408
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "You would be, Kaito, if you used standard gradient descent! If you sample an outlier ten times more often, it exerts ten times more pull on the weights.",
+          "dock": "main",
+          "start": 447.408,
+          "end": 457.8
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Aha! But because Horvitz-Thompson divides that gradient by the probability q-i, the extra sampling frequency is exactly canceled out!",
+          "dock": "main",
+          "start": 457.8,
+          "end": 467.4
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on! The q-i in the numerator from sampling cancels the q-i in the denominator from weighting. You get the variance reduction of active sampling with the mathematical guarantee of completely unbiased gradient descent.",
+          "dock": "main",
+          "start": 467.4,
+          "end": 481.728
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Look at the canvas, Dr. Nova! When I crank the label noise up to twenty-five percent, the dashed red line gets completely pulled into the bottom left quadrant!",
+          "dock": "sim",
+          "start": 481.728,
+          "end": 491.856
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes! The noisy classifier is trying to accommodate the false annotations, corrupting predictions for completely innocent points. But look at the solid green line.",
+          "dock": "sim",
+          "start": 491.856,
+          "end": 503.712
+        },
+        {
+          "speaker": "Kaito",
+          "text": "The solid green line completely ignores the noisy red circles! It maintains the clean linear separation with almost ninety percent precision and recall!",
+          "dock": "sim",
+          "start": 503.712,
+          "end": 513.624
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is the power of PBNR. It identifies the exact off-diagonal noise transitions and prunes only the worst-margin violators, restoring clean boundary geometry.",
+          "dock": "sim",
+          "start": 513.624,
+          "end": 525.024
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Checkpoint 2, Kaito! Let's test whether our learners grasp the profound theoretical reason why GAIN cannot work without partial mask hints.",
+          "dock": "quiz",
+          "start": 525.024,
+          "end": 534.624
+        },
+        {
+          "speaker": "Kaito",
+          "text": "This is one of the coolest theorems in deep generative modeling! Without the hint matrix, the discriminator is trying to solve an ill-posed inverse problem. Let's see who can explain why!",
+          "dock": "quiz",
+          "start": 534.624,
+          "end": 546.84
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, in business databases, people often write hundreds of Python if-then rules to fix typos in city names or repair corrupted zip codes. Why does HoloClean use a factor graph?",
+          "dock": "main",
+          "start": 546.84,
+          "end": 558.72
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because rule-based scripts conflict with each other, Kaito! If rule A fixes the city based on zip code, and rule B fixes the zip code based on state, the order of rule execution completely alters the final database.",
+          "dock": "main",
+          "start": 558.72,
+          "end": 572.856
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Oh! Rule cascades can introduce cyclic bugs! A factor graph solves all rules simultaneously by maximizing the joint probability across all constraints!",
+          "dock": "main",
+          "start": 572.856,
+          "end": 584.208
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. HoloClean finds the most probable world that satisfies functional dependencies while honoring external knowledge bases.",
+          "dock": "main",
+          "start": 584.208,
+          "end": 593.16
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Look how compact the WelfordEWMAStream implementation is, Dr. Nova! In just twenty lines of Python, we track both stationary cumulative variance and adaptive EWMA drift without storing any historical lists!",
+          "dock": "main",
+          "start": 593.16,
+          "end": 607.392
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is the hallmark of elegant systems engineering, Kaito. By eliminating memory buffers, you eliminate cache misses, GC overhead, and out-of-memory crashes on continuous streaming infrastructure.",
+          "dock": "main",
+          "start": 607.392,
+          "end": 620.592
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And the ConfidentJointPruner guarantees that downstream training sets are cleansed of crowd-worker errors without throwing away legitimate hard cases!",
+          "dock": "main",
+          "start": 620.592,
+          "end": 628.776
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. This represents the pinnacle of modern data cleaning: mathematically rigorous, computationally lightweight, and robust under real-world noise.",
+          "dock": "main",
+          "start": 628.776,
+          "end": 639.12
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "We did it, Kaito! That wraps up Chapter 5 Lesson 12, and with it, the entire twelve-lesson monograph on Data Cleaning and Preprocessing!",
+          "dock": "main",
+          "start": 639.12,
+          "end": 649.224
+        },
+        {
+          "speaker": "Kaito",
+          "text": "What an incredible journey, Dr. Nova! From understanding missingness mechanisms and imputation in the early lessons, through robust outlier detection, categorical encoding, and enterprise pipelines, all the way to GAIN, streaming Welford, and Confident Learning!",
+          "dock": "main",
+          "start": 649.224,
+          "end": 664.872
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "You've mastered the theoretical proofs and the production implementation details. Always remember: data cleaning is not an ad-hoc chore before machine learning\u2014it IS the foundation of model intelligence.",
+          "dock": "main",
+          "start": 664.872,
+          "end": 677.952
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Amen to that! Onward to Track 6, where we explore Feature Selection and Dimensionality Reduction!",
+          "dock": "main",
+          "start": 677.952,
+          "end": 685.32
+        }
+      ]
+    }
+  ]
+}

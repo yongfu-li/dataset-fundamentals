@@ -1,0 +1,6529 @@
+{
+  "lessonKey": "ch9_p8",
+  "mode": "duo",
+  "duration": 566.704,
+  "slidesCount": 16,
+  "sentences": [
+    {
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 9.8! Today we tackle the realities of unbounded streaming data: handling network jitter, watermarking out-of-order packets, and keeping ingestion pipelines from collapsing under load.",
+      "start": 0.0,
+      "end": 13.44,
+      "slide": 0,
+      "words": [
+        {
+          "word": "Welcome",
+          "start": 0.0,
+          "end": 0.498
+        },
+        {
+          "word": "to",
+          "start": 0.498,
+          "end": 0.996
+        },
+        {
+          "word": "Lesson",
+          "start": 0.996,
+          "end": 1.493
+        },
+        {
+          "word": "9.8!",
+          "start": 1.493,
+          "end": 1.991
+        },
+        {
+          "word": "Today",
+          "start": 1.991,
+          "end": 2.489
+        },
+        {
+          "word": "we",
+          "start": 2.489,
+          "end": 2.987
+        },
+        {
+          "word": "tackle",
+          "start": 2.987,
+          "end": 3.484
+        },
+        {
+          "word": "the",
+          "start": 3.484,
+          "end": 3.982
+        },
+        {
+          "word": "realities",
+          "start": 3.982,
+          "end": 4.48
+        },
+        {
+          "word": "of",
+          "start": 4.48,
+          "end": 4.978
+        },
+        {
+          "word": "unbounded",
+          "start": 4.978,
+          "end": 5.476
+        },
+        {
+          "word": "streaming",
+          "start": 5.476,
+          "end": 5.973
+        },
+        {
+          "word": "data:",
+          "start": 5.973,
+          "end": 6.471
+        },
+        {
+          "word": "handling",
+          "start": 6.471,
+          "end": 6.969
+        },
+        {
+          "word": "network",
+          "start": 6.969,
+          "end": 7.467
+        },
+        {
+          "word": "jitter,",
+          "start": 7.467,
+          "end": 7.964
+        },
+        {
+          "word": "watermarking",
+          "start": 7.964,
+          "end": 8.462
+        },
+        {
+          "word": "out-of-order",
+          "start": 8.462,
+          "end": 8.96
+        },
+        {
+          "word": "packets,",
+          "start": 8.96,
+          "end": 9.458
+        },
+        {
+          "word": "and",
+          "start": 9.458,
+          "end": 9.956
+        },
+        {
+          "word": "keeping",
+          "start": 9.956,
+          "end": 10.453
+        },
+        {
+          "word": "ingestion",
+          "start": 10.453,
+          "end": 10.951
+        },
+        {
+          "word": "pipelines",
+          "start": 10.951,
+          "end": 11.449
+        },
+        {
+          "word": "from",
+          "start": 11.449,
+          "end": 11.947
+        },
+        {
+          "word": "collapsing",
+          "start": 11.947,
+          "end": 12.444
+        },
+        {
+          "word": "under",
+          "start": 12.444,
+          "end": 12.942
+        },
+        {
+          "word": "load.",
+          "start": 12.942,
+          "end": 13.44
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Wait Dr. Nova, why can't we simply process events the moment they hit our servers? If an IoT sensor emits a reading at noon, why not aggregate it using our server's wall-clock time?",
+      "start": 13.69,
+      "end": 25.09,
+      "slide": 0,
+      "words": [
+        {
+          "word": "Wait",
+          "start": 13.69,
+          "end": 14.035
+        },
+        {
+          "word": "Dr.",
+          "start": 14.035,
+          "end": 14.381
+        },
+        {
+          "word": "Nova,",
+          "start": 14.381,
+          "end": 14.726
+        },
+        {
+          "word": "why",
+          "start": 14.726,
+          "end": 15.072
+        },
+        {
+          "word": "can't",
+          "start": 15.072,
+          "end": 15.417
+        },
+        {
+          "word": "we",
+          "start": 15.417,
+          "end": 15.763
+        },
+        {
+          "word": "simply",
+          "start": 15.763,
+          "end": 16.108
+        },
+        {
+          "word": "process",
+          "start": 16.108,
+          "end": 16.454
+        },
+        {
+          "word": "events",
+          "start": 16.454,
+          "end": 16.799
+        },
+        {
+          "word": "the",
+          "start": 16.799,
+          "end": 17.145
+        },
+        {
+          "word": "moment",
+          "start": 17.145,
+          "end": 17.49
+        },
+        {
+          "word": "they",
+          "start": 17.49,
+          "end": 17.835
+        },
+        {
+          "word": "hit",
+          "start": 17.835,
+          "end": 18.181
+        },
+        {
+          "word": "our",
+          "start": 18.181,
+          "end": 18.526
+        },
+        {
+          "word": "servers?",
+          "start": 18.526,
+          "end": 18.872
+        },
+        {
+          "word": "If",
+          "start": 18.872,
+          "end": 19.217
+        },
+        {
+          "word": "an",
+          "start": 19.217,
+          "end": 19.563
+        },
+        {
+          "word": "IoT",
+          "start": 19.563,
+          "end": 19.908
+        },
+        {
+          "word": "sensor",
+          "start": 19.908,
+          "end": 20.254
+        },
+        {
+          "word": "emits",
+          "start": 20.254,
+          "end": 20.599
+        },
+        {
+          "word": "a",
+          "start": 20.599,
+          "end": 20.945
+        },
+        {
+          "word": "reading",
+          "start": 20.945,
+          "end": 21.29
+        },
+        {
+          "word": "at",
+          "start": 21.29,
+          "end": 21.635
+        },
+        {
+          "word": "noon,",
+          "start": 21.635,
+          "end": 21.981
+        },
+        {
+          "word": "why",
+          "start": 21.981,
+          "end": 22.326
+        },
+        {
+          "word": "not",
+          "start": 22.326,
+          "end": 22.672
+        },
+        {
+          "word": "aggregate",
+          "start": 22.672,
+          "end": 23.017
+        },
+        {
+          "word": "it",
+          "start": 23.017,
+          "end": 23.363
+        },
+        {
+          "word": "using",
+          "start": 23.363,
+          "end": 23.708
+        },
+        {
+          "word": "our",
+          "start": 23.708,
+          "end": 24.054
+        },
+        {
+          "word": "server's",
+          "start": 24.054,
+          "end": 24.399
+        },
+        {
+          "word": "wall-clock",
+          "start": 24.399,
+          "end": 24.745
+        },
+        {
+          "word": "time?",
+          "start": 24.745,
+          "end": 25.09
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Because in real networks, packets take unpredictable detours! If an edge gateway disconnects in a tunnel for thirty seconds, its timestamps would bunch up at arrival time, making a moving car look like it traveled at supersonic speeds. We must anchor all aggregations in Event Time.",
+      "start": 25.34,
+      "end": 43.46,
+      "slide": 0,
+      "words": [
+        {
+          "word": "Because",
+          "start": 25.34,
+          "end": 25.734
+        },
+        {
+          "word": "in",
+          "start": 25.734,
+          "end": 26.128
+        },
+        {
+          "word": "real",
+          "start": 26.128,
+          "end": 26.522
+        },
+        {
+          "word": "networks,",
+          "start": 26.522,
+          "end": 26.916
+        },
+        {
+          "word": "packets",
+          "start": 26.916,
+          "end": 27.31
+        },
+        {
+          "word": "take",
+          "start": 27.31,
+          "end": 27.703
+        },
+        {
+          "word": "unpredictable",
+          "start": 27.703,
+          "end": 28.097
+        },
+        {
+          "word": "detours!",
+          "start": 28.097,
+          "end": 28.491
+        },
+        {
+          "word": "If",
+          "start": 28.491,
+          "end": 28.885
+        },
+        {
+          "word": "an",
+          "start": 28.885,
+          "end": 29.279
+        },
+        {
+          "word": "edge",
+          "start": 29.279,
+          "end": 29.673
+        },
+        {
+          "word": "gateway",
+          "start": 29.673,
+          "end": 30.067
+        },
+        {
+          "word": "disconnects",
+          "start": 30.067,
+          "end": 30.461
+        },
+        {
+          "word": "in",
+          "start": 30.461,
+          "end": 30.855
+        },
+        {
+          "word": "a",
+          "start": 30.855,
+          "end": 31.249
+        },
+        {
+          "word": "tunnel",
+          "start": 31.249,
+          "end": 31.643
+        },
+        {
+          "word": "for",
+          "start": 31.643,
+          "end": 32.037
+        },
+        {
+          "word": "thirty",
+          "start": 32.037,
+          "end": 32.43
+        },
+        {
+          "word": "seconds,",
+          "start": 32.43,
+          "end": 32.824
+        },
+        {
+          "word": "its",
+          "start": 32.824,
+          "end": 33.218
+        },
+        {
+          "word": "timestamps",
+          "start": 33.218,
+          "end": 33.612
+        },
+        {
+          "word": "would",
+          "start": 33.612,
+          "end": 34.006
+        },
+        {
+          "word": "bunch",
+          "start": 34.006,
+          "end": 34.4
+        },
+        {
+          "word": "up",
+          "start": 34.4,
+          "end": 34.794
+        },
+        {
+          "word": "at",
+          "start": 34.794,
+          "end": 35.188
+        },
+        {
+          "word": "arrival",
+          "start": 35.188,
+          "end": 35.582
+        },
+        {
+          "word": "time,",
+          "start": 35.582,
+          "end": 35.976
+        },
+        {
+          "word": "making",
+          "start": 35.976,
+          "end": 36.37
+        },
+        {
+          "word": "a",
+          "start": 36.37,
+          "end": 36.763
+        },
+        {
+          "word": "moving",
+          "start": 36.763,
+          "end": 37.157
+        },
+        {
+          "word": "car",
+          "start": 37.157,
+          "end": 37.551
+        },
+        {
+          "word": "look",
+          "start": 37.551,
+          "end": 37.945
+        },
+        {
+          "word": "like",
+          "start": 37.945,
+          "end": 38.339
+        },
+        {
+          "word": "it",
+          "start": 38.339,
+          "end": 38.733
+        },
+        {
+          "word": "traveled",
+          "start": 38.733,
+          "end": 39.127
+        },
+        {
+          "word": "at",
+          "start": 39.127,
+          "end": 39.521
+        },
+        {
+          "word": "supersonic",
+          "start": 39.521,
+          "end": 39.915
+        },
+        {
+          "word": "speeds.",
+          "start": 39.915,
+          "end": 40.309
+        },
+        {
+          "word": "We",
+          "start": 40.309,
+          "end": 40.703
+        },
+        {
+          "word": "must",
+          "start": 40.703,
+          "end": 41.097
+        },
+        {
+          "word": "anchor",
+          "start": 41.097,
+          "end": 41.49
+        },
+        {
+          "word": "all",
+          "start": 41.49,
+          "end": 41.884
+        },
+        {
+          "word": "aggregations",
+          "start": 41.884,
+          "end": 42.278
+        },
+        {
+          "word": "in",
+          "start": 42.278,
+          "end": 42.672
+        },
+        {
+          "word": "Event",
+          "start": 42.672,
+          "end": 43.066
+        },
+        {
+          "word": "Time.",
+          "start": 43.066,
+          "end": 43.46
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Notice how Kafka partitions sit directly between the heterogeneous producers and the stream engine. Each partition acts as an immutable, sequential disk append log.",
+      "start": 44.06,
+      "end": 54.692,
+      "slide": 1,
+      "words": [
+        {
+          "word": "Notice",
+          "start": 44.06,
+          "end": 44.503
+        },
+        {
+          "word": "how",
+          "start": 44.503,
+          "end": 44.946
+        },
+        {
+          "word": "Kafka",
+          "start": 44.946,
+          "end": 45.389
+        },
+        {
+          "word": "partitions",
+          "start": 45.389,
+          "end": 45.832
+        },
+        {
+          "word": "sit",
+          "start": 45.832,
+          "end": 46.275
+        },
+        {
+          "word": "directly",
+          "start": 46.275,
+          "end": 46.718
+        },
+        {
+          "word": "between",
+          "start": 46.718,
+          "end": 47.161
+        },
+        {
+          "word": "the",
+          "start": 47.161,
+          "end": 47.604
+        },
+        {
+          "word": "heterogeneous",
+          "start": 47.604,
+          "end": 48.047
+        },
+        {
+          "word": "producers",
+          "start": 48.047,
+          "end": 48.49
+        },
+        {
+          "word": "and",
+          "start": 48.49,
+          "end": 48.933
+        },
+        {
+          "word": "the",
+          "start": 48.933,
+          "end": 49.376
+        },
+        {
+          "word": "stream",
+          "start": 49.376,
+          "end": 49.819
+        },
+        {
+          "word": "engine.",
+          "start": 49.819,
+          "end": 50.262
+        },
+        {
+          "word": "Each",
+          "start": 50.262,
+          "end": 50.705
+        },
+        {
+          "word": "partition",
+          "start": 50.705,
+          "end": 51.148
+        },
+        {
+          "word": "acts",
+          "start": 51.148,
+          "end": 51.591
+        },
+        {
+          "word": "as",
+          "start": 51.591,
+          "end": 52.034
+        },
+        {
+          "word": "an",
+          "start": 52.034,
+          "end": 52.477
+        },
+        {
+          "word": "immutable,",
+          "start": 52.477,
+          "end": 52.92
+        },
+        {
+          "word": "sequential",
+          "start": 52.92,
+          "end": 53.363
+        },
+        {
+          "word": "disk",
+          "start": 53.363,
+          "end": 53.806
+        },
+        {
+          "word": "append",
+          "start": 53.806,
+          "end": 54.249
+        },
+        {
+          "word": "log.",
+          "start": 54.249,
+          "end": 54.692
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Why not connect the IoT devices directly to the Flink stream workers over HTTP sockets? That would eliminate Kafka broker hops and storage overhead!",
+      "start": 54.942,
+      "end": 65.406,
+      "slide": 1,
+      "words": [
+        {
+          "word": "Why",
+          "start": 54.942,
+          "end": 55.378
+        },
+        {
+          "word": "not",
+          "start": 55.378,
+          "end": 55.814
+        },
+        {
+          "word": "connect",
+          "start": 55.814,
+          "end": 56.25
+        },
+        {
+          "word": "the",
+          "start": 56.25,
+          "end": 56.686
+        },
+        {
+          "word": "IoT",
+          "start": 56.686,
+          "end": 57.122
+        },
+        {
+          "word": "devices",
+          "start": 57.122,
+          "end": 57.558
+        },
+        {
+          "word": "directly",
+          "start": 57.558,
+          "end": 57.994
+        },
+        {
+          "word": "to",
+          "start": 57.994,
+          "end": 58.43
+        },
+        {
+          "word": "the",
+          "start": 58.43,
+          "end": 58.866
+        },
+        {
+          "word": "Flink",
+          "start": 58.866,
+          "end": 59.302
+        },
+        {
+          "word": "stream",
+          "start": 59.302,
+          "end": 59.738
+        },
+        {
+          "word": "workers",
+          "start": 59.738,
+          "end": 60.174
+        },
+        {
+          "word": "over",
+          "start": 60.174,
+          "end": 60.61
+        },
+        {
+          "word": "HTTP",
+          "start": 60.61,
+          "end": 61.046
+        },
+        {
+          "word": "sockets?",
+          "start": 61.046,
+          "end": 61.482
+        },
+        {
+          "word": "That",
+          "start": 61.482,
+          "end": 61.918
+        },
+        {
+          "word": "would",
+          "start": 61.918,
+          "end": 62.354
+        },
+        {
+          "word": "eliminate",
+          "start": 62.354,
+          "end": 62.79
+        },
+        {
+          "word": "Kafka",
+          "start": 62.79,
+          "end": 63.226
+        },
+        {
+          "word": "broker",
+          "start": 63.226,
+          "end": 63.662
+        },
+        {
+          "word": "hops",
+          "start": 63.662,
+          "end": 64.098
+        },
+        {
+          "word": "and",
+          "start": 64.098,
+          "end": 64.534
+        },
+        {
+          "word": "storage",
+          "start": 64.534,
+          "end": 64.97
+        },
+        {
+          "word": "overhead!",
+          "start": 64.97,
+          "end": 65.406
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Without Kafka, a sudden surge in sensor telemetry would overwhelm worker memory, causing heap exhaustion and silent packet drops! The commit log provides durable persistent buffering and allows multiple consumer groups to read at their own speed.",
+      "start": 65.656,
+      "end": 80.8,
+      "slide": 1,
+      "words": [
+        {
+          "word": "Without",
+          "start": 65.656,
+          "end": 66.065
+        },
+        {
+          "word": "Kafka,",
+          "start": 66.065,
+          "end": 66.475
+        },
+        {
+          "word": "a",
+          "start": 66.475,
+          "end": 66.884
+        },
+        {
+          "word": "sudden",
+          "start": 66.884,
+          "end": 67.293
+        },
+        {
+          "word": "surge",
+          "start": 67.293,
+          "end": 67.702
+        },
+        {
+          "word": "in",
+          "start": 67.702,
+          "end": 68.112
+        },
+        {
+          "word": "sensor",
+          "start": 68.112,
+          "end": 68.521
+        },
+        {
+          "word": "telemetry",
+          "start": 68.521,
+          "end": 68.93
+        },
+        {
+          "word": "would",
+          "start": 68.93,
+          "end": 69.34
+        },
+        {
+          "word": "overwhelm",
+          "start": 69.34,
+          "end": 69.749
+        },
+        {
+          "word": "worker",
+          "start": 69.749,
+          "end": 70.158
+        },
+        {
+          "word": "memory,",
+          "start": 70.158,
+          "end": 70.568
+        },
+        {
+          "word": "causing",
+          "start": 70.568,
+          "end": 70.977
+        },
+        {
+          "word": "heap",
+          "start": 70.977,
+          "end": 71.386
+        },
+        {
+          "word": "exhaustion",
+          "start": 71.386,
+          "end": 71.795
+        },
+        {
+          "word": "and",
+          "start": 71.795,
+          "end": 72.205
+        },
+        {
+          "word": "silent",
+          "start": 72.205,
+          "end": 72.614
+        },
+        {
+          "word": "packet",
+          "start": 72.614,
+          "end": 73.023
+        },
+        {
+          "word": "drops!",
+          "start": 73.023,
+          "end": 73.433
+        },
+        {
+          "word": "The",
+          "start": 73.433,
+          "end": 73.842
+        },
+        {
+          "word": "commit",
+          "start": 73.842,
+          "end": 74.251
+        },
+        {
+          "word": "log",
+          "start": 74.251,
+          "end": 74.661
+        },
+        {
+          "word": "provides",
+          "start": 74.661,
+          "end": 75.07
+        },
+        {
+          "word": "durable",
+          "start": 75.07,
+          "end": 75.479
+        },
+        {
+          "word": "persistent",
+          "start": 75.479,
+          "end": 75.888
+        },
+        {
+          "word": "buffering",
+          "start": 75.888,
+          "end": 76.298
+        },
+        {
+          "word": "and",
+          "start": 76.298,
+          "end": 76.707
+        },
+        {
+          "word": "allows",
+          "start": 76.707,
+          "end": 77.116
+        },
+        {
+          "word": "multiple",
+          "start": 77.116,
+          "end": 77.526
+        },
+        {
+          "word": "consumer",
+          "start": 77.526,
+          "end": 77.935
+        },
+        {
+          "word": "groups",
+          "start": 77.935,
+          "end": 78.344
+        },
+        {
+          "word": "to",
+          "start": 78.344,
+          "end": 78.754
+        },
+        {
+          "word": "read",
+          "start": 78.754,
+          "end": 79.163
+        },
+        {
+          "word": "at",
+          "start": 79.163,
+          "end": 79.572
+        },
+        {
+          "word": "their",
+          "start": 79.572,
+          "end": 79.981
+        },
+        {
+          "word": "own",
+          "start": 79.981,
+          "end": 80.391
+        },
+        {
+          "word": "speed.",
+          "start": 80.391,
+          "end": 80.8
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Kaito, imagine a connected ambulance streaming heart monitor telemetry. The vehicle enters an underground tunnel and loses cellular connection for twenty seconds before reconnecting.",
+      "start": 81.4,
+      "end": 92.992,
+      "slide": 2,
+      "words": [
+        {
+          "word": "Kaito,",
+          "start": 81.4,
+          "end": 81.883
+        },
+        {
+          "word": "imagine",
+          "start": 81.883,
+          "end": 82.366
+        },
+        {
+          "word": "a",
+          "start": 82.366,
+          "end": 82.849
+        },
+        {
+          "word": "connected",
+          "start": 82.849,
+          "end": 83.332
+        },
+        {
+          "word": "ambulance",
+          "start": 83.332,
+          "end": 83.815
+        },
+        {
+          "word": "streaming",
+          "start": 83.815,
+          "end": 84.298
+        },
+        {
+          "word": "heart",
+          "start": 84.298,
+          "end": 84.781
+        },
+        {
+          "word": "monitor",
+          "start": 84.781,
+          "end": 85.264
+        },
+        {
+          "word": "telemetry.",
+          "start": 85.264,
+          "end": 85.747
+        },
+        {
+          "word": "The",
+          "start": 85.747,
+          "end": 86.23
+        },
+        {
+          "word": "vehicle",
+          "start": 86.23,
+          "end": 86.713
+        },
+        {
+          "word": "enters",
+          "start": 86.713,
+          "end": 87.196
+        },
+        {
+          "word": "an",
+          "start": 87.196,
+          "end": 87.679
+        },
+        {
+          "word": "underground",
+          "start": 87.679,
+          "end": 88.162
+        },
+        {
+          "word": "tunnel",
+          "start": 88.162,
+          "end": 88.645
+        },
+        {
+          "word": "and",
+          "start": 88.645,
+          "end": 89.128
+        },
+        {
+          "word": "loses",
+          "start": 89.128,
+          "end": 89.611
+        },
+        {
+          "word": "cellular",
+          "start": 89.611,
+          "end": 90.094
+        },
+        {
+          "word": "connection",
+          "start": 90.094,
+          "end": 90.577
+        },
+        {
+          "word": "for",
+          "start": 90.577,
+          "end": 91.06
+        },
+        {
+          "word": "twenty",
+          "start": 91.06,
+          "end": 91.543
+        },
+        {
+          "word": "seconds",
+          "start": 91.543,
+          "end": 92.026
+        },
+        {
+          "word": "before",
+          "start": 92.026,
+          "end": 92.509
+        },
+        {
+          "word": "reconnecting.",
+          "start": 92.509,
+          "end": 92.992
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "When it exits the tunnel, all twenty seconds of heart telemetry arrive at the cloud broker within a single hundred-millisecond burst! If we use Processing Time, we'd see twenty seconds of pulse readings crammed into one instant!",
+      "start": 93.242,
+      "end": 106.61,
+      "slide": 2,
+      "words": [
+        {
+          "word": "When",
+          "start": 93.242,
+          "end": 93.603
+        },
+        {
+          "word": "it",
+          "start": 93.603,
+          "end": 93.965
+        },
+        {
+          "word": "exits",
+          "start": 93.965,
+          "end": 94.326
+        },
+        {
+          "word": "the",
+          "start": 94.326,
+          "end": 94.687
+        },
+        {
+          "word": "tunnel,",
+          "start": 94.687,
+          "end": 95.048
+        },
+        {
+          "word": "all",
+          "start": 95.048,
+          "end": 95.41
+        },
+        {
+          "word": "twenty",
+          "start": 95.41,
+          "end": 95.771
+        },
+        {
+          "word": "seconds",
+          "start": 95.771,
+          "end": 96.132
+        },
+        {
+          "word": "of",
+          "start": 96.132,
+          "end": 96.494
+        },
+        {
+          "word": "heart",
+          "start": 96.494,
+          "end": 96.855
+        },
+        {
+          "word": "telemetry",
+          "start": 96.855,
+          "end": 97.216
+        },
+        {
+          "word": "arrive",
+          "start": 97.216,
+          "end": 97.578
+        },
+        {
+          "word": "at",
+          "start": 97.578,
+          "end": 97.939
+        },
+        {
+          "word": "the",
+          "start": 97.939,
+          "end": 98.3
+        },
+        {
+          "word": "cloud",
+          "start": 98.3,
+          "end": 98.661
+        },
+        {
+          "word": "broker",
+          "start": 98.661,
+          "end": 99.023
+        },
+        {
+          "word": "within",
+          "start": 99.023,
+          "end": 99.384
+        },
+        {
+          "word": "a",
+          "start": 99.384,
+          "end": 99.745
+        },
+        {
+          "word": "single",
+          "start": 99.745,
+          "end": 100.107
+        },
+        {
+          "word": "hundred-millisecond",
+          "start": 100.107,
+          "end": 100.468
+        },
+        {
+          "word": "burst!",
+          "start": 100.468,
+          "end": 100.829
+        },
+        {
+          "word": "If",
+          "start": 100.829,
+          "end": 101.191
+        },
+        {
+          "word": "we",
+          "start": 101.191,
+          "end": 101.552
+        },
+        {
+          "word": "use",
+          "start": 101.552,
+          "end": 101.913
+        },
+        {
+          "word": "Processing",
+          "start": 101.913,
+          "end": 102.274
+        },
+        {
+          "word": "Time,",
+          "start": 102.274,
+          "end": 102.636
+        },
+        {
+          "word": "we'd",
+          "start": 102.636,
+          "end": 102.997
+        },
+        {
+          "word": "see",
+          "start": 102.997,
+          "end": 103.358
+        },
+        {
+          "word": "twenty",
+          "start": 103.358,
+          "end": 103.72
+        },
+        {
+          "word": "seconds",
+          "start": 103.72,
+          "end": 104.081
+        },
+        {
+          "word": "of",
+          "start": 104.081,
+          "end": 104.442
+        },
+        {
+          "word": "pulse",
+          "start": 104.442,
+          "end": 104.804
+        },
+        {
+          "word": "readings",
+          "start": 104.804,
+          "end": 105.165
+        },
+        {
+          "word": "crammed",
+          "start": 105.165,
+          "end": 105.526
+        },
+        {
+          "word": "into",
+          "start": 105.526,
+          "end": 105.887
+        },
+        {
+          "word": "one",
+          "start": 105.887,
+          "end": 106.249
+        },
+        {
+          "word": "instant!",
+          "start": 106.249,
+          "end": 106.61
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly right. The system would falsely alarm that the patient's heart rate spiked twentyfold! Only by grouping telemetry by Event Time can the true biological sequence be reconstructed.",
+      "start": 106.86,
+      "end": 119.748,
+      "slide": 2,
+      "words": [
+        {
+          "word": "Exactly",
+          "start": 106.86,
+          "end": 107.32
+        },
+        {
+          "word": "right.",
+          "start": 107.32,
+          "end": 107.781
+        },
+        {
+          "word": "The",
+          "start": 107.781,
+          "end": 108.241
+        },
+        {
+          "word": "system",
+          "start": 108.241,
+          "end": 108.701
+        },
+        {
+          "word": "would",
+          "start": 108.701,
+          "end": 109.161
+        },
+        {
+          "word": "falsely",
+          "start": 109.161,
+          "end": 109.622
+        },
+        {
+          "word": "alarm",
+          "start": 109.622,
+          "end": 110.082
+        },
+        {
+          "word": "that",
+          "start": 110.082,
+          "end": 110.542
+        },
+        {
+          "word": "the",
+          "start": 110.542,
+          "end": 111.003
+        },
+        {
+          "word": "patient's",
+          "start": 111.003,
+          "end": 111.463
+        },
+        {
+          "word": "heart",
+          "start": 111.463,
+          "end": 111.923
+        },
+        {
+          "word": "rate",
+          "start": 111.923,
+          "end": 112.383
+        },
+        {
+          "word": "spiked",
+          "start": 112.383,
+          "end": 112.844
+        },
+        {
+          "word": "twentyfold!",
+          "start": 112.844,
+          "end": 113.304
+        },
+        {
+          "word": "Only",
+          "start": 113.304,
+          "end": 113.764
+        },
+        {
+          "word": "by",
+          "start": 113.764,
+          "end": 114.225
+        },
+        {
+          "word": "grouping",
+          "start": 114.225,
+          "end": 114.685
+        },
+        {
+          "word": "telemetry",
+          "start": 114.685,
+          "end": 115.145
+        },
+        {
+          "word": "by",
+          "start": 115.145,
+          "end": 115.605
+        },
+        {
+          "word": "Event",
+          "start": 115.605,
+          "end": 116.066
+        },
+        {
+          "word": "Time",
+          "start": 116.066,
+          "end": 116.526
+        },
+        {
+          "word": "can",
+          "start": 116.526,
+          "end": 116.986
+        },
+        {
+          "word": "the",
+          "start": 116.986,
+          "end": 117.447
+        },
+        {
+          "word": "true",
+          "start": 117.447,
+          "end": 117.907
+        },
+        {
+          "word": "biological",
+          "start": 117.907,
+          "end": 118.367
+        },
+        {
+          "word": "sequence",
+          "start": 118.367,
+          "end": 118.827
+        },
+        {
+          "word": "be",
+          "start": 118.827,
+          "end": 119.288
+        },
+        {
+          "word": "reconstructed.",
+          "start": 119.288,
+          "end": 119.748
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Look at the event sequence in the worked example, Kaito. Event e3 has a timestamp of 2.0 seconds, arriving after event e2 which had 2.5 seconds. Did e3 get dropped?",
+      "start": 120.348,
+      "end": 133.788,
+      "slide": 3,
+      "words": [
+        {
+          "word": "Look",
+          "start": 120.348,
+          "end": 120.796
+        },
+        {
+          "word": "at",
+          "start": 120.796,
+          "end": 121.244
+        },
+        {
+          "word": "the",
+          "start": 121.244,
+          "end": 121.692
+        },
+        {
+          "word": "event",
+          "start": 121.692,
+          "end": 122.14
+        },
+        {
+          "word": "sequence",
+          "start": 122.14,
+          "end": 122.588
+        },
+        {
+          "word": "in",
+          "start": 122.588,
+          "end": 123.036
+        },
+        {
+          "word": "the",
+          "start": 123.036,
+          "end": 123.484
+        },
+        {
+          "word": "worked",
+          "start": 123.484,
+          "end": 123.932
+        },
+        {
+          "word": "example,",
+          "start": 123.932,
+          "end": 124.38
+        },
+        {
+          "word": "Kaito.",
+          "start": 124.38,
+          "end": 124.828
+        },
+        {
+          "word": "Event",
+          "start": 124.828,
+          "end": 125.276
+        },
+        {
+          "word": "e3",
+          "start": 125.276,
+          "end": 125.724
+        },
+        {
+          "word": "has",
+          "start": 125.724,
+          "end": 126.172
+        },
+        {
+          "word": "a",
+          "start": 126.172,
+          "end": 126.62
+        },
+        {
+          "word": "timestamp",
+          "start": 126.62,
+          "end": 127.068
+        },
+        {
+          "word": "of",
+          "start": 127.068,
+          "end": 127.516
+        },
+        {
+          "word": "2.0",
+          "start": 127.516,
+          "end": 127.964
+        },
+        {
+          "word": "seconds,",
+          "start": 127.964,
+          "end": 128.412
+        },
+        {
+          "word": "arriving",
+          "start": 128.412,
+          "end": 128.86
+        },
+        {
+          "word": "after",
+          "start": 128.86,
+          "end": 129.308
+        },
+        {
+          "word": "event",
+          "start": 129.308,
+          "end": 129.756
+        },
+        {
+          "word": "e2",
+          "start": 129.756,
+          "end": 130.204
+        },
+        {
+          "word": "which",
+          "start": 130.204,
+          "end": 130.652
+        },
+        {
+          "word": "had",
+          "start": 130.652,
+          "end": 131.1
+        },
+        {
+          "word": "2.5",
+          "start": 131.1,
+          "end": 131.548
+        },
+        {
+          "word": "seconds.",
+          "start": 131.548,
+          "end": 131.996
+        },
+        {
+          "word": "Did",
+          "start": 131.996,
+          "end": 132.444
+        },
+        {
+          "word": "e3",
+          "start": 132.444,
+          "end": 132.892
+        },
+        {
+          "word": "get",
+          "start": 132.892,
+          "end": 133.34
+        },
+        {
+          "word": "dropped?",
+          "start": 133.34,
+          "end": 133.788
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "No! Because our lateness tolerance Delta is 2.0 seconds, the watermark was only at 0.5 seconds when e3 arrived. Since 2.0 is greater than 0.5, e3 was accepted!",
+      "start": 134.038,
+      "end": 148.366,
+      "slide": 3,
+      "words": [
+        {
+          "word": "No!",
+          "start": 134.038,
+          "end": 134.55
+        },
+        {
+          "word": "Because",
+          "start": 134.55,
+          "end": 135.061
+        },
+        {
+          "word": "our",
+          "start": 135.061,
+          "end": 135.573
+        },
+        {
+          "word": "lateness",
+          "start": 135.573,
+          "end": 136.085
+        },
+        {
+          "word": "tolerance",
+          "start": 136.085,
+          "end": 136.597
+        },
+        {
+          "word": "Delta",
+          "start": 136.597,
+          "end": 137.108
+        },
+        {
+          "word": "is",
+          "start": 137.108,
+          "end": 137.62
+        },
+        {
+          "word": "2.0",
+          "start": 137.62,
+          "end": 138.132
+        },
+        {
+          "word": "seconds,",
+          "start": 138.132,
+          "end": 138.643
+        },
+        {
+          "word": "the",
+          "start": 138.643,
+          "end": 139.155
+        },
+        {
+          "word": "watermark",
+          "start": 139.155,
+          "end": 139.667
+        },
+        {
+          "word": "was",
+          "start": 139.667,
+          "end": 140.179
+        },
+        {
+          "word": "only",
+          "start": 140.179,
+          "end": 140.69
+        },
+        {
+          "word": "at",
+          "start": 140.69,
+          "end": 141.202
+        },
+        {
+          "word": "0.5",
+          "start": 141.202,
+          "end": 141.714
+        },
+        {
+          "word": "seconds",
+          "start": 141.714,
+          "end": 142.225
+        },
+        {
+          "word": "when",
+          "start": 142.225,
+          "end": 142.737
+        },
+        {
+          "word": "e3",
+          "start": 142.737,
+          "end": 143.249
+        },
+        {
+          "word": "arrived.",
+          "start": 143.249,
+          "end": 143.761
+        },
+        {
+          "word": "Since",
+          "start": 143.761,
+          "end": 144.272
+        },
+        {
+          "word": "2.0",
+          "start": 144.272,
+          "end": 144.784
+        },
+        {
+          "word": "is",
+          "start": 144.784,
+          "end": 145.296
+        },
+        {
+          "word": "greater",
+          "start": 145.296,
+          "end": 145.807
+        },
+        {
+          "word": "than",
+          "start": 145.807,
+          "end": 146.319
+        },
+        {
+          "word": "0.5,",
+          "start": 146.319,
+          "end": 146.831
+        },
+        {
+          "word": "e3",
+          "start": 146.831,
+          "end": 147.343
+        },
+        {
+          "word": "was",
+          "start": 147.343,
+          "end": 147.854
+        },
+        {
+          "word": "accepted!",
+          "start": 147.854,
+          "end": 148.366
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Spot on! But when e5 arrived with timestamp 0.5 seconds, event e4 had already pushed the watermark to 3.0 seconds. Because 0.5 is less than 3.0, the window had closed, so e5 was diverted to the DLQ.",
+      "start": 148.616,
+      "end": 166.04,
+      "slide": 3,
+      "words": [
+        {
+          "word": "Spot",
+          "start": 148.616,
+          "end": 149.087
+        },
+        {
+          "word": "on!",
+          "start": 149.087,
+          "end": 149.558
+        },
+        {
+          "word": "But",
+          "start": 149.558,
+          "end": 150.029
+        },
+        {
+          "word": "when",
+          "start": 150.029,
+          "end": 150.5
+        },
+        {
+          "word": "e5",
+          "start": 150.5,
+          "end": 150.971
+        },
+        {
+          "word": "arrived",
+          "start": 150.971,
+          "end": 151.442
+        },
+        {
+          "word": "with",
+          "start": 151.442,
+          "end": 151.912
+        },
+        {
+          "word": "timestamp",
+          "start": 151.912,
+          "end": 152.383
+        },
+        {
+          "word": "0.5",
+          "start": 152.383,
+          "end": 152.854
+        },
+        {
+          "word": "seconds,",
+          "start": 152.854,
+          "end": 153.325
+        },
+        {
+          "word": "event",
+          "start": 153.325,
+          "end": 153.796
+        },
+        {
+          "word": "e4",
+          "start": 153.796,
+          "end": 154.267
+        },
+        {
+          "word": "had",
+          "start": 154.267,
+          "end": 154.738
+        },
+        {
+          "word": "already",
+          "start": 154.738,
+          "end": 155.209
+        },
+        {
+          "word": "pushed",
+          "start": 155.209,
+          "end": 155.68
+        },
+        {
+          "word": "the",
+          "start": 155.68,
+          "end": 156.151
+        },
+        {
+          "word": "watermark",
+          "start": 156.151,
+          "end": 156.622
+        },
+        {
+          "word": "to",
+          "start": 156.622,
+          "end": 157.093
+        },
+        {
+          "word": "3.0",
+          "start": 157.093,
+          "end": 157.563
+        },
+        {
+          "word": "seconds.",
+          "start": 157.563,
+          "end": 158.034
+        },
+        {
+          "word": "Because",
+          "start": 158.034,
+          "end": 158.505
+        },
+        {
+          "word": "0.5",
+          "start": 158.505,
+          "end": 158.976
+        },
+        {
+          "word": "is",
+          "start": 158.976,
+          "end": 159.447
+        },
+        {
+          "word": "less",
+          "start": 159.447,
+          "end": 159.918
+        },
+        {
+          "word": "than",
+          "start": 159.918,
+          "end": 160.389
+        },
+        {
+          "word": "3.0,",
+          "start": 160.389,
+          "end": 160.86
+        },
+        {
+          "word": "the",
+          "start": 160.86,
+          "end": 161.331
+        },
+        {
+          "word": "window",
+          "start": 161.331,
+          "end": 161.802
+        },
+        {
+          "word": "had",
+          "start": 161.802,
+          "end": 162.273
+        },
+        {
+          "word": "closed,",
+          "start": 162.273,
+          "end": 162.744
+        },
+        {
+          "word": "so",
+          "start": 162.744,
+          "end": 163.214
+        },
+        {
+          "word": "e5",
+          "start": 163.214,
+          "end": 163.685
+        },
+        {
+          "word": "was",
+          "start": 163.685,
+          "end": 164.156
+        },
+        {
+          "word": "diverted",
+          "start": 164.156,
+          "end": 164.627
+        },
+        {
+          "word": "to",
+          "start": 164.627,
+          "end": 165.098
+        },
+        {
+          "word": "the",
+          "start": 165.098,
+          "end": 165.569
+        },
+        {
+          "word": "DLQ.",
+          "start": 165.569,
+          "end": 166.04
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Notice the formula for the state replication factor: the ceiling of window size divided by slide step. What happens to state memory if an analytics dashboard asks for a one-hour window sliding every five seconds?",
+      "start": 166.64,
+      "end": 180.128,
+      "slide": 4,
+      "words": [
+        {
+          "word": "Notice",
+          "start": 166.64,
+          "end": 167.025
+        },
+        {
+          "word": "the",
+          "start": 167.025,
+          "end": 167.411
+        },
+        {
+          "word": "formula",
+          "start": 167.411,
+          "end": 167.796
+        },
+        {
+          "word": "for",
+          "start": 167.796,
+          "end": 168.181
+        },
+        {
+          "word": "the",
+          "start": 168.181,
+          "end": 168.567
+        },
+        {
+          "word": "state",
+          "start": 168.567,
+          "end": 168.952
+        },
+        {
+          "word": "replication",
+          "start": 168.952,
+          "end": 169.338
+        },
+        {
+          "word": "factor:",
+          "start": 169.338,
+          "end": 169.723
+        },
+        {
+          "word": "the",
+          "start": 169.723,
+          "end": 170.108
+        },
+        {
+          "word": "ceiling",
+          "start": 170.108,
+          "end": 170.494
+        },
+        {
+          "word": "of",
+          "start": 170.494,
+          "end": 170.879
+        },
+        {
+          "word": "window",
+          "start": 170.879,
+          "end": 171.264
+        },
+        {
+          "word": "size",
+          "start": 171.264,
+          "end": 171.65
+        },
+        {
+          "word": "divided",
+          "start": 171.65,
+          "end": 172.035
+        },
+        {
+          "word": "by",
+          "start": 172.035,
+          "end": 172.421
+        },
+        {
+          "word": "slide",
+          "start": 172.421,
+          "end": 172.806
+        },
+        {
+          "word": "step.",
+          "start": 172.806,
+          "end": 173.191
+        },
+        {
+          "word": "What",
+          "start": 173.191,
+          "end": 173.577
+        },
+        {
+          "word": "happens",
+          "start": 173.577,
+          "end": 173.962
+        },
+        {
+          "word": "to",
+          "start": 173.962,
+          "end": 174.347
+        },
+        {
+          "word": "state",
+          "start": 174.347,
+          "end": 174.733
+        },
+        {
+          "word": "memory",
+          "start": 174.733,
+          "end": 175.118
+        },
+        {
+          "word": "if",
+          "start": 175.118,
+          "end": 175.504
+        },
+        {
+          "word": "an",
+          "start": 175.504,
+          "end": 175.889
+        },
+        {
+          "word": "analytics",
+          "start": 175.889,
+          "end": 176.274
+        },
+        {
+          "word": "dashboard",
+          "start": 176.274,
+          "end": 176.66
+        },
+        {
+          "word": "asks",
+          "start": 176.66,
+          "end": 177.045
+        },
+        {
+          "word": "for",
+          "start": 177.045,
+          "end": 177.43
+        },
+        {
+          "word": "a",
+          "start": 177.43,
+          "end": 177.816
+        },
+        {
+          "word": "one-hour",
+          "start": 177.816,
+          "end": 178.201
+        },
+        {
+          "word": "window",
+          "start": 178.201,
+          "end": 178.587
+        },
+        {
+          "word": "sliding",
+          "start": 178.587,
+          "end": 178.972
+        },
+        {
+          "word": "every",
+          "start": 178.972,
+          "end": 179.357
+        },
+        {
+          "word": "five",
+          "start": 179.357,
+          "end": 179.743
+        },
+        {
+          "word": "seconds?",
+          "start": 179.743,
+          "end": 180.128
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Let me calculate: one hour is thirty-six hundred seconds. Divided by five seconds, that is seven hundred and twenty! Each event would be copied into 720 separate window state buffers!",
+      "start": 180.378,
+      "end": 193.674,
+      "slide": 4,
+      "words": [
+        {
+          "word": "Let",
+          "start": 180.378,
+          "end": 180.821
+        },
+        {
+          "word": "me",
+          "start": 180.821,
+          "end": 181.264
+        },
+        {
+          "word": "calculate:",
+          "start": 181.264,
+          "end": 181.708
+        },
+        {
+          "word": "one",
+          "start": 181.708,
+          "end": 182.151
+        },
+        {
+          "word": "hour",
+          "start": 182.151,
+          "end": 182.594
+        },
+        {
+          "word": "is",
+          "start": 182.594,
+          "end": 183.037
+        },
+        {
+          "word": "thirty-six",
+          "start": 183.037,
+          "end": 183.48
+        },
+        {
+          "word": "hundred",
+          "start": 183.48,
+          "end": 183.924
+        },
+        {
+          "word": "seconds.",
+          "start": 183.924,
+          "end": 184.367
+        },
+        {
+          "word": "Divided",
+          "start": 184.367,
+          "end": 184.81
+        },
+        {
+          "word": "by",
+          "start": 184.81,
+          "end": 185.253
+        },
+        {
+          "word": "five",
+          "start": 185.253,
+          "end": 185.696
+        },
+        {
+          "word": "seconds,",
+          "start": 185.696,
+          "end": 186.14
+        },
+        {
+          "word": "that",
+          "start": 186.14,
+          "end": 186.583
+        },
+        {
+          "word": "is",
+          "start": 186.583,
+          "end": 187.026
+        },
+        {
+          "word": "seven",
+          "start": 187.026,
+          "end": 187.469
+        },
+        {
+          "word": "hundred",
+          "start": 187.469,
+          "end": 187.912
+        },
+        {
+          "word": "and",
+          "start": 187.912,
+          "end": 188.356
+        },
+        {
+          "word": "twenty!",
+          "start": 188.356,
+          "end": 188.799
+        },
+        {
+          "word": "Each",
+          "start": 188.799,
+          "end": 189.242
+        },
+        {
+          "word": "event",
+          "start": 189.242,
+          "end": 189.685
+        },
+        {
+          "word": "would",
+          "start": 189.685,
+          "end": 190.128
+        },
+        {
+          "word": "be",
+          "start": 190.128,
+          "end": 190.572
+        },
+        {
+          "word": "copied",
+          "start": 190.572,
+          "end": 191.015
+        },
+        {
+          "word": "into",
+          "start": 191.015,
+          "end": 191.458
+        },
+        {
+          "word": "720",
+          "start": 191.458,
+          "end": 191.901
+        },
+        {
+          "word": "separate",
+          "start": 191.901,
+          "end": 192.344
+        },
+        {
+          "word": "window",
+          "start": 192.344,
+          "end": 192.788
+        },
+        {
+          "word": "state",
+          "start": 192.788,
+          "end": 193.231
+        },
+        {
+          "word": "buffers!",
+          "start": 193.231,
+          "end": 193.674
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Precisely! Your RocksDB state storage and serialization CPU would explode by a factor of 720! That is why production architects use tumbling buckets and incremental pre-aggregation trees instead of brute-force sliding allocations.",
+      "start": 193.924,
+      "end": 210.58,
+      "slide": 4,
+      "words": [
+        {
+          "word": "Precisely!",
+          "start": 193.924,
+          "end": 194.445
+        },
+        {
+          "word": "Your",
+          "start": 194.445,
+          "end": 194.965
+        },
+        {
+          "word": "RocksDB",
+          "start": 194.965,
+          "end": 195.486
+        },
+        {
+          "word": "state",
+          "start": 195.486,
+          "end": 196.006
+        },
+        {
+          "word": "storage",
+          "start": 196.006,
+          "end": 196.526
+        },
+        {
+          "word": "and",
+          "start": 196.526,
+          "end": 197.047
+        },
+        {
+          "word": "serialization",
+          "start": 197.047,
+          "end": 197.567
+        },
+        {
+          "word": "CPU",
+          "start": 197.567,
+          "end": 198.088
+        },
+        {
+          "word": "would",
+          "start": 198.088,
+          "end": 198.608
+        },
+        {
+          "word": "explode",
+          "start": 198.608,
+          "end": 199.129
+        },
+        {
+          "word": "by",
+          "start": 199.129,
+          "end": 199.65
+        },
+        {
+          "word": "a",
+          "start": 199.65,
+          "end": 200.17
+        },
+        {
+          "word": "factor",
+          "start": 200.17,
+          "end": 200.691
+        },
+        {
+          "word": "of",
+          "start": 200.691,
+          "end": 201.211
+        },
+        {
+          "word": "720!",
+          "start": 201.211,
+          "end": 201.732
+        },
+        {
+          "word": "That",
+          "start": 201.732,
+          "end": 202.252
+        },
+        {
+          "word": "is",
+          "start": 202.252,
+          "end": 202.773
+        },
+        {
+          "word": "why",
+          "start": 202.773,
+          "end": 203.293
+        },
+        {
+          "word": "production",
+          "start": 203.293,
+          "end": 203.814
+        },
+        {
+          "word": "architects",
+          "start": 203.814,
+          "end": 204.334
+        },
+        {
+          "word": "use",
+          "start": 204.334,
+          "end": 204.855
+        },
+        {
+          "word": "tumbling",
+          "start": 204.855,
+          "end": 205.375
+        },
+        {
+          "word": "buckets",
+          "start": 205.375,
+          "end": 205.895
+        },
+        {
+          "word": "and",
+          "start": 205.895,
+          "end": 206.416
+        },
+        {
+          "word": "incremental",
+          "start": 206.416,
+          "end": 206.936
+        },
+        {
+          "word": "pre-aggregation",
+          "start": 206.936,
+          "end": 207.457
+        },
+        {
+          "word": "trees",
+          "start": 207.457,
+          "end": 207.977
+        },
+        {
+          "word": "instead",
+          "start": 207.978,
+          "end": 208.498
+        },
+        {
+          "word": "of",
+          "start": 208.498,
+          "end": 209.018
+        },
+        {
+          "word": "brute-force",
+          "start": 209.019,
+          "end": 209.539
+        },
+        {
+          "word": "sliding",
+          "start": 209.539,
+          "end": 210.06
+        },
+        {
+          "word": "allocations.",
+          "start": 210.06,
+          "end": 210.58
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Kaito, let's test our watermark studio. In the simulator below, try switching from the Mobile Sensor preset to Financial Low-Latency.",
+      "start": 211.18,
+      "end": 220.54,
+      "slide": 5,
+      "words": [
+        {
+          "word": "Kaito,",
+          "start": 211.18,
+          "end": 211.648
+        },
+        {
+          "word": "let's",
+          "start": 211.648,
+          "end": 212.116
+        },
+        {
+          "word": "test",
+          "start": 212.116,
+          "end": 212.584
+        },
+        {
+          "word": "our",
+          "start": 212.584,
+          "end": 213.052
+        },
+        {
+          "word": "watermark",
+          "start": 213.052,
+          "end": 213.52
+        },
+        {
+          "word": "studio.",
+          "start": 213.52,
+          "end": 213.988
+        },
+        {
+          "word": "In",
+          "start": 213.988,
+          "end": 214.456
+        },
+        {
+          "word": "the",
+          "start": 214.456,
+          "end": 214.924
+        },
+        {
+          "word": "simulator",
+          "start": 214.924,
+          "end": 215.392
+        },
+        {
+          "word": "below,",
+          "start": 215.392,
+          "end": 215.86
+        },
+        {
+          "word": "try",
+          "start": 215.86,
+          "end": 216.328
+        },
+        {
+          "word": "switching",
+          "start": 216.328,
+          "end": 216.796
+        },
+        {
+          "word": "from",
+          "start": 216.796,
+          "end": 217.264
+        },
+        {
+          "word": "the",
+          "start": 217.264,
+          "end": 217.732
+        },
+        {
+          "word": "Mobile",
+          "start": 217.732,
+          "end": 218.2
+        },
+        {
+          "word": "Sensor",
+          "start": 218.2,
+          "end": 218.668
+        },
+        {
+          "word": "preset",
+          "start": 218.668,
+          "end": 219.136
+        },
+        {
+          "word": "to",
+          "start": 219.136,
+          "end": 219.604
+        },
+        {
+          "word": "Financial",
+          "start": 219.604,
+          "end": 220.072
+        },
+        {
+          "word": "Low-Latency.",
+          "start": 220.072,
+          "end": 220.54
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Whoa! In Financial Low-Latency, tolerance drops to 0.5 seconds, and the watermark leaps right behind the latest event! Now event e5 gets instantly flagged as late data!",
+      "start": 220.79,
+      "end": 233.534,
+      "slide": 5,
+      "words": [
+        {
+          "word": "Whoa!",
+          "start": 220.79,
+          "end": 221.262
+        },
+        {
+          "word": "In",
+          "start": 221.262,
+          "end": 221.734
+        },
+        {
+          "word": "Financial",
+          "start": 221.734,
+          "end": 222.206
+        },
+        {
+          "word": "Low-Latency,",
+          "start": 222.206,
+          "end": 222.678
+        },
+        {
+          "word": "tolerance",
+          "start": 222.678,
+          "end": 223.15
+        },
+        {
+          "word": "drops",
+          "start": 223.15,
+          "end": 223.622
+        },
+        {
+          "word": "to",
+          "start": 223.622,
+          "end": 224.094
+        },
+        {
+          "word": "0.5",
+          "start": 224.094,
+          "end": 224.566
+        },
+        {
+          "word": "seconds,",
+          "start": 224.566,
+          "end": 225.038
+        },
+        {
+          "word": "and",
+          "start": 225.038,
+          "end": 225.51
+        },
+        {
+          "word": "the",
+          "start": 225.51,
+          "end": 225.982
+        },
+        {
+          "word": "watermark",
+          "start": 225.982,
+          "end": 226.454
+        },
+        {
+          "word": "leaps",
+          "start": 226.454,
+          "end": 226.926
+        },
+        {
+          "word": "right",
+          "start": 226.926,
+          "end": 227.398
+        },
+        {
+          "word": "behind",
+          "start": 227.398,
+          "end": 227.87
+        },
+        {
+          "word": "the",
+          "start": 227.87,
+          "end": 228.342
+        },
+        {
+          "word": "latest",
+          "start": 228.342,
+          "end": 228.814
+        },
+        {
+          "word": "event!",
+          "start": 228.814,
+          "end": 229.286
+        },
+        {
+          "word": "Now",
+          "start": 229.286,
+          "end": 229.758
+        },
+        {
+          "word": "event",
+          "start": 229.758,
+          "end": 230.23
+        },
+        {
+          "word": "e5",
+          "start": 230.23,
+          "end": 230.702
+        },
+        {
+          "word": "gets",
+          "start": 230.702,
+          "end": 231.174
+        },
+        {
+          "word": "instantly",
+          "start": 231.174,
+          "end": 231.646
+        },
+        {
+          "word": "flagged",
+          "start": 231.646,
+          "end": 232.118
+        },
+        {
+          "word": "as",
+          "start": 232.118,
+          "end": 232.59
+        },
+        {
+          "word": "late",
+          "start": 232.59,
+          "end": 233.062
+        },
+        {
+          "word": "data!",
+          "start": 233.062,
+          "end": 233.534
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Low tolerance gives you lightning-fast window triggers at the cost of discarding more out-of-order stragglers. Slide the parameters to find the sweet spot for your pipeline.",
+      "start": 233.784,
+      "end": 245.736,
+      "slide": 5,
+      "words": [
+        {
+          "word": "Exactly.",
+          "start": 233.784,
+          "end": 234.227
+        },
+        {
+          "word": "Low",
+          "start": 234.227,
+          "end": 234.669
+        },
+        {
+          "word": "tolerance",
+          "start": 234.669,
+          "end": 235.112
+        },
+        {
+          "word": "gives",
+          "start": 235.112,
+          "end": 235.555
+        },
+        {
+          "word": "you",
+          "start": 235.555,
+          "end": 235.997
+        },
+        {
+          "word": "lightning-fast",
+          "start": 235.997,
+          "end": 236.44
+        },
+        {
+          "word": "window",
+          "start": 236.44,
+          "end": 236.883
+        },
+        {
+          "word": "triggers",
+          "start": 236.883,
+          "end": 237.325
+        },
+        {
+          "word": "at",
+          "start": 237.325,
+          "end": 237.768
+        },
+        {
+          "word": "the",
+          "start": 237.768,
+          "end": 238.211
+        },
+        {
+          "word": "cost",
+          "start": 238.211,
+          "end": 238.653
+        },
+        {
+          "word": "of",
+          "start": 238.653,
+          "end": 239.096
+        },
+        {
+          "word": "discarding",
+          "start": 239.096,
+          "end": 239.539
+        },
+        {
+          "word": "more",
+          "start": 239.539,
+          "end": 239.981
+        },
+        {
+          "word": "out-of-order",
+          "start": 239.981,
+          "end": 240.424
+        },
+        {
+          "word": "stragglers.",
+          "start": 240.424,
+          "end": 240.867
+        },
+        {
+          "word": "Slide",
+          "start": 240.867,
+          "end": 241.309
+        },
+        {
+          "word": "the",
+          "start": 241.309,
+          "end": 241.752
+        },
+        {
+          "word": "parameters",
+          "start": 241.752,
+          "end": 242.195
+        },
+        {
+          "word": "to",
+          "start": 242.195,
+          "end": 242.637
+        },
+        {
+          "word": "find",
+          "start": 242.637,
+          "end": 243.08
+        },
+        {
+          "word": "the",
+          "start": 243.08,
+          "end": 243.523
+        },
+        {
+          "word": "sweet",
+          "start": 243.523,
+          "end": 243.965
+        },
+        {
+          "word": "spot",
+          "start": 243.965,
+          "end": 244.408
+        },
+        {
+          "word": "for",
+          "start": 244.408,
+          "end": 244.851
+        },
+        {
+          "word": "your",
+          "start": 244.851,
+          "end": 245.293
+        },
+        {
+          "word": "pipeline.",
+          "start": 245.293,
+          "end": 245.736
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Checkpoint 1, Kaito! A record with timestamp 12:00:15 arrives when the watermark has already advanced to 12:00:20. What is the engine's exact reaction?",
+      "start": 246.336,
+      "end": 259.776,
+      "slide": 6,
+      "words": [
+        {
+          "word": "Checkpoint",
+          "start": 246.336,
+          "end": 246.92
+        },
+        {
+          "word": "1,",
+          "start": 246.92,
+          "end": 247.505
+        },
+        {
+          "word": "Kaito!",
+          "start": 247.505,
+          "end": 248.089
+        },
+        {
+          "word": "A",
+          "start": 248.089,
+          "end": 248.673
+        },
+        {
+          "word": "record",
+          "start": 248.673,
+          "end": 249.258
+        },
+        {
+          "word": "with",
+          "start": 249.258,
+          "end": 249.842
+        },
+        {
+          "word": "timestamp",
+          "start": 249.842,
+          "end": 250.426
+        },
+        {
+          "word": "12:00:15",
+          "start": 250.426,
+          "end": 251.011
+        },
+        {
+          "word": "arrives",
+          "start": 251.011,
+          "end": 251.595
+        },
+        {
+          "word": "when",
+          "start": 251.595,
+          "end": 252.179
+        },
+        {
+          "word": "the",
+          "start": 252.179,
+          "end": 252.764
+        },
+        {
+          "word": "watermark",
+          "start": 252.764,
+          "end": 253.348
+        },
+        {
+          "word": "has",
+          "start": 253.348,
+          "end": 253.933
+        },
+        {
+          "word": "already",
+          "start": 253.933,
+          "end": 254.517
+        },
+        {
+          "word": "advanced",
+          "start": 254.517,
+          "end": 255.101
+        },
+        {
+          "word": "to",
+          "start": 255.101,
+          "end": 255.686
+        },
+        {
+          "word": "12:00:20.",
+          "start": 255.686,
+          "end": 256.27
+        },
+        {
+          "word": "What",
+          "start": 256.27,
+          "end": 256.854
+        },
+        {
+          "word": "is",
+          "start": 256.854,
+          "end": 257.439
+        },
+        {
+          "word": "the",
+          "start": 257.439,
+          "end": 258.023
+        },
+        {
+          "word": "engine's",
+          "start": 258.023,
+          "end": 258.607
+        },
+        {
+          "word": "exact",
+          "start": 258.607,
+          "end": 259.192
+        },
+        {
+          "word": "reaction?",
+          "start": 259.192,
+          "end": 259.776
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Look closely at the condition: timestamp 15 is strictly less than watermark 20! Review the options below and select the correct pipeline behavior.",
+      "start": 260.026,
+      "end": 269.89,
+      "slide": 6,
+      "words": [
+        {
+          "word": "Look",
+          "start": 260.026,
+          "end": 260.455
+        },
+        {
+          "word": "closely",
+          "start": 260.455,
+          "end": 260.884
+        },
+        {
+          "word": "at",
+          "start": 260.884,
+          "end": 261.313
+        },
+        {
+          "word": "the",
+          "start": 261.313,
+          "end": 261.741
+        },
+        {
+          "word": "condition:",
+          "start": 261.741,
+          "end": 262.17
+        },
+        {
+          "word": "timestamp",
+          "start": 262.17,
+          "end": 262.599
+        },
+        {
+          "word": "15",
+          "start": 262.599,
+          "end": 263.028
+        },
+        {
+          "word": "is",
+          "start": 263.028,
+          "end": 263.457
+        },
+        {
+          "word": "strictly",
+          "start": 263.457,
+          "end": 263.886
+        },
+        {
+          "word": "less",
+          "start": 263.886,
+          "end": 264.315
+        },
+        {
+          "word": "than",
+          "start": 264.315,
+          "end": 264.744
+        },
+        {
+          "word": "watermark",
+          "start": 264.744,
+          "end": 265.172
+        },
+        {
+          "word": "20!",
+          "start": 265.172,
+          "end": 265.601
+        },
+        {
+          "word": "Review",
+          "start": 265.601,
+          "end": 266.03
+        },
+        {
+          "word": "the",
+          "start": 266.03,
+          "end": 266.459
+        },
+        {
+          "word": "options",
+          "start": 266.459,
+          "end": 266.888
+        },
+        {
+          "word": "below",
+          "start": 266.888,
+          "end": 267.317
+        },
+        {
+          "word": "and",
+          "start": 267.317,
+          "end": 267.746
+        },
+        {
+          "word": "select",
+          "start": 267.746,
+          "end": 268.175
+        },
+        {
+          "word": "the",
+          "start": 268.175,
+          "end": 268.603
+        },
+        {
+          "word": "correct",
+          "start": 268.603,
+          "end": 269.032
+        },
+        {
+          "word": "pipeline",
+          "start": 269.032,
+          "end": 269.461
+        },
+        {
+          "word": "behavior.",
+          "start": 269.461,
+          "end": 269.89
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Consider the worked example: an ingestion spike of ten thousand messages per second against a consumer worker capacity of six thousand. In just five seconds, the internal buffer is saturated.",
+      "start": 270.49,
+      "end": 282.994,
+      "slide": 7,
+      "words": [
+        {
+          "word": "Consider",
+          "start": 270.49,
+          "end": 270.907
+        },
+        {
+          "word": "the",
+          "start": 270.907,
+          "end": 271.324
+        },
+        {
+          "word": "worked",
+          "start": 271.324,
+          "end": 271.74
+        },
+        {
+          "word": "example:",
+          "start": 271.74,
+          "end": 272.157
+        },
+        {
+          "word": "an",
+          "start": 272.157,
+          "end": 272.574
+        },
+        {
+          "word": "ingestion",
+          "start": 272.574,
+          "end": 272.991
+        },
+        {
+          "word": "spike",
+          "start": 272.991,
+          "end": 273.408
+        },
+        {
+          "word": "of",
+          "start": 273.408,
+          "end": 273.824
+        },
+        {
+          "word": "ten",
+          "start": 273.824,
+          "end": 274.241
+        },
+        {
+          "word": "thousand",
+          "start": 274.241,
+          "end": 274.658
+        },
+        {
+          "word": "messages",
+          "start": 274.658,
+          "end": 275.075
+        },
+        {
+          "word": "per",
+          "start": 275.075,
+          "end": 275.492
+        },
+        {
+          "word": "second",
+          "start": 275.492,
+          "end": 275.908
+        },
+        {
+          "word": "against",
+          "start": 275.908,
+          "end": 276.325
+        },
+        {
+          "word": "a",
+          "start": 276.325,
+          "end": 276.742
+        },
+        {
+          "word": "consumer",
+          "start": 276.742,
+          "end": 277.159
+        },
+        {
+          "word": "worker",
+          "start": 277.159,
+          "end": 277.576
+        },
+        {
+          "word": "capacity",
+          "start": 277.576,
+          "end": 277.992
+        },
+        {
+          "word": "of",
+          "start": 277.992,
+          "end": 278.409
+        },
+        {
+          "word": "six",
+          "start": 278.409,
+          "end": 278.826
+        },
+        {
+          "word": "thousand.",
+          "start": 278.826,
+          "end": 279.243
+        },
+        {
+          "word": "In",
+          "start": 279.243,
+          "end": 279.66
+        },
+        {
+          "word": "just",
+          "start": 279.66,
+          "end": 280.076
+        },
+        {
+          "word": "five",
+          "start": 280.076,
+          "end": 280.493
+        },
+        {
+          "word": "seconds,",
+          "start": 280.493,
+          "end": 280.91
+        },
+        {
+          "word": "the",
+          "start": 280.91,
+          "end": 281.327
+        },
+        {
+          "word": "internal",
+          "start": 281.327,
+          "end": 281.744
+        },
+        {
+          "word": "buffer",
+          "start": 281.744,
+          "end": 282.16
+        },
+        {
+          "word": "is",
+          "start": 282.16,
+          "end": 282.577
+        },
+        {
+          "word": "saturated.",
+          "start": 282.577,
+          "end": 282.994
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "And when that buffer saturates, does the worker just crash with an OutOfMemory error?",
+      "start": 283.244,
+      "end": 288.692,
+      "slide": 7,
+      "words": [
+        {
+          "word": "And",
+          "start": 283.244,
+          "end": 283.633
+        },
+        {
+          "word": "when",
+          "start": 283.633,
+          "end": 284.022
+        },
+        {
+          "word": "that",
+          "start": 284.022,
+          "end": 284.411
+        },
+        {
+          "word": "buffer",
+          "start": 284.411,
+          "end": 284.801
+        },
+        {
+          "word": "saturates,",
+          "start": 284.801,
+          "end": 285.19
+        },
+        {
+          "word": "does",
+          "start": 285.19,
+          "end": 285.579
+        },
+        {
+          "word": "the",
+          "start": 285.579,
+          "end": 285.968
+        },
+        {
+          "word": "worker",
+          "start": 285.968,
+          "end": 286.357
+        },
+        {
+          "word": "just",
+          "start": 286.357,
+          "end": 286.746
+        },
+        {
+          "word": "crash",
+          "start": 286.746,
+          "end": 287.135
+        },
+        {
+          "word": "with",
+          "start": 287.135,
+          "end": 287.525
+        },
+        {
+          "word": "an",
+          "start": 287.525,
+          "end": 287.914
+        },
+        {
+          "word": "OutOfMemory",
+          "start": 287.914,
+          "end": 288.303
+        },
+        {
+          "word": "error?",
+          "start": 288.303,
+          "end": 288.692
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "In primitive systems, yes! But in modern frameworks like Flink and Netty, credit-based backpressure collapses the TCP receive window. That pushes the bottleneck upstream, signaling the Kafka broker to hold messages on disk until workers recover.",
+      "start": 288.942,
+      "end": 305.19,
+      "slide": 7,
+      "words": [
+        {
+          "word": "In",
+          "start": 288.942,
+          "end": 289.393
+        },
+        {
+          "word": "primitive",
+          "start": 289.393,
+          "end": 289.845
+        },
+        {
+          "word": "systems,",
+          "start": 289.845,
+          "end": 290.296
+        },
+        {
+          "word": "yes!",
+          "start": 290.296,
+          "end": 290.747
+        },
+        {
+          "word": "But",
+          "start": 290.747,
+          "end": 291.199
+        },
+        {
+          "word": "in",
+          "start": 291.199,
+          "end": 291.65
+        },
+        {
+          "word": "modern",
+          "start": 291.65,
+          "end": 292.101
+        },
+        {
+          "word": "frameworks",
+          "start": 292.101,
+          "end": 292.553
+        },
+        {
+          "word": "like",
+          "start": 292.553,
+          "end": 293.004
+        },
+        {
+          "word": "Flink",
+          "start": 293.004,
+          "end": 293.455
+        },
+        {
+          "word": "and",
+          "start": 293.455,
+          "end": 293.907
+        },
+        {
+          "word": "Netty,",
+          "start": 293.907,
+          "end": 294.358
+        },
+        {
+          "word": "credit-based",
+          "start": 294.358,
+          "end": 294.809
+        },
+        {
+          "word": "backpressure",
+          "start": 294.809,
+          "end": 295.261
+        },
+        {
+          "word": "collapses",
+          "start": 295.261,
+          "end": 295.712
+        },
+        {
+          "word": "the",
+          "start": 295.712,
+          "end": 296.163
+        },
+        {
+          "word": "TCP",
+          "start": 296.163,
+          "end": 296.615
+        },
+        {
+          "word": "receive",
+          "start": 296.615,
+          "end": 297.066
+        },
+        {
+          "word": "window.",
+          "start": 297.066,
+          "end": 297.517
+        },
+        {
+          "word": "That",
+          "start": 297.517,
+          "end": 297.969
+        },
+        {
+          "word": "pushes",
+          "start": 297.969,
+          "end": 298.42
+        },
+        {
+          "word": "the",
+          "start": 298.42,
+          "end": 298.871
+        },
+        {
+          "word": "bottleneck",
+          "start": 298.871,
+          "end": 299.323
+        },
+        {
+          "word": "upstream,",
+          "start": 299.323,
+          "end": 299.774
+        },
+        {
+          "word": "signaling",
+          "start": 299.774,
+          "end": 300.225
+        },
+        {
+          "word": "the",
+          "start": 300.225,
+          "end": 300.677
+        },
+        {
+          "word": "Kafka",
+          "start": 300.677,
+          "end": 301.128
+        },
+        {
+          "word": "broker",
+          "start": 301.128,
+          "end": 301.579
+        },
+        {
+          "word": "to",
+          "start": 301.579,
+          "end": 302.031
+        },
+        {
+          "word": "hold",
+          "start": 302.031,
+          "end": 302.482
+        },
+        {
+          "word": "messages",
+          "start": 302.482,
+          "end": 302.933
+        },
+        {
+          "word": "on",
+          "start": 302.933,
+          "end": 303.385
+        },
+        {
+          "word": "disk",
+          "start": 303.385,
+          "end": 303.836
+        },
+        {
+          "word": "until",
+          "start": 303.836,
+          "end": 304.287
+        },
+        {
+          "word": "workers",
+          "start": 304.287,
+          "end": 304.739
+        },
+        {
+          "word": "recover.",
+          "start": 304.739,
+          "end": 305.19
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "If adding partitions increases concurrency and throughput, Kaito, why don't we simply provision ten thousand partitions for every topic?",
+      "start": 305.79,
+      "end": 314.118,
+      "slide": 8,
+      "words": [
+        {
+          "word": "If",
+          "start": 305.79,
+          "end": 306.228
+        },
+        {
+          "word": "adding",
+          "start": 306.228,
+          "end": 306.667
+        },
+        {
+          "word": "partitions",
+          "start": 306.667,
+          "end": 307.105
+        },
+        {
+          "word": "increases",
+          "start": 307.105,
+          "end": 307.543
+        },
+        {
+          "word": "concurrency",
+          "start": 307.543,
+          "end": 307.982
+        },
+        {
+          "word": "and",
+          "start": 307.982,
+          "end": 308.42
+        },
+        {
+          "word": "throughput,",
+          "start": 308.42,
+          "end": 308.858
+        },
+        {
+          "word": "Kaito,",
+          "start": 308.858,
+          "end": 309.297
+        },
+        {
+          "word": "why",
+          "start": 309.297,
+          "end": 309.735
+        },
+        {
+          "word": "don't",
+          "start": 309.735,
+          "end": 310.173
+        },
+        {
+          "word": "we",
+          "start": 310.173,
+          "end": 310.611
+        },
+        {
+          "word": "simply",
+          "start": 310.611,
+          "end": 311.05
+        },
+        {
+          "word": "provision",
+          "start": 311.05,
+          "end": 311.488
+        },
+        {
+          "word": "ten",
+          "start": 311.488,
+          "end": 311.926
+        },
+        {
+          "word": "thousand",
+          "start": 311.926,
+          "end": 312.365
+        },
+        {
+          "word": "partitions",
+          "start": 312.365,
+          "end": 312.803
+        },
+        {
+          "word": "for",
+          "start": 312.803,
+          "end": 313.241
+        },
+        {
+          "word": "every",
+          "start": 313.241,
+          "end": 313.68
+        },
+        {
+          "word": "topic?",
+          "start": 313.68,
+          "end": 314.118
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "More partitions mean more file descriptors, heavier ZooKeeper or KRaft metadata overhead, and much longer controller recovery times if a broker crashes!",
+      "start": 314.368,
+      "end": 323.512,
+      "slide": 8,
+      "words": [
+        {
+          "word": "More",
+          "start": 314.368,
+          "end": 314.784
+        },
+        {
+          "word": "partitions",
+          "start": 314.784,
+          "end": 315.199
+        },
+        {
+          "word": "mean",
+          "start": 315.199,
+          "end": 315.615
+        },
+        {
+          "word": "more",
+          "start": 315.615,
+          "end": 316.031
+        },
+        {
+          "word": "file",
+          "start": 316.031,
+          "end": 316.446
+        },
+        {
+          "word": "descriptors,",
+          "start": 316.446,
+          "end": 316.862
+        },
+        {
+          "word": "heavier",
+          "start": 316.862,
+          "end": 317.277
+        },
+        {
+          "word": "ZooKeeper",
+          "start": 317.277,
+          "end": 317.693
+        },
+        {
+          "word": "or",
+          "start": 317.693,
+          "end": 318.109
+        },
+        {
+          "word": "KRaft",
+          "start": 318.109,
+          "end": 318.524
+        },
+        {
+          "word": "metadata",
+          "start": 318.524,
+          "end": 318.94
+        },
+        {
+          "word": "overhead,",
+          "start": 318.94,
+          "end": 319.356
+        },
+        {
+          "word": "and",
+          "start": 319.356,
+          "end": 319.771
+        },
+        {
+          "word": "much",
+          "start": 319.771,
+          "end": 320.187
+        },
+        {
+          "word": "longer",
+          "start": 320.187,
+          "end": 320.603
+        },
+        {
+          "word": "controller",
+          "start": 320.603,
+          "end": 321.018
+        },
+        {
+          "word": "recovery",
+          "start": 321.018,
+          "end": 321.434
+        },
+        {
+          "word": "times",
+          "start": 321.434,
+          "end": 321.849
+        },
+        {
+          "word": "if",
+          "start": 321.849,
+          "end": 322.265
+        },
+        {
+          "word": "a",
+          "start": 322.265,
+          "end": 322.681
+        },
+        {
+          "word": "broker",
+          "start": 322.681,
+          "end": 323.096
+        },
+        {
+          "word": "crashes!",
+          "start": 323.096,
+          "end": 323.512
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly right. Excessive partitions degrade end-to-end latency and inflate producer buffer memory. Sizing partitions to match actual throughput targets is the hallmark of professional stream engineering.",
+      "start": 323.762,
+      "end": 337.202,
+      "slide": 8,
+      "words": [
+        {
+          "word": "Exactly",
+          "start": 323.762,
+          "end": 324.279
+        },
+        {
+          "word": "right.",
+          "start": 324.279,
+          "end": 324.796
+        },
+        {
+          "word": "Excessive",
+          "start": 324.796,
+          "end": 325.313
+        },
+        {
+          "word": "partitions",
+          "start": 325.313,
+          "end": 325.83
+        },
+        {
+          "word": "degrade",
+          "start": 325.83,
+          "end": 326.347
+        },
+        {
+          "word": "end-to-end",
+          "start": 326.347,
+          "end": 326.864
+        },
+        {
+          "word": "latency",
+          "start": 326.864,
+          "end": 327.38
+        },
+        {
+          "word": "and",
+          "start": 327.38,
+          "end": 327.897
+        },
+        {
+          "word": "inflate",
+          "start": 327.897,
+          "end": 328.414
+        },
+        {
+          "word": "producer",
+          "start": 328.414,
+          "end": 328.931
+        },
+        {
+          "word": "buffer",
+          "start": 328.931,
+          "end": 329.448
+        },
+        {
+          "word": "memory.",
+          "start": 329.448,
+          "end": 329.965
+        },
+        {
+          "word": "Sizing",
+          "start": 329.965,
+          "end": 330.482
+        },
+        {
+          "word": "partitions",
+          "start": 330.482,
+          "end": 330.999
+        },
+        {
+          "word": "to",
+          "start": 330.999,
+          "end": 331.516
+        },
+        {
+          "word": "match",
+          "start": 331.516,
+          "end": 332.033
+        },
+        {
+          "word": "actual",
+          "start": 332.033,
+          "end": 332.55
+        },
+        {
+          "word": "throughput",
+          "start": 332.55,
+          "end": 333.067
+        },
+        {
+          "word": "targets",
+          "start": 333.067,
+          "end": 333.584
+        },
+        {
+          "word": "is",
+          "start": 333.584,
+          "end": 334.1
+        },
+        {
+          "word": "the",
+          "start": 334.1,
+          "end": 334.617
+        },
+        {
+          "word": "hallmark",
+          "start": 334.617,
+          "end": 335.134
+        },
+        {
+          "word": "of",
+          "start": 335.134,
+          "end": 335.651
+        },
+        {
+          "word": "professional",
+          "start": 335.651,
+          "end": 336.168
+        },
+        {
+          "word": "stream",
+          "start": 336.168,
+          "end": 336.685
+        },
+        {
+          "word": "engineering.",
+          "start": 336.685,
+          "end": 337.202
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Kaito, let's stress-test consumer buffers in Lab 2. Select the Severe Backpressure Spike preset with ten thousand messages arriving against six thousand consumer capacity.",
+      "start": 337.802,
+      "end": 349.226,
+      "slide": 9,
+      "words": [
+        {
+          "word": "Kaito,",
+          "start": 337.802,
+          "end": 338.278
+        },
+        {
+          "word": "let's",
+          "start": 338.278,
+          "end": 338.754
+        },
+        {
+          "word": "stress-test",
+          "start": 338.754,
+          "end": 339.23
+        },
+        {
+          "word": "consumer",
+          "start": 339.23,
+          "end": 339.706
+        },
+        {
+          "word": "buffers",
+          "start": 339.706,
+          "end": 340.182
+        },
+        {
+          "word": "in",
+          "start": 340.182,
+          "end": 340.658
+        },
+        {
+          "word": "Lab",
+          "start": 340.658,
+          "end": 341.134
+        },
+        {
+          "word": "2.",
+          "start": 341.134,
+          "end": 341.61
+        },
+        {
+          "word": "Select",
+          "start": 341.61,
+          "end": 342.086
+        },
+        {
+          "word": "the",
+          "start": 342.086,
+          "end": 342.562
+        },
+        {
+          "word": "Severe",
+          "start": 342.562,
+          "end": 343.038
+        },
+        {
+          "word": "Backpressure",
+          "start": 343.038,
+          "end": 343.514
+        },
+        {
+          "word": "Spike",
+          "start": 343.514,
+          "end": 343.99
+        },
+        {
+          "word": "preset",
+          "start": 343.99,
+          "end": 344.466
+        },
+        {
+          "word": "with",
+          "start": 344.466,
+          "end": 344.942
+        },
+        {
+          "word": "ten",
+          "start": 344.942,
+          "end": 345.418
+        },
+        {
+          "word": "thousand",
+          "start": 345.418,
+          "end": 345.894
+        },
+        {
+          "word": "messages",
+          "start": 345.894,
+          "end": 346.37
+        },
+        {
+          "word": "arriving",
+          "start": 346.37,
+          "end": 346.846
+        },
+        {
+          "word": "against",
+          "start": 346.846,
+          "end": 347.322
+        },
+        {
+          "word": "six",
+          "start": 347.322,
+          "end": 347.798
+        },
+        {
+          "word": "thousand",
+          "start": 347.798,
+          "end": 348.274
+        },
+        {
+          "word": "consumer",
+          "start": 348.274,
+          "end": 348.75
+        },
+        {
+          "word": "capacity.",
+          "start": 348.75,
+          "end": 349.226
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Look at the queue watermark gauge: net growth jumps to four thousand messages per second, and time to backpressure drops to exactly 5.00 seconds! The gauge flips to red!",
+      "start": 349.476,
+      "end": 360.924,
+      "slide": 9,
+      "words": [
+        {
+          "word": "Look",
+          "start": 349.476,
+          "end": 349.871
+        },
+        {
+          "word": "at",
+          "start": 349.871,
+          "end": 350.266
+        },
+        {
+          "word": "the",
+          "start": 350.266,
+          "end": 350.66
+        },
+        {
+          "word": "queue",
+          "start": 350.66,
+          "end": 351.055
+        },
+        {
+          "word": "watermark",
+          "start": 351.055,
+          "end": 351.45
+        },
+        {
+          "word": "gauge:",
+          "start": 351.45,
+          "end": 351.845
+        },
+        {
+          "word": "net",
+          "start": 351.845,
+          "end": 352.239
+        },
+        {
+          "word": "growth",
+          "start": 352.239,
+          "end": 352.634
+        },
+        {
+          "word": "jumps",
+          "start": 352.634,
+          "end": 353.029
+        },
+        {
+          "word": "to",
+          "start": 353.029,
+          "end": 353.424
+        },
+        {
+          "word": "four",
+          "start": 353.424,
+          "end": 353.818
+        },
+        {
+          "word": "thousand",
+          "start": 353.818,
+          "end": 354.213
+        },
+        {
+          "word": "messages",
+          "start": 354.213,
+          "end": 354.608
+        },
+        {
+          "word": "per",
+          "start": 354.608,
+          "end": 355.003
+        },
+        {
+          "word": "second,",
+          "start": 355.003,
+          "end": 355.397
+        },
+        {
+          "word": "and",
+          "start": 355.397,
+          "end": 355.792
+        },
+        {
+          "word": "time",
+          "start": 355.792,
+          "end": 356.187
+        },
+        {
+          "word": "to",
+          "start": 356.187,
+          "end": 356.582
+        },
+        {
+          "word": "backpressure",
+          "start": 356.582,
+          "end": 356.976
+        },
+        {
+          "word": "drops",
+          "start": 356.976,
+          "end": 357.371
+        },
+        {
+          "word": "to",
+          "start": 357.371,
+          "end": 357.766
+        },
+        {
+          "word": "exactly",
+          "start": 357.766,
+          "end": 358.161
+        },
+        {
+          "word": "5.00",
+          "start": 358.161,
+          "end": 358.555
+        },
+        {
+          "word": "seconds!",
+          "start": 358.555,
+          "end": 358.95
+        },
+        {
+          "word": "The",
+          "start": 358.95,
+          "end": 359.345
+        },
+        {
+          "word": "gauge",
+          "start": 359.345,
+          "end": 359.74
+        },
+        {
+          "word": "flips",
+          "start": 359.74,
+          "end": 360.134
+        },
+        {
+          "word": "to",
+          "start": 360.134,
+          "end": 360.529
+        },
+        {
+          "word": "red!",
+          "start": 360.529,
+          "end": 360.924
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Now slide the Kafka Partitions up to 16. See how the cluster bandwidth climbs to 640 megabytes per second, spreading message load evenly across consumer worker threads.",
+      "start": 361.174,
+      "end": 373.294,
+      "slide": 9,
+      "words": [
+        {
+          "word": "Now",
+          "start": 361.174,
+          "end": 361.623
+        },
+        {
+          "word": "slide",
+          "start": 361.623,
+          "end": 362.072
+        },
+        {
+          "word": "the",
+          "start": 362.072,
+          "end": 362.521
+        },
+        {
+          "word": "Kafka",
+          "start": 362.521,
+          "end": 362.97
+        },
+        {
+          "word": "Partitions",
+          "start": 362.97,
+          "end": 363.418
+        },
+        {
+          "word": "up",
+          "start": 363.418,
+          "end": 363.867
+        },
+        {
+          "word": "to",
+          "start": 363.867,
+          "end": 364.316
+        },
+        {
+          "word": "16.",
+          "start": 364.316,
+          "end": 364.765
+        },
+        {
+          "word": "See",
+          "start": 364.765,
+          "end": 365.214
+        },
+        {
+          "word": "how",
+          "start": 365.214,
+          "end": 365.663
+        },
+        {
+          "word": "the",
+          "start": 365.663,
+          "end": 366.112
+        },
+        {
+          "word": "cluster",
+          "start": 366.112,
+          "end": 366.561
+        },
+        {
+          "word": "bandwidth",
+          "start": 366.561,
+          "end": 367.01
+        },
+        {
+          "word": "climbs",
+          "start": 367.01,
+          "end": 367.458
+        },
+        {
+          "word": "to",
+          "start": 367.458,
+          "end": 367.907
+        },
+        {
+          "word": "640",
+          "start": 367.907,
+          "end": 368.356
+        },
+        {
+          "word": "megabytes",
+          "start": 368.356,
+          "end": 368.805
+        },
+        {
+          "word": "per",
+          "start": 368.805,
+          "end": 369.254
+        },
+        {
+          "word": "second,",
+          "start": 369.254,
+          "end": 369.703
+        },
+        {
+          "word": "spreading",
+          "start": 369.703,
+          "end": 370.152
+        },
+        {
+          "word": "message",
+          "start": 370.152,
+          "end": 370.601
+        },
+        {
+          "word": "load",
+          "start": 370.601,
+          "end": 371.05
+        },
+        {
+          "word": "evenly",
+          "start": 371.05,
+          "end": 371.498
+        },
+        {
+          "word": "across",
+          "start": 371.498,
+          "end": 371.947
+        },
+        {
+          "word": "consumer",
+          "start": 371.947,
+          "end": 372.396
+        },
+        {
+          "word": "worker",
+          "start": 372.396,
+          "end": 372.845
+        },
+        {
+          "word": "threads.",
+          "start": 372.845,
+          "end": 373.294
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Checkpoint 2, Kaito! One-hour window duration with a five-minute slide step. What is the exact state replication multiplier?",
+      "start": 373.894,
+      "end": 383.518,
+      "slide": 10,
+      "words": [
+        {
+          "word": "Checkpoint",
+          "start": 373.894,
+          "end": 374.429
+        },
+        {
+          "word": "2,",
+          "start": 374.429,
+          "end": 374.963
+        },
+        {
+          "word": "Kaito!",
+          "start": 374.963,
+          "end": 375.498
+        },
+        {
+          "word": "One-hour",
+          "start": 375.498,
+          "end": 376.033
+        },
+        {
+          "word": "window",
+          "start": 376.033,
+          "end": 376.567
+        },
+        {
+          "word": "duration",
+          "start": 376.567,
+          "end": 377.102
+        },
+        {
+          "word": "with",
+          "start": 377.102,
+          "end": 377.637
+        },
+        {
+          "word": "a",
+          "start": 377.637,
+          "end": 378.171
+        },
+        {
+          "word": "five-minute",
+          "start": 378.171,
+          "end": 378.706
+        },
+        {
+          "word": "slide",
+          "start": 378.706,
+          "end": 379.241
+        },
+        {
+          "word": "step.",
+          "start": 379.241,
+          "end": 379.775
+        },
+        {
+          "word": "What",
+          "start": 379.775,
+          "end": 380.31
+        },
+        {
+          "word": "is",
+          "start": 380.31,
+          "end": 380.845
+        },
+        {
+          "word": "the",
+          "start": 380.845,
+          "end": 381.379
+        },
+        {
+          "word": "exact",
+          "start": 381.379,
+          "end": 381.914
+        },
+        {
+          "word": "state",
+          "start": 381.914,
+          "end": 382.449
+        },
+        {
+          "word": "replication",
+          "start": 382.449,
+          "end": 382.983
+        },
+        {
+          "word": "multiplier?",
+          "start": 382.983,
+          "end": 383.518
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Remember our formula: R equals ceiling of window size divided by slide step. Sixty minutes divided by five minutes! Check the options below.",
+      "start": 383.768,
+      "end": 394.616,
+      "slide": 10,
+      "words": [
+        {
+          "word": "Remember",
+          "start": 383.768,
+          "end": 384.24
+        },
+        {
+          "word": "our",
+          "start": 384.24,
+          "end": 384.711
+        },
+        {
+          "word": "formula:",
+          "start": 384.711,
+          "end": 385.183
+        },
+        {
+          "word": "R",
+          "start": 385.183,
+          "end": 385.655
+        },
+        {
+          "word": "equals",
+          "start": 385.655,
+          "end": 386.126
+        },
+        {
+          "word": "ceiling",
+          "start": 386.126,
+          "end": 386.598
+        },
+        {
+          "word": "of",
+          "start": 386.598,
+          "end": 387.07
+        },
+        {
+          "word": "window",
+          "start": 387.07,
+          "end": 387.541
+        },
+        {
+          "word": "size",
+          "start": 387.541,
+          "end": 388.013
+        },
+        {
+          "word": "divided",
+          "start": 388.013,
+          "end": 388.485
+        },
+        {
+          "word": "by",
+          "start": 388.485,
+          "end": 388.956
+        },
+        {
+          "word": "slide",
+          "start": 388.956,
+          "end": 389.428
+        },
+        {
+          "word": "step.",
+          "start": 389.428,
+          "end": 389.899
+        },
+        {
+          "word": "Sixty",
+          "start": 389.899,
+          "end": 390.371
+        },
+        {
+          "word": "minutes",
+          "start": 390.371,
+          "end": 390.843
+        },
+        {
+          "word": "divided",
+          "start": 390.843,
+          "end": 391.314
+        },
+        {
+          "word": "by",
+          "start": 391.314,
+          "end": 391.786
+        },
+        {
+          "word": "five",
+          "start": 391.786,
+          "end": 392.258
+        },
+        {
+          "word": "minutes!",
+          "start": 392.258,
+          "end": 392.729
+        },
+        {
+          "word": "Check",
+          "start": 392.729,
+          "end": 393.201
+        },
+        {
+          "word": "the",
+          "start": 393.201,
+          "end": 393.673
+        },
+        {
+          "word": "options",
+          "start": 393.673,
+          "end": 394.144
+        },
+        {
+          "word": "below.",
+          "start": 394.144,
+          "end": 394.616
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Look at Case Study 2, Kaito. Why did the ride-hailing company observe vehicles traveling at two thousand kilometers per hour in their initial prototype?",
+      "start": 395.216,
+      "end": 404.84,
+      "slide": 11,
+      "words": [
+        {
+          "word": "Look",
+          "start": 395.216,
+          "end": 395.617
+        },
+        {
+          "word": "at",
+          "start": 395.617,
+          "end": 396.018
+        },
+        {
+          "word": "Case",
+          "start": 396.018,
+          "end": 396.419
+        },
+        {
+          "word": "Study",
+          "start": 396.419,
+          "end": 396.82
+        },
+        {
+          "word": "2,",
+          "start": 396.82,
+          "end": 397.221
+        },
+        {
+          "word": "Kaito.",
+          "start": 397.221,
+          "end": 397.622
+        },
+        {
+          "word": "Why",
+          "start": 397.622,
+          "end": 398.023
+        },
+        {
+          "word": "did",
+          "start": 398.023,
+          "end": 398.424
+        },
+        {
+          "word": "the",
+          "start": 398.424,
+          "end": 398.825
+        },
+        {
+          "word": "ride-hailing",
+          "start": 398.825,
+          "end": 399.226
+        },
+        {
+          "word": "company",
+          "start": 399.226,
+          "end": 399.627
+        },
+        {
+          "word": "observe",
+          "start": 399.627,
+          "end": 400.028
+        },
+        {
+          "word": "vehicles",
+          "start": 400.028,
+          "end": 400.429
+        },
+        {
+          "word": "traveling",
+          "start": 400.429,
+          "end": 400.83
+        },
+        {
+          "word": "at",
+          "start": 400.83,
+          "end": 401.231
+        },
+        {
+          "word": "two",
+          "start": 401.231,
+          "end": 401.632
+        },
+        {
+          "word": "thousand",
+          "start": 401.632,
+          "end": 402.033
+        },
+        {
+          "word": "kilometers",
+          "start": 402.033,
+          "end": 402.434
+        },
+        {
+          "word": "per",
+          "start": 402.434,
+          "end": 402.835
+        },
+        {
+          "word": "hour",
+          "start": 402.835,
+          "end": 403.236
+        },
+        {
+          "word": "in",
+          "start": 403.236,
+          "end": 403.637
+        },
+        {
+          "word": "their",
+          "start": 403.637,
+          "end": 404.038
+        },
+        {
+          "word": "initial",
+          "start": 404.038,
+          "end": 404.439
+        },
+        {
+          "word": "prototype?",
+          "start": 404.439,
+          "end": 404.84
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Because they were grouping GPS coordinates by Processing Time! When a taxi came out of the Lincoln Tunnel after forty seconds, forty seconds worth of road distance arrived in a split second!",
+      "start": 405.09,
+      "end": 416.634,
+      "slide": 11,
+      "words": [
+        {
+          "word": "Because",
+          "start": 405.09,
+          "end": 405.451
+        },
+        {
+          "word": "they",
+          "start": 405.451,
+          "end": 405.812
+        },
+        {
+          "word": "were",
+          "start": 405.812,
+          "end": 406.172
+        },
+        {
+          "word": "grouping",
+          "start": 406.172,
+          "end": 406.533
+        },
+        {
+          "word": "GPS",
+          "start": 406.533,
+          "end": 406.894
+        },
+        {
+          "word": "coordinates",
+          "start": 406.894,
+          "end": 407.255
+        },
+        {
+          "word": "by",
+          "start": 407.255,
+          "end": 407.615
+        },
+        {
+          "word": "Processing",
+          "start": 407.615,
+          "end": 407.976
+        },
+        {
+          "word": "Time!",
+          "start": 407.976,
+          "end": 408.337
+        },
+        {
+          "word": "When",
+          "start": 408.337,
+          "end": 408.698
+        },
+        {
+          "word": "a",
+          "start": 408.698,
+          "end": 409.058
+        },
+        {
+          "word": "taxi",
+          "start": 409.058,
+          "end": 409.419
+        },
+        {
+          "word": "came",
+          "start": 409.419,
+          "end": 409.78
+        },
+        {
+          "word": "out",
+          "start": 409.78,
+          "end": 410.141
+        },
+        {
+          "word": "of",
+          "start": 410.141,
+          "end": 410.501
+        },
+        {
+          "word": "the",
+          "start": 410.501,
+          "end": 410.862
+        },
+        {
+          "word": "Lincoln",
+          "start": 410.862,
+          "end": 411.223
+        },
+        {
+          "word": "Tunnel",
+          "start": 411.223,
+          "end": 411.584
+        },
+        {
+          "word": "after",
+          "start": 411.584,
+          "end": 411.944
+        },
+        {
+          "word": "forty",
+          "start": 411.944,
+          "end": 412.305
+        },
+        {
+          "word": "seconds,",
+          "start": 412.305,
+          "end": 412.666
+        },
+        {
+          "word": "forty",
+          "start": 412.666,
+          "end": 413.027
+        },
+        {
+          "word": "seconds",
+          "start": 413.027,
+          "end": 413.387
+        },
+        {
+          "word": "worth",
+          "start": 413.387,
+          "end": 413.748
+        },
+        {
+          "word": "of",
+          "start": 413.748,
+          "end": 414.109
+        },
+        {
+          "word": "road",
+          "start": 414.109,
+          "end": 414.47
+        },
+        {
+          "word": "distance",
+          "start": 414.47,
+          "end": 414.83
+        },
+        {
+          "word": "arrived",
+          "start": 414.83,
+          "end": 415.191
+        },
+        {
+          "word": "in",
+          "start": 415.191,
+          "end": 415.552
+        },
+        {
+          "word": "a",
+          "start": 415.552,
+          "end": 415.913
+        },
+        {
+          "word": "split",
+          "start": 415.913,
+          "end": 416.273
+        },
+        {
+          "word": "second!",
+          "start": 416.273,
+          "end": 416.634
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Exactly. The algorithm divided forty seconds of distance by fifty milliseconds of server arrival time, producing impossible speeds! Event-time watermarking eliminated the bug completely.",
+      "start": 416.884,
+      "end": 430.348,
+      "slide": 11,
+      "words": [
+        {
+          "word": "Exactly.",
+          "start": 416.884,
+          "end": 417.445
+        },
+        {
+          "word": "The",
+          "start": 417.445,
+          "end": 418.006
+        },
+        {
+          "word": "algorithm",
+          "start": 418.006,
+          "end": 418.567
+        },
+        {
+          "word": "divided",
+          "start": 418.567,
+          "end": 419.128
+        },
+        {
+          "word": "forty",
+          "start": 419.128,
+          "end": 419.689
+        },
+        {
+          "word": "seconds",
+          "start": 419.689,
+          "end": 420.25
+        },
+        {
+          "word": "of",
+          "start": 420.25,
+          "end": 420.811
+        },
+        {
+          "word": "distance",
+          "start": 420.811,
+          "end": 421.372
+        },
+        {
+          "word": "by",
+          "start": 421.372,
+          "end": 421.933
+        },
+        {
+          "word": "fifty",
+          "start": 421.933,
+          "end": 422.494
+        },
+        {
+          "word": "milliseconds",
+          "start": 422.494,
+          "end": 423.055
+        },
+        {
+          "word": "of",
+          "start": 423.055,
+          "end": 423.616
+        },
+        {
+          "word": "server",
+          "start": 423.616,
+          "end": 424.177
+        },
+        {
+          "word": "arrival",
+          "start": 424.177,
+          "end": 424.738
+        },
+        {
+          "word": "time,",
+          "start": 424.738,
+          "end": 425.299
+        },
+        {
+          "word": "producing",
+          "start": 425.299,
+          "end": 425.86
+        },
+        {
+          "word": "impossible",
+          "start": 425.86,
+          "end": 426.421
+        },
+        {
+          "word": "speeds!",
+          "start": 426.421,
+          "end": 426.982
+        },
+        {
+          "word": "Event-time",
+          "start": 426.982,
+          "end": 427.543
+        },
+        {
+          "word": "watermarking",
+          "start": 427.543,
+          "end": 428.104
+        },
+        {
+          "word": "eliminated",
+          "start": 428.104,
+          "end": 428.665
+        },
+        {
+          "word": "the",
+          "start": 428.665,
+          "end": 429.226
+        },
+        {
+          "word": "bug",
+          "start": 429.226,
+          "end": 429.787
+        },
+        {
+          "word": "completely.",
+          "start": 429.787,
+          "end": 430.348
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Checkpoint 3 brings together our queue and partition formulas, Kaito! Net growth is fifteen thousand minus nine thousand, which is six thousand messages per second.",
+      "start": 430.948,
+      "end": 441.988,
+      "slide": 12,
+      "words": [
+        {
+          "word": "Checkpoint",
+          "start": 430.948,
+          "end": 431.39
+        },
+        {
+          "word": "3",
+          "start": 431.39,
+          "end": 431.831
+        },
+        {
+          "word": "brings",
+          "start": 431.831,
+          "end": 432.273
+        },
+        {
+          "word": "together",
+          "start": 432.273,
+          "end": 432.714
+        },
+        {
+          "word": "our",
+          "start": 432.714,
+          "end": 433.156
+        },
+        {
+          "word": "queue",
+          "start": 433.156,
+          "end": 433.598
+        },
+        {
+          "word": "and",
+          "start": 433.598,
+          "end": 434.039
+        },
+        {
+          "word": "partition",
+          "start": 434.039,
+          "end": 434.481
+        },
+        {
+          "word": "formulas,",
+          "start": 434.481,
+          "end": 434.922
+        },
+        {
+          "word": "Kaito!",
+          "start": 434.922,
+          "end": 435.364
+        },
+        {
+          "word": "Net",
+          "start": 435.364,
+          "end": 435.806
+        },
+        {
+          "word": "growth",
+          "start": 435.806,
+          "end": 436.247
+        },
+        {
+          "word": "is",
+          "start": 436.247,
+          "end": 436.689
+        },
+        {
+          "word": "fifteen",
+          "start": 436.689,
+          "end": 437.13
+        },
+        {
+          "word": "thousand",
+          "start": 437.13,
+          "end": 437.572
+        },
+        {
+          "word": "minus",
+          "start": 437.572,
+          "end": 438.014
+        },
+        {
+          "word": "nine",
+          "start": 438.014,
+          "end": 438.455
+        },
+        {
+          "word": "thousand,",
+          "start": 438.455,
+          "end": 438.897
+        },
+        {
+          "word": "which",
+          "start": 438.897,
+          "end": 439.338
+        },
+        {
+          "word": "is",
+          "start": 439.338,
+          "end": 439.78
+        },
+        {
+          "word": "six",
+          "start": 439.78,
+          "end": 440.222
+        },
+        {
+          "word": "thousand",
+          "start": 440.222,
+          "end": 440.663
+        },
+        {
+          "word": "messages",
+          "start": 440.663,
+          "end": 441.105
+        },
+        {
+          "word": "per",
+          "start": 441.105,
+          "end": 441.546
+        },
+        {
+          "word": "second.",
+          "start": 441.546,
+          "end": 441.988
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Thirty thousand divided by six thousand gives five seconds! And eight hundred megabytes divided by fifty gives sixteen partitions! Look at the choices below and lock in the answer.",
+      "start": 442.238,
+      "end": 454.478,
+      "slide": 12,
+      "words": [
+        {
+          "word": "Thirty",
+          "start": 442.238,
+          "end": 442.66
+        },
+        {
+          "word": "thousand",
+          "start": 442.66,
+          "end": 443.082
+        },
+        {
+          "word": "divided",
+          "start": 443.082,
+          "end": 443.504
+        },
+        {
+          "word": "by",
+          "start": 443.504,
+          "end": 443.926
+        },
+        {
+          "word": "six",
+          "start": 443.926,
+          "end": 444.348
+        },
+        {
+          "word": "thousand",
+          "start": 444.348,
+          "end": 444.77
+        },
+        {
+          "word": "gives",
+          "start": 444.77,
+          "end": 445.192
+        },
+        {
+          "word": "five",
+          "start": 445.192,
+          "end": 445.615
+        },
+        {
+          "word": "seconds!",
+          "start": 445.615,
+          "end": 446.037
+        },
+        {
+          "word": "And",
+          "start": 446.037,
+          "end": 446.459
+        },
+        {
+          "word": "eight",
+          "start": 446.459,
+          "end": 446.881
+        },
+        {
+          "word": "hundred",
+          "start": 446.881,
+          "end": 447.303
+        },
+        {
+          "word": "megabytes",
+          "start": 447.303,
+          "end": 447.725
+        },
+        {
+          "word": "divided",
+          "start": 447.725,
+          "end": 448.147
+        },
+        {
+          "word": "by",
+          "start": 448.147,
+          "end": 448.569
+        },
+        {
+          "word": "fifty",
+          "start": 448.569,
+          "end": 448.991
+        },
+        {
+          "word": "gives",
+          "start": 448.991,
+          "end": 449.413
+        },
+        {
+          "word": "sixteen",
+          "start": 449.413,
+          "end": 449.835
+        },
+        {
+          "word": "partitions!",
+          "start": 449.835,
+          "end": 450.257
+        },
+        {
+          "word": "Look",
+          "start": 450.257,
+          "end": 450.679
+        },
+        {
+          "word": "at",
+          "start": 450.679,
+          "end": 451.101
+        },
+        {
+          "word": "the",
+          "start": 451.101,
+          "end": 451.524
+        },
+        {
+          "word": "choices",
+          "start": 451.524,
+          "end": 451.946
+        },
+        {
+          "word": "below",
+          "start": 451.946,
+          "end": 452.368
+        },
+        {
+          "word": "and",
+          "start": 452.368,
+          "end": 452.79
+        },
+        {
+          "word": "lock",
+          "start": 452.79,
+          "end": 453.212
+        },
+        {
+          "word": "in",
+          "start": 453.212,
+          "end": 453.634
+        },
+        {
+          "word": "the",
+          "start": 453.634,
+          "end": 454.056
+        },
+        {
+          "word": "answer.",
+          "start": 454.056,
+          "end": 454.478
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Notice our dual sink architecture, Kaito. When an event arrives after the watermark, the default stream behavior is often to discard it silently. Why is that dangerous in enterprise data management?",
+      "start": 455.078,
+      "end": 468.446,
+      "slide": 13,
+      "words": [
+        {
+          "word": "Notice",
+          "start": 455.078,
+          "end": 455.509
+        },
+        {
+          "word": "our",
+          "start": 455.509,
+          "end": 455.94
+        },
+        {
+          "word": "dual",
+          "start": 455.94,
+          "end": 456.372
+        },
+        {
+          "word": "sink",
+          "start": 456.372,
+          "end": 456.803
+        },
+        {
+          "word": "architecture,",
+          "start": 456.803,
+          "end": 457.234
+        },
+        {
+          "word": "Kaito.",
+          "start": 457.234,
+          "end": 457.665
+        },
+        {
+          "word": "When",
+          "start": 457.665,
+          "end": 458.097
+        },
+        {
+          "word": "an",
+          "start": 458.097,
+          "end": 458.528
+        },
+        {
+          "word": "event",
+          "start": 458.528,
+          "end": 458.959
+        },
+        {
+          "word": "arrives",
+          "start": 458.959,
+          "end": 459.39
+        },
+        {
+          "word": "after",
+          "start": 459.39,
+          "end": 459.821
+        },
+        {
+          "word": "the",
+          "start": 459.821,
+          "end": 460.253
+        },
+        {
+          "word": "watermark,",
+          "start": 460.253,
+          "end": 460.684
+        },
+        {
+          "word": "the",
+          "start": 460.684,
+          "end": 461.115
+        },
+        {
+          "word": "default",
+          "start": 461.115,
+          "end": 461.546
+        },
+        {
+          "word": "stream",
+          "start": 461.546,
+          "end": 461.978
+        },
+        {
+          "word": "behavior",
+          "start": 461.978,
+          "end": 462.409
+        },
+        {
+          "word": "is",
+          "start": 462.409,
+          "end": 462.84
+        },
+        {
+          "word": "often",
+          "start": 462.84,
+          "end": 463.271
+        },
+        {
+          "word": "to",
+          "start": 463.271,
+          "end": 463.703
+        },
+        {
+          "word": "discard",
+          "start": 463.703,
+          "end": 464.134
+        },
+        {
+          "word": "it",
+          "start": 464.134,
+          "end": 464.565
+        },
+        {
+          "word": "silently.",
+          "start": 464.565,
+          "end": 464.996
+        },
+        {
+          "word": "Why",
+          "start": 464.996,
+          "end": 465.427
+        },
+        {
+          "word": "is",
+          "start": 465.427,
+          "end": 465.859
+        },
+        {
+          "word": "that",
+          "start": 465.859,
+          "end": 466.29
+        },
+        {
+          "word": "dangerous",
+          "start": 466.29,
+          "end": 466.721
+        },
+        {
+          "word": "in",
+          "start": 466.721,
+          "end": 467.152
+        },
+        {
+          "word": "enterprise",
+          "start": 467.152,
+          "end": 467.584
+        },
+        {
+          "word": "data",
+          "start": 467.584,
+          "end": 468.015
+        },
+        {
+          "word": "management?",
+          "start": 468.015,
+          "end": 468.446
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "Because if thousands of edge sensors disconnect during a major weather event, silent drops would wipe out the exact anomaly records data scientists need to train disaster models!",
+      "start": 468.696,
+      "end": 478.608,
+      "slide": 13,
+      "words": [
+        {
+          "word": "Because",
+          "start": 468.696,
+          "end": 469.05
+        },
+        {
+          "word": "if",
+          "start": 469.05,
+          "end": 469.404
+        },
+        {
+          "word": "thousands",
+          "start": 469.404,
+          "end": 469.758
+        },
+        {
+          "word": "of",
+          "start": 469.758,
+          "end": 470.112
+        },
+        {
+          "word": "edge",
+          "start": 470.112,
+          "end": 470.466
+        },
+        {
+          "word": "sensors",
+          "start": 470.466,
+          "end": 470.82
+        },
+        {
+          "word": "disconnect",
+          "start": 470.82,
+          "end": 471.174
+        },
+        {
+          "word": "during",
+          "start": 471.174,
+          "end": 471.528
+        },
+        {
+          "word": "a",
+          "start": 471.528,
+          "end": 471.882
+        },
+        {
+          "word": "major",
+          "start": 471.882,
+          "end": 472.236
+        },
+        {
+          "word": "weather",
+          "start": 472.236,
+          "end": 472.59
+        },
+        {
+          "word": "event,",
+          "start": 472.59,
+          "end": 472.944
+        },
+        {
+          "word": "silent",
+          "start": 472.944,
+          "end": 473.298
+        },
+        {
+          "word": "drops",
+          "start": 473.298,
+          "end": 473.652
+        },
+        {
+          "word": "would",
+          "start": 473.652,
+          "end": 474.006
+        },
+        {
+          "word": "wipe",
+          "start": 474.006,
+          "end": 474.36
+        },
+        {
+          "word": "out",
+          "start": 474.36,
+          "end": 474.714
+        },
+        {
+          "word": "the",
+          "start": 474.714,
+          "end": 475.068
+        },
+        {
+          "word": "exact",
+          "start": 475.068,
+          "end": 475.422
+        },
+        {
+          "word": "anomaly",
+          "start": 475.422,
+          "end": 475.776
+        },
+        {
+          "word": "records",
+          "start": 475.776,
+          "end": 476.13
+        },
+        {
+          "word": "data",
+          "start": 476.13,
+          "end": 476.484
+        },
+        {
+          "word": "scientists",
+          "start": 476.484,
+          "end": 476.838
+        },
+        {
+          "word": "need",
+          "start": 476.838,
+          "end": 477.192
+        },
+        {
+          "word": "to",
+          "start": 477.192,
+          "end": 477.546
+        },
+        {
+          "word": "train",
+          "start": 477.546,
+          "end": 477.9
+        },
+        {
+          "word": "disaster",
+          "start": 477.9,
+          "end": 478.254
+        },
+        {
+          "word": "models!",
+          "start": 478.254,
+          "end": 478.608
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Spot on! By routing late packets to a Dead-Letter Queue, we preserve real-time dashboard latency without sacrificing raw dataset completeness.",
+      "start": 478.858,
+      "end": 488.746,
+      "slide": 13,
+      "words": [
+        {
+          "word": "Spot",
+          "start": 478.858,
+          "end": 479.352
+        },
+        {
+          "word": "on!",
+          "start": 479.352,
+          "end": 479.847
+        },
+        {
+          "word": "By",
+          "start": 479.847,
+          "end": 480.341
+        },
+        {
+          "word": "routing",
+          "start": 480.341,
+          "end": 480.836
+        },
+        {
+          "word": "late",
+          "start": 480.836,
+          "end": 481.33
+        },
+        {
+          "word": "packets",
+          "start": 481.33,
+          "end": 481.824
+        },
+        {
+          "word": "to",
+          "start": 481.824,
+          "end": 482.319
+        },
+        {
+          "word": "a",
+          "start": 482.319,
+          "end": 482.813
+        },
+        {
+          "word": "Dead-Letter",
+          "start": 482.813,
+          "end": 483.308
+        },
+        {
+          "word": "Queue,",
+          "start": 483.308,
+          "end": 483.802
+        },
+        {
+          "word": "we",
+          "start": 483.802,
+          "end": 484.296
+        },
+        {
+          "word": "preserve",
+          "start": 484.296,
+          "end": 484.791
+        },
+        {
+          "word": "real-time",
+          "start": 484.791,
+          "end": 485.285
+        },
+        {
+          "word": "dashboard",
+          "start": 485.285,
+          "end": 485.78
+        },
+        {
+          "word": "latency",
+          "start": 485.78,
+          "end": 486.274
+        },
+        {
+          "word": "without",
+          "start": 486.274,
+          "end": 486.768
+        },
+        {
+          "word": "sacrificing",
+          "start": 486.768,
+          "end": 487.263
+        },
+        {
+          "word": "raw",
+          "start": 487.263,
+          "end": 487.757
+        },
+        {
+          "word": "dataset",
+          "start": 487.757,
+          "end": 488.252
+        },
+        {
+          "word": "completeness.",
+          "start": 488.252,
+          "end": 488.746
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Review our verified Python 3.10 and Pydantic V2 production suite: StreamIngestionEngine.",
+      "start": 489.346,
+      "end": 496.618,
+      "slide": 14,
+      "words": [
+        {
+          "word": "Review",
+          "start": 489.346,
+          "end": 490.007
+        },
+        {
+          "word": "our",
+          "start": 490.007,
+          "end": 490.668
+        },
+        {
+          "word": "verified",
+          "start": 490.668,
+          "end": 491.329
+        },
+        {
+          "word": "Python",
+          "start": 491.329,
+          "end": 491.99
+        },
+        {
+          "word": "3.10",
+          "start": 491.99,
+          "end": 492.651
+        },
+        {
+          "word": "and",
+          "start": 492.651,
+          "end": 493.313
+        },
+        {
+          "word": "Pydantic",
+          "start": 493.313,
+          "end": 493.974
+        },
+        {
+          "word": "V2",
+          "start": 493.974,
+          "end": 494.635
+        },
+        {
+          "word": "production",
+          "start": 494.635,
+          "end": 495.296
+        },
+        {
+          "word": "suite:",
+          "start": 495.296,
+          "end": 495.957
+        },
+        {
+          "word": "StreamIngestionEngine.",
+          "start": 495.957,
+          "end": 496.618
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "The tests verify all our mathematical assertions! Watermark advances to 5.0 seconds, window zero to four closes with mean 15.00, buffer fills in 5.00 seconds, and 13 partitions sustain the 500 MB/s ingestion target!",
+      "start": 496.868,
+      "end": 514.052,
+      "slide": 14,
+      "words": [
+        {
+          "word": "The",
+          "start": 496.868,
+          "end": 497.373
+        },
+        {
+          "word": "tests",
+          "start": 497.373,
+          "end": 497.879
+        },
+        {
+          "word": "verify",
+          "start": 497.879,
+          "end": 498.384
+        },
+        {
+          "word": "all",
+          "start": 498.384,
+          "end": 498.89
+        },
+        {
+          "word": "our",
+          "start": 498.89,
+          "end": 499.395
+        },
+        {
+          "word": "mathematical",
+          "start": 499.395,
+          "end": 499.9
+        },
+        {
+          "word": "assertions!",
+          "start": 499.9,
+          "end": 500.406
+        },
+        {
+          "word": "Watermark",
+          "start": 500.406,
+          "end": 500.911
+        },
+        {
+          "word": "advances",
+          "start": 500.911,
+          "end": 501.417
+        },
+        {
+          "word": "to",
+          "start": 501.417,
+          "end": 501.922
+        },
+        {
+          "word": "5.0",
+          "start": 501.922,
+          "end": 502.428
+        },
+        {
+          "word": "seconds,",
+          "start": 502.428,
+          "end": 502.933
+        },
+        {
+          "word": "window",
+          "start": 502.933,
+          "end": 503.438
+        },
+        {
+          "word": "zero",
+          "start": 503.438,
+          "end": 503.944
+        },
+        {
+          "word": "to",
+          "start": 503.944,
+          "end": 504.449
+        },
+        {
+          "word": "four",
+          "start": 504.449,
+          "end": 504.955
+        },
+        {
+          "word": "closes",
+          "start": 504.955,
+          "end": 505.46
+        },
+        {
+          "word": "with",
+          "start": 505.46,
+          "end": 505.965
+        },
+        {
+          "word": "mean",
+          "start": 505.965,
+          "end": 506.471
+        },
+        {
+          "word": "15.00,",
+          "start": 506.471,
+          "end": 506.976
+        },
+        {
+          "word": "buffer",
+          "start": 506.976,
+          "end": 507.482
+        },
+        {
+          "word": "fills",
+          "start": 507.482,
+          "end": 507.987
+        },
+        {
+          "word": "in",
+          "start": 507.987,
+          "end": 508.492
+        },
+        {
+          "word": "5.00",
+          "start": 508.492,
+          "end": 508.998
+        },
+        {
+          "word": "seconds,",
+          "start": 508.998,
+          "end": 509.503
+        },
+        {
+          "word": "and",
+          "start": 509.503,
+          "end": 510.009
+        },
+        {
+          "word": "13",
+          "start": 510.009,
+          "end": 510.514
+        },
+        {
+          "word": "partitions",
+          "start": 510.514,
+          "end": 511.02
+        },
+        {
+          "word": "sustain",
+          "start": 511.02,
+          "end": 511.525
+        },
+        {
+          "word": "the",
+          "start": 511.525,
+          "end": 512.03
+        },
+        {
+          "word": "500",
+          "start": 512.03,
+          "end": 512.536
+        },
+        {
+          "word": "MB/s",
+          "start": 512.536,
+          "end": 513.041
+        },
+        {
+          "word": "ingestion",
+          "start": 513.041,
+          "end": 513.547
+        },
+        {
+          "word": "target!",
+          "start": 513.547,
+          "end": 514.052
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Let us conclude Lesson 9.8 with the four cardinal rules of distributed streaming, grounded in eight peer-reviewed citations: Wang et al. 2015, Carbone et al. 2017, Babcock et al. 2002, Zaharia et al. 2016, Little 1961, Armbrust et al. 2021, Akidau et al. 2015, and Kreps et al. 2011.",
+      "start": 514.652,
+      "end": 539.252,
+      "slide": 15,
+      "words": [
+        {
+          "word": "Let",
+          "start": 514.652,
+          "end": 515.154
+        },
+        {
+          "word": "us",
+          "start": 515.154,
+          "end": 515.656
+        },
+        {
+          "word": "conclude",
+          "start": 515.656,
+          "end": 516.158
+        },
+        {
+          "word": "Lesson",
+          "start": 516.158,
+          "end": 516.66
+        },
+        {
+          "word": "9.8",
+          "start": 516.66,
+          "end": 517.162
+        },
+        {
+          "word": "with",
+          "start": 517.162,
+          "end": 517.664
+        },
+        {
+          "word": "the",
+          "start": 517.664,
+          "end": 518.166
+        },
+        {
+          "word": "four",
+          "start": 518.166,
+          "end": 518.668
+        },
+        {
+          "word": "cardinal",
+          "start": 518.668,
+          "end": 519.17
+        },
+        {
+          "word": "rules",
+          "start": 519.17,
+          "end": 519.672
+        },
+        {
+          "word": "of",
+          "start": 519.672,
+          "end": 520.174
+        },
+        {
+          "word": "distributed",
+          "start": 520.174,
+          "end": 520.676
+        },
+        {
+          "word": "streaming,",
+          "start": 520.676,
+          "end": 521.179
+        },
+        {
+          "word": "grounded",
+          "start": 521.179,
+          "end": 521.681
+        },
+        {
+          "word": "in",
+          "start": 521.681,
+          "end": 522.183
+        },
+        {
+          "word": "eight",
+          "start": 522.183,
+          "end": 522.685
+        },
+        {
+          "word": "peer-reviewed",
+          "start": 522.685,
+          "end": 523.187
+        },
+        {
+          "word": "citations:",
+          "start": 523.187,
+          "end": 523.689
+        },
+        {
+          "word": "Wang",
+          "start": 523.689,
+          "end": 524.191
+        },
+        {
+          "word": "et",
+          "start": 524.191,
+          "end": 524.693
+        },
+        {
+          "word": "al.",
+          "start": 524.693,
+          "end": 525.195
+        },
+        {
+          "word": "2015,",
+          "start": 525.195,
+          "end": 525.697
+        },
+        {
+          "word": "Carbone",
+          "start": 525.697,
+          "end": 526.199
+        },
+        {
+          "word": "et",
+          "start": 526.199,
+          "end": 526.701
+        },
+        {
+          "word": "al.",
+          "start": 526.701,
+          "end": 527.203
+        },
+        {
+          "word": "2017,",
+          "start": 527.203,
+          "end": 527.705
+        },
+        {
+          "word": "Babcock",
+          "start": 527.705,
+          "end": 528.207
+        },
+        {
+          "word": "et",
+          "start": 528.207,
+          "end": 528.709
+        },
+        {
+          "word": "al.",
+          "start": 528.709,
+          "end": 529.211
+        },
+        {
+          "word": "2002,",
+          "start": 529.211,
+          "end": 529.713
+        },
+        {
+          "word": "Zaharia",
+          "start": 529.713,
+          "end": 530.215
+        },
+        {
+          "word": "et",
+          "start": 530.215,
+          "end": 530.717
+        },
+        {
+          "word": "al.",
+          "start": 530.717,
+          "end": 531.219
+        },
+        {
+          "word": "2016,",
+          "start": 531.219,
+          "end": 531.721
+        },
+        {
+          "word": "Little",
+          "start": 531.721,
+          "end": 532.223
+        },
+        {
+          "word": "1961,",
+          "start": 532.223,
+          "end": 532.725
+        },
+        {
+          "word": "Armbrust",
+          "start": 532.725,
+          "end": 533.228
+        },
+        {
+          "word": "et",
+          "start": 533.228,
+          "end": 533.73
+        },
+        {
+          "word": "al.",
+          "start": 533.73,
+          "end": 534.232
+        },
+        {
+          "word": "2021,",
+          "start": 534.232,
+          "end": 534.734
+        },
+        {
+          "word": "Akidau",
+          "start": 534.734,
+          "end": 535.236
+        },
+        {
+          "word": "et",
+          "start": 535.236,
+          "end": 535.738
+        },
+        {
+          "word": "al.",
+          "start": 535.738,
+          "end": 536.24
+        },
+        {
+          "word": "2015,",
+          "start": 536.24,
+          "end": 536.742
+        },
+        {
+          "word": "and",
+          "start": 536.742,
+          "end": 537.244
+        },
+        {
+          "word": "Kreps",
+          "start": 537.244,
+          "end": 537.746
+        },
+        {
+          "word": "et",
+          "start": 537.746,
+          "end": 538.248
+        },
+        {
+          "word": "al.",
+          "start": 538.248,
+          "end": 538.75
+        },
+        {
+          "word": "2011.",
+          "start": 538.75,
+          "end": 539.252
+        }
+      ]
+    },
+    {
+      "speaker": "Kaito",
+      "text": "What an incredible journey! From event-time watermarking and sliding window state replication to Little's Law buffer saturation and Kafka partition sizing, we now possess the full architectural toolkit for unbounded stream ingestion!",
+      "start": 539.502,
+      "end": 553.014,
+      "slide": 15,
+      "words": [
+        {
+          "word": "What",
+          "start": 539.502,
+          "end": 539.924
+        },
+        {
+          "word": "an",
+          "start": 539.924,
+          "end": 540.347
+        },
+        {
+          "word": "incredible",
+          "start": 540.347,
+          "end": 540.769
+        },
+        {
+          "word": "journey!",
+          "start": 540.769,
+          "end": 541.191
+        },
+        {
+          "word": "From",
+          "start": 541.191,
+          "end": 541.613
+        },
+        {
+          "word": "event-time",
+          "start": 541.613,
+          "end": 542.036
+        },
+        {
+          "word": "watermarking",
+          "start": 542.036,
+          "end": 542.458
+        },
+        {
+          "word": "and",
+          "start": 542.458,
+          "end": 542.88
+        },
+        {
+          "word": "sliding",
+          "start": 542.88,
+          "end": 543.302
+        },
+        {
+          "word": "window",
+          "start": 543.302,
+          "end": 543.725
+        },
+        {
+          "word": "state",
+          "start": 543.725,
+          "end": 544.147
+        },
+        {
+          "word": "replication",
+          "start": 544.147,
+          "end": 544.569
+        },
+        {
+          "word": "to",
+          "start": 544.569,
+          "end": 544.991
+        },
+        {
+          "word": "Little's",
+          "start": 544.991,
+          "end": 545.414
+        },
+        {
+          "word": "Law",
+          "start": 545.414,
+          "end": 545.836
+        },
+        {
+          "word": "buffer",
+          "start": 545.836,
+          "end": 546.258
+        },
+        {
+          "word": "saturation",
+          "start": 546.258,
+          "end": 546.68
+        },
+        {
+          "word": "and",
+          "start": 546.68,
+          "end": 547.103
+        },
+        {
+          "word": "Kafka",
+          "start": 547.103,
+          "end": 547.525
+        },
+        {
+          "word": "partition",
+          "start": 547.525,
+          "end": 547.947
+        },
+        {
+          "word": "sizing,",
+          "start": 547.947,
+          "end": 548.369
+        },
+        {
+          "word": "we",
+          "start": 548.369,
+          "end": 548.792
+        },
+        {
+          "word": "now",
+          "start": 548.792,
+          "end": 549.214
+        },
+        {
+          "word": "possess",
+          "start": 549.214,
+          "end": 549.636
+        },
+        {
+          "word": "the",
+          "start": 549.636,
+          "end": 550.058
+        },
+        {
+          "word": "full",
+          "start": 550.058,
+          "end": 550.481
+        },
+        {
+          "word": "architectural",
+          "start": 550.481,
+          "end": 550.903
+        },
+        {
+          "word": "toolkit",
+          "start": 550.903,
+          "end": 551.325
+        },
+        {
+          "word": "for",
+          "start": 551.325,
+          "end": 551.747
+        },
+        {
+          "word": "unbounded",
+          "start": 551.747,
+          "end": 552.17
+        },
+        {
+          "word": "stream",
+          "start": 552.17,
+          "end": 552.592
+        },
+        {
+          "word": "ingestion!",
+          "start": 552.592,
+          "end": 553.014
+        }
+      ]
+    },
+    {
+      "speaker": "Dr. Nova",
+      "text": "Master these principles, and your streaming architectures will remain rock-solid under the highest data velocities in production. Onward to Lesson 9.9: Lakes, Warehouses, and Ingestion Tools!",
+      "start": 553.264,
+      "end": 566.704,
+      "slide": 15,
+      "words": [
+        {
+          "word": "Master",
+          "start": 553.264,
+          "end": 553.781
+        },
+        {
+          "word": "these",
+          "start": 553.781,
+          "end": 554.298
+        },
+        {
+          "word": "principles,",
+          "start": 554.298,
+          "end": 554.815
+        },
+        {
+          "word": "and",
+          "start": 554.815,
+          "end": 555.332
+        },
+        {
+          "word": "your",
+          "start": 555.332,
+          "end": 555.849
+        },
+        {
+          "word": "streaming",
+          "start": 555.849,
+          "end": 556.366
+        },
+        {
+          "word": "architectures",
+          "start": 556.366,
+          "end": 556.882
+        },
+        {
+          "word": "will",
+          "start": 556.882,
+          "end": 557.399
+        },
+        {
+          "word": "remain",
+          "start": 557.399,
+          "end": 557.916
+        },
+        {
+          "word": "rock-solid",
+          "start": 557.916,
+          "end": 558.433
+        },
+        {
+          "word": "under",
+          "start": 558.433,
+          "end": 558.95
+        },
+        {
+          "word": "the",
+          "start": 558.95,
+          "end": 559.467
+        },
+        {
+          "word": "highest",
+          "start": 559.467,
+          "end": 559.984
+        },
+        {
+          "word": "data",
+          "start": 559.984,
+          "end": 560.501
+        },
+        {
+          "word": "velocities",
+          "start": 560.501,
+          "end": 561.018
+        },
+        {
+          "word": "in",
+          "start": 561.018,
+          "end": 561.535
+        },
+        {
+          "word": "production.",
+          "start": 561.535,
+          "end": 562.052
+        },
+        {
+          "word": "Onward",
+          "start": 562.052,
+          "end": 562.569
+        },
+        {
+          "word": "to",
+          "start": 562.569,
+          "end": 563.086
+        },
+        {
+          "word": "Lesson",
+          "start": 563.086,
+          "end": 563.602
+        },
+        {
+          "word": "9.9:",
+          "start": 563.602,
+          "end": 564.119
+        },
+        {
+          "word": "Lakes,",
+          "start": 564.119,
+          "end": 564.636
+        },
+        {
+          "word": "Warehouses,",
+          "start": 564.636,
+          "end": 565.153
+        },
+        {
+          "word": "and",
+          "start": 565.153,
+          "end": 565.67
+        },
+        {
+          "word": "Ingestion",
+          "start": 565.67,
+          "end": 566.187
+        },
+        {
+          "word": "Tools!",
+          "start": 566.187,
+          "end": 566.704
+        }
+      ]
+    }
+  ]
+}

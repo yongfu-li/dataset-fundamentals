@@ -7648,24 +7648,20 @@
 
 
 <h1 id="87-dvc-pipelines-and-automated-workflows">8.7 DVC Pipelines and Automated Workflows</h1>
-<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 4px 4px 0px #151b20;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 800; color: #151b20; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-      <span style="background: #ffc83e; border: 1.5px solid #151b20; padding: 2px 8px; border-radius: 6px;">§8.7</span>
-      <span>Companion Monograph: Chapter 8 (Dataset Documentation &amp; Version Control)</span>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #475569; margin-top: 6px; font-weight: 500;">
-      Read <strong>Chapter 8: Dataset Documentation and Version Control</strong> in the companion Springer Nature monograph for declarative pipeline DAGs, content-addressed memoization, and automated CI/CD evaluation gates.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 8: Dataset Documentation and Version Control (§8.7: Declarative DVC Pipelines &amp; CI/CD Automation)</strong>, covering declarative pipeline DAGs, content-addressed memoization, and automated CI/CD evaluation gates.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #c9f3f4; color: #0e7490; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.84rem; text-decoration: none; box-shadow: 2px 2px 0px #151b20;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+    <span>Explore Chapter 8 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Duration:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter08/chapter08.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter08/chapter08.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-87">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 8.7</h3>
 <p>Experience Chapter 8 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
@@ -7690,8 +7686,8 @@
 
 <hr />
 <h2 id="pedagogical-rationale-conceptual-overview">🎯 Pedagogical Rationale &amp; Conceptual Overview</h2>
-<p>In empirical machine learning and modern data engineering, reproducibility is frequently obstructed by manual, ad-hoc execution scripts (e.g., executing arbitrary bash scripts, unversioned Jupyter notebooks, or manual database dump commands). When an engineer tweaks a downstream model hyperparameter, running the entire monolithic pipeline from scratch wastes massive computational energy and introduces non-deterministic execution drift (<a href="#ref-peng2011">Peng, 2011</a>; <a href="#ref-pacheco2024">Pacheco et al., 2024</a>).</p>
-<p>To establish industrial-grade reproducibility, <strong>Data Version Control (DVC)</strong> models multi-step processing workflows as a declarative <strong>Directed Acyclic Graph (DAG)</strong> formalized in <code>dvc.yaml</code>:</p>
+<p>In empirical machine learning and modern data engineering, reproducibility is frequently obstructed by manual, ad-hoc execution scripts (e.g., executing arbitrary shell scripts, unversioned notebooks, or manual database export routines) which incur catastrophic pipeline glue code debt (<a href="#ref-sculley2015">Sculley et al., 2015</a>). When an engineer tweaks a downstream model hyperparameter, running the entire monolithic pipeline from scratch wastes massive computational energy and introduces non-deterministic execution drift (<a href="#ref-peng2011">Peng, 2011</a>; <a href="#ref-pacheco2024">Pacheco et al., 2024</a>).</p>
+<p>To establish industrial-grade reproducibility, scientific computing pioneered declarative workflow engines such as Snakemake (<a href="#ref-koster2012">Köster &amp; Rahmann, 2012</a>) and Nextflow (<a href="#ref-ditommaso2017">Di Tommaso et al., 2017</a>), coupled with containerized runtimes (<a href="#ref-boettiger2015">Boettiger, 2015</a>) and ML lifecycle platforms (<a href="#ref-zaharia2018">Zaharia et al., 2018</a>). <strong>Data Version Control (DVC)</strong> translates these declarative principles into Git-native machine learning workflows formalized in <code>dvc.yaml</code>:</p>
 <ol>
 <li><strong>Explicit Dependency Graphs:</strong> Every computational stage defines explicit inputs (<code>deps</code>: source code, raw data hashes, configuration parameters) and explicit outputs (<code>outs</code>: processed parquet partitions, model weights, evaluation metrics).</li>
 <li><strong>Content-Addressed Stage Memoization:</strong> By computing a cryptographic stage fingerprint over all inputs and commands, the execution engine bypasses unmodified upstream stages with zero redundant compute.</li>
@@ -7797,7 +7793,7 @@ T_{\text{makespan}}(P) \ge T_{\text{crit}}
 <h2 id="real-world-industrial-case-studies">🏢 Real-World Industrial Case Studies</h2>
 <h3 id="case-study-1-planet-labs-daily-global-satellite-imagery-pipeline">Case Study 1: Planet Labs Daily Global Satellite Imagery Pipeline</h3>
 <p>Planet Labs operates a constellation of over 200 low-Earth orbit satellites imaging the entire global landmass daily, capturing over <strong><span class="arithmatex">\(25\text{ Terabytes}\)</span> of multi-spectral orthorectified imagery every 24 hours</strong>.</p>
-<p>Retraining agricultural crop stress detection models previously required executing expensive atmospheric surface reflectance calibrations over petabytes of imagery before training deep convolutional neural networks. Planet engineers restructured the pipeline into DVC stages backed by Google Cloud Storage. Because atmospheric calibration outputs are content-addressed, DVC caches the corrected reflectance arrays immutably. When data scientists test novel segmentation architectures, all upstream geospatial calibration stages are bypassed, slashing cloud GPU cluster compute bills by <strong><span class="arithmatex">\(68\%\)</span></strong> (<span class="arithmatex">\(&gt;\$450,000\)</span> annual savings).</p>
+<p>Retraining agricultural crop stress detection models previously required executing expensive atmospheric surface reflectance calibrations over petabytes of imagery before training deep convolutional neural networks. Planet engineers restructured the pipeline into DVC stages backed by Google Cloud Storage. Because atmospheric calibration outputs are content-addressed, DVC caches the corrected reflectance arrays immutably. When data scientists test novel segmentation architectures, all upstream geospatial calibration stages are bypassed, slashing cloud GPU cluster compute bills by <strong><span class="arithmatex">\(68\%\)</span></strong> (&gt; USD 450,000 annual savings).</p>
 <hr />
 <h3 id="case-study-2-autonomous-delivery-robot-fleet-continuous-integration-deployment">Case Study 2: Autonomous Delivery Robot Fleet (Continuous Integration Deployment)</h3>
 <p>Nuro operates autonomous delivery bots equipped with radar, LiDAR, and camera vision. ML engineers continuously update pedestrian motion forecasting algorithms.</p>
@@ -8040,7 +8036,7 @@ T_{\text{makespan}}(P) \ge T_{\text{crit}}
       <div style="background: #fff; border: 2px solid #151b20; border-radius: 8px; padding: 12px; box-shadow: 2px 2px 0px #151b20; display: flex; flex-direction: column; align-items: center;">
         <canvas id="sim87-cost-canvas" width="420" height="280" style="max-width: 100%; height: auto;"></canvas>
         <div id="sim87-cost-summary" style="margin-top: 10px; width: 100%; background: #fffaf0; border: 1.5px solid #151b20; border-radius: 6px; padding: 8px 12px; text-align: center; font-family: monospace; font-size: 0.85rem;">
-          Naive Cost: <strong id="sim87-naive-cost">$14,400</strong> • DVC Cost: <strong id="sim87-dvc-cost" style="color: #0e7490;">$4,500</strong> • Saved: <strong id="sim87-saved-cost" style="color: #166534;">$9,900 (68.8%)</strong>
+          Naive Cost: <strong id="sim87-naive-cost">USD 14,400</strong> • DVC Cost: <strong id="sim87-dvc-cost" style="color: #0e7490;">USD 4,500</strong> • Saved: <strong id="sim87-saved-cost" style="color: #166534;">USD 9,900 (68.8%)</strong>
         </div>
       </div>
 
@@ -8052,7 +8048,7 @@ T_{\text{makespan}}(P) \ge T_{\text{crit}}
           <div style="margin-top: 8px;">
             <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
               <span>GPU Cluster Hourly Rate:</span>
-              <strong id="sim87-rate-label" style="font-family: monospace;">$32.00 / hr</strong>
+              <strong id="sim87-rate-label" style="font-family: monospace;">USD 32.00 / hr</strong>
             </div>
             <input type="range" id="sim87-rate-slider" min="8" max="96" value="32" step="4" style="width: 100%; cursor: pointer;" oninput="sim87UpdateCost()">
           </div>
@@ -8348,7 +8344,7 @@ function sim87UpdateCost() {
   const runs = parseInt(document.getElementById('sim87-runs-slider').value);
   const cachePct = parseFloat(document.getElementById('sim87-cache-slider').value);
 
-  document.getElementById('sim87-rate-label').innerText = '$' + rate.toFixed(2) + ' / hr';
+  document.getElementById('sim87-rate-label').innerText = 'USD ' + rate.toFixed(2) + ' / hr';
   document.getElementById('sim87-runs-label').innerText = runs + ' runs / day';
   document.getElementById('sim87-cache-label').innerText = cachePct.toFixed(1) + '%';
 
@@ -8367,9 +8363,9 @@ function sim87UpdateCost() {
   const savedCost = naiveCost - dvcCost;
   const savedPct = (savedCost / naiveCost) * 100.0;
 
-  document.getElementById('sim87-naive-cost').innerText = '$' + Math.round(naiveCost).toLocaleString();
-  document.getElementById('sim87-dvc-cost').innerText = '$' + Math.round(dvcCost).toLocaleString();
-  document.getElementById('sim87-saved-cost').innerText = '$' + Math.round(savedCost).toLocaleString() + ' (' + savedPct.toFixed(1) + '%)';
+  document.getElementById('sim87-naive-cost').innerText = 'USD ' + Math.round(naiveCost).toLocaleString();
+  document.getElementById('sim87-dvc-cost').innerText = 'USD ' + Math.round(dvcCost).toLocaleString();
+  document.getElementById('sim87-saved-cost').innerText = 'USD ' + Math.round(savedCost).toLocaleString() + ' (' + savedPct.toFixed(1) + '%)';
 
   sim87RenderCostChart(naiveCost, dvcCost);
 }
@@ -8405,7 +8401,7 @@ function sim87RenderCostChart(naiveCost, dvcCost) {
     ctx.fillStyle = '#64748b';
     ctx.font = '9px monospace';
     ctx.textAlign = 'right';
-    ctx.fillText('$' + Math.round(yVal / 1000) + 'k', padLeft - 6, y + 3);
+    ctx.fillText(Math.round(yVal / 1000) + 'k', padLeft - 6, y + 3);
   }
 
   // Draw 30 Days Cumulative Cost Curves
@@ -8648,6 +8644,8 @@ T_{\text{seq}} = \tau(A) + \tau(B) + \tau(C) + \tau(D) + \tau(E) = 10 + 45 + 60 
 <li><a id="ref-amdahl1967"></a><strong>[Amdahl1967]</strong> G. M. Amdahl, "Validity of the Single Processor Approach to Achieving Large Scale Computing Capabilities," in <em>Proceedings of the April 18–20, 1967, Spring Joint Computer Conference (AFIPS '67)</em>, 1967, pp. 483–485. <a href="https://doi.org/10.1145/1465482.1465560">DOI: 10.1145/1465482.1465560</a>.</li>
 <li><a id="ref-peng2011"></a><strong>[Peng2011]</strong> R. D. Peng, "Reproducible Research in Computational Science," <em>Science</em>, vol. 334, no. 6060, pp. 1226–1227, Dec. 2011. <a href="https://doi.org/10.1126/science.1213847">DOI: 10.1126/science.1213847</a>.</li>
 <li><a id="ref-boettiger2015"></a><strong>[Boettiger2015]</strong> C. Boettiger, "An Introduction to Docker for Reproducible Research," <em>ACM SIGOPS Operating Systems Review</em>, vol. 49, no. 1, pp. 71–79, Jan. 2015. <a href="https://doi.org/10.1145/2723872.2723882">DOI: 10.1145/2723872.2723882</a>.</li>
+<li><a id="ref-sculley2015"></a><strong>[Sculley2015]</strong> D. Sculley et al., "Hidden Technical Debt in Machine Learning Systems," in <em>Advances in Neural Information Processing Systems (NeurIPS '15)</em>, 2015, pp. 2503–2511. <a href="https://proceedings.neurips.cc/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf">URL: https://proceedings.neurips.cc/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf</a>.</li>
+<li><a id="ref-zaharia2018"></a><strong>[Zaharia2018]</strong> M. Zaharia et al., "Accelerating the Machine Learning Lifecycle with MLflow," <em>IEEE Micro</em>, vol. 38, no. 5, pp. 39–45, Sep./Oct. 2018. <a href="https://doi.org/10.1109/MM.2018.2877274">DOI: 10.1109/MM.2018.2877274</a>.</li>
 </ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">

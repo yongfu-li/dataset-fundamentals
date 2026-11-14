@@ -1,0 +1,4601 @@
+{
+  "duration": 520.1,
+  "sentences": [
+    {
+      "slide": 1,
+      "slideId": "s1",
+      "slideIndex": 0,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 11.7: Self-Supervised Learning: Contrastive Pretext Tasks and Representations. Having explored active learning and weak supervision, we now ask a more fundamental question: Can neural networks learn structured, universal representations without any external labels whatsoever?",
+      "start": 0.0,
+      "end": 19.27,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 0.0
+        },
+        {
+          "w": "to",
+          "t": 0.521
+        },
+        {
+          "w": "Lesson",
+          "t": 1.042
+        },
+        {
+          "w": "11.7:",
+          "t": 1.563
+        },
+        {
+          "w": "Self-Supervised",
+          "t": 2.083
+        },
+        {
+          "w": "Learning:",
+          "t": 2.604
+        },
+        {
+          "w": "Contrastive",
+          "t": 3.125
+        },
+        {
+          "w": "Pretext",
+          "t": 3.646
+        },
+        {
+          "w": "Tasks",
+          "t": 4.167
+        },
+        {
+          "w": "and",
+          "t": 4.688
+        },
+        {
+          "w": "Representations.",
+          "t": 5.209
+        },
+        {
+          "w": "Having",
+          "t": 5.73
+        },
+        {
+          "w": "explored",
+          "t": 6.25
+        },
+        {
+          "w": "active",
+          "t": 6.771
+        },
+        {
+          "w": "learning",
+          "t": 7.292
+        },
+        {
+          "w": "and",
+          "t": 7.813
+        },
+        {
+          "w": "weak",
+          "t": 8.334
+        },
+        {
+          "w": "supervision,",
+          "t": 8.855
+        },
+        {
+          "w": "we",
+          "t": 9.376
+        },
+        {
+          "w": "now",
+          "t": 9.896
+        },
+        {
+          "w": "ask",
+          "t": 10.417
+        },
+        {
+          "w": "a",
+          "t": 10.938
+        },
+        {
+          "w": "more",
+          "t": 11.459
+        },
+        {
+          "w": "fundamental",
+          "t": 11.98
+        },
+        {
+          "w": "question:",
+          "t": 12.501
+        },
+        {
+          "w": "Can",
+          "t": 13.022
+        },
+        {
+          "w": "neural",
+          "t": 13.542
+        },
+        {
+          "w": "networks",
+          "t": 14.063
+        },
+        {
+          "w": "learn",
+          "t": 14.584
+        },
+        {
+          "w": "structured,",
+          "t": 15.105
+        },
+        {
+          "w": "universal",
+          "t": 15.626
+        },
+        {
+          "w": "representations",
+          "t": 16.147
+        },
+        {
+          "w": "without",
+          "t": 16.668
+        },
+        {
+          "w": "any",
+          "t": 17.189
+        },
+        {
+          "w": "external",
+          "t": 17.709
+        },
+        {
+          "w": "labels",
+          "t": 18.23
+        },
+        {
+          "w": "whatsoever?",
+          "t": 18.751
+        }
+      ]
+    },
+    {
+      "slide": 1,
+      "slideId": "s1",
+      "slideIndex": 0,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Today, we formulate the stochastic Siamese framework, derive the InfoNCE mutual information lower bound, prove Wang and Isola's alignment-uniformity theorem, dissect SimCLR and MoCo, and investigate zero-shot transfer with CLIP and Masked Autoencoders.",
+      "start": 19.52,
+      "end": 36.2,
+      "words": [
+        {
+          "w": "Today,",
+          "t": 19.522
+        },
+        {
+          "w": "we",
+          "t": 20.027
+        },
+        {
+          "w": "formulate",
+          "t": 20.533
+        },
+        {
+          "w": "the",
+          "t": 21.038
+        },
+        {
+          "w": "stochastic",
+          "t": 21.544
+        },
+        {
+          "w": "Siamese",
+          "t": 22.049
+        },
+        {
+          "w": "framework,",
+          "t": 22.555
+        },
+        {
+          "w": "derive",
+          "t": 23.06
+        },
+        {
+          "w": "the",
+          "t": 23.566
+        },
+        {
+          "w": "InfoNCE",
+          "t": 24.071
+        },
+        {
+          "w": "mutual",
+          "t": 24.577
+        },
+        {
+          "w": "information",
+          "t": 25.082
+        },
+        {
+          "w": "lower",
+          "t": 25.587
+        },
+        {
+          "w": "bound,",
+          "t": 26.093
+        },
+        {
+          "w": "prove",
+          "t": 26.598
+        },
+        {
+          "w": "Wang",
+          "t": 27.104
+        },
+        {
+          "w": "and",
+          "t": 27.609
+        },
+        {
+          "w": "Isola's",
+          "t": 28.115
+        },
+        {
+          "w": "alignment-uniformity",
+          "t": 28.62
+        },
+        {
+          "w": "theorem,",
+          "t": 29.126
+        },
+        {
+          "w": "dissect",
+          "t": 29.631
+        },
+        {
+          "w": "SimCLR",
+          "t": 30.137
+        },
+        {
+          "w": "and",
+          "t": 30.642
+        },
+        {
+          "w": "MoCo,",
+          "t": 31.147
+        },
+        {
+          "w": "and",
+          "t": 31.653
+        },
+        {
+          "w": "investigate",
+          "t": 32.158
+        },
+        {
+          "w": "zero-shot",
+          "t": 32.664
+        },
+        {
+          "w": "transfer",
+          "t": 33.169
+        },
+        {
+          "w": "with",
+          "t": 33.675
+        },
+        {
+          "w": "CLIP",
+          "t": 34.18
+        },
+        {
+          "w": "and",
+          "t": 34.686
+        },
+        {
+          "w": "Masked",
+          "t": 35.191
+        },
+        {
+          "w": "Autoencoders.",
+          "t": 35.697
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "slideId": "s2",
+      "slideIndex": 1,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "The modern contrastive representation framework operates as an integrated four-stage pipeline: stochastic view generation, Siamese feature extraction, non-linear projection into latent space, and normalized temperature-scaled contrastive optimization.",
+      "start": 36.95,
+      "end": 52.38,
+      "words": [
+        {
+          "w": "The",
+          "t": 36.952
+        },
+        {
+          "w": "modern",
+          "t": 37.524
+        },
+        {
+          "w": "contrastive",
+          "t": 38.095
+        },
+        {
+          "w": "representation",
+          "t": 38.667
+        },
+        {
+          "w": "framework",
+          "t": 39.238
+        },
+        {
+          "w": "operates",
+          "t": 39.81
+        },
+        {
+          "w": "as",
+          "t": 40.381
+        },
+        {
+          "w": "an",
+          "t": 40.953
+        },
+        {
+          "w": "integrated",
+          "t": 41.524
+        },
+        {
+          "w": "four-stage",
+          "t": 42.096
+        },
+        {
+          "w": "pipeline:",
+          "t": 42.668
+        },
+        {
+          "w": "stochastic",
+          "t": 43.239
+        },
+        {
+          "w": "view",
+          "t": 43.811
+        },
+        {
+          "w": "generation,",
+          "t": 44.382
+        },
+        {
+          "w": "Siamese",
+          "t": 44.954
+        },
+        {
+          "w": "feature",
+          "t": 45.525
+        },
+        {
+          "w": "extraction,",
+          "t": 46.097
+        },
+        {
+          "w": "non-linear",
+          "t": 46.668
+        },
+        {
+          "w": "projection",
+          "t": 47.24
+        },
+        {
+          "w": "into",
+          "t": 47.812
+        },
+        {
+          "w": "latent",
+          "t": 48.383
+        },
+        {
+          "w": "space,",
+          "t": 48.955
+        },
+        {
+          "w": "and",
+          "t": 49.526
+        },
+        {
+          "w": "normalized",
+          "t": 50.098
+        },
+        {
+          "w": "temperature-scaled",
+          "t": 50.669
+        },
+        {
+          "w": "contrastive",
+          "t": 51.241
+        },
+        {
+          "w": "optimization.",
+          "t": 51.812
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "slideId": "s2",
+      "slideIndex": 1,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Crucially, the projection head maps representations to a lower-dimensional unit hypersphere solely during pretraining. Once training converges, the projection head is discarded, and the high-dimensional representation vector is frozen for downstream transfer.",
+      "start": 52.63,
+      "end": 68.38,
+      "words": [
+        {
+          "w": "Crucially,",
+          "t": 52.634
+        },
+        {
+          "w": "the",
+          "t": 53.126
+        },
+        {
+          "w": "projection",
+          "t": 53.618
+        },
+        {
+          "w": "head",
+          "t": 54.11
+        },
+        {
+          "w": "maps",
+          "t": 54.602
+        },
+        {
+          "w": "representations",
+          "t": 55.094
+        },
+        {
+          "w": "to",
+          "t": 55.586
+        },
+        {
+          "w": "a",
+          "t": 56.078
+        },
+        {
+          "w": "lower-dimensional",
+          "t": 56.57
+        },
+        {
+          "w": "unit",
+          "t": 57.062
+        },
+        {
+          "w": "hypersphere",
+          "t": 57.554
+        },
+        {
+          "w": "solely",
+          "t": 58.046
+        },
+        {
+          "w": "during",
+          "t": 58.538
+        },
+        {
+          "w": "pretraining.",
+          "t": 59.03
+        },
+        {
+          "w": "Once",
+          "t": 59.522
+        },
+        {
+          "w": "training",
+          "t": 60.014
+        },
+        {
+          "w": "converges,",
+          "t": 60.506
+        },
+        {
+          "w": "the",
+          "t": 60.998
+        },
+        {
+          "w": "projection",
+          "t": 61.49
+        },
+        {
+          "w": "head",
+          "t": 61.982
+        },
+        {
+          "w": "is",
+          "t": 62.474
+        },
+        {
+          "w": "discarded,",
+          "t": 62.966
+        },
+        {
+          "w": "and",
+          "t": 63.458
+        },
+        {
+          "w": "the",
+          "t": 63.95
+        },
+        {
+          "w": "high-dimensional",
+          "t": 64.442
+        },
+        {
+          "w": "representation",
+          "t": 64.934
+        },
+        {
+          "w": "vector",
+          "t": 65.426
+        },
+        {
+          "w": "is",
+          "t": 65.918
+        },
+        {
+          "w": "frozen",
+          "t": 66.41
+        },
+        {
+          "w": "for",
+          "t": 66.902
+        },
+        {
+          "w": "downstream",
+          "t": 67.394
+        },
+        {
+          "w": "transfer.",
+          "t": 67.886
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "slideId": "s3",
+      "slideIndex": 2,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us formalize the pretext data generation process. For any unlabeled instance x sampled from data distribution p of x, applying two stochastic transformations t1 and t2 drawn from family T yields a positive pair of correlated views: x-tilde i and x-tilde j.",
+      "start": 69.13,
+      "end": 87.37,
+      "words": [
+        {
+          "w": "Let",
+          "t": 69.128
+        },
+        {
+          "w": "us",
+          "t": 69.552
+        },
+        {
+          "w": "formalize",
+          "t": 69.976
+        },
+        {
+          "w": "the",
+          "t": 70.401
+        },
+        {
+          "w": "pretext",
+          "t": 70.825
+        },
+        {
+          "w": "data",
+          "t": 71.249
+        },
+        {
+          "w": "generation",
+          "t": 71.673
+        },
+        {
+          "w": "process.",
+          "t": 72.097
+        },
+        {
+          "w": "For",
+          "t": 72.521
+        },
+        {
+          "w": "any",
+          "t": 72.946
+        },
+        {
+          "w": "unlabeled",
+          "t": 73.37
+        },
+        {
+          "w": "instance",
+          "t": 73.794
+        },
+        {
+          "w": "x",
+          "t": 74.218
+        },
+        {
+          "w": "sampled",
+          "t": 74.642
+        },
+        {
+          "w": "from",
+          "t": 75.067
+        },
+        {
+          "w": "data",
+          "t": 75.491
+        },
+        {
+          "w": "distribution",
+          "t": 75.915
+        },
+        {
+          "w": "p",
+          "t": 76.339
+        },
+        {
+          "w": "of",
+          "t": 76.763
+        },
+        {
+          "w": "x,",
+          "t": 77.188
+        },
+        {
+          "w": "applying",
+          "t": 77.612
+        },
+        {
+          "w": "two",
+          "t": 78.036
+        },
+        {
+          "w": "stochastic",
+          "t": 78.46
+        },
+        {
+          "w": "transformations",
+          "t": 78.884
+        },
+        {
+          "w": "t1",
+          "t": 79.308
+        },
+        {
+          "w": "and",
+          "t": 79.733
+        },
+        {
+          "w": "t2",
+          "t": 80.157
+        },
+        {
+          "w": "drawn",
+          "t": 80.581
+        },
+        {
+          "w": "from",
+          "t": 81.005
+        },
+        {
+          "w": "family",
+          "t": 81.429
+        },
+        {
+          "w": "T",
+          "t": 81.854
+        },
+        {
+          "w": "yields",
+          "t": 82.278
+        },
+        {
+          "w": "a",
+          "t": 82.702
+        },
+        {
+          "w": "positive",
+          "t": 83.126
+        },
+        {
+          "w": "pair",
+          "t": 83.55
+        },
+        {
+          "w": "of",
+          "t": 83.975
+        },
+        {
+          "w": "correlated",
+          "t": 84.399
+        },
+        {
+          "w": "views:",
+          "t": 84.823
+        },
+        {
+          "w": "x-tilde",
+          "t": 85.247
+        },
+        {
+          "w": "i",
+          "t": 85.671
+        },
+        {
+          "w": "and",
+          "t": 86.095
+        },
+        {
+          "w": "x-tilde",
+          "t": 86.52
+        },
+        {
+          "w": "j.",
+          "t": 86.944
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "slideId": "s3",
+      "slideIndex": 2,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "The composite encoder applies base representation mapping h equals f-theta of x-tilde, followed by projection head z equals g-w of h, and L2 normalization onto the unit hypersphere. The composition of spatial crops with aggressive color jitter is essential to prevent trivial background shortcuts.",
+      "start": 87.62,
+      "end": 107.06,
+      "words": [
+        {
+          "w": "The",
+          "t": 87.618
+        },
+        {
+          "w": "composite",
+          "t": 88.06
+        },
+        {
+          "w": "encoder",
+          "t": 88.502
+        },
+        {
+          "w": "applies",
+          "t": 88.943
+        },
+        {
+          "w": "base",
+          "t": 89.385
+        },
+        {
+          "w": "representation",
+          "t": 89.827
+        },
+        {
+          "w": "mapping",
+          "t": 90.269
+        },
+        {
+          "w": "h",
+          "t": 90.711
+        },
+        {
+          "w": "equals",
+          "t": 91.153
+        },
+        {
+          "w": "f-theta",
+          "t": 91.594
+        },
+        {
+          "w": "of",
+          "t": 92.036
+        },
+        {
+          "w": "x-tilde,",
+          "t": 92.478
+        },
+        {
+          "w": "followed",
+          "t": 92.92
+        },
+        {
+          "w": "by",
+          "t": 93.362
+        },
+        {
+          "w": "projection",
+          "t": 93.803
+        },
+        {
+          "w": "head",
+          "t": 94.245
+        },
+        {
+          "w": "z",
+          "t": 94.687
+        },
+        {
+          "w": "equals",
+          "t": 95.129
+        },
+        {
+          "w": "g-w",
+          "t": 95.571
+        },
+        {
+          "w": "of",
+          "t": 96.013
+        },
+        {
+          "w": "h,",
+          "t": 96.454
+        },
+        {
+          "w": "and",
+          "t": 96.896
+        },
+        {
+          "w": "L2",
+          "t": 97.338
+        },
+        {
+          "w": "normalization",
+          "t": 97.78
+        },
+        {
+          "w": "onto",
+          "t": 98.222
+        },
+        {
+          "w": "the",
+          "t": 98.663
+        },
+        {
+          "w": "unit",
+          "t": 99.105
+        },
+        {
+          "w": "hypersphere.",
+          "t": 99.547
+        },
+        {
+          "w": "The",
+          "t": 99.989
+        },
+        {
+          "w": "composition",
+          "t": 100.431
+        },
+        {
+          "w": "of",
+          "t": 100.873
+        },
+        {
+          "w": "spatial",
+          "t": 101.314
+        },
+        {
+          "w": "crops",
+          "t": 101.756
+        },
+        {
+          "w": "with",
+          "t": 102.198
+        },
+        {
+          "w": "aggressive",
+          "t": 102.64
+        },
+        {
+          "w": "color",
+          "t": 103.082
+        },
+        {
+          "w": "jitter",
+          "t": 103.523
+        },
+        {
+          "w": "is",
+          "t": 103.965
+        },
+        {
+          "w": "essential",
+          "t": 104.407
+        },
+        {
+          "w": "to",
+          "t": 104.849
+        },
+        {
+          "w": "prevent",
+          "t": 105.291
+        },
+        {
+          "w": "trivial",
+          "t": 105.733
+        },
+        {
+          "w": "background",
+          "t": 106.174
+        },
+        {
+          "w": "shortcuts.",
+          "t": 106.616
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "slideId": "s4",
+      "slideIndex": 3,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Next, Definition 11.7.2: The Normalized Temperature-scaled Cross-Entropy, or NT-Xent loss. For a minibatch of N instances, data augmentation generates two N views. For view i, there is exactly one positive view p of i, and two N minus two negative distractors.",
+      "start": 107.81,
+      "end": 128.11,
+      "words": [
+        {
+          "w": "Next,",
+          "t": 107.808
+        },
+        {
+          "w": "Definition",
+          "t": 108.303
+        },
+        {
+          "w": "11.7.2:",
+          "t": 108.798
+        },
+        {
+          "w": "The",
+          "t": 109.294
+        },
+        {
+          "w": "Normalized",
+          "t": 109.789
+        },
+        {
+          "w": "Temperature-scaled",
+          "t": 110.284
+        },
+        {
+          "w": "Cross-Entropy,",
+          "t": 110.779
+        },
+        {
+          "w": "or",
+          "t": 111.275
+        },
+        {
+          "w": "NT-Xent",
+          "t": 111.77
+        },
+        {
+          "w": "loss.",
+          "t": 112.265
+        },
+        {
+          "w": "For",
+          "t": 112.76
+        },
+        {
+          "w": "a",
+          "t": 113.255
+        },
+        {
+          "w": "minibatch",
+          "t": 113.751
+        },
+        {
+          "w": "of",
+          "t": 114.246
+        },
+        {
+          "w": "N",
+          "t": 114.741
+        },
+        {
+          "w": "instances,",
+          "t": 115.236
+        },
+        {
+          "w": "data",
+          "t": 115.732
+        },
+        {
+          "w": "augmentation",
+          "t": 116.227
+        },
+        {
+          "w": "generates",
+          "t": 116.722
+        },
+        {
+          "w": "two",
+          "t": 117.217
+        },
+        {
+          "w": "N",
+          "t": 117.712
+        },
+        {
+          "w": "views.",
+          "t": 118.208
+        },
+        {
+          "w": "For",
+          "t": 118.703
+        },
+        {
+          "w": "view",
+          "t": 119.198
+        },
+        {
+          "w": "i,",
+          "t": 119.693
+        },
+        {
+          "w": "there",
+          "t": 120.188
+        },
+        {
+          "w": "is",
+          "t": 120.684
+        },
+        {
+          "w": "exactly",
+          "t": 121.179
+        },
+        {
+          "w": "one",
+          "t": 121.674
+        },
+        {
+          "w": "positive",
+          "t": 122.169
+        },
+        {
+          "w": "view",
+          "t": 122.665
+        },
+        {
+          "w": "p",
+          "t": 123.16
+        },
+        {
+          "w": "of",
+          "t": 123.655
+        },
+        {
+          "w": "i,",
+          "t": 124.15
+        },
+        {
+          "w": "and",
+          "t": 124.645
+        },
+        {
+          "w": "two",
+          "t": 125.141
+        },
+        {
+          "w": "N",
+          "t": 125.636
+        },
+        {
+          "w": "minus",
+          "t": 126.131
+        },
+        {
+          "w": "two",
+          "t": 126.626
+        },
+        {
+          "w": "negative",
+          "t": 127.122
+        },
+        {
+          "w": "distractors.",
+          "t": 127.617
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "slideId": "s4",
+      "slideIndex": 3,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "The InfoNCE loss computes the negative log probability of the positive pair against all negatives, where cosine similarities are scaled by temperature tau. As tau approaches zero, the loss becomes a hard max operator penalizing only the nearest negative distractor.",
+      "start": 128.36,
+      "end": 145.16,
+      "words": [
+        {
+          "w": "The",
+          "t": 128.362
+        },
+        {
+          "w": "InfoNCE",
+          "t": 128.782
+        },
+        {
+          "w": "loss",
+          "t": 129.202
+        },
+        {
+          "w": "computes",
+          "t": 129.622
+        },
+        {
+          "w": "the",
+          "t": 130.042
+        },
+        {
+          "w": "negative",
+          "t": 130.462
+        },
+        {
+          "w": "log",
+          "t": 130.882
+        },
+        {
+          "w": "probability",
+          "t": 131.302
+        },
+        {
+          "w": "of",
+          "t": 131.722
+        },
+        {
+          "w": "the",
+          "t": 132.142
+        },
+        {
+          "w": "positive",
+          "t": 132.562
+        },
+        {
+          "w": "pair",
+          "t": 132.982
+        },
+        {
+          "w": "against",
+          "t": 133.402
+        },
+        {
+          "w": "all",
+          "t": 133.822
+        },
+        {
+          "w": "negatives,",
+          "t": 134.242
+        },
+        {
+          "w": "where",
+          "t": 134.662
+        },
+        {
+          "w": "cosine",
+          "t": 135.082
+        },
+        {
+          "w": "similarities",
+          "t": 135.502
+        },
+        {
+          "w": "are",
+          "t": 135.922
+        },
+        {
+          "w": "scaled",
+          "t": 136.342
+        },
+        {
+          "w": "by",
+          "t": 136.762
+        },
+        {
+          "w": "temperature",
+          "t": 137.182
+        },
+        {
+          "w": "tau.",
+          "t": 137.602
+        },
+        {
+          "w": "As",
+          "t": 138.022
+        },
+        {
+          "w": "tau",
+          "t": 138.442
+        },
+        {
+          "w": "approaches",
+          "t": 138.862
+        },
+        {
+          "w": "zero,",
+          "t": 139.282
+        },
+        {
+          "w": "the",
+          "t": 139.702
+        },
+        {
+          "w": "loss",
+          "t": 140.122
+        },
+        {
+          "w": "becomes",
+          "t": 140.542
+        },
+        {
+          "w": "a",
+          "t": 140.962
+        },
+        {
+          "w": "hard",
+          "t": 141.382
+        },
+        {
+          "w": "max",
+          "t": 141.802
+        },
+        {
+          "w": "operator",
+          "t": 142.222
+        },
+        {
+          "w": "penalizing",
+          "t": 142.642
+        },
+        {
+          "w": "only",
+          "t": 143.062
+        },
+        {
+          "w": "the",
+          "t": 143.482
+        },
+        {
+          "w": "nearest",
+          "t": 143.902
+        },
+        {
+          "w": "negative",
+          "t": 144.322
+        },
+        {
+          "w": "distractor.",
+          "t": 144.742
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "slideId": "s5",
+      "slideIndex": 4,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Why does InfoNCE work so remarkably well? Definition 11.7.3 establishes the foundational theorem proven by van den Oord: InfoNCE with K negative samples optimizes a rigorous non-parametric lower bound on the Shannon Mutual Information between positive views.",
+      "start": 145.91,
+      "end": 164.18,
+      "words": [
+        {
+          "w": "Why",
+          "t": 145.912
+        },
+        {
+          "w": "does",
+          "t": 146.406
+        },
+        {
+          "w": "InfoNCE",
+          "t": 146.899
+        },
+        {
+          "w": "work",
+          "t": 147.393
+        },
+        {
+          "w": "so",
+          "t": 147.886
+        },
+        {
+          "w": "remarkably",
+          "t": 148.38
+        },
+        {
+          "w": "well?",
+          "t": 148.874
+        },
+        {
+          "w": "Definition",
+          "t": 149.367
+        },
+        {
+          "w": "11.7.3",
+          "t": 149.861
+        },
+        {
+          "w": "establishes",
+          "t": 150.355
+        },
+        {
+          "w": "the",
+          "t": 150.848
+        },
+        {
+          "w": "foundational",
+          "t": 151.342
+        },
+        {
+          "w": "theorem",
+          "t": 151.835
+        },
+        {
+          "w": "proven",
+          "t": 152.329
+        },
+        {
+          "w": "by",
+          "t": 152.823
+        },
+        {
+          "w": "van",
+          "t": 153.316
+        },
+        {
+          "w": "den",
+          "t": 153.81
+        },
+        {
+          "w": "Oord:",
+          "t": 154.304
+        },
+        {
+          "w": "InfoNCE",
+          "t": 154.797
+        },
+        {
+          "w": "with",
+          "t": 155.291
+        },
+        {
+          "w": "K",
+          "t": 155.784
+        },
+        {
+          "w": "negative",
+          "t": 156.278
+        },
+        {
+          "w": "samples",
+          "t": 156.772
+        },
+        {
+          "w": "optimizes",
+          "t": 157.265
+        },
+        {
+          "w": "a",
+          "t": 157.759
+        },
+        {
+          "w": "rigorous",
+          "t": 158.253
+        },
+        {
+          "w": "non-parametric",
+          "t": 158.746
+        },
+        {
+          "w": "lower",
+          "t": 159.24
+        },
+        {
+          "w": "bound",
+          "t": 159.733
+        },
+        {
+          "w": "on",
+          "t": 160.227
+        },
+        {
+          "w": "the",
+          "t": 160.721
+        },
+        {
+          "w": "Shannon",
+          "t": 161.214
+        },
+        {
+          "w": "Mutual",
+          "t": 161.708
+        },
+        {
+          "w": "Information",
+          "t": 162.202
+        },
+        {
+          "w": "between",
+          "t": 162.695
+        },
+        {
+          "w": "positive",
+          "t": 163.189
+        },
+        {
+          "w": "views.",
+          "t": 163.682
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "slideId": "s5",
+      "slideIndex": 4,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "The bound proves that mutual information I of X and Y is greater than or equal to log of K plus one minus the InfoNCE loss. Therefore, scaling the negative sample dictionary K raises the theoretical information capacity ceiling, which explains why large batch sizes are indispensable in SimCLR.",
+      "start": 164.43,
+      "end": 183.96,
+      "words": [
+        {
+          "w": "The",
+          "t": 164.426
+        },
+        {
+          "w": "bound",
+          "t": 164.825
+        },
+        {
+          "w": "proves",
+          "t": 165.223
+        },
+        {
+          "w": "that",
+          "t": 165.622
+        },
+        {
+          "w": "mutual",
+          "t": 166.021
+        },
+        {
+          "w": "information",
+          "t": 166.419
+        },
+        {
+          "w": "I",
+          "t": 166.818
+        },
+        {
+          "w": "of",
+          "t": 167.217
+        },
+        {
+          "w": "X",
+          "t": 167.616
+        },
+        {
+          "w": "and",
+          "t": 168.014
+        },
+        {
+          "w": "Y",
+          "t": 168.413
+        },
+        {
+          "w": "is",
+          "t": 168.812
+        },
+        {
+          "w": "greater",
+          "t": 169.21
+        },
+        {
+          "w": "than",
+          "t": 169.609
+        },
+        {
+          "w": "or",
+          "t": 170.008
+        },
+        {
+          "w": "equal",
+          "t": 170.406
+        },
+        {
+          "w": "to",
+          "t": 170.805
+        },
+        {
+          "w": "log",
+          "t": 171.204
+        },
+        {
+          "w": "of",
+          "t": 171.602
+        },
+        {
+          "w": "K",
+          "t": 172.001
+        },
+        {
+          "w": "plus",
+          "t": 172.4
+        },
+        {
+          "w": "one",
+          "t": 172.799
+        },
+        {
+          "w": "minus",
+          "t": 173.197
+        },
+        {
+          "w": "the",
+          "t": 173.596
+        },
+        {
+          "w": "InfoNCE",
+          "t": 173.995
+        },
+        {
+          "w": "loss.",
+          "t": 174.393
+        },
+        {
+          "w": "Therefore,",
+          "t": 174.792
+        },
+        {
+          "w": "scaling",
+          "t": 175.191
+        },
+        {
+          "w": "the",
+          "t": 175.589
+        },
+        {
+          "w": "negative",
+          "t": 175.988
+        },
+        {
+          "w": "sample",
+          "t": 176.387
+        },
+        {
+          "w": "dictionary",
+          "t": 176.786
+        },
+        {
+          "w": "K",
+          "t": 177.184
+        },
+        {
+          "w": "raises",
+          "t": 177.583
+        },
+        {
+          "w": "the",
+          "t": 177.982
+        },
+        {
+          "w": "theoretical",
+          "t": 178.38
+        },
+        {
+          "w": "information",
+          "t": 178.779
+        },
+        {
+          "w": "capacity",
+          "t": 179.178
+        },
+        {
+          "w": "ceiling,",
+          "t": 179.576
+        },
+        {
+          "w": "which",
+          "t": 179.975
+        },
+        {
+          "w": "explains",
+          "t": 180.374
+        },
+        {
+          "w": "why",
+          "t": 180.772
+        },
+        {
+          "w": "large",
+          "t": 181.171
+        },
+        {
+          "w": "batch",
+          "t": 181.57
+        },
+        {
+          "w": "sizes",
+          "t": 181.969
+        },
+        {
+          "w": "are",
+          "t": 182.367
+        },
+        {
+          "w": "indispensable",
+          "t": 182.766
+        },
+        {
+          "w": "in",
+          "t": 183.165
+        },
+        {
+          "w": "SimCLR.",
+          "t": 183.563
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "slideId": "s6",
+      "slideIndex": 5,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 1: SIMULATOR 11.7A. On the left canvas, you see representations projected onto the unit circle S-one. Positive pairs from views A and B are linked by dashed lines, while negative instances disperse across the circle.",
+      "start": 184.71,
+      "end": 201.99,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 184.712
+        },
+        {
+          "w": "to",
+          "t": 185.155
+        },
+        {
+          "w": "Interactive",
+          "t": 185.598
+        },
+        {
+          "w": "Lab",
+          "t": 186.041
+        },
+        {
+          "w": "1:",
+          "t": 186.484
+        },
+        {
+          "w": "SIMULATOR",
+          "t": 186.927
+        },
+        {
+          "w": "11.7A.",
+          "t": 187.37
+        },
+        {
+          "w": "On",
+          "t": 187.814
+        },
+        {
+          "w": "the",
+          "t": 188.257
+        },
+        {
+          "w": "left",
+          "t": 188.7
+        },
+        {
+          "w": "canvas,",
+          "t": 189.143
+        },
+        {
+          "w": "you",
+          "t": 189.586
+        },
+        {
+          "w": "see",
+          "t": 190.029
+        },
+        {
+          "w": "representations",
+          "t": 190.472
+        },
+        {
+          "w": "projected",
+          "t": 190.915
+        },
+        {
+          "w": "onto",
+          "t": 191.358
+        },
+        {
+          "w": "the",
+          "t": 191.801
+        },
+        {
+          "w": "unit",
+          "t": 192.244
+        },
+        {
+          "w": "circle",
+          "t": 192.687
+        },
+        {
+          "w": "S-one.",
+          "t": 193.13
+        },
+        {
+          "w": "Positive",
+          "t": 193.574
+        },
+        {
+          "w": "pairs",
+          "t": 194.017
+        },
+        {
+          "w": "from",
+          "t": 194.46
+        },
+        {
+          "w": "views",
+          "t": 194.903
+        },
+        {
+          "w": "A",
+          "t": 195.346
+        },
+        {
+          "w": "and",
+          "t": 195.789
+        },
+        {
+          "w": "B",
+          "t": 196.232
+        },
+        {
+          "w": "are",
+          "t": 196.675
+        },
+        {
+          "w": "linked",
+          "t": 197.118
+        },
+        {
+          "w": "by",
+          "t": 197.561
+        },
+        {
+          "w": "dashed",
+          "t": 198.004
+        },
+        {
+          "w": "lines,",
+          "t": 198.447
+        },
+        {
+          "w": "while",
+          "t": 198.89
+        },
+        {
+          "w": "negative",
+          "t": 199.334
+        },
+        {
+          "w": "instances",
+          "t": 199.777
+        },
+        {
+          "w": "disperse",
+          "t": 200.22
+        },
+        {
+          "w": "across",
+          "t": 200.663
+        },
+        {
+          "w": "the",
+          "t": 201.106
+        },
+        {
+          "w": "circle.",
+          "t": 201.549
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "slideId": "s6",
+      "slideIndex": 5,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "On the right canvas, examine the two-N by two-N cosine similarity matrix scaled by tau. Observe how tuning temperature tau and augmentation jitter sharpens positive diagonal activation while repelling off-diagonal distractors.",
+      "start": 202.24,
+      "end": 216.81,
+      "words": [
+        {
+          "w": "On",
+          "t": 202.242
+        },
+        {
+          "w": "the",
+          "t": 202.712
+        },
+        {
+          "w": "right",
+          "t": 203.182
+        },
+        {
+          "w": "canvas,",
+          "t": 203.652
+        },
+        {
+          "w": "examine",
+          "t": 204.122
+        },
+        {
+          "w": "the",
+          "t": 204.592
+        },
+        {
+          "w": "two-N",
+          "t": 205.062
+        },
+        {
+          "w": "by",
+          "t": 205.532
+        },
+        {
+          "w": "two-N",
+          "t": 206.001
+        },
+        {
+          "w": "cosine",
+          "t": 206.471
+        },
+        {
+          "w": "similarity",
+          "t": 206.941
+        },
+        {
+          "w": "matrix",
+          "t": 207.411
+        },
+        {
+          "w": "scaled",
+          "t": 207.881
+        },
+        {
+          "w": "by",
+          "t": 208.351
+        },
+        {
+          "w": "tau.",
+          "t": 208.821
+        },
+        {
+          "w": "Observe",
+          "t": 209.291
+        },
+        {
+          "w": "how",
+          "t": 209.761
+        },
+        {
+          "w": "tuning",
+          "t": 210.231
+        },
+        {
+          "w": "temperature",
+          "t": 210.701
+        },
+        {
+          "w": "tau",
+          "t": 211.171
+        },
+        {
+          "w": "and",
+          "t": 211.641
+        },
+        {
+          "w": "augmentation",
+          "t": 212.111
+        },
+        {
+          "w": "jitter",
+          "t": 212.581
+        },
+        {
+          "w": "sharpens",
+          "t": 213.051
+        },
+        {
+          "w": "positive",
+          "t": 213.52
+        },
+        {
+          "w": "diagonal",
+          "t": 213.99
+        },
+        {
+          "w": "activation",
+          "t": 214.46
+        },
+        {
+          "w": "while",
+          "t": 214.93
+        },
+        {
+          "w": "repelling",
+          "t": 215.4
+        },
+        {
+          "w": "off-diagonal",
+          "t": 215.87
+        },
+        {
+          "w": "distractors.",
+          "t": 216.34
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "slideId": "s7",
+      "slideIndex": 6,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 1. Let us rigorously test your understanding of the InfoNCE mutual information lower bound from van den Oord.",
+      "start": 217.56,
+      "end": 226.68,
+      "words": [
+        {
+          "w": "Time",
+          "t": 217.56
+        },
+        {
+          "w": "for",
+          "t": 217.975
+        },
+        {
+          "w": "Active",
+          "t": 218.389
+        },
+        {
+          "w": "Checkpoint",
+          "t": 218.804
+        },
+        {
+          "w": "1.",
+          "t": 219.218
+        },
+        {
+          "w": "Let",
+          "t": 219.633
+        },
+        {
+          "w": "us",
+          "t": 220.047
+        },
+        {
+          "w": "rigorously",
+          "t": 220.462
+        },
+        {
+          "w": "test",
+          "t": 220.876
+        },
+        {
+          "w": "your",
+          "t": 221.291
+        },
+        {
+          "w": "understanding",
+          "t": 221.705
+        },
+        {
+          "w": "of",
+          "t": 222.12
+        },
+        {
+          "w": "the",
+          "t": 222.535
+        },
+        {
+          "w": "InfoNCE",
+          "t": 222.949
+        },
+        {
+          "w": "mutual",
+          "t": 223.364
+        },
+        {
+          "w": "information",
+          "t": 223.778
+        },
+        {
+          "w": "lower",
+          "t": 224.193
+        },
+        {
+          "w": "bound",
+          "t": 224.607
+        },
+        {
+          "w": "from",
+          "t": 225.022
+        },
+        {
+          "w": "van",
+          "t": 225.436
+        },
+        {
+          "w": "den",
+          "t": 225.851
+        },
+        {
+          "w": "Oord.",
+          "t": 226.265
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "slideId": "s7",
+      "slideIndex": 6,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Consider an SSL pipeline trained with K equals 4095 negative samples. If the converged InfoNCE loss reaches exactly 2.32 nats, what is the guaranteed lower bound on the mutual information I of X and Y?",
+      "start": 226.93,
+      "end": 242.17,
+      "words": [
+        {
+          "w": "Consider",
+          "t": 226.93
+        },
+        {
+          "w": "an",
+          "t": 227.365
+        },
+        {
+          "w": "SSL",
+          "t": 227.801
+        },
+        {
+          "w": "pipeline",
+          "t": 228.236
+        },
+        {
+          "w": "trained",
+          "t": 228.672
+        },
+        {
+          "w": "with",
+          "t": 229.107
+        },
+        {
+          "w": "K",
+          "t": 229.543
+        },
+        {
+          "w": "equals",
+          "t": 229.978
+        },
+        {
+          "w": "4095",
+          "t": 230.413
+        },
+        {
+          "w": "negative",
+          "t": 230.849
+        },
+        {
+          "w": "samples.",
+          "t": 231.284
+        },
+        {
+          "w": "If",
+          "t": 231.72
+        },
+        {
+          "w": "the",
+          "t": 232.155
+        },
+        {
+          "w": "converged",
+          "t": 232.591
+        },
+        {
+          "w": "InfoNCE",
+          "t": 233.026
+        },
+        {
+          "w": "loss",
+          "t": 233.461
+        },
+        {
+          "w": "reaches",
+          "t": 233.897
+        },
+        {
+          "w": "exactly",
+          "t": 234.332
+        },
+        {
+          "w": "2.32",
+          "t": 234.768
+        },
+        {
+          "w": "nats,",
+          "t": 235.203
+        },
+        {
+          "w": "what",
+          "t": 235.639
+        },
+        {
+          "w": "is",
+          "t": 236.074
+        },
+        {
+          "w": "the",
+          "t": 236.509
+        },
+        {
+          "w": "guaranteed",
+          "t": 236.945
+        },
+        {
+          "w": "lower",
+          "t": 237.38
+        },
+        {
+          "w": "bound",
+          "t": 237.816
+        },
+        {
+          "w": "on",
+          "t": 238.251
+        },
+        {
+          "w": "the",
+          "t": 238.687
+        },
+        {
+          "w": "mutual",
+          "t": 239.122
+        },
+        {
+          "w": "information",
+          "t": 239.557
+        },
+        {
+          "w": "I",
+          "t": 239.993
+        },
+        {
+          "w": "of",
+          "t": 240.428
+        },
+        {
+          "w": "X",
+          "t": 240.864
+        },
+        {
+          "w": "and",
+          "t": 241.299
+        },
+        {
+          "w": "Y?",
+          "t": 241.735
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "slideId": "s8",
+      "slideIndex": 7,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "In their landmark ICML 2020 paper, Tongzhou Wang and Phillip Isola proved that contrastive representation learning on the unit hypersphere asymptotically decomposes into two orthogonal geometric properties: Alignment and Uniformity.",
+      "start": 242.92,
+      "end": 257.99,
+      "words": [
+        {
+          "w": "In",
+          "t": 242.92
+        },
+        {
+          "w": "their",
+          "t": 243.422
+        },
+        {
+          "w": "landmark",
+          "t": 243.925
+        },
+        {
+          "w": "ICML",
+          "t": 244.427
+        },
+        {
+          "w": "2020",
+          "t": 244.93
+        },
+        {
+          "w": "paper,",
+          "t": 245.432
+        },
+        {
+          "w": "Tongzhou",
+          "t": 245.934
+        },
+        {
+          "w": "Wang",
+          "t": 246.437
+        },
+        {
+          "w": "and",
+          "t": 246.939
+        },
+        {
+          "w": "Phillip",
+          "t": 247.442
+        },
+        {
+          "w": "Isola",
+          "t": 247.944
+        },
+        {
+          "w": "proved",
+          "t": 248.446
+        },
+        {
+          "w": "that",
+          "t": 248.949
+        },
+        {
+          "w": "contrastive",
+          "t": 249.451
+        },
+        {
+          "w": "representation",
+          "t": 249.954
+        },
+        {
+          "w": "learning",
+          "t": 250.456
+        },
+        {
+          "w": "on",
+          "t": 250.958
+        },
+        {
+          "w": "the",
+          "t": 251.461
+        },
+        {
+          "w": "unit",
+          "t": 251.963
+        },
+        {
+          "w": "hypersphere",
+          "t": 252.466
+        },
+        {
+          "w": "asymptotically",
+          "t": 252.968
+        },
+        {
+          "w": "decomposes",
+          "t": 253.47
+        },
+        {
+          "w": "into",
+          "t": 253.973
+        },
+        {
+          "w": "two",
+          "t": 254.475
+        },
+        {
+          "w": "orthogonal",
+          "t": 254.978
+        },
+        {
+          "w": "geometric",
+          "t": 255.48
+        },
+        {
+          "w": "properties:",
+          "t": 255.982
+        },
+        {
+          "w": "Alignment",
+          "t": 256.485
+        },
+        {
+          "w": "and",
+          "t": 256.987
+        },
+        {
+          "w": "Uniformity.",
+          "t": 257.49
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "slideId": "s8",
+      "slideIndex": 7,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Alignment requires positive views to map close together, measured by expected Euclidean distance. Uniformity requires the entire feature distribution to achieve maximal Shannon entropy by spreading uniformly across the entire hypersphere surface.",
+      "start": 258.24,
+      "end": 273.99,
+      "words": [
+        {
+          "w": "Alignment",
+          "t": 258.242
+        },
+        {
+          "w": "requires",
+          "t": 258.734
+        },
+        {
+          "w": "positive",
+          "t": 259.226
+        },
+        {
+          "w": "views",
+          "t": 259.718
+        },
+        {
+          "w": "to",
+          "t": 260.21
+        },
+        {
+          "w": "map",
+          "t": 260.702
+        },
+        {
+          "w": "close",
+          "t": 261.194
+        },
+        {
+          "w": "together,",
+          "t": 261.686
+        },
+        {
+          "w": "measured",
+          "t": 262.178
+        },
+        {
+          "w": "by",
+          "t": 262.67
+        },
+        {
+          "w": "expected",
+          "t": 263.162
+        },
+        {
+          "w": "Euclidean",
+          "t": 263.654
+        },
+        {
+          "w": "distance.",
+          "t": 264.146
+        },
+        {
+          "w": "Uniformity",
+          "t": 264.638
+        },
+        {
+          "w": "requires",
+          "t": 265.13
+        },
+        {
+          "w": "the",
+          "t": 265.622
+        },
+        {
+          "w": "entire",
+          "t": 266.114
+        },
+        {
+          "w": "feature",
+          "t": 266.606
+        },
+        {
+          "w": "distribution",
+          "t": 267.098
+        },
+        {
+          "w": "to",
+          "t": 267.59
+        },
+        {
+          "w": "achieve",
+          "t": 268.082
+        },
+        {
+          "w": "maximal",
+          "t": 268.574
+        },
+        {
+          "w": "Shannon",
+          "t": 269.066
+        },
+        {
+          "w": "entropy",
+          "t": 269.558
+        },
+        {
+          "w": "by",
+          "t": 270.05
+        },
+        {
+          "w": "spreading",
+          "t": 270.542
+        },
+        {
+          "w": "uniformly",
+          "t": 271.034
+        },
+        {
+          "w": "across",
+          "t": 271.526
+        },
+        {
+          "w": "the",
+          "t": 272.018
+        },
+        {
+          "w": "entire",
+          "t": 272.51
+        },
+        {
+          "w": "hypersphere",
+          "t": 273.002
+        },
+        {
+          "w": "surface.",
+          "t": 273.494
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "slideId": "s9",
+      "slideIndex": 8,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Tuning temperature tau is the most critical hyperparameter choice in contrastive pretraining. If tau is too small, say point zero one, gradients become overly sensitive to false negative distractors, causing training instability.",
+      "start": 274.74,
+      "end": 289.62,
+      "words": [
+        {
+          "w": "Tuning",
+          "t": 274.736
+        },
+        {
+          "w": "temperature",
+          "t": 275.201
+        },
+        {
+          "w": "tau",
+          "t": 275.666
+        },
+        {
+          "w": "is",
+          "t": 276.131
+        },
+        {
+          "w": "the",
+          "t": 276.596
+        },
+        {
+          "w": "most",
+          "t": 277.061
+        },
+        {
+          "w": "critical",
+          "t": 277.526
+        },
+        {
+          "w": "hyperparameter",
+          "t": 277.991
+        },
+        {
+          "w": "choice",
+          "t": 278.456
+        },
+        {
+          "w": "in",
+          "t": 278.921
+        },
+        {
+          "w": "contrastive",
+          "t": 279.386
+        },
+        {
+          "w": "pretraining.",
+          "t": 279.851
+        },
+        {
+          "w": "If",
+          "t": 280.316
+        },
+        {
+          "w": "tau",
+          "t": 280.781
+        },
+        {
+          "w": "is",
+          "t": 281.246
+        },
+        {
+          "w": "too",
+          "t": 281.711
+        },
+        {
+          "w": "small,",
+          "t": 282.176
+        },
+        {
+          "w": "say",
+          "t": 282.641
+        },
+        {
+          "w": "point",
+          "t": 283.106
+        },
+        {
+          "w": "zero",
+          "t": 283.571
+        },
+        {
+          "w": "one,",
+          "t": 284.036
+        },
+        {
+          "w": "gradients",
+          "t": 284.501
+        },
+        {
+          "w": "become",
+          "t": 284.966
+        },
+        {
+          "w": "overly",
+          "t": 285.431
+        },
+        {
+          "w": "sensitive",
+          "t": 285.896
+        },
+        {
+          "w": "to",
+          "t": 286.361
+        },
+        {
+          "w": "false",
+          "t": 286.826
+        },
+        {
+          "w": "negative",
+          "t": 287.291
+        },
+        {
+          "w": "distractors,",
+          "t": 287.756
+        },
+        {
+          "w": "causing",
+          "t": 288.221
+        },
+        {
+          "w": "training",
+          "t": 288.686
+        },
+        {
+          "w": "instability.",
+          "t": 289.151
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "slideId": "s9",
+      "slideIndex": 8,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Conversely, if tau is too large, exceeding point five, the softmax distribution flattens, negating the repulsive pressure of uniformity and causing representations to collapse into a narrow subspace. Empirical sweet spots lie squarely between point zero seven and point two zero.",
+      "start": 289.87,
+      "end": 308.2,
+      "words": [
+        {
+          "w": "Conversely,",
+          "t": 289.866
+        },
+        {
+          "w": "if",
+          "t": 290.313
+        },
+        {
+          "w": "tau",
+          "t": 290.76
+        },
+        {
+          "w": "is",
+          "t": 291.208
+        },
+        {
+          "w": "too",
+          "t": 291.655
+        },
+        {
+          "w": "large,",
+          "t": 292.102
+        },
+        {
+          "w": "exceeding",
+          "t": 292.549
+        },
+        {
+          "w": "point",
+          "t": 292.997
+        },
+        {
+          "w": "five,",
+          "t": 293.444
+        },
+        {
+          "w": "the",
+          "t": 293.891
+        },
+        {
+          "w": "softmax",
+          "t": 294.338
+        },
+        {
+          "w": "distribution",
+          "t": 294.785
+        },
+        {
+          "w": "flattens,",
+          "t": 295.233
+        },
+        {
+          "w": "negating",
+          "t": 295.68
+        },
+        {
+          "w": "the",
+          "t": 296.127
+        },
+        {
+          "w": "repulsive",
+          "t": 296.574
+        },
+        {
+          "w": "pressure",
+          "t": 297.022
+        },
+        {
+          "w": "of",
+          "t": 297.469
+        },
+        {
+          "w": "uniformity",
+          "t": 297.916
+        },
+        {
+          "w": "and",
+          "t": 298.363
+        },
+        {
+          "w": "causing",
+          "t": 298.81
+        },
+        {
+          "w": "representations",
+          "t": 299.258
+        },
+        {
+          "w": "to",
+          "t": 299.705
+        },
+        {
+          "w": "collapse",
+          "t": 300.152
+        },
+        {
+          "w": "into",
+          "t": 300.599
+        },
+        {
+          "w": "a",
+          "t": 301.046
+        },
+        {
+          "w": "narrow",
+          "t": 301.494
+        },
+        {
+          "w": "subspace.",
+          "t": 301.941
+        },
+        {
+          "w": "Empirical",
+          "t": 302.388
+        },
+        {
+          "w": "sweet",
+          "t": 302.835
+        },
+        {
+          "w": "spots",
+          "t": 303.283
+        },
+        {
+          "w": "lie",
+          "t": 303.73
+        },
+        {
+          "w": "squarely",
+          "t": 304.177
+        },
+        {
+          "w": "between",
+          "t": 304.624
+        },
+        {
+          "w": "point",
+          "t": 305.071
+        },
+        {
+          "w": "zero",
+          "t": 305.519
+        },
+        {
+          "w": "seven",
+          "t": 305.966
+        },
+        {
+          "w": "and",
+          "t": 306.413
+        },
+        {
+          "w": "point",
+          "t": 306.86
+        },
+        {
+          "w": "two",
+          "t": 307.308
+        },
+        {
+          "w": "zero.",
+          "t": 307.755
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "slideId": "s10",
+      "slideIndex": 9,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 2: SIMULATOR 11.7B. On Canvas 3, we plot Wang and Isola's Alignment versus Uniformity Pareto frontier. Notice how pretraining epochs push models toward the bottom-left corner of optimal joint geometry.",
+      "start": 308.95,
+      "end": 325.63,
+      "words": [
+        {
+          "w": "Welcome",
+          "t": 308.952
+        },
+        {
+          "w": "to",
+          "t": 309.443
+        },
+        {
+          "w": "Interactive",
+          "t": 309.933
+        },
+        {
+          "w": "Lab",
+          "t": 310.424
+        },
+        {
+          "w": "2:",
+          "t": 310.914
+        },
+        {
+          "w": "SIMULATOR",
+          "t": 311.405
+        },
+        {
+          "w": "11.7B.",
+          "t": 311.896
+        },
+        {
+          "w": "On",
+          "t": 312.386
+        },
+        {
+          "w": "Canvas",
+          "t": 312.877
+        },
+        {
+          "w": "3,",
+          "t": 313.367
+        },
+        {
+          "w": "we",
+          "t": 313.858
+        },
+        {
+          "w": "plot",
+          "t": 314.348
+        },
+        {
+          "w": "Wang",
+          "t": 314.839
+        },
+        {
+          "w": "and",
+          "t": 315.33
+        },
+        {
+          "w": "Isola's",
+          "t": 315.82
+        },
+        {
+          "w": "Alignment",
+          "t": 316.311
+        },
+        {
+          "w": "versus",
+          "t": 316.801
+        },
+        {
+          "w": "Uniformity",
+          "t": 317.292
+        },
+        {
+          "w": "Pareto",
+          "t": 317.783
+        },
+        {
+          "w": "frontier.",
+          "t": 318.273
+        },
+        {
+          "w": "Notice",
+          "t": 318.764
+        },
+        {
+          "w": "how",
+          "t": 319.254
+        },
+        {
+          "w": "pretraining",
+          "t": 319.745
+        },
+        {
+          "w": "epochs",
+          "t": 320.236
+        },
+        {
+          "w": "push",
+          "t": 320.726
+        },
+        {
+          "w": "models",
+          "t": 321.217
+        },
+        {
+          "w": "toward",
+          "t": 321.707
+        },
+        {
+          "w": "the",
+          "t": 322.198
+        },
+        {
+          "w": "bottom-left",
+          "t": 322.688
+        },
+        {
+          "w": "corner",
+          "t": 323.179
+        },
+        {
+          "w": "of",
+          "t": 323.67
+        },
+        {
+          "w": "optimal",
+          "t": 324.16
+        },
+        {
+          "w": "joint",
+          "t": 324.651
+        },
+        {
+          "w": "geometry.",
+          "t": 325.141
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "slideId": "s10",
+      "slideIndex": 9,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "On Canvas 4, observe how downstream linear probe Top-1 and Top-5 accuracy correlate directly with position along the Pareto curve. Use the controls to test how representation collapse degrades linear probe accuracy by over twenty percent.",
+      "start": 325.88,
+      "end": 341.31,
+      "words": [
+        {
+          "w": "On",
+          "t": 325.882
+        },
+        {
+          "w": "Canvas",
+          "t": 326.311
+        },
+        {
+          "w": "4,",
+          "t": 326.739
+        },
+        {
+          "w": "observe",
+          "t": 327.168
+        },
+        {
+          "w": "how",
+          "t": 327.597
+        },
+        {
+          "w": "downstream",
+          "t": 328.025
+        },
+        {
+          "w": "linear",
+          "t": 328.454
+        },
+        {
+          "w": "probe",
+          "t": 328.883
+        },
+        {
+          "w": "Top-1",
+          "t": 329.311
+        },
+        {
+          "w": "and",
+          "t": 329.74
+        },
+        {
+          "w": "Top-5",
+          "t": 330.169
+        },
+        {
+          "w": "accuracy",
+          "t": 330.597
+        },
+        {
+          "w": "correlate",
+          "t": 331.026
+        },
+        {
+          "w": "directly",
+          "t": 331.455
+        },
+        {
+          "w": "with",
+          "t": 331.883
+        },
+        {
+          "w": "position",
+          "t": 332.312
+        },
+        {
+          "w": "along",
+          "t": 332.741
+        },
+        {
+          "w": "the",
+          "t": 333.169
+        },
+        {
+          "w": "Pareto",
+          "t": 333.598
+        },
+        {
+          "w": "curve.",
+          "t": 334.027
+        },
+        {
+          "w": "Use",
+          "t": 334.455
+        },
+        {
+          "w": "the",
+          "t": 334.884
+        },
+        {
+          "w": "controls",
+          "t": 335.313
+        },
+        {
+          "w": "to",
+          "t": 335.741
+        },
+        {
+          "w": "test",
+          "t": 336.17
+        },
+        {
+          "w": "how",
+          "t": 336.599
+        },
+        {
+          "w": "representation",
+          "t": 337.027
+        },
+        {
+          "w": "collapse",
+          "t": 337.456
+        },
+        {
+          "w": "degrades",
+          "t": 337.885
+        },
+        {
+          "w": "linear",
+          "t": 338.313
+        },
+        {
+          "w": "probe",
+          "t": 338.742
+        },
+        {
+          "w": "accuracy",
+          "t": 339.171
+        },
+        {
+          "w": "by",
+          "t": 339.599
+        },
+        {
+          "w": "over",
+          "t": 340.028
+        },
+        {
+          "w": "twenty",
+          "t": 340.457
+        },
+        {
+          "w": "percent.",
+          "t": 340.885
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "slideId": "s11",
+      "slideIndex": 10,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Active Checkpoint 2 tests your diagnostic skills in production contrastive training.",
+      "start": 342.06,
+      "end": 347.58,
+      "words": [
+        {
+          "w": "Active",
+          "t": 342.064
+        },
+        {
+          "w": "Checkpoint",
+          "t": 342.566
+        },
+        {
+          "w": "2",
+          "t": 343.068
+        },
+        {
+          "w": "tests",
+          "t": 343.569
+        },
+        {
+          "w": "your",
+          "t": 344.071
+        },
+        {
+          "w": "diagnostic",
+          "t": 344.573
+        },
+        {
+          "w": "skills",
+          "t": 345.075
+        },
+        {
+          "w": "in",
+          "t": 345.577
+        },
+        {
+          "w": "production",
+          "t": 346.079
+        },
+        {
+          "w": "contrastive",
+          "t": 346.58
+        },
+        {
+          "w": "training.",
+          "t": 347.082
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "slideId": "s11",
+      "slideIndex": 10,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Suppose your monitoring dashboard reports an alignment metric near zero point zero zero one, but the uniformity metric has spiked from minus two point eight up to negative zero point zero five. What catastrophic failure has occurred?",
+      "start": 347.83,
+      "end": 362.4,
+      "words": [
+        {
+          "w": "Suppose",
+          "t": 347.834
+        },
+        {
+          "w": "your",
+          "t": 348.228
+        },
+        {
+          "w": "monitoring",
+          "t": 348.621
+        },
+        {
+          "w": "dashboard",
+          "t": 349.015
+        },
+        {
+          "w": "reports",
+          "t": 349.409
+        },
+        {
+          "w": "an",
+          "t": 349.803
+        },
+        {
+          "w": "alignment",
+          "t": 350.196
+        },
+        {
+          "w": "metric",
+          "t": 350.59
+        },
+        {
+          "w": "near",
+          "t": 350.984
+        },
+        {
+          "w": "zero",
+          "t": 351.378
+        },
+        {
+          "w": "point",
+          "t": 351.771
+        },
+        {
+          "w": "zero",
+          "t": 352.165
+        },
+        {
+          "w": "zero",
+          "t": 352.559
+        },
+        {
+          "w": "one,",
+          "t": 352.952
+        },
+        {
+          "w": "but",
+          "t": 353.346
+        },
+        {
+          "w": "the",
+          "t": 353.74
+        },
+        {
+          "w": "uniformity",
+          "t": 354.134
+        },
+        {
+          "w": "metric",
+          "t": 354.527
+        },
+        {
+          "w": "has",
+          "t": 354.921
+        },
+        {
+          "w": "spiked",
+          "t": 355.315
+        },
+        {
+          "w": "from",
+          "t": 355.709
+        },
+        {
+          "w": "minus",
+          "t": 356.102
+        },
+        {
+          "w": "two",
+          "t": 356.496
+        },
+        {
+          "w": "point",
+          "t": 356.89
+        },
+        {
+          "w": "eight",
+          "t": 357.284
+        },
+        {
+          "w": "up",
+          "t": 357.677
+        },
+        {
+          "w": "to",
+          "t": 358.071
+        },
+        {
+          "w": "negative",
+          "t": 358.465
+        },
+        {
+          "w": "zero",
+          "t": 358.858
+        },
+        {
+          "w": "point",
+          "t": 359.252
+        },
+        {
+          "w": "zero",
+          "t": 359.646
+        },
+        {
+          "w": "five.",
+          "t": 360.04
+        },
+        {
+          "w": "What",
+          "t": 360.433
+        },
+        {
+          "w": "catastrophic",
+          "t": 360.827
+        },
+        {
+          "w": "failure",
+          "t": 361.221
+        },
+        {
+          "w": "has",
+          "t": 361.615
+        },
+        {
+          "w": "occurred?",
+          "t": 362.008
+        }
+      ]
+    },
+    {
+      "slide": 12,
+      "slideId": "s12",
+      "slideIndex": 11,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "The self-supervised landscape evolved rapidly through distinct architectural paradigms: SimCLR relies on giant TPU minibatches for negatives; MoCo decouples batch size via dynamic memory queues and momentum target encoders.",
+      "start": 363.15,
+      "end": 377.55,
+      "words": [
+        {
+          "w": "The",
+          "t": 363.152
+        },
+        {
+          "w": "self-supervised",
+          "t": 363.649
+        },
+        {
+          "w": "landscape",
+          "t": 364.145
+        },
+        {
+          "w": "evolved",
+          "t": 364.642
+        },
+        {
+          "w": "rapidly",
+          "t": 365.138
+        },
+        {
+          "w": "through",
+          "t": 365.635
+        },
+        {
+          "w": "distinct",
+          "t": 366.131
+        },
+        {
+          "w": "architectural",
+          "t": 366.628
+        },
+        {
+          "w": "paradigms:",
+          "t": 367.124
+        },
+        {
+          "w": "SimCLR",
+          "t": 367.621
+        },
+        {
+          "w": "relies",
+          "t": 368.118
+        },
+        {
+          "w": "on",
+          "t": 368.614
+        },
+        {
+          "w": "giant",
+          "t": 369.111
+        },
+        {
+          "w": "TPU",
+          "t": 369.607
+        },
+        {
+          "w": "minibatches",
+          "t": 370.104
+        },
+        {
+          "w": "for",
+          "t": 370.6
+        },
+        {
+          "w": "negatives;",
+          "t": 371.097
+        },
+        {
+          "w": "MoCo",
+          "t": 371.593
+        },
+        {
+          "w": "decouples",
+          "t": 372.09
+        },
+        {
+          "w": "batch",
+          "t": 372.586
+        },
+        {
+          "w": "size",
+          "t": 373.083
+        },
+        {
+          "w": "via",
+          "t": 373.58
+        },
+        {
+          "w": "dynamic",
+          "t": 374.076
+        },
+        {
+          "w": "memory",
+          "t": 374.573
+        },
+        {
+          "w": "queues",
+          "t": 375.069
+        },
+        {
+          "w": "and",
+          "t": 375.566
+        },
+        {
+          "w": "momentum",
+          "t": 376.062
+        },
+        {
+          "w": "target",
+          "t": 376.559
+        },
+        {
+          "w": "encoders.",
+          "t": 377.055
+        }
+      ]
+    },
+    {
+      "slide": 12,
+      "slideId": "s12",
+      "slideIndex": 11,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "SwAV contrasts cluster prototypes using optimal transport; BYOL eliminates negative samples entirely using asymmetric predictor heads with stop-gradients; and CLIP scales contrastive learning to 400 million multimodal image-text pairs.",
+      "start": 377.8,
+      "end": 393.79,
+      "words": [
+        {
+          "w": "SwAV",
+          "t": 377.802
+        },
+        {
+          "w": "contrasts",
+          "t": 378.353
+        },
+        {
+          "w": "cluster",
+          "t": 378.904
+        },
+        {
+          "w": "prototypes",
+          "t": 379.456
+        },
+        {
+          "w": "using",
+          "t": 380.007
+        },
+        {
+          "w": "optimal",
+          "t": 380.558
+        },
+        {
+          "w": "transport;",
+          "t": 381.109
+        },
+        {
+          "w": "BYOL",
+          "t": 381.66
+        },
+        {
+          "w": "eliminates",
+          "t": 382.211
+        },
+        {
+          "w": "negative",
+          "t": 382.763
+        },
+        {
+          "w": "samples",
+          "t": 383.314
+        },
+        {
+          "w": "entirely",
+          "t": 383.865
+        },
+        {
+          "w": "using",
+          "t": 384.416
+        },
+        {
+          "w": "asymmetric",
+          "t": 384.967
+        },
+        {
+          "w": "predictor",
+          "t": 385.518
+        },
+        {
+          "w": "heads",
+          "t": 386.07
+        },
+        {
+          "w": "with",
+          "t": 386.621
+        },
+        {
+          "w": "stop-gradients;",
+          "t": 387.172
+        },
+        {
+          "w": "and",
+          "t": 387.723
+        },
+        {
+          "w": "CLIP",
+          "t": 388.274
+        },
+        {
+          "w": "scales",
+          "t": 388.825
+        },
+        {
+          "w": "contrastive",
+          "t": 389.377
+        },
+        {
+          "w": "learning",
+          "t": 389.928
+        },
+        {
+          "w": "to",
+          "t": 390.479
+        },
+        {
+          "w": "400",
+          "t": 391.03
+        },
+        {
+          "w": "million",
+          "t": 391.581
+        },
+        {
+          "w": "multimodal",
+          "t": 392.132
+        },
+        {
+          "w": "image-text",
+          "t": 392.684
+        },
+        {
+          "w": "pairs.",
+          "t": 393.235
+        }
+      ]
+    },
+    {
+      "slide": 13,
+      "slideId": "s13",
+      "slideIndex": 12,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Active Checkpoint 3 explores the fundamental contrast between generative autoencoding and contrastive learning.",
+      "start": 394.54,
+      "end": 401.57,
+      "words": [
+        {
+          "w": "Active",
+          "t": 394.536
+        },
+        {
+          "w": "Checkpoint",
+          "t": 395.077
+        },
+        {
+          "w": "3",
+          "t": 395.618
+        },
+        {
+          "w": "explores",
+          "t": 396.159
+        },
+        {
+          "w": "the",
+          "t": 396.7
+        },
+        {
+          "w": "fundamental",
+          "t": 397.241
+        },
+        {
+          "w": "contrast",
+          "t": 397.782
+        },
+        {
+          "w": "between",
+          "t": 398.322
+        },
+        {
+          "w": "generative",
+          "t": 398.863
+        },
+        {
+          "w": "autoencoding",
+          "t": 399.404
+        },
+        {
+          "w": "and",
+          "t": 399.945
+        },
+        {
+          "w": "contrastive",
+          "t": 400.486
+        },
+        {
+          "w": "learning.",
+          "t": 401.027
+        }
+      ]
+    },
+    {
+      "slide": 13,
+      "slideId": "s13",
+      "slideIndex": 12,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Why do Masked Autoencoders by Kaiming He mask an aggressive 75% of image patches during Vision Transformer pretraining, whereas language models like BERT mask only 15% of tokens?",
+      "start": 401.82,
+      "end": 413.96,
+      "words": [
+        {
+          "w": "Why",
+          "t": 401.818
+        },
+        {
+          "w": "do",
+          "t": 402.252
+        },
+        {
+          "w": "Masked",
+          "t": 402.685
+        },
+        {
+          "w": "Autoencoders",
+          "t": 403.119
+        },
+        {
+          "w": "by",
+          "t": 403.553
+        },
+        {
+          "w": "Kaiming",
+          "t": 403.987
+        },
+        {
+          "w": "He",
+          "t": 404.42
+        },
+        {
+          "w": "mask",
+          "t": 404.854
+        },
+        {
+          "w": "an",
+          "t": 405.288
+        },
+        {
+          "w": "aggressive",
+          "t": 405.721
+        },
+        {
+          "w": "75%",
+          "t": 406.155
+        },
+        {
+          "w": "of",
+          "t": 406.589
+        },
+        {
+          "w": "image",
+          "t": 407.023
+        },
+        {
+          "w": "patches",
+          "t": 407.456
+        },
+        {
+          "w": "during",
+          "t": 407.89
+        },
+        {
+          "w": "Vision",
+          "t": 408.324
+        },
+        {
+          "w": "Transformer",
+          "t": 408.757
+        },
+        {
+          "w": "pretraining,",
+          "t": 409.191
+        },
+        {
+          "w": "whereas",
+          "t": 409.625
+        },
+        {
+          "w": "language",
+          "t": 410.059
+        },
+        {
+          "w": "models",
+          "t": 410.492
+        },
+        {
+          "w": "like",
+          "t": 410.926
+        },
+        {
+          "w": "BERT",
+          "t": 411.36
+        },
+        {
+          "w": "mask",
+          "t": 411.793
+        },
+        {
+          "w": "only",
+          "t": 412.227
+        },
+        {
+          "w": "15%",
+          "t": 412.661
+        },
+        {
+          "w": "of",
+          "t": 413.095
+        },
+        {
+          "w": "tokens?",
+          "t": 413.528
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "slideId": "s14",
+      "slideIndex": 13,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Let us examine two transformative industrial deployments of self-supervised contrastive learning: Google and Meta's visual pretraining benchmarks, and OpenAI's web-scale multimodal foundation model, CLIP.",
+      "start": 414.71,
+      "end": 427.5,
+      "words": [
+        {
+          "w": "Let",
+          "t": 414.712
+        },
+        {
+          "w": "us",
+          "t": 415.245
+        },
+        {
+          "w": "examine",
+          "t": 415.778
+        },
+        {
+          "w": "two",
+          "t": 416.311
+        },
+        {
+          "w": "transformative",
+          "t": 416.844
+        },
+        {
+          "w": "industrial",
+          "t": 417.377
+        },
+        {
+          "w": "deployments",
+          "t": 417.91
+        },
+        {
+          "w": "of",
+          "t": 418.443
+        },
+        {
+          "w": "self-supervised",
+          "t": 418.976
+        },
+        {
+          "w": "contrastive",
+          "t": 419.509
+        },
+        {
+          "w": "learning:",
+          "t": 420.042
+        },
+        {
+          "w": "Google",
+          "t": 420.575
+        },
+        {
+          "w": "and",
+          "t": 421.108
+        },
+        {
+          "w": "Meta's",
+          "t": 421.641
+        },
+        {
+          "w": "visual",
+          "t": 422.174
+        },
+        {
+          "w": "pretraining",
+          "t": 422.707
+        },
+        {
+          "w": "benchmarks,",
+          "t": 423.24
+        },
+        {
+          "w": "and",
+          "t": 423.773
+        },
+        {
+          "w": "OpenAI's",
+          "t": 424.306
+        },
+        {
+          "w": "web-scale",
+          "t": 424.839
+        },
+        {
+          "w": "multimodal",
+          "t": 425.372
+        },
+        {
+          "w": "foundation",
+          "t": 425.905
+        },
+        {
+          "w": "model,",
+          "t": 426.438
+        },
+        {
+          "w": "CLIP.",
+          "t": 426.971
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "slideId": "s14",
+      "slideIndex": 13,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "At Google and Meta, SimCLR and MoCo achieved 85.8% top-5 accuracy with only 1% labeled ImageNet data, matching fully supervised models trained on 100 times more labels. Meanwhile, CLIP scaled contrastive loss over 400 million image-text pairs, enabling zero-shot transfer across 30 benchmarks without any labeled fine-tuning.",
+      "start": 427.75,
+      "end": 451.54,
+      "words": [
+        {
+          "w": "At",
+          "t": 427.754
+        },
+        {
+          "w": "Google",
+          "t": 428.26
+        },
+        {
+          "w": "and",
+          "t": 428.766
+        },
+        {
+          "w": "Meta,",
+          "t": 429.272
+        },
+        {
+          "w": "SimCLR",
+          "t": 429.778
+        },
+        {
+          "w": "and",
+          "t": 430.284
+        },
+        {
+          "w": "MoCo",
+          "t": 430.79
+        },
+        {
+          "w": "achieved",
+          "t": 431.296
+        },
+        {
+          "w": "85.8%",
+          "t": 431.802
+        },
+        {
+          "w": "top-5",
+          "t": 432.308
+        },
+        {
+          "w": "accuracy",
+          "t": 432.814
+        },
+        {
+          "w": "with",
+          "t": 433.32
+        },
+        {
+          "w": "only",
+          "t": 433.827
+        },
+        {
+          "w": "1%",
+          "t": 434.333
+        },
+        {
+          "w": "labeled",
+          "t": 434.839
+        },
+        {
+          "w": "ImageNet",
+          "t": 435.345
+        },
+        {
+          "w": "data,",
+          "t": 435.851
+        },
+        {
+          "w": "matching",
+          "t": 436.357
+        },
+        {
+          "w": "fully",
+          "t": 436.863
+        },
+        {
+          "w": "supervised",
+          "t": 437.369
+        },
+        {
+          "w": "models",
+          "t": 437.875
+        },
+        {
+          "w": "trained",
+          "t": 438.381
+        },
+        {
+          "w": "on",
+          "t": 438.887
+        },
+        {
+          "w": "100",
+          "t": 439.393
+        },
+        {
+          "w": "times",
+          "t": 439.899
+        },
+        {
+          "w": "more",
+          "t": 440.405
+        },
+        {
+          "w": "labels.",
+          "t": 440.911
+        },
+        {
+          "w": "Meanwhile,",
+          "t": 441.417
+        },
+        {
+          "w": "CLIP",
+          "t": 441.923
+        },
+        {
+          "w": "scaled",
+          "t": 442.429
+        },
+        {
+          "w": "contrastive",
+          "t": 442.935
+        },
+        {
+          "w": "loss",
+          "t": 443.441
+        },
+        {
+          "w": "over",
+          "t": 443.947
+        },
+        {
+          "w": "400",
+          "t": 444.453
+        },
+        {
+          "w": "million",
+          "t": 444.959
+        },
+        {
+          "w": "image-text",
+          "t": 445.465
+        },
+        {
+          "w": "pairs,",
+          "t": 445.972
+        },
+        {
+          "w": "enabling",
+          "t": 446.478
+        },
+        {
+          "w": "zero-shot",
+          "t": 446.984
+        },
+        {
+          "w": "transfer",
+          "t": 447.49
+        },
+        {
+          "w": "across",
+          "t": 447.996
+        },
+        {
+          "w": "30",
+          "t": 448.502
+        },
+        {
+          "w": "benchmarks",
+          "t": 449.008
+        },
+        {
+          "w": "without",
+          "t": 449.514
+        },
+        {
+          "w": "any",
+          "t": 450.02
+        },
+        {
+          "w": "labeled",
+          "t": 450.526
+        },
+        {
+          "w": "fine-tuning.",
+          "t": 451.032
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "slideId": "s15",
+      "slideIndex": 14,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "Slide 15 provides a production-grade, vectorized Contrastive Objective Engine in PyTorch with Pydantic V2 configuration validation.",
+      "start": 452.29,
+      "end": 461.19,
+      "words": [
+        {
+          "w": "Slide",
+          "t": 452.288
+        },
+        {
+          "w": "15",
+          "t": 452.844
+        },
+        {
+          "w": "provides",
+          "t": 453.401
+        },
+        {
+          "w": "a",
+          "t": 453.957
+        },
+        {
+          "w": "production-grade,",
+          "t": 454.514
+        },
+        {
+          "w": "vectorized",
+          "t": 455.07
+        },
+        {
+          "w": "Contrastive",
+          "t": 455.627
+        },
+        {
+          "w": "Objective",
+          "t": 456.183
+        },
+        {
+          "w": "Engine",
+          "t": 456.74
+        },
+        {
+          "w": "in",
+          "t": 457.296
+        },
+        {
+          "w": "PyTorch",
+          "t": 457.853
+        },
+        {
+          "w": "with",
+          "t": 458.409
+        },
+        {
+          "w": "Pydantic",
+          "t": 458.966
+        },
+        {
+          "w": "V2",
+          "t": 459.522
+        },
+        {
+          "w": "configuration",
+          "t": 460.079
+        },
+        {
+          "w": "validation.",
+          "t": 460.635
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "slideId": "s15",
+      "slideIndex": 14,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "Notice the vectorized NT-Xent implementation: it concatenates representations, computes the 2N by 2N cosine similarity matrix scaled by tau, masks the self-contrast diagonal with minus infinity, and computes cross-entropy against shifted targets in a single GPU kernel call.",
+      "start": 461.44,
+      "end": 479.49,
+      "words": [
+        {
+          "w": "Notice",
+          "t": 461.442
+        },
+        {
+          "w": "the",
+          "t": 461.917
+        },
+        {
+          "w": "vectorized",
+          "t": 462.392
+        },
+        {
+          "w": "NT-Xent",
+          "t": 462.867
+        },
+        {
+          "w": "implementation:",
+          "t": 463.342
+        },
+        {
+          "w": "it",
+          "t": 463.817
+        },
+        {
+          "w": "concatenates",
+          "t": 464.292
+        },
+        {
+          "w": "representations,",
+          "t": 464.767
+        },
+        {
+          "w": "computes",
+          "t": 465.242
+        },
+        {
+          "w": "the",
+          "t": 465.717
+        },
+        {
+          "w": "2N",
+          "t": 466.191
+        },
+        {
+          "w": "by",
+          "t": 466.666
+        },
+        {
+          "w": "2N",
+          "t": 467.141
+        },
+        {
+          "w": "cosine",
+          "t": 467.616
+        },
+        {
+          "w": "similarity",
+          "t": 468.091
+        },
+        {
+          "w": "matrix",
+          "t": 468.566
+        },
+        {
+          "w": "scaled",
+          "t": 469.041
+        },
+        {
+          "w": "by",
+          "t": 469.516
+        },
+        {
+          "w": "tau,",
+          "t": 469.991
+        },
+        {
+          "w": "masks",
+          "t": 470.466
+        },
+        {
+          "w": "the",
+          "t": 470.941
+        },
+        {
+          "w": "self-contrast",
+          "t": 471.416
+        },
+        {
+          "w": "diagonal",
+          "t": 471.891
+        },
+        {
+          "w": "with",
+          "t": 472.366
+        },
+        {
+          "w": "minus",
+          "t": 472.841
+        },
+        {
+          "w": "infinity,",
+          "t": 473.316
+        },
+        {
+          "w": "and",
+          "t": 473.791
+        },
+        {
+          "w": "computes",
+          "t": 474.266
+        },
+        {
+          "w": "cross-entropy",
+          "t": 474.741
+        },
+        {
+          "w": "against",
+          "t": 475.215
+        },
+        {
+          "w": "shifted",
+          "t": 475.69
+        },
+        {
+          "w": "targets",
+          "t": 476.165
+        },
+        {
+          "w": "in",
+          "t": 476.64
+        },
+        {
+          "w": "a",
+          "t": 477.115
+        },
+        {
+          "w": "single",
+          "t": 477.59
+        },
+        {
+          "w": "GPU",
+          "t": 478.065
+        },
+        {
+          "w": "kernel",
+          "t": 478.54
+        },
+        {
+          "w": "call.",
+          "t": 479.015
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "slideId": "s16",
+      "slideIndex": 15,
+      "turnIndex": 0,
+      "speaker": "Dr. Nova",
+      "text": "To summarize Lesson 11.7: Self-Supervised Learning unlocks vast uncurated corpora by formulating pretext contrastive objectives. InfoNCE maximizes mutual information bounded by log K plus one, while Wang and Isola's theorem proves representations must balance positive alignment with hyperspherical uniformity.",
+      "start": 480.24,
+      "end": 501.34,
+      "words": [
+        {
+          "w": "To",
+          "t": 480.24
+        },
+        {
+          "w": "summarize",
+          "t": 480.781
+        },
+        {
+          "w": "Lesson",
+          "t": 481.322
+        },
+        {
+          "w": "11.7:",
+          "t": 481.863
+        },
+        {
+          "w": "Self-Supervised",
+          "t": 482.404
+        },
+        {
+          "w": "Learning",
+          "t": 482.945
+        },
+        {
+          "w": "unlocks",
+          "t": 483.486
+        },
+        {
+          "w": "vast",
+          "t": 484.026
+        },
+        {
+          "w": "uncurated",
+          "t": 484.567
+        },
+        {
+          "w": "corpora",
+          "t": 485.108
+        },
+        {
+          "w": "by",
+          "t": 485.649
+        },
+        {
+          "w": "formulating",
+          "t": 486.19
+        },
+        {
+          "w": "pretext",
+          "t": 486.731
+        },
+        {
+          "w": "contrastive",
+          "t": 487.272
+        },
+        {
+          "w": "objectives.",
+          "t": 487.813
+        },
+        {
+          "w": "InfoNCE",
+          "t": 488.354
+        },
+        {
+          "w": "maximizes",
+          "t": 488.895
+        },
+        {
+          "w": "mutual",
+          "t": 489.436
+        },
+        {
+          "w": "information",
+          "t": 489.977
+        },
+        {
+          "w": "bounded",
+          "t": 490.518
+        },
+        {
+          "w": "by",
+          "t": 491.058
+        },
+        {
+          "w": "log",
+          "t": 491.599
+        },
+        {
+          "w": "K",
+          "t": 492.14
+        },
+        {
+          "w": "plus",
+          "t": 492.681
+        },
+        {
+          "w": "one,",
+          "t": 493.222
+        },
+        {
+          "w": "while",
+          "t": 493.763
+        },
+        {
+          "w": "Wang",
+          "t": 494.304
+        },
+        {
+          "w": "and",
+          "t": 494.845
+        },
+        {
+          "w": "Isola's",
+          "t": 495.386
+        },
+        {
+          "w": "theorem",
+          "t": 495.927
+        },
+        {
+          "w": "proves",
+          "t": 496.468
+        },
+        {
+          "w": "representations",
+          "t": 497.009
+        },
+        {
+          "w": "must",
+          "t": 497.55
+        },
+        {
+          "w": "balance",
+          "t": 498.09
+        },
+        {
+          "w": "positive",
+          "t": 498.631
+        },
+        {
+          "w": "alignment",
+          "t": 499.172
+        },
+        {
+          "w": "with",
+          "t": 499.713
+        },
+        {
+          "w": "hyperspherical",
+          "t": 500.254
+        },
+        {
+          "w": "uniformity.",
+          "t": 500.795
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "slideId": "s16",
+      "slideIndex": 15,
+      "turnIndex": 1,
+      "speaker": "Dr. Nova",
+      "text": "In our next lesson, 11.8, we will explore SSL applications in complex domains, including time-series, audio spectrograms, graph neural networks, and multimodal video pretraining. Excellent work today!",
+      "start": 501.59,
+      "end": 516.59,
+      "words": [
+        {
+          "w": "In",
+          "t": 501.586
+        },
+        {
+          "w": "our",
+          "t": 502.142
+        },
+        {
+          "w": "next",
+          "t": 502.697
+        },
+        {
+          "w": "lesson,",
+          "t": 503.253
+        },
+        {
+          "w": "11.8,",
+          "t": 503.808
+        },
+        {
+          "w": "we",
+          "t": 504.364
+        },
+        {
+          "w": "will",
+          "t": 504.919
+        },
+        {
+          "w": "explore",
+          "t": 505.475
+        },
+        {
+          "w": "SSL",
+          "t": 506.03
+        },
+        {
+          "w": "applications",
+          "t": 506.586
+        },
+        {
+          "w": "in",
+          "t": 507.142
+        },
+        {
+          "w": "complex",
+          "t": 507.697
+        },
+        {
+          "w": "domains,",
+          "t": 508.253
+        },
+        {
+          "w": "including",
+          "t": 508.808
+        },
+        {
+          "w": "time-series,",
+          "t": 509.364
+        },
+        {
+          "w": "audio",
+          "t": 509.919
+        },
+        {
+          "w": "spectrograms,",
+          "t": 510.475
+        },
+        {
+          "w": "graph",
+          "t": 511.03
+        },
+        {
+          "w": "neural",
+          "t": 511.586
+        },
+        {
+          "w": "networks,",
+          "t": 512.142
+        },
+        {
+          "w": "and",
+          "t": 512.697
+        },
+        {
+          "w": "multimodal",
+          "t": 513.253
+        },
+        {
+          "w": "video",
+          "t": 513.808
+        },
+        {
+          "w": "pretraining.",
+          "t": 514.364
+        },
+        {
+          "w": "Excellent",
+          "t": 514.919
+        },
+        {
+          "w": "work",
+          "t": 515.475
+        },
+        {
+          "w": "today!",
+          "t": 516.03
+        }
+      ]
+    }
+  ]
+}

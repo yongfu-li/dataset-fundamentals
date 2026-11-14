@@ -1,0 +1,262 @@
+{
+  "audioFile": "ch11_p3_solo.mp3",
+  "duration": 465.336,
+  "sentences": [
+    {
+      "index": 0,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Lesson 11.3: Advanced Active Learning Techniques: Core-Set, Query-by-Committee, and Diversity Acquisition. In our previous lesson, we established classical uncertainty sampling; now, we address its critical enterprise failures: batch redundancy and outlier trapping.",
+      "start": 0.0,
+      "end": 16.849,
+      "duration": 16.849
+    },
+    {
+      "index": 1,
+      "speaker": "Dr. Nova",
+      "text": "Today, we formalize geometric core-sets with Lipschitz generalization guarantees, Query-by-Committee version space bisection, BADGE hallucinated gradient embeddings, and submodular facility location coverage.",
+      "start": 16.849,
+      "end": 27.752,
+      "duration": 10.902
+    },
+    {
+      "index": 2,
+      "speaker": "Dr. Nova",
+      "text": "When deploying active learning at enterprise scale, pure uncertainty criteria encounter two catastrophic failure modes: batch redundancy and outlier noise trapping.",
+      "start": 27.752,
+      "end": 38.159,
+      "duration": 10.407
+    },
+    {
+      "index": 3,
+      "speaker": "Dr. Nova",
+      "text": "Batch redundancy squanders budget on correlated identical instances. Meanwhile, outlier trapping causes entropy to obsess over unlearnable noise artifacts like camera lens flares, treating them as maximally uncertain hypotheses.",
+      "start": 38.159,
+      "end": 52.53,
+      "duration": 14.371
+    },
+    {
+      "index": 4,
+      "speaker": "Dr. Nova",
+      "text": "Definition 11.3.1 formalizes the geometric Core-Set selection problem. Let phi of x be the penultimate feature representation of a deep network. The goal is to choose a batch s that minimizes the maximum distance from any unlabeled point to its nearest labeled center.",
+      "start": 52.53,
+      "end": 73.839,
+      "duration": 21.309
+    },
+    {
+      "index": 5,
+      "speaker": "Dr. Nova",
+      "text": "Under Lipschitz continuity of the loss function, the generalization error on the unlabelled pool is strictly bounded by this covering radius. Furthermore, the greedy k-center algorithm guarantees a certified 2-approximation to the NP-hard optimum.",
+      "start": 73.839,
+      "end": 90.688,
+      "duration": 16.849
+    },
+    {
+      "index": 6,
+      "speaker": "Dr. Nova",
+      "text": "Definition 11.3.2 establishes Query-by-Committee. In QBC, an ensemble of C models is maintained, and candidate disagreement is quantified using the symmetric Jensen-Shannon divergence over their predicted posteriors.",
+      "start": 90.688,
+      "end": 104.069,
+      "duration": 13.38
+    },
+    {
+      "index": 7,
+      "speaker": "Dr. Nova",
+      "text": "When committee votes evenly split across class hypotheses, receiving the ground truth eliminates approximately half of the surviving version space. This shrinks the version space diameter exponentially with active rounds.",
+      "start": 104.069,
+      "end": 118.936,
+      "duration": 14.867
+    },
+    {
+      "index": 8,
+      "speaker": "Dr. Nova",
+      "text": "Definition 11.3.3 introduces BADGE: Batch Active Learning by Diverse Gradient Embeddings. Since true labels are unknown at query time, BADGE assumes the current model's predicted class is the true label and computes hallucinated gradient vectors.",
+      "start": 118.936,
+      "end": 136.281,
+      "duration": 17.345
+    },
+    {
+      "index": 9,
+      "speaker": "Dr. Nova",
+      "text": "The gradient magnitude naturally captures boundary uncertainty, while sampling these vectors using k-means++ guarantees gradient orthogonality. This solves batch redundancy without any manual hyperparameter tuning.",
+      "start": 136.281,
+      "end": 148.67,
+      "duration": 12.389
+    },
+    {
+      "index": 10,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 1: BADGE Gradient Space and Feature Disagreement Studio! Above us, you can explore two synchronized visualizers: Canvas 1 depicts hallucinated gradient vectors in BADGE space, while Canvas 2 renders Core-Set embedding disks.",
+      "start": 148.67,
+      "end": 166.51,
+      "duration": 17.84
+    },
+    {
+      "index": 11,
+      "speaker": "Dr. Nova",
+      "text": "Adjust the batch size, tune the diversity tradeoff parameter, and trigger batch active queries. Observe how BADGE selects points with large gradient magnitudes that are angularly dispersed, preventing batch redundancy.",
+      "start": 166.51,
+      "end": 181.377,
+      "duration": 14.867
+    },
+    {
+      "index": 12,
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 1! Let us test your mathematical derivation of BADGE hallucinated gradient embeddings on a 3-class classifier.",
+      "start": 181.377,
+      "end": 191.288,
+      "duration": 9.911
+    },
+    {
+      "index": 13,
+      "speaker": "Dr. Nova",
+      "text": "Given feature vector z equals [2.0, -1.0], boundary instance A with probabilities [0.49, 0.48, 0.03], and confident instance B with probabilities [0.98, 0.01, 0.01]: calculate their gradient norms and evaluate why k-means++ strongly favors instance A.",
+      "start": 191.288,
+      "end": 209.129,
+      "duration": 17.84
+    },
+    {
+      "index": 14,
+      "speaker": "Dr. Nova",
+      "text": "Definition 11.3.4 explores Submodular Facility Location. A set function is submodular if adding an instance to a smaller set yields higher marginal gain than adding it to a larger set: the property of diminishing returns.",
+      "start": 209.129,
+      "end": 226.473,
+      "duration": 17.345
+    },
+    {
+      "index": 15,
+      "speaker": "Dr. Nova",
+      "text": "By the classic theorem of Nemhauser, Wolsey, and Fisher, greedy active selection on submodular facility objectives achieves at least sixty-three point two percent of the theoretical optimum. We also incorporate density weighting to reject unlearnable outliers.",
+      "start": 226.473,
+      "end": 244.314,
+      "duration": 17.84
+    },
+    {
+      "index": 16,
+      "speaker": "Dr. Nova",
+      "text": "Slide 9 synthesizes our comparative strategy matrix across computational complexity, batch redundancy tolerance, outlier vulnerability, and theoretical guarantees.",
+      "start": 244.314,
+      "end": 253.234,
+      "duration": 8.92
+    },
+    {
+      "index": 17,
+      "speaker": "Dr. Nova",
+      "text": "While margin sampling runs in O(N), it fails in batch mode and traps outliers. Core-Set guarantees a 2-OPT covering bound but ignores labels. BADGE achieves the best balance, combining uncertainty and diversity with k-means++ seeding.",
+      "start": 253.234,
+      "end": 270.579,
+      "duration": 17.345
+    },
+    {
+      "index": 18,
+      "speaker": "Dr. Nova",
+      "text": "Welcome to Interactive Lab 2: Multi-Strategy Convergence Studio! Above us, Canvas 3 traces learning curves across BADGE, Core-Set, Margin, and Passive Random sampling, while Canvas 4 tracks operational KPIs.",
+      "start": 270.579,
+      "end": 284.95,
+      "duration": 14.371
+    },
+    {
+      "index": 19,
+      "speaker": "Dr. Nova",
+      "text": "Select different scenario presets to witness BADGE achieving rapid accuracy ascent up to ninety-eight point five percent, while pure margin sampling plateaus prematurely due to batch redundancy traps.",
+      "start": 284.95,
+      "end": 298.826,
+      "duration": 13.876
+    },
+    {
+      "index": 20,
+      "speaker": "Dr. Nova",
+      "text": "Time for Active Checkpoint 2! We examine the classic mathematical derivation of the 1 minus 1 over e approximation bound for greedy submodular optimization.",
+      "start": 298.826,
+      "end": 310.72,
+      "duration": 11.894
+    },
+    {
+      "index": 21,
+      "speaker": "Dr. Nova",
+      "text": "Given a monotone submodular facility location function F with diminishing marginal returns, how does the recurrence relation establish that greedy selection guarantees at least sixty-three point two percent of the optimal value?",
+      "start": 310.72,
+      "end": 326.578,
+      "duration": 15.858
+    },
+    {
+      "index": 22,
+      "speaker": "Dr. Nova",
+      "text": "In Slide 12, we examine two real-world enterprise deployments of advanced active learning: Novartis high-throughput robotic drug discovery, and Cruise autonomous perception triaging.",
+      "start": 326.578,
+      "end": 337.976,
+      "duration": 11.398
+    },
+    {
+      "index": 23,
+      "speaker": "Dr. Nova",
+      "text": "Novartis used Core-Set and BADGE to break an analog trap, saving over twenty million dollars while discovering five nanomolar leads. Cruise used BADGE and density filtering to slash false-positive camera glare proposals by eighty-four percent.",
+      "start": 337.976,
+      "end": 355.32,
+      "duration": 17.345
+    },
+    {
+      "index": 24,
+      "speaker": "Dr. Nova",
+      "text": "Active Checkpoint 3! Let us evaluate how to prevent the analog trap and batch redundancy collapse in a high-stakes industrial pipeline.",
+      "start": 355.32,
+      "end": 365.727,
+      "duration": 10.407
+    },
+    {
+      "index": 25,
+      "speaker": "Dr. Nova",
+      "text": "When an active learning loop queries batches of candidate observations under tight budgets, which architectural configuration simultaneously enforces boundary uncertainty and spatial representation diversity?",
+      "start": 365.727,
+      "end": 377.621,
+      "duration": 11.894
+    },
+    {
+      "index": 26,
+      "speaker": "Dr. Nova",
+      "text": "Slide 14 details three critical best practices and three dangerous anti-patterns when deploying advanced active learning in production pipelines.",
+      "start": 377.621,
+      "end": 387.037,
+      "duration": 9.416
+    },
+    {
+      "index": 27,
+      "speaker": "Dr. Nova",
+      "text": "First, always ensure representation backbones are sufficiently pre-trained before running core-set or BADGE. Second, monitor gradient dimensionality to avoid OOM errors. And third, enforce local density gating to reject unlearnable outliers.",
+      "start": 387.037,
+      "end": 402.399,
+      "duration": 15.363
+    },
+    {
+      "index": 28,
+      "speaker": "Dr. Nova",
+      "text": "Slide 15 presents the complete, runnable Python engine: AdvancedActiveLearningEngine, built with Pydantic V2. It implements Core-Set greedy k-Center, QBC Jensen-Shannon divergence, BADGE gradient embeddings, and k-Means++ sampling.",
+      "start": 402.399,
+      "end": 415.779,
+      "duration": 13.38
+    },
+    {
+      "index": 29,
+      "speaker": "Dr. Nova",
+      "text": "The engine includes deterministic assertions verifying that BADGE gradient norms strongly prioritize boundary instances over confident ones, and that Core-Set strictly contracts covering radii across rounds.",
+      "start": 415.779,
+      "end": 428.664,
+      "duration": 12.885
+    },
+    {
+      "index": 30,
+      "speaker": "Dr. Nova",
+      "text": "To conclude Lesson 11.3, internalize the Four Cardinal Rules of Advanced Active Learning: never deploy pure margin sampling in batch mode, enforce Lipschitz covering radii via core-sets, exploit hallucinated gradients via BADGE, and gate queries through representation density.",
+      "start": 428.664,
+      "end": 447.496,
+      "duration": 18.831
+    },
+    {
+      "index": 31,
+      "speaker": "Dr. Nova",
+      "text": "Mastering these techniques enables production data teams to reduce annotation budgets by over eighty percent while protecting model safety against corrupted outliers. In Lesson 11.4, we examine full-scale enterprise applications across medical, autonomous, and legal domains.",
+      "start": 447.496,
+      "end": 465.336,
+      "duration": 17.84
+    }
+  ]
+}

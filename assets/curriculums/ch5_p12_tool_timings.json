@@ -1,0 +1,134 @@
+{
+  "ch5_p12_solo_lab1.mp3": {
+    "duration": 17.28,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the Welford versus EWMA Streaming Lab! Use the sliders to adjust the forgetting factor alpha and introduce mid-stream shocks. Notice how Welford freezes under historical weight, while EWMA rapidly locks onto the new mean within its effective window.",
+        "start": 0.0,
+        "end": 17.28
+      }
+    ]
+  },
+  "ch5_p12_duo_lab1.mp3": {
+    "duration": 15.384,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Look at that, Kaito! At tick ninety, the sensor calibration shifts by forty units. Watch the blue cumulative line lag far behind, while our orange EWMA curve locks onto the new regime in less than twenty ticks!",
+        "start": 0.0,
+        "end": 15.384
+      }
+    ]
+  },
+  "ch5_p12_solo_lab2.mp3": {
+    "duration": 16.944,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Welcome to the Confident Learning Pruner Studio! Dial asymmetric label corruption up to thirty-five percent. Notice how the dashed red boundary twists toward noise, while our solid green line restores the true clean boundary by pruning off-diagonal margin violators.",
+        "start": 0.0,
+        "end": 16.944
+      }
+    ]
+  },
+  "ch5_p12_duo_lab2.mp3": {
+    "duration": 13.608,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "See how the dashed red boundary gets pulled into the wrong quadrant by noisy labels, Kaito? Confident Learning computes out-of-fold thresholds, identifies true annotation flips, and restores clean decision geometry!",
+        "start": 0.0,
+        "end": 13.608
+      }
+    ]
+  },
+  "ch5_p12_solo_chk1.mp3": {
+    "duration": 16.992,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Active Checkpoint 1! Review the question carefully: a telemetry engineer switches to Welford's algorithm to eliminate negative variances on Unix timestamps, but three months later a sensor recalibration causes persistent false alarms. Why did this occur?",
+        "start": 0.0,
+        "end": 16.992
+      }
+    ]
+  },
+  "ch5_p12_duo_chk1.mp3": {
+    "duration": 10.008,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Checkpoint time, Kaito! Let's test whether our learners grasp the trade-off between numerical stability and historical inertia in streaming estimators.",
+        "start": 0.0,
+        "end": 10.008
+      }
+    ]
+  },
+  "ch5_p12_solo_chk2.mp3": {
+    "duration": 17.928,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Active Checkpoint 2! Review this foundational question: an engineer implements GAIN for medical records imputation, but removes the Hint Matrix H, feeding only completed data X-hat into the discriminator. Why does training fail to converge to the true missing-data distribution?",
+        "start": 0.0,
+        "end": 17.928
+      }
+    ]
+  },
+  "ch5_p12_duo_chk2.mp3": {
+    "duration": 8.016,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Checkpoint 2, Kaito! Let's test whether our learners grasp why GAIN cannot work without partial mask hints.",
+        "start": 0.0,
+        "end": 8.016
+      }
+    ]
+  },
+  "ch5_p12_chk1_correct.mp3": {
+    "duration": 26.928,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Spot on! The textbook formula failed due to IEEE-754 catastrophic cancellation when subtracting two near-equal float64 quantities. Welford's recurrence eliminates cancellation, but because it weights every historical sample equally as one over n, the accumulated three-month history creates massive inertia, preventing rapid adaptation to sudden concept drift without an EWMA forgetting factor!",
+        "start": 0.0,
+        "end": 26.928
+      }
+    ]
+  },
+  "ch5_p12_chk1_incorrect.mp3": {
+    "duration": 24.504,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Not quite! The first bug is purely numerical: squaring one point seven billion overflows the float64 mantissa, causing catastrophic cancellation upon subtraction. The second bug is historical inertia: unweighted Welford gives every historical sample a weight of one over n, freezing the mean after three months of data unless an exponential forgetting factor is introduced.",
+        "start": 0.0,
+        "end": 24.504
+      }
+    ]
+  },
+  "ch5_p12_chk2_correct.mp3": {
+    "duration": 25.032,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Brilliant derivation! Yoon and colleagues proved that without the Hint Matrix H, infinitely many spurious conditional distributions share identical unconditional marginal densities. The discriminator cannot penalize conditional violations for specific missing subsets. Revealing partial mask bits via H isolates individual coordinates, mathematically guaranteeing unique density recovery!",
+        "start": 0.0,
+        "end": 25.032
+      }
+    ]
+  },
+  "ch5_p12_chk2_incorrect.mp3": {
+    "duration": 21.024,
+    "sentences": [
+      {
+        "speaker": "Dr. Nova",
+        "text": "Incorrect. The failure is fundamental to identifiability. Without the Hint Matrix H, infinitely many structurally incorrect conditional generators achieve zero adversarial loss because they produce the same composite marginal density. Revealing partial mask bits is required to isolate individual coordinate conditionals.",
+        "start": 0.0,
+        "end": 21.024
+      }
+    ]
+  }
+}

@@ -7648,24 +7648,20 @@
 
 
 <h1 id="88-best-practices-for-documentation-and-versioning">8.8 Best Practices for Documentation and Versioning</h1>
-<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 4px 4px 0px #151b20;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 800; color: #151b20; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-      <span style="background: #ffc83e; border: 1.5px solid #151b20; padding: 2px 8px; border-radius: 6px;">§8.8</span>
-      <span>Companion Monograph: Chapter 8 (Dataset Documentation &amp; Version Control)</span>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #475569; margin-top: 6px; font-weight: 500;">
-      Read <strong>Chapter 8: Dataset Documentation and Version Control</strong> in the companion Springer Nature monograph for governance protocols, CI/CD test gates, and statistical drift monitoring.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 8: Dataset Documentation and Version Control (§8.8: Governance Best Practices &amp; Drift Monitoring)</strong>, covering governance protocols, CI/CD test gates, and statistical drift monitoring.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #c9f3f4; color: #0e7490; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.84rem; text-decoration: none; box-shadow: 2px 2px 0px #151b20;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+    <span>Explore Chapter 8 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Duration:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter08/chapter08.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter08/chapter08.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-88">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 8.8</h3>
 <p>Experience Chapter 8 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
@@ -7674,7 +7670,7 @@
     <div style="display: flex; align-items: center; gap: 10px;">
       <span style="font-size: 1.25rem;">🎙️</span>
       <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">6 Slides</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
       <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
@@ -7690,17 +7686,17 @@
 
 <hr />
 <h2 id="pedagogical-rationale-conceptual-overview">🎯 Pedagogical Rationale &amp; Conceptual Overview</h2>
-<p>Establishing robust dataset documentation and version control requires transitioning from reactive, informal human conventions to <strong>automated, defense-in-depth governance architectures</strong> (<a href="#ref-schelter2018">Schelter et al., 2018</a>; <a href="#ref-kreuzberger2023">Kreuzberger et al., 2023</a>). In large-scale enterprise environments, relying on individual engineer diligence inevitably leads to compounding technical debt (<a href="#ref-sculley2015">Sculley et al., 2015</a>):</p>
+<p>Establishing robust dataset documentation and version control requires transitioning from reactive, informal human conventions to <strong>automated, defense-in-depth governance architectures</strong> (<a href="#ref-schelter2018">Schelter et al., 2018</a>; <a href="#ref-kreuzberger2023">Kreuzberger et al., 2023</a>). In large-scale enterprise environments, relying on individual engineer diligence inevitably leads to compounding technical debt (<a href="#ref-sculley2015">Sculley et al., 2015</a>) and chronic data cascades where data work is marginalized relative to modeling (<a href="#ref-sambasivan2021">Sambasivan et al., 2021</a>):</p>
 <ol>
 <li><strong>Accidental Credential &amp; PII Leakage:</strong> Engineers inadvertently commit unencrypted medical records or AWS access keys directly into Git histories.</li>
 <li><strong>Silent Distribution Drift (Data Rot):</strong> Production feature distributions drift gradually due to real-world behavioral changes, degrading downstream model accuracy while remaining completely undetected by traditional unit tests.</li>
-<li><strong>Epistemic Documentation Currency Decay:</strong> Datasheets become obsolete as feature extraction logic shifts across rapid two-week software development sprints.</li>
+<li><strong>Epistemic Documentation Currency Decay:</strong> Datasheets (<a href="#ref-gebru2021">Gebru et al., 2021</a>) and total data quality contracts (<a href="#ref-wang1996">Wang &amp; Strong, 1996</a>) become obsolete as feature extraction logic shifts across rapid software development sprints.</li>
 </ol>
 <p>To counteract these vulnerabilities, leading engineering organizations enforce a three-tier defensive governance perimeter:</p>
 <ul>
 <li><strong>Tier 1 (Client-Side Pre-Commit Hooks):</strong> Static verification blocking unmasked PII, oversized binary assets, and un-checksummed data pointers before code leaves developer workstations.</li>
 <li><strong>Tier 2 (Continuous Data Testing &amp; Drift Gates in CI):</strong> Automated pipelines validating schema contracts, range assertions, and statistical Population Stability Index (PSI) drift thresholds on pull requests.</li>
-<li><strong>Tier 3 (Automated Immutability Registry):</strong> Cryptographic signing, SemVer release tagging, and automated datasheet currency monitoring in central data catalogs.</li>
+<li><strong>Tier 3 (Automated Immutability Registry):</strong> Cryptographic signing, SemVer release tagging, and automated datasheet currency monitoring in central data catalogs adhering to FAIR principles (<a href="#ref-peng2011">Peng, 2011</a>; <a href="#ref-wilkinson2016">Wilkinson et al., 2016</a>).</li>
 </ul>
 <pre class="mermaid"><code>flowchart TD
   subgraph Tier1 ["Tier 1: Pre-Commit Defense (Developer Workstation)"]
@@ -7785,7 +7781,7 @@
 <h2 id="real-world-industrial-case-studies">🏢 Real-World Industrial Case Studies</h2>
 <h3 id="case-study-1-healthcare-ehr-ingestion-hipaa-safe-harbor-enforcement">Case Study 1: Healthcare EHR Ingestion &amp; HIPAA Safe Harbor Enforcement</h3>
 <p>A national healthcare network processing clinical records across 14 hospital systems ingested electronic health record (EHR) extracts for predictive sepsis modeling. </p>
-<p>In 2023, an unverified batch script pushed raw patient admission notes containing un-redacted Medical Record Numbers (MRNs) directly into a cloud staging bucket, violating HIPAA Safe Harbor requirements and risking civil penalties up to <span class="arithmatex">\(\$1.5\text{ Million}\)</span>. The network established automated pre-commit hooks and CI filters powered by regular expressions and named-entity recognition (NER) models. Today, any commit containing patterns matching 18 HIPAA Safe Harbor identifiers is rejected at the client CLI before network transmission.</p>
+<p>In 2023, an unverified batch script pushed raw patient admission notes containing un-redacted Medical Record Numbers (MRNs) directly into a cloud staging bucket, violating HIPAA Safe Harbor requirements and risking civil penalties up to USD 1.5 million. The network established automated pre-commit hooks and CI filters powered by regular expressions and named-entity recognition (NER) models. Today, any commit containing patterns matching 18 HIPAA Safe Harbor identifiers is rejected at the client CLI before network transmission.</p>
 <hr />
 <h3 id="case-study-2-consumer-credit-scoring-automated-psi-drift-quarantining">Case Study 2: Consumer Credit Scoring (Automated PSI Drift Quarantining)</h3>
 <p>A major fintech lending institution deployed machine learning models to assess personal loan default risk. Following a macro-economic interest rate shock in 2023, borrower debt-to-income (DTI) and revolving credit utilization ratios shifted abruptly.</p>
@@ -8473,6 +8469,8 @@ The repository should configure:</p>
 <li><a id="ref-wang1996"></a><strong>[Wang1996]</strong> R. Y. Wang and D. M. Strong, "Beyond Accuracy: What Data Quality Means to Data Consumers," <em>Journal of Management Information Systems</em>, vol. 12, no. 4, pp. 5–33, Mar. 1996. <a href="https://doi.org/10.1080/07421222.1996.11518099">DOI: 10.1080/07421222.1996.11518099</a>.</li>
 <li><a id="ref-gebru2021"></a><strong>[Gebru2021]</strong> T. Gebru et al., "Datasheets for Datasets," <em>Communications of the ACM</em>, vol. 64, no. 12, pp. 86–92, Dec. 2021. <a href="https://doi.org/10.1145/3458723">DOI: 10.1145/3458723</a>.</li>
 <li><a id="ref-sambasivan2021"></a><strong>[Sambasivan2021]</strong> N. Sambasivan, S. Kapania, H. Highfill, D. Akrong, P. Paritosh, and L. M. Aroyo, "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI," in <em>Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (CHI '21)</em>, May 2021, pp. 1–15. <a href="https://doi.org/10.1145/3411764.3445518">DOI: 10.1145/3411764.3445518</a>.</li>
+<li><a id="ref-peng2011"></a><strong>[Peng2011]</strong> R. D. Peng, "Reproducible Research in Computational Science," <em>Science</em>, vol. 334, no. 6060, pp. 1226–1227, Dec. 2011. <a href="https://doi.org/10.1126/science.1213847">DOI: 10.1126/science.1213847</a>.</li>
+<li><a id="ref-wilkinson2016"></a><strong>[Wilkinson2016]</strong> M. D. Wilkinson et al., "The FAIR Guiding Principles for Scientific Data Management and Stewardship," <em>Scientific Data</em>, vol. 3, p. 160018, Mar. 2016. <a href="https://doi.org/10.1038/sdata.2016.18">DOI: 10.1038/sdata.2016.18</a>.</li>
 </ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 2px solid #151b20;">

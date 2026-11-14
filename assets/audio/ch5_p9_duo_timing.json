@@ -1,0 +1,484 @@
+{
+  "duration": 744.84,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Lesson 5.9, Kaito! We know how to impute missing values, scale distributions, and compute features at hardware speed. Now comes the million-dollar engineering question: how do we wire them together without corrupting our evaluation?",
+          "dock": "main",
+          "start": 0.0,
+          "end": 17.136
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! When I train a model, I usually clean my entire pandas DataFrame first\u2014impute NaNs, standardize the columns, select the top features\u2014and then call cross_val_score at the end. What's wrong with cleaning everything once up front?",
+          "dock": "main",
+          "start": 17.136,
+          "end": 33.984
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That workflow is the single most common source of catastrophic failure in applied machine learning, Kaito! Because you computed means, variances, and feature selection scores across the entire table, information from the validation folds leaked directly into your training features!",
+          "dock": "main",
+          "start": 33.984,
+          "end": 51.912
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Whoa! So my cross-validation score looks artificially high because the preprocessing steps accidentally peeked at the validation set? And then when we deploy to live unseen traffic, performance collapses?",
+          "dock": "main",
+          "start": 51.912,
+          "end": 65.472
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! Today we will construct fold-isolated Directed Acyclic Graph pipelines, automate relational synthesis safely with Deep Feature Synthesis, and deploy visual nullity matrices to expose structural data defects before training.",
+          "dock": "main",
+          "start": 65.472,
+          "end": 81.216
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Look at that diagram, Dr. Nova! Notice how the Stratified Fold Split happens at the very top of the graph before any imputer or scaler touches the numbers!",
+          "dock": "main",
+          "start": 81.216,
+          "end": 91.488
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice the strict architectural firewall, Kaito. Everything in the blue training box calls .fit_transform(). Everything in the green validation box is strictly read-only .transform(), using the frozen theta constants passed across the arrow!",
+          "dock": "main",
+          "start": 91.488,
+          "end": 108.432
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And in K-fold cross-validation, we re-run those frozen fits K separate times\u2014once per training split\u2014so no single validation record ever participates in learning its own scaling factor or feature mask!",
+          "dock": "main",
+          "start": 108.432,
+          "end": 120.096
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely! That guarantees the holdout risk metric L(y_val, y_hat) mirrors real-world unseen deployment traffic with near-zero optimism bias.",
+          "dock": "main",
+          "start": 120.096,
+          "end": 132.408
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us write down the exact mathematics of why pre-CV preprocessing ruins generalization guarantees, Kaito. Suppose you compute a parameter theta-hat\u2014like imputation means or correlation scores\u2014over the union D_train union D_test.",
+          "dock": "main",
+          "start": 132.408,
+          "end": 149.712
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Then our preprocessing map T actually encodes statistical information about the test cohort D_test! In Shannon's information theory terms, the mutual information I(T(x); D_test) becomes strictly positive!",
+          "dock": "main",
+          "start": 149.712,
+          "end": 164.448
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on! Once that mutual information channel opens, your empirical cross-validation error R_emp becomes far smaller than the true population risk R_true.",
+          "dock": "main",
+          "start": 164.448,
+          "end": 177.072
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And in wide datasets where we have more columns than rows\u2014like genomics or large automated feature stores\u2014even pure uncorrelated random noise can trick a leaky validation loop into reporting 90% ROC-AUC!",
+          "dock": "main",
+          "start": 177.072,
+          "end": 189.024
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at the composite operator formula, Kaito: F(x) is the composition f_L of f_{L-1} down to f_1, where every inner theta_l is fitted strictly on the transformed output of D_train from earlier layers!",
+          "dock": "main",
+          "start": 189.024,
+          "end": 206.208
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So instead of mutating DataFrames in-place across twenty Jupyter notebook cells, the entire pipeline becomes a single immutable mathematical function!",
+          "dock": "main",
+          "start": 206.208,
+          "end": 215.064
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes! And when we pair Scikit-Learn's ColumnTransformer with Pipeline, we can export that entire composite graph in one serialized ONNX or skops file!",
+          "dock": "main",
+          "start": 215.064,
+          "end": 226.272
+        },
+        {
+          "speaker": "Kaito",
+          "text": "That eliminates training-serving skew completely! The production microservice doesn't need to re-implement scaling math or category dictionaries in Java or Go\u2014it executes the exact frozen DAG!",
+          "dock": "main",
+          "start": 226.272,
+          "end": 238.68
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, in multi-table enterprise schemas\u2014like Customers, Orders, and Clickstream Logs\u2014manually writing dozens of group-by SQL pipelines takes weeks! How does Deep Feature Synthesis automate that?",
+          "dock": "main",
+          "start": 238.68,
+          "end": 251.424
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "DFS walks the database's foreign-key schema automatically, Kaito! Going forward N-to-1 copies parent features onto child rows, while going backward 1-to-N stacks aggregation primitives\u2014MEAN, MAX, STD, SKEW\u2014across child event tables!",
+          "dock": "main",
+          "start": 251.424,
+          "end": 269.52
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Wait\u2014if it aggregates ALL child transactions for a customer automatically, what happens if a customer churned in June, and we're predicting churn probability using January training records?",
+          "dock": "main",
+          "start": 269.52,
+          "end": 280.536
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Magnificent catch! Without a strict temporal cutoff barrier t(e_j) < t_cutoff(E_i), backward DFS leaks future post-cutoff transactions into historical training rows! Enforcing cutoff timestamps guarantees causal integrity.",
+          "dock": "main",
+          "start": 280.536,
+          "end": 299.64
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Let's test this interactive Pipeline DAG auditor right here! Look what happens when I switch from Certified Encapsulated Pipeline to Global SelectKBest Before Split!",
+          "dock": "main",
+          "start": 299.64,
+          "end": 310.344
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Observe the reported cross-validation ROC-AUC jump to 0.921 while the true out-of-sample holdout crashes straight to 0.502 pure chance! Toggle between all three pipeline topologies to inspect every operator node.",
+          "dock": "simulator",
+          "start": 310.344,
+          "end": 326.88
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for our first diagnostic challenge, Kaito! We generate 100 rows of 1,000 completely random normal columns and random binary labels\u2014so the true population signal is strictly zero.",
+          "dock": "checkpoint",
+          "start": 326.88,
+          "end": 340.44
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And yet calling SelectKBest before cross_val_score gives an ROC-AUC of 0.92! Let's diagnose the exact multiple-testing and label-peeking mechanism causing this false victory!",
+          "dock": "checkpoint",
+          "start": 340.44,
+          "end": 353.328
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Whoa, look at those numbers on 120,000 LendingClub loans, Dr. Nova! The leaky pre-CV team celebrated a 0.884 ROC-AUC score, only to crash to 0.712 in real production!",
+          "dock": "main",
+          "start": 353.328,
+          "end": 367.44
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Imagine signing off on a multimillion-dollar credit risk policy expecting 0.884 discrimination power and shipping a 0.712 model, Kaito! That minus 0.172 drop represents real default losses.",
+          "dock": "main",
+          "start": 367.44,
+          "end": 384.024
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And writing manual for-loops around every single fold gets the honest score\u20140.723 vs 0.719\u2014but it's verbose and easy to mess up during hyperparameter tuning.",
+          "dock": "main",
+          "start": 384.024,
+          "end": 394.896
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Whereas encapsulating every transformation inside a declarative Pipeline DAG delivers an honest 0.725 CV AUC that aligns within 0.004 of live production\u2014clean, compact, and natively serializable!",
+          "dock": "main",
+          "start": 394.896,
+          "end": 411.504
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, what if I need a custom cleaner\u2014like filling missing credit limits using each customer segment's median\u2014that isn't built into Scikit-Learn? Can I still put it inside a Pipeline?",
+          "dock": "main",
+          "start": 411.504,
+          "end": 422.976
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Absolutely, Kaito! You inherit from two mixins: BaseEstimator and TransformerMixin. Inside fit(), you learn your group medians from training rows, save them into self.medians_ with a trailing underscore, and return self.",
+          "dock": "main",
+          "start": 422.976,
+          "end": 440.016
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And inside transform(), I must treat self.medians_ as strictly read-only\u2014never recomputing medians when validation records pass through!",
+          "dock": "main",
+          "start": 440.016,
+          "end": 448.8
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly right! Plus, inheriting BaseEstimator gives you .get_params() and .set_params() for free, so GridSearchCV can tune nested pipeline parameters cleanly without leaks.",
+          "dock": "main",
+          "start": 448.8,
+          "end": 463.008
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "When I start an audit, I normally call df.isna().mean() to see what percentage of each column is null. Why isn't a percentage table enough, Dr. Nova?",
+          "dock": "main",
+          "start": 463.008,
+          "end": 473.544
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Column totals tell you how much data vanished, Kaito, but they stay silent on whether two columns vanished together on the exact same rows!",
+          "dock": "main",
+          "start": 473.544,
+          "end": 482.64
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Aha! So we replace every cell with a binary flag: 1 if it's NULL, 0 if it's observed! That creates the binary missingness matrix M!",
+          "dock": "main",
+          "start": 482.64,
+          "end": 493.296
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And computing Pearson correlation r_M between columns of that binary matrix produces a number between -1 and +1 that immediately reveals joint hardware outages, API timeouts, or conditional survey branching!",
+          "dock": "main",
+          "start": 493.296,
+          "end": 508.224
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "So when r_M is close to +1.0, two columns go dark on the exact same rows\u2014like a credit bureau API timing out and dropping Income and Credit Score together!",
+          "dock": "main",
+          "start": 508.224,
+          "end": 518.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes! That's positive co-missingness. Now what happens when r_M plunges toward -1.0, Kaito?",
+          "dock": "main",
+          "start": 518.328,
+          "end": 528.36
+        },
+        {
+          "speaker": "Kaito",
+          "text": "When r_M is strongly negative, whenever column A is filled in, column B is blank\u2014like Employed Salary vs Unemployment Duration on a survey form!",
+          "dock": "main",
+          "start": 528.36,
+          "end": 537.552
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! And blind automation that fills Unemployment Duration with a dataset average for a full-time employed applicant destroys domain logic! Nullity correlation catches that trap visually before imputation ever runs.",
+          "dock": "main",
+          "start": 537.552,
+          "end": 553.008
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Oh, look at the visual barcode matrix in Lab 2, Dr. Nova! When I pick Joint Co-Missing Panel Battery, white gaps line up row-for-row across Income and Credit Score!",
+          "dock": "main",
+          "start": 553.008,
+          "end": 563.928
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And look at the live Pearson nullity phi readout jumping above +0.85! Now toggle to Mutually Exclusive Branching and watch the alternating checkerboard stripe pattern push correlation strongly negative.",
+          "dock": "simulator",
+          "start": 563.928,
+          "end": 577.848
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Here is our second diagnostic checkpoint, Kaito! An automated data quality audit finds r_M(Income, CreditScore) = +0.92 and r_M(EmploymentYears, RetirementYears) = -0.88.",
+          "dock": "checkpoint",
+          "start": 577.848,
+          "end": 595.08
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Notice one pair is almost +1.0 and the other is nearly -1.0! Let's verify how we treat joint outages versus structural skip-logic paths!",
+          "dock": "checkpoint",
+          "start": 595.08,
+          "end": 605.808
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Real enterprise tables aren't just float arrays, Kaito\u2014they mix numeric income columns with categorical channels like Mobile, Web, and InStore.",
+          "dock": "main",
+          "start": 605.808,
+          "end": 615.84
+        },
+        {
+          "speaker": "Kaito",
+          "text": "That's where ColumnTransformer shines! One branch applies KNNImputer and StandardScaler to numeric features, while the categorical branch applies mode imputation and OneHotEncoder!",
+          "dock": "main",
+          "start": 615.84,
+          "end": 627.384
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And look at the critical safety flag handle_unknown='ignore' on the OneHotEncoder. Why is that mandatory for live serving?",
+          "dock": "main",
+          "start": 627.384,
+          "end": 636.528
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Because if marketing launches a brand-new partner channel in production next month, we can't let our scoring API throw a KeyError crash! Graceful unseen-category encoding keeps services resilient.",
+          "dock": "main",
+          "start": 636.528,
+          "end": 648.624
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at our production Python verification engine, Kaito. We codify leakage detection directly inside PipelineLeakageAuditReport using Pydantic V2 Field assertions.",
+          "dock": "main",
+          "start": 648.624,
+          "end": 660.576
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Look at those contrast thresholds: pure_noise_leaky_cv_auc requires strictly greater than 0.80 to reproduce the global leakage hallucination, while pure_noise_clean_pipeline_auc must lie honestly between 0.35 and 0.65!",
+          "dock": "main",
+          "start": 660.576,
+          "end": 679.128
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And look at compute_nullity_correlation: filtering down strictly to partially missing columns prevents divide-by-zero NaNs on completely observed columns before calculating Pearson phi.",
+          "dock": "main",
+          "start": 679.128,
+          "end": 691.512
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Integrating this contract into CI/CD ensures no model pipeline ever gets promoted with hidden global state leaks or uninspected sensor drops!",
+          "dock": "main",
+          "start": 691.512,
+          "end": 700.296
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "What a milestone lesson, Kaito! We went from dangerous ad-hoc cleaning notebooks to mathematically airtight, serialized Pipeline DAGs backed by visual nullity diagnostics.",
+          "dock": "main",
+          "start": 700.296,
+          "end": 712.8
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Seeing pure random noise hit 0.92 AUC just from leaky pre-CV selection\u2014and watching it collapse immediately to honest 0.50 once wrapped in Pipeline\u2014completely cured me of global preprocessing forever!",
+          "dock": "main",
+          "start": 712.8,
+          "end": 725.688
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And always inspect that Pearson nullity correlation matrix r_M before imputing\u2014positive means block failures, negative means skip-logic branching!",
+          "dock": "main",
+          "start": 725.688,
+          "end": 736.152
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I'm ready for the Chapter 5 finale in Lesson 5.10, Dr. Nova\u2014let's tackle enterprise governance, challenges, and best practices!",
+          "dock": "main",
+          "start": 736.152,
+          "end": 744.84
+        }
+      ]
+    }
+  ]
+}

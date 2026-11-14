@@ -1,0 +1,262 @@
+{
+  "audioFile": "ch11_p3_duo.mp3",
+  "duration": 453.816,
+  "sentences": [
+    {
+      "index": 0,
+      "speaker": "Kaito",
+      "text": "Dr. Nova, in Lesson 11.2 we proved that margin sampling is mathematically optimal for single-instance queries. Why do production deep learning teams find that querying batches of the top margin instances causes empirical performance to stall?",
+      "start": 0.0,
+      "end": 14.6,
+      "duration": 14.6
+    },
+    {
+      "index": 1,
+      "speaker": "Dr. Nova",
+      "text": "Because pure margin evaluates candidates in isolation without geometric awareness! In batch mode, querying the top five hundred uncertain points frequently captures five hundred nearly identical video frames from a single camera glitch. Today we solve this with Core-Set, QBC, and BADGE.",
+      "start": 14.6,
+      "end": 31.633,
+      "duration": 17.033
+    },
+    {
+      "index": 2,
+      "speaker": "Kaito",
+      "text": "So if pure uncertainty fails on batches and outliers, why don't we just pick points uniformly distributed across the entire feature space using unsupervised clustering?",
+      "start": 31.633,
+      "end": 41.772,
+      "duration": 10.139
+    },
+    {
+      "index": 3,
+      "speaker": "Dr. Nova",
+      "text": "Pure geometric coverage ignores the model's current state! It wastes money labeling points deep in the interior of clusters where the model already has ninety-nine percent confidence. The real goal is a hybrid: sample points that are simultaneously near the boundary and geometrically diverse.",
+      "start": 41.772,
+      "end": 59.617,
+      "duration": 17.844
+    },
+    {
+      "index": 4,
+      "speaker": "Kaito",
+      "text": "Nova, that Lipschitz generalization bound is elegant! It says that the difference between our test error on the entire unlabeled pool and our training error on the core-set is directly controlled by the covering radius delta-cov!",
+      "start": 59.617,
+      "end": 74.217,
+      "duration": 14.6
+    },
+    {
+      "index": 5,
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito. By choosing instances that greedily minimize the maximum distance to any unlabelled observation, we shrink the covering disks in feature space. This mathematically guarantees that no unlabelled region is left unrepresented.",
+      "start": 74.217,
+      "end": 87.6,
+      "duration": 13.383
+    },
+    {
+      "index": 6,
+      "speaker": "Kaito",
+      "text": "I see the connection to binary search! If the committee members disagree fifty-fifty, whichever label comes back from the human oracle will prove half of our hypotheses wrong, cutting the volume of surviving models in half!",
+      "start": 87.6,
+      "end": 102.2,
+      "duration": 14.6
+    },
+    {
+      "index": 7,
+      "speaker": "Dr. Nova",
+      "text": "Precisely. That exponential contraction in version space diameter achieves a logarithmic sample complexity of d times log 1 over epsilon, compared to polynomial sample complexity for passive learning.",
+      "start": 102.2,
+      "end": 113.555,
+      "duration": 11.356
+    },
+    {
+      "index": 8,
+      "speaker": "Kaito",
+      "text": "Wait, Nova\u2014how can we compute gradients without the real ground-truth label? If the model's pseudo-label is wrong, isn't the gradient flawed?",
+      "start": 113.555,
+      "end": 122.072,
+      "duration": 8.517
+    },
+    {
+      "index": 9,
+      "speaker": "Dr. Nova",
+      "text": "That is the mathematical beauty of BADGE! If the model is confident in its pseudo-label, the probability is near one, so the residual is zero and the gradient norm collapses. But if the model is uncertain, the residual is large, producing a massive gradient regardless of which class turns out to be true!",
+      "start": 122.072,
+      "end": 143.566,
+      "duration": 21.494
+    },
+    {
+      "index": 10,
+      "speaker": "Kaito",
+      "text": "Look at Canvas 1, Nova! When I select BADGE with batch size 4, the queried amber points fan out into completely different quadrants of gradient space, while in Canvas 2 the covering disks shrink across all three data clusters!",
+      "start": 143.566,
+      "end": 159.383,
+      "duration": 15.817
+    },
+    {
+      "index": 11,
+      "speaker": "Dr. Nova",
+      "text": "Precisely what the theory predicts! Compare that to pure margin sampling, which stacks all four queries on top of one another. BADGE forces the active learner to explore the frontier orthogonally.",
+      "start": 159.383,
+      "end": 171.955,
+      "duration": 12.572
+    },
+    {
+      "index": 12,
+      "speaker": "Kaito",
+      "text": "Kaito here! This calculation is crucial because it reveals the exact numerical mechanism of BADGE. Notice that both instances predict class 1, so the pseudo-label indicator is 1 for class 1 and 0 for classes 2 and 3. How do the residuals translate into gradient norms?",
+      "start": 171.955,
+      "end": 190.611,
+      "duration": 18.656
+    },
+    {
+      "index": 13,
+      "speaker": "Dr. Nova",
+      "text": "Make sure to calculate the sum of squared residuals across all three classes, multiply by the squared feature embedding norm, and compute the ratio of squared norms for k-means++ seeding!",
+      "start": 190.611,
+      "end": 202.777,
+      "duration": 12.167
+    },
+    {
+      "index": 14,
+      "speaker": "Kaito",
+      "text": "The density-weighted formulation is so practical, Dr. Nova! If an instance has maximum entropy but its local density rho is zero because it is an isolated sensor defect, the density term collapses its priority to zero!",
+      "start": 202.777,
+      "end": 217.377,
+      "duration": 14.6
+    },
+    {
+      "index": 15,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. Pure uncertainty gets trapped by isolated noise points because nobody else in the dataset looks like them. By scaling uncertainty with kernel density, we ensure we only query points that represent substantial data mass.",
+      "start": 217.377,
+      "end": 231.572,
+      "duration": 14.194
+    },
+    {
+      "index": 16,
+      "speaker": "Kaito",
+      "text": "Looking at the matrix, BADGE and Submodular Facility dominate on redundancy and outlier resistance. When should an engineering team prefer Core-Set over BADGE?",
+      "start": 231.572,
+      "end": 240.9,
+      "duration": 9.328
+    },
+    {
+      "index": 17,
+      "speaker": "Dr. Nova",
+      "text": "Core-Set is ideal when model outputs are completely uncalibrated, such as in self-supervised feature spaces prior to fine-tuning. But once a classification head exists, BADGE is superior because its hallucinated gradients integrate both confidence and diversity seamlessly.",
+      "start": 240.9,
+      "end": 255.905,
+      "duration": 15.006
+    },
+    {
+      "index": 18,
+      "speaker": "Kaito",
+      "text": "Look at Canvas 3 in the studio! The cyan line for BADGE climbs sharply and hits ninety-eight percent accuracy with only twenty-four labels. Meanwhile, the orange margin line flattens at eighty-eight percent because it keeps re-sampling the same cluster!",
+      "start": 255.905,
+      "end": 271.722,
+      "duration": 15.817
+    },
+    {
+      "index": 19,
+      "speaker": "Dr. Nova",
+      "text": "That is the visual signature of batch collapse! Without diversity constraints, margin sampling wastes budget on redundant boundary points that provide zero new gradient information to the model.",
+      "start": 271.722,
+      "end": 283.077,
+      "duration": 11.356
+    },
+    {
+      "index": 20,
+      "speaker": "Kaito",
+      "text": "Kaito here! This proof is one of the crown jewels of discrete optimization. The key step is showing that at each step k, the remaining gap between the optimum and our current value shrinks by a factor of 1 minus 1 over b. How does compounding this over b steps yield 1 minus 1 over e?",
+      "start": 283.077,
+      "end": 305.788,
+      "duration": 22.711
+    },
+    {
+      "index": 21,
+      "speaker": "Dr. Nova",
+      "text": "Remember the fundamental calculus limit: 1 minus 1 over b raised to the power b is strictly upper-bounded by 1 over e. Subtracting that from 1 gives sixty-three point two percent!",
+      "start": 305.788,
+      "end": 318.361,
+      "duration": 12.572
+    },
+    {
+      "index": 22,
+      "speaker": "Kaito",
+      "text": "The Novartis analog trap is such a vivid warning! If your model is uncertain about a toxic chemical family, naive active learning will ask you to synthesize every minor tweak of that toxic poison until your entire budget is gone.",
+      "start": 318.361,
+      "end": 334.583,
+      "duration": 16.222
+    },
+    {
+      "index": 23,
+      "speaker": "Dr. Nova",
+      "text": "Exactly, Kaito. And Cruise faced the exact analog in autonomous vision: optical flares are maximally uncertain, so naive algorithms waste annotators' time on optical static. Advanced diversity and density gating are non-negotiable in production.",
+      "start": 334.583,
+      "end": 348.372,
+      "duration": 13.789
+    },
+    {
+      "index": 24,
+      "speaker": "Kaito",
+      "text": "Kaito here! Remember what we learned from Novartis and Cruise: you cannot rely on pure margin or pure entropy alone when sampling in batches. The answer must combine uncertainty with a formal geometric or gradient dispersion mechanism!",
+      "start": 348.372,
+      "end": 363.377,
+      "duration": 15.006
+    },
+    {
+      "index": 25,
+      "speaker": "Dr. Nova",
+      "text": "Review our discussion on BADGE hallucinated gradients and core-set minimax bounds, and lock in your answer in the checkpoint card below.",
+      "start": 363.377,
+      "end": 371.894,
+      "duration": 8.517
+    },
+    {
+      "index": 26,
+      "speaker": "Kaito",
+      "text": "The cold-start warning is so important! If the deep backbone hasn't learned meaningful representations yet, the Euclidean distance between feature vectors is pure garbage, so core-set selection will just pick arbitrary random corners of the space.",
+      "start": 371.894,
+      "end": 386.494,
+      "duration": 14.6
+    },
+    {
+      "index": 27,
+      "speaker": "Dr. Nova",
+      "text": "Exactly. You must bootstrap with a self-supervised foundation model or a small stratified seed set. Active learning guides the refinement of decision boundaries; it cannot create a feature geometry out of pure randomness.",
+      "start": 386.494,
+      "end": 399.877,
+      "duration": 13.383
+    },
+    {
+      "index": 28,
+      "speaker": "Kaito",
+      "text": "The vectorization in that BADGE implementation is remarkably clean! Generating the hallucinated gradient embedding takes only three NumPy operations: computing the residuals, outer multiplying by the features, and reshaping into a K-by-d matrix.",
+      "start": 399.877,
+      "end": 413.261,
+      "duration": 13.383
+    },
+    {
+      "index": 29,
+      "speaker": "Dr. Nova",
+      "text": "And notice how fast it runs: computing gradient embeddings for ten thousand instances takes less than fifty milliseconds on a CPU, making it perfectly viable for real-time web annotation queues.",
+      "start": 413.261,
+      "end": 425.427,
+      "duration": 12.167
+    },
+    {
+      "index": 30,
+      "speaker": "Kaito",
+      "text": "What a masterclass, Dr. Nova! We went from the painful failure modes of naive uncertainty to the rigorous mathematical beauty of BADGE and submodular coverage. Active learning isn't just about picking hard examples; it's about picking diverse, representative, and learnable examples.",
+      "start": 425.427,
+      "end": 442.055,
+      "duration": 16.628
+    },
+    {
+      "index": 31,
+      "speaker": "Dr. Nova",
+      "text": "Well summarized, Kaito. When uncertainty meets geometry, machine learning models achieve exponential label efficiency. Join us in Lesson 11.4 as we bring these active techniques into real-world production architectures!",
+      "start": 442.055,
+      "end": 453.816,
+      "duration": 11.761
+    }
+  ]
+}

@@ -1,0 +1,379 @@
+{
+  "duration": 811.752,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Chapter 5, Lesson 9: Pipelines, Automation, and Visualization! Across Lessons 5.1 through 5.8, we mastered the statistical cleaning techniques, scaling mathematics, feature embeddings, and high-throughput vectorization engines. Today, we unite those components into leak-free, reproducible, production-grade cleaning pipelines.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 24.48
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Ad-hoc notebook scripts that mutate global tables before train-test splitting introduce subtle information leakage, systematically invalidating cross-validation generalization estimates and triggering catastrophic accuracy collapses in live deployment.",
+          "dock": "main",
+          "start": 24.48,
+          "end": 39.768
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "A resilient preprocessing architecture models every transformation as an encapsulated Directed Acyclic Graph of pure functional operators, guaranteeing that fitted statistics such as imputation means, normalization scales, and feature selectors depend exclusively on training fold observations. Throughout this lecture, we will formalize the information theory of leakage, explore Deep Feature Synthesis, dissect missingness nullity correlations, and build live interactive DAG auditors.",
+          "dock": "main",
+          "start": 39.768,
+          "end": 70.872
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us examine the complete fold-isolated Directed Acyclic Graph architecture. At the top level, the raw input dataset is partitioned immediately via a stratified or grouped fold split before a single numerical transformation executes.",
+          "dock": "main",
+          "start": 70.872,
+          "end": 86.544
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Inside each cross-validation training fold, sequential operators fit and learn their internal parameters exclusively on training data: first the Imputer learns theta_imp, next the RobustScaler fits theta_scale on the imputed training vectors, then the Feature Selector fits theta_sel, and finally the estimator learns theta_model.",
+          "dock": "main",
+          "start": 86.544,
+          "end": 109.008
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Those fitted constants are then frozen and transmitted as a read-only parameter bundle into the validation holdout partition. Every transform operator evaluates unseen validation points without ever recomputing any statistics, yielding a mathematically unbiased out-of-sample risk estimate.",
+          "dock": "main",
+          "start": 109.008,
+          "end": 128.016
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us formalize preprocessing leakage using statistical learning theory and Shannon information theory. Consider a dataset D partitioned into disjoint training cohort D_train and evaluation cohort D_test, and let theta-hat denote the learned parameters of a preprocessing operator T.",
+          "dock": "main",
+          "start": 128.016,
+          "end": 147.6
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "If theta-hat is fitted globally across the union D_train union D_test before splitting, the mutual information between the transformed feature representation T(x) and the held-out evaluation cohort D_test becomes strictly greater than zero.",
+          "dock": "main",
+          "start": 147.6,
+          "end": 164.688
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because this unauthorized side-channel embeds distributional geometry and label correlations of unseen holdout instances directly into the training representation, the expected empirical cross-validation risk becomes systematically and dangerously lower than the true population risk of the classifier.",
+          "dock": "main",
+          "start": 164.688,
+          "end": 182.904
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "How do we guarantee zero mutual information contamination mathematically? We model an L-stage preprocessing graph as a strict composite functional operator F of x parameterized solely by Theta_train.",
+          "dock": "main",
+          "start": 182.904,
+          "end": 197.352
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "As shown in our mathematical specification, stage l fits its parameters theta_l exclusively on the output of preceding training-fold stages evaluated on D_train. No stage is ever exposed to held-out instances during fitting.",
+          "dock": "main",
+          "start": 197.352,
+          "end": 213.744
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Equally vital in production is serialization. Always bundle heterogeneous numeric, categorical, and text pipelines inside a unified ColumnTransformer wrapped by a Scikit-Learn Pipeline, then serialize the entire unified artifact using ONNX or skops. Separating preprocessing code from model weights guarantees training-serving skew during live inference.",
+          "dock": "main",
+          "start": 213.744,
+          "end": 238.176
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Writing complex manual SQL joins and relational aggregations across multi-table schemas is both brittle and slow. Deep Feature Synthesis, introduced by Kanter and Veeramachaneni in 2015, automates multi-table feature extraction by recursively traversing entity-relationship graphs.",
+          "dock": "main",
+          "start": 238.176,
+          "end": 257.664
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Deep Feature Synthesis combines two directional primitives. Forward transformations traverse from many to one, propagating scalar parent attributes\u2014such as Customer SignupDate\u2014directly onto child Transaction rows. Backward transformations traverse from one to many, stacking aggregate operators like MEAN, SUM, STD, SKEW, and COUNT across related child event sets.",
+          "dock": "main",
+          "start": 257.664,
+          "end": 283.512
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "However, automated relational synthesis carries a severe temporal hazard: when aggregating child event logs backward onto a parent prediction entity, you must strictly enforce timestamp cutoff barriers t(e_j) < t_cutoff(E_i) to prevent future events from leaking backward into historical training rows.",
+          "dock": "main",
+          "start": 283.512,
+          "end": 305.28
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our first interactive workbench: the Pipeline DAG Order and Leakage Audit Studio! Use the scope selector to compare global pre-CV fitting against encapsulated Pipeline execution.",
+          "dock": "main",
+          "start": 305.28,
+          "end": 318.624
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Watch how placing KNNImputer, RobustScaler, or SelectKBest ahead of the StratifiedKFold boundary opens a mutual information leak, artificially inflating CV ROC-AUC while production holdout collapses.",
+          "dock": "simulator",
+          "start": 318.624,
+          "end": 332.976
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Active Checkpoint 1. Consider our Section 5 empirical experiment: generating 100 observations across 1,000 pure independent Gaussian noise features with completely random binary labels. Running SelectKBest before cross-validation produces roughly 0.92 ROC-AUC. Select the exact mathematical explanation for why cross-validation fails to catch this illusion.",
+          "dock": "checkpoint",
+          "start": 332.976,
+          "end": 361.2
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us examine a landmark real-world failure mode: auditing an automated credit default scoring pipeline trained on 120,000 LendingClub borrower records.",
+          "dock": "main",
+          "start": 361.2,
+          "end": 371.904
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In the initial global architecture, an engineering team imputed missing credit inquiries and ran SelectKBest feature filtering across the combined dataset prior to 5-fold cross-validation. Cross-validation reported a celebratory ROC-AUC of 0.884, but immediately upon deployment against an out-of-time quarter, holdout AUC plunged to 0.712\u2014a catastrophic collapse of minus 0.172.",
+          "dock": "main",
+          "start": 371.904,
+          "end": 400.848
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "When the pipeline was refactored inside an encapsulated Scikit-Learn Pipeline DAG, cross-validation reported an honest 0.725 ROC-AUC, matching the production holdout metric of 0.721 within 0.004\u2014zero illusory optimism and full auditability.",
+          "dock": "main",
+          "start": 400.848,
+          "end": 421.488
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Built-in imputer and scaler classes cannot handle every domain-specific invariant. When writing custom domain cleaners, how do we guarantee they snap natively into ColumnTransformer, Pipeline, and GridSearchCV without introducing leakage?",
+          "dock": "main",
+          "start": 421.488,
+          "end": 437.4
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Every custom preprocessing operator must inherit from two Scikit-Learn mixins: BaseEstimator and TransformerMixin. BaseEstimator exposes automatic get_params and set_params introspection, allowing hyperparameter sweeps like preprocessor double-underscore num double-underscore imp double-underscore n_neighbors directly across the DAG.",
+          "dock": "main",
+          "start": 437.4,
+          "end": 461.304
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Meanwhile, implementing fit(self, X, y=None) returning self isolates parameter learning exclusively inside training folds\u2014conventionally storing learned state in trailing-underscore attributes such as self.medians_\u2014while transform(self, X) maps inputs read-only without mutating learned state.",
+          "dock": "main",
+          "start": 461.304,
+          "end": 482.544
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us shift from execution pipelines to automated visual diagnostics. Simple missingness summary percentages\u2014such as noting that 15% of Income and 15% of Credit Score are null\u2014conceal crucial structural dependencies across columns.",
+          "dock": "main",
+          "start": 482.544,
+          "end": 499.32
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "To expose hidden co-missingness architecture, we project the raw dataset into a binary missingness indicator matrix M in {0, 1}^{n x d}, where M_ij equals 1 whenever attribute j of row i is null, and 0 otherwise.",
+          "dock": "main",
+          "start": 499.32,
+          "end": 516.6
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Computing Pearson's phi-correlation coefficient r_M(j, k) across indicator columns quantifies the exact statistical coupling between missing values on a normalized scale from minus 1.0 to plus 1.0.",
+          "dock": "main",
+          "start": 516.6,
+          "end": 532.08
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Interpreting the sign and magnitude of nullity correlation r_M determines the correct imputation strategy\u2014and prevents destructive errors where structurally absent data gets overwritten with synthetic averages.",
+          "dock": "main",
+          "start": 532.08,
+          "end": 545.472
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "First, a strong positive coefficient approaching plus 1.0 signals a joint block failure under Missing At Random mechanics\u2014such as a clinical blood panel battery where missing BUN almost always implies missing Creatinine, or a credit bureau API timeout knocking out both Income and Credit Score simultaneously.",
+          "dock": "main",
+          "start": 545.472,
+          "end": 565.272
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Second, a strong negative coefficient approaching minus 1.0 indicates mutually exclusive conditional branching\u2014for instance, Employed Salary versus Unemployment Duration, or EmploymentYears versus RetirementYears. Missing values here signify 'Structurally Not Applicable', not unknown measurements, and must NEVER be filled with population means. Finally, r_M near 0.0 reflects independent random attrition consistent with MCAR.",
+          "dock": "main",
+          "start": 565.272,
+          "end": 596.04
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our second interactive workbench: the Missingness Nullity Matrix and Correlation Inspector! Examine the barcode matrix plotting observed blue cells versus white NULL cells across 80 sampled rows.",
+          "dock": "main",
+          "start": 596.04,
+          "end": 609.816
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Switch between MCAR independent drops, Joint Panel Battery outages with strong positive correlation, and Mutually Exclusive Branching with negative phi correlation to see how r_M exposes underlying ingestion structure instantly.",
+          "dock": "simulator",
+          "start": 609.816,
+          "end": 625.272
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Active Checkpoint 2. During an audit of an enterprise borrower table, nullity correlation gives r_M of Income and CreditScore equal to plus 0.92, while EmploymentYears and RetirementYears equal minus 0.88. Diagnose the exact structural cause behind both correlations and their proper cleaning strategy.",
+          "dock": "checkpoint",
+          "start": 625.272,
+          "end": 648.336
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Once leak-free pipeline transformations and nullity checks are validated experimentally, enterprise workflows automate continuous monitoring over live ingestion queues.",
+          "dock": "main",
+          "start": 648.336,
+          "end": 659.376
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "As formalized in Schelter et al.'s VLDB architecture, automated constraint engines enforce completeness thresholds, distribution drift bounds, and nullity correlation assertions before any batch enters training.",
+          "dock": "main",
+          "start": 659.376,
+          "end": 673.032
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Inside Scikit-Learn, a heterogeneous ColumnTransformer splits continuous numeric features into a KNNImputer plus StandardScaler sub-pipeline, while concurrently routing categorical labels through most-frequent imputation and OneHotEncoder with handle_unknown set to ignore\u2014preventing unseen production labels from crashing inference endpoints.",
+          "dock": "main",
+          "start": 673.032,
+          "end": 694.872
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now let us examine our production verification module powered by Pydantic V2. Here we implement PipelineLeakageAuditReport to empirically demonstrate both preprocessing leakage and automated nullity telemetry.",
+          "dock": "main",
+          "start": 694.872,
+          "end": 708.888
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "First, the module executes the pure-noise sanity check across 100 observations and 1,000 uncorrelated standard normal columns. Pre-CV SelectKBest hallucinates over 0.85 AUC, whereas wrapping the exact same selector inside Pipeline restores the honest 0.50 null baseline.",
+          "dock": "main",
+          "start": 708.888,
+          "end": 730.536
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Second, compute_nullity_correlation inspects binary missingness indicators, asserting detection of strong co-missingness clusters above plus 0.90 between income and credit_score before training the unified ColumnTransformer pipeline.",
+          "dock": "main",
+          "start": 730.536,
+          "end": 747.696
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Congratulations on mastering Lesson 5.9! We have derived the information theory of preprocessing leakage, verified composite functional encapsulation, explored Deep Feature Synthesis with temporal cutoff barriers, and inspected Pearson nullity correlation matrices.",
+          "dock": "main",
+          "start": 747.696,
+          "end": 765.912
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Remember the Four Golden Axioms of Automated Cleaning Pipelines: Axiom 1, encapsulate every imputer, scaler, and feature selector strictly inside cross-validation folds. Axiom 2, audit nullity correlations visually to catch joint block outages and skip-logic branches before filling missing cells.",
+          "dock": "main",
+          "start": 765.912,
+          "end": 786.504
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Axiom 3, constrain relational DFS backward aggregations with strict timestamp barriers. Axiom 4, serialize the complete ColumnTransformer plus Estimator bundle as a single unified artifact. Next, in Lesson 5.10, we culminate Chapter 5 by examining enterprise data governance, organizational failure modes, and best practices.",
+          "dock": "main",
+          "start": 786.504,
+          "end": 811.752
+        }
+      ]
+    }
+  ]
+}
