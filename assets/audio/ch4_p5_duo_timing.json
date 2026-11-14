@@ -1,0 +1,505 @@
+{
+  "duration": 616.056,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, early ML teams always start by putting URLs in a Google Sheet or running a quick Tkinter script locally. Why do production platforms require such complex distributed architecture?",
+          "dock": "main",
+          "start": 0.0,
+          "end": 12.36
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because raw media scales to petabytes, Kaito! If ten annotators load twenty gigabytes of whole-slide pathology images concurrently through an application server, the backend crashes instantly from memory exhaustion.",
+          "dock": "main",
+          "start": 12.36,
+          "end": 25.92
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And without atomic leases, two workers might spend an hour labeling the exact same CT scan at the same time!",
+          "dock": "main",
+          "start": 25.92,
+          "end": 32.64
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Distributed infrastructure decouples storage from control, enforces ephemeral worker locks, and runs automated statistical gates to guarantee dataset integrity.",
+          "dock": "main",
+          "start": 32.64,
+          "end": 44.52
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! Why can't we just store image files in a standard PostgreSQL BYTEA column? It keeps everything in one neat transaction and avoids managing multiple cloud buckets!",
+          "dock": "main",
+          "start": 44.52,
+          "end": 57.432
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because a single gigapixel pathology slide is two gigabytes uncompressed, Kaito! If twenty doctors open cases concurrently, PostgreSQL attempts to stream forty gigabytes of binary payload through its shared memory pool.",
+          "dock": "main",
+          "start": 57.432,
+          "end": 71.712
+        },
+        {
+          "speaker": "Kaito",
+          "text": "That completely flushes out all cached B-tree indexes and starves transactional queries across the entire company!",
+          "dock": "main",
+          "start": 71.712,
+          "end": 78.504
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. The database should hold only lightweight JSON manifests and coordinates. High-resolution pixels belong in object storage, streaming in tiny 256-pixel tiles via pre-signed URLs.",
+          "dock": "main",
+          "start": 78.504,
+          "end": 93.264
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, can human workers really be modeled as mathematical servers in an M/M/c queue like CPU cores or network switches?",
+          "dock": "main",
+          "start": 93.264,
+          "end": 101.976
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes, Kaito! While individual humans have varying speeds, the aggregate task completion times across hundreds of workers closely follow an exponential distribution.",
+          "dock": "main",
+          "start": 101.976,
+          "end": 113.592
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And if our team has ten workers who each finish two tasks a minute, our total capacity is twenty tasks per minute!",
+          "dock": "main",
+          "start": 113.592,
+          "end": 120.528
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. If task ingestion exceeds twenty per minute, utilization rho climbs past one, and incoming tasks pile up without bound.",
+          "dock": "main",
+          "start": 120.528,
+          "end": 130.392
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! In manufacturing and business school, managers are taught to aim for 95 or 99 percent workforce utilization so nobody sits idle. Why is that considered a fatal mistake here?",
+          "dock": "main",
+          "start": 130.392,
+          "end": 144.312
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because in stochastic queuing systems with random arrivals, operating at 95 percent utilization causes queue wait times to skyrocket through the ceiling, Kaito!",
+          "dock": "main",
+          "start": 144.312,
+          "end": 154.68
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Look at the formula: 1 divided by 1 minus rho! At 95% utilization, 1 minus 0.95 is 0.05, so the multiplier is 20!",
+          "dock": "main",
+          "start": 154.68,
+          "end": 166.344
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. A slight 6 percent uptick in arrivals pushes utilization over 100 percent, turning a 12-second queue wait into an infinite backlog cascade that never clears.",
+          "dock": "main",
+          "start": 166.344,
+          "end": 178.632
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! How could providing AI suggestions ever make a human slower than starting from a blank screen? Surely any proposal is better than nothing!",
+          "dock": "main",
+          "start": 178.632,
+          "end": 189.84
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Think about messy bounding boxes or hallucinated polygon vertices, Kaito! First the human has to inspect the mess, delete phantom boxes, zoom in to untangle overlapping edges, and then draw the boundary anyway.",
+          "dock": "main",
+          "start": 189.84,
+          "end": 204.36
+        },
+        {
+          "speaker": "Kaito",
+          "text": "If debugging a bad proposal takes 42 seconds, but drawing from a clean slate takes only 30 seconds, correcting errors is forty percent slower than scratch work!",
+          "dock": "main",
+          "start": 204.36,
+          "end": 213.864
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! If model precision drops below thirty-two percent in that scenario, the AI creates negative speedup and exhausts your workers.",
+          "dock": "main",
+          "start": 213.864,
+          "end": 223.512
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, look at the M/M/c Queuing Studio above us! We currently have 10 workers handling 18 tasks per minute with 72 percent utilization.",
+          "dock": "sim",
+          "start": 223.512,
+          "end": 234.624
+        },
+        {
+          "speaker": "Kaito",
+          "text": "The queue wait time is only about 2 seconds, and the buffer has less than one task waiting! Now watch what happens when I simulate a surge to 26 tasks per minute!",
+          "dock": "sim",
+          "start": 234.624,
+          "end": 244.992
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at the red warning badge and the backlog dots piling up! Utilization exceeded 100 percent, and expected wait time shot to infinity!",
+          "dock": "sim",
+          "start": 244.992,
+          "end": 254.88
+        },
+        {
+          "speaker": "Kaito",
+          "text": "That visually proves why data platforms need elastic autoscaling and strict rate-limiting gates!",
+          "dock": "sim",
+          "start": 254.88,
+          "end": 260.832
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, let's see if our engineers can spot what happens when a 95% loaded workforce receives a seemingly tiny 6% bump in arrivals!",
+          "dock": "checkpoint",
+          "start": 260.832,
+          "end": 270.048
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Ten workers completing 3 tasks a minute equals 30 tasks total capacity. If arrivals hit 30.2, what does queuing theory predict? Choose the right answer above!",
+          "dock": "checkpoint",
+          "start": 270.048,
+          "end": 282.432
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, how does pre-annotation cause an eight percent recall drop? If the model proposes five cars and misses a pedestrian, why doesn't the human just draw the pedestrian?",
+          "dock": "main",
+          "start": 282.432,
+          "end": 293.496
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because human visual attention is cognitive and selective, Kaito! When bright bounding boxes light up on screen, your eyes naturally focus on confirming what is already there.",
+          "dock": "main",
+          "start": 293.496,
+          "end": 304.608
+        },
+        {
+          "speaker": "Kaito",
+          "text": "The annotator checks the five cars, feels like the job is done, and clicks submit without scanning the dark corners for pedestrians!",
+          "dock": "main",
+          "start": 304.608,
+          "end": 312.36
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. That is anchoring bias. That is why production systems hide pre-labels on five percent of tasks to benchmark unassisted human visual recall.",
+          "dock": "main",
+          "start": 312.36,
+          "end": 323.76
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, what happens if an annotator claims a critical autonomous vehicle lidar frame and then goes to lunch without clicking submit?",
+          "dock": "main",
+          "start": 323.76,
+          "end": 331.656
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Without an ephemeral lease, that frame is locked forever, delaying the entire training pipeline! With Redis TTL leases, the lock expires after five minutes of silence.",
+          "dock": "main",
+          "start": 331.656,
+          "end": 343.464
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And why do we add randomized jitter when releasing the lock?",
+          "dock": "main",
+          "start": 343.464,
+          "end": 347.352
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because if fifty disconnected tasks all expire at exactly the same microsecond, hundreds of polling workers will hammer the Redis queue at once. Jitter spreads out re-acquisition smoothly.",
+          "dock": "main",
+          "start": 347.352,
+          "end": 359.304
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, if honeypot tasks have known answers, why don't clever crowd workers just inspect the browser network tab to find the gold labels?",
+          "dock": "main",
+          "start": 359.304,
+          "end": 367.536
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because the client never receives the gold label, Kaito! The honeypot task payload is byte-for-byte identical to a real task. Only the server-side audit database checks the worker's submission against ground truth.",
+          "dock": "main",
+          "start": 367.536,
+          "end": 381.312
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And the frontend measures how long they spend looking at the image! If someone submits twenty complex audio segmentations in two seconds, the system knows it's a script!",
+          "dock": "main",
+          "start": 381.312,
+          "end": 391.848
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Combined with Wald's Sequential Probability Ratio Test, we can statistically prove whether a worker is reliable in under a dozen tasks.",
+          "dock": "main",
+          "start": 391.848,
+          "end": 402.144
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why is Wald's SPRT better than just reviewing a fixed batch of fifty annotations every Friday?",
+          "dock": "main",
+          "start": 402.144,
+          "end": 408.912
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Two huge reasons, Kaito! First: damage containment. If a worker gets fatigued or starts botting on Monday, a Friday audit lets them corrupt thousands of training examples all week long.",
+          "dock": "main",
+          "start": 408.912,
+          "end": 422.4
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And SPRT catches them in just two or three failed honeypots on Monday morning and locks their account immediately!",
+          "dock": "main",
+          "start": 422.4,
+          "end": 429.0
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. And for great workers, SPRT certifies them in ten correct honeypots, cutting audit review costs by sixty to eighty percent.",
+          "dock": "main",
+          "start": 429.0,
+          "end": 439.2
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, let's test our SPRT auditor live! Try clicking Submit Accurate Honeypot several times in a row.",
+          "dock": "sim",
+          "start": 439.2,
+          "end": 447.312
+        },
+        {
+          "speaker": "Kaito",
+          "text": "The blue line is descending toward the green boundary! After 10 accurate submissions, it crossed minus 2.25 and certified the worker!",
+          "dock": "sim",
+          "start": 447.312,
+          "end": 456.576
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now reset the stream and click Submit Erroneous Label two times to simulate a distracted click-farm bot.",
+          "dock": "sim",
+          "start": 456.576,
+          "end": 463.104
+        },
+        {
+          "speaker": "Kaito",
+          "text": "In just two consecutive errors, the blue trajectory shot past plus 2.89 into red suspension! That is instant damage containment!",
+          "dock": "sim",
+          "start": 463.104,
+          "end": 472.704
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, let's test whether our engineers can calculate the break-even accuracy threshold P-star when corrections take longer than scratch work!",
+          "dock": "checkpoint",
+          "start": 472.704,
+          "end": 481.368
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Manual time is 30 seconds, verification is 4, and correction is 42! At 25 percent model accuracy, does the team speed up or slow down? Choose above!",
+          "dock": "checkpoint",
+          "start": 481.368,
+          "end": 493.704
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, if you had to architect an autonomous driving annotation system with four-camera video rigs, which stack would you deploy?",
+          "dock": "main",
+          "start": 493.704,
+          "end": 501.816
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Without hesitation: CVAT paired with Nuclio serverless GPU microservices, Kaito! Video tracking across eight synchronized cameras requires WebGL canvas tiling and RAFT optical flow to prevent browser memory exhaustion.",
+          "dock": "main",
+          "start": 501.816,
+          "end": 517.104
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And what about an oncology clinic needing medical doctors to review complex clinical pathology notes?",
+          "dock": "main",
+          "start": 517.104,
+          "end": 523.44
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "For clinical NLP, Prodigy or Label Studio with active learning. Having oncologists make rapid binary accept or reject choices in two seconds cuts review time by eighty percent compared to tedious text highlighting.",
+          "dock": "main",
+          "start": 523.44,
+          "end": 537.72
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, running Pydantic models for queuing math in unit tests seems unusual for data labeling teams. What does this prevent in production?",
+          "dock": "main",
+          "start": 537.72,
+          "end": 547.248
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "It prevents project managers from silently launching campaigns where incoming task volume exceeds workforce capacity, Kaito!",
+          "dock": "main",
+          "start": 547.248,
+          "end": 555.432
+        },
+        {
+          "speaker": "Kaito",
+          "text": "If someone configures 30 tasks per minute with only 10 workers running at 2.5 each, the validator rejects the configuration before a single dollar is spent!",
+          "dock": "main",
+          "start": 555.432,
+          "end": 565.2
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Treat annotation infrastructure with the same rigorous engineering discipline as your model training cluster.",
+          "dock": "main",
+          "start": 565.2,
+          "end": 573.192
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "What a comprehensive journey, Kaito! From Erlang-C queuing delays to the break-even math of model pre-labeling and Wald's SPRT, you now understand the mechanics of industrial annotation tooling.",
+          "dock": "main",
+          "start": 573.192,
+          "end": 585.768
+        },
+        {
+          "speaker": "Kaito",
+          "text": "It completely changes how I view annotation platforms! They aren't just drawing interfaces\u2014they are real-time distributed queuing and statistical auditing systems!",
+          "dock": "main",
+          "start": 585.768,
+          "end": 596.064
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. But what happens when multiple annotators disagree on a fuzzy edge case? How do we find ground truth when annotators have different individual error rates?",
+          "dock": "main",
+          "start": 596.064,
+          "end": 607.488
+        },
+        {
+          "speaker": "Kaito",
+          "text": "That's Lesson 4.6: Quality Control, Fleiss' Kappa, and the Dawid-Skene EM algorithm! Let's dive right in!",
+          "dock": "main",
+          "start": 607.488,
+          "end": 616.056
+        }
+      ]
+    }
+  ]
+}

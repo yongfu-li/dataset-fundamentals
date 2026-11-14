@@ -1,0 +1,505 @@
+{
+  "duration": 616.608,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, if our two annotators agree on 95 out of 100 images, isn't that a solid 95 percent accuracy score? Why do we need complex statistical reliability theory?",
+          "dock": "main",
+          "start": 0.0,
+          "end": 12.24
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because raw percent agreement is mathematically blind to class prevalence, Kaito! If a medical scan has a 95 percent baseline negative rate, two raters who label every single case negative achieve 95 percent raw agreement while possessing zero diagnostic skill.",
+          "dock": "main",
+          "start": 12.24,
+          "end": 29.136
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Wait, so they agreed on 95 percent of the cases purely by luck and base-rate guessing?!",
+          "dock": "main",
+          "start": 29.136,
+          "end": 34.872
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. That is the notorious Feinstein-Cicchetti prevalence paradox. Today, we master how chance correction and Expectation-Maximization solve this fundamental quality dilemma.",
+          "dock": "main",
+          "start": 34.872,
+          "end": 47.592
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Hold on, Dr. Nova! They agreed on 9,920 out of 10,000 scans! In school, 99.2 percent is an A-plus! Why does Cohen's Kappa give them a 0.329, which is a failing grade?",
+          "dock": "main",
+          "start": 47.592,
+          "end": 63.96
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look closely at where the disagreement happened, Kaito. Out of 100 scans where at least one radiologist detected cancer, they disagreed on 80 of them! They only agreed on 20 cancer detections.",
+          "dock": "main",
+          "start": 63.96,
+          "end": 77.736
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Oh! Because almost every scan was healthy, agreeing on the healthy scans was trivial. When it actually mattered to detect cancer, they disagreed 80 percent of the time!",
+          "dock": "main",
+          "start": 77.736,
+          "end": 89.304
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on. Chance agreement P_e was 98.81 percent. Cohen's Kappa measures agreement in the tiny window beyond chance: one minus P_e. In that critical window, their performance collapsed.",
+          "dock": "main",
+          "start": 89.304,
+          "end": 105.24
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, what happens if two annotators have Kappa less than zero? Can agreement actually be worse than random guessing?",
+          "dock": "main",
+          "start": 105.24,
+          "end": 113.592
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes, absolutely! A negative Kappa indicates systematic disagreement. When Rater 1 votes Positive, Rater 2 almost always votes Negative, and vice versa.",
+          "dock": "main",
+          "start": 113.592,
+          "end": 125.76
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Wait, so they aren't guessing randomly\u2014they have fundamentally opposite interpretations of the labeling guideline!",
+          "dock": "main",
+          "start": 125.76,
+          "end": 132.36
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Paradoxically, systematic disagreement contains enormous information! If a rater is consistently inverted, we can mathematically invert their labels to recover true signal, as we will prove in Dawid-Skene.",
+          "dock": "main",
+          "start": 132.36,
+          "end": 147.192
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why do medical datasets care so much about Quadratic Weighted Kappa compared to standard Kappa?",
+          "dock": "main",
+          "start": 147.192,
+          "end": 153.816
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because disease severity is continuous, Kaito. If two pathologists disagree whether a tumor is Stage 2 or Stage 3, that's a borderline boundary call. But if one says Benign Stage 1 and the other says Metastatic Stage 5, that's catastrophic.",
+          "dock": "main",
+          "start": 153.816,
+          "end": 171.0
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And standard Kappa penalizes both mistakes with the exact same weight! So a high-quality team arguing over subtle boundaries looks like they have terrible agreement!",
+          "dock": "main",
+          "start": 171.0,
+          "end": 181.104
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. In the landmark 2016 Diabetic Retinopathy trials, unweighted Kappa was only 0.55, threatening validation. Quadratic Weighted Kappa yielded 0.84, proving FDA-grade clinical consensus.",
+          "dock": "main",
+          "start": 181.104,
+          "end": 198.336
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, if Fleiss' Kappa only looks at vote counts, does it know if Rater A is an expert while Rater B is a novice?",
+          "dock": "main",
+          "start": 198.336,
+          "end": 205.656
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "It does not, Kaito! Fleiss treats all raters as exchangeable random draws. It cannot distinguish between a persistent expert and a bot.",
+          "dock": "main",
+          "start": 205.656,
+          "end": 215.832
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So if we want to track individual worker competence and find out who is making mistakes, what do we use?",
+          "dock": "main",
+          "start": 215.832,
+          "end": 222.216
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is where latent-variable modeling comes in! The Dawid-Skene algorithm tracks individual confusion matrices for every single worker.",
+          "dock": "main",
+          "start": 222.216,
+          "end": 231.336
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, try clicking the High Prevalence Paradox preset button on the contingency matrix above me.",
+          "dock": "sim",
+          "start": 231.336,
+          "end": 237.696
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Whoa! Raw agreement is 96 percent, but Cohen's Kappa is only 0.323! The Landis and Koch badge turned red: Poor and Unreliable!",
+          "dock": "sim",
+          "start": 237.696,
+          "end": 249.168
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice why: with 95 negative cases and only 1 positive case agreed upon, chance agreement was 94.1 percent. The raters failed on two-thirds of the positive disease detections.",
+          "dock": "sim",
+          "start": 249.168,
+          "end": 262.392
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Now I see why relying on percent agreement in medical AI would be medical malpractice!",
+          "dock": "sim",
+          "start": 262.392,
+          "end": 267.936
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, our engineers need to evaluate this 10,000-scan clinical mammography cohort. Raw agreement is 99.2 percent, but how does Cohen's Kappa judge their diagnostic consensus?",
+          "dock": "quiz",
+          "start": 267.936,
+          "end": 280.728
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Remember our calculations from Slide 2! Calculate expected chance agreement Pe from the marginals before picking your answer!",
+          "dock": "quiz",
+          "start": 280.728,
+          "end": 289.368
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why do natural language processing researchers always insist on Krippendorff's alpha instead of Fleiss' Kappa?",
+          "dock": "main",
+          "start": 289.368,
+          "end": 296.664
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because in real NLP tasks like token span labeling, crowd annotators don't all label every single sentence! Some annotators label 50 documents, while others label 200.",
+          "dock": "main",
+          "start": 296.664,
+          "end": 308.904
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And Fleiss' Kappa breaks down if rater count varies or if ratings are missing!",
+          "dock": "main",
+          "start": 308.904,
+          "end": 313.512
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. Krippendorff's Alpha constructs a coincidence matrix across all available rater pairs, seamlessly handling missing values and arbitrary rater overlaps.",
+          "dock": "main",
+          "start": 313.512,
+          "end": 324.816
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, isn't majority voting democratic? If four workers say an email is spam and one says not spam, shouldn't the majority win?",
+          "dock": "main",
+          "start": 324.816,
+          "end": 334.224
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Not if the four workers are spammers themselves who always click 'not spam' without reading to finish tasks in half a second, Kaito!",
+          "dock": "main",
+          "start": 334.224,
+          "end": 342.264
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Wait, so click-farm workers can easily outvote a conscientious human expert four-to-one?!",
+          "dock": "main",
+          "start": 342.264,
+          "end": 348.072
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes! Majority voting assumes all humans are equally competent. In dataset engineering, we never trust raw vote counts. We use latent-variable models to estimate worker credibility.",
+          "dock": "main",
+          "start": 348.072,
+          "end": 362.16
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, this sounds like a chicken-and-egg problem! How can we discover which workers are accurate if we don't know the true labels, and how can we find the true labels if we don't know who to trust?",
+          "dock": "main",
+          "start": 362.16,
+          "end": 373.584
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is the mathematical magic of the Expectation-Maximization algorithm, Kaito! We iterate back and forth.",
+          "dock": "main",
+          "start": 373.584,
+          "end": 381.768
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Iterate how? In step one, do we guess the labels from majority vote, and in step two, evaluate workers based on that guess?",
+          "dock": "main",
+          "start": 381.768,
+          "end": 390.576
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! That's the E-step and M-step. In each pass, consistent workers gain higher credibility weights, which refines the latent posterior until convergence.",
+          "dock": "main",
+          "start": 390.576,
+          "end": 402.576
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! Did you just say that a worker who is 95 percent wrong is actually useful?!",
+          "dock": "main",
+          "start": 402.576,
+          "end": 409.944
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes, Kaito! As long as their errors are systematic rather than random noise! If an adversary consistently labels cats as dogs and dogs as cats, their confusion matrix has high off-diagonal probabilities.",
+          "dock": "main",
+          "start": 409.944,
+          "end": 424.968
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So Dawid-Skene simply flips their answers upside down!",
+          "dock": "main",
+          "start": 424.968,
+          "end": 429.072
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. The only worker who provides zero mutual information is a worker who guesses 50/50 with zero correlation. Information is symmetry!",
+          "dock": "main",
+          "start": 429.072,
+          "end": 440.208
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, look at Item 2 in the table above me. Worker 1 says Label 1, but Workers 2 and 3 outvote them with Label 0.",
+          "dock": "sim",
+          "start": 440.208,
+          "end": 449.4
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Majority vote says Class 0 two-to-one! But Worker 1 is our senior specialist! Let me click Step EM Algorithm!",
+          "dock": "sim",
+          "start": 449.4,
+          "end": 458.832
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Look at the result! Dawid-Skene computed Worker 1's diagonal accuracy as 98 percent and recognized that Worker 3 votes zero 96 percent of the time.",
+          "dock": "sim",
+          "start": 458.832,
+          "end": 469.896
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And Item 2 flipped to Class 1 with 91.8 percent confidence! The expert won cleanly over the spammers!",
+          "dock": "sim",
+          "start": 469.896,
+          "end": 477.96
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kaito, this is a classic real-world crowdsourcing attack: 4 bots submitting zero against one senior human specialist who flags toxic hate speech as 1.",
+          "dock": "quiz",
+          "start": 477.96,
+          "end": 488.136
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Will majority voting let the toxic comment through, and how does Dawid-Skene's multiplicative E-step prevent the corruption?",
+          "dock": "quiz",
+          "start": 488.136,
+          "end": 495.384
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, the SNLI case study is fascinating. If 3 people say a sentence is Entailment and 2 say Neutral, forcing an Entailment label actually destroys the true distribution!",
+          "dock": "main",
+          "start": 495.384,
+          "end": 507.024
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly, Kaito! Language and visual perception are inherently nuanced. Forcing an arbitrary 3-to-2 split into a hard label teaches neural networks to be dangerously overconfident on borderline cases.",
+          "dock": "main",
+          "start": 507.024,
+          "end": 521.448
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So modern AI architectures train directly on the soft 60/40 probability vector using Kullback-Leibler divergence!",
+          "dock": "main",
+          "start": 521.448,
+          "end": 528.912
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely right! Quality control in modern dataset engineering embraces valid human uncertainty rather than sweeping it under the rug.",
+          "dock": "main",
+          "start": 528.912,
+          "end": 538.008
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, how does an enterprise engineering team actually run this code during active annotation campaigns?",
+          "dock": "main",
+          "start": 538.008,
+          "end": 544.896
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Platform engineers run this script inside automated CI/CD data gates, Kaito. Every night, the engine computes Cohen's Kappa on gold honeypots and runs Dawid-Skene on all multi-annotated batches.",
+          "dock": "main",
+          "start": 544.896,
+          "end": 558.792
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And if Kappa drops below 0.75, or if Dawid-Skene detects a worker with an erratic confusion matrix, the pipeline automatically flags them for adjudication!",
+          "dock": "main",
+          "start": 558.792,
+          "end": 569.04
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. No batch of training data ever reaches a GPU cluster without passing automated statistical reliability certification.",
+          "dock": "main",
+          "start": 569.04,
+          "end": 578.448
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "What an incredible journey, Kaito! From the Feinstein-Cicchetti prevalence paradox to Quadratic Weighted Kappa and Dawid-Skene EM consensus, you now possess the complete mathematical toolkit for annotation quality.",
+          "dock": "main",
+          "start": 578.448,
+          "end": 592.176
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I will never look at raw percent agreement the same way again, Dr. Nova! Chance correction and latent confusion matrices change everything.",
+          "dock": "main",
+          "start": 592.176,
+          "end": 601.272
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely. But what happens when annotation guidelines drift over time, or when crowdsourced workers collude in adversarial syndicates?",
+          "dock": "main",
+          "start": 601.272,
+          "end": 610.632
+        },
+        {
+          "speaker": "Kaito",
+          "text": "That's Lesson 4.7: Challenges in Annotation! Let's conquer it!",
+          "dock": "main",
+          "start": 610.632,
+          "end": 616.608
+        }
+      ]
+    }
+  ]
+}

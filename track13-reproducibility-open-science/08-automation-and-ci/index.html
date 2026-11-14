@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,8 +123,10 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 4px !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
           width: 100% !important;
@@ -313,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -339,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -8138,31 +8194,38 @@
 <h3 id="architectural-flowchart-end-to-end-automated-continuous-data-integration-cdi">Architectural Flowchart: End-to-End Automated Continuous Data Integration (CDI)</h3>
 <p>The following flowchart illustrates the automated lifecycle of continuous data testing, from Git pull request submission to automated drift checking, CML model benchmark evaluation, and pull request reporting.</p>
 <pre class="mermaid"><code>flowchart TD
-    A["Developer / Ingestion Bot&lt;br/&gt;Opens Git Pull Request"] --&gt; B["GitHub Actions / GitLab CI&lt;br/&gt;Runner Triggered"]
+    A["Developer / Bot&lt;br/&gt;Opens Pull Request"]:::blue --&gt; B["GitHub / GitLab CI&lt;br/&gt;Runner Triggered"]:::default
 
     subgraph CDI_Gate ["Continuous Data Integration (CDI) Gate"]
-        B --&gt; C{"Schema Contract Check&lt;br/&gt;S_contract(D) == 1?"}
-        C -- "Fail (Type / Null Error)" --&gt; D["Pipeline Blocked (Exit 1)&lt;br/&gt;Post Schema Error on PR"]
-        C -- "Pass" --&gt; E["Single-Pass Distributed Profiling&lt;br/&gt;(Deequ / Great Expectations)"]
+        B --&gt; C{"Schema Contract:&lt;br/&gt;S_contract &amp;equals; 1?"}:::amber
+        C -- "Fail" --&gt; D["Pipeline Blocked&lt;br/&gt;(Exit Code 1)"]:::coral
+        C -- "Pass" --&gt; E["Distributed Profiling&lt;br/&gt;(Deequ / Great Expectations)"]:::blue
 
-        E --&gt; F{"Multi-Dimensional Quality&lt;br/&gt;Q_harmonic &gt;= 0.85?"}
+        E --&gt; F{"Quality Gate:&lt;br/&gt;Q_harm &amp;ge; 0.85?"}:::amber
         F -- "Fail" --&gt; D
-        F -- "Pass" --&gt; G["Statistical Drift Engine&lt;br/&gt;Compute KS D_nm and PSI"]
+        F -- "Pass" --&gt; G["Statistical Drift Engine&lt;br/&gt;Compute KS &amp;amp; PSI"]:::purple
 
-        G --&gt; H{"Distribution Drift Check&lt;br/&gt;PSI &lt; 0.25 &amp; KS &lt;= D_crit?"}
-        H -- "Drift Detected (PSI &gt;= 0.25)" --&gt; I["Drift Alert &amp; Halt&lt;br/&gt;Label PR: 'data-drift-detected'"]
+        G --&gt; H{"Drift Check:&lt;br/&gt;PSI &amp;lt; 0.25 &amp;amp;&lt;br/&gt;KS &amp;le; D_crit?"}:::amber
+        H -- "Drift Detected" --&gt; I["Drift Alert &amp;amp; Halt&lt;br/&gt;Label: 'drift-detected'"]:::coral
     end
 
-    H -- "Pass (PSI &lt; 0.10)" --&gt; J["CML Headless Benchmark Runner&lt;br/&gt;Train / Eval Model on Snapshot"]
+    H -- "Pass" --&gt; J["CML Benchmark Runner&lt;br/&gt;Train &amp;amp; Eval Model"]:::blue
 
     subgraph CML_Gate ["Continuous Machine Learning (CML) Gate"]
-        J --&gt; K{"Model Performance Delta&lt;br/&gt;Delta_F1 &gt;= -0.005 &amp; Latency &lt;= 50ms?"}
-        K -- "Regression Detected" --&gt; L["Block Merge&lt;br/&gt;Post Performance Regression Diff"]
-        K -- "Pass" --&gt; M["Generate CML Markdown Report&lt;br/&gt;Attach Confusion Matrix &amp; Plots"]
+        J --&gt; K{"Perf Delta:&lt;br/&gt;&amp;Delta;F1 &amp;ge; -0.005 &amp;amp;&lt;br/&gt;Latency &amp;le; 50ms?"}:::amber
+        K -- "Regression" --&gt; L["Block Merge&lt;br/&gt;Post Perf Diff"]:::coral
+        K -- "Pass" --&gt; M["Generate CML Report&lt;br/&gt;Attach Confusion Matrix"]:::green
     end
 
-    M --&gt; N["Auto-Post Comment to Pull Request&lt;br/&gt;Green Checkmark Gate Passed"]
-    N --&gt; O["Auto-Merge PR &amp; Publish Data Snapshot&lt;br/&gt;(DVC / Iceberg / Delta Lake)"]</code></pre>
+    M --&gt; N["Auto-Post Comment&lt;br/&gt;Green Gate Passed"]:::green
+    N --&gt; O["Auto-Merge PR &amp;amp; Publish&lt;br/&gt;(DVC / Iceberg / Delta)"]:::green
+
+    classDef default fill:#fffdf7,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef coral fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef purple fill:#ede9fe,stroke:#151b20,stroke-width:2px,color:#151b20;</code></pre>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production-grade implementation, <code>ContinuousDataIntegrationEngine</code>, provides complete mathematical validation for schema contract enforcement, two-sample Kolmogorov-Smirnov drift testing, Population Stability Index (PSI) calculation, and automated CML pull request Markdown report generation.</p>
@@ -9352,36 +9415,11 @@
 <div class="arithmatex">\[\Delta \text{PSI}_b = (P_b - Q_b) \cdot \ln\left( \frac{P_b}{Q_b} \right)\]</div>
 <p>Let us evaluate each bucket systematically:</p>
 <ul>
-<li>
-<p><strong>Bucket 1</strong>:
-  $<span class="arithmatex">\(P_1 - Q_1 = 0.20 - 0.10 = 0.10\)</span>$
-  $<span class="arithmatex">\(\ln\left( \frac{0.20}{0.10} \right) = \ln(2.0) \approx 0.6931\)</span>$
-  $<span class="arithmatex">\(\Delta \text{PSI}_1 = 0.10 \cdot 0.6931 \approx 0.0693\)</span>$</p>
-</li>
-<li>
-<p><strong>Bucket 2</strong>:
-  $<span class="arithmatex">\(P_2 - Q_2 = 0.20 - 0.15 = 0.05\)</span>$
-  $<span class="arithmatex">\(\ln\left( \frac{0.20}{0.15} \right) = \ln(1.3333) \approx 0.2877\)</span>$
-  $<span class="arithmatex">\(\Delta \text{PSI}_2 = 0.05 \cdot 0.2877 \approx 0.0144\)</span>$</p>
-</li>
-<li>
-<p><strong>Bucket 3</strong>:
-  $<span class="arithmatex">\(P_3 - Q_3 = 0.20 - 0.20 = 0.00\)</span>$
-  $<span class="arithmatex">\(\ln\left( \frac{0.20}{0.20} \right) = \ln(1.0) = 0.0000\)</span>$
-  $<span class="arithmatex">\(\Delta \text{PSI}_3 = 0.00 \cdot 0.0000 = 0.0000\)</span>$</p>
-</li>
-<li>
-<p><strong>Bucket 4</strong>:
-  $<span class="arithmatex">\(P_4 - Q_4 = 0.20 - 0.25 = -0.05\)</span>$
-  $<span class="arithmatex">\(\ln\left( \frac{0.20}{0.25} \right) = \ln(0.80) \approx -0.2231\)</span>$
-  $<span class="arithmatex">\(\Delta \text{PSI}_4 = (-0.05) \cdot (-0.2231) \approx 0.0112\)</span>$</p>
-</li>
-<li>
-<p><strong>Bucket 5</strong>:
-  $<span class="arithmatex">\(P_5 - Q_5 = 0.20 - 0.30 = -0.10\)</span>$
-  $<span class="arithmatex">\(\ln\left( \frac{0.20}{0.30} \right) = \ln(0.6667) \approx -0.4055\)</span>$
-  $<span class="arithmatex">\(\Delta \text{PSI}_5 = (-0.10) \cdot (-0.4055) \approx 0.0406\)</span>$</p>
-</li>
+<li><strong>Bucket 1</strong>: <span class="arithmatex">\(P_1 - Q_1 = 0.20 - 0.10 = 0.10\)</span>, <span class="arithmatex">\(\ln\left( \frac{0.20}{0.10} \right) = \ln(2.0) \approx 0.6931 \implies \Delta \text{PSI}_1 = 0.10 \cdot 0.6931 \approx 0.0693\)</span></li>
+<li><strong>Bucket 2</strong>: <span class="arithmatex">\(P_2 - Q_2 = 0.20 - 0.15 = 0.05\)</span>, <span class="arithmatex">\(\ln\left( \frac{0.20}{0.15} \right) = \ln(1.3333) \approx 0.2877 \implies \Delta \text{PSI}_2 = 0.05 \cdot 0.2877 \approx 0.0144\)</span></li>
+<li><strong>Bucket 3</strong>: <span class="arithmatex">\(P_3 - Q_3 = 0.20 - 0.20 = 0.00\)</span>, <span class="arithmatex">\(\ln\left( \frac{0.20}{0.20} \right) = \ln(1.0) = 0.0000 \implies \Delta \text{PSI}_3 = 0.00 \cdot 0.0000 = 0.0000\)</span></li>
+<li><strong>Bucket 4</strong>: <span class="arithmatex">\(P_4 - Q_4 = 0.20 - 0.25 = -0.05\)</span>, <span class="arithmatex">\(\ln\left( \frac{0.20}{0.25} \right) = \ln(0.80) \approx -0.2231 \implies \Delta \text{PSI}_4 = (-0.05) \cdot (-0.2231) \approx 0.0112\)</span></li>
+<li><strong>Bucket 5</strong>: <span class="arithmatex">\(P_5 - Q_5 = 0.20 - 0.30 = -0.10\)</span>, <span class="arithmatex">\(\ln\left( \frac{0.20}{0.30} \right) = \ln(0.6667) \approx -0.4055 \implies \Delta \text{PSI}_5 = (-0.10) \cdot (-0.4055) \approx 0.0406\)</span></li>
 </ul>
 <p>Notice that every non-zero contribution <span class="arithmatex">\((P_b - Q_b) \cdot \ln(P_b / Q_b)\)</span> is strictly non-negative because <span class="arithmatex">\((P_b - Q_b)\)</span> and <span class="arithmatex">\(\ln(P_b / Q_b)\)</span> always have the identical algebraic sign!</p>
 <p><strong>Step 2: Summing Total PSI</strong></p>
@@ -9546,6 +9584,10 @@
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

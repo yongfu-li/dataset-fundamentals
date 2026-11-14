@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,8 +123,10 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 4px !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
           width: 100% !important;
@@ -313,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -339,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7905,33 +7961,33 @@
 <p>The 1-WL coloring algorithm proceeds iteratively over steps <span class="arithmatex">\(\ell = 0, 1, \dots, L\)</span>:</p>
 <ol>
 <li>
-<p><strong>Base Label Initialization (<span class="arithmatex">\(\ell = 0\)</span>):</strong>
-   $<span class="arithmatex">\(c^{(0)}(v) = \text{SHA256}\left( \text{type}(v) \parallel \text{value}(v) \right), \quad \forall v \in \mathcal{V}_{\text{nodes}}\)</span>$</p>
+<p><strong>Base Label Initialization (<span class="arithmatex">\(\ell = 0\)</span>):</strong></p>
+<div class="arithmatex">\[c^{(0)}(v) = \text{SHA256}\left( \text{type}(v) \parallel \text{value}(v) \right), \quad \forall v \in \mathcal{V}_{\text{nodes}}\]</div>
 </li>
 <li>
 <p><strong>Neighborhood Multisets Aggregation (<span class="arithmatex">\(\ell \to \ell + 1\)</span>):</strong>
-   For each vertex <span class="arithmatex">\(v \in \mathcal{V}_{\text{nodes}}\)</span>, collect its directed incoming and outgoing relational neighbors:
-   $<span class="arithmatex">\(\mathcal{N}_{\text{out}}(v) = \left\{ \left( p, c^{(\ell)}(u) \right) \mid (v, p, u) \in \mathcal{E}_{\text{triples}} \right\}\)</span>$
-   $<span class="arithmatex">\(\mathcal{N}_{\text{in}}(v) = \left\{ \left( p^{-1}, c^{(\ell)}(u) \right) \mid (u, p, v) \in \mathcal{E}_{\text{triples}} \right\}\)</span>$
-   Sort the concatenated multiset lexicographically:
-   $<span class="arithmatex">\(M^{(\ell+1)}(v) = \text{sort}\left( \mathcal{N}_{\text{out}}(v) \cup \mathcal{N}_{\text{in}}(v) \right)\)</span>$</p>
+    For each vertex <span class="arithmatex">\(v \in \mathcal{V}_{\text{nodes}}\)</span>, collect its directed incoming and outgoing relational neighbors:</p>
+<div class="arithmatex">\[\mathcal{N}_{\text{out}}(v) = \left\{ \left( p, c^{(\ell)}(u) \right) \mid (v, p, u) \in \mathcal{E}_{\text{triples}} \right\}\]</div>
+<div class="arithmatex">\[\mathcal{N}_{\text{in}}(v) = \left\{ \left( p^{-1}, c^{(\ell)}(u) \right) \mid (u, p, v) \in \mathcal{E}_{\text{triples}} \right\}\]</div>
+<p>Sort the concatenated multiset lexicographically:</p>
+<div class="arithmatex">\[M^{(\ell+1)}(v) = \text{sort}\left( \mathcal{N}_{\text{out}}(v) \cup \mathcal{N}_{\text{in}}(v) \right)\]</div>
 </li>
 <li>
-<p><strong>Color Refinement:</strong>
-   $<span class="arithmatex">\(c^{(\ell+1)}(v) = \text{SHA256}\left( c^{(\ell)}(v) \parallel \text{Serialize}\left( M^{(\ell+1)}(v) \right) \right)\)</span>$</p>
+<p><strong>Color Refinement:</strong></p>
+<div class="arithmatex">\[c^{(\ell+1)}(v) = \text{SHA256}\left( c^{(\ell)}(v) \parallel \text{Serialize}\left( M^{(\ell+1)}(v) \right) \right)\]</div>
 </li>
 </ol>
 <p>After <span class="arithmatex">\(L = \text{diameter}(\mathcal{G}_{\text{meta}}) + 1\)</span> iterations, the stable multiset of node colors is sorted and hashed to produce the final deterministic graph fingerprint:</p>
 <div class="arithmatex">\[\mathcal{H}_{\text{WL}}(\mathcal{G}_{\text{meta}}) = \text{SHA256}\left( \text{sort}\left( \left\{ c^{(L)}(v) \mid v \in \mathcal{V}_{\text{nodes}} \right\} \right) \right)\]</div>
 <h5 id="theorem-1331-isomorphism-invariance">Theorem 13.3.1 (Isomorphism Invariance):</h5>
-<p>If two metadata graphs <span class="arithmatex">\(\mathcal{G}_1\)</span> and <span class="arithmatex">\(\mathcal{G}_2\)</span> are isomorphic (<span class="arithmatex">\(\mathcal{G}_1 \cong \mathcal{G}_2\)</span>) under any arbitrary node permutation and blank-node relabeling, their 1-WL hashes are identical:
-$<span class="arithmatex">\(\mathcal{G}_1 \cong \mathcal{G}_2 \implies \mathcal{H}_{\text{WL}}(\mathcal{G}_1) = \mathcal{H}_{\text{WL}}(\mathcal{G}_2)\)</span>$
-This provides a cryptographically tamper-evident guarantee for distributed dataset catalogs (<a href="#ref-abiteboul1997">Abiteboul, 1997</a>).</p>
+<p>If two metadata graphs <span class="arithmatex">\(\mathcal{G}_1\)</span> and <span class="arithmatex">\(\mathcal{G}_2\)</span> are isomorphic (<span class="arithmatex">\(\mathcal{G}_1 \cong \mathcal{G}_2\)</span>) under any arbitrary node permutation and blank-node relabeling, their 1-WL hashes are identical:</p>
+<div class="arithmatex">\[\mathcal{G}_1 \cong \mathcal{G}_2 \implies \mathcal{H}_{\text{WL}}(\mathcal{G}_1) = \mathcal{H}_{\text{WL}}(\mathcal{G}_2)\]</div>
+<p>This provides a cryptographically tamper-evident guarantee for distributed dataset catalogs (<a href="#ref-abiteboul1997">Abiteboul, 1997</a>).</p>
 <hr />
 <h4 id="definition-1334-croissant-ml-specification-invariant-schema-entropy-minimization">Definition 13.3.4: CROISSANT ML Specification Invariant &amp; Schema Entropy Minimization</h4>
 <p>The <strong>CROISSANT</strong> specification (developed by MLCommons) is an open, machine-readable standard built upon Schema.org and JSON-LD that provides a unified abstraction for multimodal machine learning datasets.</p>
-<p>A CROISSANT manifest is formally defined as a 3-tuple:
-$<span class="arithmatex">\(\mathcal{M}_{\text{croissant}} = \left( \mathcal{F}_{\text{files}}, \mathcal{R}_{\text{sets}}, \mathcal{T}_{\text{transforms}} \right)\)</span>$</p>
+<p>A CROISSANT manifest is formally defined as a 3-tuple:</p>
+<div class="arithmatex">\[\mathcal{M}_{\text{croissant}} = \left( \mathcal{F}_{\text{files}}, \mathcal{R}_{\text{sets}}, \mathcal{T}_{\text{transforms}} \right)\]</div>
 <p>where:
 - <span class="arithmatex">\(\mathcal{F}_{\text{files}} = \{F_1, \dots, F_M\}\)</span> denotes the set of referenced data resources, each specifying a persistent locator, format (e.g., CSV, Parquet, Tar), and cryptographic SHA-256 integrity digest.
 - <span class="arithmatex">\(\mathcal{R}_{\text{sets}} = \{R_1, \dots, R_N\}\)</span> denotes the set of logical <code>RecordSet</code> definitions that map raw binary streams into typed columnar records.
@@ -7945,27 +8001,35 @@ $<span class="arithmatex">\(\mathcal{M}_{\text{croissant}} = \left( \mathcal{F}_
 <h3 id="architectural-flowchart-the-automated-auditing-standards-pipeline">Architectural Flowchart: The Automated Auditing &amp; Standards Pipeline</h3>
 <p>The following flowchart illustrates how unstructured data assets are systematically transformed into verified, 1-WL hashed, CROISSANT-compliant artifacts through an automated metadata validation pipeline.</p>
 <pre class="mermaid"><code>flowchart TD
-    A["Raw Dataset Artifacts&lt;br/&gt;(CSVs, Images, Parquet, Tar)"] --&gt; B["Automated Schema Extraction&lt;br/&gt;&amp; Format Detection"]
-    C["Datasheet Authoring&lt;br/&gt;(7 Lifecycle Pillars)"] --&gt; D["Metadata Linter &amp; Validator&lt;br/&gt;(Pydantic V2 &amp; JSON-LD)"]
+    A["Raw Dataset Artifacts&lt;br/&gt;(CSV, Parquet, Tar)"]:::blue --&gt; B["Automated Schema&lt;br/&gt;&amp;amp; Format Detection"]:::default
+    C["Datasheet Authoring&lt;br/&gt;(7 Pillars)"]:::yellow --&gt; D["Metadata Linter&lt;br/&gt;(Pydantic &amp;amp; JSON-LD)"]:::blue
     B --&gt; D
 
     subgraph AuditEngine ["Dataset Documentation Audit Engine"]
-        D --&gt; E["Completeness Vector Engine&lt;br/&gt;m(D) in [0, 1]^K, C_meta, H_doc"]
-        D --&gt; F["Accountability Risk Calculator&lt;br/&gt;Omega_risk = SUM gamma_p * (1 - s_p)^alpha_p"]
-        D --&gt; G["RDF Knowledge Graph Builder&lt;br/&gt;DCAT-3 &amp; Schema.org Triples"]
-        G --&gt; H["1-WL Canonical Hash Engine&lt;br/&gt;H_WL(G_meta) Deterministic Digest"]
+        D --&gt; E["Completeness Vector&lt;br/&gt;m(D), C_meta, H_doc"]:::purple
+        D --&gt; F["Accountability Risk&lt;br/&gt;&amp;Omega;_risk Calculator"]:::purple
+        D --&gt; G["RDF Graph Builder&lt;br/&gt;DCAT-3 &amp;amp; Schema.org"]:::purple
+        G --&gt; H["1-WL Canonical Hash&lt;br/&gt;Deterministic Digest"]:::purple
     end
 
-    E --&gt; I{"Audit Gate&lt;br/&gt;C_meta &gt;= 0.85 &amp;&lt;br/&gt;Omega_risk &lt;= 0.15"}
+    E --&gt; I{"Audit Gate:&lt;br/&gt;C_meta &amp;ge; 0.85 &amp;amp;&lt;br/&gt;&amp;Omega;_risk &amp;le; 0.15?"}:::amber
     F --&gt; I
     H --&gt; I
 
-    I -- "Violations Detected" --&gt; J["Automated Linter Diagnostics&lt;br/&gt;- Missing License / DOI&lt;br/&gt;- Unbounded Sampling Dates&lt;br/&gt;- Non-zero Ingestion Entropy"]
+    I -- "Violations" --&gt; J["Linter Diagnostics&lt;br/&gt;Missing License/Dates"]:::coral
     J --&gt; C
 
-    I -- "Compliance Certified" --&gt; K["CROISSANT Specification Compiler&lt;br/&gt;(Schema.org JSON-LD Manifest)"]
-    K --&gt; L["FAIR Data Repository Distribution&lt;br/&gt;(Zenodo, Hugging Face, Dataverse)"]
-    L --&gt; M["Zero-Copy ML Framework Ingestion&lt;br/&gt;H(T | D, M) = 0"]</code></pre>
+    I -- "Certified" --&gt; K["CROISSANT Compiler&lt;br/&gt;(JSON-LD Manifest)"]:::green
+    K --&gt; L["FAIR Repository&lt;br/&gt;(Zenodo / HF / Dataverse)"]:::blue
+    L --&gt; M["Framework Ingestion&lt;br/&gt;Zero-Copy H=0"]:::green
+
+    classDef default fill:#fffdf7,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef yellow fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef coral fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef purple fill:#ede9fe,stroke:#151b20,stroke-width:2px,color:#151b20;</code></pre>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production-grade implementation, <code>DatasetMetadataValidationEngine</code>, provides complete mathematical validation for dataset documentation. It implements:
@@ -9166,9 +9230,7 @@ $<span class="arithmatex">\(\mathcal{M}_{\text{croissant}} = \left( \mathcal{F}_
 <p>The underlying catastrophe stemmed from uncurated, undocumented dataset aggregation:
 1. <strong>Undocumented Confounders</strong>: Curators amalgamated adult COVID-19 patients admitted to emergency ICUs with pediatric pneumonia patients collected years prior from an outpatient clinic. Because the dataset <code>README</code> omitted patient age, posture (Anteroposterior [AP] supine vs. Posteroanterior [PA] upright), and radiographic equipment calibration tags, researchers assumed the positive and negative cohorts were identically distributed.
 2. <strong>Shortcut Learning</strong>: The neural networks did not learn COVID-19 bilateral ground-glass opacities; instead, they achieved 99% accuracy by recognizing lateral radiographic position markers ("L" vs. "R"), pediatric clavicle dimensions, and scanner manufacturer artifacts.
-3. <strong>The Metadata Solution</strong>: Had the amalgamators adhered to Definition 13.3.2 (Datasheets for Datasets) and documented the <strong>Composition (<span class="arithmatex">\(\pi_{\text{comp}}\)</span>)</strong> and <strong>Collection (<span class="arithmatex">\(\pi_{\text{coll}}\)</span>)</strong> pillars, the statutory risk surface would have triggered an immediate blocker:
-   $<span class="arithmatex">\(\Omega_{\text{risk}} = \gamma_{\text{comp}} (1 - 0.12)^{1.5} + \gamma_{\text{coll}} (1 - 0.08)^{2.0} \gg 0.15\)</span>$
-   Preventing the deployment of dangerous algorithms before they could compromise patient care (<a href="#ref-gebru2021">Gebru et al., 2021</a>; <a href="#ref-chmielinski2022">Chmielinski et al., 2022</a>).</p>
+3. <strong>The Metadata Solution</strong>: Had the amalgamators adhered to Definition 13.3.2 (Datasheets for Datasets) and documented the <strong>Composition (<span class="arithmatex">\(\pi_{\text{comp}}\)</span>)</strong> and <strong>Collection (<span class="arithmatex">\(\pi_{\text{coll}}\)</span>)</strong> pillars, the statutory risk surface would have triggered an immediate blocker: <span class="arithmatex">\(\Omega_{\text{risk}} = \gamma_{\text{comp}} (1 - 0.12)^{1.5} + \gamma_{\text{coll}} (1 - 0.08)^{2.0} \gg 0.15\)</span>, preventing the deployment of dangerous algorithms before they could compromise patient care (<a href="#ref-gebru2021">Gebru et al., 2021</a>; <a href="#ref-chmielinski2022">Chmielinski et al., 2022</a>).</p>
 <hr />
 <h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
 <p>Test your understanding of dataset documentation, metadata schemas, and graph invariants.</p>
@@ -9250,33 +9312,25 @@ $<span class="arithmatex">\(\mathcal{M}_{\text{croissant}} = \left( \mathcal{F}_
 <p>In contrast, the 1-Weisfeiler-Lehman (1-WL) graph hashing algorithm operates over graph topological structure:
 - At iteration <span class="arithmatex">\(\ell = 0\)</span>, both blank nodes <span class="arithmatex">\(B_1\)</span> and <span class="arithmatex">\(B_99\)</span> initialize their base colors purely based on node type (<code>type(v) = BlankNode</code>), completely stripping the arbitrary local identifier strings <code>_:b1</code> and <code>_:b99</code>.
 - At iteration <span class="arithmatex">\(\ell = 1\)</span>, both nodes collect their relational neighborhoods:
-  $<span class="arithmatex">\(M^{(1)}(B_1) = \text{sort}\left( \left\{ (\text{"cr:extract"}, c^{(0)}(\text{sc:image})), (\text{"dcat:distribution"}, c^{(0)}(\mathcal{D})) \right\} \right)\)</span>$
-  $<span class="arithmatex">\(M^{(1)}(B_{99}) = \text{sort}\left( \left\{ (\text{"cr:extract"}, c^{(0)}(\text{sc:image})), (\text{"dcat:distribution"}, c^{(0)}(\mathcal{D})) \right\} \right)\)</span>$
+  <span class="arithmatex">\(M^{(1)}(B_1) = \text{sort}\left( \left\{ (\text{"cr:extract"}, c^{(0)}(\text{sc:image})), (\text{"dcat:distribution"}, c^{(0)}(\mathcal{D})) \right\} \right)\)</span> and <span class="arithmatex">\(M^{(1)}(B_{99}) = \text{sort}\left( \left\{ (\text{"cr:extract"}, c^{(0)}(\text{sc:image})), (\text{"dcat:distribution"}, c^{(0)}(\mathcal{D})) \right\} \right)\)</span>.
 - Because the sorted neighborhood multisets are identical:
-  $<span class="arithmatex">\(c^{(1)}(B_1) = \text{SHA256}\left( c^{(0)}(B_1) \parallel \text{Serialize}(M^{(1)}(B_1)) \right) = c^{(1)}(B_{99})\)</span>$
+  <span class="arithmatex">\(c^{(1)}(B_1) = \text{SHA256}\left( c^{(0)}(B_1) \parallel \text{Serialize}(M^{(1)}(B_1)) \right) = c^{(1)}(B_{99})\)</span>.
 - Since all vertices across <span class="arithmatex">\(\mathcal{G}_1\)</span> and <span class="arithmatex">\(\mathcal{G}_2\)</span> yield identical color multisets, sorting the multisets produces bitwise identical digests:
-  $<span class="arithmatex">\(\mathcal{H}_{\text{WL}}(\mathcal{G}_1) = \mathcal{H}_{\text{WL}}(\mathcal{G}_2)\)</span>$</p>
+  <span class="arithmatex">\(\mathcal{H}_{\text{WL}}(\mathcal{G}_1) = \mathcal{H}_{\text{WL}}(\mathcal{G}_2)\)</span>.</p>
 <p><strong>Step 2: Tamper Propagation Under Predicate Mutation</strong></p>
 <p>Suppose the license node target is mutated from <span class="arithmatex">\(O_1 = \text{"CC-BY-4.0"}\)</span> to <span class="arithmatex">\(O_2 = \text{"CC-BY-NC-4.0"}\)</span>.</p>
 <ol>
-<li>
-<p><strong>Base Label Divergence (<span class="arithmatex">\(\ell = 0\)</span>):</strong>
-   $<span class="arithmatex">\(c^{(0)}(O_1) = \text{SHA256}(\text{"CC-BY-4.0"}) \neq \text{SHA256}(\text{"CC-BY-NC-4.0"}) = c^{(0)}(O_2)\)</span>$</p>
-</li>
-<li>
-<p><strong>Refinement Propagation to Dataset Node (<span class="arithmatex">\(\ell = 1\)</span>):</strong>
+<li><strong>Base Label Divergence (<span class="arithmatex">\(\ell = 0\)</span>):</strong>
+   <span class="arithmatex">\(c^{(0)}(O_1) = \text{SHA256}(\text{"CC-BY-4.0"}) \neq \text{SHA256}(\text{"CC-BY-NC-4.0"}) = c^{(0)}(O_2)\)</span>.</li>
+<li><strong>Refinement Propagation to Dataset Node (<span class="arithmatex">\(\ell = 1\)</span>):</strong>
    Let <span class="arithmatex">\(v_{\mathcal{D}}\)</span> be the central dataset node. Its neighborhood multiset includes the license triple:
-   $<span class="arithmatex">\(M^{(1)}(v_{\mathcal{D}})_{\mathcal{G}_1} = \left\{ \dots, (\text{"dct:license"}, c^{(0)}(O_1)) \right\}\)</span>$
-   $<span class="arithmatex">\(M^{(1)}(v_{\mathcal{D}})_{\mathcal{G}_2} = \left\{ \dots, (\text{"dct:license"}, c^{(0)}(O_2)) \right\}\)</span>$
+   <span class="arithmatex">\(M^{(1)}(v_{\mathcal{D}})_{\mathcal{G}_1} = \left\{ \dots, (\text{"dct:license"}, c^{(0)}(O_1)) \right\}\)</span> and <span class="arithmatex">\(M^{(1)}(v_{\mathcal{D}})_{\mathcal{G}_2} = \left\{ \dots, (\text{"dct:license"}, c^{(0)}(O_2)) \right\}\)</span>.
    Because <span class="arithmatex">\(c^{(0)}(O_1) \neq c^{(0)}(O_2)\)</span>, the multisets differ:
-   $<span class="arithmatex">\(M^{(1)}(v_{\mathcal{D}})_{\mathcal{G}_1} \neq M^{(1)}(v_{\mathcal{D}})_{\mathcal{G}_2} \implies c^{(1)}(v_{\mathcal{D}})_{\mathcal{G}_1} \neq c^{(1)}(v_{\mathcal{D}})_{\mathcal{G}_2}\)</span>$</p>
-</li>
-<li>
-<p><strong>Avalanche Effect on Canonical Hash:</strong>
+   <span class="arithmatex">\(M^{(1)}(v_{\mathcal{D}})_{\mathcal{G}_1} \neq M^{(1)}(v_{\mathcal{D}})_{\mathcal{G}_2} \implies c^{(1)}(v_{\mathcal{D}})_{\mathcal{G}_1} \neq c^{(1)}(v_{\mathcal{D}})_{\mathcal{G}_2}\)</span>.</li>
+<li><strong>Avalanche Effect on Canonical Hash:</strong>
    The sorted multiset of terminal colors for <span class="arithmatex">\(\mathcal{G}_1\)</span> contains at least two differing elements compared to <span class="arithmatex">\(\mathcal{G}_2\)</span> (<span class="arithmatex">\(c(O)\)</span> and <span class="arithmatex">\(c(v_{\mathcal{D}})\)</span>). By the avalanche property of cryptographic hashing:
-   $<span class="arithmatex">\(\mathcal{H}_{\text{WL}}(\mathcal{G}_1) \neq \mathcal{H}_{\text{WL}}(\mathcal{G}_2)\)</span>$
-   The probability of a hash collision under SHA-256 is negligible (<span class="arithmatex">\(\le 2^{-256}\)</span>), rendering silent metadata modification instantly detectable by downstream automated compliance checkers (<a href="#ref-abiteboul1997">Abiteboul, 1997</a>).</p>
-</li>
+   <span class="arithmatex">\(\mathcal{H}_{\text{WL}}(\mathcal{G}_1) \neq \mathcal{H}_{\text{WL}}(\mathcal{G}_2)\)</span>.
+   The probability of a hash collision under SHA-256 is negligible (<span class="arithmatex">\(\le 2^{-256}\)</span>), rendering silent metadata modification instantly detectable by downstream automated compliance checkers (<a href="#ref-abiteboul1997">Abiteboul, 1997</a>).</li>
 </ol>
 </details>
 <hr />
@@ -9403,6 +9457,10 @@ $<span class="arithmatex">\(\mathcal{M}_{\text{croissant}} = \left( \mathcal{F}_
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

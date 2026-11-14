@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,9 +123,13 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
+          box-sizing: border-box !important;
+          width: 100% !important;
         }
 
         .node g.label rect,
@@ -311,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -337,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7646,24 +7704,20 @@
 
 
 <h1 id="512-advanced-topics-in-data-preprocessing">5.12 Advanced Topics in Data Preprocessing</h1>
-<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 4px 4px 0px #ffc83e;">
-  <div style="flex: 1; min-width: 280px;">
-    <div style="font-weight: 800; color: #151b20; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
-      <span style="font-size: 1.3rem;">📖</span>
-      <span>Companion Monograph Section Available</span>
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+  <div>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.92rem; color: #334155; margin-top: 6px; line-height: 1.55;">
-      Read <strong>Chapter 5: Data Cleaning &amp; Preprocessing (§5.9: Frontier Architectures — Generative Imputation, Streaming Statistics &amp; Confident Learning)</strong> in the official Springer Nature monograph for full proofs of GAIN discriminator identifiability, streaming martingale bounds, and Horvitz-Thompson importance weighting.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 5: Data Cleaning and Preprocessing (§5.12: Frontier Architectures — Generative Imputation, Streaming Statistics &amp; Confident Learning)</strong>, covering full proofs of GAIN discriminator identifiability, streaming martingale bounds, and Horvitz-Thompson importance weighting.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 8px; background: #2563eb; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; transition: transform 0.15s ease;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
     <span>Explore Chapter 5 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Estimated Study Time:</strong> ~35 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-512">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 5.12</h3>
 <p>Experience Chapter 5 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
@@ -7691,19 +7745,19 @@
 <hr />
 <h2 id="1-conceptual-overview-frontier-cleaning-architectures">1. Conceptual Overview: Frontier Cleaning Architectures</h2>
 <pre class="mermaid"><code>flowchart TD
-    subgraph S1 ["1. Unbounded Streaming Data"]
-        A1["Telemetry Arrival x_t"] --&gt; A2["Welford O(1) Update&lt;br/&gt;(Stationary Moments)"]
-        A1 --&gt; A3["EWMA Decay Tracker&lt;br/&gt;(Drift Adaptation)"]
+    subgraph S1 ["1. Streaming Data"]
+        A1["Telemetry&lt;br/&gt;Arrival x_t"] --&gt; A2["Welford O(1)&lt;br/&gt;Update&lt;br/&gt;(Moments)"]
+        A1 --&gt; A3["EWMA Decay&lt;br/&gt;Tracker&lt;br/&gt;(Drift)"]
     end
 
-    subgraph S2 ["2. Non-Linear Deep Imputation"]
-        B1["Masked Vector X_tilde"] --&gt; B2["Generator G + Noise Z&lt;br/&gt;(Synthetic Fill)"]
-        B2 --&gt; B3["Discriminator D + Hint H&lt;br/&gt;(Identifiability Check)"]
+    subgraph S2 ["2. Deep Imputation"]
+        B1["Masked Vector&lt;br/&gt;X_tilde"] --&gt; B2["Generator G&lt;br/&gt;+ Noise Z&lt;br/&gt;(Imputation)"]
+        B2 --&gt; B3["Discriminator D&lt;br/&gt;+ Hint H&lt;br/&gt;(Identifiability)"]
     end
 
-    subgraph S3 ["3. Programmatic Label &amp; Repair Auditing"]
-        C1["Out-of-Fold Probabilities&lt;br/&gt;p_hat(y | x)"] --&gt; C2["Confident Joint Matrix&lt;br/&gt;Q_hat(y_tilde, y*)"]
-        C2 --&gt; C3["PBNR Margin Pruning &amp;&lt;br/&gt;ActiveClean HT Sampling"]
+    subgraph S3 ["3. Label &amp; Repair"]
+        C1["Out-of-Fold&lt;br/&gt;Probabilities&lt;br/&gt;p_hat(y|x)"] --&gt; C2["Confident Joint&lt;br/&gt;Matrix&lt;br/&gt;C(y_tilde, y*)"]
+        C2 --&gt; C3["PBNR Pruning&lt;br/&gt;&amp; ActiveClean&lt;br/&gt;HT Sampling"]
     end
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
@@ -7753,11 +7807,23 @@
 <h2 id="2-generative-adversarial-imputation-networks-gain">2. Generative Adversarial Imputation Networks (GAIN)</h2>
 <p>Parametric chained equations (<code>MICE</code>) falter when missing attributes exhibit non-linear couplings across images, clinical time series, or high-cardinality embeddings. <strong>GAIN</strong> [<a href="#ref-yoon2018">Yoon2018</a>] reformulates missing-value synthesis as a minimax game directly over the observed mask geometry.</p>
 <p>Let <span class="arithmatex">\(\tilde{\mathbf{X}} \in \mathbb{R}^d\)</span> denote the raw partially observed vector paired with binary availability mask <span class="arithmatex">\(\mathbf{M} \in \{0, 1\}^d\)</span> (<span class="arithmatex">\(M_j = 1\)</span> if observed, <span class="arithmatex">\(0\)</span> if missing) and independent Gaussian noise <span class="arithmatex">\(\mathbf{Z} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})\)</span>. The <strong>Generator</strong> <span class="arithmatex">\(G\)</span> synthesizes a full vector and grafts observed entries deterministically:</p>
-<div class="arithmatex">\[\bar{\mathbf{X}} = G\big(\tilde{\mathbf{X}}, \mathbf{M}, (\mathbf{1} - \mathbf{M}) \odot \mathbf{Z}\big), \qquad \hat{\mathbf{X}} = \mathbf{M} \odot \tilde{\mathbf{X}} + (\mathbf{1} - \mathbf{M}) \odot \bar{\mathbf{X}}\]</div>
+<div class="arithmatex">\[
+\begin{aligned}
+\bar{\mathbf{X}} &amp;= G\big(\tilde{\mathbf{X}}, \mathbf{M}, (\mathbf{1} - \mathbf{M}) \odot \mathbf{Z}\big) \\[4pt]
+\hat{\mathbf{X}} &amp;= \mathbf{M} \odot \tilde{\mathbf{X}} + (\mathbf{1} - \mathbf{M}) \odot \bar{\mathbf{X}}
+\end{aligned}
+\]</div>
 <p>Unlike standard GAN discriminators that judge an entire sample with a single scalar real/fake score, the GAIN <strong>Discriminator</strong> <span class="arithmatex">\(D(\hat{\mathbf{X}}, \mathbf{H}) \in [0, 1]^d\)</span> outputs a vector of probabilities predicting which coordinates were originally real (<span class="arithmatex">\(M_j = 1\)</span>) versus generator-imputed (<span class="arithmatex">\(M_j = 0\)</span>). Crucially, <span class="arithmatex">\(D\)</span> receives a partial <strong>Hint Matrix</strong> <span class="arithmatex">\(\mathbf{H}\)</span>:</p>
-<div class="arithmatex">\[\mathbf{H} = \mathbf{B} \odot \mathbf{M} + 0.5\,(\mathbf{1} - \mathbf{B}), \qquad B_j \sim \text{Bernoulli}(p_{\text{hint}})\]</div>
+<div class="arithmatex">\[
+\mathbf{H} = \mathbf{B} \odot \mathbf{M} + 0.5\,(\mathbf{1} - \mathbf{B}), \qquad B_j \sim \text{Bernoulli}(p_{\text{hint}})
+\]</div>
 <p>When <span class="arithmatex">\(B_j = 1\)</span>, <span class="arithmatex">\(H_j\)</span> reveals the true mask bit <span class="arithmatex">\(M_j \in \{0, 1\}\)</span>; when <span class="arithmatex">\(B_j = 0\)</span>, <span class="arithmatex">\(H_j = 0.5\)</span> leaves coordinate <span class="arithmatex">\(j\)</span> concealed for <span class="arithmatex">\(D\)</span> to classify. The composite saddle-point optimization balances adversarial mask indistinguishability against exact reconstruction on observed coordinates:</p>
-<div class="arithmatex">\[\min_G \max_D \; \mathbb{E}_{\tilde{\mathbf{X}}, \mathbf{M}, \mathbf{H}}\Big[ \mathbf{M}^{\top} \log D(\hat{\mathbf{X}}, \mathbf{H}) + (\mathbf{1} - \mathbf{M})^{\top} \log\big(\mathbf{1} - D(\hat{\mathbf{X}}, \mathbf{H})\big) \Big] + \alpha \, \mathbb{E}\Big[\|\mathbf{M} \odot (\tilde{\mathbf{X}} - \bar{\mathbf{X}})\|_2^2\Big]\]</div>
+<div class="arithmatex">\[
+\begin{aligned}
+\min_G \max_D \; &amp;\mathbb{E}_{\tilde{\mathbf{X}}, \mathbf{M}, \mathbf{H}}\Big[ \mathbf{M}^{\top} \log D(\hat{\mathbf{X}}, \mathbf{H}) + (\mathbf{1} - \mathbf{M})^{\top} \log\big(\mathbf{1} - D(\hat{\mathbf{X}}, \mathbf{H})\big) \Big] \\
+&amp;+ \alpha \, \mathbb{E}\Big[\|\mathbf{M} \odot (\tilde{\mathbf{X}} - \bar{\mathbf{X}})\|_2^2\Big]
+\end{aligned}
+\]</div>
 <div class="admonition warning">
 <p class="admonition-title">Mathematical Pitfall: Why Omitting the Hint Vector Causes Non-Identifiability</p>
 <p>Theorem 1 of Yoon et al. [<a href="#ref-yoon2018">Yoon2018</a>] proves that if <span class="arithmatex">\(D\)</span> receives no hint (<span class="arithmatex">\(\mathbf{H} \equiv \mathbf{0.5}\)</span>), an adversarial Nash equilibrium admits infinitely many spurious conditional distributions <span class="arithmatex">\(G\)</span> that fool <span class="arithmatex">\(D\)</span> without matching <span class="arithmatex">\(P(\mathbf{X} \mid \mathbf{M})\)</span>. Conditioning <span class="arithmatex">\(D\)</span> on at least <span class="arithmatex">\(d - 1\)</span> revealed mask coordinates forces <span class="arithmatex">\(G\)</span> to match the true conditional distribution everywhere simultaneously.</p>
@@ -7766,17 +7832,29 @@
 <h2 id="3-online-streaming-moments-welfords-mathcalo1-recurrence-vs-ewma-drift">3. Online Streaming Moments: Welford's <span class="arithmatex">\(\mathcal{O}(1)\)</span> Recurrence vs. EWMA Drift</h2>
 <p>Infinite event streams (IoT transducers, limit-order-book ticks, clickstreams) prohibit materializing historical arrays in memory. Computing variance naively via the textbook single-pass formula <span class="arithmatex">\(s^2 = \frac{1}{n-1}\big(\sum x_i^2 - \frac{1}{n}(\sum x_i)^2\big)\)</span> suffers <strong>catastrophic cancellation</strong> under IEEE-754 <code>float64</code> arithmetic whenever the process mean dominates dispersion (<span class="arithmatex">\(\mu \gg \sigma\)</span>, such as Unix epoch timestamps <span class="arithmatex">\(\sim 1.7 \times 10^9\)</span> or tight financial prices): subtracting two huge near-equal numbers wipes out mantissa bits, producing negative variances.</p>
 <p><strong>Welford's Algorithm</strong> [<a href="#ref-welford1962">Welford1962</a>, <a href="#ref-montiel2021">Montiel2021</a>] updates centered second moments <span class="arithmatex">\(\mathcal{O}(1)\)</span> time and <span class="arithmatex">\(\mathcal{O}(d)\)</span> memory without squaring raw coordinates:</p>
-<div class="arithmatex">\[\delta_n = x_n - \mu_{n-1}, \qquad \mu_n = \mu_{n-1} + \frac{\delta_n}{n}, \qquad M_{2, n} = M_{2, n-1} + \delta_n \, (x_n - \mu_n), \qquad s_n^2 = \frac{M_{2, n}}{n - 1}\]</div>
+<div class="arithmatex">\[
+\begin{aligned}
+\delta_n &amp;= x_n - \mu_{n-1}, &amp;\mu_n &amp;= \mu_{n-1} + \frac{\delta_n}{n} \\[4pt]
+M_{2, n} &amp;= M_{2, n-1} + \delta_n \, (x_n - \mu_n), \quad &amp;s_n^2 &amp;= \frac{M_{2, n}}{n - 1}
+\end{aligned}
+\]</div>
 <h3 id="non-stationary-concept-drift-and-exponentially-weighted-moments-ewma">Non-Stationary Concept Drift and Exponentially Weighted Moments (EWMA)</h3>
 <p>Unweighted Welford treats arrival <span class="arithmatex">\(x_1\)</span> and arrival <span class="arithmatex">\(x_{100{,}000}\)</span> equally with weight <span class="arithmatex">\(1/n\)</span>. When the live sensor regime undergoes <strong>concept drift</strong> (e.g., recalibration shift <span class="arithmatex">\(\mu: 100 \to 140\)</span>), historical inertia freezes Welford's normalization scale for hours. <strong>Exponentially Weighted Moving Averages (EWMA)</strong> replace uniform weighting <span class="arithmatex">\(1/n\)</span> with constant forgetting factor <span class="arithmatex">\(\alpha \in (0, 1]\)</span> (effective window <span class="arithmatex">\(N_{\text{eff}} \approx \frac{2}{\alpha} - 1\)</span>):</p>
-<div class="arithmatex">\[\tilde{\mu}_t = \alpha \, x_t + (1 - \alpha) \, \tilde{\mu}_{t-1}, \qquad \tilde{s}_t^2 = (1 - \alpha)\Big(\tilde{s}_{t-1}^2 + \alpha \, (x_t - \tilde{\mu}_{t-1})^2\Big)\]</div>
+<div class="arithmatex">\[
+\begin{aligned}
+\tilde{\mu}_t &amp;= \alpha \, x_t + (1 - \alpha) \, \tilde{\mu}_{t-1} \\[4pt]
+\tilde{s}_t^2 &amp;= (1 - \alpha)\Big(\tilde{s}_{t-1}^2 + \alpha \, (x_t - \tilde{\mu}_{t-1})^2\Big)
+\end{aligned}
+\]</div>
 <hr />
 <h2 id="4-confident-learning-programmatic-label-pruning">4. Confident Learning &amp; Programmatic Label Pruning</h2>
 <p>Large-scale crowd-sourced or weak-supervision datasets routinely harbor <span class="arithmatex">\(3\%\)</span> to <span class="arithmatex">\(30\%\)</span> corrupted annotations [<a href="#ref-northcutt2021">Northcutt2021</a>]. Simply removing "low-confidence" samples discards valuable ambiguous boundary examples (genuine aleatoric uncertainty) alongside actual label flips. <strong>Confident Learning</strong> separates intrinsic difficulty from systematic mislabeling by estimating the <strong>joint distribution between observed noisy labels <span class="arithmatex">\(\tilde{y}\)</span> and latent true labels <span class="arithmatex">\(y^*\)</span></strong> strictly from <strong>out-of-fold</strong> predicted probabilities <span class="arithmatex">\(\hat{p}(\tilde{y}=k \mid x)\)</span>.</p>
 <ol>
 <li><strong>Per-Class Self-Confidence Threshold (<span class="arithmatex">\(t_j\)</span>)</strong>: Compute each class's expected out-of-fold self-confidence among examples bearing observed label <span class="arithmatex">\(j\)</span>:</li>
 </ol>
-<p>$<span class="arithmatex">\(t_j = \frac{1}{|X_{\tilde{y}=j}|} \sum_{x \in X_{\tilde{y}=j}} \hat{p}(\tilde{y}=j \mid x)\)</span>$</p>
+<p>$$
+   t_j = \frac{1}{|X_{\tilde{y}=j}|} \sum_{x \in X_{\tilde{y}=j}} \hat{p}(\tilde{y}=j \mid x)
+   $$</p>
 <ol>
 <li><strong>Confident Joint Matrix (<span class="arithmatex">\(\mathbf{C}_{\tilde{y}, y^*}\)</span>)</strong>: Assign item <span class="arithmatex">\((x, \tilde{y}=i)\)</span> to latent cell <span class="arithmatex">\((i, j)\)</span> if <span class="arithmatex">\(\hat{p}(\tilde{y}=j \mid x) \ge t_j\)</span> (breaking multiple threshold crossings via <span class="arithmatex">\(\arg\max_j \hat{p}(\tilde{y}=j \mid x)\)</span>). Normalizing rows against observed class marginals yields the calibrated noise transition distribution <span class="arithmatex">\(\hat{\mathbf{Q}}_{\tilde{y}, y^*}\)</span>.</li>
 <li><strong>Prune-By-Noise-Rate (PBNR)</strong>: Given estimated off-diagonal error count <span class="arithmatex">\(N_{i \to j} = \lfloor N \cdot \hat{Q}_{\tilde{y}=i, y^*=j} \rfloor\)</span>, rank observations with label <span class="arithmatex">\(\tilde{y}=i\)</span> in ascending order of confidence margin <span class="arithmatex">\(\hat{p}(\tilde{y}=i \mid x) - \hat{p}(\tilde{y}=j \mid x)\)</span> and prune the top <span class="arithmatex">\(N_{i \to j}\)</span> worst-margin violations. Iterating one or two passes removes boundary skew induced when asymmetric noise warps initial thresholds <span class="arithmatex">\(t_j\)</span>.</li>
@@ -7786,10 +7864,18 @@
 <h3 id="activeclean-unbiased-sgd-under-selective-repair">ActiveClean: Unbiased SGD Under Selective Repair</h3>
 <p>Cleaning millions of records is financially prohibitive when human domain experts must inspect rows manually. <strong>ActiveClean</strong> [<a href="#ref-krishnan2016">Krishnan2016</a>] couples convex empirical risk minimization with cleaning: it prioritizes dirty batches exhibiting maximal <strong>gradient sensitivity</strong> <span class="arithmatex">\(q_i \propto \|\nabla_\theta \ell(x_i, y_i; \theta)\|_2\)</span> because noisy outliers exert the largest distortion on learned model weights.</p>
 <p>However, training directly on non-uniformly selected clean records introduces severe sampling bias. ActiveClean preserves exact unbiasedness using the <strong>Horvitz-Thompson / Hansen-Hurwitz inverse-probability weighting</strong> theorem: drawing <span class="arithmatex">\(k\)</span> records with probability <span class="arithmatex">\(q_i\)</span>, the weighted batch gradient satisfies:</p>
-<div class="arithmatex">\[\mathbb{E}\!\left[\frac{1}{k}\sum_{m=1}^k \frac{\nabla_\theta \ell(x_{i_m}, y_{i_m}^*; \theta)}{N \, q_{i_m}}\right] = \sum_{i=1}^N q_i \cdot \frac{\nabla_\theta \ell(x_i, y_i^*; \theta)}{N \, q_i} = \frac{1}{N}\sum_{i=1}^N \nabla_\theta \ell(x_i, y_i^*; \theta) = \nabla_\theta \mathcal{L}_{\text{clean}}(\theta)\]</div>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb{E}\!\left[\frac{1}{k}\sum_{m=1}^k \frac{\nabla_\theta \ell(x_{i_m}, y_{i_m}^*; \theta)}{N \, q_{i_m}}\right]
+&amp;= \sum_{i=1}^N q_i \cdot \frac{\nabla_\theta \ell(x_i, y_i^*; \theta)}{N \, q_i} \\[6pt]
+&amp;= \frac{1}{N}\sum_{i=1}^N \nabla_\theta \ell(x_i, y_i^*; \theta) = \nabla_\theta \mathcal{L}_{\text{clean}}(\theta)
+\end{aligned}
+\]</div>
 <h3 id="holoclean-probabilistic-factor-graph-repairs">HoloClean: Probabilistic Factor-Graph Repairs</h3>
 <p>Where ActiveClean fixes training gradients interactively, <strong>HoloClean</strong> [<a href="#ref-rekatsinas2017">Rekatsinas2017</a>] treats structural attribute repair as <strong>Maximum A Posteriori (MAP) inference over a factor graph</strong>. Functional denial constraints (e.g., <span class="arithmatex">\(\text{ZIP} \to \text{State}\)</span>), external knowledge bases, and co-occurrence statistics become weighted potential functions <span class="arithmatex">\(\phi_m(c)\)</span> over candidate repair values <span class="arithmatex">\(c \in \mathcal{D}\)</span>:</p>
-<div class="arithmatex">\[P(C = c) = \frac{1}{Z} \exp\!\left( \sum_{m} w_m \, \phi_m(c) \right)\]</div>
+<div class="arithmatex">\[
+P(C = c) = \frac{1}{Z} \exp\!\left( \sum_{m} w_m \, \phi_m(c) \right)
+\]</div>
 <hr />
 <h2 id="6-interactive-laboratory-streaming-drift-confident-learning-frontier-lab">6. Interactive Laboratory: Streaming Drift &amp; Confident Learning Frontier Lab</h2>
 <p>Test both frontier pipelines directly in the browser without external dependencies: track how <strong>EWMA</strong> absorbs an abrupt sensor mean shift compared to stagnant <strong>Welford</strong> history (<strong>Tab A</strong>), then dial asymmetric annotation corruption up to <span class="arithmatex">\(35\%\)</span> to inspect live <strong>Confident Joint <span class="arithmatex">\(\hat{\mathbf{C}}_{\tilde{y}, y^*}\)</span></strong> boundary recovery (<strong>Tab B</strong>).</p>
@@ -8526,9 +8612,15 @@ window.addEventListener('DOMContentLoaded', () => {
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
 <p><strong>Omitting Horvitz-Thompson weights converts active sampling into systematic objective distortion.</strong></p>
-<p>By inverse-probability weighting [<a href="#ref-krishnan2016">Krishnan2016</a>]:
-$<span class="arithmatex">\(\mathbb{E}\!\left[\frac{1}{k}\sum_{m=1}^k \frac{\nabla \ell_{i_m}}{N \, q_{i_m}}\right] = \sum_{i=1}^N q_i \frac{\nabla \ell_i}{N \, q_i} = \nabla \mathcal{L}_{\text{clean}}(\theta)\)</span>$
-Without dividing by <span class="arithmatex">\(N q_i\)</span>, high-gradient outlier neighborhoods over-dominate SGD steps (<code>27.8%</code> gradient bias in Section 7 verification), driving <span class="arithmatex">\(\theta\)</span> away from the true population ERM optimum <span class="arithmatex">\(\theta^*\)</span>.</p>
+<p>By inverse-probability weighting [<a href="#ref-krishnan2016">Krishnan2016</a>]:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbb{E}\!\left[\frac{1}{k}\sum_{m=1}^k \frac{\nabla \ell_{i_m}}{N \, q_{i_m}}\right]
+&amp;= \sum_{i=1}^N q_i \frac{\nabla \ell_i}{N \, q_i} \\
+&amp;= \frac{1}{N} \sum_{i=1}^N \nabla \ell_i = \nabla \mathcal{L}_{\text{clean}}(\theta)
+\end{aligned}
+\]</div>
+<p>Without dividing by <span class="arithmatex">\(N q_i\)</span>, high-gradient outlier neighborhoods over-dominate SGD steps (<code>27.8%</code> gradient bias in Section 7 verification), driving <span class="arithmatex">\(\theta\)</span> away from the true population ERM optimum <span class="arithmatex">\(\theta^*\)</span>.</p>
 </details>
 </details>
 <details class="question">
@@ -8652,6 +8744,10 @@ Without dividing by <span class="arithmatex">\(N q_i\)</span>, high-gradient out
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

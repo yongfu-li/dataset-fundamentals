@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,8 +123,10 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 4px !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
           width: 100% !important;
@@ -313,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -339,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7711,20 +7767,20 @@
 <p>In empirical research and large-scale data engineering, a <strong>Codebook</strong> maps raw numerical or symbolic encoding schemes to concrete qualitative semantics (e.g., mapping integer <code>99</code> to <code>Refused to Answer</code> rather than an exact physiological value) (<a href="#ref-michener1997">Michener et al., 1997</a>). Simultaneously, <strong>Data Provenance</strong> tracks the end-to-end historical transformations that turned raw inputs into downstream training splits (<a href="#ref-moreau2011">Moreau et al., 2011</a>; <a href="#ref-buneman2001">Buneman et al., 2001</a>). Together with <strong>Semantic Release Notes (SemVer 2.0.0)</strong>, these artifacts form the auditable backbone of trustworthy data science (<a href="#ref-herschel2017">Herschel et al., 2017</a>; <a href="#ref-preston2013">Preston-Werner, 2013</a>), preventing silent forensic failure modes such as the off-by-one column alignment disaster that forced trial cancellations in biomedical oncology (<a href="#ref-baggerly2009">Baggerly &amp; Coombes, 2009</a>).</p>
 <pre class="mermaid"><code>flowchart TD
   subgraph RawIngest ["1. Ingestion &amp; Raw Encodings"]
-    RawRecords[("Raw Telemetry Records&lt;br/&gt;Numeric Codes: 1, 2, 99")]
-    CodebookMap["Codebook Translation Table&lt;br/&gt;1=Active, 2=Control, 99=Missing"]
+    RawRecords[("Raw Telemetry Records&lt;br/&gt;(Codes: 1, 2, 99)")]
+    CodebookMap["Codebook Translation&lt;br/&gt;(1=Active, 2=Control,&lt;br/&gt;99=Missing)"]
   end
 
-  subgraph ProvenanceGraph ["2. W3C PROV-O Provenance Graph"]
+  subgraph ProvenanceGraph ["2. W3C PROV-O Lineage"]
     Entity1[("Entity: Raw Ingestion")]
-    Activity1["Activity: Codebook Normalization"]
-    Entity2[("Entity: Cleaned Dataset")]
-    Agent1["Agent: Data Engineering Pipeline"]
+    Activity1["Activity: Normalization&lt;br/&gt;(Transform Pipeline)"]
+    Entity2[("Entity: Cleaned Data")]
+    Agent1["Agent: ETL Orchestrator"]
   end
 
-  subgraph Release ["3. Semantic Versioning &amp; Release Notes"]
-    SemVer["SemVer 2.0 Identifier&lt;br/&gt;v2.1.0 (MAJOR.MINOR.PATCH)"]
-    ReleaseNotes["Markdown Release Manifest&lt;br/&gt;Schema changes, row delta, hash digest"]
+  subgraph Release ["3. Semantic Versioning"]
+    SemVer["SemVer 2.0 Identifier&lt;br/&gt;(v2.1.0 Release Tag)"]
+    ReleaseNotes["Markdown Release Manifest&lt;br/&gt;(Schema Delta &amp; Hashes)"]
   end
 
   RawRecords --&gt; CodebookMap
@@ -8787,6 +8843,10 @@ In survey methodology, non-response is rarely Missing Completely at Random (MCAR
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

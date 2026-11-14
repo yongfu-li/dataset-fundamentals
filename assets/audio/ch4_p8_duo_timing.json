@@ -1,0 +1,505 @@
+{
+  "duration": 702.48,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why can't we just use standard web annotation tools everywhere? A bounding box is a bounding box, whether it surrounds a cat in a photo or a car on a highway!",
+          "dock": "main",
+          "start": 0.0,
+          "end": 11.136
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That assumption leads directly to fatal autonomous vehicle crashes, Kaito! A 2D box has zero depth or yaw orientation. If an obstacle's bounding box is off by 15 degrees of yaw, the planner misjudges lateral lane clearance and slams on phantom brakes!",
+          "dock": "main",
+          "start": 11.136,
+          "end": 28.656
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And in medical imaging? What happens if we convert CT scans to standard 8-bit PNG images for fast web browser labeling?",
+          "dock": "main",
+          "start": 28.656,
+          "end": 37.272
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "You destroy clinical contrast! 16-bit CT records 4,000 discrete Hounsfield Units. Clamping to 8-bit grayscales erases early-stage Ground-Glass Opacities in lung parenchyma completely. Let's inspect the math across each sector.",
+          "dock": "main",
+          "start": 37.272,
+          "end": 54.216
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Looking at this comparison table, the autonomous vehicle space uses 7 degrees of freedom: x, y, z, length, width, height, and yaw. Why do we drop pitch and roll?",
+          "dock": "main",
+          "start": 54.216,
+          "end": 65.496
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Great observation, Kaito! In ground vehicle robotics, cars operate on planar road surfaces. Pitch and roll variations are typically tiny suspension oscillations, but yaw heading determines where that two-ton vehicle will travel in the next 500 milliseconds!",
+          "dock": "main",
+          "start": 65.496,
+          "end": 83.352
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And in medical imaging, what makes volumetric voxels so different from regular 3D meshes?",
+          "dock": "main",
+          "start": 83.352,
+          "end": 89.544
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Each voxel carries a physical radiodensity value calibrated in Hounsfield Units! Let's drill into the physics of CT and MRI DICOM arrays.",
+          "dock": "main",
+          "start": 89.544,
+          "end": 99.552
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why don't data pipelines just export DICOM images as PNG files pre-set to the lung window? Wouldn't that make browser rendering super fast?",
+          "dock": "main",
+          "start": 99.552,
+          "end": 109.752
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because a single CT scan often requires multiple clinical perspectives! A radiologist annotating a lung carcinoma needs the lung window to see parenchymal infiltration, but must instantly flip to the mediastinal soft-tissue window to check for lymph node metastases!",
+          "dock": "main",
+          "start": 109.752,
+          "end": 126.648
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So if you clamp the raw DICOM data into a static PNG, you lock the annotator into a single preset and destroy the data for other diagnostic tasks!",
+          "dock": "main",
+          "start": 126.648,
+          "end": 135.936
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Professional medical annotation suites ingest raw 16-bit DICOM arrays and perform dynamic GPU shader windowing on the client. Now, let's look at how segmentations are scored.",
+          "dock": "main",
+          "start": 135.936,
+          "end": 149.592
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Hold on, Dr. Nova! In medical AI benchmarks, everyone celebrates when a model achieves a Dice score above 0.90. Are you saying a 0.945 Dice score can still be medically dangerous?!",
+          "dock": "main",
+          "start": 149.592,
+          "end": 164.112
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes, absolutely! Imagine an oncologist planning laparoscopic liver resection. If the tumor segmentation misses a tiny, finger-like projection invading the portal vein, the surgeon cuts blind and causes a lethal hemorrhage!",
+          "dock": "main",
+          "start": 164.112,
+          "end": 179.664
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And that tiny finger-like projection doesn't move the Dice score because its volume is tiny compared to the massive tumor core?",
+          "dock": "main",
+          "start": 179.664,
+          "end": 186.672
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Dice measures bulk volume, not surface boundary distance. That is why medical annotation requires a surface boundary metric: the 95th-Percentile Hausdorff Distance.",
+          "dock": "main",
+          "start": 186.672,
+          "end": 199.968
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Why do we use the 95th percentile instead of just the maximum distance? Wouldn't the maximum distance catch every single error?",
+          "dock": "main",
+          "start": 199.968,
+          "end": 208.728
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The maximum distance is plagued by single-voxel noise! When an expert radiologist clicks with a stylus, a single stray voxel hand-tremor could create a 12-millimeter spike. If you used the maximum, you'd reject human expert annotations that are otherwise flawless!",
+          "dock": "main",
+          "start": 208.728,
+          "end": 226.128
+        },
+        {
+          "speaker": "Kaito",
+          "text": "I see! The 95th percentile ignores isolated click jitter, but if there is an actual anatomical protrusion of dozens of voxels invading a vessel, the 95th percentile will immediately catch it!",
+          "dock": "main",
+          "start": 226.128,
+          "end": 238.896
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely! Let's test this directly in our interactive medical simulation laboratory.",
+          "dock": "main",
+          "start": 238.896,
+          "end": 245.472
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, let me try selecting the Dangerous 8mm Portal Vein Spike scenario. Look at the canvas! The candidate contour has a sharp red beak that touches the portal vein!",
+          "dock": "sim",
+          "start": 245.472,
+          "end": 257.856
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice the telemetry panel, Kaito! The Volumetric Dice score is 0.938\u2014well above the standard 0.88 benchmark pass gate. If our CI/CD pipeline checked only Dice, this lethal model would deploy straight to the operating room!",
+          "dock": "sim",
+          "start": 257.856,
+          "end": 275.616
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Unbelievable! But the HD95 metric jumps to 8.40 millimeters, triggering the red warning badge: 'HAZARD: 8.4mm PORTAL VEIN SPIKE REJECTED!'.",
+          "dock": "sim",
+          "start": 275.616,
+          "end": 287.136
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "That is the clinical power of dual metric validation. Let's test your judgment in Active Checkpoint 1.",
+          "dock": "sim",
+          "start": 287.136,
+          "end": 294.432
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Let's think carefully. The Dice score is 0.948, which sounds almost perfect on paper. But that 8.2mm protrusion touches a major artery!",
+          "dock": "quiz",
+          "start": 294.432,
+          "end": 306.192
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Analyze what happens to the patient if the surgical robot or surgeon trusts an automated contour that penetrates an arterial wall. Select your answer below!",
+          "dock": "quiz",
+          "start": 306.192,
+          "end": 316.392
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, why is yaw heading so much more critical than small errors in x or y position?",
+          "dock": "main",
+          "start": 316.392,
+          "end": 322.2
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because autonomous vehicles don't just react to where obstacles are right now; they predict where obstacles will be 2 seconds into the future! A Kalman filter projects the vehicle forward along its velocity vector, which is pointed directly by its yaw angle.",
+          "dock": "main",
+          "start": 322.2,
+          "end": 337.68
+        },
+        {
+          "speaker": "Kaito",
+          "text": "So if the annotator labels the car with a 15-degree yaw heading error, the trajectory predictor thinks the car is cutting sharply into our lane, even though it's driving completely straight!",
+          "dock": "main",
+          "start": 337.68,
+          "end": 347.976
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly! The autonomous car slams on its emergency brakes on a clear highway\u2014a phantom braking incident caused entirely by bad annotation heading data.",
+          "dock": "main",
+          "start": 347.976,
+          "end": 358.464
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Why do we have to use Sutherland-Hodgman clipping in the Bird's-Eye View plane? Can't we just use standard rectangle min-max formulas?",
+          "dock": "main",
+          "start": 358.464,
+          "end": 366.984
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Min-max bounding box formulas only work for axis-aligned rectangles with zero rotation, Kaito! As soon as a car turns its wheels, its bounding box becomes a rotated quadrilateral. Min-max formulas would enclose the empty space around the car, artificially corrupting intersection calculations!",
+          "dock": "main",
+          "start": 366.984,
+          "end": 386.976
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And Sutherland-Hodgman clips the actual rotated polygon edges against each other to find the true physical overlapping footprint!",
+          "dock": "main",
+          "start": 386.976,
+          "end": 394.56
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. And then multiplying by the 1D Z-axis overlap gives the exact physical volume intersection in cubic meters.",
+          "dock": "main",
+          "start": 394.56,
+          "end": 403.608
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Wait, Dr. Nova! 45 milliseconds sounds like nothing\u2014it's less than the blink of a human eye! Can 45 milliseconds really ruin an autonomous vehicle dataset?",
+          "dock": "main",
+          "start": 403.608,
+          "end": 415.92
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Think about highway velocities, Kaito! Two vehicles approaching each other at 54 km/h have a closing speed of 108 km/h, which is 30 meters per second. In 45 milliseconds, the oncoming car moves 1.35 meters!",
+          "dock": "main",
+          "start": 415.92,
+          "end": 434.064
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Whoa! That means when annotators project the LiDAR point cloud onto the camera image, the 3D box is hovering an entire car length away from the vehicle in the image!",
+          "dock": "main",
+          "start": 434.064,
+          "end": 444.576
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Human annotators trying to force them to match end up distorting box sizes and velocity vectors. That is why hardware Precision Time Protocol under 2 milliseconds is mandatory.",
+          "dock": "main",
+          "start": 444.576,
+          "end": 457.728
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, in computer vision IoU is a ratio of areas. Is this fuzzy token overlap essentially the text version of IoU?",
+          "dock": "main",
+          "start": 457.728,
+          "end": 466.896
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes, but notice the denominator, Kaito! Instead of dividing by the union of tokens, it divides by the minimum of the two token sets. This accounts for sub-clause containment!",
+          "dock": "main",
+          "start": 466.896,
+          "end": 479.52
+        },
+        {
+          "speaker": "Kaito",
+          "text": "Ah! So if one lawyer highlights the entire sentence, and another highlights just the active indemnification promise inside that sentence, the active promise is a complete subset of the sentence, giving 100% overlap!",
+          "dock": "main",
+          "start": 479.52,
+          "end": 492.888
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Spot on! That ensures the NLP model is rewarded for identifying the core legal commitment rather than being docked points for excluding filler text. Now let's explore 3D Bounding Boxes and Legal Spans in our second interactive lab.",
+          "dock": "main",
+          "start": 492.888,
+          "end": 508.584
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, look at the canvas on Tab 1! When I set the range to 25 meters and rotate yaw by 14 degrees, the amber predicted box twists against the green ground truth box.",
+          "dock": "sim",
+          "start": 508.584,
+          "end": 520.224
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And look at the telemetry sidebar! Even with identical center and dimensions, the 3D IoU plummets below 0.70, flipping the nuScenes benchmark status from PASS to FAIL!",
+          "dock": "sim",
+          "start": 520.224,
+          "end": 532.92
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And when I slide the range out to 70 meters, the LiDAR points drop down to a sparse handful of dots! You really can't draw an accurate box without multi-sweep temporal accumulation.",
+          "dock": "sim",
+          "start": 532.92,
+          "end": 544.152
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Precisely observed. Now let's test your understanding in Active Checkpoint 2.",
+          "dock": "sim",
+          "start": 544.152,
+          "end": 550.152
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Let's multiply velocity by time: 30 meters per second times 0.045 seconds gives 1.35 meters of physical displacement!",
+          "dock": "quiz",
+          "start": 550.152,
+          "end": 559.2
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "And combined with a 15-degree yaw rotation, what happens to the 3D IoU and downstream tracking filter? Choose the mathematically correct answer below!",
+          "dock": "quiz",
+          "start": 559.2,
+          "end": 569.472
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "It's fascinating how every single high-stakes domain had to invent its own specialized quality gate to survive in production!",
+          "dock": "main",
+          "start": 569.472,
+          "end": 576.624
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. General machine learning theory assumes clean, stationary labels. But in medical imaging, people's lives depend on millimeter boundary precision. In autonomous vehicles, people's lives depend on sub-2ms clock sync and yaw accuracy.",
+          "dock": "main",
+          "start": 576.624,
+          "end": 594.264
+        },
+        {
+          "speaker": "Kaito",
+          "text": "And in legal NLP, companies risk multi-million-dollar contractual liabilities if an indemnification clause is overlooked because of a trailing period!",
+          "dock": "main",
+          "start": 594.264,
+          "end": 603.288
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Well said. Now let's examine the production Python verification engine that automates these domain gates in CI/CD pipelines.",
+          "dock": "main",
+          "start": 603.288,
+          "end": 612.672
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "I love how this Python engine unifies all three domain metrics into a clean, testable interface! Does this run as a pre-commit check in annotation pipelines?",
+          "dock": "main",
+          "start": 612.672,
+          "end": 622.752
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Yes, absolutely! When vendors or offshore annotator fleets submit batch deliveries, this engine runs automated schema validation and metric assertion suites. Any delivery violating the dual BraTS gate, nuScenes IoU gate, or CUAD fuzzy threshold gets instantly rejected at the git boundary!",
+          "dock": "main",
+          "start": 622.752,
+          "end": 642.96
+        },
+        {
+          "speaker": "Kaito",
+          "text": "That prevents corrupted labels from ever entering the feature store or training clusters!",
+          "dock": "main",
+          "start": 642.96,
+          "end": 648.36
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Exactly. Let's synthesize our complete findings and transition to the final chapter lesson on production best practices.",
+          "dock": "main",
+          "start": 648.36,
+          "end": 657.0
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Kaito",
+          "text": "Dr. Nova, this lesson really brought home why domain expertise matters so much in AI engineering. It's not just about running generic algorithms; it's about deeply respecting the physics and domain realities of the data!",
+          "dock": "main",
+          "start": 657.0,
+          "end": 669.984
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Brilliantly said, Kaito! Whether you're segmenting a hepatic tumor, tracking a vehicle in 3D point clouds, or reviewing an indemnification clause, your annotation quality directly determines whether the AI model saves lives or causes catastrophes.",
+          "dock": "main",
+          "start": 669.984,
+          "end": 686.472
+        },
+        {
+          "speaker": "Kaito",
+          "text": "What's in store for our next lesson?",
+          "dock": "main",
+          "start": 686.472,
+          "end": 689.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In Lesson 4.9, we build the complete enterprise playbook: Standard Operating Procedures, golden honeypot economics, and active learning feedback loops. See you in Lesson 4.9!",
+          "dock": "main",
+          "start": 689.328,
+          "end": 702.48
+        }
+      ]
+    }
+  ]
+}

@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,8 +123,10 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 4px !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
           width: 100% !important;
@@ -313,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -339,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7760,24 +7816,20 @@
 
 
 <h1 id="72-types-and-mechanisms-of-dataset-bias">7.2 Types and Mechanisms of Dataset Bias</h1>
-<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 4px 4px 0px #151b20;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 800; color: #151b20; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-      <span style="background: #ffc83e; border: 1.5px solid #151b20; padding: 2px 8px; border-radius: 6px;">§7.2</span>
-      <span>Companion Monograph: Chapter 7 (Dataset Bias &amp; Algorithmic Fairness)</span>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #475569; margin-top: 6px; font-weight: 500;">
-      Read <strong>Chapter 7: Dataset Bias and Fairness</strong> in the companion Springer Nature monograph for complete taxonomy derivations, measurement error proofs, and IPW weighting algebra.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 7: Dataset Bias and Fairness (§7.2: Types &amp; Mechanisms of Dataset Bias)</strong>, covering complete taxonomy derivations, measurement error proofs, and IPW weighting algebra.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #c9f3f4; color: #0e7490; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.84rem; text-decoration: none; box-shadow: 2px 2px 0px #151b20;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+    <span>Explore Chapter 7 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Duration:</strong> ~30 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-72">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 7.2</h3>
 <p>Experience Chapter 7 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
@@ -7786,7 +7838,7 @@
     <div style="display: flex; align-items: center; gap: 10px;">
       <span style="font-size: 1.25rem;">🎙️</span>
       <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Masterclass Slides</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
       <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
@@ -7802,7 +7854,7 @@
 
 <hr />
 <h2 id="conceptual-overview-bias-taxonomy">🎯 Conceptual Overview &amp; Bias Taxonomy</h2>
-<p>Dataset bias is not an amorphous, singular flaw; it is a family of distinct structural distortions entering the machine learning pipeline at identifiable phases of the data lifecycle [<a href="#ref-mehrabi2021">Mehrabi2021</a>, <a href="#ref-barocas2016">Barocas2016</a>]. Auditing and mitigating bias requires establishing a precise mathematical taxonomy that separates <strong>societal realities</strong>, <strong>sampling selection functions</strong>, <strong>sensor measurement errors</strong>, and <strong>statistical aggregation artifacts</strong>.</p>
+<p>Dataset bias is not an amorphous, singular flaw; it is a family of distinct structural distortions entering the machine learning pipeline at identifiable phases of the data lifecycle [<a href="#ref-mehrabi2021">Mehrabi2021</a>, <a href="#ref-barocas2016">Barocas2016</a>, <a href="#ref-torralba2011">Torralba2011</a>]. Auditing and mitigating bias requires establishing a precise mathematical taxonomy that separates <strong>societal realities</strong>, <strong>sampling selection functions</strong>, <strong>sensor measurement errors</strong>, and <strong>statistical aggregation artifacts</strong>.</p>
 <pre class="mermaid"><code>flowchart TD
     World["Societal Phenomenon &amp; Real-World Reality"] --&gt;|Historical Bias| GenData["Raw Generated Reality"]
     GenData --&gt;|Selection &amp; Sampling Bias S=1| SampledData["Collected Dataset D"]
@@ -7923,8 +7975,8 @@ An automated scoring system will perceive the feature <span class="arithmatex">\
 <hr />
 <blockquote>
 <p>[!TIP]
-<strong>Industrial Best Practice: Datasheets for Datasets (<a href="#ref-gebru2021">Gebru et al., 2021</a>)</strong>
-Accompany every production dataset with a standardized <strong>Datasheet for Datasets</strong>. Document explicit answers to:
+<strong>Industrial Best Practice: Datasheets for Datasets (<a href="#ref-gebru2021">Gebru et al., 2021</a>) &amp; Model Cards (<a href="#ref-mitchell2019">Mitchell et al., 2019</a>)</strong>
+Accompany every production dataset with a standardized <strong>Datasheet for Datasets</strong> and downstream <strong>Model Card</strong>. Document explicit answers to:
 1. <em>Motivation:</em> For what purpose was the dataset created? Who funded it?
 2. <em>Composition:</em> What do the instances represent? Are protected attributes recorded? Are sensitive sub-populations oversampled or underrepresented?
 3. <em>Collection Process:</em> What sampling mechanism was deployed? Was consent obtained?
@@ -8543,6 +8595,7 @@ $<span class="arithmatex">\(\text{plim} \; \hat{\beta} = \beta \cdot \left( \fra
 <li><a id="ref-gebru2021"></a><strong>[Gebru2021]</strong> T. Gebru et al., "Datasheets for Datasets," <em>Communications of the ACM</em>, vol. 64, no. 12, pp. 86–92, 2021. <a href="https://doi.org/10.1145/3458723">DOI: 10.1145/3458723</a>.</li>
 <li><a id="ref-sjoding2020"></a><strong>[Sjoding2020]</strong> M. W. Sjoding et al., "Racial Bias in Pulse Oximetry Measurement," <em>New England Journal of Medicine</em>, vol. 383, no. 25, pp. 2477–2478, 2020. <a href="https://doi.org/10.1056/NEJMc2024876">DOI: 10.1056/NEJMc2024876</a>.</li>
 <li><a id="ref-mitchell2019"></a><strong>[Mitchell2019]</strong> M. Mitchell et al., "Model Cards for Model Reporting," in <em>Proceedings of the Conference on Fairness, Accountability, and Transparency (FAT</em>)*, pp. 220–229, 2019. <a href="https://doi.org/10.1145/3287560.3287596">DOI: 10.1145/3287560.3287596</a>.</li>
+<li><a id="ref-torralba2011"></a><strong>[Torralba2011]</strong> A. Torralba and A. A. Efros, "Unbiased Look at Dataset Bias," in <em>IEEE Conference on Computer Vision and Pattern Recognition (CVPR '11)</em>, 2011, pp. 1521–1528. <a href="https://doi.org/10.1109/CVPR.2011.5995347">DOI: 10.1109/CVPR.2011.5995347</a>.</li>
 </ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
@@ -8645,6 +8698,10 @@ $<span class="arithmatex">\(\text{plim} \; \hat{\beta} = \beta \cdot \left( \fra
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

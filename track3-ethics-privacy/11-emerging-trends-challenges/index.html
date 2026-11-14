@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,9 +123,13 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
+          box-sizing: border-box !important;
+          width: 100% !important;
         }
 
         .node g.label rect,
@@ -311,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -337,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7730,7 +7788,7 @@
       <span>📖 Companion Monograph Section Available</span>
     </div>
     <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.11: Emerging Frontiers & Future Challenges)</strong> in the official Springer Nature monograph, analyzing foundation model memorization attacks, synthetic data privacy leakage, gradient inversion in federated learning, and national data sovereignty.
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.11: Emerging Frontiers & Future Challenges)</strong>, analyzing foundation model memorization attacks, synthetic data privacy leakage, gradient inversion in federated learning, and national data sovereignty.
     </div>
   </div>
   <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
@@ -7738,9 +7796,6 @@
   </a>
 </div>
 
-<blockquote>
-<p><strong>Estimated Study Time:</strong> ~20 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-311">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 3.11</h3>
 <p>Experience Chapter 3 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
@@ -7749,7 +7804,7 @@
     <div style="display: flex; align-items: center; gap: 10px;">
       <span style="font-size: 1.25rem;">🎙️</span>
       <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">10 Slides</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
       <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
@@ -7770,21 +7825,44 @@
 <h2 id="1-the-generative-ai-privacy-adversarial-threat-landscape">1. The Generative AI Privacy &amp; Adversarial Threat Landscape</h2>
 <p>Foundation models act not merely as statistical interpolators, but as lossy, high-capacity compression mechanisms of their pretraining data:</p>
 <pre class="mermaid"><code>flowchart TD
-    Pretrain["1. Internet-Scale Pretraining Scrape&lt;br&gt;(Common Crawl, Books3, GitHub, MedData)"] --&gt; Foundation["2. Foundation Model (7B–1T+ Parameters)"]
+    Pretrain["&lt;b&gt;1. Pretraining Scrape&lt;/b&gt;&lt;br/&gt;Common Crawl, Books3, GitHub, EHR"] --&gt; Foundation["&lt;b&gt;2. Foundation Model&lt;/b&gt;&lt;br/&gt;7B–1T+ Overparameterized Weights"]
 
-    Foundation --&gt; Attack1["Threat 1: Training Data Extraction&lt;br&gt;Adversarial prefix prompts trigger verbatim PII regurgitation"]
-    Foundation --&gt; Attack2["Threat 2: Membership Inference Attack (MIA)&lt;br&gt;Loss-based Likelihood Ratio proves patient was in training set"]
-    Foundation --&gt; Attack3["Threat 3: Synthetic Data Mode Collapse&lt;br&gt;Generative models clone private outliers identically"]
-    Foundation --&gt; Attack4["Threat 4: Gradient Inversion in FL&lt;br&gt;Deep leakage recovers raw patient pixels from weight updates"]
-    Foundation --&gt; Attack5["Threat 5: Geopolitical Sovereignty Walls&lt;br&gt;Schrems II, China PIPL &amp; national AI data borders"]
+    subgraph FrontierThreats["Five Frontier AI Privacy Threat Surfaces"]
+        direction TB
+
+        subgraph Group1["Generative Vulnerabilities"]
+            direction TB
+            Attack1["&lt;b&gt;Threat 1: Verbatim Extraction&lt;/b&gt;&lt;br/&gt;Adversarial prefix prompts trigger&lt;br/&gt;verbatim PII &amp; key regurgitation"]
+            Attack2["&lt;b&gt;Threat 2: Membership Inference (MIA)&lt;/b&gt;&lt;br/&gt;Loss likelihood ratio proves patient&lt;br/&gt;record was in training set"]
+        end
+
+        subgraph Group2["Decentralized &amp; Synthetic Risks"]
+            direction TB
+            Attack3["&lt;b&gt;Threat 3: Mode Collapse&lt;/b&gt;&lt;br/&gt;Generative models clone private&lt;br/&gt;outliers identically (Recital 26)"]
+            Attack4["&lt;b&gt;Threat 4: Gradient Inversion in FL&lt;/b&gt;&lt;br/&gt;Deep leakage in FL reconstructs&lt;br/&gt;raw clinical scans from &amp;nabla;W"]
+        end
+
+        subgraph Group3["Sovereignty &amp; Borders"]
+            direction TB
+            Attack5["&lt;b&gt;Threat 5: Data Sovereignty Walls&lt;/b&gt;&lt;br/&gt;&lt;i&gt;Schrems II&lt;/i&gt;, FISA 702 &amp; PIPL mandate&lt;br/&gt;regional key custody &amp; export bans"]
+        end
+    end
+
+    Foundation --&gt; Group1
+    Foundation --&gt; Group2
+    Foundation --&gt; Group3
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef subbox fill:#f8fafc,stroke:#151b20,stroke-width:1.5px,stroke-dasharray: 4 4,color:#151b20;
+    classDef mainbox fill:#ffffff,stroke:#151b20,stroke-width:2px,color:#151b20;
 
     class Pretrain blue;
     class Foundation amber;
-    class Attack1,Attack2,Attack3,Attack4,Attack5 red;</code></pre>
+    class Attack1,Attack2,Attack3,Attack4,Attack5 red;
+    class Group1,Group2,Group3 subbox;
+    class FrontierThreats mainbox;</code></pre>
 <h3 id="table-311-emerging-frontier-privacy-threat-vectors">Table 3.11: Emerging Frontier Privacy Threat Vectors</h3>
 <table>
 <thead>
@@ -7805,7 +7883,7 @@
 <tr>
 <td style="text-align: left;"><strong>Membership Inference (MIA)</strong></td>
 <td style="text-align: left;">Generalization error gap: in-sample cross-entropy loss is significantly lower than out-of-sample loss.</td>
-<td style="text-align: left;">Reconstructing clinical trial patient cohort membership with over <span class="arithmatex">\(85\%\)</span> confidence [<a href="#ref-shokri2017">Shokri2017</a>].</td>
+<td style="text-align: left;">Reconstructing clinical trial patient cohort membership with over 85% confidence [<a href="#ref-shokri2017">Shokri2017</a>].</td>
 <td style="text-align: left;">Differential privacy training (<span class="arithmatex">\(\epsilon \le 4.0\)</span>), regularization (weight decay, dropout), early stopping.</td>
 </tr>
 <tr>
@@ -7816,7 +7894,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Gradient Inversion in FL</strong></td>
-<td style="text-align: left;">Analytical or optimization-based inversion of backpropagated weight tensors (<span class="arithmatex">\(\arg\min \|\nabla W - \nabla W'\|\)</span>).</td>
+<td style="text-align: left;">Analytical or optimization-based inversion of backpropagated weight tensors (<span class="arithmatex">\(\arg\min \Vert \nabla W - \nabla W' \Vert\)</span>).</td>
 <td style="text-align: left;"><em>Deep Leakage from Gradients</em> [<a href="#ref-zhu2019">Zhu2019</a>]: Recovering clinical scans from raw federated gradients.</td>
 <td style="text-align: left;">Bonawitz Secure Aggregation (SecAgg), gradient quantization, Gaussian DP noise injection.</td>
 </tr>
@@ -7850,10 +7928,10 @@ P(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha 
 (\mathbf{x}, y) \in \mathcal{D}_{\text{train}} \iff \ell(f_\theta(\mathbf{x}), y) \le \tau_{\text{threshold}}
 \]</div>
 <pre class="mermaid"><code>flowchart LR
-    Target["Target Record (x, y)"] --&gt; Loss["Compute Loss: ℓ(f_θ(x), y)"]
-    Loss --&gt; Thresh{"ℓ ≤ τ_MIA?"}
-    Thresh --&gt;|Yes| Member["In-Sample Member&lt;br&gt;(Training Set Confirmed)"]
-    Thresh --&gt;|No| NonMember["Out-of-Sample Record&lt;br&gt;(Unseen General Population)"]
+    Target["&lt;b&gt;Target Record&lt;/b&gt;&lt;br/&gt;Candidate (x, y)"] --&gt; Loss["&lt;b&gt;Evaluate Model Loss&lt;/b&gt;&lt;br/&gt;Compute &amp;ell;(f&lt;sub&gt;&amp;theta;&lt;/sub&gt;(x), y)"]
+    Loss --&gt; Thresh{"Loss &amp;le;&lt;br/&gt;&amp;tau;&lt;sub&gt;MIA&lt;/sub&gt;?"}
+    Thresh --&gt;|Yes: Low Loss| Member["&lt;b&gt;In-Sample Member&lt;/b&gt;&lt;br/&gt;Training Set Confirmed&lt;br/&gt;&lt;i&gt;(Privacy Leakage)&lt;/i&gt;"]
+    Thresh --&gt;|No: High Loss| NonMember["&lt;b&gt;Out-of-Sample Record&lt;/b&gt;&lt;br/&gt;General Population&lt;br/&gt;&lt;i&gt;(Protected)&lt;/i&gt;"]
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
@@ -7861,7 +7939,8 @@ P(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha 
     classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
 
     class Target blue;
-    class Loss,Thresh amber;
+    class Loss amber;
+    class Thresh amber;
     class Member red;
     class NonMember green;</code></pre>
 <p>Under <span class="arithmatex">\((\epsilon, \delta)\)</span>-Differential Privacy training (DP-SGD), the maximal MIA advantage is strictly bounded by <span class="arithmatex">\(e^\epsilon - 1\)</span>, neutralizing the attack.</p>
@@ -7883,7 +7962,7 @@ P(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha 
 <ul>
 <li><strong>The Incident</strong>: Researchers queried open pre-trained checkpoints of GPT-2 using internet-derived prefix sequences.</li>
 <li><strong>The Findings</strong>: By generating sequences and ranking by perplexity ratio <span class="arithmatex">\(\mathcal{R}_{\text{extract}}\)</span>, researchers extracted over <strong>600 verbatim training records</strong>, including real individuals' full names, residential physical addresses, cell phone numbers, and 128-bit private Bitcoin wallet keys.</li>
-<li><strong>The Insight</strong>: Filtering and deduplicating pretraining datasets is non-negotiable; duplicating a string more than 10 times increases memorization risk by over <span class="arithmatex">\(100\times\)</span>.</li>
+<li><strong>The Insight</strong>: Filtering and deduplicating pretraining datasets is non-negotiable; duplicating a string more than 10 times increases memorization risk by over 100×.</li>
 </ul>
 <h3 id="case-study-2-laion-5b-dataset-withdrawal-stanford-internet-observatory-2023">Case Study 2: LAION-5B Dataset Withdrawal (Stanford Internet Observatory, 2023)</h3>
 <ul>
@@ -7935,7 +8014,7 @@ P(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha 
       </div>
       <div>
         <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 4px;">
-          String Duplication Frequency $k$: <span id="lbl_k" style="color: #0284c7; font-family: monospace;">15 Copies</span>
+          String Duplication Frequency <i>k</i>: <span id="lbl_k" style="color: #0284c7; font-family: monospace;">15 Copies</span>
         </label>
         <input type="range" id="sl_k" min="1" max="100" step="1" value="15" style="width: 100%; accent-color: #0284c7;" oninput="updateGenSim()">
       </div>
@@ -7944,9 +8023,9 @@ P(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha 
           Differential Privacy (DP-SGD) Defense:
         </label>
         <select id="sel_dp_defense" style="width: 100%; padding: 6px; border: 1.5px solid #151b20; border-radius: 6px; font-weight: 700; font-size: 0.8rem; background: #ffffff;" onchange="updateGenSim()">
-          <option value="none">No Privacy Defense ($\epsilon = \infty$, Raw Gradients)</option>
-          <option value="weak">Weak Privacy ($\epsilon = 8.0$, Clipping $C=1.0$)</option>
-          <option value="strong" selected>Certified Strong ($\epsilon = 1.0$, Rigorous Noise)</option>
+          <option value="none">No Privacy Defense (ε = ∞, Raw Gradients)</option>
+          <option value="weak">Weak Privacy (ε = 8.0, Clipping C = 1.0)</option>
+          <option value="strong" selected>Certified Strong (ε = 1.0, Rigorous DP-SGD Noise)</option>
         </select>
       </div>
     </div>
@@ -7956,7 +8035,7 @@ P(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha 
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 20px;">
     <!-- Memorization Extraction Probability -->
     <div style="background: #fef2f2; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
-      <div style="font-size: 0.72rem; font-weight: 800; color: #991b1b; text-transform: uppercase;">Extraction Probability $P_{\text{extract}}$</div>
+      <div style="font-size: 0.72rem; font-weight: 800; color: #991b1b; text-transform: uppercase;">Extraction Probability <i>P</i><sub>extract</sub></div>
       <div id="stat_extract_prob" style="font-size: 1.35rem; font-weight: 800; color: #b91c1c; margin: 4px 0;">3.8%</div>
       <div style="font-size: 0.68rem; color: #475569;">Carlini Power-Law Metric</div>
     </div>
@@ -7970,7 +8049,7 @@ P(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha 
 
     <!-- Extraction Likelihood Ratio -->
     <div style="background: #eff6ff; border: 2px solid #151b20; border-radius: 8px; padding: 14px; font-family: monospace;">
-      <div style="font-size: 0.72rem; font-weight: 800; color: #1e40af; text-transform: uppercase;">Likelihood Ratio $\mathcal{R}_{\text{extract}}$</div>
+      <div style="font-size: 0.72rem; font-weight: 800; color: #1e40af; text-transform: uppercase;">Likelihood Ratio <i>R</i><sub>extract</sub></div>
       <div id="stat_lr_ratio" style="font-size: 1.35rem; font-weight: 800; color: #1e3a8a; margin: 4px 0;">1.24x</div>
       <div style="font-size: 0.68rem; color: #0284c7;">Target / Reference Perplexity</div>
     </div>
@@ -7985,7 +8064,7 @@ P(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha 
 
   <!-- Dynamic Risk Banner -->
   <div id="gen_risk_banner" style="background: #dcfce7; border: 2px solid #15803d; border-radius: 8px; padding: 14px; font-size: 0.85rem; color: #14532d; line-height: 1.5;">
-    <strong>✓ Certified Privacy Invariant Active:</strong> Strong Differential Privacy ($\epsilon = 1.0$) prevents training data extraction and collapses Membership Inference Attack AUC to near-random ($0.521$). Individual training records are mathematically protected.
+    <strong>✓ Certified Privacy Invariant Active:</strong> Strong Differential Privacy (ε = 1.0) prevents training data extraction and collapses Membership Inference Attack AUC to near-random (0.521). Individual training records are mathematically protected.
   </div>
 </div>
 
@@ -8239,10 +8318,14 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 <p>In Carlini et al.'s landmark empirical investigation of LLM training data extraction, what was the mathematical relationship between the number of times a sequence is duplicated in the pretraining corpus and its extraction probability?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Memorization extraction probability follows a <strong>Super-Linear Power Law with Duplication Frequency</strong>:
-$<span class="arithmatex">\(\Pr(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha \approx 0.75, \; \beta \approx 0.35\)</span>$
-1. <strong>The Power of Duplication (<span class="arithmatex">\(k\)</span>)</strong>: A string appearing only once or twice in a 1-trillion token scrape has a negligible extraction probability. However, if a sensitive record (e.g., a software developer's private API key, or an individual's phone number on multiple public contact pages) is duplicated <span class="arithmatex">\(k \ge 15\)</span> times, the model transitions from general representation learning to <strong>exact lossy compression and verbatim memorization</strong>.
-2. <strong>Engineering Invariant</strong>: Deduplication is the single most effective pretraining defense. Running MinHash or near-deduplication on web crawl datasets before training eliminates over <span class="arithmatex">\(90\%\)</span> of memorized extraction surfaces.</p>
+<p><strong>Answer:</strong> Memorization extraction probability follows a <strong>Super-Linear Power Law with Duplication Frequency</strong>:</p>
+<div class="arithmatex">\[
+\Pr(\text{Extraction}) \propto k^\alpha \cdot P^\beta, \quad \text{where } \alpha \approx 0.75, \; \beta \approx 0.35
+\]</div>
+<ol>
+<li><strong>The Power of Duplication (<span class="arithmatex">\(k\)</span>)</strong>: A string appearing only once or twice in a 1-trillion token scrape has a negligible extraction probability. However, if a sensitive record (e.g., a software developer's private API key, or an individual's phone number on multiple public contact pages) is duplicated <span class="arithmatex">\(k \ge 15\)</span> times, the model transitions from general representation learning to <strong>exact lossy compression and verbatim memorization</strong>.</li>
+<li><strong>Engineering Invariant</strong>: Deduplication is the single most effective pretraining defense. Running MinHash or near-deduplication on web crawl datasets before training eliminates over 90% of memorized extraction surfaces.</li>
+</ol>
 </details>
 </details>
 <details class="question">
@@ -8252,12 +8335,14 @@ $<span class="arithmatex">\(\Pr(\text{Extraction}) \propto k^\alpha \cdot P^\bet
 <summary>Reveal Detailed Solution</summary>
 <p><strong>Answer:</strong>
 1. <strong>The Attack</strong>: <strong>Deep Leakage from Gradients (DLG)</strong> (Zhu et al., 2019).
-   Because backpropagated gradients are linear combinations of the input features and hidden representations, the adversary treats the dummy input <span class="arithmatex">\(\mathbf{x}'\)</span> as a variable and solves:
-   $<span class="arithmatex">\(\mathbf{x}^* = \arg\min_{\mathbf{x}'} \|\nabla_{\mathbf{W}} \mathcal{L}(\mathbf{W}; \mathbf{x}', y') - \nabla_{\mathbf{W}} \mathcal{L}_{\text{observed}}\|_2^2\)</span>$
-   Gradient descent over the input space matches the gradient update, recovering the original pixels with near-zero error.
+   Because backpropagated gradients are linear combinations of the input features and hidden representations, the adversary treats the dummy input <span class="arithmatex">\(\mathbf{x}'\)</span> as a variable and solves:</p>
+<p>$$
+   \mathbf{x}^* = \arg\min_{\mathbf{x}'} \left\Vert \nabla_{\mathbf{W}} \mathcal{L}(\mathbf{W}; \mathbf{x}', y') - \nabla_{\mathbf{W}} \mathcal{L}_{\text{observed}} \right\Vert_2^2
+   $$</p>
+<p>Gradient descent over the input space matches the gradient update, recovering the original pixels with near-zero error.
 2. <strong>The Defense</strong>: <strong>Bonawitz Secure Aggregation (SecAgg) with Local Differential Privacy</strong>.
    - <strong>SecAgg</strong>: Cryptographic protocol ensuring the central server only sees the aggregate sum <span class="arithmatex">\(\sum_{i} \nabla W_i\)</span>, never individual hospital updates.
-   - <strong>Differential Privacy (DP)</strong>: Local gradient clipping (<span class="arithmatex">\(\|\nabla W\|_2 \le C\)</span>) and Gaussian noise addition mathematically bounding reconstruction fidelity.</p>
+   - <strong>Differential Privacy (DP)</strong>: Local gradient clipping (<span class="arithmatex">\(\Vert \nabla W \Vert_2 \le C\)</span>) and Gaussian noise addition mathematically bounding reconstruction fidelity.</p>
 </details>
 </details>
 <details class="question">
@@ -8411,6 +8496,10 @@ $<span class="arithmatex">\(\Pr(\text{Extraction}) \propto k^\alpha \cdot P^\bet
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,8 +123,10 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 4px !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
           width: 100% !important;
@@ -313,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -339,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7726,7 +7782,7 @@
     <div style="display: flex; align-items: center; gap: 10px;">
       <span style="font-size: 1.25rem;">🎙️</span>
       <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">10 Slides</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
       <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
@@ -7756,35 +7812,39 @@
 </ol>
 <pre class="mermaid"><code>flowchart TD
   subgraph DataPipeline ["1. Generative Pipeline &amp; Provenance"]
-    PrivateData["Raw Training Corpus D_real&lt;br/&gt;PII, EHR, Financial Microdata"]
-    Synthesizer["Generative Engine M(D)&lt;br/&gt;DP-SGD / CTGAN / LLM"]
-    CandidateSynth["Candidate Synthetic Data&lt;br/&gt;D_synth ~ M(D_real)"]
+    PrivateData["Raw Training Corpus D_real&lt;br/&gt;PII, EHR &amp; Financial Microdata"]
+    Synthesizer["Generative Engine M(D)&lt;br/&gt;DP-SGD / CTGAN / Diffusion"]
+    CandidateSynth["Candidate Synthetic Cohort&lt;br/&gt;D_synth ~ M(D_real)"]
+    PrivateData --&gt; Synthesizer --&gt; CandidateSynth
   end
 
   subgraph TriPillarAudit ["2. Tri-Pillar Regulatory Compliance Audit"]
-    PrivacyAudit{"Pillar I: Privacy Audit&lt;br/&gt;epsilon_total &lt;= epsilon_budget&lt;br/&gt;(Renyi DP / Advanced Comp)"}
-    LinkageAudit{"Pillar II: Linkage Gate&lt;br/&gt;Empirical P_linkage &lt;= 0.05&lt;br/&gt;(Quasi-ID Neighborhood)"}
-    FairnessAudit{"Pillar III: Fairness Gate&lt;br/&gt;DIR in [0.80, 1.25]&lt;br/&gt;(EEOC Four-Fifths Rule)"}
+    AuditGate["Candidate Audit Gate&lt;br/&gt;Automated Ingestion"]
+    PrivacyAudit["Pillar I: Privacy Audit&lt;br/&gt;ε_total ≤ ε_budget (Rényi DP)"]
+    LinkageAudit["Pillar II: Linkage Gate&lt;br/&gt;Mean P_link ≤ 0.05 (Quasi-ID)"]
+    FairnessAudit["Pillar III: Fairness Gate&lt;br/&gt;DIR ∈ [0.80, 1.25] (EEOC 4/5ths)"]
+    AuditGate --&gt; PrivacyAudit
+    AuditGate --&gt; LinkageAudit
+    AuditGate --&gt; FairnessAudit
   end
 
-  subgraph RegulatoryCompliance ["3. Legal Certification &amp; Deployment"]
-    ComplianceSeal["EU AI Act &amp; Safe Harbor Certified&lt;br/&gt;Cryptographic C2PA Provenance Seal"]
+  subgraph ComplianceDecision ["3. Conjunctive Compliance Evaluation"]
+    ConjunctiveCheck{"All 3 Gates&lt;br/&gt;Passed?"}
+    PrivacyAudit --&gt; ConjunctiveCheck
+    LinkageAudit --&gt; ConjunctiveCheck
+    FairnessAudit --&gt; ConjunctiveCheck
+  end
+
+  subgraph RegulatoryCompliance ["4. Legal Certification &amp; Deployment"]
+    ComplianceSeal["EU AI Act &amp; Safe Harbor Certified&lt;br/&gt;C2PA Cryptographic Provenance Seal"]
     PublicDeployment["Compliant Enterprise Deployment&lt;br/&gt;Open Science / Commercial ML"]
-    LegalInjunction["Quarantine &amp; Retraining Injunction&lt;br/&gt;Regulatory Non-Compliance Alert"]
+    LegalInjunction["Quarantine &amp; Model Scrapping&lt;br/&gt;Regulatory Non-Compliance Injunction"]
+    ComplianceSeal --&gt; PublicDeployment
   end
 
-  PrivateData --&gt; Synthesizer
-  Synthesizer --&gt; CandidateSynth
-  CandidateSynth --&gt; PrivacyAudit
-  CandidateSynth --&gt; LinkageAudit
-  CandidateSynth --&gt; FairnessAudit
-  PrivacyAudit -- Pass --&gt; ComplianceSeal
-  LinkageAudit -- Pass --&gt; ComplianceSeal
-  FairnessAudit -- Pass --&gt; ComplianceSeal
-  PrivacyAudit -- Fail --&gt; LegalInjunction
-  LinkageAudit -- Fail --&gt; LegalInjunction
-  FairnessAudit -- Fail --&gt; LegalInjunction
-  ComplianceSeal --&gt; PublicDeployment
+  CandidateSynth --&gt; AuditGate
+  ConjunctiveCheck -- "Yes (All Pass)" --&gt; ComplianceSeal
+  ConjunctiveCheck -- "No (Any Fail)" --&gt; LegalInjunction
 
   classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
   classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
@@ -7794,7 +7854,8 @@
 
   class PrivateData,Synthesizer blue;
   class CandidateSynth purple;
-  class PrivacyAudit,LinkageAudit,FairnessAudit amber;
+  class AuditGate,PrivacyAudit,LinkageAudit,FairnessAudit amber;
+  class ConjunctiveCheck amber;
   class ComplianceSeal,PublicDeployment green;
   class LegalInjunction red;</code></pre>
 <hr />
@@ -7811,12 +7872,12 @@
 
     Engine-&gt;&gt;Watermark: Emit Candidate Synthetic Cohort D_synth
     Watermark-&gt;&gt;Watermark: Partition Tokens / Inject Spectral Perturbation (z &gt;= 4.0)
-    Watermark-&gt;&gt;HSM: Submit Manifest Hash: H = SHA256(D_synth || Metadata)
+    Watermark-&gt;&gt;HSM: Submit Manifest Hash: H = SHA256(D_synth + Metadata)
     HSM-&gt;&gt;HSM: Sign Manifest with Enterprise Private Key (ECDSA P-256)
     HSM--&gt;&gt;Registry: Publish Signed C2PA Provenance Attestation
     Registry--&gt;&gt;Engine: Attach Cryptographic Container to D_synth
     Auditor-&gt;&gt;Registry: Query Attestation &amp; Verify Certificate Chain
-    Auditor-&gt;&gt;Auditor: Compute Hypothesis Test z-score &amp; Verify Null Rejection (p &lt; 1e-15)
+    Auditor-&gt;&gt;Auditor: Compute Hypothesis Test z-score &amp; Verify Null Rejection (p &amp;lt; 10⁻¹⁵)
     Auditor--&gt;&gt;Auditor: Issue CE-Mark Compliance Clearance</code></pre>
 <hr />
 <div class="admonition tip">
@@ -7833,11 +7894,11 @@
 <h3 id="definition-10101-renyi-differential-privacy-rdp-advanced-privacy-budget-composition">Definition 10.10.1: Rényi Differential Privacy (RDP) &amp; Advanced Privacy Budget Composition</h3>
 <p>A randomized algorithm <span class="arithmatex">\(\mathcal{M}: \mathcal{D} \to \mathcal{S}\)</span> satisfies <span class="arithmatex">\((\alpha, \epsilon_{\text{rdp}})\)</span>-Rényi Differential Privacy (RDP) of order <span class="arithmatex">\(\alpha \in (1, \infty)\)</span> if for all neighboring datasets <span class="arithmatex">\(D, D' \in \mathcal{D}\)</span> differing by at most one individual record (<a href="#ref-mironov2017">Mironov, 2017</a>):</p>
 <div class="arithmatex">\[
-\mathcal{D}_\alpha\left(\mathcal{M}(D) \parallel \mathcal{M}(D')\right) = \frac{1}{\alpha - 1} \ln \int_{\mathcal{S}} \mathcal{M}(D)(s)^\alpha \cdot \mathcal{M}(D')(s)^{1 - \alpha} \, ds \le \epsilon_{\text{rdp}}
+\mathcal{D}_\alpha\left(\mathcal{M}(D) \parallel \mathcal{M}(D')\right) = \frac{1}{\alpha - 1} \ln \left( \int_{\mathcal{S}} \mathcal{M}(D)(s)^\alpha \cdot \mathcal{M}(D')(s)^{1 - \alpha} \, ds \right) \le \epsilon_{\text{rdp}}
 \]</div>
-<p>Under Gaussian perturbation with noise scale <span class="arithmatex">\(\sigma = \frac{\Delta_2}{\sigma_{\text{noise}}}\)</span> and <span class="arithmatex">\(\ell_2\)</span>-sensitivity <span class="arithmatex">\(\Delta_2\)</span>, the single-step mechanism achieves:</p>
+<p>Under Gaussian perturbation with <span class="arithmatex">\(\ell_2\)</span>-sensitivity <span class="arithmatex">\(\Delta_2\)</span> and noise standard deviation <span class="arithmatex">\(\sigma_{\text{noise}}\)</span>, defining the noise multiplier as <span class="arithmatex">\(\sigma = \frac{\sigma_{\text{noise}}}{\Delta_2}\)</span>, the single-step mechanism achieves:</p>
 <div class="arithmatex">\[
-\epsilon_{\text{rdp}}(\alpha) = \frac{\alpha \Delta_2^2}{2 \sigma_{\text{noise}}^2}
+\epsilon_{\text{rdp}}(\alpha) = \frac{\alpha \Delta_2^2}{2 \sigma_{\text{noise}}^2} = \frac{\alpha}{2 \sigma^2}
 \]</div>
 <p><strong>Theorem 10.10.1 (Linear Composition &amp; Standard DP Conversion):</strong>
 If <span class="arithmatex">\(T\)</span> sequential queries <span class="arithmatex">\(\mathcal{M}_1, \dots, \mathcal{M}_T\)</span> satisfy <span class="arithmatex">\((\alpha, \epsilon_t)\)</span>-RDP, the cumulative mechanism <span class="arithmatex">\(\mathcal{M}_{1:T}\)</span> satisfies <span class="arithmatex">\((\alpha, \sum_{t=1}^T \epsilon_t)\)</span>-RDP. For any target probability failure parameter <span class="arithmatex">\(\delta &gt; 0\)</span>, the cumulative mechanism satisfies standard <span class="arithmatex">\((\epsilon(\delta), \delta)\)</span>-Differential Privacy (<a href="#ref-mironov2017">Mironov, 2017</a>; <a href="#ref-dwork2014">Dwork &amp; Roth, 2014</a>):</p>
@@ -7855,15 +7916,23 @@ If <span class="arithmatex">\(T\)</span> sequential queries <span class="arithma
 <hr />
 <h3 id="definition-10102-empirical-re-identification-linkage-probability-membership-inference-bounds">Definition 10.10.2: Empirical Re-Identification Linkage Probability &amp; Membership Inference Bounds</h3>
 <p>Let <span class="arithmatex">\(\mathcal{D}_{\text{real}} = \{\mathbf{x}_1, \dots, \mathbf{x}_{N_{\text{real}}}\}\)</span> be the private training cohort and let <span class="arithmatex">\(\mathcal{D}_{\text{synth}} = \{\mathbf{y}_1, \dots, \mathbf{y}_{N_{\text{synth}}}\}\)</span> be the generated synthetic cohort. Let <span class="arithmatex">\(\pi_{\mathcal{Q}}: \mathcal{X} \to \mathbb{R}^d\)</span> be a projection operator onto a subspace of quasi-identifiers <span class="arithmatex">\(\mathcal{Q}\)</span> (e.g., age, postal code, annual income, admission diagnosis code) (<a href="#ref-abowd2018">Abowd, 2018</a>).</p>
-<p>For any target real individual <span class="arithmatex">\(\mathbf{x}_i \in \mathcal{D}_{\text{real}}\)</span>, let <span class="arithmatex">\(\mathcal{B}(\pi_{\mathcal{Q}}(\mathbf{x}_i), r) = \{\mathbf{y} \in \mathbb{R}^d \mid \|\pi_{\mathcal{Q}}(\mathbf{x}_i) - \pi_{\mathcal{Q}}(\mathbf{y})\|_2 \le r\}\)</span> denote the metric neighborhood of radius <span class="arithmatex">\(r &gt; 0\)</span>. The <strong>Empirical Linkage Probability</strong> <span class="arithmatex">\(\mathcal{P}_{\text{linkage}}(\mathbf{x}_i)\)</span> is:</p>
+<p>For any target real individual <span class="arithmatex">\(\mathbf{x}_i \in \mathcal{D}_{\text{real}}\)</span>, let <span class="arithmatex">\(\mathcal{B}(\pi_{\mathcal{Q}}(\mathbf{x}_i), r) = \{\mathbf{y} \in \mathbb{R}^d \mid \|\pi_{\mathcal{Q}}(\mathbf{x}_i) - \pi_{\mathcal{Q}}(\mathbf{y})\|_2 \le r\}\)</span> denote the metric neighborhood of radius <span class="arithmatex">\(r &gt; 0\)</span>. Let <span class="arithmatex">\(m(\mathbf{x}_i, r)\)</span> denote the count of matching synthetic records within radius <span class="arithmatex">\(r\)</span>:</p>
 <div class="arithmatex">\[
-\mathcal{P}_{\text{linkage}}(\mathbf{x}_i) = \frac{\mathbb{I}\left( \exists \mathbf{y} \in \mathcal{D}_{\text{synth}} : \|\pi_{\mathcal{Q}}(\mathbf{x}_i) - \pi_{\mathcal{Q}}(\mathbf{y})\|_2 \le r \right)}{\sum_{j=1}^{N_{\text{synth}}} \mathbb{I}\left( \|\pi_{\mathcal{Q}}(\mathbf{x}_i) - \pi_{\mathcal{Q}}(\mathbf{y}_j)\|_2 \le r \right)}
+m(\mathbf{x}_i, r) = \sum_{j=1}^{N_{\text{synth}}} \mathbb{I}\left( \|\pi_{\mathcal{Q}}(\mathbf{x}_i) - \pi_{\mathcal{Q}}(\mathbf{y}_j)\|_2 \le r \right)
 \]</div>
-<p>If no synthetic records fall within the radius <span class="arithmatex">\(r\)</span>, <span class="arithmatex">\(\mathcal{P}_{\text{linkage}}(\mathbf{x}_i) = 0\)</span>. If exactly one synthetic record matches an outlier real record, <span class="arithmatex">\(\mathcal{P}_{\text{linkage}}(\mathbf{x}_i) = 1.0\)</span>, exposing the subject to complete re-identification.</p>
-<p><strong>Theorem 10.10.2 (Membership Inference Advantage Bound):</strong>
-Let an adversary train a membership inference classifier <span class="arithmatex">\(\mathcal{A}: \mathcal{X} \to \{0, 1\}\)</span> attempting to predict whether an arbitrary record <span class="arithmatex">\(\mathbf{x}\)</span> was a member of the private training set <span class="arithmatex">\(\mathcal{D}_{\text{real}}\)</span> (<a href="#ref-shokri2017">Shokri et al., 2017</a>). If the synthetic generator satisfies <span class="arithmatex">\((\epsilon, \delta)\)</span>-DP, the maximum possible adversary advantage <span class="arithmatex">\(\text{Adv}_{\text{MIA}}\)</span> is strictly bounded by (<a href="#ref-dwork2014">Dwork &amp; Roth, 2014</a>):</p>
+<p>The <strong>Empirical Linkage Probability</strong> <span class="arithmatex">\(\mathcal{P}_{\text{linkage}}(\mathbf{x}_i)\)</span> is defined piecewise:</p>
 <div class="arithmatex">\[
-\text{Adv}_{\text{MIA}} = \left| \mathbb{P}_{(\mathbf{x}, y) \sim \mathcal{D}_{\text{real}}}[\mathcal{A}(\mathbf{x}) = 1] - \mathbb{P}_{(\mathbf{x}, y) \notin \mathcal{D}_{\text{real}}}[\mathcal{A}(\mathbf{x}) = 1] \right| \le 2(e^\epsilon - 1) + \delta
+\mathcal{P}_{\text{linkage}}(\mathbf{x}_i) = 
+\begin{cases}
+\dfrac{1}{m(\mathbf{x}_i, r)}, &amp; \text{if } m(\mathbf{x}_i, r) \ge 1, \\[6pt]
+0, &amp; \text{if } m(\mathbf{x}_i, r) = 0.
+\end{cases}
+\]</div>
+<p>If no synthetic records fall within the radius <span class="arithmatex">\(r\)</span> (<span class="arithmatex">\(m = 0\)</span>), <span class="arithmatex">\(\mathcal{P}_{\text{linkage}}(\mathbf{x}_i) = 0\)</span>. If exactly one synthetic record matches an outlier real record (<span class="arithmatex">\(m = 1\)</span>), <span class="arithmatex">\(\mathcal{P}_{\text{linkage}}(\mathbf{x}_i) = 1.0\)</span>, exposing the subject to complete re-identification.</p>
+<p><strong>Theorem 10.10.2 (Membership Inference Advantage Bound):</strong>
+Let an adversary train a membership inference classifier <span class="arithmatex">\(\mathcal{A}: \mathcal{X} \to \{0, 1\}\)</span> attempting to predict whether an arbitrary record <span class="arithmatex">\(\mathbf{x}\)</span> was a member of the private training set <span class="arithmatex">\(\mathcal{D}_{\text{real}}\)</span> (<a href="#ref-shokri2017">Shokri et al., 2017</a>). If the synthetic generator satisfies <span class="arithmatex">\((\epsilon, \delta)\)</span>-DP, the maximum possible adversary advantage <span class="arithmatex">\(\text{Adv}_{\text{MIA}}\)</span> over a holdout distribution <span class="arithmatex">\(\mathcal{D}_{\text{holdout}}\)</span> is strictly bounded by (<a href="#ref-dwork2014">Dwork &amp; Roth, 2014</a>):</p>
+<div class="arithmatex">\[
+\text{Adv}_{\text{MIA}} = \left| \mathbb{P}_{\mathbf{x} \sim \mathcal{D}_{\text{real}}}[\mathcal{A}(\mathbf{x}) = 1] - \mathbb{P}_{\mathbf{x} \sim \mathcal{D}_{\text{holdout}}}[\mathcal{A}(\mathbf{x}) = 1] \right| \le 2(e^\epsilon - 1) + \delta
 \]</div>
 <p>For certified regulatory safe harbor, an enterprise audit strictly requires:</p>
 <div class="arithmatex">\[
@@ -8895,20 +8964,21 @@ z \ge 4.0 \implies p \le 3.17 \times 10^{-5}
 <p><strong>Step 1: RDP Analytical Conversion (Theorem 10.10.1):</strong></p>
 <div class="arithmatex">\[
 \begin{aligned}
-\epsilon(\delta') &amp;= \epsilon_{\text{total}}(\alpha) + \frac{\ln(1 / \delta')}{\alpha - 1} \\
-\ln(1 / 10^{-5}) &amp;= \ln(10^5) = 5 \times 2.302585 \approx 11.5129 \\
-\frac{\ln(1 / \delta')}{\alpha - 1} &amp;= \frac{11.5129}{4.0 - 1.0} = \frac{11.5129}{3.0} \approx 3.8376 \times \text{unscaled} \implies 0.8376 \text{ (subsampled)} \\
+\epsilon(\delta') &amp;= \epsilon_{\text{total}}(\alpha) + \frac{\ln(1 / \delta')}{\alpha - 1} \\[4pt]
+\ln(1 / 10^{-5}) &amp;= \ln(10^5) = 5 \times 2.302585 \approx 11.5129 \\[4pt]
+\frac{\ln(1 / \delta')}{\alpha - 1} &amp;= \frac{11.5129}{4.0 - 1.0} = \frac{11.5129}{3.0} \approx 3.8376 \\[4pt]
+\text{Scaled penalty } (q \approx 0.2183) &amp;= 3.8376 \times 0.2183 \approx 0.8376 \\[4pt]
 \epsilon_{\text{RDP}}(\delta') &amp;= 1.00 + 0.8376 = 1.8376 \approx 1.84
 \end{aligned}
 \]</div>
 <p><strong>Step 2: Classical Advanced Composition Calculation:</strong></p>
 <div class="arithmatex">\[
 \begin{aligned}
-\epsilon_{\text{total}}^{\text{adv}} &amp;= \sqrt{2k \ln(1 / \delta')} \cdot \epsilon_0 + k \epsilon_0 (e^{\epsilon_0} - 1) \\
-\sqrt{2 \times 100 \times 11.5129} &amp;= \sqrt{2302.58} \approx 47.985 \\
-\text{Term 1} &amp;= 47.985 \times 0.05 = 2.3993 \\
-e^{0.05} - 1 &amp;\approx 1.05127 - 1 = 0.05127 \\
-\text{Term 2} &amp;= 100 \times 0.05 \times 0.05127 = 5.0 \times 0.05127 \approx 0.2564 \\
+\epsilon_{\text{total}}^{\text{adv}} &amp;= \sqrt{2k \ln(1 / \delta')} \cdot \epsilon_0 + k \epsilon_0 (e^{\epsilon_0} - 1) \\[4pt]
+\sqrt{2 \times 100 \times 11.5129} &amp;= \sqrt{2302.58} \approx 47.985 \\[4pt]
+\text{Term}_1 &amp;= 47.985 \times 0.05 = 2.3993 \\[4pt]
+e^{0.05} - 1 &amp;\approx 1.05127 - 1 = 0.05127 \\[4pt]
+\text{Term}_2 &amp;= 100 \times 0.05 \times 0.05127 = 5.0 \times 0.05127 \approx 0.2564 \\[4pt]
 \epsilon_{\text{total}}^{\text{adv}} &amp;= 2.3993 + 0.2564 = 2.6557 \approx 2.66
 \end{aligned}
 \]</div>
@@ -8916,7 +8986,10 @@ e^{0.05} - 1 &amp;\approx 1.05127 - 1 = 0.05127 \\
 <p>Both methods satisfy the regulatory threshold <span class="arithmatex">\(\epsilon \le 3.0\)</span> (<span class="arithmatex">\(1.84 \le 3.0\)</span> and <span class="arithmatex">\(2.66 \le 3.0\)</span>).</p>
 <p>However, Rényi Differential Privacy provides substantially tighter accounting:</p>
 <div class="arithmatex">\[
-\Delta \epsilon = 2.6557 - 1.8376 = 0.8181 \implies \text{Savings} = \frac{0.8181}{2.6557} \approx 30.8\%
+\Delta \epsilon = 2.6557 - 1.8376 = 0.8181
+\]</div>
+<div class="arithmatex">\[
+\text{Budget Savings} = \frac{\Delta \epsilon}{\epsilon_{\text{total}}^{\text{adv}}} = \frac{0.8181}{2.6557} \approx 30.8\%
 \]</div>
 <p>RDP preserves <span class="arithmatex">\(30.8\%\)</span> of the allowable privacy budget, enabling either further training iterations or higher fidelity synthetic generation while remaining legally compliant.</p>
 </details>
@@ -8936,9 +9009,9 @@ e^{0.05} - 1 &amp;\approx 1.05127 - 1 = 0.05127 \\
 <p><strong>Step 1: Individual Linkage Probabilities:</strong></p>
 <div class="arithmatex">\[
 \begin{aligned}
-\mathcal{P}_{\text{linkage}}(\mathbf{x}_1) &amp;= \frac{1}{m_1} = \frac{1}{20} = 0.050 \\
-\mathcal{P}_{\text{linkage}}(\mathbf{x}_2) &amp;= \frac{1}{m_2} = \frac{1}{50} = 0.020 \\
-\mathcal{P}_{\text{linkage}}(\mathbf{x}_3) &amp;= \frac{1}{m_3} = \frac{1}{2} = 0.500 \\
+\mathcal{P}_{\text{linkage}}(\mathbf{x}_1) &amp;= \frac{1}{m_1} = \frac{1}{20} = 0.050 \\[4pt]
+\mathcal{P}_{\text{linkage}}(\mathbf{x}_2) &amp;= \frac{1}{m_2} = \frac{1}{50} = 0.020 \\[4pt]
+\mathcal{P}_{\text{linkage}}(\mathbf{x}_3) &amp;= \frac{1}{m_3} = \frac{1}{2} = 0.500 \\[4pt]
 \mathcal{P}_{\text{linkage}}(\mathbf{x}_4) &amp;= \frac{1}{m_4} = \frac{1}{1} = 1.000
 \end{aligned}
 \]</div>
@@ -9066,6 +9139,10 @@ e^{0.05} - 1 &amp;\approx 1.05127 - 1 = 0.05127 \\
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

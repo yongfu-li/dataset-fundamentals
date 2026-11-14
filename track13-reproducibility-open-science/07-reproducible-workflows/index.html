@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,8 +123,10 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 4px !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
           width: 100% !important;
@@ -313,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -339,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -8049,9 +8105,9 @@
 <div class="arithmatex">\[f_{t_1}(\text{Inputs}_1, \text{Params}_1) \equiv f_{t_2}(\text{Inputs}_2, \text{Params}_2) \quad \text{with probability } 1 - 2^{-256}\]</div>
 <p>If <span class="arithmatex">\(\mathcal{K}(t)\)</span> matches an entry in the persistent cache database, the workflow engine completely bypasses task execution, materializing the cached output files into the working directory via zero-copy filesystem hard links or symlinks in <span class="arithmatex">\(\mathcal{O}(1)\)</span> time (<a href="#ref-ditommaso2017">Di Tommaso et al., 2017</a>).</p>
 <h5 id="cache-invalidation-avalanche">Cache Invalidation Avalanche:</h5>
-<p>If an upstream input file <span class="arithmatex">\(i_0\)</span> is perturbed by a single byte:
-$<span class="arithmatex">\(\Delta \text{Payload}(i_0) \neq 0 \implies \mathcal{K}(t_{\text{upstream}})' \neq \mathcal{K}(t_{\text{upstream}})\)</span>$
-This invalidates the cache key for task <span class="arithmatex">\(t_{\text{upstream}}\)</span> and cascades downstream across its reachability cone <span class="arithmatex">\(\mathcal{B}_{\text{down}}(t_{\text{upstream}})\)</span>, triggering recomputation only for affected nodes while all independent parallel tasks hit the cache with zero compute latency (<a href="#ref-koster2012">Köster &amp; Rahmann, 2012</a>).</p>
+<p>If an upstream input file <span class="arithmatex">\(i_0\)</span> is perturbed by a single byte:</p>
+<div class="arithmatex">\[\Delta \text{Payload}(i_0) \neq 0 \implies \mathcal{K}(t_{\text{upstream}})' \neq \mathcal{K}(t_{\text{upstream}})\]</div>
+<p>This invalidates the cache key for task <span class="arithmatex">\(t_{\text{upstream}}\)</span> and cascades downstream across its reachability cone <span class="arithmatex">\(\mathcal{B}_{\text{down}}(t_{\text{upstream}})\)</span>, triggering recomputation only for affected nodes while all independent parallel tasks hit the cache with zero compute latency (<a href="#ref-koster2012">Köster &amp; Rahmann, 2012</a>).</p>
 <hr />
 <h4 id="definition-1373-oci-container-layering-merkle-state-transition-algebra">Definition 13.7.3: OCI Container Layering &amp; Merkle State Transition Algebra</h4>
 <p>An Open Container Initiative (OCI) image <span class="arithmatex">\(\mathcal{I}\)</span> is formalized as an immutable stack of content-addressed filesystem layers composed via the union overlay operator <span class="arithmatex">\(\oplus\)</span>:</p>
@@ -8076,25 +8132,33 @@ This invalidates the cache key for task <span class="arithmatex">\(t_{\text{upst
 <h3 id="architectural-flowchart-the-automated-workflow-execution-pipeline">Architectural Flowchart: The Automated Workflow Execution Pipeline</h3>
 <p>The following flowchart illustrates the automated, end-to-end execution of a reproducible workflow DAG with content-addressed caching, containerized runner dispatch, and cryptographic output verification.</p>
 <pre class="mermaid"><code>flowchart TD
-    A["Workflow Specification&lt;br/&gt;(Nextflow DSL2 / CWL)"] --&gt; B["W-DAG Dependency Parser &amp;&lt;br/&gt;Topological Schedular"]
-    C["Input Data Manifest&lt;br/&gt;(Files &amp; Parameters)"] --&gt; D["Task Cache Key Engine&lt;br/&gt;K(t) = SHA256(Code || Env || Data || Params)"]
+    A["Workflow Spec&lt;br/&gt;(Nextflow / CWL)"]:::blue --&gt; B["W-DAG Parser &amp;amp;&lt;br/&gt;Topological Sched"]:::default
+    C["Input Manifest&lt;br/&gt;(Files &amp;amp; Params)"]:::yellow --&gt; D["Cache Key Engine&lt;br/&gt;K(t) Digest"]:::purple
     B --&gt; D
 
-    subgraph ExecutionEngine ["Workflow Orchestration &amp; Caching Engine"]
-        D --&gt; E{"Persistent Cache Lookup&lt;br/&gt;K(t) in Cache DB?"}
-        E -- "Cache Hit (O(1))" --&gt; F["Zero-Copy Symlink Restore&lt;br/&gt;(Bypass Execution: 0ms)"]
-        E -- "Cache Miss" --&gt; G["Containerized OCI Dispatch&lt;br/&gt;(Docker / Singularity / Apptainer)"]
-        G --&gt; H["Task Execution on Cluster&lt;br/&gt;(SLURM / AWS Batch / K8s)"]
-        H --&gt; I["Output Content Hashing &amp;&lt;br/&gt;Store in Persistent Cache DB"]
+    subgraph ExecutionEngine ["Workflow Orchestration &amp;amp; Caching Engine"]
+        D --&gt; E{"Cache Lookup:&lt;br/&gt;K(t) Hit (O(1))?"}:::amber
+        E -- "Hit (0ms)" --&gt; F["Zero-Copy Symlink&lt;br/&gt;(Bypass Task)"]:::green
+        E -- "Miss" --&gt; G["Container Dispatch&lt;br/&gt;(Docker/Singularity)"]:::blue
+        G --&gt; H["Cluster Execution&lt;br/&gt;(SLURM / AWS / K8s)"]:::blue
+        H --&gt; I["Output Hashing &amp;amp;&lt;br/&gt;Cache Insertion"]:::purple
     end
 
-    F --&gt; J["Downstream Task Channel"]
+    F --&gt; J["Task Channel"]:::default
     I --&gt; J
 
-    J --&gt; K{"All Tasks Completed?&lt;br/&gt;(Sink Reached)"}
-    K -- "Next Task Ready" --&gt; D
-    K -- "Complete" --&gt; L["Cryptographic Provenance Manifest&lt;br/&gt;(W3C PROV + Critical Path C*)"]
-    L --&gt; M["Bitwise Reproducible Output&lt;br/&gt;H(Y | X, I, P) = 0"]</code></pre>
+    J --&gt; K{"All Tasks&lt;br/&gt;Completed?"}:::amber
+    K -- "Next Ready" --&gt; D
+    K -- "Complete" --&gt; L["Provenance Manifest&lt;br/&gt;(W3C PROV + C*)"]:::green
+    L --&gt; M["Reproducible Output&lt;br/&gt;H(Y|X,I,P) = 0"]:::green
+
+    classDef default fill:#fffdf7,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef yellow fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef coral fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef purple fill:#ede9fe,stroke:#151b20,stroke-width:2px,color:#151b20;</code></pre>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production-grade implementation, <code>ReproducibleWorkflowOrchestrator</code>, provides complete mathematical validation for workflow execution DAGs, topological scheduling, and content-addressed memoization. It implements:
@@ -9146,6 +9210,10 @@ Saved Compute:   1,845 seconds (100%)
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

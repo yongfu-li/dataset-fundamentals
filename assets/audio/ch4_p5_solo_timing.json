@@ -1,0 +1,309 @@
+{
+  "duration": 530.856,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Lesson 4.5. Industrial data annotation has completely outgrown isolated desktop utilities and ad-hoc spreadsheets. Enterprise AI pipelines demand distributed, multi-tenant Human-in-the-Loop infrastructure engineered for petabyte-scale media stores, asynchronous model pre-annotation, and automated worker quality auditing.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 22.512
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In this masterclass, we formalize the four architectural pillars of enterprise tooling: zero-egress pre-signed streaming, M/M/c queuing dynamics, Human-in-the-Loop throughput multipliers, and Wald's Sequential Probability Ratio Test for continuous fraud detection.",
+          "dock": "main",
+          "start": 22.512,
+          "end": 39.696
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "The defining architectural principle of modern annotation platforms is the strict separation between the Control Plane and the Data Plane. Relational databases like PostgreSQL manage task schemas, worker assignments, consensus tables, and audit logs.",
+          "dock": "main",
+          "start": 39.696,
+          "end": 55.992
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "However, heavy media payloads\u2014whether multi-gigabyte pathology scans, 4K video feeds, or LIDAR point clouds\u2014never traverse the database. Instead, the backend generates pre-signed HMAC-SHA256 URLs with short fifteen-minute time-to-live expirations, letting client WebGL canvases stream tiles directly from cloud object stores.",
+          "dock": "main",
+          "start": 55.992,
+          "end": 79.92
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Every production annotation queue is a multi-server stochastic queuing system. Let incoming tasks arrive according to a Poisson process with arrival rate lambda tasks per minute.",
+          "dock": "main",
+          "start": 79.92,
+          "end": 91.32
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Our workforce consists of c parallel human annotator workstations, each completing tasks with service rate mu tasks per minute. The system traffic intensity rho equals lambda divided by c times mu. For queue stability, rho must remain strictly below 1.0.",
+          "dock": "main",
+          "start": 91.32,
+          "end": 109.344
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "The probability that an arriving task finds all c annotators busy and must wait in the dispatch queue is given by the Erlang-C formula, C of c and a. By Little's Law, the expected queue wait time W-q equals Erlang-C divided by the surplus capacity c mu minus lambda.",
+          "dock": "main",
+          "start": 109.344,
+          "end": 127.296
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice that as utilization rho approaches 1.0, the expected backlog scales inversely with 1 minus rho. This means queuing delay does not increase linearly\u2014it diverges asymptotically to infinity. That is why enterprise pipelines mandate operating below 75 to 80 percent utilization.",
+          "dock": "main",
+          "start": 127.296,
+          "end": 147.408
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Deploying foundation models for pre-annotation transforms human labor from scratch creation to rapid verification and correction. Let t-manual be the time to annotate an item from scratch, t-verify be the inspection dwell time, and t-correct be the repair duration.",
+          "dock": "main",
+          "start": 147.408,
+          "end": 164.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The speedup multiplier S-HITL is t-manual divided by the expected verification time. However, if model proposals are inaccurate and correcting them takes longer than starting from scratch, there is a break-even acceptance rate P-star below which pre-annotation actually slows workers down.",
+          "dock": "main",
+          "start": 164.328,
+          "end": 182.64
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our M/M/c Queuing Dynamics Studio. On this canvas, incoming tasks arrive on the left and dispatch across c parallel worker stations on the right.",
+          "dock": "sim",
+          "start": 182.64,
+          "end": 193.92
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Adjust the arrival rate slider to 18 tasks per minute with 10 workers at 2.5 tasks per minute. Notice the queue operates stably at 72 percent utilization. Now push arrivals past 25 tasks per minute and watch the Erlang-C delay and buffer explode into an unstable cascade!",
+          "dock": "sim",
+          "start": 193.92,
+          "end": 213.36
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for Active Checkpoint 1. An annotation queue operates with 10 annotators each completing 3.0 tasks per minute, handling an arrival rate of 28.5 tasks per minute at 95 percent utilization.",
+          "dock": "checkpoint",
+          "start": 213.36,
+          "end": 228.0
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "An upstream web scraper unexpectedly increases arrivals by just 6 percent to 30.2 tasks per minute. What happens mathematically to the queue? Select the correct system diagnosis.",
+          "dock": "checkpoint",
+          "start": 228.0,
+          "end": 241.392
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Model-assisted annotation introduces two major risks if poorly managed: Negative Speedup and Cognitive Anchoring Bias. When pre-annotations are noisy, human workers spend more time diagnosing errors than creating annotations from scratch.",
+          "dock": "main",
+          "start": 241.392,
+          "end": 256.824
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Even worse, displaying imperfect model bounding boxes primes human annotators to overlook missed objects, causing up to an 8 percent drop in recall. Enterprise platforms deploy confidence-gated pre-labeling, revealing proposals only when model confidence exceeds calibrated thresholds.",
+          "dock": "main",
+          "start": 256.824,
+          "end": 274.896
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "In distributed crowdsourcing or enterprise teams, annotators frequently close their laptop or lose network connection in the middle of a task. If the platform holds an exclusive lock without expiration, that task remains starved indefinitely.",
+          "dock": "main",
+          "start": 274.896,
+          "end": 289.968
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Enterprise queues deploy Redis distributed locks with exponential backoff and randomized jitter. When a lease expires, the task automatically re-enters the active priority queue. The added jitter prevents thundering herds where hundreds of clients try to grab the same orphan simultaneously.",
+          "dock": "main",
+          "start": 289.968,
+          "end": 307.968
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Reviewing one hundred percent of annotations by senior engineers is economically impossible. Instead, enterprise platforms inject synthetic Honeypots\u2014known ground-truth tasks disguised seamlessly among regular unlabeled items.",
+          "dock": "main",
+          "start": 307.968,
+          "end": 322.872
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In addition to honeypots, frontends capture rich passive telemetry: dwell time, keypress intervals, bounding-box vertex click cadences, and zoom actions. Sudden drops in dwell time or robotic click pacing expose fatigued workers or automated bot scripts instantly.",
+          "dock": "main",
+          "start": 322.872,
+          "end": 340.464
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Waiting until the end of the week to audit a worker's batch allows bad data to contaminate training sets for days. Instead, we use Abraham Wald's Sequential Probability Ratio Test, or SPRT, updating a cumulative log-likelihood ratio after every single honeypot.",
+          "dock": "main",
+          "start": 340.464,
+          "end": 358.008
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "We test null hypothesis H-0: worker error rate is acceptable at p-0, against H-1: error rate has degraded to p-1. If lambda crosses upper boundary A, the worker is suspended immediately. If it crosses lower boundary B, the worker is certified high-quality with rigorous mathematical error bounds.",
+          "dock": "main",
+          "start": 358.008,
+          "end": 378.936
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to our Wald SPRT Worker Auditor Studio. Above me is the cumulative log-likelihood ratio trajectory canvas bounded by the red suspend line at plus 2.89 and the green certification line at minus 2.25.",
+          "dock": "sim",
+          "start": 378.936,
+          "end": 394.152
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Click Submit Accurate Honeypot to observe the trajectory step down toward certification. Or click Submit Erroneous Label twice to watch a fraudulent worker cross the red boundary and trigger automated suspension!",
+          "dock": "sim",
+          "start": 394.152,
+          "end": 407.16
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us complete Active Checkpoint 2. Suppose a computer vision model assists video annotators. Scratch annotation takes 30 seconds, verifying an accurate box takes 4 seconds, and repairing a flawed box takes 42 seconds.",
+          "dock": "checkpoint",
+          "start": 407.16,
+          "end": 423.384
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "If current model accuracy is 25 percent, what is the effective Human-in-the-Loop speedup multiplier, and what is the break-even threshold? Select the mathematically correct answer.",
+          "dock": "checkpoint",
+          "start": 423.384,
+          "end": 434.928
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Choosing the right annotation platform requires evaluating modalities, storage integration, and machine learning backend protocols. Label Studio provides configurable multi-modal schemas and pre-signed object streaming.",
+          "dock": "main",
+          "start": 434.928,
+          "end": 449.016
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "CVAT excels at dense computer vision video tracking powered by serverless Nuclio GPU microservices. Prodigy specializes in rapid NLP with in-process active learning, while Doccano offers lightweight text labeling. For air-gapped enterprise compliance, self-hosted Docker and Helm deployments are essential.",
+          "dock": "main",
+          "start": 449.016,
+          "end": 469.656
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "To enforce queuing stability and workforce quality in CI/CD pipelines, we implement typed Pydantic V2 models. The QueueConfiguration class validates that traffic intensity rho remains strictly below 1.0.",
+          "dock": "main",
+          "start": 469.656,
+          "end": 484.8
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The AnnotationInfrastructureEngine computes Erlang-C wait latencies, evaluates Human-in-the-Loop speedup multipliers, and runs sequential Wald SPRT steps to automate worker certification and suspension in automated test suites.",
+          "dock": "main",
+          "start": 484.8,
+          "end": 499.464
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Congratulations on completing Lesson 4.5. You have mastered the mathematical mechanics of distributed queuing, Erlang-C delays, Human-in-the-Loop speedup, and Wald's SPRT quality auditing.",
+          "dock": "main",
+          "start": 499.464,
+          "end": 512.832
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In our next masterclass, Lesson 4.6: Quality Control in Annotation, we will investigate how to resolve label disagreements across multiple annotators using Fleiss' Kappa, Krippendorff's Alpha, and the Dawid-Skene Expectation-Maximization algorithm. I will see you there.",
+          "dock": "main",
+          "start": 512.832,
+          "end": 530.856
+        }
+      ]
+    }
+  ]
+}

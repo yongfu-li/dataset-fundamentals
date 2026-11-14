@@ -1,0 +1,309 @@
+{
+  "duration": 593.208,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Lesson 4.8. When engineers deploy annotation pipelines in clinical radiology, autonomous mobility, or commercial legal review, generic 2D bounding boxes and naive accuracy metrics fail catastrophically.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 15.648
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In these mission-critical environments, data representations exist in continuous 16-bit radiodensity scales, 7-degree-of-freedom Euclidean metric spaces, and complex non-contiguous clause taxonomies. Today, we master the specialized mathematical metrics and engineering architectures required for high-stakes annotation.",
+          "dock": "main",
+          "start": 15.648,
+          "end": 36.864
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Every mission-critical domain operates in a distinct mathematical coordinate space. Medical imaging annotators segment discrete voxel lattices in three dimensions. Autonomous vehicle annotators fit 7-parameter oriented bounding boxes into metric Euclidean space. And legal annotators extract hierarchical text spans across variable-length commercial contracts.",
+          "dock": "main",
+          "start": 36.864,
+          "end": 61.104
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice the severe penalty for using the wrong abstraction: projecting a 3D LiDAR point cloud into a 2D camera plane causes depth ambiguity, while evaluating medical tumor resection with simple volumetric Dice completely hides fatal vascular laceration risks.",
+          "dock": "main",
+          "start": 61.104,
+          "end": 77.472
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "In computed tomography, each voxel value is not an arbitrary pixel brightness, but a quantitative physical measurement of linear X-ray attenuation calibrated in Hounsfield Units. Air sits at -1,000 HU, distilled water is 0 HU, soft tissues span +20 to +50 HU, and dense cortical bone reaches +1,000 to +3,000 HU.",
+          "dock": "main",
+          "start": 77.472,
+          "end": 101.688
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Because human displays render only 8 bits or 256 grayscale levels, annotation tools must apply non-destructive client-side windowing. If an engineering team linearly clamps a 4,000 HU range into 8-bit PNGs, each step represents 15.6 HU, permanently obliterating early-stage Ground-Glass Opacities!",
+          "dock": "main",
+          "start": 101.688,
+          "end": 123.672
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "In 3D medical segmentation, the standard measure of spatial overlap is the Volumetric Dice Similarity Coefficient, DSC. Given two binary 3D voxel masks A and B, DSC is twice the intersection volume divided by the sum of their volumes.",
+          "dock": "main",
+          "start": 123.672,
+          "end": 140.328
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice that DSC maps monotonically to the 3D Jaccard Intersection over Union via IoU equals DSC divided by two minus DSC. While DSC works well for macroscopic volume estimation, it suffers from a fatal blindspot: because it sums total voxels, bulk volume completely dominates the score!",
+          "dock": "main",
+          "start": 140.328,
+          "end": 160.752
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "To capture surface discrepancies, we evaluate the Hausdorff Distance between the boundary surfaces partial A and partial B. The directed Hausdorff distance finds the maximum distance from any point on surface A to its closest neighbor on surface B.",
+          "dock": "main",
+          "start": 160.752,
+          "end": 176.136
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In clinical benchmarks like BraTS, evaluating the pure maximum Hausdorff distance is too sensitive to single-voxel annotator jitter. Instead, we compute the bidirectional 95th-percentile Hausdorff distance, d-HD95, which discards the top 5 percent noise while strictly penalizing persistent vascular spikes.",
+          "dock": "main",
+          "start": 176.136,
+          "end": 197.04
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to the Medical 3D Dice and HD95 Boundary Divergence Studio. On the canvas below, you see a simulated axial CT scan through the liver, displaying a green ground-truth tumor and a nearby dark circular portal vein structure.",
+          "dock": "sim",
+          "start": 197.04,
+          "end": 212.736
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Click between Near-Perfect Alignment, Uniform Dilation, and the Dangerous Portal Vein Spike. Observe how the 8.4 millimeter vascular protrusion leaves the Dice score deceptively high at 0.938, but sends HD95 rocketing past clinical thresholds, halting automated surgical approval!",
+          "dock": "sim",
+          "start": 212.736,
+          "end": 232.632
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Time for Active Checkpoint 1. A deep learning model segments a 60-cubic-centimeter pancreatic adenocarcinoma with an outstanding Dice Similarity Coefficient of 0.948. However, the tumor board reviews the contour and finds a 95th-percentile Hausdorff distance of 8.2 millimeters protruding into the Superior Mesenteric Artery.",
+          "dock": "quiz",
+          "start": 232.632,
+          "end": 255.144
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "As the machine learning architect, what is your engineering and clinical decision?",
+          "dock": "quiz",
+          "start": 255.144,
+          "end": 260.184
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Now let us transition from medical imaging to autonomous mobility. In autonomous driving perception stacks, 2D pixel bounding boxes are completely insufficient because they lack physical metric depth and vehicle heading.",
+          "dock": "main",
+          "start": 260.184,
+          "end": 273.936
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Instead, 3D LiDAR point clouds and radar returns are annotated using 7-degree-of-freedom oriented bounding boxes: three Euclidean spatial center coordinates x, y, z, three physical metric dimensions length, width, height, and the continuous yaw heading angle theta-yaw.",
+          "dock": "main",
+          "start": 273.936,
+          "end": 291.936
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "To evaluate 3D oriented bounding boxes, standard axis-aligned bounding box formulas fail completely due to yaw rotation. In autonomous perception benchmarks like nuScenes and Waymo Open, 3D intersection volume decouples into two independent components.",
+          "dock": "main",
+          "start": 291.936,
+          "end": 309.24
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "First, we compute the 2D polygon intersection area in the Bird's-Eye View ground plane using the Sutherland-Hodgman polygon clipping algorithm. Second, we multiply by the 1D vertical overlap along the Z-axis. Notice that even a modest 15-degree yaw rotation collapses 3D IoU below 0.70!",
+          "dock": "main",
+          "start": 309.24,
+          "end": 330.24
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "LiDAR sensors emit discrete laser pulses that diverge radially outward. Consequently, the spatial point return density on an obstacle degrades inversely with radial distance r. Beyond 50 meters, an oncoming passenger vehicle may reflect fewer than 8 total LiDAR points!",
+          "dock": "main",
+          "start": 330.24,
+          "end": 348.12
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "No human annotator can accurately fit a 7-DOF box onto 8 scattered points. Modern pipelines resolve this by accumulating 10 consecutive temporal sweeps using vehicle ego-motion transformation matrices. Furthermore, sensor clocks must be synchronized via hardware PTP to sub-2-millisecond accuracy to prevent fatal spatial tearing.",
+          "dock": "main",
+          "start": 348.12,
+          "end": 370.896
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Our third domain is legal and regulatory natural language processing. In commercial contract analysis benchmarks like CUAD, legal attorneys extract 41 distinct clause types across hundreds of pages of complex, nested prose.",
+          "dock": "main",
+          "start": 370.896,
+          "end": 386.52
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "When human attorneys highlight clauses, they routinely disagree on whether introductory filler phrases like 'The Supplier shall' or trailing periods belong inside the annotation boundary. Enforcing strict character matching creates artificial 0% F1 scores. Instead, modern legal NLP enforces the Fuzzy Token Overlap Ratio with a threshold of 0.80.",
+          "dock": "main",
+          "start": 386.52,
+          "end": 410.592
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to the 7-DOF Oriented 3D Bounding Box and BEV IoU Studio. In this interactive workbench, you can adjust the range distance and yaw heading angle of an oncoming obstacle in Bird's-Eye View.",
+          "dock": "sim",
+          "start": 410.592,
+          "end": 424.08
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice how increasing the distance thins out LiDAR point returns, and how rotating the yaw slider causes the 3D IoU to collapse rapidly. You can also switch to the Legal Fuzzy Span tab to observe exact matching versus token overlap in real time!",
+          "dock": "sim",
+          "start": 424.08,
+          "end": 439.848
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us proceed to Active Checkpoint 2. An autonomous vehicle perception stack experiences a clock drift of 45 milliseconds between camera exposure and spinning LiDAR sweeps. At highway closing speeds of 108 kilometers per hour, or 30 meters per second, an annotator labels an oncoming obstacle with a 15-degree yaw orientation error.",
+          "dock": "quiz",
+          "start": 439.848,
+          "end": 462.816
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "What is the physical spatial displacement error, and what is the consequence for downstream trajectory planning?",
+          "dock": "quiz",
+          "start": 462.816,
+          "end": 469.128
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Let us synthesize four seminal landmark benchmarks that established modern domain-specific annotation standards: BraTS in clinical neuro-oncology, nuScenes and Waymo Open in autonomous driving, CUAD in commercial contract intelligence, and CheXpert in diagnostic radiology.",
+          "dock": "main",
+          "start": 469.128,
+          "end": 487.032
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Notice how each benchmark solved its respective operational failure mode: BraTS paired Dice with HD95; nuScenes enforced 10-frame multi-sweep stitching and sub-2ms clock sync; CUAD shifted to 80% fuzzy token overlap; and CheXpert established formal uncertainty mapping policies.",
+          "dock": "main",
+          "start": 487.032,
+          "end": 506.304
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Here is the production Python verification engine implementing our domain validation suite. It uses Pydantic V2 schemas for strict geometric type enforcement: BoundingBox3D guarantees 7 degrees of freedom, while LegalTextSpan enforces character offset boundaries and normalized token sets.",
+          "dock": "main",
+          "start": 506.304,
+          "end": 525.12
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The DomainSpecificAnnotationEngine class implements 3D volumetric Dice, 95th-percentile surface Hausdorff distance via SciPy cdist, Sutherland-Hodgman BEV IoU with yaw attenuation, and fuzzy token overlap checking. This script runs directly in CI/CD to block invalid datasets before model training.",
+          "dock": "main",
+          "start": 525.12,
+          "end": 546.48
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Congratulations on completing Lesson 4.8. You have mastered the mathematical foundations and architectural requirements of mission-critical annotation: 16-bit DICOM Hounsfield windowing, Volumetric Dice paired with 95th-percentile Hausdorff distance, 7-DOF LiDAR bounding boxes with BEV Sutherland-Hodgman clipping, sub-2ms hardware clock synchronization, and legal fuzzy token overlap F1.",
+          "dock": "main",
+          "start": 546.48,
+          "end": 572.856
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In our upcoming final core lesson, Lesson 4.9, we synthesize everything we have built across Chapter 4 into Production Annotation Best Practices: authoring bulletproof standard operating procedures, golden honeypot economics, and automated active learning retraining loops. I will see you in Lesson 4.9!",
+          "dock": "main",
+          "start": 572.856,
+          "end": 593.208
+        }
+      ]
+    }
+  ]
+}

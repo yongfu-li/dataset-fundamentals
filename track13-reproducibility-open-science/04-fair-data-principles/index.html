@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,8 +123,10 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 4px !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
           width: 100% !important;
@@ -313,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -339,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7955,8 +8011,8 @@
 <hr />
 <h4 id="definition-1343-accessibility-protocol-invariants-the-a2-tombstone-invariant">Definition 13.4.3: Accessibility Protocol Invariants &amp; The A2 Tombstone Invariant</h4>
 <p>Accessibility mandates that data and metadata are retrievable using their identifier via open, standardized communications protocols (<span class="arithmatex">\(A_1\)</span>), allowing for authentication and authorization where necessary (<span class="arithmatex">\(A_{1.2}\)</span>).</p>
-<p>Crucially, <strong>Principle <span class="arithmatex">\(A_2\)</span></strong> dictates that:
-$<span class="arithmatex">\(\text{Metadata are accessible, even when the data are no longer available.}\)</span>$</p>
+<p>Crucially, <strong>Principle <span class="arithmatex">\(A_2\)</span></strong> dictates that:</p>
+<div class="arithmatex">\[\text{Metadata are accessible, even when the data are no longer available.}\]</div>
 <p>Let <span class="arithmatex">\(T_{\text{data}}\)</span> be the active physical hosting lifespan of dataset payload <span class="arithmatex">\(\mathcal{D}\)</span>, and let <span class="arithmatex">\(T_{\text{meta}}\)</span> be the archival lifespan of metadata manifest <span class="arithmatex">\(\mathcal{M}\)</span>. The <strong>FAIR Accessibility Longevity Invariant</strong> requires:</p>
 <div class="arithmatex">\[T_{\text{meta}} \gg T_{\text{data}}, \quad \text{with } \lim_{t \to \infty} P\left( \text{Resolvable}(\mathcal{M}_t) \right) = 1\]</div>
 <p>When a dataset payload <span class="arithmatex">\(\mathcal{D}\)</span> is decommissioned—due to cloud storage costs, physical media deprecation, privacy redactions, or GDPR "Right to be Forgotten" mandates—the server must <strong>never</strong> return an HTTP 404 Not Found. Instead, the endpoint must return an <strong>HTTP 410 Gone</strong> containing a cryptographically signed <strong>Tombstone Manifest</strong> <span class="arithmatex">\(\mathcal{M}_{\text{tombstone}}\)</span>:</p>
@@ -7980,30 +8036,38 @@ $<span class="arithmatex">\(\text{Metadata are accessible, even when the data ar
 <h3 id="architectural-flowchart-the-automated-fair-auditing-pipeline">Architectural Flowchart: The Automated FAIR Auditing Pipeline</h3>
 <p>The following flowchart illustrates the automated, end-to-end evaluation pipeline that audits digital resources across all 15 facets, calculates non-compensatory harmonic maturity, verifies the A2 tombstone invariant, and certifies repositories.</p>
 <pre class="mermaid"><code>flowchart TD
-    A["Raw Digital Research Object&lt;br/&gt;R = (Payload D, Metadata M)"] --&gt; B["Automated FAIR Ingestion Gate"]
+    A["Research Object&lt;br/&gt;R = (Data D, Meta M)"]:::blue --&gt; B["FAIR Ingestion Gate"]:::default
 
     subgraph ParallelAudit ["Parallel Multi-Pillar Audit Engines"]
-        B --&gt; F_AUDIT["Findability Engine (F1-F4)&lt;br/&gt;- PID Resolver (DOI / Handle)&lt;br/&gt;- Catalog Search Ingestion&lt;br/&gt;- Semantic Schema Check"]
-        B --&gt; A_AUDIT["Accessibility Engine (A1-A2)&lt;br/&gt;- HTTPS/REST Protocol Probe&lt;br/&gt;- Auth Token Handshake (A1.2)&lt;br/&gt;- A2 Tombstone Policy Validator"]
-        B --&gt; I_AUDIT["Interoperability Engine (I1-I3)&lt;br/&gt;- RDF / OWL / SKOS Parser&lt;br/&gt;- Schema.org Ontological Linter&lt;br/&gt;- Qualified Cross-Reference Graph"]
-        B --&gt; R_AUDIT["Reusability Engine (R1-R1.3)&lt;br/&gt;- SPDX License Matcher&lt;br/&gt;- PROV-O Lineage Graph Check&lt;br/&gt;- Domain Community Spec Check"]
+        B --&gt; F_AUDIT["Findability (F1-F4)&lt;br/&gt;PID &amp;amp; Search Index"]:::yellow
+        B --&gt; A_AUDIT["Accessibility (A1-A2)&lt;br/&gt;Protocols &amp;amp; Auth"]:::yellow
+        B --&gt; I_AUDIT["Interoperability (I1-I3)&lt;br/&gt;RDF &amp;amp; Ontologies"]:::yellow
+        B --&gt; R_AUDIT["Reusability (R1-R1.3)&lt;br/&gt;SPDX &amp;amp; PROV-O"]:::yellow
     end
 
-    F_AUDIT --&gt; C["15-Facet Compliance Vector&lt;br/&gt;mu(R) in [0, 1]^15"]
+    F_AUDIT --&gt; C["Compliance Vector&lt;br/&gt;&amp;mu;(R) &amp;in; [0, 1]^15"]:::purple
     A_AUDIT --&gt; C
     I_AUDIT --&gt; C
     R_AUDIT --&gt; C
 
-    C --&gt; D["Non-Compensatory Evaluator&lt;br/&gt;Phi_strict = ( SUM beta_p * mu_bar_p^(-rho) )^(-1/rho)"]
-    C --&gt; E["Linear Baseline Evaluator&lt;br/&gt;Phi_linear = SUM w_p * mu_bar_p"]
+    C --&gt; D["Strict Evaluator&lt;br/&gt;&amp;Phi;_strict (CES)"]:::purple
+    C --&gt; E["Linear Baseline&lt;br/&gt;&amp;Phi;_linear (Weighted)"]:::default
 
-    D --&gt; G{"Strict Gate Check&lt;br/&gt;Phi_strict &gt;= 0.85 &amp;&lt;br/&gt;min(mu_bar_p) &gt;= 0.70"}
+    D --&gt; G{"Strict Gate:&lt;br/&gt;&amp;Phi; &amp;ge; 0.85 &amp;amp;&lt;br/&gt;min(&amp;mu;_p) &amp;ge; 0.70?"}:::amber
 
-    G -- "Deficit Detected" --&gt; H["Automated Remediation Report&lt;br/&gt;- Mint DOI with DataCite&lt;br/&gt;- Add SPDX Open License&lt;br/&gt;- Generate HTTP 410 Tombstone Spec"]
+    G -- "Deficit" --&gt; H["Remediation Report&lt;br/&gt;Mint DOI / Add SPDX"]:::coral
     H --&gt; B
 
-    G -- "FAIR Certified" --&gt; J["Repository Certification Badge&lt;br/&gt;Gold / Platinum FAIR Compliance"]
-    J --&gt; K["Vines Decay Protection Enabled&lt;br/&gt;Extended Half-Life t_1/2 &gt; 30 Years"]</code></pre>
+    G -- "Certified" --&gt; J["Certification Badge&lt;br/&gt;Gold / Platinum FAIR"]:::green
+    J --&gt; K["Decay Protection&lt;br/&gt;t_1/2 &amp;gt; 30 Years"]:::green
+
+    classDef default fill:#fffdf7,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef yellow fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef coral fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef purple fill:#ede9fe,stroke:#151b20,stroke-width:2px,color:#151b20;</code></pre>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production-grade implementation, <code>FAIRComplianceAssessmentEngine</code>, provides complete mathematical validation and auditing for the FAIR Guiding Principles. It implements:
@@ -9327,6 +9391,10 @@ Cache-Control: public, max-age=86400
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

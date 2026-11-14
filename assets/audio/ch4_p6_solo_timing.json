@@ -1,0 +1,295 @@
+{
+  "duration": 560.496,
+  "slides": [
+    {
+      "id": "s1",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to Lesson 4.6. In production artificial intelligence, no human annotator\u2014regardless of domain expertise\u2014produces perfectly noise-free annotations. Clinical interpretation, linguistic ambiguity, edge cases, and annotator fatigue inevitably induce disagreement across labeling teams.",
+          "dock": "main",
+          "start": 0.0,
+          "end": 21.36
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Quality control is therefore grounded in statistical reliability theory. We must measure inter-annotator agreement beyond chance, penalize ordinal discrepancies according to physical loss geometry, and deploy probabilistic latent-variable models to uncover true ground truth while calibrating individual worker confusion matrices.",
+          "dock": "main",
+          "start": 21.36,
+          "end": 41.472
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Given two annotators rating N instances into K categories, raw observed agreement P_o is simply the fraction of matching items. However, when classes are heavily imbalanced, P_o produces a dangerously misleading illusion of consensus.",
+          "dock": "main",
+          "start": 41.472,
+          "end": 58.056
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Consider an audit of 10,000 screening mammograms where early malignancy occurs in only 0.5 percent of scans. Two radiologists agree on 9,900 Negative cases and 20 Positive cases, disagreeing on 80 scans. Their raw agreement is a staggering 99.2 percent. Yet their Cohen's Kappa is only 0.329\u2014indicating poor, unacceptable reliability!",
+          "dock": "main",
+          "start": 58.056,
+          "end": 85.56
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Jacob Cohen formulated Kappa in 1960 to isolate genuine agreement from random alignment under independent rater marginals. Kappa equals P_o minus P_e divided by one minus P_e.",
+          "dock": "main",
+          "start": 85.56,
+          "end": 99.576
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Kappa ranges from 1.0 for deterministic perfection down to 0.0 for chance, with negative values indicating systematic rater inversion. In production AI governance, we apply Landis and Koch benchmarks: values below 0.40 are rejected, between 0.40 and 0.75 require guideline tightening, and 0.75 or higher qualifies as publication-grade gold truth.",
+          "dock": "main",
+          "start": 99.576,
+          "end": 127.488
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Standard unweighted Cohen's Kappa treats all disagreements as identical binary indicators. Confusing prostate cancer Stage I with Stage II is penalized with the exact same weight as confusing Stage I with metastatic Stage IV.",
+          "dock": "main",
+          "start": 127.488,
+          "end": 142.032
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "For ordinal scales, Quadratic Weighted Kappa applies a distance penalty matrix where weight equals i minus j squared over K minus 1 squared. Adjacent discrepancies receive only 6.25 percent penalty on a 5-class scale, aligning agreement measurement with continuous regression loss geometry.",
+          "dock": "main",
+          "start": 142.032,
+          "end": 161.256
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Cohen's Kappa assumes two fixed, persistent annotators. In crowdsourcing and enterprise platforms, items are routed dynamically across a pool of dozens or hundreds of annotators, where each item receives m votes from an arbitrary subset.",
+          "dock": "main",
+          "start": 161.256,
+          "end": 176.832
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Joseph Fleiss generalized Kappa in 1971. By computing item agreement P_i from rater vote counts n_i,j, Fleiss calculates overall observed consensus P_bar against marginal chance agreement P_e_bar across all K categories.",
+          "dock": "main",
+          "start": 176.832,
+          "end": 194.952
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to the Inter-Annotator Agreement Studio. In this lab, you can directly manipulate the four cells of a two-by-two contingency matrix between two independent raters. Watch raw agreement P_o, expected chance P_e, and Cohen's Kappa update in real time.",
+          "dock": "sim",
+          "start": 194.952,
+          "end": 213.144
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Click the High Prevalence Paradox preset button to witness a dataset with 96 percent raw agreement collapse to a failing Kappa of 0.323. Use this studio to calibrate your team's quality gates.",
+          "dock": "sim",
+          "start": 213.144,
+          "end": 226.68
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Active Checkpoint 1. Two radiologists audit 10,000 screening mammograms with 0.5 percent true malignancy prevalence. They agree on 9,900 Negative and 20 Positive scans, disagreeing on 80 scans, yielding 99.2 percent raw agreement. What is their Cohen's Kappa, and what is the engineering verdict?",
+          "dock": "quiz",
+          "start": 226.68,
+          "end": 249.48
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Klaus Krippendorff solved a massive limitation of Kappa in 1980. Real-world annotation projects frequently suffer from missing data, where raters label overlapping but incomplete subsets of items.",
+          "dock": "main",
+          "start": 249.48,
+          "end": 262.392
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Krippendorff's Alpha formulates agreement as one minus observed disagreement over chance disagreement, supporting nominal, ordinal, interval, and ratio difference functions delta squared. In scientific benchmarks, alpha must exceed 0.800 for high-stakes consensus and 0.667 for tentative conclusions.",
+          "dock": "main",
+          "start": 262.392,
+          "end": 283.824
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "When collecting multiple annotations per item, the naive heuristic is simple majority voting. Every annotator's vote is given identical weight, taking the argmax count as ground truth.",
+          "dock": "main",
+          "start": 283.824,
+          "end": 295.776
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In production, majority voting fails catastrophically. If a verified senior pathologist is outvoted two-to-one by careless workers, majority vote adopts the error. Furthermore, colluding click-farms who spam the default zero label easily outvote conscientious annotators, corrupting the training dataset.",
+          "dock": "main",
+          "start": 295.776,
+          "end": 315.84
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "In 1979, Alexander Dawid and Allan Skene introduced the landmark latent-variable framework for observer error. Instead of assuming annotators are perfect, Dawid-Skene treats the true class Y_i_star as an unobserved latent variable.",
+          "dock": "main",
+          "start": 315.84,
+          "end": 332.568
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "Each worker m is parameterized by an individual K-by-K confusion matrix pi_j_l, representing the probability of voting class l given true class j. Given conditional independence, the joint probability factorizes across all workers and items, allowing unsupervised recovery of both latent truth and worker skill.",
+          "dock": "main",
+          "start": 332.568,
+          "end": 353.784
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "The Dawid-Skene model optimizes parameters via Expectation-Maximization. In the E-step, we compute the soft posterior probability T_i_j that instance i belongs to class j, multiplying class priors by worker likelihoods.",
+          "dock": "main",
+          "start": 353.784,
+          "end": 369.96
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In the M-step, worker confusion matrices are updated using these soft posteriors. Notice the inverted worker superpower: if an adversary or confused worker is 95 percent wrong, Dawid-Skene detects high off-diagonal probabilities and inverts their votes to extract pristine 95 percent accurate signal!",
+          "dock": "main",
+          "start": 369.96,
+          "end": 389.712
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Welcome to the Dawid-Skene Consensus Studio. Inspect the table of four items rated by three workers: Worker 1 is an expert, Worker 2 is noisy, and Worker 3 is a spammer who almost always votes zero.",
+          "dock": "sim",
+          "start": 389.712,
+          "end": 403.632
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "On Item 2, Worker 1 votes Class 1, while Workers 2 and 3 vote Class 0. Naive majority vote incorrectly predicts Class 0. Click Step EM Algorithm to watch Dawid-Skene calibrate the confusion matrices and correctly resolve Item 2 to Class 1 with 91.8 percent confidence!",
+          "dock": "sim",
+          "start": 403.632,
+          "end": 423.936
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Active Checkpoint 2. In content safety moderation, 5 workers label a comment. Worker 1 is a senior specialist with 98 percent sensitivity and 1 percent false positive rate. Workers 2 through 5 are click-farm bots always submitting zero. On an overtly toxic comment, Worker 1 votes 1 while Workers 2 through 5 vote 0. What are the outcomes under Majority Voting versus Dawid-Skene EM?",
+          "dock": "quiz",
+          "start": 423.936,
+          "end": 451.872
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Statistical quality control has rewritten the rules of production benchmarks across medicine and AI. In the CheXpert study across 224,000 chest radiographs, radiologists frequently disagreed on equivocal findings like pneumonia.",
+          "dock": "main",
+          "start": 451.872,
+          "end": 467.616
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "By deploying multi-expert Dawid-Skene consensus and uncertainty mapping policies, Stanford boosted CheXNet model AUC by 0.04. Furthermore, in NLP benchmarks like SNLI, persistent 3-to-2 annotator splits were proven to stem from genuine linguistic ambiguity rather than worker error, leading modern models to train on soft probability distributions using KL divergence.",
+          "dock": "main",
+          "start": 467.616,
+          "end": 493.464
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Here is the production-grade Python reliability engine. We use Pydantic V2 models to enforce strict matrix invariants: ContingencyMatrix2x2 validates non-empty observations, while MultiRaterRatingsMatrix verifies exact rater counts per item.",
+          "dock": "main",
+          "start": 493.464,
+          "end": 510.24
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "The InterAnnotatorAgreementEngine computes Cohen's Kappa, Quadratic Weighted Kappa, Fleiss' Kappa, and runs vectorized Dawid-Skene EM iterations in pure NumPy. This architecture powers automated CI/CD quality gates across enterprise data operations.",
+          "dock": "main",
+          "start": 510.24,
+          "end": 527.784
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "turns": [
+        {
+          "speaker": "Dr. Nova",
+          "text": "Congratulations on completing Lesson 4.6. We have codified the four fundamental laws of annotation quality control: The Chance-Correction Mandate, The Distance-Loss Alignment Law, The Latent-Worker Calibration Law, and The Distributional Truth Law.",
+          "dock": "main",
+          "start": 527.784,
+          "end": 544.2
+        },
+        {
+          "speaker": "Dr. Nova",
+          "text": "In our next masterclass, Lesson 4.7, we tackle the operational challenges of scaling human annotation: cognitive fatigue, demographic bias, concept drift, and adversarial attacks in crowdsourcing networks. Continue onward!",
+          "dock": "main",
+          "start": 544.2,
+          "end": 560.496
+        }
+      ]
+    }
+  ]
+}

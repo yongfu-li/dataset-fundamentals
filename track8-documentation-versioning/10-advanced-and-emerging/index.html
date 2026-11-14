@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,8 +123,10 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 4px !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
           width: 100% !important;
@@ -313,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -339,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7689,45 +7745,52 @@
 <p>The frontiers of dataset documentation and version control are being radically reshaped by four concurrent technological transformations:</p>
 <ol>
 <li><strong>Unified ACID Lakehouses &amp; Streaming State:</strong> The convergence of data warehouses and lakes into unified ACID lakehouse architectures (<a href="#ref-armbrust2020">Armbrust et al., 2020</a>; <a href="#ref-nambiar2022">Nambiar &amp; Mundra, 2022</a>) paired with consistent stateful stream versioning (<a href="#ref-carbone2017">Carbone et al., 2017</a>) provides snapshot isolation and time travel across continuous data flows.</li>
-<li><strong>The Vector Search Paradigm &amp; Embedding Versioning:</strong> Generative AI and Retrieval-Augmented Generation (RAG) architectures (<a href="#ref-lewis2020">Lewis et al., 2020</a>) represent knowledge not as scalar database rows, but as dense high-dimensional embedding vectors (<span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^d\)</span>, where <span class="arithmatex">\(d \in [768, 1536]\)</span>). Versioning billion-scale vector indexes requires novel indexing structures such as Hierarchical Navigable Small World (HNSW) graphs and lossy Product Quantization (PQ) compression to manage memory footprints (<a href="#ref-malkov2018">Malkov &amp; Yashunin, 2018</a>; <a href="#ref-johnson2021">Johnson et al., 2021</a>).</li>
+<li><strong>The Vector Search Paradigm &amp; Embedding Versioning:</strong> Generative AI and Retrieval-Augmented Generation (RAG) architectures (<a href="#ref-lewis2020">Lewis et al., 2020</a>) represent knowledge not as scalar database rows, but as dense high-dimensional embedding vectors (<span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^d\)</span>, where <span class="arithmatex">\(d \in [768, 1{,}536]\)</span>). Versioning billion-scale vector indexes requires novel indexing structures such as Hierarchical Navigable Small World (HNSW) graphs and lossy Product Quantization (PQ) compression to manage memory footprints (<a href="#ref-malkov2018">Malkov &amp; Yashunin, 2018</a>; <a href="#ref-johnson2021">Johnson et al., 2021</a>).</li>
 <li><strong>Decentralized Data Mesh Architectures:</strong> Monolithic centralized data lakes create organizational bottlenecks. The <strong>Data Mesh</strong> paradigm shifts ownership to decentralized domain teams (Billing, Search, Logistics), treating datasets as versioned, self-describing <strong>Data Products</strong> with contractual schema SLAs and automated federated governance (<a href="#ref-dehghani2022">Dehghani, 2022</a>).</li>
 <li><strong>Decentralized Cryptographic Storage (IPFS &amp; Blockchain Ledgers):</strong> Centralized URLs are fragile and subject to link rot. Cryptographic Content Identifiers (IPFS CIDs) and distributed ledger timestamping (<a href="#ref-benet2014">Benet, 2014</a>) guarantee permanent immutability and verifiable data provenance without reliance on single corporate cloud providers.</li>
 </ol>
 <pre class="mermaid"><code>flowchart TD
   subgraph LakeStorage ["1. Unified ACID Lakehouse (Iceberg / Delta)"]
-    CommitLog["JSON Transaction Log&lt;br/&gt;(Atomic Commits &amp; Time-Travel)"]
-    ParquetFiles[("Parquet Columnar Data&lt;br/&gt;Immutable S3 / GCS Blobs")]
-    CommitLog &lt;--&gt; ParquetFiles
+    CommitLog["JSON Commit Log&lt;br/&gt;(ACID Time-Travel)"]:::cyan
+    ParquetFiles[("Parquet Blobs&lt;br/&gt;(Immutable S3/GCS)")]:::blue
+    CommitLog --- ParquetFiles
   end
 
-  subgraph VectorFabric ["2. High-Dimensional Vector Search Fabric"]
-    HNSWGraph["HNSW Multi-Layer Graph&lt;br/&gt;Logarithmic Skip-List Proximity"]
-    PQTable["Product Quantization (PQ)&lt;br/&gt;Cartesian Subspace Codebooks (32x)"]
+  subgraph VectorFabric ["2. Vector Search Fabric (Dense Embeddings)"]
+    HNSWGraph["HNSW Graph Index&lt;br/&gt;(Logarithmic Search)"]:::amber
+    PQTable["Product Quantizer (PQ)&lt;br/&gt;(32x Codebook Compression)"]:::green
     HNSWGraph --&gt; PQTable
   end
 
-  subgraph GovernanceConsumer ["3. Decentralized Mesh &amp; Decentralized Web"]
-    MeshContract["Data Mesh Product Contract&lt;br/&gt;(Declarative Schema &amp; Quality SLAs)"]
-    IPFSNode[("IPFS Decentralized Multihash&lt;br/&gt;Permanent Content Addressing (CID)")]
-    RAGInference["RAG LLM Serving &amp; Agents&lt;br/&gt;(vLLM / LangChain / Pinecone)"]
+  subgraph GovernanceConsumer ["3. Mesh &amp; Decentralized Web (Contracts &amp; CIDs)"]
+    MeshContract["Data Mesh Contract&lt;br/&gt;(Declarative Quality SLAs)"]:::purple
+    IPFSNode[("IPFS Multihash CID&lt;br/&gt;(Content-Addressed)")]:::cyan
+    RAGInference["RAG Serving Agents&lt;br/&gt;(vLLM / Pinecone)"]:::amber
+    MeshContract --&gt; IPFSNode
+    MeshContract -. "SLA Gate" .-&gt; RAGInference
   end
 
-  CommitLog --&gt; VectorFabric
-  VectorFabric --&gt; RAGInference
-  CommitLog --&gt; MeshContract
-  MeshContract --&gt; IPFSNode</code></pre>
+  CommitLog --&gt; HNSWGraph
+  PQTable --&gt; RAGInference
+  ParquetFiles --&gt; MeshContract
+
+  classDef cyan fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+  classDef blue fill:#dbeafe,stroke:#151b20,stroke-width:2px,color:#151b20;
+  classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+  classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+  classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;</code></pre>
 <hr />
 <h2 id="mathematical-formalization-of-emerging-data-paradigms">📐 Mathematical Formalization of Emerging Data Paradigms</h2>
 <p>We formalize lossy vector Product Quantization (PQ), HNSW logarithmic graph search bounds, Data Mesh contract compliance indices, and Content Identifier (CID) multihashes.</p>
 <h3 id="definition-8101-product-quantization-pq-lossy-vector-compression">Definition 8.10.1 (Product Quantization (PQ) Lossy Vector Compression)</h3>
-<p>Let a dense embedding space be <span class="arithmatex">\(\mathbb{R}^d\)</span> (<span class="arithmatex">\(d \approx 768 - 1536\)</span>). Product Quantization decomposes the vector space into a Cartesian product of <span class="arithmatex">\(M\)</span> low-dimensional orthogonal subspaces:</p>
+<p>Let a dense embedding space be <span class="arithmatex">\(\mathbb{R}^d\)</span> (<span class="arithmatex">\(d \approx 768 - 1{,}536\)</span>). Product Quantization decomposes the vector space into a Cartesian product of <span class="arithmatex">\(M\)</span> low-dimensional orthogonal subspaces:</p>
 <div class="arithmatex">\[
 \mathbb{R}^d = \underbrace{\mathbb{R}^{d/M} \times \mathbb{R}^{d/M} \times \dots \times \mathbb{R}^{d/M}}_{M \text{ orthogonal subspaces}}
 \]</div>
 <p>where each sub-vector <span class="arithmatex">\(\mathbf{u}_m \in \mathbb{R}^{d/M}\)</span> (<span class="arithmatex">\(m = 1, \dots, M\)</span>).</p>
 <p>For each subspace <span class="arithmatex">\(m\)</span>, k-means clustering trains a codebook <span class="arithmatex">\(\mathcal{C}_m = \{\mathbf{c}_{m,1}, \dots, \mathbf{c}_{m,K}\}\)</span> containing <span class="arithmatex">\(K = 256\)</span> centroids (addressable by an 8-bit byte, since <span class="arithmatex">\(\log_2 256 = 8\)</span>). The quantizer maps each sub-vector to its nearest centroid index:</p>
 <div class="arithmatex">\[
-q_m(\mathbf{u}_m) = \arg\min_{k \in \{1,\dots,K\}} \|\mathbf{u}_m - \mathbf{c}_{m,k}\|_2
+q_m(\mathbf{u}_m) = \operatorname*{arg\,min}_{k \in \{1,\dots,K\}} \|\mathbf{u}_m - \mathbf{c}_{m,k}\|_2
 \]</div>
 <p>The entire vector <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^d\)</span> is compressed into a compact <span class="arithmatex">\(M\)</span>-byte code:</p>
 <div class="arithmatex">\[
@@ -7739,7 +7802,7 @@ q_m(\mathbf{u}_m) = \arg\min_{k \in \{1,\dots,K\}} \|\mathbf{u}_m - \mathbf{c}_{
 \]</div>
 <p>For standard 768-dimensional embeddings (<span class="arithmatex">\(d = 768\)</span>) with <span class="arithmatex">\(M = 96\)</span> sub-vectors:</p>
 <div class="arithmatex">\[
-\mathcal{R}_{\text{PQ}} = \frac{4 \times 768}{96} = \frac{3072}{96} = 32.0\times \quad (\text{a } 96.88\%\text{ RAM reduction})
+\mathcal{R}_{\text{PQ}} = \frac{4 \times 768}{96} = \frac{3{,}072}{96} = 32.0\times \quad (\text{a } 96.88\% \text{ RAM reduction})
 \]</div>
 <p>This enables a 1-billion-vector index (<span class="arithmatex">\(2.86\text{ TB}\)</span> of raw float32 tensors) to fit into just <span class="arithmatex">\(89.4\text{ GB}\)</span> of RAM (<a href="#ref-johnson2021">Johnson et al., 2021</a>).</p>
 <hr />
@@ -7772,7 +7835,7 @@ T_{\text{HNSW}} = \mathcal{O}(\log_2(N) \cdot d)
 <h3 id="definition-8104-cryptographic-multihash-content-identifiers-ipfs-cids">Definition 8.10.4 (Cryptographic Multihash Content Identifiers (IPFS CIDs))</h3>
 <p>In decentralized storage architectures (InterPlanetary File System - IPFS), data assets are decoupled from physical server locations (IP addresses or DNS hostnames). Instead, an immutable payload <span class="arithmatex">\(B\)</span> is addressed by a <strong>Content Identifier (CID)</strong> constructed via self-describing multihashes:</p>
 <div class="arithmatex">\[
-\text{CID} = \text{Base58/Base32}\left( \text{multicodec} \parallel \text{hash\_func\_code} \parallel \text{digest\_length} \parallel \mathcal{H}(B) \right)
+\text{CID} = \text{Base32}\left( \text{multicodec} \mathbin{\Vert} \text{hash-algorithm} \mathbin{\Vert} \text{digest-length} \mathbin{\Vert} \mathcal{H}(B) \right)
 \]</div>
 <p>Because the CID is derived strictly from the bitstream <span class="arithmatex">\(B\)</span>:</p>
 <div class="arithmatex">\[
@@ -8322,7 +8385,7 @@ setTimeout(() => {
 <h2 id="interactive-self-assessment-micro-checks">❓ Interactive Self-Assessment Micro-Checks</h2>
 <details class="question">
 <summary>Self-Assessment 8.10.1: Product Quantization Memory Compression Economics</summary>
-<p>A generative AI enterprise deploys a multi-modal visual recommendation engine indexing <span class="arithmatex">\(N = 500,000,000\)</span> images (<span class="arithmatex">\(500\text{ Million}\)</span>) with 512-dimensional continuous feature embeddings (<span class="arithmatex">\(d = 512\)</span>).</p>
+<p>A generative AI enterprise deploys a multi-modal visual recommendation engine indexing <span class="arithmatex">\(N = 500{,}000{,}000\)</span> images (<span class="arithmatex">\(500\text{ Million}\)</span>) with 512-dimensional continuous feature embeddings (<span class="arithmatex">\(d = 512\)</span>).</p>
 <ol>
 <li>Calculate the raw in-memory storage footprint required to hold all 500M vectors in 32-bit floating point precision (<span class="arithmatex">\(4\text{ bytes per dimension}\)</span>) in Gigabytes and Terabytes.</li>
 <li>The team applies Product Quantization with <span class="arithmatex">\(M = 64\)</span> sub-vectors and <span class="arithmatex">\(K = 256\)</span> centroids per subspace (<span class="arithmatex">\(8\text{ bits} = 1\text{ byte}\)</span> per sub-vector). What is the compression ratio <span class="arithmatex">\(\mathcal{R}_{\text{PQ}}\)</span>?</li>
@@ -8334,28 +8397,28 @@ setTimeout(() => {
 <div class="arithmatex">\[
 \begin{aligned}
 \text{Raw Bytes} &amp;= N \times d \times 4\text{ bytes} \\
-&amp;= 500,000,000 \times 512 \times 4 \\
-&amp;= 1,024,000,000,000 \text{ bytes} \\
-&amp;\approx \frac{1,024,000,000,000}{1024^3} \approx 953.67 \text{ GB} \quad (0.931 \text{ TB})
+&amp;= 500{,}000{,}000 \times 512 \times 4 \\
+&amp;= 1{,}024{,}000{,}000{,}000 \text{ bytes} \\
+&amp;= 1{,}024\text{ GB} \approx \frac{1{,}024{,}000{,}000{,}000}{1{,}024^3} \approx 953.67 \text{ GiB} \quad (1.024\text{ TB} \approx 0.931\text{ TiB})
 \end{aligned}
 \]</div>
 <p><strong>2. Compression Ratio <span class="arithmatex">\(\mathcal{R}_{\text{PQ}}\)</span>:</strong>
-Each 512-d float32 vector consumes <span class="arithmatex">\(512 \times 4 = 2,048\text{ bytes}\)</span>.
+Each 512-d float32 vector consumes <span class="arithmatex">\(512 \times 4 = 2{,}048\text{ bytes}\)</span>.
 Each quantized vector consumes <span class="arithmatex">\(M = 64\text{ bytes}\)</span>.</p>
 <div class="arithmatex">\[
-\mathcal{R}_{\text{PQ}} = \frac{2,048\text{ bytes}}{64\text{ bytes}} = 32.0\times \quad (\text{a } 96.875\% \text{ reduction})
+\mathcal{R}_{\text{PQ}} = \frac{2{,}048\text{ bytes}}{64\text{ bytes}} = 32.0\times \quad (\text{a } 96.875\% \text{ reduction})
 \]</div>
 <p><strong>3. Compressed Index RAM Footprint:</strong></p>
 <div class="arithmatex">\[
-\text{PQ RAM} = \frac{\text{Raw Bytes}}{\mathcal{R}_{\text{PQ}}} = \frac{953.67\text{ GB}}{32} \approx 29.80 \text{ GB}
+\text{PQ RAM} = \frac{\text{Raw Bytes}}{\mathcal{R}_{\text{PQ}}} = \frac{1{,}024\text{ GB}}{32} = 32\text{ GB} \approx 29.80 \text{ GiB}
 \]</div>
-<p>By compressing the index from <span class="arithmatex">\(954\text{ GB}\)</span> down to under <span class="arithmatex">\(30\text{ GB}\)</span>, the entire 500-million-image retrieval graph can fit into a single commodity GPU workstation rather than an expensive distributed cluster.</p>
+<p>By compressing the index from <span class="arithmatex">\(1{,}024\text{ GB}\)</span> (<span class="arithmatex">\(953.67\text{ GiB}\)</span>) down to <span class="arithmatex">\(32\text{ GB}\)</span> (<span class="arithmatex">\(29.80\text{ GiB}\)</span>), the entire 500-million-image retrieval graph can fit into a single commodity GPU workstation rather than an expensive distributed cluster.</p>
 </details>
 </details>
 <hr />
 <details class="question">
 <summary>Self-Assessment 8.10.2: HNSW Search Routing Complexity and Speedup</summary>
-<p>Consider searching for the approximate nearest neighbors of a query embedding within an index of <span class="arithmatex">\(N = 2^{24} \approx 16,777,216\)</span> documents (<span class="arithmatex">\(16.7\text{ Million}\)</span>) with dimension <span class="arithmatex">\(d = 1024\)</span>.</p>
+<p>Consider searching for the approximate nearest neighbors of a query embedding within an index of <span class="arithmatex">\(N = 2^{24} = 16{,}777{,}216\)</span> documents (<span class="arithmatex">\(16.7\text{ Million}\)</span>) with dimension <span class="arithmatex">\(d = 1{,}024\)</span>.</p>
 <ol>
 <li>How many floating-point distance evaluations are required under brute-force exact linear scan?</li>
 <li>Under a Hierarchical Navigable Small World (HNSW) graph with branching factor <span class="arithmatex">\(M_{\text{links}} = 16\)</span> and depth <span class="arithmatex">\(\approx \log_2(N) = 24\)</span>, approximately how many distance evaluations are executed during search?</li>
@@ -8366,16 +8429,16 @@ Each quantized vector consumes <span class="arithmatex">\(M = 64\text{ bytes}\)<
 <p><strong>1. Brute-Force Evaluations:</strong>
 Every vector in the corpus must be evaluated:</p>
 <div class="arithmatex">\[
-\text{Ops}_{\text{brute}} = N = 16,777,216 \text{ distance evaluations}
+\text{Ops}_{\text{brute}} = N = 16{,}777{,}216 \text{ distance evaluations}
 \]</div>
 <p><strong>2. HNSW Logarithmic Graph Routing Evaluations:</strong>
 In an HNSW graph, greedy routing traverses from sparse top layers to dense base layers, evaluating approximately:</p>
 <div class="arithmatex">\[
-\text{Ops}_{\text{HNSW}} \approx \mathcal{O}(efSearch \cdot \log_2 N) \approx 64 \times 24 \approx 1,536 \text{ distance evaluations}
+\text{Ops}_{\text{HNSW}} \approx \mathcal{O}(efSearch \cdot \log_2 N) \approx 64 \times 24 = 1{,}536 \text{ distance evaluations}
 \]</div>
 <p><strong>3. Query Speedup Factor:</strong></p>
 <div class="arithmatex">\[
-\text{Speedup} = \frac{\text{Ops}_{\text{brute}}}{\text{Ops}_{\text{HNSW}}} \approx \frac{16,777,216}{1,536} \approx 10,922\times
+\text{Speedup} = \frac{\text{Ops}_{\text{brute}}}{\text{Ops}_{\text{HNSW}}} = \frac{16{,}777{,}216}{1{,}536} \approx 10{,}922.7\times \approx 10{,}922\times
 \]</div>
 <p>Search latency collapses from <span class="arithmatex">\(450\text{ milliseconds}\)</span> down to <span class="arithmatex">\(0.041\text{ milliseconds}\)</span> (<span class="arithmatex">\(41\text{ microseconds}\)</span>), unlocking real-time interactive search and chat agents.</p>
 </details>
@@ -8529,6 +8592,10 @@ B_{\text{corrupt}} \neq B \implies \text{SHA-256}(B_{\text{corrupt}}) \neq \text
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

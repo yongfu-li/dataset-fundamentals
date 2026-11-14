@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,9 +123,13 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
+          box-sizing: border-box !important;
+          width: 100% !important;
         }
 
         .node g.label rect,
@@ -311,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -337,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7908,7 +7966,7 @@
       <span>📖 Companion Monograph Section Available</span>
     </div>
     <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
-      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.5: Privacy-Preserving Technologies)</strong> in the official Springer Nature monograph, detailing equivalence class generalization, Earth Mover's Distance in t-closeness, and Laplace noise calibration in differential privacy.
+      Read <strong>Chapter 3: Ethics and Privacy in Data Work (§3.5: Privacy-Preserving Technologies)</strong>, detailing equivalence class generalization, Earth Mover's Distance in t-closeness, and Laplace noise calibration in differential privacy.
     </div>
   </div>
   <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
@@ -7916,9 +7974,6 @@
   </a>
 </div>
 
-<blockquote>
-<p><strong>Estimated Study Time:</strong> ~20 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter3/chapter3.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-35">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 3.5</h3>
 <p>Experience Chapter 3 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
@@ -7927,7 +7982,7 @@
     <div style="display: flex; align-items: center; gap: 10px;">
       <span style="font-size: 1.25rem;">🎙️</span>
       <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">20 Slides</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
       <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
@@ -8496,9 +8551,9 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 </span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">clipped</span><span class="p">)</span>
 </span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
 </span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="n">sum_sensitivity</span> <span class="o">=</span> <span class="n">upper_bound</span> <span class="o">-</span> <span class="n">lower_bound</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        <span class="c1"># Split epsilon: 50% for sum, 50% for count</span>
-</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="n">noisy_sum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_noise</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">clipped</span><span class="p">)),</span> <span class="n">sum_sensitivity</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">))</span>
-</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        <span class="n">noisy_count</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_noise</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)))</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>        <span class="c1"># Split epsilon: 50% for sum, 50% for count (add_noise divides by self.epsilon)</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="n">noisy_sum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_noise</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">clipped</span><span class="p">)),</span> <span class="n">sum_sensitivity</span> <span class="o">*</span> <span class="mf">2.0</span><span class="p">)</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        <span class="n">noisy_count</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_noise</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mf">2.0</span><span class="p">))</span>
 </span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
 </span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>        <span class="k">return</span> <span class="n">noisy_sum</span> <span class="o">/</span> <span class="n">noisy_count</span>
 </span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>
@@ -8561,15 +8616,16 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
 </span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">partitions</span><span class="p">),</span> <span class="s2">"All partitions must satisfy k &gt;= 3"</span>
 </span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>
 </span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>    <span class="c1"># 2. Differential Privacy Laplace Engine Test</span>
-</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>    <span class="n">dp_engine</span> <span class="o">=</span> <span class="n">LaplaceDPEngine</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-</span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>    <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">])</span>
-</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>    <span class="n">noisy_mean</span> <span class="o">=</span> <span class="n">dp_engine</span><span class="o">.</span><span class="n">private_mean</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="mf">100.0</span><span class="p">)</span>
-</span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">noisy_mean</span> <span class="o">-</span> <span class="mf">30.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">50.0</span>
-</span><span id="__span-1-99"><a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Mondrian k-Anonymity and Laplace DP Engine tests passed successfully!"</span><span class="p">)</span>
-</span><span id="__span-1-100"><a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>
+</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>    <span class="n">dp_engine</span> <span class="o">=</span> <span class="n">LaplaceDPEngine</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>    <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+</span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>    <span class="n">noisy_mean</span> <span class="o">=</span> <span class="n">dp_engine</span><span class="o">.</span><span class="n">private_mean</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="mf">100.0</span><span class="p">)</span>
+</span><span id="__span-1-99"><a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">noisy_mean</span> <span class="o">-</span> <span class="mf">30.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">5.0</span>
+</span><span id="__span-1-100"><a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"✓ Mondrian k-Anonymity and Laplace DP Engine tests passed successfully!"</span><span class="p">)</span>
 </span><span id="__span-1-101"><a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>
-</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-</span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>    <span class="n">test_production_pets_engine</span><span class="p">()</span>
+</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>
+</span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-1-104"><a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>    <span class="n">test_production_pets_engine</span><span class="p">()</span>
 </span></code></pre></div>
 <hr />
 <h2 id="key-engineering-takeaways">💡 Key Engineering Takeaways</h2>
@@ -8741,6 +8797,10 @@ $<span class="arithmatex">\(\min_{\mathbf{x}'} \|\nabla_\theta \ell(f(\mathbf{x}
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

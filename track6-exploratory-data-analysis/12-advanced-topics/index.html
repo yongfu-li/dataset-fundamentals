@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,8 +123,10 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 4px !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
           width: 100% !important;
@@ -313,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -339,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7894,23 +7950,20 @@
 
 
 <h1 id="612-advanced-topics-and-future-frontiers-in-eda">6.12 Advanced Topics and Future Frontiers in EDA</h1>
-<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 4px 4px 0px #ffc83e;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 800; color: #151b20; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 6 (§6.12)</span>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #475569; margin-top: 4px; font-weight: 500;">
-      Read <strong>Chapter 6: Exploratory Data Analysis</strong> in the Springer Nature monograph for complete algebraic topology proofs of Vietoris-Rips complexes, Mapper Nerve theorems, and causal Markov factorization.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 6: Exploratory Data Analysis (§6.12: Topological Data Analysis &amp; Causal Frontiers)</strong>, covering complete algebraic topology proofs of Vietoris-Rips complexes, Mapper Nerve theorems, and causal Markov factorization.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #c9f3f4; color: #0e7490; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.84rem; text-decoration: none; box-shadow: 2px 2px 0px #151b20; font-family: monospace;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+    <span>Explore Chapter 6 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Duration:</strong> ~25 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter6/chapter6.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter6/chapter6.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-612">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 6.12</h3>
 <p>Experience Chapter 6 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
@@ -7919,7 +7972,7 @@
     <div style="display: flex; align-items: center; gap: 10px;">
       <span style="font-size: 1.25rem;">🎙️</span>
       <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">10 Slides</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Masterclass Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
       <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
@@ -7942,13 +7995,13 @@
 <li><strong>Massive-Scale Direct GPU Rasterization (Datashader Architecture)</strong>: Bypassing browser DOM bottlenecks to rasterize <span class="arithmatex">\(10^8\)</span> data points into perceptual dynamic-range heatmaps in milliseconds.</li>
 <li><strong>Causal Discovery &amp; Directed Graphical Modeling</strong>: Transitioning from passive observational correlation to active causal skeleton identification using constraint-based algorithms.</li>
 </ol>
-<pre class="mermaid"><code>flowchart LR
-    subgraph Frontiers ["Frontiers of Exploratory Data Science"]
+<pre class="mermaid"><code>flowchart TD
+    subgraph Frontiers ["&lt;b&gt;FRONTIERS OF EXPLORATORY DATA SCIENCE&lt;/b&gt;"]
         direction TB
-        F1["High-D Geometry: Hypersphere Volume Collapse &amp; Distance Concentration"]
-        F2["Topological Data Analysis: Simplicial Complexes &amp; Mapper Nerve Graphs"]
-        F3["Massive GPU Rasterization: In-VRAM Logarithmic Dynamic Range Aggregation"]
-        F4["Causal Discovery: PC Algorithm &amp; Fisher's Z Conditional Independence"]
+        F1["&lt;b&gt;1. High-D Manifold Geometry&lt;/b&gt;&lt;br/&gt;Hypersphere Volume Collapse: ρ(d) → 0&lt;br/&gt;Distance Metric Concentration (CV → 0)"]
+        F2["&lt;b&gt;2. Topological Data Analysis&lt;/b&gt;&lt;br/&gt;Mapper Simplicial Nerve Complexes&lt;br/&gt;Betti Loops β₁ &amp;amp; Euler χ"]
+        F3["&lt;b&gt;3. Massive GPU Rasterization&lt;/b&gt;&lt;br/&gt;In-VRAM Atomic Density Aggregation&lt;br/&gt;Logarithmic Dynamic Range Equalization"]
+        F4["&lt;b&gt;4. Observational Causal Discovery&lt;/b&gt;&lt;br/&gt;PC Constraint Search &amp;amp; Fisher's z Testing&lt;br/&gt;Orient Unshielded Colliders (X → Z ← Y)"]
         F1 --&gt; F2 --&gt; F3 --&gt; F4
     end
 
@@ -7960,15 +8013,25 @@
 <p>In high-dimensional space <span class="arithmatex">\(\mathbb{R}^d\)</span>, human geometric intuition developed in 2D and 3D fails due to two fundamental mathematical properties.</p>
 <h4 id="proof-of-hypersphere-to-hypercube-volume-collapse">Proof of Hypersphere-to-Hypercube Volume Collapse</h4>
 <p>Consider an inscribed <span class="arithmatex">\(d\)</span>-dimensional hypersphere of radius <span class="arithmatex">\(r\)</span> inside a bounding hypercube of side length <span class="arithmatex">\(2r\)</span>. The volume of the hypercube is:</p>
-<div class="arithmatex">\[\text{Vol}(C_d(2r)) = (2r)^d = 2^d r^d\]</div>
+<div class="arithmatex">\[
+\operatorname{Vol}(C_d(2r)) = (2r)^d = 2^d r^d
+\]</div>
 <p>The volume of the <span class="arithmatex">\(d\)</span>-dimensional hypersphere is given by the Gaussian integral in polar coordinates:</p>
-<div class="arithmatex">\[\text{Vol}(S_d(r)) = \frac{\pi^{d/2}}{\Gamma\left(\frac{d}{2} + 1\right)} r^d\]</div>
+<div class="arithmatex">\[
+\operatorname{Vol}(S_d(r)) = \frac{\pi^{d/2}}{\Gamma\left(\frac{d}{2} + 1\right)} r^d
+\]</div>
 <p>Taking the volume ratio:</p>
-<div class="arithmatex">\[\rho(d) = \frac{\text{Vol}(S_d(r))}{\text{Vol}(C_d(2r))} = \frac{\pi^{d/2}}{2^d \Gamma\left(\frac{d}{2} + 1\right)}\]</div>
-<p>Applying Stirling's asymptotic approximation <span class="arithmatex">\(\Gamma(z + 1) \sim \sqrt{2\pi z} \left(\frac{z}{e}\right)^z\)</span> with <span class="arithmatex">\(z = d/2\)</span>:</p>
-<div class="arithmatex">\[\Gamma\left(\frac{d}{2} + 1\right) \sim \sqrt{\pi d} \left( \frac{d}{2e} \right)^{d/2}\]</div>
+<div class="arithmatex">\[
+\rho(d) = \frac{\operatorname{Vol}(S_d(r))}{\operatorname{Vol}(C_d(2r))} = \frac{\pi^{d/2}}{2^d \,\Gamma\left(\frac{d}{2} + 1\right)}
+\]</div>
+<p>Applying Stirling's asymptotic approximation <span class="arithmatex">\(\Gamma(z + 1) \sim \sqrt{2\pi z} \,(z/e)^z\)</span> with <span class="arithmatex">\(z = d/2\)</span>:</p>
+<div class="arithmatex">\[
+\Gamma\left(\frac{d}{2} + 1\right) \sim \sqrt{\pi d} \left( \frac{d}{2e} \right)^{d/2}
+\]</div>
 <p>Substituting into the volume ratio:</p>
-<div class="arithmatex">\[\rho(d) \sim \frac{\pi^{d/2}}{2^d \sqrt{\pi d} \left(\frac{d}{2e}\right)^{d/2}} = \frac{1}{\sqrt{\pi d}} \left( \frac{\pi e}{2d} \right)^{d/2} \xrightarrow{d \to \infty} \mathbf{0}\]</div>
+<div class="arithmatex">\[
+\rho(d) \sim \frac{\pi^{d/2}}{2^d \sqrt{\pi d} \left(\frac{d}{2e}\right)^{d/2}} = \frac{1}{\sqrt{\pi d}} \left( \frac{\pi e}{2d} \right)^{d/2} \xrightarrow{d \to \infty} \mathbf{0}
+\]</div>
 <p><em>Numerical Reality:</em>
 - For <span class="arithmatex">\(d = 2\)</span>: <span class="arithmatex">\(\rho(2) = \frac{\pi}{4} \approx 78.5\%\)</span>
 - For <span class="arithmatex">\(d = 10\)</span>: <span class="arithmatex">\(\rho(10) \approx 0.25\%\)</span>
@@ -7976,24 +8039,35 @@
 <p>In high dimensions, virtually <strong>all volume of the hypercube resides in the extreme corners outside the inscribed sphere</strong>. Uniformly distributed high-dimensional points do not occupy the center; they populate the outermost shell.</p>
 <h4 id="proof-of-concentration-of-pairwise-distances">Proof of Concentration of Pairwise Distances</h4>
 <p>Let <span class="arithmatex">\(\mathbf{X}, \mathbf{Y} \in \mathbb{R}^d\)</span> be two random vectors whose coordinates <span class="arithmatex">\(X_j, Y_j\)</span> are independent and identically distributed with finite variance <span class="arithmatex">\(\sigma^2\)</span> and fourth moment. The squared Euclidean distance is:</p>
-<div class="arithmatex">\[D^2(\mathbf{X}, \mathbf{Y}) = \sum_{j=1}^d (X_j - Y_j)^2\]</div>
+<div class="arithmatex">\[
+D^2(\mathbf{X}, \mathbf{Y}) = \sum_{j=1}^d (X_j - Y_j)^2
+\]</div>
 <p>By Khinchin's Weak Law of Large Numbers, the average squared coordinate distance converges in probability to its expected value:</p>
-<div class="arithmatex">\[\frac{1}{d} D^2(\mathbf{X}, \mathbf{Y}) \xrightarrow{p} \mathbb{E}[(X_j - Y_j)^2] = \mu_D\]</div>
+<div class="arithmatex">\[
+\frac{1}{d} D^2(\mathbf{X}, \mathbf{Y}) \xrightarrow{p} \mathbb{E}[(X_j - Y_j)^2] = \mu_D
+\]</div>
 <p>By the Central Limit Theorem, the fluctuations around the mean scale as:</p>
-<div class="arithmatex">\[D(\mathbf{X}, \mathbf{Y}) = \sqrt{d \cdot \mu_D + \mathcal{O}_p(\sqrt{d})} = \sqrt{d \mu_D} \left( 1 + \mathcal{O}_p\left(\frac{1}{\sqrt{d}}\right) \right)\]</div>
+<div class="arithmatex">\[
+D(\mathbf{X}, \mathbf{Y}) = \sqrt{d \cdot \mu_D + \mathcal{O}_p(\sqrt{d})} = \sqrt{d \mu_D} \left( 1 + \mathcal{O}_p\left(\frac{1}{\sqrt{d}}\right) \right)
+\]</div>
 <p>Evaluating the relative contrast between the maximum and minimum distance from any query point:</p>
-<div class="arithmatex">\[\lim_{d \to \infty} \frac{\text{dist}_{\max} - \text{dist}_{\min}}{\text{dist}_{\min}} = \mathbf{0}\]</div>
+<div class="arithmatex">\[
+\lim_{d \to \infty} \frac{\operatorname{dist}_{\max} - \operatorname{dist}_{\min}}{\operatorname{dist}_{\min}} = \mathbf{0}
+\]</div>
 <p><em>Analytical Consequence:</em> In raw <span class="arithmatex">\(\mathbb{R}^{100}\)</span>, the Coefficient of Variation (<span class="arithmatex">\(\text{CV} = \frac{\sigma_D}{\mu_D}\)</span>) collapses below <span class="arithmatex">\(0.06\)</span>. Every data point becomes almost equidistant from every other data point. Distance-based metrics (<span class="arithmatex">\(K\)</span>-Means, standard Euclidean <span class="arithmatex">\(k\)</span>-NN) become mathematically degenerate without lower-dimensional manifold projections [<a href="#ref-jolliffe2016">Jolliffe2016</a>].</p>
 <hr />
 <h3 id="2-topological-data-analysis-tda-the-mapper-algorithm">2. Topological Data Analysis (TDA) &amp; The Mapper Algorithm</h3>
 <p>Standard clustering algorithms force points into disconnected spherical partitions, severing continuous loop dynamics and branching trajectories. <strong>Topological Data Analysis (TDA)</strong> extracts coordinate-free, continuous shape invariants across multiple geometric scales [<a href="#ref-carlsson2009">Carlsson2009</a>].</p>
 <pre class="mermaid"><code>flowchart TD
-    Raw["Raw High-Dimensional Point Cloud X in R^d"] --&gt; Lens["1. Continuous Filter Lens f: X -&gt; R (e.g. Density / Eccentricity)"]
-    Lens --&gt; Cover["2. Overlapping Cover U_alpha with Overlap Parameter delta"]
-    Cover --&gt; Pullback["3. Pullback Inverse Pre-Images f^{-1}(U_alpha)"]
-    Pullback --&gt; Cluster["4. Cluster Pre-Images with DBSCAN (eps, min_samples)"]
-    Cluster --&gt; Nerve["5. Construct Simplicial Nerve Complex Graph"]
-    Nerve --&gt; Topology["6. Detect Invariants: Loops (beta_1), Branches &amp; Flares"]
+    Raw["&lt;b&gt;Raw Point Cloud Data&lt;/b&gt;&lt;br/&gt;High-D Points X ∈ ℝᵈ"]
+    Lens["&lt;b&gt;1. Continuous Filter Lens&lt;/b&gt;&lt;br/&gt;Scalar Map f: X → ℝ"]
+    Cover["&lt;b&gt;2. Overlapping Cover&lt;/b&gt;&lt;br/&gt;Intervals 𝒰 = {U_k} (Overlap δ)"]
+    Pullback["&lt;b&gt;3. Pullback Pre-Images&lt;/b&gt;&lt;br/&gt;Subsets f⁻¹(U_k) ⊆ X"]
+    Cluster["&lt;b&gt;4. Pullback Clustering&lt;/b&gt;&lt;br/&gt;Connected Clusters via DBSCAN"]
+    Nerve["&lt;b&gt;5. Simplicial Nerve Complex&lt;/b&gt;&lt;br/&gt;Intersection Graph 𝒩(𝒞)"]
+    Topology["&lt;b&gt;6. Topological Invariants&lt;/b&gt;&lt;br/&gt;Betti Loops β₁ &amp;amp; Euler χ"]
+
+    Raw --&gt; Lens --&gt; Cover --&gt; Pullback --&gt; Cluster --&gt; Nerve --&gt; Topology
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
@@ -8005,15 +8079,33 @@
 <h4 id="the-mapper-algorithm-formulation">The Mapper Algorithm Formulation</h4>
 <p>Given a finite dataset <span class="arithmatex">\(X \subset \mathbb{R}^d\)</span>:</p>
 <ol>
-<li><strong>Continuous Filter / Lens Function:</strong> Choose a scalar function <span class="arithmatex">\(f: X \to \mathbb{R}\)</span> reflecting geometric properties (e.g., <span class="arithmatex">\(L_2\)</span> distance from centroid, first principal component score, or local kernel density estimate).</li>
-<li><strong>Overlapping Cover:</strong> Partition the range <span class="arithmatex">\([f_{\min}, f_{\max}]\)</span> into <span class="arithmatex">\(N\)</span> overlapping intervals <span class="arithmatex">\(\mathcal{U} = \{U_1, \dots, U_N\}\)</span> with overlap fraction <span class="arithmatex">\(\delta \in (0, 1)\)</span>:
-   $<span class="arithmatex">\(U_k = [a_k, b_k], \quad U_k \cap U_{k+1} \neq \emptyset\)</span>$</li>
-<li><strong>Pullback Clustering:</strong> For each interval <span class="arithmatex">\(U_k\)</span>, collect the points whose filter value falls in <span class="arithmatex">\(U_k\)</span> (the inverse image <span class="arithmatex">\(f^{-1}(U_k)\)</span>). Apply a clustering algorithm (e.g., DBSCAN with radius <span class="arithmatex">\(\epsilon\)</span>) to partition <span class="arithmatex">\(f^{-1}(U_k)\)</span> into disjoint clusters:
-   $<span class="arithmatex">\(f^{-1}(U_k) = C_{k, 1} \cup C_{k, 2} \cup \dots \cup C_{k, m_k}\)</span>$</li>
-<li><strong>The Nerve Simplicial Complex:</strong> Construct an abstract graph (the <em>Nerve</em> <span class="arithmatex">\(\mathcal{N}(\mathcal{C})\)</span>):</li>
+<li>
+<p><strong>Continuous Filter / Lens Function:</strong> Choose a scalar function <span class="arithmatex">\(f: X \to \mathbb{R}\)</span> reflecting geometric properties (e.g., <span class="arithmatex">\(L_2\)</span> distance from centroid, first principal component score, or local kernel density estimate).</p>
+</li>
+<li>
+<p><strong>Overlapping Cover:</strong> Partition the range <span class="arithmatex">\([f_{\min}, f_{\max}]\)</span> into <span class="arithmatex">\(N\)</span> overlapping intervals <span class="arithmatex">\(\mathcal{U} = \{U_1, \dots, U_N\}\)</span> with overlap fraction <span class="arithmatex">\(\delta \in (0, 1)\)</span>:</p>
+<div class="arithmatex">\[
+U_k = [a_k, b_k], \quad U_k \cap U_{k+1} \neq \emptyset
+\]</div>
+</li>
+<li>
+<p><strong>Pullback Clustering:</strong> For each interval <span class="arithmatex">\(U_k\)</span>, collect the points whose filter value falls in <span class="arithmatex">\(U_k\)</span> (the inverse image <span class="arithmatex">\(f^{-1}(U_k)\)</span>). Apply a clustering algorithm (e.g., DBSCAN with radius <span class="arithmatex">\(\epsilon\)</span>) to partition <span class="arithmatex">\(f^{-1}(U_k)\)</span> into disjoint clusters:</p>
+<div class="arithmatex">\[
+f^{-1}(U_k) = C_{k, 1} \cup C_{k, 2} \cup \dots \cup C_{k, m_k}
+\]</div>
+</li>
+<li>
+<p><strong>The Nerve Simplicial Complex:</strong> Construct an abstract graph (the <em>Nerve</em> <span class="arithmatex">\(\mathcal{N}(\mathcal{C})\)</span>):</p>
+<ul>
 <li><strong>Vertices:</strong> Each cluster <span class="arithmatex">\(C_{k, j}\)</span> forms a graph vertex <span class="arithmatex">\(v_{k, j}\)</span>.</li>
-<li><strong>Edges:</strong> An undirected edge connects vertex <span class="arithmatex">\(v_{k, j}\)</span> and vertex <span class="arithmatex">\(v_{l, m}\)</span> if and only if their respective clusters share at least one common data point:
-     $<span class="arithmatex">\(C_{k, j} \cap C_{l, m} \neq \emptyset\)</span>$</li>
+<li>
+<p><strong>Edges:</strong> An undirected edge connects vertex <span class="arithmatex">\(v_{k, j}\)</span> and vertex <span class="arithmatex">\(v_{l, m}\)</span> if and only if their respective clusters share at least one common data point:</p>
+<div class="arithmatex">\[
+C_{k, j} \cap C_{l, m} \neq \emptyset
+\]</div>
+</li>
+</ul>
+</li>
 </ol>
 <h4 id="betti-numbers-the-euler-poincare-characteristic">Betti Numbers &amp; The Euler-Poincaré Characteristic</h4>
 <p>The topology of the resulting nerve network is summarized by <strong>Betti numbers</strong>:
@@ -8021,48 +8113,74 @@
 - <span class="arithmatex">\(\beta_1\)</span>: Number of 1-dimensional circular loops / periodic attractors.
 - <span class="arithmatex">\(\beta_2\)</span>: Number of 2-dimensional enclosed cavities / voids.</p>
 <p>By the <strong>Euler-Poincaré Theorem</strong>, the alternating sum of Betti numbers equals the combinatorial Euler characteristic of the graph:</p>
-<div class="arithmatex">\[\chi = \sum_{k=0}^d (-1)^k \beta_k = V - E + F - \dots\]</div>
+<div class="arithmatex">\[
+\chi = \sum_{k=0}^d (-1)^k \beta_k = V - E + F - \dots
+\]</div>
 <p>For a closed 1D topological ring (where <span class="arithmatex">\(\beta_0 = 1, \beta_1 = 1\)</span>), the Euler characteristic of the nerve graph satisfies:</p>
-<div class="arithmatex">\[\chi = V - E = 1 - 1 = \mathbf{0}\]</div>
+<div class="arithmatex">\[
+\chi = V - E = 1 - 1 = \mathbf{0}
+\]</div>
 <hr />
 <h3 id="3-massive-scale-gpu-visualization-datashader-architecture">3. Massive-Scale GPU Visualization: Datashader Architecture</h3>
 <p>Standard vector plotting engines (Matplotlib, SVG, WebGL DOM) fail catastrophically when <span class="arithmatex">\(N &gt; 10^6\)</span> due to memory exhaustion and severe visual overplotting saturation. </p>
 <p><strong>Datashader</strong> converts visualization into an array aggregation pipeline executed directly in GPU VRAM [<a href="#ref-wattenberg2016">Wattenberg2016</a>]:</p>
 <h4 id="1-in-vram-projection-atomic-summation">1. In-VRAM Projection &amp; Atomic Summation</h4>
 <p>Map continuous 2D coordinates <span class="arithmatex">\((x_i, y_i) \in \mathbb{R}^2\)</span> onto a discrete raster canvas grid of dimensions <span class="arithmatex">\(W \times H\)</span> (e.g., <span class="arithmatex">\(1920 \times 1080\)</span>). Using parallel atomic GPU memory operations:</p>
-<div class="arithmatex">\[A_{u, v} = \sum_{i=1}^N \mathbb{I}\left( \lfloor W \cdot \frac{x_i - x_{\min}}{x_{\max} - x_{\min}} \rfloor = u \;\land\; \lfloor H \cdot \frac{y_i - y_{\min}}{y_{\max} - y_{\min}} \rfloor = v \right)\]</div>
+<div class="arithmatex">\[
+A_{u, v} = \sum_{i=1}^N \mathbb{I}\left( \left\lfloor W \cdot \frac{x_i - x_{\min}}{x_{\max} - x_{\min}} \right\rfloor = u \;\land\; \left\lfloor H \cdot \frac{y_i - y_{\min}}{y_{\max} - y_{\min}} \right\rfloor = v \right)
+\]</div>
 <p>where <span class="arithmatex">\(A \in \mathbb{Z}^{W \times H}\)</span> is the 2D bin accumulation tensor.</p>
 <h4 id="2-perceptual-logarithmic-dynamic-range-equalization">2. Perceptual Logarithmic Dynamic-Range Equalization</h4>
 <p>When point density ranges from <span class="arithmatex">\(1\)</span> point per pixel in sparse regions to <span class="arithmatex">\(100,000\)</span> points in metropolitan hubs, linear color mapping saturates the display into a solid white blur. Datashader applies logarithmic histogram equalization:</p>
-<div class="arithmatex">\[C_{u, v} = \frac{\log(1 + A_{u, v})}{\log(1 + \max_{j, k} A_{j, k})} \in [0.0, 1.0]\]</div>
+<div class="arithmatex">\[
+C_{u, v} = \frac{\log(1 + A_{u, v})}{\log(1 + \max_{j, k} A_{j, k})} \in [0.0, 1.0]
+\]</div>
 <p>This maps dynamic ranges spanning 6 orders of magnitude into smooth perceptual colormaps in under <span class="arithmatex">\(150\text{ ms}\)</span> for <span class="arithmatex">\(100,000,000\)</span> records.</p>
 <hr />
 <h3 id="4-causal-discovery-the-pc-algorithm-conditional-independence">4. Causal Discovery: The PC Algorithm &amp; Conditional Independence</h3>
 <p>Observational exploratory analysis identifies statistical associations, but cannot distinguish direct causal links from confounded associations (<span class="arithmatex">\(X \leftarrow Z \to Y\)</span>) or collider artifacts (<span class="arithmatex">\(X \to C \leftarrow Y\)</span>). <strong>Causal Discovery</strong> infers directed acyclic graphs (DAGs) from purely observational tabular data [<a href="#ref-spirtes2000">Spirtes2000</a>, <a href="#ref-pearl2009">Pearl2009</a>].</p>
 <h4 id="the-causal-markov-faithfulness-assumptions">The Causal Markov &amp; Faithfulness Assumptions</h4>
 <ul>
-<li><strong>Causal Markov Condition:</strong> Every variable <span class="arithmatex">\(X_i\)</span> in the DAG <span class="arithmatex">\(\mathcal{G}\)</span> is conditionally independent of its non-descendants given its parents:
-  $<span class="arithmatex">\(P(X_1, \dots, X_p) = \prod_{j=1}^p P(X_j \mid \text{Pa}(X_j))\)</span>$</li>
-<li><strong>Faithfulness:</strong> All conditional independencies observed in the probability distribution <span class="arithmatex">\(P\)</span> are structural properties of the graph <span class="arithmatex">\(\mathcal{G}\)</span> (no accidental algebraic cancellations of parameters).</li>
+<li>
+<p><strong>Causal Markov Condition:</strong> Every variable <span class="arithmatex">\(X_i\)</span> in the DAG <span class="arithmatex">\(\mathcal{G}\)</span> is conditionally independent of its non-descendants given its parents:</p>
+<div class="arithmatex">\[
+P(X_1, \dots, X_p) = \prod_{j=1}^p P(X_j \mid \operatorname{Pa}(X_j))
+\]</div>
+</li>
+<li>
+<p><strong>Faithfulness:</strong> All conditional independencies observed in the probability distribution <span class="arithmatex">\(P\)</span> are structural properties of the graph <span class="arithmatex">\(\mathcal{G}\)</span> (no accidental algebraic cancellations of parameters).</p>
+</li>
 </ul>
 <h4 id="the-pc-algorithm-protocol">The PC Algorithm Protocol</h4>
 <ol>
-<li><strong>Skeletal Discovery via Conditional Independence:</strong></li>
+<li><strong>Skeletal Discovery via Conditional Independence:</strong><ul>
 <li>Begin with a fully connected undirected graph <span class="arithmatex">\(K_p\)</span>.</li>
-<li>For order <span class="arithmatex">\(k = 0, 1, 2, \dots\)</span>:<ul>
+<li>
+<p>For order <span class="arithmatex">\(k = 0, 1, 2, \dots\)</span>:</p>
+<ul>
 <li>For each adjacent pair <span class="arithmatex">\((X, Y)\)</span>, test conditional independence <span class="arithmatex">\(X \perp\!\!\perp Y \mid S\)</span> where <span class="arithmatex">\(|S| = k\)</span>.</li>
-<li>Test partial correlation using <strong>Fisher's <span class="arithmatex">\(Z\)</span>-Transformation</strong>:
-   $<span class="arithmatex">\(z(r_{XY \cdot S}) = \frac{1}{2} \ln\left( \frac{1 + r_{XY \cdot S}}{1 - r_{XY \cdot S}} \right)\)</span>$
-   Under the null hypothesis of conditional independence, the test statistic follows a standard normal distribution:
-   $<span class="arithmatex">\(\sqrt{n - |S| - 3} \cdot z(r_{XY \cdot S}) \sim \mathcal{N}(0, 1)\)</span>$</li>
-<li>If the <span class="arithmatex">\(p\)</span>-value exceeds threshold <span class="arithmatex">\(\alpha\)</span> (e.g., <span class="arithmatex">\(0.05\)</span>), remove edge <span class="arithmatex">\(X - Y\)</span> and record <span class="arithmatex">\(S\)</span> as the separating set <span class="arithmatex">\(\text{Sepset}(X, Y)\)</span>.</li>
-</ul>
+<li>
+<p>Test partial correlation using <strong>Fisher's <span class="arithmatex">\(Z\)</span>-Transformation</strong>:</p>
+<div class="arithmatex">\[
+z(r_{XY \cdot S}) = \frac{1}{2} \ln\left( \frac{1 + r_{XY \cdot S}}{1 - r_{XY \cdot S}} \right)
+\]</div>
+<p>Under the null hypothesis of conditional independence, the test statistic follows a standard normal distribution:</p>
+<div class="arithmatex">\[
+\sqrt{n - |S| - 3} \cdot z(r_{XY \cdot S}) \sim \mathcal{N}(0, 1)
+\]</div>
+</li>
+<li>
+<p>If the <span class="arithmatex">\(p\)</span>-value exceeds threshold <span class="arithmatex">\(\alpha\)</span> (e.g., <span class="arithmatex">\(0.05\)</span>), remove edge <span class="arithmatex">\(X - Y\)</span> and record <span class="arithmatex">\(S\)</span> as the separating set <span class="arithmatex">\(\operatorname{Sepset}(X, Y)\)</span>.</p>
 </li>
 <li><strong>V-Structure (Collider) Orientation:</strong></li>
 <li>For every uncoupled triple <span class="arithmatex">\(X - Z - Y\)</span> (where <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are not connected):</li>
 <li>Orient as a collider <span class="arithmatex">\(X \to Z \leftarrow Y\)</span> if and only if the central node <span class="arithmatex">\(Z \notin \text{Sepset}(X, Y)\)</span>.</li>
 <li><strong>Meek's Orientation Rules:</strong></li>
 <li>Propagate orientations without creating new colliders or directed cycles, producing the <strong>Completed Partially Directed Acyclic Graph (CPDAG)</strong>.</li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
 <hr />
 <h2 id="interactive-laboratory-studio">🔬 Interactive Laboratory Studio</h2>
@@ -8826,10 +8944,14 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>Why does the volume fraction of an inscribed sphere in <span class="arithmatex">\(\mathbb{R}^d\)</span> decay to zero relative to its bounding hypercube as <span class="arithmatex">\(d \to \infty\)</span>?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> The volume ratio is:
-$<span class="arithmatex">\(\frac{\text{Vol}(S_d(r))}{\text{Vol}(C_d(2r))} = \frac{\pi^{d/2}}{2^d \Gamma(d/2 + 1)}\)</span>$
-By Stirling's approximation, the denominator <span class="arithmatex">\(\Gamma(d/2 + 1) \sim (d / 2e)^{d/2} \sqrt{\pi d}\)</span>. Therefore, the ratio scales asymptotically as:
-$<span class="arithmatex">\(\sim \frac{1}{\sqrt{\pi d}} \left( \frac{\pi e}{2d} \right)^{d/2}\)</span>$
+<p><strong>Answer:</strong> The volume ratio is:</p>
+<div class="arithmatex">\[
+\frac{\operatorname{Vol}(S_d(r))}{\operatorname{Vol}(C_d(2r))} = \frac{\pi^{d/2}}{2^d \,\Gamma(d/2 + 1)}
+\]</div>
+<p>By Stirling's approximation, the denominator <span class="arithmatex">\(\Gamma(d/2 + 1) \sim (d / 2e)^{d/2} \sqrt{\pi d}\)</span>. Therefore, the ratio scales asymptotically as:</p>
+<p>$$
+\sim \frac{1}{\sqrt{\pi d}} \left( \frac{\pi e}{2d} \right)^{d/2}
+$$
 Because <span class="arithmatex">\(\frac{\pi e}{2d} &lt; 1\)</span> for any dimension <span class="arithmatex">\(d \ge 5\)</span>, the term <span class="arithmatex">\(\left(\frac{\pi e}{2d}\right)^{d/2}\)</span> decays super-exponentially. For <span class="arithmatex">\(d = 20\)</span>, the ratio is less than <span class="arithmatex">\(10^{-7}\)</span>, proving that in high dimensions, virtually all volume resides in the extreme corners outside the sphere [<a href="#ref-jolliffe2016">Jolliffe2016</a>].</p>
 </details>
 </details>
@@ -8974,6 +9096,10 @@ Because <span class="arithmatex">\(\frac{\pi e}{2d} &lt; 1\)</span> for any dime
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

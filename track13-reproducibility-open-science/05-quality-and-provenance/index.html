@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,8 +123,10 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 4px !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
           width: 100% !important;
@@ -313,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -339,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -8035,15 +8091,15 @@
 <p>Consider a composite data processing pipeline forming a linear causal provenance path <span class="arithmatex">\(\pi = (e_0, a_1, e_1, a_2, \dots, a_L, e_L)\)</span> of topological depth <span class="arithmatex">\(L\)</span>. The terminal entity quality <span class="arithmatex">\(Q(e_L)\)</span> is strictly bounded by:</p>
 <div class="arithmatex">\[Q(e_L) \le Q(e_0) \cdot \prod_{j=1}^L \eta_{a_j} - \sum_{j=1}^L \xi_{a_j} \prod_{m=j+1}^L \eta_{a_m}\]</div>
 <h5 id="proof">Proof:</h5>
-<p>By induction on pipeline depth <span class="arithmatex">\(L\)</span>. For <span class="arithmatex">\(L = 1\)</span>, <span class="arithmatex">\(Q(e_1) = \eta_{a_1} Q(e_0) - \xi_{a_1}\)</span>, matching the theorem. Assuming the hypothesis holds for depth <span class="arithmatex">\(L - 1\)</span>:
-$<span class="arithmatex">\(Q(e_{L-1}) \le Q(e_0) \prod_{j=1}^{L-1} \eta_{a_j} - \sum_{j=1}^{L-1} \xi_{a_j} \prod_{m=j+1}^{L-1} \eta_{a_m}\)</span>$
-Applying activity <span class="arithmatex">\(a_L\)</span>:
-$<span class="arithmatex">\(Q(e_L) = \eta_{a_L} Q(e_{L-1}) - \xi_{a_L} \le \eta_{a_L} \left( Q(e_0) \prod_{j=1}^{L-1} \eta_{a_j} - \sum_{j=1}^{L-1} \xi_{a_j} \prod_{m=j+1}^{L-1} \eta_{a_m} \right) - \xi_{a_L}\)</span>$
-Distributing <span class="arithmatex">\(\eta_{a_L}\)</span> yields the terminal expression. <span class="arithmatex">\(\blacksquare\)</span></p>
+<p>By induction on pipeline depth <span class="arithmatex">\(L\)</span>. For <span class="arithmatex">\(L = 1\)</span>, <span class="arithmatex">\(Q(e_1) = \eta_{a_1} Q(e_0) - \xi_{a_1}\)</span>, matching the theorem. Assuming the hypothesis holds for depth <span class="arithmatex">\(L - 1\)</span>:</p>
+<div class="arithmatex">\[Q(e_{L-1}) \le Q(e_0) \prod_{j=1}^{L-1} \eta_{a_j} - \sum_{j=1}^{L-1} \xi_{a_j} \prod_{m=j+1}^{L-1} \eta_{a_m}\]</div>
+<p>Applying activity <span class="arithmatex">\(a_L\)</span>:</p>
+<div class="arithmatex">\[Q(e_L) = \eta_{a_L} Q(e_{L-1}) - \xi_{a_L} \le \eta_{a_L} \left( Q(e_0) \prod_{j=1}^{L-1} \eta_{a_j} - \sum_{j=1}^{L-1} \xi_{a_j} \prod_{m=j+1}^{L-1} \eta_{a_m} \right) - \xi_{a_L}\]</div>
+<p>Distributing <span class="arithmatex">\(\eta_{a_L}\)</span> yields the terminal expression. <span class="arithmatex">\(\blacksquare\)</span></p>
 <h5 id="corollary-1351-exponential-quality-decay">Corollary 13.5.1 (Exponential Quality Decay):</h5>
-<p>If all pipeline activities have identical fidelity <span class="arithmatex">\(\eta \in (0, 1)\)</span> and zero additive noise (<span class="arithmatex">\(\xi = 0\)</span>), then as pipeline depth <span class="arithmatex">\(L \to \infty\)</span>:
-$<span class="arithmatex">\(\lim_{L \to \infty} Q(e_L) = Q(e_0) \cdot \lim_{L \to \infty} \eta^L = 0\)</span>$
-This proves that unmonitored multi-step preprocessing pipelines inevitably destroy data fidelity unless intermediate activities incorporate active quality restoration filters (<span class="arithmatex">\(\eta \ge 1.0\)</span>) (<a href="#ref-wang1996">Wang &amp; Strong, 1996</a>; <a href="#ref-schelter2018">Schelter et al., 2018</a>).</p>
+<p>If all pipeline activities have identical fidelity <span class="arithmatex">\(\eta \in (0, 1)\)</span> and zero additive noise (<span class="arithmatex">\(\xi = 0\)</span>), then as pipeline depth <span class="arithmatex">\(L \to \infty\)</span>:</p>
+<div class="arithmatex">\[\lim_{L \to \infty} Q(e_L) = Q(e_0) \cdot \lim_{L \to \infty} \eta^L = 0\]</div>
+<p>This proves that unmonitored multi-step preprocessing pipelines inevitably destroy data fidelity unless intermediate activities incorporate active quality restoration filters (<span class="arithmatex">\(\eta \ge 1.0\)</span>) (<a href="#ref-wang1996">Wang &amp; Strong, 1996</a>; <a href="#ref-schelter2018">Schelter et al., 2018</a>).</p>
 <hr />
 <h4 id="definition-1353-cryptographic-lineage-merkelization-git-tree-invariance">Definition 13.5.3: Cryptographic Lineage Merkelization &amp; Git-Tree Invariance</h4>
 <p>To guarantee immutability against retroactive tampering or silent bit rot in distributed open science repositories, the provenance DAG is mapped to a <strong>Directed Acyclic Merkle Graph (DAMG)</strong> (<a href="#ref-boettiger2015">Boettiger, 2015</a>; <a href="#ref-stodden2016">Stodden et al., 2016</a>). </p>
@@ -8060,18 +8116,18 @@ This proves that unmonitored multi-step preprocessing pipelines inevitably destr
 <ol>
 <li>
 <p><strong>Generation-Usage Ordering Constraint</strong>:
-   An activity cannot consume an entity before that entity was physically or digitally generated:
-   $<span class="arithmatex">\(\forall a \in \mathcal{A}, e \in \mathcal{E}: (a, \text{used}, e) \in \mathcal{E}_{\text{edges}} \implies t_{\text{gen}}(e) \le t_{\text{start}}(a)\)</span>$</p>
+   An activity cannot consume an entity before that entity was physically or digitally generated:</p>
+<div class="arithmatex">\[\forall a \in \mathcal{A}, e \in \mathcal{E}: (a, \text{used}, e) \in \mathcal{E}_{\text{edges}} \implies t_{\text{gen}}(e) \le t_{\text{start}}(a)\]</div>
 </li>
 <li>
 <p><strong>Activity Lifetime Invariant</strong>:
-   The start of an activity must precede or equal its completion timestamp:
-   $<span class="arithmatex">\(\forall a \in \mathcal{A}: t_{\text{start}}(a) \le t_{\text{end}}(a)\)</span>$</p>
+   The start of an activity must precede or equal its completion timestamp:</p>
+<div class="arithmatex">\[\forall a \in \mathcal{A}: t_{\text{start}}(a) \le t_{\text{end}}(a)\]</div>
 </li>
 <li>
 <p><strong>Generation-Invalidation Invariant</strong>:
-   An entity must be generated before it is invalidated, and cannot be used after invalidation:
-   $<span class="arithmatex">\(\forall e \in \mathcal{E}: t_{\text{gen}}(e) \le t_{\text{inval}}(e) \quad \text{and} \quad \forall (a, \text{used}, e): t_{\text{end}}(a) \le t_{\text{inval}}(e)\)</span>$</p>
+   An entity must be generated before it is invalidated, and cannot be used after invalidation:</p>
+<div class="arithmatex">\[\forall e \in \mathcal{E}: t_{\text{gen}}(e) \le t_{\text{inval}}(e) \quad \text{and} \quad \forall (a, \text{used}, e): t_{\text{end}}(a) \le t_{\text{inval}}(e)\]</div>
 </li>
 </ol>
 <p>Any provenance graph violating these constraints possesses a <strong>Temporal Inconsistency Deficit</strong> <span class="arithmatex">\(\Omega_{\text{temporal}} &gt; 0\)</span>. In machine learning pipelines, temporal violations are the primary symptom of catastrophic <strong>look-ahead bias</strong> and <strong>covariate leakage</strong>, invalidating empirical performance claims (<a href="#ref-sculley2015">Sculley et al., 2015</a>).</p>
@@ -8079,26 +8135,34 @@ This proves that unmonitored multi-step preprocessing pipelines inevitably destr
 <h3 id="architectural-flowchart-the-automated-auditing-provenance-pipeline">Architectural Flowchart: The Automated Auditing &amp; Provenance Pipeline</h3>
 <p>The following flowchart illustrates the automated pipeline that ingests data artifacts, builds W3C PROV-O multigraphs, computes causal blast radii, calculates cryptographic Merkle digests, and verifies temporal consistency.</p>
 <pre class="mermaid"><code>flowchart TD
-    A["Raw Dataset Artifacts &amp; Scripts&lt;br/&gt;(Git Commits, S3 Buckets, DVC)"] --&gt; B["W3C PROV-O Graph Parser"]
+    A["Dataset &amp;amp; Scripts&lt;br/&gt;(Git, S3, DVC)"]:::blue --&gt; B["W3C PROV-O Parser"]:::default
 
-    subgraph AuditEngine ["Dataset Quality &amp; Provenance Audit Engine"]
-        B --&gt; C["DAG Topology Builder&lt;br/&gt;V = Entity + Activity + Agent"]
-        C --&gt; D["Causal Reachability Engine&lt;br/&gt;Ancestry A_up &amp; Blast Radius B_down"]
-        C --&gt; E["Quality Attenuation Calculator&lt;br/&gt;Theorem 13.5.1: Q(e_L) &lt;= PROD eta - SUM xi"]
-        C --&gt; F["Merkle Lineage Cryptographic Hasher&lt;br/&gt;H(v) = SHA256(Payload || sort(H(u)))"]
-        C --&gt; G["Temporal Consistency Linter&lt;br/&gt;Check: t_gen &lt;= t_start &lt;= t_end &lt;= t_inval"]
+    subgraph AuditEngine ["Dataset Quality &amp;amp; Provenance Audit Engine"]
+        B --&gt; C["DAG Builder&lt;br/&gt;Entity, Activity, Agent"]:::default
+        C --&gt; D["Causal Reachability&lt;br/&gt;Ancestry &amp;amp; Blast Radius"]:::purple
+        C --&gt; E["Quality Attenuation&lt;br/&gt;Q(e_L) Calculator"]:::purple
+        C --&gt; F["Merkle Lineage Hash&lt;br/&gt;Lineage Integrity"]:::purple
+        C --&gt; G["Temporal Linter&lt;br/&gt;t_gen &amp;le; t_start &amp;le; t_end"]:::purple
     end
 
-    D --&gt; H{"Audit Gate&lt;br/&gt;No Temporal Paradox &amp;&lt;br/&gt;Terminal Quality Q &gt;= 0.80"}
+    D --&gt; H{"Audit Gate:&lt;br/&gt;No Paradox &amp;amp;&lt;br/&gt;Q(e) &amp;ge; 0.80?"}:::amber
     E --&gt; H
     F --&gt; H
     G --&gt; H
 
-    H -- "Paradox or Corruption Detected" --&gt; I["Automated Taint Containment&lt;br/&gt;- Isolate Blast Radius B_down(e)&lt;br/&gt;- Flag Look-Ahead Leakage&lt;br/&gt;- Alert Custodian Agent"]
+    H -- "Taint Found" --&gt; I["Taint Containment&lt;br/&gt;Isolate Blast Radius"]:::coral
     I --&gt; B
 
-    H -- "Lineage Certified" --&gt; J["Cryptographic Lineage Manifest&lt;br/&gt;(W3C PROV-JSON + Merkle Root)"]
-    J --&gt; K["Certified Open Science Distribution&lt;br/&gt;(Zenodo, Hugging Face, Dataverse)"]</code></pre>
+    H -- "Certified" --&gt; J["Lineage Manifest&lt;br/&gt;PROV-JSON + Merkle"]:::green
+    J --&gt; K["Certified Distribution&lt;br/&gt;(Zenodo / HF / Dataverse)"]:::blue
+
+    classDef default fill:#fffdf7,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef yellow fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef coral fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
+    classDef purple fill:#ede9fe,stroke:#151b20,stroke-width:2px,color:#151b20;</code></pre>
 <hr />
 <h2 id="runnable-executable-python-implementation">💻 Runnable Executable Python Implementation</h2>
 <p>The following production-grade implementation, <code>DatasetQualityProvenanceEngine</code>, provides complete mathematical validation for dataset provenance and quality tracking. It implements:
@@ -9144,10 +9208,10 @@ State: IMMUTABLE LINEAGE
 <p>Therefore:</p>
 <div class="arithmatex">\[\mathcal{A}_{\text{up}}(\text{Entity\_ModelV1}) = \left\{ \text{Activity\_TrainClassifier}, \text{Entity\_Vectors}, \text{Entity\_HumanLabels}, \text{Activity\_Embed}, \text{Entity\_Tokens}, \text{Activity\_Tokenize}, \text{Entity\_RawWiki} \right\}\]</div>
 <p><strong>Step 3: Verification of Disjointness</strong></p>
-<p>No, <code>Entity_RawWiki</code> does <strong>not</strong> lie within <span class="arithmatex">\(\mathcal{B}_{\text{down}}(\text{Entity\_HumanLabels})\)</span>.
-Mathematically:
-$<span class="arithmatex">\(\text{Entity\_RawWiki} \notin \mathcal{B}_{\text{down}}(\text{Entity\_HumanLabels}) \iff \nexists \text{ path from Entity\_HumanLabels } \rightsquigarrow \text{ Entity\_RawWiki}\)</span>$
-Since provenance graphs are directed and acyclic (DAGs), influence flows forward from inputs to outputs. Because <code>Entity_RawWiki</code> is an upstream ancestor of the model rather than a descendant of human labels, its integrity is completely untouched by downstream label contamination.</p>
+<p>No, <code>Entity_RawWiki</code> does <strong>not</strong> lie within <span class="arithmatex">\(\mathcal{B}_{\text{down}}(\text{Entity\_HumanLabels})\)</span>.</p>
+<p>Mathematically:</p>
+<div class="arithmatex">\[\text{Entity\_RawWiki} \notin \mathcal{B}_{\text{down}}(\text{Entity\_HumanLabels}) \iff \nexists \text{ path from Entity\_HumanLabels } \rightsquigarrow \text{ Entity\_RawWiki}\]</div>
+<p>Since provenance graphs are directed and acyclic (DAGs), influence flows forward from inputs to outputs. Because <code>Entity_RawWiki</code> is an upstream ancestor of the model rather than a descendant of human labels, its integrity is completely untouched by downstream label contamination.</p>
 </details>
 <hr />
 <h3 id="exercise-2-detecting-causal-paradoxes-in-a-w3c-prov-o-temporal-log">Exercise 2: Detecting Causal Paradoxes in a W3C PROV-O Temporal Log</h3>
@@ -9316,6 +9380,10 @@ Since provenance graphs are directed and acyclic (DAGs), influence flows forward
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

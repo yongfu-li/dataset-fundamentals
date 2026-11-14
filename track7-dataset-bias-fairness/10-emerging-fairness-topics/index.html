@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,8 +123,10 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 4px !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
           width: 100% !important;
@@ -313,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -339,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7882,24 +7938,20 @@
 
 
 <h1 id="710-emerging-fairness-topics-causality-minimax-and-generative-ai">7.10 Emerging Fairness Topics: Causality, Minimax, and Generative AI</h1>
-<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 4px 4px 0px #151b20;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 800; color: #151b20; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-      <span style="background: #ffc83e; border: 1.5px solid #151b20; padding: 2px 8px; border-radius: 6px;">§7.10</span>
-      <span>Companion Monograph: Chapter 7 (Dataset Bias &amp; Algorithmic Fairness)</span>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #475569; margin-top: 6px; font-weight: 500;">
-      Read <strong>Chapter 7: Dataset Bias and Fairness</strong> in the companion Springer Nature monograph for complete mathematical proofs of Structural Causal Models (SCMs), counterfactual inference, differential privacy trade-offs, and embedding subspace debiasing.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 7: Dataset Bias and Fairness (§7.10: Causal Counterfactuals, Minimax &amp; Generative Fairness)</strong>, covering complete mathematical proofs of Structural Causal Models (SCMs), counterfactual inference, differential privacy trade-offs, and embedding subspace debiasing.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #c9f3f4; color: #0e7490; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.84rem; text-decoration: none; box-shadow: 2px 2px 0px #151b20;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+    <span>Explore Chapter 7 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Duration:</strong> ~35 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-710">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 7.10</h3>
 <p>Experience Chapter 7 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
@@ -7908,7 +7960,7 @@
     <div style="display: flex; align-items: center; gap: 10px;">
       <span style="font-size: 1.25rem;">🎙️</span>
       <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">9 Slides</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Masterclass Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
       <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
@@ -7957,10 +8009,10 @@
   classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
   classDef red fill:#ffd8ce,stroke:#151b20,stroke-width:2px,color:#151b20;
 
-  U["Latent Background Factors U&lt;br/&gt;(Innate Talent, Grit, Resilience)"]:::purple
-  A["Protected Sensitive Attribute A&lt;br/&gt;(Race, Gender, Age)"]:::red
-  X["Observed Mediating Features X&lt;br/&gt;(GPA, Credit Score, Arrest History)"]:::amber
-  Y_hat["Algorithmic Output Y_hat&lt;br/&gt;(Admission, Hiring, Bail, Loan)"]:::blue
+  U["&lt;b&gt;Latent Factors U&lt;/b&gt;&lt;br/&gt;Innate Talent &amp; Grit"]:::purple
+  A["&lt;b&gt;Protected Attribute A&lt;/b&gt;&lt;br/&gt;Race, Gender, Age"]:::red
+  X["&lt;b&gt;Mediating Features X&lt;/b&gt;&lt;br/&gt;GPA, LSAT, Scores"]:::amber
+  Y_hat["&lt;b&gt;Algorithmic Output Ŷ&lt;/b&gt;&lt;br/&gt;Admissions / Loan"]:::blue
 
   U --&gt; A
   U --&gt; X
@@ -7968,10 +8020,15 @@
   X --&gt; Y_hat
   U --&gt; Y_hat
 
-  Intervention["Pearl Counterfactual Action: do(A := a')&lt;br/&gt;1. Abduction: Compute P(U | X=x, A=a)&lt;br/&gt;2. Action: Sever incoming arrows into A&lt;br/&gt;3. Prediction: Re-evaluate Y_hat on interventional model"]:::green
+  subgraph Engine ["&lt;b&gt;Pearlian Counterfactual Engine: do(A := a')&lt;/b&gt;"]
+    I1["&lt;b&gt;1. Abduction&lt;/b&gt;&lt;br/&gt;Infer P(U | X=x, A=a)"]:::green
+    I2["&lt;b&gt;2. Action&lt;/b&gt;&lt;br/&gt;Sever incoming edges into A"]:::green
+    I3["&lt;b&gt;3. Prediction&lt;/b&gt;&lt;br/&gt;Recompute Ŷ(u) in M_a'"]:::green
+    I1 --&gt; I2 --&gt; I3
+  end
 
-  A -. Intervene .-&gt; Intervention
-  Intervention -. Counterfactual Invariance .-&gt; Y_hat</code></pre>
+  A -. Intervene .-&gt; I1
+  I3 -. Causal Invariance .-&gt; Y_hat</code></pre>
 <hr />
 <h2 id="mathematical-formulations-theoretical-derivations">📐 Mathematical Formulations &amp; Theoretical Derivations</h2>
 <h3 id="1-structural-causal-models-kusners-counterfactual-fairness">1. Structural Causal Models &amp; Kusner's Counterfactual Fairness</h3>
@@ -7985,14 +8042,17 @@
 <h4 id="counterfactual-fairness-definition-kusner-et-al-2017">Counterfactual Fairness Definition (<a href="#ref-kusner2017">Kusner et al., 2017</a>)</h4>
 <blockquote>
 <p>A predictor <span class="arithmatex">\(\hat{Y} = f(\mathcal{X}, \mathcal{A})\)</span> is <strong>counterfactually fair</strong> if for every context of observed factual evidence <span class="arithmatex">\(\mathcal{X} = x\)</span> and <span class="arithmatex">\(\mathcal{A} = a\)</span>, and for all possible counterfactual intervention values <span class="arithmatex">\(a' \in \text{dom}(\mathcal{A})\)</span>:</p>
-<div class="arithmatex">\[\mathbb{P}\left(\hat{Y}_{\mathcal{A} \leftarrow a}(\mathcal{U}) = y \;\middle|\; \mathcal{X} = x, \mathcal{A} = a\right) = \mathbb{P}\left(\hat{Y}_{\mathcal{A} \leftarrow a'}(\mathcal{U}) = y \;\middle|\; \mathcal{X} = x, \mathcal{A} = a\right), \quad \forall y \in \mathcal{Y}\]</div>
+<div class="arithmatex">\[\begin{aligned}
+\mathbb{P}\big(\hat{Y}_{\mathcal{A} \leftarrow a}(\mathcal{U}) = y \;\big|\; \mathcal{X} = x, \mathcal{A} = a\big) &amp;= \mathbb{P}\big(\hat{Y}_{\mathcal{A} \leftarrow a'}(\mathcal{U}) = y \;\big|\; \mathcal{X} = x, \mathcal{A} = a\big), \\
+&amp;\quad \forall y \in \mathcal{Y}, \; \forall a' \in \text{dom}(\mathcal{A})
+\end{aligned}\]</div>
 </blockquote>
 <p>In words: an individual would receive the exact same predicted probability of an outcome had they belonged to counterfactual demographic group <span class="arithmatex">\(a'\)</span>, holding constant their unique latent background factors <span class="arithmatex">\(\mathcal{U}\)</span>.</p>
 <h4 id="the-3-step-counterfactual-inference-algorithm">The 3-Step Counterfactual Inference Algorithm</h4>
 <p>To evaluate or enforce counterfactual fairness for an individual with factual observations <span class="arithmatex">\((x, a)\)</span>, we execute Pearl's three-step causal engine:</p>
 <ol>
 <li><strong>Abduction:</strong> Update the latent exogenous distribution given observed factual evidence:
-   $<span class="arithmatex">\(\mathcal{P}(\mathcal{U} \mid \mathcal{X} = x, \mathcal{A} = a) = \frac{\mathcal{P}(\mathcal{X} = x, \mathcal{A} = a \mid \mathcal{U}) \mathcal{P}(\mathcal{U})}{\int \mathcal{P}(\mathcal{X} = x, \mathcal{A} = a \mid \mathcal{U}) \mathcal{P}(\mathcal{U}) d\mathcal{U}}\)</span>$</li>
+   $<span class="arithmatex">\(\mathcal{P}(\mathcal{U} \mid \mathcal{X} = x, \mathcal{A} = a) = \frac{\mathcal{P}(\mathcal{X} = x, \mathcal{A} = a \mid \mathcal{U}) \, \mathcal{P}(\mathcal{U})}{\int \mathcal{P}(\mathcal{X} = x, \mathcal{A} = a \mid u) \, \mathcal{P}(u) \, du}\)</span>$</li>
 <li><strong>Action:</strong> Perform Pearl's interventional operation <span class="arithmatex">\(\text{do}(\mathcal{A} \leftarrow a')\)</span>. This deletes the structural equation <span class="arithmatex">\(A := f_A(\text{PA}_A, U_A)\)</span> and replaces it with the constant <span class="arithmatex">\(A := a'\)</span>, inducing the sub-model <span class="arithmatex">\(\mathcal{M}_{a'}\)</span>.</li>
 <li><strong>Prediction:</strong> Forward propagate the interventional assignment <span class="arithmatex">\(a'\)</span> through the modified structural equations <span class="arithmatex">\(\mathcal{F}_{a'}\)</span> using the abducted posterior distribution of <span class="arithmatex">\(\mathcal{U}\)</span>:
    $<span class="arithmatex">\(\mathbb{E}[\hat{Y}_{\mathcal{A} \leftarrow a'}] = \int \hat{Y}_{\mathcal{M}_{a'}}(u) \, d\mathcal{P}(\mathcal{U} = u \mid \mathcal{X} = x, \mathcal{A} = a)\)</span>$</li>
@@ -8006,18 +8066,23 @@ L &amp;:= \alpha_l U + \beta_l A + \epsilon_l, \quad \epsilon_l \sim \mathcal{N}
 <p>Under this model, the factual observations given <span class="arithmatex">\(A=a\)</span> are:</p>
 <div class="arithmatex">\[\begin{bmatrix} G - \beta_g a \\ L - \beta_l a \end{bmatrix} = \begin{bmatrix} \alpha_g \\ \alpha_l \end{bmatrix} U + \begin{bmatrix} \epsilon_g \\ \epsilon_l \end{bmatrix}\]</div>
 <p>Using Gaussian conjugate Bayesian updating, the posterior distribution <span class="arithmatex">\(\mathcal{P}(U \mid G=g, L=l, A=a)\)</span> is analytically Gaussian <span class="arithmatex">\(\mathcal{N}(\mu_u, \sigma_u^2)\)</span> where:</p>
-<div class="arithmatex">\[\sigma_u^2 = \left( 1 + \frac{\alpha_g^2}{\sigma_g^2} + \frac{\alpha_l^2}{\sigma_l^2} \right)^{-1}, \qquad \mu_u = \sigma_u^2 \left( \frac{\alpha_g(g - \beta_g a)}{\sigma_g^2} + \frac{\alpha_l(l - \beta_l a)}{\sigma_l^2} \right)\]</div>
+<div class="arithmatex">\[\begin{aligned}
+\sigma_u^2 &amp;= \left( 1 + \frac{\alpha_g^2}{\sigma_g^2} + \frac{\alpha_l^2}{\sigma_l^2} \right)^{-1} \\
+\mu_u &amp;= \sigma_u^2 \left( \frac{\alpha_g(g - \beta_g a)}{\sigma_g^2} + \frac{\alpha_l(l - \beta_l a)}{\sigma_l^2} \right)
+\end{aligned}\]</div>
 <blockquote>
 <p><strong>Fundamental Invariance Theorem:</strong> Any predictor <span class="arithmatex">\(\hat{Y} = h(\mu_u)\)</span> that conditions exclusively on the abducted latent talent <span class="arithmatex">\(\mu_u\)</span> satisfies counterfactual fairness <strong>exactly</strong>:</p>
-<div class="arithmatex">\[\hat{Y}_{\mathcal{A} \leftarrow a'} = h(\mu_u) = \hat{Y}_{\mathcal{A} \leftarrow a} \implies \Delta_{\text{CF}} = 0.000\]</div>
+<div class="arithmatex">\[\hat{Y}_{\mathcal{A} \leftarrow a'} = h(\mu_u) = \hat{Y}_{\mathcal{A} \leftarrow a} \implies \Delta_{\text{CF}}^{\text{SCM}} \equiv 0.000\]</div>
 <p>In contrast, any observational model <span class="arithmatex">\(\hat{Y} = f(G, L)\)</span> trained directly on observed credentials exhibits severe counterfactual disparity <span class="arithmatex">\(\Delta_{\text{CF}} = |\hat{Y}(G_a, L_a) - \hat{Y}(G_{a'}, L_{a'})| &gt; 0\)</span> because <span class="arithmatex">\(A\)</span> directly contaminates <span class="arithmatex">\(G\)</span> and <span class="arithmatex">\(L\)</span> through <span class="arithmatex">\(\beta_g\)</span> and <span class="arithmatex">\(\beta_l\)</span>.</p>
 </blockquote>
 <hr />
 <h3 id="2-multi-group-minimax-fairness-gerrymandering-kearns-et-al-2018">2. Multi-Group Minimax Fairness &amp; Gerrymandering (<a href="#ref-kearns2018">Kearns et al., 2018</a>)</h3>
 <p>Auditing fairness across isolated protected attributes (e.g., race alone or gender alone) creates <strong>fairness gerrymandering</strong>: an algorithm can satisfy marginal Demographic Parity or Equalized Odds for race and gender independently, while discriminating heavily against the intersectional cohort (e.g., Black women):</p>
-<div class="arithmatex">\[\mathbb{P}(\hat{Y}=1 \mid \text{Race}=\text{Black}) = \mathbb{P}(\hat{Y}=1 \mid \text{Race}=\text{White})$$
-$$\mathbb{P}(\hat{Y}=1 \mid \text{Gender}=\text{Female}) = \mathbb{P}(\hat{Y}=1 \mid \text{Gender}=\text{Male})$$
-$$\text{Yet: } \mathbb{P}(\hat{Y}=1 \mid \text{Race}=\text{Black}, \text{Gender}=\text{Female}) \ll \mathbb{P}(\hat{Y}=1 \mid \text{Race}=\text{White}, \text{Gender}=\text{Male})\]</div>
+<div class="arithmatex">\[\begin{aligned}
+\mathbb{P}(\hat{Y}=1 \mid \text{Race}=\text{Black}) &amp;= \mathbb{P}(\hat{Y}=1 \mid \text{Race}=\text{White}) \\
+\mathbb{P}(\hat{Y}=1 \mid \text{Gender}=\text{Female}) &amp;= \mathbb{P}(\hat{Y}=1 \mid \text{Gender}=\text{Male}) \\
+\text{Yet: } \mathbb{P}(\hat{Y}=1 \mid \text{Black}, \text{Female}) &amp;\ll \mathbb{P}(\hat{Y}=1 \mid \text{White}, \text{Male})
+\end{aligned}\]</div>
 <p>Given <span class="arithmatex">\(K\)</span> binary protected attributes, there are <span class="arithmatex">\(2^K\)</span> exponential intersectional groups <span class="arithmatex">\(\mathcal{G}\)</span>. Kearns et al. formulate <strong>Minimax Subgroup Fairness</strong> over a rich hypothesis family <span class="arithmatex">\(\mathcal{H}\)</span> and subgroup collection <span class="arithmatex">\(\mathcal{G} \subseteq 2^{\mathcal{X} \times \mathcal{A}}\)</span>:</p>
 <div class="arithmatex">\[\min_{h \in \mathcal{H}} \max_{g \in \mathcal{G}} \left| \mathbb{E}_{(X, A, Y) \sim \mathcal{D}} [(\hat{Y} - Y) \cdot \mathbf{1}_{(X, A) \in g}] \right|\]</div>
 <p>To prevent sample complexity collapse on exponentially small intersectional cells, the learning problem is cast as a zero-sum game between a Primal Learner minimizing error and a Dual Auditor identifying the worst-off subgroup <span class="arithmatex">\(g^*\)</span>.</p>
@@ -8027,7 +8092,10 @@ $$\text{Yet: } \mathbb{P}(\hat{Y}=1 \mid \text{Race}=\text{Black}, \text{Gender}
 <p>A randomized mechanism <span class="arithmatex">\(\mathcal{M}\)</span> guarantees <span class="arithmatex">\((\epsilon, \delta)\)</span>-Differential Privacy if for all neighboring datasets <span class="arithmatex">\(D, D'\)</span> differing by at most one individual (<span class="arithmatex">\(|D \Delta D'| = 1\)</span>):</p>
 <div class="arithmatex">\[\mathbb{P}(\mathcal{M}(D) \in \mathcal{S}) \le e^\epsilon \mathbb{P}(\mathcal{M}(D') \in \mathcal{S}) + \delta, \quad \forall \mathcal{S} \subseteq \text{Range}(\mathcal{M})\]</div>
 <p>In Differentially Private Stochastic Gradient Descent (DP-SGD), gradients are clipped to <span class="arithmatex">\(\ell_2\)</span>-norm bound <span class="arithmatex">\(C\)</span> and perturbed with calibrated Gaussian noise:</p>
-<div class="arithmatex">\[\tilde{g}_t = \frac{1}{|B|} \left( \sum_{i \in B} \text{clip}\left(\nabla_\theta \ell(x_i, y_i), C\right) + \mathcal{N}\left(0, \sigma^2 C^2 \mathbf{I}\right) \right), \quad \sigma = \frac{\sqrt{2 \ln(1.25 / \delta)}}{\epsilon}\]</div>
+<div class="arithmatex">\[\begin{aligned}
+\tilde{g}_t &amp;= \frac{1}{|B|} \left( \sum_{i \in B} \text{clip}\big(\nabla_\theta \ell(x_i, y_i), C\big) + \mathcal{N}\big(0, \sigma^2 C^2 \mathbf{I}\big) \right) \\
+\sigma &amp;= \frac{\sqrt{2 \ln(1.25 / \delta)}}{\epsilon}
+\end{aligned}\]</div>
 <h4 id="subgroup-gradient-variance-asymmetry">Subgroup Gradient Variance Asymmetry</h4>
 <p>Let dataset <span class="arithmatex">\(\mathcal{D}\)</span> comprise a majority cohort of size <span class="arithmatex">\(n_{\text{maj}}\)</span> and an underrepresented minority cohort of size <span class="arithmatex">\(n_{\text{min}} \ll n_{\text{maj}}\)</span>. The empirical mean gradient for group <span class="arithmatex">\(g\)</span> under uniform noise injection has covariance:</p>
 <div class="arithmatex">\[\text{Cov}(\bar{g}_g) = \frac{\mathbf{\Sigma}_{\text{data}, g}}{n_g} + \frac{\sigma^2 C^2}{n_g^2} \mathbf{I}\]</div>
@@ -8036,7 +8104,7 @@ $$\text{Yet: } \mathbb{P}(\hat{Y}=1 \mid \text{Race}=\text{Black}, \text{Gender}
 <blockquote>
 <p><strong>The Disproportionate Variance Penalty:</strong>
 If <span class="arithmatex">\(n_{\text{maj}} = 5,000\)</span> and <span class="arithmatex">\(n_{\text{min}} = 200\)</span>, the minority subgroup experiences:</p>
-<div class="arithmatex">\[\left( \frac{5000}{200} \right)^2 = (25)^2 = 625.0\times \text{ higher gradient noise variance!}\]</div>
+<div class="arithmatex">\[\frac{\text{Var}_{\text{noise}}(\bar{g}_{\text{min}})}{\text{Var}_{\text{noise}}(\bar{g}_{\text{maj}})} = \left( \frac{5,000}{200} \right)^2 = (25)^2 = 625.0\times\]</div>
 <p>Under tight privacy budgets (<span class="arithmatex">\(\epsilon &lt; 0.5\)</span>), the minority group's signal is completely obliterated by the privacy noise, causing severe test accuracy collapse and inflating disparate impact.</p>
 </blockquote>
 <h4 id="cummings-et-al-impossibility-theorem">Cummings et al. Impossibility Theorem</h4>
@@ -8054,11 +8122,17 @@ If <span class="arithmatex">\(n_{\text{maj}} = 5,000\)</span> and <span class="a
 <h4 id="hard-orthogonal-projection-debiasing">Hard Orthogonal Projection (Debiasing)</h4>
 <p>To eliminate demographic bias from neutral words <span class="arithmatex">\(w \in \mathcal{N}\)</span> (e.g., "doctor", "nurse", "engineer"), project their embedding <span class="arithmatex">\(\vec{e}(w)\)</span> onto the orthogonal complement of <span class="arithmatex">\(\vec{v}_{\text{bias}}\)</span>:</p>
 <div class="arithmatex">\[\vec{e}_{\text{fair}}(w) = \vec{e}(w) - \frac{\vec{e}(w)^T \vec{v}_{\text{bias}}}{\|\vec{v}_{\text{bias}}\|_2^2} \vec{v}_{\text{bias}}\]</div>
-<div class="arithmatex">\[\langle \vec{e}_{\text{fair}}(w), \vec{v}_{\text{bias}} \rangle = \vec{e}(w)^T \vec{v}_{\text{bias}} - \frac{\vec{e}(w)^T \vec{v}_{\text{bias}}}{\|\vec{v}_{\text{bias}}\|_2^2} (\vec{v}_{\text{bias}}^T \vec{v}_{\text{bias}}) = \vec{e}(w)^T \vec{v}_{\text{bias}} - \vec{e}(w)^T \vec{v}_{\text{bias}} \equiv 0\]</div>
+<div class="arithmatex">\[\begin{aligned}
+\langle \vec{e}_{\text{fair}}(w), \vec{v}_{\text{bias}} \rangle &amp;= \vec{e}(w)^T \vec{v}_{\text{bias}} - \frac{\vec{e}(w)^T \vec{v}_{\text{bias}}}{\|\vec{v}_{\text{bias}}\|_2^2} (\vec{v}_{\text{bias}}^T \vec{v}_{\text{bias}}) \\
+&amp;= \vec{e}(w)^T \vec{v}_{\text{bias}} - \vec{e}(w)^T \vec{v}_{\text{bias}} \\
+&amp;\equiv 0
+\end{aligned}\]</div>
 <h4 id="word-embedding-association-test-weat">Word Embedding Association Test (WEAT)</h4>
 <p>To quantify semantic stereotyping between target attribute sets <span class="arithmatex">\(A, B\)</span> (e.g., Male vs Female terms) and target concepts <span class="arithmatex">\(X, Y\)</span> (e.g., Career vs Family terms), WEAT computes the effect size <span class="arithmatex">\(d\)</span>:</p>
-<div class="arithmatex">\[s(w, A, B) = \text{mean}_{a \in A} \cos(\vec{e}(w), \vec{e}(a)) - \text{mean}_{b \in B} \cos(\vec{e}(w), \vec{e}(b))\]</div>
-<div class="arithmatex">\[d = \frac{\text{mean}_{x \in X} s(x, A, B) - \text{mean}_{y \in Y} s(y, A, B)}{\text{std}_{w \in X \cup Y} s(w, A, B)}\]</div>
+<div class="arithmatex">\[\begin{aligned}
+s(w, A, B) &amp;= \frac{1}{|A|}\sum_{a \in A} \cos\big(\vec{e}(w), \vec{e}(a)\big) - \frac{1}{|B|}\sum_{b \in B} \cos\big(\vec{e}(w), \vec{e}(b)\big) \\
+d &amp;= \frac{\text{mean}_{x \in X} s(x, A, B) - \text{mean}_{y \in Y} s(y, A, B)}{\text{std}_{w \in X \cup Y} s(w, A, B)}
+\end{aligned}\]</div>
 <p>When orthogonal debiasing is applied, <span class="arithmatex">\(s(w, A, B) \to 0\)</span> for all neutral terms, driving the WEAT effect size <span class="arithmatex">\(d \to 0.00\)</span>.</p>
 <hr />
 <h2 id="production-implementation-counterfactual-causal-scm-evaluator">💻 Production Implementation: Counterfactual Causal SCM Evaluator</h2>
@@ -8975,12 +9049,16 @@ When training with Differentially Private SGD (DP-SGD), a fixed Gaussian noise p
 <p>To evaluate the average gradient for subgroup <span class="arithmatex">\(g\)</span> with sample size <span class="arithmatex">\(n_g\)</span>, one divides the sum by <span class="arithmatex">\(n_g\)</span>:
 $<span class="arithmatex">\(\bar{g}_g = \frac{1}{n_g} \sum_{i \in g} \vec{g}_i + \frac{1}{n_g} \vec{\xi}\)</span>$</p>
 <p>By linear properties of variance for independent random variables:
-$<span class="arithmatex">\(\text{Var}(\bar{g}_g) = \frac{1}{n_g^2} \sum_{i \in g} \text{Var}(\vec{g}_i) + \frac{1}{n_g^2} \text{Var}(\vec{\xi}) = \frac{\sigma_{\text{data}}^2}{n_g} + \frac{\sigma^2 C^2}{n_g^2}\)</span>$</p>
-<p>While natural data sampling variance diminishes as <span class="arithmatex">\(\frac{1}{n_g}\)</span>, the injected global DP noise variance diminishes as <span class="arithmatex">\(\frac{1}{n_g^2}\)</span>. When comparing a majority group of size <span class="arithmatex">\(N_{\text{maj}} = 5,000\)</span> to a minority group of size <span class="arithmatex">\(N_{\text{min}} = 200\)</span>, the minority experiences an added noise variance penalty ratio of:
-$<span class="arithmatex">\(\left( \frac{5,000}{200} \right)^2 = (25)^2 = 625.0\times\)</span>$
-This massive quadratic noise penalty completely drowns out minority signal under strict privacy constraints (<span class="arithmatex">\(\epsilon &lt; 0.5\)</span>).</p>
+$$\begin{aligned}</p>
 </details>
 </details>
+<p>\text{Var}(\bar{g}<em _in="\in" g="g" i="i">g) &amp;= \frac{1}{n_g^2} \sum</em>} \text{Var}(\vec{g<em _text_data="\text{data">i) + \frac{1}{n_g^2} \text{Var}(\vec{\xi}) \
+&amp;= \frac{\sigma</em>
+\end{aligned}$$}}^2}{n_g} + \frac{\sigma^2 C^2}{n_g^2</p>
+<div class="language-text highlight"><pre><span></span><code>    While natural data sampling variance diminishes as $\frac{1}{n_g}$, the injected global DP noise variance diminishes as $\frac{1}{n_g^2}$. When comparing a majority group of size $N_{\text{maj}} = 5,000$ to a minority group of size $N_{\text{min}} = 200$, the minority experiences an added noise variance penalty ratio of:
+    $$\frac{\text{Var}_{\text{noise}}(\bar{g}_{\text{min}})}{\text{Var}_{\text{noise}}(\bar{g}_{\text{maj}})} = \left( \frac{5,000}{200} \right)^2 = (25)^2 = 625.0\times$$
+    This massive quadratic noise penalty completely drowns out minority signal under strict privacy constraints ($\epsilon &lt; 0.5$).
+</code></pre></div>
 <details class="question">
 <summary>Self-Assessment 3: Fairness Gerrymandering across Intersectional Subgroups</summary>
 <p>Suppose a loan approval algorithm satisfies Demographic Parity with respect to Race (<span class="arithmatex">\(\mathbb{P}(\hat{Y}=1 \mid \text{Black}) = \mathbb{P}(\hat{Y}=1 \mid \text{White}) = 0.50\)</span>) and Gender (<span class="arithmatex">\(\mathbb{P}(\hat{Y}=1 \mid \text{Female}) = \mathbb{P}(\hat{Y}=1 \mid \text{Male}) = 0.50\)</span>). Does this mathematically guarantee that Black women receive an equal approval rate of <span class="arithmatex">\(0.50\)</span>?</p>
@@ -9009,10 +9087,13 @@ Suppose the algorithm approves:
 Orthogonal projection decomposes the vector space <span class="arithmatex">\(\mathbb{R}^d\)</span> into direct orthogonal sum <span class="arithmatex">\(\mathcal{V}_{\text{bias}} \oplus \mathcal{V}_{\text{fair}}\)</span>. </p>
 <p>When <span class="arithmatex">\(\vec{v}_{\text{bias}}\)</span> is isolated via Top-1 PCA on paired demographic differences, it captures a 1-dimensional subspace. The remaining <span class="arithmatex">\((d-1)\)</span>-dimensional orthogonal subspace <span class="arithmatex">\(\mathcal{V}_{\text{fair}}\)</span> retains all geometric variations unrelated to gender (such as medical terminology, academic hierarchy, skill requirements, and syntactic function).</p>
 <p>Because <span class="arithmatex">\(\vec{e}_{\text{fair}}(w) = \mathbf{P}_{\perp} \vec{e}(w)\)</span> where <span class="arithmatex">\(\mathbf{P}_{\perp} = \mathbf{I} - \frac{\vec{v} \vec{v}^T}{\|\vec{v}\|^2}\)</span> is a linear projection operator:
-$<span class="arithmatex">\(\langle \vec{e}_{\text{fair}}(w_1), \vec{e}_{\text{fair}}(w_2) \rangle = \vec{e}(w_1)^T \mathbf{P}_{\perp}^T \mathbf{P}_{\perp} \vec{e}(w_2) = \vec{e}(w_1)^T \mathbf{P}_{\perp} \vec{e}(w_2)\)</span>$
-If neither <span class="arithmatex">\(w_1\)</span> ("surgeon") nor <span class="arithmatex">\(w_2\)</span> ("scalpel") has strong intrinsic correlation with the gender vector, <span class="arithmatex">\(\mathbf{P}_{\perp} \vec{e}(w) \approx \vec{e}(w)\)</span>, and their mutual cosine similarity is preserved almost entirely while their projection onto the gender axis is reduced to exactly <span class="arithmatex">\(0.000\)</span>.</p>
+$$\begin{aligned}</p>
 </details>
 </details>
+<p>\langle \vec{e}<em _text_fair="\text{fair">{\text{fair}}(w_1), \vec{e}</em>}}(w_2) \rangle &amp;= \vec{e}(w_1)^T \mathbf{P<em _perp="\perp">{\perp}^T \mathbf{P}</em>(w_2) \
+&amp;= \vec{e}(w_1)^T \mathbf{P}_{\perp} \vec{e}(w_2)
+\end{aligned}$$
+        If neither } \vec{e<span class="arithmatex">\(w_1\)</span> ("surgeon") nor <span class="arithmatex">\(w_2\)</span> ("scalpel") has strong intrinsic correlation with the gender vector, <span class="arithmatex">\(\mathbf{P}_{\perp} \vec{e}(w) \approx \vec{e}(w)\)</span>, and their mutual cosine similarity is preserved almost entirely while their projection onto the gender axis is reduced to exactly <span class="arithmatex">\(0.000\)</span>.</p>
 <hr />
 <h2 id="peer-reviewed-scholarly-references">📚 Peer-Reviewed Scholarly References</h2>
 <ol>
@@ -9128,6 +9209,10 @@ If neither <span class="arithmatex">\(w_1\)</span> ("surgeon") nor <span class="
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

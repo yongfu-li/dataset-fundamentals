@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,9 +123,13 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
+          box-sizing: border-box !important;
+          width: 100% !important;
         }
 
         .node g.label rect,
@@ -311,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -337,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7761,10 +7819,10 @@
 <div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
     <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-      <span>📖 Companion Monograph Reference: Chapter 1 (§1.2)</span>
+      <span>📖 Companion Monograph Section Available</span>
     </div>
     <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
-      Read <strong>Chapter 1: Introduction to Datasets (§1.2: Types of Datasets)</strong> in the Springer Nature monograph for rigorous formal analysis of structural taxonomies and temporal behaviors.
+      Read <strong>Chapter 1: Introduction to Datasets (§1.2: Types of Datasets)</strong>, covering rigorous formal analysis of structural taxonomies and temporal behaviors.
     </div>
   </div>
   <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
@@ -7798,23 +7856,29 @@
 <h2 id="1-the-two-fundamental-classification-axes">1. The Two Fundamental Classification Axes</h2>
 <p>Every dataset encountered in empirical science and production machine learning can be systematically categorized along two orthogonal dimensions: <strong>Structural Organization</strong> and <strong>Temporal Behavior</strong> <a href="#ref-gandomi2015">[Gandomi2015]</a>.</p>
 <pre class="mermaid"><code>flowchart TD
-    Data["Raw Observational&lt;br/&gt;Data Universe"] --&gt; Axis1["Structural Dimension"]
-    Data --&gt; Axis2["Temporal Dimension"]
+    Universe["🌌 Raw Observational Universe 𝒟"] --&gt; ColStruct
+    Universe --&gt; ColTemp
 
-    Axis1 --&gt; Struct["Structured&lt;br/&gt;(Tabular, Fixed Schema, SQL, CSV)"]
-    Axis1 --&gt; Semi["Semi-Structured&lt;br/&gt;(Hierarchical, Self-Describing, JSON, XML)"]
-    Axis1 --&gt; Unstruct["Unstructured&lt;br/&gt;(Continuous Signal, Embeddings, Media)"]
+    subgraph ColStruct ["📐 Axis 1: Structural Dimension"]
+        direction TB
+        Struct["&lt;b&gt;1. Structured&lt;/b&gt;&lt;br/&gt;Rigid 1NF Relational Schema&lt;br/&gt;&lt;i&gt;SQL • Parquet • Arrow&lt;/i&gt;"]
+        Semi["&lt;b&gt;2. Semi-Structured&lt;/b&gt;&lt;br/&gt;Self-Describing Hierarchical Trees&lt;br/&gt;&lt;i&gt;JSON • BSON • Protocol Buffers&lt;/i&gt;"]
+        Unstruct["&lt;b&gt;3. Unstructured&lt;/b&gt;&lt;br/&gt;Continuous High-Dimensional Tensors&lt;br/&gt;&lt;i&gt;Audio WAV • Video MP4 • Images&lt;/i&gt;"]
+        Struct --&gt; Semi --&gt; Unstruct
+    end
 
-    Axis2 --&gt; Static["Static Snapshots&lt;br/&gt;(Immutable, Frozen, Historical)"]
-    Axis2 --&gt; Dynamic["Dynamic Streams&lt;br/&gt;(Continuous Influx, Sliding Windows)"]
+    subgraph ColTemp ["⏱️ Axis 2: Temporal Dimension"]
+        direction TB
+        Static["&lt;b&gt;A. Static Snapshots&lt;/b&gt;&lt;br/&gt;Immutable Frozen Partition [t₀, t₁]&lt;br/&gt;&lt;i&gt;Batch Analytics • S3 Parquet&lt;/i&gt;"]
+        Dynamic["&lt;b&gt;B. Dynamic Streams&lt;/b&gt;&lt;br/&gt;Unbounded Continuous Flow&lt;br/&gt;&lt;i&gt;Kafka • Apache Flink • WebSockets&lt;/i&gt;"]
+        Static --&gt; Dynamic
+    end
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef green fill:#e7f4c8,stroke:#151b20,stroke-width:2px,color:#151b20;
-    classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef purple fill:#e2dfff,stroke:#151b20,stroke-width:2px,color:#151b20;
 
-    class Data blue;
-    class Axis1,Axis2 amber;
+    class Universe blue;
     class Struct,Semi,Unstruct green;
     class Static,Dynamic purple;</code></pre>
 <p>Selecting an appropriate organizational architecture dictates everything downstream: computational ingestion throughput, serialization efficiency, query ergonomics, storage footprints, and the susceptibility of the dataset to <strong>schema drift</strong> and <strong>temporal covariate shift</strong> <a href="#ref-chapman2020">[Chapman2020]</a>.</p>
@@ -8140,8 +8204,8 @@ W_k = [k \cdot \delta, k \cdot \delta + \Delta t)
       display: block;
     }
     .msi-card-box {
-      background: #0f172a;
-      border: 1px solid #334155;
+      background: #fffdf7;
+      border: 2px solid #151b20;
       border-radius: 8px;
       padding: 16px;
       box-sizing: border-box;
@@ -9291,8 +9355,8 @@ W_k = [k \cdot \delta, k \cdot \delta + \Delta t)
 <p>A natural language processing pipeline ingests 10,000,000 documents with an average vocabulary of 50,000 unique token terms. A junior data scientist stores the document-term matrix as a dense <code>float32</code> array in memory. If each floating-point value occupies 4 bytes, how much RAM would be required, and what structural format should be adopted instead?</p>
 <details class="success">
 <summary>Reveal Detailed Solution</summary>
-<p><strong>Answer:</strong> Dense storage requires approximately <span class="arithmatex">\(2.0   ext{ Terabytes}\)</span> of RAM; the team must adopt Compressed Sparse Row (CSR) format.
-Calculation: <span class="arithmatex">\(10^7  imes 50,000 = 5     imes 10^{11}\)</span> matrix entries. Storing <span class="arithmatex">\(5    imes 10^{11}    imes 4  ext{ bytes} pprox 2,000    ext{ Gigabytes} = 2.0   ext{ TB}\)</span>. Since an individual document typically contains fewer than 200 unique terms, the matrix is over <span class="arithmatex">\(99.6\%\)</span> sparse ($   ext{nnz} pprox 2   imes 10^9$). Storing CSR pointers and values requires only <span class="arithmatex">\((2  imes 10^9   imes 8  ext{ bytes}) + (10^7    imes 4  ext{ bytes}) pprox 16  ext{ GB}\)</span>, fitting comfortably on a single developer workstation.</p>
+<p><strong>Answer:</strong> Dense storage requires approximately <span class="arithmatex">\(2.0\text{ Terabytes}\)</span> of RAM; the team must adopt Compressed Sparse Row (CSR) format.
+Calculation: <span class="arithmatex">\(10^7 \times 50,000 = 5 \times 10^{11}\)</span> matrix entries. Storing <span class="arithmatex">\(5 \times 10^{11} \times 4\text{ bytes} \approx 2,000\text{ Gigabytes} = 2.0\text{ TB}\)</span>. Since an individual document typically contains fewer than 200 unique terms, the matrix is over <span class="arithmatex">\(99.6\%\)</span> sparse (<span class="arithmatex">\(\text{nnz} \approx 2 \times 10^9\)</span>). Storing CSR pointers and values requires only <span class="arithmatex">\((2 \times 10^9 \times 8\text{ bytes}) + (10^7 \times 4\text{ bytes}) \approx 16\text{ GB}\)</span>, fitting comfortably on a single developer workstation.</p>
 </details>
 </details>
 <details class="question">
@@ -9419,6 +9483,10 @@ Discrete snapshots discard the exact arrival sequence of rapid micro-transaction
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

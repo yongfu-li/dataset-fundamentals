@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,8 +123,10 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 4px !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
           box-sizing: border-box !important;
           width: 100% !important;
@@ -313,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -339,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7716,24 +7772,20 @@
 
 
 <h1 id="73-detecting-and-auditing-bias-statistically">7.3 Detecting and Auditing Bias Statistically</h1>
-<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 4px 4px 0px #151b20;">
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
   <div>
-    <div style="font-weight: 800; color: #151b20; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-      <span style="background: #ffc83e; border: 1.5px solid #151b20; padding: 2px 8px; border-radius: 6px;">§7.3</span>
-      <span>Companion Monograph: Chapter 7 (Dataset Bias &amp; Algorithmic Fairness)</span>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.88rem; color: #475569; margin-top: 6px; font-weight: 500;">
-      Read <strong>Chapter 7: Dataset Bias and Fairness</strong> in the companion Springer Nature monograph for complete formal proofs of Wasserstein slicing distance and Theil index subgroup entropy decomposition.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 7: Dataset Bias and Fairness (§7.3: Statistical Bias Detection &amp; Auditing)</strong>, covering complete formal proofs of Wasserstein slicing distance and Theil index subgroup entropy decomposition.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #c9f3f4; color: #0e7490; border: 2px solid #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.84rem; text-decoration: none; box-shadow: 2px 2px 0px #151b20;">
-    <span>Monograph Hub →</span>
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
+    <span>Explore Chapter 7 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Duration:</strong> ~30 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter7/chapter7.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-73">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 7.3</h3>
 <p>Experience Chapter 7 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
@@ -7742,7 +7794,7 @@
     <div style="display: flex; align-items: center; gap: 10px;">
       <span style="font-size: 1.25rem;">🎙️</span>
       <span style="font-weight: 800; color: #151b20; font-size: 0.98rem; letter-spacing: 0.01em;">Interactive Slide Lecture • Dr. Nova &amp; Kaito</span>
-      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">8 Slides</span>
+      <span style="background: #c9f3f4; color: #0e7490; border: 1.5px solid #151b20; font-size: 0.72rem; padding: 2px 10px; border-radius: 9999px; font-family: monospace; font-weight: 800; box-shadow: 1px 1px 0px #151b20;">16 Slides</span>
     </div>
     <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
       <span style="font-size: 0.82rem; color: #475569; font-weight: 600;">
@@ -7816,11 +7868,11 @@
 <blockquote>
 <p>[!NOTE]
 <strong>Why Wasserstein-1 is Superior for Continuous Fairness Audits:</strong>
-Wasserstein-1 preserves the actual metric units of the underlying feature (e.g., credit points, dollar wage gaps). If an employer shifts male salaries upward by <span class="arithmatex">\(\$10,000\)</span>, <span class="arithmatex">\(D_{\text{KS}}\)</span> reports an abstract vertical divergence bounded in <span class="arithmatex">\([0, 1]\)</span>, whereas <span class="arithmatex">\(\mathcal{W}_1\)</span> directly reports <span class="arithmatex">\(\mathcal{W}_1 = \$10,000\)</span> in exact monetary transport work [<a href="#ref-feldman2015">Feldman2015</a>].</p>
+Wasserstein-1 preserves the actual metric units of the underlying feature (e.g., credit points, dollar wage gaps). If an employer shifts male salaries upward by USD 10,000, <span class="arithmatex">\(D_{\text{KS}}\)</span> reports an abstract vertical divergence bounded in <span class="arithmatex">\([0, 1]\)</span>, whereas <span class="arithmatex">\(\mathcal{W}_1\)</span> directly reports <span class="arithmatex">\(\mathcal{W}_1 = \text{USD } 10,000\)</span> in exact monetary transport work [<a href="#ref-feldman2015">Feldman2015</a>].</p>
 </blockquote>
 <hr />
 <h4 id="3-theil-index-of-inequality-between-group-entropy-decomposition">3. Theil Index of Inequality &amp; Between-Group Entropy Decomposition</h4>
-<p>Originating from econometric welfare theory, the Theil index provides a mathematically rigorous bridge connecting <strong>individual fairness</strong> (treating similar individuals similarly) with <strong>group fairness</strong> (treating demographic groups equally) [<a href="#ref-speicher2018">Speicher2018</a>].</p>
+<p>Originating from econometric welfare theory, the Theil index provides a mathematically rigorous bridge connecting <strong>individual fairness</strong> (treating similar individuals similarly via Lipschitz metric constraints [<a href="#ref-dwork2012">Dwork2012</a>]) with <strong>group fairness</strong> (statistical parity and predictive rate consistency [<a href="#ref-chouldechova2017">Chouldechova2017</a>], [<a href="#ref-kleinberg2016">Kleinberg2016</a>], [<a href="#ref-speicher2018">Speicher2018</a>]).</p>
 <p>Let individual benefit be defined as <span class="arithmatex">\(b_i = \hat{y}_i - y_i + 1 &gt; 0\)</span> (a strictly positive measure of algorithmic advantage relative to true status). The population Theil index is:</p>
 <div class="arithmatex">\[T = \frac{1}{N} \sum_{i=1}^N \frac{b_i}{\bar{b}} \ln\left( \frac{b_i}{\bar{b}} \right), \quad \bar{b} = \frac{1}{N} \sum_{i=1}^N b_i\]</div>
 <h5 id="additive-decomposition-proof">Additive Decomposition Proof</h5>
@@ -8540,6 +8592,7 @@ setTimeout(updateSim73A, 250);
 <li><a id="ref-chouldechova2017"></a><strong>[Chouldechova2017]</strong> A. Chouldechova, "Fair Prediction with Disparate Impact: A Study of Bias in Recidivism Prediction Instruments," <em>Big Data</em>, vol. 5, no. 2, pp. 153–163, 2017. <a href="https://doi.org/10.1089/big.2016.0047">DOI: 10.1089/big.2016.0047</a>.</li>
 <li><a id="ref-weerts2023"></a><strong>[Weerts2023]</strong> H. Weerts, M. Dudík, R. Edgar, A. Jalali, R. Lutz, and M. Madaio, "Fairlearn: Assessing and Improving Fairness of AI Systems," <em>Journal of Machine Learning Research</em>, vol. 24, no. 257, pp. 1–8, 2023. <a href="https://doi.org/10.48550/arXiv.2303.16654">DOI: 10.48550/arXiv.2303.16654</a>.</li>
 <li><a id="ref-bellamy2019"></a><strong>[Bellamy2019]</strong> R. K. E. Bellamy et al., "AI Fairness 360: An extensible toolkit for detecting and mitigating algorithmic bias," <em>IBM Journal of Research and Development</em>, vol. 63, no. 4/5, pp. 4:1–4:15, 2019. <a href="https://doi.org/10.1147/JRD.2019.2942287">DOI: 10.1147/JRD.2019.2942287</a>.</li>
+<li><a id="ref-kleinberg2016"></a><strong>[Kleinberg2016]</strong> J. Kleinberg, S. Mullainathan, and M. Raghavan, "Inherent Trade-Offs in the Fair Determination of Risk Scores," in <em>Proceedings of the 8th Innovations in Theoretical Computer Science Conference (ITCS '17)</em>, 2017. <a href="https://doi.org/10.48550/arXiv.1609.05807">DOI: 10.48550/arXiv.1609.05807</a>.</li>
 </ol>
 <hr />
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--noc-border);">
@@ -8642,6 +8695,10 @@ setTimeout(updateSim73A, 250);
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

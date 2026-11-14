@@ -79,8 +79,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 13.5px !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
           line-height: 1.35 !important;
         }
 
@@ -90,7 +90,8 @@
           fill: var(--ink, #151b20) !important;
           color: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         /* All child text elements inside node labels MUST be crisp ink text */
@@ -100,7 +101,8 @@
           color: var(--ink, #151b20) !important;
           fill: var(--ink, #151b20) !important;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-          font-weight: 700 !important;
+          font-weight: 600 !important;
+          font-size: 12px !important;
         }
 
         .mermaid foreignObject,
@@ -121,9 +123,13 @@
           display: inline-block !important;
           text-align: center !important;
           margin: 0 !important;
-          padding: 0 !important;
+          padding: 2px 6px !important;
           word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
           white-space: normal !important;
+          box-sizing: border-box !important;
+          width: 100% !important;
         }
 
         .node g.label rect,
@@ -311,13 +317,17 @@
           t.style.setProperty('fill', '#151b20', 'important');
           t.style.setProperty('color', '#151b20', 'important');
           t.style.setProperty('font-family', "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", 'important');
-          t.style.setProperty('font-weight', '700', 'important');
+          t.style.setProperty('font-weight', '600', 'important');
+          t.style.setProperty('font-size', '12px', 'important');
           t.style.setProperty('text-align', 'center', 'important');
           const tag = t.tagName.toLowerCase();
           if (tag === 'div' && t.closest('foreignObject')) {
             t.style.setProperty('text-align', 'center', 'important');
             t.style.setProperty('margin', '0', 'important');
-            t.style.setProperty('padding', '0', 'important');
+            t.style.setProperty('padding', '2px 6px', 'important');
+            t.style.setProperty('word-wrap', 'break-word', 'important');
+            t.style.setProperty('overflow-wrap', 'break-word', 'important');
+            t.style.setProperty('word-break', 'break-word', 'important');
           }
           if (tag === 'text' || tag === 'tspan') {
             t.style.setProperty('text-anchor', 'middle', 'important');
@@ -337,7 +347,55 @@
           m.style.setProperty('fill', '#151b20', 'important');
           m.style.setProperty('stroke', '#151b20', 'important');
         });
+
+        // 4. Flowchart Boundary Guardian: guarantee that wording never exceeds the node box boundary
+        const nodes = root.querySelectorAll('.node');
+        nodes.forEach(node => {
+          const shape = node.querySelector('rect, polygon, circle, ellipse, path:not(.flowchart-link)');
+          const fo = node.querySelector('foreignObject');
+          const div = fo ? fo.querySelector('div') : null;
+          if (shape && div) {
+            const textW = Math.max(div.scrollWidth, div.offsetWidth);
+            const textH = Math.max(div.scrollHeight, div.offsetHeight);
+            let shapeW = parseFloat(shape.getAttribute('width') || 0);
+            let shapeH = parseFloat(shape.getAttribute('height') || 0);
+            if ((!shapeW || !shapeH) && shape.getBoundingClientRect) {
+              const bbox = shape.getBoundingClientRect();
+              if (!shapeW) shapeW = bbox.width;
+              if (!shapeH) shapeH = bbox.height;
+            }
+            if (shapeW > 0 && shapeH > 0) {
+              let effectiveShapeW = shapeW;
+              let effectiveShapeH = shapeH;
+              const tag = shape.tagName.toLowerCase();
+              if (tag === 'polygon') {
+                effectiveShapeW = shapeW * 0.72;
+                effectiveShapeH = shapeH * 0.75;
+              } else if (tag === 'circle') {
+                effectiveShapeW = shapeW * 0.80;
+                effectiveShapeH = shapeH * 0.80;
+              }
+              const marginX = 8;
+              const marginY = 6;
+              let scaleX = 1.0;
+              let scaleY = 1.0;
+              if (textW + marginX > effectiveShapeW) {
+                scaleX = (effectiveShapeW - marginX) / textW;
+              }
+              if (textH + marginY > effectiveShapeH) {
+                scaleY = (effectiveShapeH - marginY) / textH;
+              }
+              const scale = Math.min(scaleX, scaleY);
+              if (scale < 0.99 && scale >= 0.45) {
+                div.style.transform = `scale(${scale.toFixed(3)})`;
+                div.style.transformOrigin = 'center center';
+              }
+            }
+          }
+        });
       }
+
+      window.sanitizeMermaidGlobal = sanitizeMermaid;
 
       function injectStyleAndSanitize(shadow) {
         if (!shadow) return;
@@ -7724,24 +7782,20 @@
 
 
 <h1 id="510-challenges-leakage-prevention-and-governance">5.10 Challenges, Leakage Prevention, and Governance</h1>
-<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 4px 4px 0px #ffc83e;">
-  <div style="flex: 1; min-width: 280px;">
-    <div style="font-weight: 800; color: #151b20; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
-      <span style="font-size: 1.3rem;">📖</span>
-      <span>Companion Monograph Section Available</span>
+<div class="noc-book-banner" style="background: #fffdf7; border: 2px solid #151b20; box-shadow: 4px 4px 0px #22bfd7; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+  <div>
+    <div style="font-weight: 800; color: #0e7490; font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+      <span>📖 Companion Monograph Section Available</span>
     </div>
-    <div style="font-size: 0.92rem; color: #334155; margin-top: 6px; line-height: 1.55;">
-      Read <strong>Chapter 5: Data Cleaning &amp; Preprocessing (§5.10: Causal Leakage Theorems &amp; Lineage Governance)</strong> in the official Springer Nature monograph, covering Provenance Semirings, Population Stability Index drift thresholds, and temporal filtrations.
+    <div style="font-size: 0.88rem; color: #334155; margin-top: 4px; font-weight: 500;">
+      Read <strong>Chapter 5: Data Cleaning and Preprocessing (§5.10: Causal Leakage Theorems &amp; Lineage Governance)</strong>, covering Provenance Semirings, Population Stability Index drift thresholds, and temporal filtrations.
     </div>
   </div>
-  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 8px; background: #2563eb; color: #ffffff; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; text-decoration: none; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; transition: transform 0.15s ease;">
+  <a href="../../textbook/" style="display: inline-flex; align-items: center; gap: 6px; background: #ffc83e; border: 2px solid #151b20; box-shadow: 2px 2px 0px #151b20; color: #151b20; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 0.85rem; text-decoration: none;">
     <span>Explore Chapter 5 in Monograph →</span>
   </a>
 </div>
 
-<blockquote>
-<p><strong>Estimated Study Time:</strong> ~28 minutes • <strong>Lecture Deck:</strong> <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pptx">Download PPTX</a> · <a href="https://yongfu-li.github.io/dataset-fundamentals/chapter5/chapter5.pdf">Download PDF</a></p>
-</blockquote>
 <hr />
 <h3 id="interactive-slide-lecture-dr-nova-kaito-on-lesson-510">🎙️ Interactive Slide Lecture: Dr. Nova &amp; Kaito on Lesson 5.10</h3>
 <p>Experience Chapter 5 curriculum concepts delivered by interactive AI avatars with multi-slide presentation decks, synchronized slides, multi-character neural voice synthesis, and Socratic debates:</p>
@@ -7769,14 +7823,14 @@
 <p>Enterprise dataset engineering prevents these silent failures through <strong>Leakage Sentinel Audits</strong>, <strong>Cryptographic Provenance Semirings</strong> [<a href="#ref-green2007">Green2007</a>], and <strong>Population Stability Index (PSI) Circuit Breakers</strong> [<a href="#ref-schelter2018">Schelter2018</a>, <a href="#ref-northcutt2021">Northcutt2021</a>].</p>
 <hr />
 <h2 id="1-conceptual-overview-taxonomy-of-data-leakage">1. Conceptual Overview: Taxonomy of Data Leakage</h2>
-<pre class="mermaid"><code>flowchart LR
-    Root["Data Leakage Typology"] --&gt; T1["Type I: Target Leakage&lt;br/&gt;Causal Reversal (Y -&gt; X_leak)"]
-    Root --&gt; T2["Type II: Distributional Bleed&lt;br/&gt;Parameters Fitted on Train ∪ Test"]
-    Root --&gt; T3["Type III: Temporal Inversion&lt;br/&gt;Look-Ahead Leakage (t_feat &gt; t_target)"]
+<pre class="mermaid"><code>flowchart TD
+    Root["Data Leakage&lt;br/&gt;Typology"] --&gt; T1["Type I: Target&lt;br/&gt;Causal Reversal&lt;br/&gt;(Y -&gt; X_leak)"]
+    Root --&gt; T2["Type II: Bleed&lt;br/&gt;Train ∪ Test&lt;br/&gt;Contamination"]
+    Root --&gt; T3["Type III: Look-Ahead&lt;br/&gt;Temporal Inversion&lt;br/&gt;(t_feat &gt; t_tgt)"]
 
-    T1 --&gt; Fix1["Fix: Causal Timestamp &amp; MI Proxy Screening"]
-    T2 --&gt; Fix2["Fix: Fold-Isolated Pipeline Encapsulation &amp; Row Dedupe"]
-    T3 --&gt; Fix3["Fix: Chronological Filtration Splits F_t"]
+    T1 --&gt; Fix1["Fix: Causal Time&lt;br/&gt;&amp; MI Screening"]
+    T2 --&gt; Fix2["Fix: Fold Isolation&lt;br/&gt;&amp; Row Dedupe"]
+    T3 --&gt; Fix3["Fix: Chrono Split&lt;br/&gt;Filtration F_t"]
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
@@ -7836,12 +7890,12 @@ H_k = \operatorname{SHA-256}\left( H_{k-1} \;\|\; \text{CodeCommitHash} \;\|\; \
 <li><strong>Concept Drift</strong>: Fundamental world mechanism shifts over time: <span class="arithmatex">\(P_{\text{train}}(Y \mid X) \ne P_{\text{deploy}}(Y \mid X)\)</span>.</li>
 </ul>
 <pre class="mermaid"><code>flowchart TD
-    Stream["Production Payload Batch"] --&gt; Check{"Evaluate Continuous Drift Sentinel"}
-    Check --&gt; PSI["Compute Binned PSI = sum((P_b - Q_b) ln(P_b/Q_b))"]
-    Check --&gt; KS["Compute KS Distance D_n = sup |F_train(x) - F_prod(x)|"]
-    PSI &amp; KS --&gt; Gate{"PSI &gt; 0.25 or KS p &lt; 0.01?"}
-    Gate --&gt;|Yes| Alert["CIRCUIT BREAKER: Halt Auto-Decisions &amp; Trigger Retrain"]
-    Gate --&gt;|No| Infer["Authorized Production Inference"]
+    Stream["Production&lt;br/&gt;Payload Batch"] --&gt; Check{"Evaluate Drift&lt;br/&gt;Sentinels"}
+    Check --&gt; PSI["Compute Binned&lt;br/&gt;PSI Drift"]
+    Check --&gt; KS["Compute 2-Sample&lt;br/&gt;KS Distance"]
+    PSI &amp; KS --&gt; Gate{"PSI &gt; 0.25 or&lt;br/&gt;KS p &lt; 0.01?"}
+    Gate --&gt;|Yes| Alert["CIRCUIT BREAKER&lt;br/&gt;Halt Decisions &amp;&lt;br/&gt;Retrain Model"]
+    Gate --&gt;|No| Infer["Authorized&lt;br/&gt;Production&lt;br/&gt;Inference"]
 
     classDef blue fill:#c9f3f4,stroke:#151b20,stroke-width:2px,color:#151b20;
     classDef amber fill:#fff0b9,stroke:#151b20,stroke-width:2px,color:#151b20;
@@ -8404,6 +8458,10 @@ window.addEventListener('load', () => {
         <script src="../../assets/js/copy-tex.min.js"></script>
       
         <script src="../../assets/js/katex.js"></script>
+      
+        <script src="../../assets/js/mermaid.min.js"></script>
+      
+        <script src="../../assets/js/mermaid-init.js"></script>
       
         <script src="../../assets/js/code-runner.js"></script>
       

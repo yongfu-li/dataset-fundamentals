@@ -172,6 +172,43 @@ body,
 }
 
 /* ==========================================================================
+   KaTeX & Arithmatex Mathematical Equations Responsive Overflow Shield
+   ========================================================================== */
+.md-typeset .arithmatex,
+.md-typeset .katex-display {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  max-width: 100% !important;
+  padding: 8px 6px !important;
+  margin: 1rem auto !important;
+  text-align: center;
+  scrollbar-width: thin;
+  scrollbar-color: #22bfd7 rgba(238, 228, 200, 0.4);
+  -webkit-overflow-scrolling: touch;
+}
+
+.md-typeset .arithmatex::-webkit-scrollbar,
+.md-typeset .katex-display::-webkit-scrollbar {
+  height: 5px;
+}
+
+.md-typeset .arithmatex::-webkit-scrollbar-track,
+.md-typeset .katex-display::-webkit-scrollbar-track {
+  background: rgba(238, 228, 200, 0.3);
+  border-radius: 4px;
+}
+
+.md-typeset .arithmatex::-webkit-scrollbar-thumb,
+.md-typeset .katex-display::-webkit-scrollbar-thumb {
+  background: #22bfd7;
+  border-radius: 4px;
+}
+
+.md-typeset .katex-display > .katex {
+  max-width: 100%;
+}
+
+/* ==========================================================================
    Mermaid Diagrams & Flowcharts - EDA Floorplanning Neo-Brutalist Theme
    ========================================================================== */
 
@@ -185,12 +222,16 @@ body,
   margin: 1.75rem auto !important;
   text-align: center;
   display: block;
+  overflow-x: auto !important;
+  max-width: 100% !important;
 }
 
 .md-typeset .mermaid svg {
   max-width: 100%;
   height: auto;
   overflow: visible;
+  margin: 0 auto;
+  display: block;
 }
 
 /* Default typography and colors for nodes & diagram labels - All Crisp Black Wording */
@@ -230,6 +271,21 @@ body,
 .md-typeset .mermaid foreignObject p {
   text-align: center !important;
   line-height: 1.35 !important;
+  font-size: 8.5px !important;
+}
+
+.md-typeset .mermaid .nodeLabel b,
+.md-typeset .mermaid .label b,
+.md-typeset .mermaid foreignObject b,
+.md-typeset .mermaid foreignObject strong {
+  font-size: 8.5px !important;
+}
+
+.md-typeset .mermaid .nodeLabel span,
+.md-typeset .mermaid .label span,
+.md-typeset .mermaid foreignObject span,
+.md-typeset .mermaid foreignObject small {
+  font-size: 8px !important;
 }
 
 .md-typeset .mermaid foreignObject div {
